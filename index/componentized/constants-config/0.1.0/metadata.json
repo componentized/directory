@@ -1,0 +1,49 @@
+{
+  "package": "componentized:constants-config",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/constants/config",
+    "tag": "0.1.0",
+    "digest": "sha256:b19001f22f81f2411cbd236287d25c01dd733826aa5fd6b9b0dde8e9c325813b",
+    "layer_digest": "sha256:f6d02ba98e2be2d083f179d27bfeadd62b627f49ee8ba9c65cc8548ce59bd739",
+    "size": 4996
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/constants/config",
+    "tag": "0.1.0_debug",
+    "digest": "sha256:2fd106c53910b108fe12ddba11bd8edad4326512b99c4ae72ac4f93f443e3afc",
+    "layer_digest": "sha256:71a1ea4c851887989b805438d4e764d87a2964c079ad74421fdffb7cc0f92ec7",
+    "size": 60808
+  },
+  "created": "2026-10-06T02:55:38.327462906Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Config values for the wasi:config/store interface, served from a list of key value pairs.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "d1d0592fa81b3ba0336c68664c2c73d0feff104c",
+    "org.opencontainers.image.source": "https://github.com/componentized/constants.git",
+    "org.opencontainers.image.title": "componentized:constants-config",
+    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/d1d0592fa81b3ba0336c68664c2c73d0feff104c/components/config",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "imports": [
+    "componentized:constants/config-values@0.1.0"
+  ],
+  "exports": [
+    "wasi:config/store@0.2.0-rc.1"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:constants",
+      "version": "0.1.0"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:27Z"
+}

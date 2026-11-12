@@ -1,0 +1,67 @@
+{
+  "package": "componentized:component-path-loader",
+  "version": "0.0.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component/path-loader",
+    "tag": "0.0.0-dev",
+    "digest": "sha256:2ff0b5d4f630afdc865027daa7b7bdb1cb75166a70f0aa9f99dfbf2f6c4e57f4",
+    "layer_digest": "sha256:9c81b8bec3952df452d3aaf2afaf72e21bf05e24bd3ddfb143b52034c45c26ca",
+    "size": 352587
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component/path-loader",
+    "tag": "0.0.0-dev_debug",
+    "digest": "sha256:92d1001aa56a48463b66efab34902b5878742507b992df17eef8cebc26198c57",
+    "layer_digest": "sha256:7bb4160122ef1371ce893bd7410b11cc06c287308f13c6c99e44c7181ce79f8a",
+    "size": 1254246
+  },
+  "created": "2026-10-08T16:00:12.302840865Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Loads a component from a path.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "9baf4aee475565a3ab3e361f17d2cc294ca7aa80",
+    "org.opencontainers.image.source": "https://github.com/componentized/component.git",
+    "org.opencontainers.image.title": "componentized:component-path-loader",
+    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/9baf4aee475565a3ab3e361f17d2cc294ca7aa80/components/path-loader",
+    "org.opencontainers.image.version": "0.0.0-dev"
+  },
+  "imports": [
+    "wasi:clocks/system-clock@0.3.0",
+    "wasi:filesystem/types@0.3.0",
+    "wasi:filesystem/preopens@0.3.0",
+    "componentized:component/types@0.0.0-dev",
+    "componentized:http/client@0.1.0",
+    "componentized:oci/client@0.1.0",
+    "componentized:oci/media-types@0.1.0"
+  ],
+  "exports": [
+    "componentized:component/path-loader@0.0.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:component",
+      "version": "0.0.0-dev"
+    },
+    {
+      "package": "componentized:http",
+      "version": "0.1.0"
+    },
+    {
+      "package": "componentized:oci",
+      "version": "0.1.0"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:11:54Z"
+}

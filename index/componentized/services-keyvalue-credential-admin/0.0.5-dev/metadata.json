@@ -1,0 +1,45 @@
+{
+  "package": "componentized:services-keyvalue-credential-admin",
+  "version": "0.0.5-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/keyvalue-credential-admin",
+    "tag": "0.0.5-dev",
+    "digest": "sha256:c4327d144d2ae9dd5aedce3ec352f248b3953f1236046614f57dd9c638239314",
+    "layer_digest": "sha256:f48cc84d6a2b05c577854770fdd7fa67ac9282be0afd4e58addaebf30cab1950",
+    "size": 47595
+  },
+  "created": "2026-11-09T22:53:50.842483442Z",
+  "annotations": {
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "23a7aebfe82e30b9453f8d8ee6b297b8184d934c+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/services.git",
+    "org.opencontainers.image.title": "keyvalue-credential-admin",
+    "org.opencontainers.image.version": "0.0.5-dev"
+  },
+  "imports": [
+    "wasi:config/store@0.2.0-rc.1",
+    "wasi:keyvalue/store@0.2.0-draft2",
+    "componentized:services/types@0.0.5-dev"
+  ],
+  "exports": [
+    "componentized:services/credential-admin@0.0.5-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:services",
+      "version": "0.0.5-dev"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:keyvalue",
+      "version": "0.2.0-draft2"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:55Z"
+}

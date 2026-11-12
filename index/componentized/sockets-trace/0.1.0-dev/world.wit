@@ -1,0 +1,11 @@
+package root:component;
+
+world root {
+  import wasi:logging/logging@0.1.0-draft;
+  import wasi:clocks/types@0.3.0;
+  import wasi:sockets/types@0.3.0;
+  import wasi:sockets/ip-name-lookup@0.3.0;
+
+  export wasi:sockets/types@0.3.0;
+  export wasi:sockets/ip-name-lookup@0.3.0;
+}

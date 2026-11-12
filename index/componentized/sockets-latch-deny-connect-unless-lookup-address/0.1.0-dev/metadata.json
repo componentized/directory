@@ -1,0 +1,49 @@
+{
+  "package": "componentized:sockets-latch-deny-connect-unless-lookup-address",
+  "version": "0.1.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-deny-connect-unless-lookup-address",
+    "tag": "0.1.0-dev",
+    "digest": "sha256:06e3053e109c36686cfb4aedccd6df7046e966332831bf8982cdd27ab8a593d1",
+    "layer_digest": "sha256:ae7ef66f00f6738b26ff7d1bc50fb4dff96f2d4ca66c3962f1ec10fc5c3af164",
+    "size": 41785
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-deny-connect-unless-lookup-address",
+    "tag": "0.1.0-dev_debug",
+    "digest": "sha256:b40dc979abdfb0ee94c3e2ab499f2017c1e55e13355454900ed3536449116d18",
+    "layer_digest": "sha256:ffa0d2b105e7c9b883d26cb7f899588b6fedcf4381d5ea3f43e8e2873ab74220",
+    "size": 499634
+  },
+  "created": "2026-10-15T18:56:29.375547781Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Sockets latch that implicitly denies connecting to addresses, unless they were granted for wasi:sockets/ip-name-lookup.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b90f9a86284d488ca5706e484b8f4f64110b3aaf",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-deny-connect-unless-lookup-address",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/b90f9a86284d488ca5706e484b8f4f64110b3aaf/components/latch-deny-connect-unless-lookup-address",
+    "org.opencontainers.image.version": "0.1.0-dev"
+  },
+  "imports": [
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.0-dev"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:13:11Z"
+}

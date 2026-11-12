@@ -1,0 +1,59 @@
+{
+  "package": "componentized:valkey-tcp-connector-latch",
+  "version": "0.3.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/tcp-connector-latch",
+    "tag": "0.3.0-dev",
+    "digest": "sha256:c22cf94530b5600ec1246fe19121898358ed94ebe7e6393da637517b0a29edb0",
+    "layer_digest": "sha256:dd556d308dfc5594804a2d3f7a3efdbd19f250511a5a501fe7a695dd81065afc",
+    "size": 418876
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/tcp-connector-latch",
+    "tag": "0.3.0-dev_debug",
+    "digest": "sha256:92f2466e507df01d0061475840ea39d12b34009f2c0053c6fd60375be4043ba7",
+    "layer_digest": "sha256:eb86870f5ecd8f604d210f17ed39e598044b3b25d2c52d23535fe8d135b3def3",
+    "size": 4576836
+  },
+  "created": "2026-11-09T19:24:43.523266414Z",
+  "annotations": {
+    "org.opencontainers.image.description": "A `componentized:sockets` latch limiting network access to the Valkey server in the `tcp-connector` config, denying every other socket.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "69ad5c957f56b19c57322b25fdd9ddb36d7776a0",
+    "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
+    "org.opencontainers.image.title": "componentized:valkey-tcp-connector-latch",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/69ad5c957f56b19c57322b25fdd9ddb36d7776a0/components/tcp-connector-latch",
+    "org.opencontainers.image.version": "0.3.0-dev"
+  },
+  "imports": [
+    "wasi:config/store@0.2.0-rc.1",
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.0"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:13:37Z"
+}

@@ -1,0 +1,5 @@
+package root:component;
+
+world root {
+  export componentized:valkey/tcp-connector-constants@0.3.0-dev;
+}

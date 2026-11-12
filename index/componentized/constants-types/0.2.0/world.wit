@@ -1,0 +1,14 @@
+package root:component;
+
+world root {
+  export componentized:constants/%u8@0.2.0;
+  export componentized:constants/%u16@0.2.0;
+  export componentized:constants/%u32@0.2.0;
+  export componentized:constants/%u64@0.2.0;
+  export componentized:constants/%s8@0.2.0;
+  export componentized:constants/%s16@0.2.0;
+  export componentized:constants/%s32@0.2.0;
+  export componentized:constants/%s64@0.2.0;
+  export componentized:constants/%f32@0.2.0;
+  export componentized:constants/%f64@0.2.0;
+}

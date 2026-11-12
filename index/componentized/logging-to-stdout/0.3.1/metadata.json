@@ -1,0 +1,55 @@
+{
+  "package": "componentized:logging-to-stdout",
+  "version": "0.3.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/logging/to-stdout",
+    "tag": "0.3.1",
+    "digest": "sha256:42a1c0ec26485ca4c566ad2346df1d16ffdb27d0f59ba876af4b1a8ce9c22bc0",
+    "layer_digest": "sha256:1f3b78ead135b52840070cb4190f35a13a7c751ac479dda00e4f17cecffdf67f",
+    "size": 89962
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/logging/to-stdout",
+    "tag": "0.3.1_debug",
+    "digest": "sha256:44931240d45fc491c6afd88092b11332bdbf6987d84663608ac403bf8560743f",
+    "layer_digest": "sha256:98f8a4566329037d40bb5a5c56eef3ad58d0a0b4e6fcb8b4f10ec019a30ab2eb",
+    "size": 336514
+  },
+  "created": "2026-10-15T13:03:57.300637986Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Implements wasi:logging/logging@0.1.0-draft writing log statements to stdout via wasi:cli/stdout@0.2.3. Timestamps for each log statement are generated from wasi:clocks/wall-clock@0.2.3.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "ce08cb00fa5bf8440dfe89737d43470c03c0f7f5",
+    "org.opencontainers.image.source": "https://github.com/componentized/logging.git",
+    "org.opencontainers.image.title": "componentized:logging-to-stdout",
+    "org.opencontainers.image.url": "https://github.com/componentized/logging/tree/ce08cb00fa5bf8440dfe89737d43470c03c0f7f5/components/to-stdout",
+    "org.opencontainers.image.version": "v0.3.1"
+  },
+  "imports": [
+    "wasi:cli/types@0.3.0",
+    "wasi:cli/stdout@0.3.0",
+    "wasi:clocks/system-clock@0.3.0"
+  ],
+  "exports": [
+    "wasi:logging/logging@0.1.0-draft"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:cli",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:43:38Z"
+}

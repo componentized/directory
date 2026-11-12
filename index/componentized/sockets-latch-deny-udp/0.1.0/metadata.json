@@ -1,0 +1,49 @@
+{
+  "package": "componentized:sockets-latch-deny-udp",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-deny-udp",
+    "tag": "0.1.0",
+    "digest": "sha256:9e80506dc0ab0f4f4bfa90b2b64c531c265941b40806de7a15fd99e582ccab0f",
+    "layer_digest": "sha256:38ef841bfdcc41b39fa104fc0e1a9c13c5ff1bf3d620c9fb6b1c263d07268c2b",
+    "size": 30749
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-deny-udp",
+    "tag": "0.1.0_debug",
+    "digest": "sha256:1e3145f51ee9545de1aad8ea9e9cdc68d881ba5f5323dfb10605281a572e172a",
+    "layer_digest": "sha256:2ff4199ee81e7aca9abd3490eab2c9a7969eb8a906fca9fb797ba78f7623149b",
+    "size": 306788
+  },
+  "created": "2026-10-15T19:09:11.161608802Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Sockets latch that implicitly denies all UDP operations.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "33379c373a0cebf66d2201adbb482a90f48dc01b",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-deny-udp",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/33379c373a0cebf66d2201adbb482a90f48dc01b/components/latch-deny-udp",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "imports": [
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.0"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:45:12Z"
+}

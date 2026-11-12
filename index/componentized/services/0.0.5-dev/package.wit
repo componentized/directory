@@ -1,0 +1,124 @@
+package componentized:services@0.0.5-dev;
+
+interface types {
+  type service-id = string;
+
+  type service-instance-id = service-id;
+
+  type service-binding-id = service-id;
+
+  record credential {
+    key: string,
+    value: string,
+  }
+
+  record request {
+    key: string,
+    value: string,
+  }
+
+  type scope = string;
+
+  type tier = string;
+
+  type error = string;
+}
+
+/// Credential Stores allow a client to fetch credentials for a specific instance or binding. The
+/// platform typically implements this interface keeping the implementation details of credential
+/// storage hidden from the service lifecycle and users.
+interface credential-store {
+  use types.{service-id, credential, error};
+
+  /// Fetch credentials from the store for a specific instance or binding.
+  fetch: func(id: service-id) -> result<list<credential>, error>;
+}
+
+/// Credential Admins manage the credentials for an instance or binding. The platform typically
+/// implements this interface keeping the implementation details of credential storage hidden from
+/// the service lifecycle and users.
+///
+/// Some clients are not able to support rotating credentials. For those clients, creating a new
+/// binding is recommended. Once the previous credentials are no longer in use, the old binding can
+/// be unbound.
+interface credential-admin {
+  use types.{service-id, credential, error};
+
+  /// Publish new or refreshed credentials to the store for use by the service instance/binding.
+  /// When rotating credentials, the previously valid credentials should be revoked after calling
+  /// publish with the new credentials.
+  publish: func(id: service-id, credentials: list<credential>) -> result<_, error>;
+
+  /// Destroy credentials previously published for a service instance or binding. Valid
+  /// credentials should be revoked before calling destroy.
+  destroy: func(id: service-id) -> result<_, error>;
+}
+
+/// Service lifecycle manage a specific type of service on demand. Allowed tiers and requested
+/// attributes are defined by the specific implementation.
+interface lifecycle {
+  use types.{service-instance-id, service-binding-id, request, scope, tier, error};
+
+  /// Provision a new service instance based on the service type, tier and requested attributes.
+  /// A lifecycle may be able to provision one or more types of services. If the service type
+  /// cannot be provisioned by this lifecycle, an error is returned. A service-error is returned
+  /// if the tier or attributes are invalid, or if the service could not be provisioned for any
+  /// reason. A service-instance-id is returned on success which can be used to update the
+  ///  service instance, create bindings, or destroy the service instance.
+  provision: func(instance-id: service-instance-id, %type: string, tier: option<tier>, requests: option<list<request>>) -> result<_, error>;
+
+  /// Update tier or requested attributes for an existing service. An error is returned
+  /// if the tier or attributes are invalid, or if the service could not be updated for any
+  /// reason.
+  update: func(instance-id: service-instance-id, tier: option<tier>, requests: option<list<request>>) -> result<_, error>;
+
+  /// Destroys an existing service, optionally requesting that state contained within the service
+  /// be retained rather than destroyed. A service-error is returned if the retention request
+  /// cannot be satisfied, or if the service could not be destroyed for any reason.
+  destroy: func(instance-id: service-instance-id, retain: option<bool>) -> result<_, error>;
+
+  /// Bind new credentials for the provisioned service publishing them to the credential store.
+  /// Scopes limit access to the service for the binding. The specific scopes available are
+  /// defined by the service. An error is returned if the scopes are invalid or the binding could
+  /// not be created for any reason.
+  bind: func(binding-id: service-binding-id, instance-id: service-instance-id, scopes: option<list<scope>>) -> result<_, error>;
+
+  /// List bindings for a service instance.
+  list-bindings: func(instance-id: service-instance-id) -> result<list<service-binding-id>, error>;
+
+  /// Unbind removes the binding. Expire any valid credentials and remove them from the
+  /// credential store. An error is returned if the binding could not be released for any reason.
+  unbind: func(binding-id: service-binding-id, instance-id: service-instance-id) -> result<_, error>;
+}
+
+world service-lifecycle {
+  import types;
+  import credential-admin;
+  import wasi:io/poll@0.2.6;
+  import wasi:clocks/monotonic-clock@0.2.6;
+  import wasi:clocks/wall-clock@0.2.6;
+  import wasi:config/store@0.2.0-rc.1;
+  import wasi:io/error@0.2.6;
+  import wasi:io/streams@0.2.6;
+  import wasi:filesystem/types@0.2.6;
+  import wasi:filesystem/preopens@0.2.6;
+  import wasi:logging/logging@0.1.0-draft;
+  import wasi:random/random@0.2.6;
+  import wasi:random/insecure@0.2.6;
+  import wasi:random/insecure-seed@0.2.6;
+  import wasi:sockets/network@0.2.6;
+  import wasi:sockets/instance-network@0.2.6;
+  import wasi:sockets/udp@0.2.6;
+  import wasi:sockets/udp-create-socket@0.2.6;
+  import wasi:sockets/tcp@0.2.6;
+  import wasi:sockets/tcp-create-socket@0.2.6;
+  import wasi:sockets/ip-name-lookup@0.2.6;
+
+  export lifecycle;
+}
+world imports {
+  import types;
+  import credential-admin;
+  import credential-store;
+  import lifecycle;
+}

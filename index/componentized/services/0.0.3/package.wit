@@ -1,0 +1,575 @@
+package componentized:services;
+
+interface types {
+  type service-instance-id = string;
+
+  type service-binding-id = string;
+
+  record credential {
+    key: string,
+    value: string,
+  }
+
+  record request {
+    key: string,
+    value: string,
+  }
+
+  type scope = string;
+
+  type tier = string;
+
+  type error = string;
+}
+
+/// Credential Stores allow a client to fetch credentials for a specific binding. The platform
+/// typically implements this interface keeping the implementation details of credential storage
+/// hidden from the service lifecycle and users.
+interface credential-store {
+  use types.{service-binding-id, credential, error};
+
+  /// Fetch credentials from the store for a specific binding.
+  fetch: func(binding-id: service-binding-id) -> result<list<credential>, error>;
+}
+
+/// Credential Admins manage the credentials for a binding. The platform typically implements this
+/// interface keeping the implementation details of credential storage hidden from the service
+/// lifecycle and users.
+///
+/// Some clients are not able to support rotating credentials. For those clients, creating a new
+/// binding is recommended. Once the previous credentials are no longer in use, the old binding can
+/// be unbound.
+interface credential-admin {
+  use types.{service-binding-id, credential, error};
+
+  /// Publish new or refreshed credentials to the store for use by the service binding. When
+  /// rotating credentials, the previously valid credentials should be revoked after calling
+  /// publish with the new credentials.
+  publish: func(binding-id: service-binding-id, credentials: list<credential>) -> result<_, error>;
+
+  /// Destroy credentials previously published for a binding. Valid credentials should be revoked
+  /// before calling destroy.
+  destroy: func(binding-id: service-binding-id) -> result<_, error>;
+}
+
+/// Service lifecycle manage a specific type of service on demand. Allowed tiers and requested
+/// attributes are defined by the specific implementation.
+interface lifecycle {
+  use types.{service-instance-id, service-binding-id, request, scope, tier, error};
+
+  /// Provision a new service instance based on the service type, tier and requested attributes.
+  /// A lifecycle may be able to provision one or more types of services. If the service type
+  /// cannot be provisioned by this lifecycle, an error is returned. A service-error is returned
+  /// if the tier or attributes are invalid, or if the service could not be provisioned for any
+  /// reason. A service-instance-id is returned on success which can be used to update the
+  ///  service instance, create bindings, or destroy the service instance.
+  provision: func(instance-id: service-instance-id, %type: string, tier: option<tier>, requests: option<list<request>>) -> result<_, error>;
+
+  /// Update tier or requested attributes for an existing service. An error is returned
+  /// if the tier or attributes are invalid, or if the service could not be updated for any
+  /// reason.
+  update: func(instance-id: service-instance-id, tier: option<tier>, requests: option<list<request>>) -> result<_, error>;
+
+  /// Destroys an existing service, optionally requesting that state contained within the service
+  /// be retained rather than destroyed. A service-error is returned if the retention request
+  /// cannot be satisfied, or if the service could not be destroyed for any reason.
+  destroy: func(instance-id: service-instance-id, retain: option<bool>) -> result<_, error>;
+
+  /// Bind new credentials for the provisioned service publishing them to the credential store.
+  /// Scopes limit access to the service for the binding. The specific scopes available are
+  /// defined by the service. An error is returned if the scopes are invalid or the binding could
+  /// not be created for any reason.
+  bind: func(binding-id: service-binding-id, instance-id: service-instance-id, scopes: option<list<scope>>) -> result<_, error>;
+
+  /// List bindings for a service instance.
+  list-bindings: func(instance-id: service-instance-id) -> result<list<service-binding-id>, error>;
+
+  /// Unbind removes the binding. Expire any valid credentials and remove them from the
+  /// credential store. An error is returned if the binding could not be released for any reason.
+  unbind: func(binding-id: service-binding-id, instance-id: service-instance-id) -> result<_, error>;
+}
+
+world service-lifecycle {
+  import types;
+  import credential-admin;
+  import wasi:io/poll@0.2.3;
+  import wasi:clocks/monotonic-clock@0.2.3;
+  import wasi:clocks/wall-clock@0.2.3;
+  import wasi:config/store@0.2.0-draft;
+  import wasi:io/error@0.2.3;
+  import wasi:io/streams@0.2.3;
+  import wasi:filesystem/types@0.2.3;
+  import wasi:filesystem/preopens@0.2.3;
+  import wasi:logging/logging@0.1.0-draft;
+  import wasi:random/random@0.2.3;
+  import wasi:random/insecure@0.2.3;
+  import wasi:random/insecure-seed@0.2.3;
+  import wasi:sockets/network@0.2.3;
+  import wasi:sockets/instance-network@0.2.3;
+  import wasi:sockets/udp@0.2.3;
+  import wasi:sockets/udp-create-socket@0.2.3;
+  import wasi:sockets/tcp@0.2.3;
+  import wasi:sockets/tcp-create-socket@0.2.3;
+  import wasi:sockets/ip-name-lookup@0.2.3;
+
+  export lifecycle;
+}
+world imports {
+  import types;
+  import credential-admin;
+  import credential-store;
+  import lifecycle;
+}
+package wasi:io@0.2.3 {
+  interface poll {
+    resource pollable {
+      ready: func() -> bool;
+      block: func();
+    }
+
+    poll: func(in: list<borrow<pollable>>) -> list<u32>;
+  }
+  interface error {
+    resource error {
+      to-debug-string: func() -> string;
+    }
+  }
+  interface streams {
+    use error.{error};
+    use poll.{pollable};
+
+    variant stream-error {
+      last-operation-failed(error),
+      closed,
+    }
+
+    resource input-stream {
+      read: func(len: u64) -> result<list<u8>, stream-error>;
+      blocking-read: func(len: u64) -> result<list<u8>, stream-error>;
+      skip: func(len: u64) -> result<u64, stream-error>;
+      blocking-skip: func(len: u64) -> result<u64, stream-error>;
+      subscribe: func() -> pollable;
+    }
+
+    resource output-stream {
+      check-write: func() -> result<u64, stream-error>;
+      write: func(contents: list<u8>) -> result<_, stream-error>;
+      blocking-write-and-flush: func(contents: list<u8>) -> result<_, stream-error>;
+      flush: func() -> result<_, stream-error>;
+      blocking-flush: func() -> result<_, stream-error>;
+      subscribe: func() -> pollable;
+      write-zeroes: func(len: u64) -> result<_, stream-error>;
+      blocking-write-zeroes-and-flush: func(len: u64) -> result<_, stream-error>;
+      splice: func(src: borrow<input-stream>, len: u64) -> result<u64, stream-error>;
+      blocking-splice: func(src: borrow<input-stream>, len: u64) -> result<u64, stream-error>;
+    }
+  }
+}
+
+
+package wasi:clocks@0.2.3 {
+  interface monotonic-clock {
+    use wasi:io/poll@0.2.3.{pollable};
+
+    type instant = u64;
+
+    type duration = u64;
+
+    now: func() -> instant;
+
+    resolution: func() -> duration;
+
+    subscribe-instant: func(when: instant) -> pollable;
+
+    subscribe-duration: func(when: duration) -> pollable;
+  }
+  interface wall-clock {
+    record datetime {
+      seconds: u64,
+      nanoseconds: u32,
+    }
+
+    now: func() -> datetime;
+
+    resolution: func() -> datetime;
+  }
+}
+
+
+package wasi:config@0.2.0-draft {
+  interface store {
+    variant error {
+      upstream(string),
+      io(string),
+    }
+
+    get: func(key: string) -> result<option<string>, error>;
+
+    get-all: func() -> result<list<tuple<string, string>>, error>;
+  }
+}
+
+
+package wasi:filesystem@0.2.3 {
+  interface types {
+    use wasi:io/streams@0.2.3.{input-stream, output-stream, error};
+    use wasi:clocks/wall-clock@0.2.3.{datetime};
+
+    type filesize = u64;
+
+    enum descriptor-type {
+      unknown,
+      block-device,
+      character-device,
+      directory,
+      fifo,
+      symbolic-link,
+      regular-file,
+      socket,
+    }
+
+    flags descriptor-flags {
+      read,
+      write,
+      file-integrity-sync,
+      data-integrity-sync,
+      requested-write-sync,
+      mutate-directory,
+    }
+
+    flags path-flags {
+      symlink-follow,
+    }
+
+    flags open-flags {
+      create,
+      directory,
+      exclusive,
+      truncate,
+    }
+
+    type link-count = u64;
+
+    record descriptor-stat {
+      %type: descriptor-type,
+      link-count: link-count,
+      size: filesize,
+      data-access-timestamp: option<datetime>,
+      data-modification-timestamp: option<datetime>,
+      status-change-timestamp: option<datetime>,
+    }
+
+    variant new-timestamp {
+      no-change,
+      now,
+      timestamp(datetime),
+    }
+
+    record directory-entry {
+      %type: descriptor-type,
+      name: string,
+    }
+
+    enum error-code {
+      access,
+      would-block,
+      already,
+      bad-descriptor,
+      busy,
+      deadlock,
+      quota,
+      exist,
+      file-too-large,
+      illegal-byte-sequence,
+      in-progress,
+      interrupted,
+      invalid,
+      io,
+      is-directory,
+      loop,
+      too-many-links,
+      message-size,
+      name-too-long,
+      no-device,
+      no-entry,
+      no-lock,
+      insufficient-memory,
+      insufficient-space,
+      not-directory,
+      not-empty,
+      not-recoverable,
+      unsupported,
+      no-tty,
+      no-such-device,
+      overflow,
+      not-permitted,
+      pipe,
+      read-only,
+      invalid-seek,
+      text-file-busy,
+      cross-device,
+    }
+
+    enum advice {
+      normal,
+      sequential,
+      random,
+      will-need,
+      dont-need,
+      no-reuse,
+    }
+
+    record metadata-hash-value {
+      lower: u64,
+      upper: u64,
+    }
+
+    resource descriptor {
+      read-via-stream: func(offset: filesize) -> result<input-stream, error-code>;
+      write-via-stream: func(offset: filesize) -> result<output-stream, error-code>;
+      append-via-stream: func() -> result<output-stream, error-code>;
+      advise: func(offset: filesize, length: filesize, advice: advice) -> result<_, error-code>;
+      sync-data: func() -> result<_, error-code>;
+      get-flags: func() -> result<descriptor-flags, error-code>;
+      get-type: func() -> result<descriptor-type, error-code>;
+      set-size: func(size: filesize) -> result<_, error-code>;
+      set-times: func(data-access-timestamp: new-timestamp, data-modification-timestamp: new-timestamp) -> result<_, error-code>;
+      read: func(length: filesize, offset: filesize) -> result<tuple<list<u8>, bool>, error-code>;
+      write: func(buffer: list<u8>, offset: filesize) -> result<filesize, error-code>;
+      read-directory: func() -> result<directory-entry-stream, error-code>;
+      sync: func() -> result<_, error-code>;
+      create-directory-at: func(path: string) -> result<_, error-code>;
+      stat: func() -> result<descriptor-stat, error-code>;
+      stat-at: func(path-flags: path-flags, path: string) -> result<descriptor-stat, error-code>;
+      set-times-at: func(path-flags: path-flags, path: string, data-access-timestamp: new-timestamp, data-modification-timestamp: new-timestamp) -> result<_, error-code>;
+      link-at: func(old-path-flags: path-flags, old-path: string, new-descriptor: borrow<descriptor>, new-path: string) -> result<_, error-code>;
+      open-at: func(path-flags: path-flags, path: string, open-flags: open-flags, %flags: descriptor-flags) -> result<descriptor, error-code>;
+      readlink-at: func(path: string) -> result<string, error-code>;
+      remove-directory-at: func(path: string) -> result<_, error-code>;
+      rename-at: func(old-path: string, new-descriptor: borrow<descriptor>, new-path: string) -> result<_, error-code>;
+      symlink-at: func(old-path: string, new-path: string) -> result<_, error-code>;
+      unlink-file-at: func(path: string) -> result<_, error-code>;
+      is-same-object: func(other: borrow<descriptor>) -> bool;
+      metadata-hash: func() -> result<metadata-hash-value, error-code>;
+      metadata-hash-at: func(path-flags: path-flags, path: string) -> result<metadata-hash-value, error-code>;
+    }
+
+    resource directory-entry-stream {
+      read-directory-entry: func() -> result<option<directory-entry>, error-code>;
+    }
+
+    filesystem-error-code: func(err: borrow<error>) -> option<error-code>;
+  }
+  interface preopens {
+    use types.{descriptor};
+
+    get-directories: func() -> list<tuple<descriptor, string>>;
+  }
+}
+
+
+package wasi:logging@0.1.0-draft {
+  interface logging {
+    enum level {
+      trace,
+      debug,
+      info,
+      warn,
+      error,
+      critical,
+    }
+
+    log: func(level: level, context: string, message: string);
+  }
+}
+
+
+package wasi:random@0.2.3 {
+  interface random {
+    get-random-bytes: func(len: u64) -> list<u8>;
+
+    get-random-u64: func() -> u64;
+  }
+  interface insecure {
+    get-insecure-random-bytes: func(len: u64) -> list<u8>;
+
+    get-insecure-random-u64: func() -> u64;
+  }
+  interface insecure-seed {
+    insecure-seed: func() -> tuple<u64, u64>;
+  }
+}
+
+
+package wasi:sockets@0.2.3 {
+  interface network {
+    resource network;
+
+    enum error-code {
+      unknown,
+      access-denied,
+      not-supported,
+      invalid-argument,
+      out-of-memory,
+      timeout,
+      concurrency-conflict,
+      not-in-progress,
+      would-block,
+      invalid-state,
+      new-socket-limit,
+      address-not-bindable,
+      address-in-use,
+      remote-unreachable,
+      connection-refused,
+      connection-reset,
+      connection-aborted,
+      datagram-too-large,
+      name-unresolvable,
+      temporary-resolver-failure,
+      permanent-resolver-failure,
+    }
+
+    enum ip-address-family {
+      ipv4,
+      ipv6,
+    }
+
+    type ipv4-address = tuple<u8, u8, u8, u8>;
+
+    type ipv6-address = tuple<u16, u16, u16, u16, u16, u16, u16, u16>;
+
+    variant ip-address {
+      ipv4(ipv4-address),
+      ipv6(ipv6-address),
+    }
+
+    record ipv4-socket-address {
+      port: u16,
+      address: ipv4-address,
+    }
+
+    record ipv6-socket-address {
+      port: u16,
+      flow-info: u32,
+      address: ipv6-address,
+      scope-id: u32,
+    }
+
+    variant ip-socket-address {
+      ipv4(ipv4-socket-address),
+      ipv6(ipv6-socket-address),
+    }
+  }
+  interface instance-network {
+    use network.{network};
+
+    instance-network: func() -> network;
+  }
+  interface udp {
+    use wasi:io/poll@0.2.3.{pollable};
+    use network.{network, error-code, ip-socket-address, ip-address-family};
+
+    record incoming-datagram {
+      data: list<u8>,
+      remote-address: ip-socket-address,
+    }
+
+    record outgoing-datagram {
+      data: list<u8>,
+      remote-address: option<ip-socket-address>,
+    }
+
+    resource udp-socket {
+      start-bind: func(network: borrow<network>, local-address: ip-socket-address) -> result<_, error-code>;
+      finish-bind: func() -> result<_, error-code>;
+      %stream: func(remote-address: option<ip-socket-address>) -> result<tuple<incoming-datagram-stream, outgoing-datagram-stream>, error-code>;
+      local-address: func() -> result<ip-socket-address, error-code>;
+      remote-address: func() -> result<ip-socket-address, error-code>;
+      address-family: func() -> ip-address-family;
+      unicast-hop-limit: func() -> result<u8, error-code>;
+      set-unicast-hop-limit: func(value: u8) -> result<_, error-code>;
+      receive-buffer-size: func() -> result<u64, error-code>;
+      set-receive-buffer-size: func(value: u64) -> result<_, error-code>;
+      send-buffer-size: func() -> result<u64, error-code>;
+      set-send-buffer-size: func(value: u64) -> result<_, error-code>;
+      subscribe: func() -> pollable;
+    }
+
+    resource incoming-datagram-stream {
+      receive: func(max-results: u64) -> result<list<incoming-datagram>, error-code>;
+      subscribe: func() -> pollable;
+    }
+
+    resource outgoing-datagram-stream {
+      check-send: func() -> result<u64, error-code>;
+      send: func(datagrams: list<outgoing-datagram>) -> result<u64, error-code>;
+      subscribe: func() -> pollable;
+    }
+  }
+  interface udp-create-socket {
+    use network.{network, error-code, ip-address-family};
+    use udp.{udp-socket};
+
+    create-udp-socket: func(address-family: ip-address-family) -> result<udp-socket, error-code>;
+  }
+  interface tcp {
+    use wasi:io/streams@0.2.3.{input-stream, output-stream};
+    use wasi:io/poll@0.2.3.{pollable};
+    use wasi:clocks/monotonic-clock@0.2.3.{duration};
+    use network.{network, error-code, ip-socket-address, ip-address-family};
+
+    enum shutdown-type {
+      receive,
+      send,
+      both,
+    }
+
+    resource tcp-socket {
+      start-bind: func(network: borrow<network>, local-address: ip-socket-address) -> result<_, error-code>;
+      finish-bind: func() -> result<_, error-code>;
+      start-connect: func(network: borrow<network>, remote-address: ip-socket-address) -> result<_, error-code>;
+      finish-connect: func() -> result<tuple<input-stream, output-stream>, error-code>;
+      start-listen: func() -> result<_, error-code>;
+      finish-listen: func() -> result<_, error-code>;
+      accept: func() -> result<tuple<tcp-socket, input-stream, output-stream>, error-code>;
+      local-address: func() -> result<ip-socket-address, error-code>;
+      remote-address: func() -> result<ip-socket-address, error-code>;
+      is-listening: func() -> bool;
+      address-family: func() -> ip-address-family;
+      set-listen-backlog-size: func(value: u64) -> result<_, error-code>;
+      keep-alive-enabled: func() -> result<bool, error-code>;
+      set-keep-alive-enabled: func(value: bool) -> result<_, error-code>;
+      keep-alive-idle-time: func() -> result<duration, error-code>;
+      set-keep-alive-idle-time: func(value: duration) -> result<_, error-code>;
+      keep-alive-interval: func() -> result<duration, error-code>;
+      set-keep-alive-interval: func(value: duration) -> result<_, error-code>;
+      keep-alive-count: func() -> result<u32, error-code>;
+      set-keep-alive-count: func(value: u32) -> result<_, error-code>;
+      hop-limit: func() -> result<u8, error-code>;
+      set-hop-limit: func(value: u8) -> result<_, error-code>;
+      receive-buffer-size: func() -> result<u64, error-code>;
+      set-receive-buffer-size: func(value: u64) -> result<_, error-code>;
+      send-buffer-size: func() -> result<u64, error-code>;
+      set-send-buffer-size: func(value: u64) -> result<_, error-code>;
+      subscribe: func() -> pollable;
+      shutdown: func(shutdown-type: shutdown-type) -> result<_, error-code>;
+    }
+  }
+  interface tcp-create-socket {
+    use network.{network, error-code, ip-address-family};
+    use tcp.{tcp-socket};
+
+    create-tcp-socket: func(address-family: ip-address-family) -> result<tcp-socket, error-code>;
+  }
+  interface ip-name-lookup {
+    use wasi:io/poll@0.2.3.{pollable};
+    use network.{network, error-code, ip-address};
+
+    resource resolve-address-stream {
+      resolve-next-address: func() -> result<option<ip-address>, error-code>;
+      subscribe: func() -> pollable;
+    }
+
+    resolve-addresses: func(network: borrow<network>, name: string) -> result<resolve-address-stream, error-code>;
+  }
+}

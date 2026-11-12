@@ -1,0 +1,50 @@
+{
+  "package": "componentized:http-trace-componentized-client",
+  "version": "0.1.1-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/trace-componentized-client",
+    "tag": "0.1.1-dev",
+    "digest": "sha256:fe5a7890c267c656104a7e2219d2f7e53453fe9a1351375fdfe1e8791f35c451",
+    "layer_digest": "sha256:d5e3e5821cf3ed56f20bb66a23526450f09f1216c366131f89d59f61d8c62478",
+    "size": 141901
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/trace-componentized-client",
+    "tag": "0.1.1-dev_debug",
+    "digest": "sha256:a7946664e558bda5cca692b2936fb72578de96cd495a72786da6550a5e1f58ba",
+    "layer_digest": "sha256:8d1714c359f96f2f817847afcd21adc4c443b2a8034a964e721801efeb84dc60",
+    "size": 735671
+  },
+  "created": "2026-11-09T19:21:21.162325094Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Virtualizes the componentized:http/client interface logging all method calls at the TRACE level and 'componentized-trace' component.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "ca50fd6e7d0aba1b8694520c9c32b1d097e8dfe4",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-trace-componentized-client",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/ca50fd6e7d0aba1b8694520c9c32b1d097e8dfe4/components/trace-componentized-client",
+    "org.opencontainers.image.version": "0.1.1-dev"
+  },
+  "imports": [
+    "componentized:http/client@0.1.1-dev",
+    "wasi:logging/logging@0.1.0-draft"
+  ],
+  "exports": [
+    "componentized:http/client@0.1.1-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:http",
+      "version": "0.1.1-dev"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:43Z"
+}

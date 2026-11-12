@@ -1,0 +1,49 @@
+{
+  "package": "componentized:sockets-latch-deny-ipv6",
+  "version": "0.1.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-deny-ipv6",
+    "tag": "0.1.0-dev",
+    "digest": "sha256:c0f3ac00afd826ae5210a159cf52d4a9f0d043db641c263ead60ee887ffc08ee",
+    "layer_digest": "sha256:a163f325e13747446a3ea7cf953fe4a740aaa20ecbcf4e0320050c81e7f31c90",
+    "size": 63505
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-deny-ipv6",
+    "tag": "0.1.0-dev_debug",
+    "digest": "sha256:d8d955980f6283b07cdd77a286fa8ffbbee1a0cf1d203469cb7bbfbc068efa99",
+    "layer_digest": "sha256:eb2329b2cf364a9f898b0cff5e9477d69ed0a754d6840e8880251e03bf2a4f01",
+    "size": 489808
+  },
+  "created": "2026-10-15T18:57:33.263674419Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Sockets latch that implicitly denies all IPv6 operations.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b90f9a86284d488ca5706e484b8f4f64110b3aaf",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-deny-ipv6",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/b90f9a86284d488ca5706e484b8f4f64110b3aaf/components/latch-deny-ipv6",
+    "org.opencontainers.image.version": "0.1.0-dev"
+  },
+  "imports": [
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.0-dev"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:13:15Z"
+}

@@ -1,0 +1,78 @@
+{
+  "package": "componentized:services-filesystem-credential-admin",
+  "version": "0.0.3",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/filesystem-credential-admin",
+    "tag": "0.0.3",
+    "digest": "sha256:5a384bb0560e109b9733f1e72045e1cb68c7b5bfd1a8688f5d8153b5182d6617",
+    "layer_digest": "sha256:0168e355cda93ecc9e93221aa5d16adab7ff228c4be50ffc0739eb633efab08e",
+    "size": 145296
+  },
+  "created": "2025-04-26T18:06:02.076779293Z",
+  "annotations": {
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "8997d6ce5ee8a02d6600320432409ce162dba834+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/services.git",
+    "org.opencontainers.image.title": "filesystem-credential-admin",
+    "org.opencontainers.image.version": "v0.0.3"
+  },
+  "imports": [
+    "wasi:config/store@0.2.0-draft",
+    "wasi:io/error@0.2.3",
+    "wasi:io/poll@0.2.3",
+    "wasi:io/streams@0.2.3",
+    "wasi:clocks/wall-clock@0.2.3",
+    "wasi:filesystem/types@0.2.3",
+    "wasi:filesystem/preopens@0.2.3",
+    "componentized:services/types",
+    "wasi:cli/environment@0.2.3",
+    "wasi:cli/exit@0.2.3",
+    "wasi:cli/stdin@0.2.3",
+    "wasi:cli/stdout@0.2.3",
+    "wasi:cli/stderr@0.2.3",
+    "wasi:sockets/udp@0.2.3",
+    "wasi:sockets/tcp@0.2.3",
+    "wasi:random/random@0.2.3"
+  ],
+  "exports": [
+    "componentized:services/credential-admin"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:services",
+      "version": null
+    },
+    {
+      "package": "wasi:cli",
+      "version": "0.2.3"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.2.3"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-draft"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.2.3"
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.3"
+    },
+    {
+      "package": "wasi:random",
+      "version": "0.2.3"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.2.3"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:50Z"
+}

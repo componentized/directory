@@ -1,0 +1,43 @@
+{
+  "package": "componentized:constants-types",
+  "version": "0.2.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/constants/types",
+    "tag": "0.2.0",
+    "digest": "sha256:fd053d94e3ce680948224073c44bb2eaf9e7bc5c7c434436530761c93189bcbf",
+    "layer_digest": "sha256:90e320ccfaa5fd7f3c50d6702201ba56bf4c87637de5f316ac3b47cc765a4589",
+    "size": 14715
+  },
+  "created": "2026-10-19T16:33:24.642996184Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Limits of each numeric type.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "4aaed83df97fb4397efbd0831c4fc9907c422799",
+    "org.opencontainers.image.source": "https://github.com/componentized/constants.git",
+    "org.opencontainers.image.title": "componentized:constants-types",
+    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/4aaed83df97fb4397efbd0831c4fc9907c422799/components/types",
+    "org.opencontainers.image.version": "v0.2.0"
+  },
+  "exports": [
+    "componentized:constants/u8@0.2.0",
+    "componentized:constants/u16@0.2.0",
+    "componentized:constants/u32@0.2.0",
+    "componentized:constants/u64@0.2.0",
+    "componentized:constants/s8@0.2.0",
+    "componentized:constants/s16@0.2.0",
+    "componentized:constants/s32@0.2.0",
+    "componentized:constants/s64@0.2.0",
+    "componentized:constants/f32@0.2.0",
+    "componentized:constants/f64@0.2.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:constants",
+      "version": "0.2.0"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:31Z"
+}

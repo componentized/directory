@@ -1,0 +1,57 @@
+{
+  "package": "componentized:http-trace-handler",
+  "version": "0.1.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/trace-handler",
+    "tag": "0.1.0-dev",
+    "digest": "sha256:34d2d6ac03c28575522df91b00032ee22c7e490467e03f2a6fe6c7f2e26e14e0",
+    "layer_digest": "sha256:51c3bf51fa0ff9a07be652b3172911f2f22dc730bba18f795692d83717e1702a",
+    "size": 220744
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/trace-handler",
+    "tag": "0.1.0-dev_debug",
+    "digest": "sha256:627493721ae83c6f7e66a574fa7a1a8c930ce3e16baa4ec2d9dc3695e7374589",
+    "layer_digest": "sha256:57ee0511abe3486b5f9bb970a9b9e28c3c8f893a1617c802e234d6a0588b785b",
+    "size": 708863
+  },
+  "created": "2026-10-05T16:54:46.929222077Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Virtualizes the wasi:http/types and wasi:http/handler interfaces logging all method calls at the TRACE level and 'componentized-trace' component.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "84c2d1ecc4562b474b647b5057b8f868f993942a",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-trace-handler",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/84c2d1ecc4562b474b647b5057b8f868f993942a/components/trace-handler",
+    "org.opencontainers.image.version": "0.1.0-dev"
+  },
+  "imports": [
+    "wasi:clocks/types@0.3.0",
+    "wasi:http/types@0.3.0",
+    "wasi:http/handler@0.3.0",
+    "wasi:logging/logging@0.1.0-draft"
+  ],
+  "exports": [
+    "wasi:http/types@0.3.0",
+    "wasi:http/handler@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:43Z"
+}

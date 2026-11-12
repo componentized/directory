@@ -1,0 +1,48 @@
+{
+  "package": "componentized:valkey-sample-http-incrementor",
+  "version": "0.2.2",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/sample-http-incrementor",
+    "tag": "0.2.2",
+    "digest": "sha256:f950d9a7aa4624797239201cb34ae995fd1d462550a12090938ade35864da054",
+    "layer_digest": "sha256:c15644ccfdf9aedf1c501ec85a4f221888dfab6cf80ad09c776bc8ff2fb0b920",
+    "size": 70545
+  },
+  "created": "2026-02-05T16:39:44.936240542Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Sample component that exposes wasi:http incrementing a counter based on the http path.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "0516498724463ab812a34adce13d935c7a13b372+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
+    "org.opencontainers.image.title": "sample-http-incrementor",
+    "org.opencontainers.image.version": "v0.2.2"
+  },
+  "imports": [
+    "wasi:keyvalue/store@0.2.0-draft2",
+    "wasi:keyvalue/atomics@0.2.0-draft2",
+    "wasi:io/error@0.2.6",
+    "wasi:io/streams@0.2.6",
+    "wasi:http/types@0.2.6"
+  ],
+  "exports": [
+    "wasi:http/incoming-handler@0.2.6"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:http",
+      "version": "0.2.6"
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.6"
+    },
+    {
+      "package": "wasi:keyvalue",
+      "version": "0.2.0-draft2"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:45:27Z"
+}

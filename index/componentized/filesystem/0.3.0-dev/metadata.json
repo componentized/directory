@@ -1,0 +1,35 @@
+{
+  "package": "componentized:filesystem",
+  "version": "0.3.0-dev",
+  "kind": "interface",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem",
+    "tag": "0.3.0-dev",
+    "digest": "sha256:7f50897b5d942f91515cfb9a68d3859f26f1dfc4f85c86c3aa1e10c97d0164ba",
+    "layer_digest": "sha256:9e9d2e0f32e635ae2ea3472b05191682e1e6119822bf20f190a37d9836212e4f",
+    "size": 21033
+  },
+  "created": "2026-11-09T19:51:00.823887121Z",
+  "annotations": {
+    "org.opencontainers.image.description": "A collection of utility components that remix wasi:filesystem types and interfaces.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "209ad270f66768627d3599274c8aeca6103fda67",
+    "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
+    "org.opencontainers.image.title": "componentized:filesystem",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/209ad270f66768627d3599274c8aeca6103fda67",
+    "org.opencontainers.image.version": "0.3.0-dev"
+  },
+  "dependencies": [
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:13Z"
+}

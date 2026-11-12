@@ -1,0 +1,55 @@
+{
+  "package": "componentized:logging-to-stderr",
+  "version": "0.3.2-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/logging/to-stderr",
+    "tag": "0.3.2-dev",
+    "digest": "sha256:ee00f5ef9f9c2edc8af8886c2e402610dbf76762f1c86147915e7295521d8c2f",
+    "layer_digest": "sha256:ba0eae0608cc9d3a1c24b3b7aa664ae2905f512d56d9636c4ef6c86de7a2a353",
+    "size": 90815
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/logging/to-stderr",
+    "tag": "0.3.2-dev_debug",
+    "digest": "sha256:14c71a64ed6512d780a03b0196e9c94ab1b61755e0b217405a7a25b69be6b750",
+    "layer_digest": "sha256:a2e785a649645a3cd4882bafa747613a0fe37b61726e0ee2db61749bb7f64da5",
+    "size": 338531
+  },
+  "created": "2026-11-09T19:57:38.184755871Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Implements wasi:logging/logging@0.1.0-draft writing log statements to stderr via wasi:cli/stderr@0.3.0. A composition of [`to-stdout`](../to-stdout/) with its wasi:cli/stdout@0.3.0 import satisfied by wasi:cli/stderr@0.3.0.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "62098f84356d0f2e2be49ff88a9bff557d8cce02",
+    "org.opencontainers.image.source": "https://github.com/componentized/logging.git",
+    "org.opencontainers.image.title": "componentized:logging-to-stderr",
+    "org.opencontainers.image.url": "https://github.com/componentized/logging/tree/62098f84356d0f2e2be49ff88a9bff557d8cce02/components/to-stderr",
+    "org.opencontainers.image.version": "0.3.2-dev"
+  },
+  "imports": [
+    "wasi:cli/types@0.3.0",
+    "wasi:clocks/system-clock@0.3.0",
+    "wasi:cli/stderr@0.3.0"
+  ],
+  "exports": [
+    "wasi:logging/logging@0.1.0-draft"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:cli",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:48Z"
+}

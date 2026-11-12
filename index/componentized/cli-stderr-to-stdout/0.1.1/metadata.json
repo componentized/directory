@@ -1,0 +1,41 @@
+{
+  "package": "componentized:cli-stderr-to-stdout",
+  "version": "0.1.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/cli/stderr-to-stdout",
+    "tag": "0.1.1",
+    "digest": "sha256:e7bfa9d7c3a150f9e3bf6245b76b1bd3eed18c397f43fad07f6612cb6a168486",
+    "layer_digest": "sha256:1d62cdf56423f1def1289268f4f905d955412ced7e6165e8e0d8aea77ed0a6b0",
+    "size": 21808
+  },
+  "created": "2025-12-12T19:10:22.687775340Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Redirects stderr's output stream to stdout.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "558ea39ca6491bc1d368be5c332601b5c11ed09d+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/cli.git",
+    "org.opencontainers.image.title": "stderr-to-stdout",
+    "org.opencontainers.image.version": "v0.1.1"
+  },
+  "imports": [
+    "wasi:io/streams@0.2.6",
+    "wasi:cli/stdout@0.2.6"
+  ],
+  "exports": [
+    "wasi:cli/stderr@0.2.6"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:cli",
+      "version": "0.2.6"
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.6"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:15Z"
+}

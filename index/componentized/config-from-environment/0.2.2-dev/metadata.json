@@ -1,0 +1,49 @@
+{
+  "package": "componentized:config-from-environment",
+  "version": "0.2.2-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/config/from-environment",
+    "tag": "0.2.2-dev",
+    "digest": "sha256:21ccd917e919f041cfe283e1aba10d3d8e6dab658a5701ac222e72debc746348",
+    "layer_digest": "sha256:d8ad05665e816e19a725823ff4ef42e3c4be5b2c5008befbb3f35a1800f3a2f2",
+    "size": 26102
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/config/from-environment",
+    "tag": "0.2.2-dev_debug",
+    "digest": "sha256:3f00b32953cff6573bca172e50b0a365508035efd006b278f5fc9349f531b3a9",
+    "layer_digest": "sha256:ae3aa0ff9129c9a30c9f3bbee020adab5e1f0704264af1eb5742a925584d4a66",
+    "size": 71202
+  },
+  "created": "2026-11-09T17:31:19.973864240Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Exposes the content of wasi:cli/environment variables as wasi:config/store.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "52c6cacc0a6c6f12e3f2415a276ef1980dac6346",
+    "org.opencontainers.image.source": "https://github.com/componentized/config.git",
+    "org.opencontainers.image.title": "componentized:config-from-environment",
+    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/52c6cacc0a6c6f12e3f2415a276ef1980dac6346/components/from-environment",
+    "org.opencontainers.image.version": "0.2.2-dev"
+  },
+  "imports": [
+    "wasi:cli/environment@0.2.6"
+  ],
+  "exports": [
+    "wasi:config/store@0.2.0-rc.1"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:cli",
+      "version": "0.2.6"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:11:59Z"
+}

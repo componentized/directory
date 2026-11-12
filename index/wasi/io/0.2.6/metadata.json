@@ -1,0 +1,23 @@
+{
+  "package": "wasi:io",
+  "version": "0.2.6",
+  "kind": "interface",
+  "origin": "dependency",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "webassembly/wasi/io",
+    "tag": "0.2.6",
+    "digest": "sha256:183e9e142dbd3aacd0471a7115f1a7dac15f07099a441124c24e9a8439340316",
+    "layer_digest": "sha256:8e8ebc63a7670203b2a4868c2d0ba1d73b0ed0caa1c576edfd68762d7225a312",
+    "size": 16027
+  },
+  "created": "2025-06-12T21:00:11.019000536Z",
+  "annotations": {
+    "org.opencontainers.image.description": "A WASI API providing I/O stream abstractions.",
+    "org.opencontainers.image.licenses": "Apache-2.0 WITH LLVM-exception",
+    "org.opencontainers.image.source": "https://github.com/webassembly/wasi",
+    "org.opencontainers.image.url": "https://wasi.dev",
+    "org.opencontainers.image.version": "0.2.6"
+  },
+  "indexed_at": "2026-11-11T23:43:40Z"
+}

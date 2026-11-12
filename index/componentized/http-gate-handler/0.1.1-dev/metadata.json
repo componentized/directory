@@ -1,0 +1,56 @@
+{
+  "package": "componentized:http-gate-handler",
+  "version": "0.1.1-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/gate-handler",
+    "tag": "0.1.1-dev",
+    "digest": "sha256:8e8c492c0ee237da7adbf6f6fbb5c939fc00b3e588ac2494291722b27b255713",
+    "layer_digest": "sha256:58cbcd4debbf16d5b4991dd82a701bde584c0152f2dee12011b00c5ded72253c",
+    "size": 78483
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/gate-handler",
+    "tag": "0.1.1-dev_debug",
+    "digest": "sha256:05e844636486ad609c24e006831379cb526d0ecd3cca39943bbb28c8a0972741",
+    "layer_digest": "sha256:70058a8f50acfa0870544f3d75207b5e22079a84637b8e42f6c00d94c8759b56",
+    "size": 283606
+  },
+  "created": "2026-11-09T19:15:44.281224426Z",
+  "annotations": {
+    "org.opencontainers.image.description": "HTTP gate access control for requests handled with `wasi:http/handler`.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "ca50fd6e7d0aba1b8694520c9c32b1d097e8dfe4",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-gate-handler",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/ca50fd6e7d0aba1b8694520c9c32b1d097e8dfe4/components/gate-handler",
+    "org.opencontainers.image.version": "0.1.1-dev"
+  },
+  "imports": [
+    "wasi:http/types@0.3.0",
+    "componentized:http/latch@0.1.1-dev",
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:http/handler@0.3.0"
+  ],
+  "exports": [
+    "wasi:http/handler@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:http",
+      "version": "0.1.1-dev"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:24Z"
+}

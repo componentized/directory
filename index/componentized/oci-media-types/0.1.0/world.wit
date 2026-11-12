@@ -1,0 +1,5 @@
+package root:component;
+
+world root {
+  export componentized:oci/media-types@0.1.0;
+}

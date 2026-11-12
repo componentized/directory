@@ -1,0 +1,49 @@
+{
+  "package": "componentized:sockets-latch-deny-connect-unless-lookup-address",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-deny-connect-unless-lookup-address",
+    "tag": "0.1.0",
+    "digest": "sha256:cb2ac10d0dfe34e5665f4ac86fa64ebb66d494e867dc4f3cc85d6a6f90a72bb7",
+    "layer_digest": "sha256:764ac8216010d05b5c4a2f0e2398cbce4403492b0363383bdd9d848ad17d3357",
+    "size": 41695
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-deny-connect-unless-lookup-address",
+    "tag": "0.1.0_debug",
+    "digest": "sha256:a259ec4f884c967f1a65198b9a8cdb61d8c4c3482c8ff6cf274e1ff835ef5238",
+    "layer_digest": "sha256:6f95c236b2964e5a25c1db74641e5a65c6176f7b093f18e402e7f591821798da",
+    "size": 499536
+  },
+  "created": "2026-10-15T19:06:33.837728306Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Sockets latch that implicitly denies connecting to addresses, unless they were granted for wasi:sockets/ip-name-lookup.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "33379c373a0cebf66d2201adbb482a90f48dc01b",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-deny-connect-unless-lookup-address",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/33379c373a0cebf66d2201adbb482a90f48dc01b/components/latch-deny-connect-unless-lookup-address",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "imports": [
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.0"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:45:09Z"
+}

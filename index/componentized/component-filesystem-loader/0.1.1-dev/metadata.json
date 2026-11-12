@@ -1,0 +1,51 @@
+{
+  "package": "componentized:component-filesystem-loader",
+  "version": "0.1.1-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component/filesystem-loader",
+    "tag": "0.1.1-dev",
+    "digest": "sha256:16031ea47d535d216da16d382c9e2f8e7394f93c132b7d01bca032fbea6a6815",
+    "layer_digest": "sha256:122bb87875df6a041461f7176a39c732f7dc580aa88d2e1ea54807c602f8ec73",
+    "size": 91777
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component/filesystem-loader",
+    "tag": "0.1.1-dev_debug",
+    "digest": "sha256:a2057612cfacc65443c65fa689a41d2a9c35cbfbda4a864fb66d2c572f4df7a3",
+    "layer_digest": "sha256:35d91f7ebf434de5aea7f3cca11c313db909ab426d7d6b8b6ff322cad3421857",
+    "size": 1032656
+  },
+  "created": "2026-11-09T14:17:58.430284812Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Loads a component from a filesystem path.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "4f2ad363c1770efe24dd6477fe94e9e08bf5a82c",
+    "org.opencontainers.image.source": "https://github.com/componentized/component.git",
+    "org.opencontainers.image.title": "componentized:component-filesystem-loader",
+    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/4f2ad363c1770efe24dd6477fe94e9e08bf5a82c/components/filesystem-loader",
+    "org.opencontainers.image.version": "0.1.1-dev"
+  },
+  "imports": [
+    "wasi:filesystem/types@0.3.0",
+    "wasi:filesystem/preopens@0.3.0",
+    "componentized:component/types@0.1.1-dev"
+  ],
+  "exports": [
+    "componentized:component/path-loader@0.1.1-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:component",
+      "version": "0.1.1-dev"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:11:52Z"
+}

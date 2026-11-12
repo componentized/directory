@@ -1,0 +1,59 @@
+{
+  "package": "componentized:http-trace",
+  "version": "0.1.1-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/trace",
+    "tag": "0.1.1-dev",
+    "digest": "sha256:f7cf09e29855a8ab3f34cad9c60d343706183c3506cbbc58953851bd39d198b6",
+    "layer_digest": "sha256:28d4ea39d01c458cdcdb8d7042cccd73f0b825806f0045c02091bf0f810a5e3f",
+    "size": 191608
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/trace",
+    "tag": "0.1.1-dev_debug",
+    "digest": "sha256:c7d41e48f6163283e2376e9f744c284f42f711d4e2cf8196a92cece52173da46",
+    "layer_digest": "sha256:1da208d3dbaf32e53b93afef77138826d27c0c2c68540bb4588a7084fa4e7ebd",
+    "size": 747736
+  },
+  "created": "2026-11-09T19:20:51.684625179Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Virtualizes the wasi:http/types, wasi:http/client and wasi:http/handler interfaces logging all method calls at the TRACE level and 'componentized-trace' component.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "ca50fd6e7d0aba1b8694520c9c32b1d097e8dfe4",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-trace",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/ca50fd6e7d0aba1b8694520c9c32b1d097e8dfe4/components/trace",
+    "org.opencontainers.image.version": "0.1.1-dev"
+  },
+  "imports": [
+    "wasi:clocks/types@0.3.0",
+    "wasi:http/types@0.3.0",
+    "wasi:http/client@0.3.0",
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:http/handler@0.3.0"
+  ],
+  "exports": [
+    "wasi:http/types@0.3.0",
+    "wasi:http/client@0.3.0",
+    "wasi:http/handler@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:41Z"
+}

@@ -1,0 +1,50 @@
+{
+  "package": "componentized:component-http-loader",
+  "version": "0.0.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component/http-loader",
+    "tag": "0.0.0-dev",
+    "digest": "sha256:9ba8bfcb86340852e266ba45692d9bb4c51713ed587f69c0afd3cd9a97cc53a1",
+    "layer_digest": "sha256:b49687e7b028e4f8e8904c9c8b40334f6eb7d4e638f996dab07ad4ee3fecf6e7",
+    "size": 71811
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component/http-loader",
+    "tag": "0.0.0-dev_debug",
+    "digest": "sha256:b5b2a59796507e4b5896065fc4bb8f2ff4012dd1332472eb987537358dc27807",
+    "layer_digest": "sha256:034bad41d55bb0940a21f99b6456db4c303fb983db697504a116f7ca38341693",
+    "size": 247055
+  },
+  "created": "2026-10-08T15:59:34.125783520Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Loads a component from an HTTP URL.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "9baf4aee475565a3ab3e361f17d2cc294ca7aa80",
+    "org.opencontainers.image.source": "https://github.com/componentized/component.git",
+    "org.opencontainers.image.title": "componentized:component-http-loader",
+    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/9baf4aee475565a3ab3e361f17d2cc294ca7aa80/components/http-loader",
+    "org.opencontainers.image.version": "0.0.0-dev"
+  },
+  "imports": [
+    "componentized:http/client@0.1.0",
+    "componentized:component/types@0.0.0-dev"
+  ],
+  "exports": [
+    "componentized:component/path-loader@0.0.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:component",
+      "version": "0.0.0-dev"
+    },
+    {
+      "package": "componentized:http",
+      "version": "0.1.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:11:52Z"
+}

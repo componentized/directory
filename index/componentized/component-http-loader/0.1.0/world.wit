@@ -1,0 +1,8 @@
+package root:component;
+
+world root {
+  import componentized:http/client@0.1.0;
+  import componentized:component/types@0.1.0;
+
+  export componentized:component/path-loader@0.1.0;
+}

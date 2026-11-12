@@ -1,0 +1,72 @@
+{
+  "package": "componentized:valkey-cli",
+  "version": "0.1.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/cli",
+    "tag": "0.1.1",
+    "digest": "sha256:497a69a7198bd6b43ca3642535771945eede038bcb4e97be2a41dcb0cbdbc0cc",
+    "layer_digest": "sha256:9c1d1619aa57f0985d7a5d4ea4dbd60caa15f9f37de5a0f6d9840fe29a05e9fc",
+    "size": 1043722
+  },
+  "created": "2025-04-25T22:06:30.713316483Z",
+  "annotations": {
+    "org.opencontainers.image.description": "A wasi:cli/command exposing valkey commands.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "2ee4563c6d4030e4d2a662e36da6282305c10d89+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
+    "org.opencontainers.image.title": "cli",
+    "org.opencontainers.image.version": "v0.1.1"
+  },
+  "imports": [
+    "wasi:cli/environment@0.2.3",
+    "wasi:cli/exit@0.2.3",
+    "wasi:io/error@0.2.3",
+    "wasi:io/poll@0.2.3",
+    "wasi:io/streams@0.2.3",
+    "wasi:cli/stdin@0.2.3",
+    "wasi:cli/stdout@0.2.3",
+    "wasi:cli/stderr@0.2.3",
+    "wasi:cli/terminal-input@0.2.3",
+    "wasi:cli/terminal-output@0.2.3",
+    "wasi:cli/terminal-stdin@0.2.3",
+    "wasi:cli/terminal-stdout@0.2.3",
+    "wasi:cli/terminal-stderr@0.2.3",
+    "wasi:clocks/wall-clock@0.2.3",
+    "wasi:filesystem/types@0.2.3",
+    "wasi:filesystem/preopens@0.2.3",
+    "wasi:sockets/network@0.2.3",
+    "wasi:sockets/instance-network@0.2.3",
+    "wasi:sockets/tcp@0.2.3",
+    "wasi:sockets/tcp-create-socket@0.2.3",
+    "wasi:sockets/ip-name-lookup@0.2.3"
+  ],
+  "exports": [
+    "wasi:cli/run@0.2.3"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:cli",
+      "version": "0.2.3"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.2.3"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.2.3"
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.3"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.2.3"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:45:23Z"
+}

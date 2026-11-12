@@ -1,0 +1,287 @@
+package root:component;
+
+world root {
+  import componentized:component/types@0.0.0-dev;
+  import componentized:component/wit@0.0.0-dev;
+
+  export componentized:constants/factory@0.1.0-dev;
+}
+package componentized:component@0.0.0-dev {
+  interface types {
+    type component = list<u8>;
+
+    variant error {
+      other(option<string>),
+    }
+  }
+  interface wit {
+    type type-id = string;
+
+    variant function-kind {
+      freestanding,
+      async-freestanding,
+      method(type-id),
+      async-method(type-id),
+      %static(type-id),
+      async-static(type-id),
+      %constructor(type-id),
+    }
+
+    variant %type {
+      %bool,
+      %s8,
+      %s16,
+      %s32,
+      %s64,
+      %u8,
+      %u16,
+      %u32,
+      %u64,
+      %f32,
+      %f64,
+      %char,
+      %string,
+      %error-context,
+      id(type-id),
+    }
+
+    record param {
+      name: string,
+      %type: %type,
+    }
+
+    record docs {
+      contents: option<string>,
+    }
+
+    variant version-identifier {
+      %string(string),
+      numeric(u64),
+    }
+
+    record version {
+      major: u64,
+      minor: u64,
+      patch: u64,
+      prerelease: option<list<version-identifier>>,
+      build-metadata: option<list<version-identifier>>,
+    }
+
+    record unstable {
+      feature: string,
+      deprecated: option<version>,
+    }
+
+    record stable {
+      since: version,
+      deprecated: option<version>,
+    }
+
+    variant stability {
+      unknown,
+      unstable(unstable),
+      stable(stable),
+    }
+
+    record function {
+      name: string,
+      kind: function-kind,
+      params: list<param>,
+      %result: option<%type>,
+      docs: docs,
+      stability: stability,
+      external-id: option<string>,
+    }
+
+    type package-id = string;
+
+    record %interface {
+      name: option<string>,
+      types: list<tuple<string, type-id>>,
+      functions: list<tuple<string, function>>,
+      docs: docs,
+      stability: stability,
+      %package: option<package-id>,
+    }
+
+    record package-name {
+      namespace: string,
+      name: string,
+      version: option<version>,
+    }
+
+    type interface-id = string;
+
+    type world-id = string;
+
+    record %package {
+      name: package-name,
+      docs: docs,
+      interfaces: list<tuple<string, interface-id>>,
+      worlds: list<tuple<string, world-id>>,
+    }
+
+    record record-field {
+      name: string,
+      %type: %type,
+      docs: docs,
+    }
+
+    record %record {
+      fields: list<record-field>,
+    }
+
+    variant handle {
+      %own(type-id),
+      %borrow(type-id),
+    }
+
+    record flag {
+      name: string,
+      docs: docs,
+    }
+
+    record %flags {
+      %flags: list<flag>,
+    }
+
+    record %tuple {
+      types: list<%type>,
+    }
+
+    record variant-case {
+      name: string,
+      %type: option<%type>,
+      docs: docs,
+    }
+
+    record %variant {
+      cases: list<variant-case>,
+    }
+
+    record enum-case {
+      name: string,
+      docs: docs,
+    }
+
+    record %enum {
+      cases: list<enum-case>,
+    }
+
+    record %result {
+      ok: option<%type>,
+      err: option<%type>,
+    }
+
+    record %list {
+      %type: %type,
+      fixed-length: option<u32>,
+    }
+
+    record %map {
+      key: %type,
+      value: %type,
+    }
+
+    variant type-def-kind {
+      %record(%record),
+      %resource,
+      handle(handle),
+      %flags(%flags),
+      %tuple(%tuple),
+      %variant(%variant),
+      %enum(%enum),
+      %option(%type),
+      %result(%result),
+      %list(%list),
+      %map(%map),
+      %future(option<%type>),
+      %stream(option<%type>),
+      %type(%type),
+      unknown,
+    }
+
+    variant type-owner {
+      %world(world-id),
+      %interface(interface-id),
+      none,
+    }
+
+    record type-def {
+      name: option<string>,
+      kind: type-def-kind,
+      owner: type-owner,
+      docs: docs,
+      stability: stability,
+      external-id: option<string>,
+    }
+
+    variant world-key {
+      name(string),
+      %interface(interface-id),
+    }
+
+    record world-item-interface {
+      id: interface-id,
+      stability: stability,
+      external-id: option<string>,
+      docs: docs,
+    }
+
+    variant world-item {
+      %interface(world-item-interface),
+      function(function),
+      %type(type-id),
+    }
+
+    record include-name {
+      name: string,
+      %as: string,
+    }
+
+    record world-include {
+      stability: stability,
+      id: world-id,
+      names: list<include-name>,
+    }
+
+    record %world {
+      name: string,
+      imports: list<tuple<world-key, world-item>>,
+      exports: list<tuple<world-key, world-item>>,
+      %package: option<package-id>,
+      docs: docs,
+      stability: stability,
+      includes: list<world-include>,
+    }
+
+    record wit {
+      interfaces: map<string, %interface>,
+      packages: map<string, %package>,
+      types: map<string, type-def>,
+      worlds: map<string, %world>,
+      default-package: package-id,
+      component-world: option<world-id>,
+    }
+  }
+}
+
+
+package componentized:constants@0.1.0-dev {
+  interface factory {
+    use componentized:component/types@0.0.0-dev.{component, error};
+    use componentized:component/wit@0.0.0-dev.{wit};
+
+    variant wit-source {
+      text(string),
+      encoded(component),
+      parsed(wit),
+    }
+
+    variant overrides {
+      wave(string),
+    }
+
+    create: async func(wit: wit-source, %world: option<string>, overrides: option<overrides>) -> result<component, error>;
+  }
+}

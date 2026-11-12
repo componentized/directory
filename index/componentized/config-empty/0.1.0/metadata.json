@@ -1,0 +1,33 @@
+{
+  "package": "componentized:config-empty",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/config/empty",
+    "tag": "0.1.0",
+    "digest": "sha256:aed35a2d1af51330fda7d4bba6333615060dc9323b75af9bb02d366e34c93776",
+    "layer_digest": "sha256:1e9e1bee0a50bc97a07b3af628d8edb07c8372daca4ffe652166bda2807c6284",
+    "size": 22286
+  },
+  "created": "2025-04-23T01:11:03.569574709Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Exposes an empty wasi:config/store which returns neither errors, nor values.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "23b401ed4b0227fbae796878db530803eb0fc20a+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/config.git",
+    "org.opencontainers.image.title": "empty",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "exports": [
+    "wasi:config/store@0.2.0-draft"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-draft"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:22Z"
+}

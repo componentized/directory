@@ -1,0 +1,16 @@
+{
+  "package": "wasi:config",
+  "version": "0.2.0-draft",
+  "kind": "interface",
+  "origin": "dependency",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "webassembly/wasi/config",
+    "tag": "0.2.0-draft",
+    "digest": "sha256:ddd58a2cc422c25dd67d780f1d47a84bb578977b4439a000d5617cfb0ec031ad",
+    "layer_digest": "sha256:aa2d36d0843999edad80a13bf22f4529277f7b6012429f8a5d1f9499f3793c1a",
+    "size": 1325
+  },
+  "created": "2024-10-02T02:56:01.665892Z",
+  "indexed_at": "2026-11-11T23:43:39Z"
+}

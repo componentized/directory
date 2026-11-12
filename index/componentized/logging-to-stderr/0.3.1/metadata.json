@@ -1,0 +1,55 @@
+{
+  "package": "componentized:logging-to-stderr",
+  "version": "0.3.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/logging/to-stderr",
+    "tag": "0.3.1",
+    "digest": "sha256:f5bb0d492dc653fd90f78db78c6c6dcc4cf5f35115446bbe001c1ab34e09a1d8",
+    "layer_digest": "sha256:8804cc4b812b0e168a9e70d54ddcf232a123c94678b9ec0f2a131de18f562c89",
+    "size": 90514
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/logging/to-stderr",
+    "tag": "0.3.1_debug",
+    "digest": "sha256:bb0e846507776b8b9c1646c37ea4cd83c2f1dc4b01c670ed5ec51e1a7a059954",
+    "layer_digest": "sha256:77e997995a364f4bfc21f74c899f2b9ff02c56ef630e296c0b61180746969b9e",
+    "size": 337066
+  },
+  "created": "2026-10-15T13:03:36.270930770Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Implements wasi:logging/logging@0.1.0-draft writing log statements to stderr via wasi:cli/stderr@0.3.0. A composition of [`to-stdout`](../to-stdout/) with its wasi:cli/stdout@0.3.0 import satisfied by wasi:cli/stderr@0.3.0.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "ce08cb00fa5bf8440dfe89737d43470c03c0f7f5",
+    "org.opencontainers.image.source": "https://github.com/componentized/logging.git",
+    "org.opencontainers.image.title": "componentized:logging-to-stderr",
+    "org.opencontainers.image.url": "https://github.com/componentized/logging/tree/ce08cb00fa5bf8440dfe89737d43470c03c0f7f5/components/to-stderr",
+    "org.opencontainers.image.version": "v0.3.1"
+  },
+  "imports": [
+    "wasi:cli/types@0.3.0",
+    "wasi:clocks/system-clock@0.3.0",
+    "wasi:cli/stderr@0.3.0"
+  ],
+  "exports": [
+    "wasi:logging/logging@0.1.0-draft"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:cli",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:43:36Z"
+}

@@ -1,0 +1,55 @@
+{
+  "package": "componentized:http-client",
+  "version": "0.1.1-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/client",
+    "tag": "0.1.1-dev",
+    "digest": "sha256:5caf89d32ca6fa83ec6d40bee6a651fd768c36870d5b58ff8653fc78d09e094a",
+    "layer_digest": "sha256:8633f068c18ac5ab365242bc8a996a23de85ec413105ce03c489e6068f28da40",
+    "size": 391678
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/client",
+    "tag": "0.1.1-dev_debug",
+    "digest": "sha256:b1bed879dc641208771ca46df24f674b229781f1b340817cc63e6b8932ef4c90",
+    "layer_digest": "sha256:e66ddf3a91869a4a1db1222d07cf56944f018f7ae507667ddc6ab3c449452f48",
+    "size": 1458521
+  },
+  "created": "2026-11-09T19:14:42.398061154Z",
+  "annotations": {
+    "org.opencontainers.image.description": "A higher-level HTTP client that delegates to wasi:http/client.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "ca50fd6e7d0aba1b8694520c9c32b1d097e8dfe4",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-client",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/ca50fd6e7d0aba1b8694520c9c32b1d097e8dfe4/components/client",
+    "org.opencontainers.image.version": "0.1.1-dev"
+  },
+  "imports": [
+    "wasi:clocks/types@0.3.0",
+    "wasi:http/types@0.3.0",
+    "wasi:http/client@0.3.0"
+  ],
+  "exports": [
+    "componentized:http/client@0.1.1-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:http",
+      "version": "0.1.1-dev"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:22Z"
+}

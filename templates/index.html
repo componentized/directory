@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% from "macros.html" import card, repo_card %}
+{% block main %}
+<section class="hero">
+  <h1>Componentized Directory</h1>
+  <p>Wasm components and the WIT interfaces they use, as published to <code>ghcr.io/componentized</code>.</p>
+  <dl class="stats">
+    <div><dt>Repositories</dt><dd>{{ stats.repos }}</dd></div>
+    <div><dt>Packages</dt><dd>{{ stats.packages }}</dd></div>
+    <div><dt>Components</dt><dd>{{ stats.components }}</dd></div>
+    <div><dt>Interfaces</dt><dd>{{ stats.interfaces }}</dd></div>
+    <div><dt>Versions</dt><dd>{{ stats.versions }}</dd></div>
+  </dl>
+  <p class="namespaces">{% for ns, count in namespaces %}<a href="/{{ ns }}/"><code>{{ ns }}</code> <span class="dim">{{ count }}</span></a>{% endfor %}</p>
+</section>
+
+<section>
+  <h2>Recent releases</h2>
+  <div class="cards">{% for c in recent %}{{ card(c) }}{% endfor %}</div>
+</section>
+
+<section>
+  <h2>Repositories <a class="more" href="/repos/">all</a></h2>
+  <div class="cards">{% for r in repos %}{{ repo_card(r) }}{% endfor %}</div>
+</section>
+
+<section>
+  <h2>Interfaces <a class="more" href="/all/?kind=interface">all</a></h2>
+  <div class="cards">{% for c in interfaces %}{{ card(c) }}{% endfor %}</div>
+</section>
+
+<section>
+  <h2>Components <a class="more" href="/all/?kind=component">all</a></h2>
+  <div class="cards">{% for c in components %}{{ card(c) }}{% endfor %}</div>
+</section>
+{% endblock %}

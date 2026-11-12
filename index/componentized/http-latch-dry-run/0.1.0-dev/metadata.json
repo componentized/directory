@@ -1,0 +1,55 @@
+{
+  "package": "componentized:http-latch-dry-run",
+  "version": "0.1.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-dry-run",
+    "tag": "0.1.0-dev",
+    "digest": "sha256:d6371c8a5972993c6cc2f2425eef1ce37a7ae96a9bc00077bdf40b3883305658",
+    "layer_digest": "sha256:d027f27f78dd7bb5a1c9de6361849f20605a9a79def0b692d2e2e553c9101e97",
+    "size": 54530
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-dry-run",
+    "tag": "0.1.0-dev_debug",
+    "digest": "sha256:546c42bf9e8ddd854408555722912f01bab3982288b7e99a34bb7d2babee4227",
+    "layer_digest": "sha256:b0c46e3d8728a12e7f224de68abfd5bbb6a55fac4c1d77f0ccc443273a1b903b",
+    "size": 180132
+  },
+  "created": "2026-10-05T16:50:53.212891765Z",
+  "annotations": {
+    "org.opencontainers.image.description": "HTTP latch that wraps another latch, logging the requests it would deny without denying them.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "84c2d1ecc4562b474b647b5057b8f868f993942a",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-latch-dry-run",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/84c2d1ecc4562b474b647b5057b8f868f993942a/components/latch-dry-run",
+    "org.opencontainers.image.version": "0.1.0-dev"
+  },
+  "imports": [
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:http/types@0.3.0",
+    "componentized:http/latch@0.1.0-dev"
+  ],
+  "exports": [
+    "componentized:http/latch@0.1.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:http",
+      "version": "0.1.0-dev"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:29Z"
+}

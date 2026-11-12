@@ -1,0 +1,8 @@
+package root:component;
+
+world root {
+  import wasi:io/streams@0.2.3;
+  import wasi:cli/stdout@0.2.3;
+
+  export wasi:cli/stderr@0.2.3;
+}

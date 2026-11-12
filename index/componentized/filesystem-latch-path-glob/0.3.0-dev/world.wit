@@ -1,0 +1,10 @@
+package root:component;
+
+world root {
+  import wasi:logging/logging@0.1.0-draft;
+  import wasi:config/store@0.2.0-rc.1;
+  import wasi:clocks/system-clock@0.3.0;
+  import wasi:filesystem/types@0.3.0;
+
+  export componentized:filesystem/latch@0.3.0-dev;
+}

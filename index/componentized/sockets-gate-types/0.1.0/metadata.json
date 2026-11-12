@@ -1,0 +1,60 @@
+{
+  "package": "componentized:sockets-gate-types",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/gate-types",
+    "tag": "0.1.0",
+    "digest": "sha256:36a578378e04bd3a20c51c6b14e7da5f59e8f6b20fa5447d74853dc3dc69f4ad",
+    "layer_digest": "sha256:26d7f9203d71141ac77f215a17e7f10571187a99465ec7292a8c1791e62abcba",
+    "size": 225271
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/gate-types",
+    "tag": "0.1.0_debug",
+    "digest": "sha256:51dbed8f3b1d081395978e48636b12a974596034fc824a78c2782de6b7289249",
+    "layer_digest": "sha256:2041156126ea727157510c549af829556244456759c876efce6baf106a4563e4",
+    "size": 1893948
+  },
+  "created": "2026-10-15T19:02:43.425265058Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Socket gate access control for tcp and udp sockets.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "33379c373a0cebf66d2201adbb482a90f48dc01b",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-gate-types",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/33379c373a0cebf66d2201adbb482a90f48dc01b/components/gate-types",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "imports": [
+    "wasi:clocks/types@0.3.0",
+    "wasi:sockets/types@0.3.0",
+    "componentized:sockets/latch@0.1.0",
+    "wasi:logging/logging@0.1.0-draft"
+  ],
+  "exports": [
+    "wasi:sockets/types@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.0"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:45:04Z"
+}

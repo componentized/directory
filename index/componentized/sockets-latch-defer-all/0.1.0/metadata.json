@@ -1,0 +1,49 @@
+{
+  "package": "componentized:sockets-latch-defer-all",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-defer-all",
+    "tag": "0.1.0",
+    "digest": "sha256:b4c8af268e88c844e4c957e897b2bbb6b242abc9f0ab120942dfc3e5b3ec6d64",
+    "layer_digest": "sha256:9599d624395754cd98ed979fac6c8b5c5c73fb8b0b85b96546ef127bf0a0cbed",
+    "size": 30700
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-defer-all",
+    "tag": "0.1.0_debug",
+    "digest": "sha256:cf9079b63171c55856313a7d000f7477db9a3fbd71851bac72098c8b3f9de205",
+    "layer_digest": "sha256:eaca2655c9cc978a4f9f121765b420e922c2a7da8af47927b19689aa6ae9c674",
+    "size": 294740
+  },
+  "created": "2026-10-15T19:04:48.969934754Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Sockets latch that implicitly defers all decisions.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "33379c373a0cebf66d2201adbb482a90f48dc01b",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-defer-all",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/33379c373a0cebf66d2201adbb482a90f48dc01b/components/latch-defer-all",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "imports": [
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.0"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:45:06Z"
+}

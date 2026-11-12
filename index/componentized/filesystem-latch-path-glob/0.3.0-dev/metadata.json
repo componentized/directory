@@ -1,0 +1,64 @@
+{
+  "package": "componentized:filesystem-latch-path-glob",
+  "version": "0.3.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem/latch-path-glob",
+    "tag": "0.3.0-dev",
+    "digest": "sha256:c3b4e08451c61a46bbad97b5b9e659a2481d8998a80a6f3bed33940015f800fe",
+    "layer_digest": "sha256:30f5faae55e7684e6ea7ce171463ed13c3ee96b08f85bacd9b83f78746ad1bff",
+    "size": 81976
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem/latch-path-glob",
+    "tag": "0.3.0-dev_debug",
+    "digest": "sha256:380d564d409a6cf6de104b94196416ed80d69e539611ad7e85b391fa3ecd32a3",
+    "layer_digest": "sha256:4db5aa85de985f69622ac2734a81bb55adf2620897121e08144ff85d3105b081",
+    "size": 986715
+  },
+  "created": "2026-11-09T19:53:26.265369951Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Filesystem latch that uses glob patterns to defer or deny operations on a path.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "209ad270f66768627d3599274c8aeca6103fda67",
+    "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
+    "org.opencontainers.image.title": "componentized:filesystem-latch-path-glob",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/209ad270f66768627d3599274c8aeca6103fda67/components/latch-path-glob",
+    "org.opencontainers.image.version": "0.3.0-dev"
+  },
+  "imports": [
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:config/store@0.2.0-rc.1",
+    "wasi:clocks/system-clock@0.3.0",
+    "wasi:filesystem/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:filesystem/latch@0.3.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:filesystem",
+      "version": "0.3.0-dev"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:19Z"
+}

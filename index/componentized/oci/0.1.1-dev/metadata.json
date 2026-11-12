@@ -1,0 +1,31 @@
+{
+  "package": "componentized:oci",
+  "version": "0.1.1-dev",
+  "kind": "interface",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/oci",
+    "tag": "0.1.1-dev",
+    "digest": "sha256:6949b6a3f49671326ffe591398293c1eba33149bb532f3332037719597bf73be",
+    "layer_digest": "sha256:f0ca96e288de5bc4f7d370deb034f7bc0a57eb6c6fc567ca86657c5748e669a8",
+    "size": 18266
+  },
+  "created": "2026-11-09T17:15:24.404035480Z",
+  "annotations": {
+    "org.opencontainers.image.description": "WASM components for interacting with resources in OCI image repositories.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "2581b69677d898c215d5cb47bea8e01fb401157b",
+    "org.opencontainers.image.source": "https://github.com/componentized/oci.git",
+    "org.opencontainers.image.title": "componentized:oci",
+    "org.opencontainers.image.url": "https://github.com/componentized/oci/tree/2581b69677d898c215d5cb47bea8e01fb401157b",
+    "org.opencontainers.image.version": "0.1.1-dev"
+  },
+  "dependencies": [
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:50Z"
+}

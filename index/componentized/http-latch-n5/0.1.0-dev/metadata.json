@@ -1,0 +1,54 @@
+{
+  "package": "componentized:http-latch-n5",
+  "version": "0.1.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-n5",
+    "tag": "0.1.0-dev",
+    "digest": "sha256:e86198269775171b9c7276f93c51e333970f6f18d5d9647fe5b3c7bb2ef2a453",
+    "layer_digest": "sha256:ba0a4944ad195eba69848ee1a8961712791d9c505ca26a02d536665a4947b499",
+    "size": 53461
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-n5",
+    "tag": "0.1.0-dev_debug",
+    "digest": "sha256:8fd8ce4b6397015361748778149024284983027f869506e66e4016b6f8c94de8",
+    "layer_digest": "sha256:5ffecd4d60fe6dc6dfe34b25839eedbfd69fe33803d8313cb032528ab48dc873",
+    "size": 214546
+  },
+  "created": "2026-10-05T16:52:30.866096301Z",
+  "annotations": {
+    "org.opencontainers.image.description": "HTTP latch that aggregates 5 latches, any latch can deny a request.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "84c2d1ecc4562b474b647b5057b8f868f993942a",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-latch-n5",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/84c2d1ecc4562b474b647b5057b8f868f993942a/components/latch-n5",
+    "org.opencontainers.image.version": "0.1.0-dev"
+  },
+  "imports": [
+    "wasi:http/types@0.3.0",
+    "latch0: componentized:http/latch@0.1.0-dev",
+    "latch1: componentized:http/latch@0.1.0-dev",
+    "latch2: componentized:http/latch@0.1.0-dev",
+    "latch3: componentized:http/latch@0.1.0-dev",
+    "latch4: componentized:http/latch@0.1.0-dev"
+  ],
+  "exports": [
+    "componentized:http/latch@0.1.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:http",
+      "version": "0.1.0-dev"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:35Z"
+}

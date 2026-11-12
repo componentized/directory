@@ -1,0 +1,51 @@
+{
+  "package": "componentized:services-webhook-credential-admin",
+  "version": "0.0.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/webhook-credential-admin",
+    "tag": "0.0.1",
+    "digest": "sha256:e5c48ce4aa2122eb00e646f364d07003cbaa4546074e4d85a2aa0105646938de",
+    "layer_digest": "sha256:d73244aad3407eafa48874a5300f99cda236203b553bd7c062ef7f62cc53cecf",
+    "size": 86330
+  },
+  "created": "2025-04-25T18:25:36.144645280Z",
+  "annotations": {
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "9dc04233920f991b6405d8112160094dbf92a472+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/services.git",
+    "org.opencontainers.image.title": "webhook-credential-admin",
+    "org.opencontainers.image.version": "v0.0.1"
+  },
+  "imports": [
+    "componentized:services/types",
+    "wasi:io/poll@0.2.3",
+    "wasi:http/types@0.2.3",
+    "wasi:http/outgoing-handler@0.2.3",
+    "wasi:config/store@0.2.0-draft"
+  ],
+  "exports": [
+    "componentized:services/credential-admin"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:services",
+      "version": null
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-draft"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.2.3"
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.3"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:45:00Z"
+}

@@ -1,0 +1,52 @@
+{
+  "package": "componentized:valkey-tcp",
+  "version": "0.3.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/tcp",
+    "tag": "0.3.0-dev",
+    "digest": "sha256:14d373f76c50bb10071d8c96b15317106f91f97bc0b97b676d6099affaebb38a",
+    "layer_digest": "sha256:1ba9c596eb02963cd622a18f9c9e57fd16acbe78915e6be0c61266aacc4283c5",
+    "size": 248951
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/tcp",
+    "tag": "0.3.0-dev_debug",
+    "digest": "sha256:3d1bb4e2be8fac294040484a0c5a7bdaccaf04ce1c08d2978312343f196d51ef",
+    "layer_digest": "sha256:aa53d138e5287efa8a74bd3fb8494c9cc2d98cea989e8e75ebc14daf157b7d0d",
+    "size": 2633623
+  },
+  "created": "2026-11-09T19:24:09.862136525Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Connections to a Valkey server over `wasi:sockets` TCP.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "69ad5c957f56b19c57322b25fdd9ddb36d7776a0",
+    "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
+    "org.opencontainers.image.title": "componentized:valkey-tcp",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/69ad5c957f56b19c57322b25fdd9ddb36d7776a0/components/tcp",
+    "org.opencontainers.image.version": "0.3.0-dev"
+  },
+  "imports": [
+    "wasi:sockets/types@0.3.0",
+    "wasi:sockets/ip-name-lookup@0.3.0",
+    "componentized:valkey/types@0.3.0-dev",
+    "componentized:valkey/connection@0.3.0-dev"
+  ],
+  "exports": [
+    "componentized:valkey/tcp@0.3.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:valkey",
+      "version": "0.3.0-dev"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:13:35Z"
+}

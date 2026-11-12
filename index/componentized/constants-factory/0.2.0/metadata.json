@@ -1,0 +1,50 @@
+{
+  "package": "componentized:constants-factory",
+  "version": "0.2.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/constants/factory",
+    "tag": "0.2.0",
+    "digest": "sha256:4d67dab786798c85cf54aef608df64ef17f0b5f8c9b237fa3af3621d4f4ed618",
+    "layer_digest": "sha256:f4a575df7adb559c57187cf9557d1c1d519c74ec438fec1e83fd1005c1052a46",
+    "size": 1908290
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/constants/factory",
+    "tag": "0.2.0_debug",
+    "digest": "sha256:52df91f1736ec0ead44e0b6bd8a585f9ad793913a8806361b4888b1be0de237e",
+    "layer_digest": "sha256:698244cdc6abeb6a1dd0acf9ee2e3f54ea83aa90891ac114b8e0ebf318becbf9",
+    "size": 45851408
+  },
+  "created": "2026-10-19T16:32:41.875469400Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Create components whose exported functions return constant values, from a WIT world with values in its doc comments.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "4aaed83df97fb4397efbd0831c4fc9907c422799",
+    "org.opencontainers.image.source": "https://github.com/componentized/constants.git",
+    "org.opencontainers.image.title": "componentized:constants-factory",
+    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/4aaed83df97fb4397efbd0831c4fc9907c422799/components/factory",
+    "org.opencontainers.image.version": "v0.2.0"
+  },
+  "imports": [
+    "componentized:component/types@0.1.0",
+    "componentized:component/wit@0.1.0"
+  ],
+  "exports": [
+    "componentized:constants/factory@0.2.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:component",
+      "version": "0.1.0"
+    },
+    {
+      "package": "componentized:constants",
+      "version": "0.2.0"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:29Z"
+}

@@ -1,0 +1,42 @@
+{
+  "package": "componentized:http-latch-method-readonly-config",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-method-readonly-config",
+    "tag": "0.1.0",
+    "digest": "sha256:765191f1d788bb390d6de8f1be6227e7d5895f9adc014e62eed360054855adc0",
+    "layer_digest": "sha256:cce5fa13d4dfb8e5797945ed66615347ebd1ba3e16d2a65b41d6bdc060ef7497",
+    "size": 13586
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-method-readonly-config",
+    "tag": "0.1.0_debug",
+    "digest": "sha256:1a95ad2f99cde4b9715ce77d259d868ed431e091e4666b0ac788fe2c35ecb9f5",
+    "layer_digest": "sha256:cce5fa13d4dfb8e5797945ed66615347ebd1ba3e16d2a65b41d6bdc060ef7497",
+    "size": 13586
+  },
+  "created": "2026-10-05T18:15:48.709918891Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Config for  that denies every request method except GET, HEAD, QUERY and OPTIONS.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b0a0308c87a6b3089882cb6f7315968b47aceebb",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-latch-method-readonly-config",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/b0a0308c87a6b3089882cb6f7315968b47aceebb/components/latch-method-readonly-config",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "exports": [
+    "wasi:config/store@0.2.0-rc.1"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:40Z"
+}

@@ -1,0 +1,8 @@
+package root:component;
+
+world root {
+  import componentized:valkey/types@0.3.0-dev;
+  import componentized:valkey/connection@0.3.0-dev;
+
+  export componentized:valkey/commands@0.3.0-dev;
+}

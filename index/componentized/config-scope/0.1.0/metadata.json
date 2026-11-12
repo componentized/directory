@@ -1,0 +1,37 @@
+{
+  "package": "componentized:config-scope",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/config/scope",
+    "tag": "0.1.0",
+    "digest": "sha256:f5c466a98bd7350fb4ffc293964ef82afa05d7102d67411b8d87620756883f0a",
+    "layer_digest": "sha256:e432a8d7264b5fe4df7dbe471eab89a177f2bb56fa4a1f252a6f6e10159edcb8",
+    "size": 40350
+  },
+  "created": "2025-04-23T01:11:10.277196567Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Selects keys in a wasi:config/store matching a scope prefix based on the content of a 'scope' import which mimics wasi:config/store. The scope value is removed from the resulting keys, and keys not matching the scope prefix are ignored.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "23b401ed4b0227fbae796878db530803eb0fc20a+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/config.git",
+    "org.opencontainers.image.title": "scope",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "imports": [
+    "wasi:config/store@0.2.0-draft",
+    "scope: interface"
+  ],
+  "exports": [
+    "wasi:config/store@0.2.0-draft"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-draft"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:25Z"
+}

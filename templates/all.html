@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% from "macros.html" import card %}
+{% set title = "All packages" %}
+{% block main %}
+<h1>All packages</h1>
+<div class="filters" data-filters>
+  <input type="search" placeholder="Filter" aria-label="Filter packages" data-filter-text>
+  <select aria-label="Kind" data-filter-kind>
+    <option value="">All kinds</option>
+    <option value="component">Components</option>
+    <option value="interface">Interfaces</option>
+  </select>
+  <select aria-label="Namespace" data-filter-namespace>
+    <option value="">All namespaces</option>
+    {% for ns, count in namespaces %}<option value="{{ ns }}">{{ ns }} ({{ count }})</option>{% endfor %}
+  </select>
+  <span class="dim" data-filter-count>{{ cards|length }} packages</span>
+</div>
+<div class="cards" data-filtered>{% for c in cards %}{{ card(c) }}{% endfor %}</div>
+<p class="dim" data-filter-empty hidden>No packages match.</p>
+{% endblock %}

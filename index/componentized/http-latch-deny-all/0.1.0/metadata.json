@@ -1,0 +1,49 @@
+{
+  "package": "componentized:http-latch-deny-all",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-deny-all",
+    "tag": "0.1.0",
+    "digest": "sha256:3fab6eb461650f6c9a42a02ea80f59bf855035dadaf5243fbb2b18d8e7b64268",
+    "layer_digest": "sha256:fa3cec1a635c086ded5641149d062d9682833c27bfbf285654058672990640f6",
+    "size": 27933
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-deny-all",
+    "tag": "0.1.0_debug",
+    "digest": "sha256:33606ce88b6c6599fcda6c35d468d6d26236c3c03896fa45b626d311bdcad619",
+    "layer_digest": "sha256:caed3c795644de9230f104bac3f402caaba6f8ba08293bcecc8f72398b779a83",
+    "size": 88820
+  },
+  "created": "2026-10-05T18:14:27.009377828Z",
+  "annotations": {
+    "org.opencontainers.image.description": "HTTP latch that denies every request with .",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b0a0308c87a6b3089882cb6f7315968b47aceebb",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-latch-deny-all",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/b0a0308c87a6b3089882cb6f7315968b47aceebb/components/latch-deny-all",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "imports": [
+    "wasi:http/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:http/latch@0.1.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:http",
+      "version": "0.1.0"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:38Z"
+}

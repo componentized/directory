@@ -1,0 +1,45 @@
+{
+  "package": "componentized:component-wit-tools",
+  "version": "0.1.1-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component/wit-tools",
+    "tag": "0.1.1-dev",
+    "digest": "sha256:dd9c7081becab27306e81e9ffada12641f372bf661cdc3cdc77eae714b54f77c",
+    "layer_digest": "sha256:badad1bfe78c861961f82d83c3dcc918030b57381081fdef0633452bc9d716d6",
+    "size": 1767394
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component/wit-tools",
+    "tag": "0.1.1-dev_debug",
+    "digest": "sha256:cb303e7be37d1bb6a7f3987b533a5a31ba8c0657758c5f746e01f2ec1bf8689e",
+    "layer_digest": "sha256:369d5939e1988d74890f02371c3c463a5261e746e1517760034a8b75a11c4664",
+    "size": 29088775
+  },
+  "created": "2026-11-09T14:19:12.364979219Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Extracts the WIT (Wasm Interface Type) from a component.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "4f2ad363c1770efe24dd6477fe94e9e08bf5a82c",
+    "org.opencontainers.image.source": "https://github.com/componentized/component.git",
+    "org.opencontainers.image.title": "componentized:component-wit-tools",
+    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/4f2ad363c1770efe24dd6477fe94e9e08bf5a82c/components/wit-tools",
+    "org.opencontainers.image.version": "0.1.1-dev"
+  },
+  "imports": [
+    "componentized:component/types@0.1.1-dev"
+  ],
+  "exports": [
+    "componentized:component/wit@0.1.1-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:component",
+      "version": "0.1.1-dev"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:11:57Z"
+}

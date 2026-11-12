@@ -1,0 +1,34 @@
+{
+  "package": "componentized:constants-random",
+  "version": "0.2.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/constants/random",
+    "tag": "0.2.0",
+    "digest": "sha256:696c8c437eebc533a03e38ad4238f81d7d2a71c68383fa36ea3fc2bd9af29ab9",
+    "layer_digest": "sha256:4ac74343766d7fb87ee7d90071be456fd552ce0ab6fa6371bae2ab963c8f6122",
+    "size": 5721
+  },
+  "created": "2026-10-19T16:33:14.897115182Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Pseudorandom number generators.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "4aaed83df97fb4397efbd0831c4fc9907c422799",
+    "org.opencontainers.image.source": "https://github.com/componentized/constants.git",
+    "org.opencontainers.image.title": "componentized:constants-random",
+    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/4aaed83df97fb4397efbd0831c4fc9907c422799/components/random",
+    "org.opencontainers.image.version": "v0.2.0"
+  },
+  "exports": [
+    "componentized:constants/random@0.2.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:constants",
+      "version": "0.2.0"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:30Z"
+}

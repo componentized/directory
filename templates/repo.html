@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% from "macros.html" import card %}
+{% block description %}The interfaces and components released by {{ repo.key }} at {{ repo.version }}.{% endblock %}
+{% set toc = true %}
+{% block toc %}
+<ol>
+  {% if interfaces %}<li><a href="#interfaces">Interfaces</a></li>{% endif %}
+  <li><a href="#components">Components</a>{% if components %} <span class="dim">{{ components|length }}</span>{% endif %}</li>
+  <li><a href="#about">About</a></li>
+  <li><a href="#versions">Versions</a></li>
+</ol>
+{% endblock %}
+{% block main %}
+<nav class="crumbs"><a href="/repos/">repos</a> / <a href="{{ repo.url }}">{{ repo.key }}</a> @ {{ repo.version }}</nav>
+<div class="title-row">
+  <h1><code>{{ repo.key }}</code></h1>
+  <span class="badge repo">repository</span>
+  {% if repo.dev %}<span class="badge pre" title="A development build of the upcoming release">dev</span>{% elif not repo.stable %}<span class="badge pre">pre-release</span>{% endif %}
+  <select class="versions" aria-label="Version" onchange="location.href=this.value">
+    {% for v in repo.versions %}<option value="{{ v.url }}"{% if v.current %} selected{% endif %}>{{ v.version }}</option>{% endfor %}
+  </select>
+</div>
+{% if repo.superseded_by %}<p class="notice">This development build was superseded by the release of <a href="{{ repo.superseded_by.url }}">{{ repo.superseded_by.version }}</a>.</p>{% endif %}
+<div class="layout">
+  <div class="content">
+    {% if interfaces %}
+    <section id="interfaces">
+      <h2>Interfaces</h2>
+      <div class="cards">{% for c in interfaces %}{{ card(c) }}{% endfor %}</div>
+    </section>
+    {% endif %}
+    <section id="components">
+      <h2>Components</h2>
+      {% if components %}<div class="cards">{% for c in components %}{{ card(c) }}{% endfor %}</div>{% else %}<p class="dim">No components at this version.</p>{% endif %}
+    </section>
+  </div>
+  <aside>
+    <section id="about">
+      <h3>About</h3>
+      <dl class="facts">
+        <dt>Version</dt><dd>{{ repo.version }}</dd>
+        {% if repo.date %}<dt>Published</dt><dd>{{ repo.date }}</dd>{% endif %}
+        <dt>Source</dt><dd><a href="{{ repo.web }}">{{ repo.web|replace("https://", "") }}</a></dd>
+        {% if repo.revision %}<dt>Revision</dt><dd>{% if repo.tree %}<a href="{{ repo.tree }}"><code>{{ repo.revision }}</code></a>{% else %}<code>{{ repo.revision }}</code>{% endif %}</dd>{% endif %}
+      </dl>
+    </section>
+    <section id="versions">
+      <h3>Versions</h3>
+      <ul class="links">{% for v in repo.versions %}<li>{% if v.current %}<strong>{{ v.version }}</strong>{% else %}<a href="{{ v.url }}">{{ v.version }}</a>{% endif %} <span class="dim">{{ v.date }}</span></li>{% endfor %}</ul>
+    </section>
+  </aside>
+</div>
+{% endblock %}

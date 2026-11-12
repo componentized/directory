@@ -1,0 +1,35 @@
+{
+  "package": "componentized:sockets",
+  "version": "0.1.0",
+  "kind": "interface",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets",
+    "tag": "0.1.0",
+    "digest": "sha256:355dbcca6ff423c1ab9ea2d00ca76a4299f799de70edda72c721d1362ac301d8",
+    "layer_digest": "sha256:5070d6f11cb968e5b8e9b16ba5e1e19d067825e15b8a62f3fae598d3d8bb67e6",
+    "size": 14515
+  },
+  "created": "2026-10-15T19:01:53.294698172Z",
+  "annotations": {
+    "org.opencontainers.image.description": "A collection of utility components that remix wasi:sockets types and interfaces.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "33379c373a0cebf66d2201adbb482a90f48dc01b",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/33379c373a0cebf66d2201adbb482a90f48dc01b",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "dependencies": [
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:45:02Z"
+}

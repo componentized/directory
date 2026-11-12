@@ -1,0 +1,29 @@
+{
+  "package": "wasi:clocks",
+  "version": "0.2.6",
+  "kind": "interface",
+  "origin": "dependency",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "webassembly/wasi/clocks",
+    "tag": "0.2.6",
+    "digest": "sha256:6176c38634f68ce5854938c96b2c3721b400cd9c4aa73deb61f4d97488e0f9e5",
+    "layer_digest": "sha256:569984cc45d3f5a362a3b2897aabbaa3cc4184a6113bfcbbf03c1bd7fc20338c",
+    "size": 6821
+  },
+  "created": "2025-06-12T21:17:54.744387792Z",
+  "annotations": {
+    "org.opencontainers.image.description": "A WASI API for reading the current time and measuring elapsed time.",
+    "org.opencontainers.image.licenses": "Apache-2.0 WITH LLVM-exception",
+    "org.opencontainers.image.source": "https://github.com/webassembly/wasi",
+    "org.opencontainers.image.url": "https://wasi.dev",
+    "org.opencontainers.image.version": "0.2.6"
+  },
+  "dependencies": [
+    {
+      "package": "wasi:io",
+      "version": "0.2.6"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:43:39Z"
+}

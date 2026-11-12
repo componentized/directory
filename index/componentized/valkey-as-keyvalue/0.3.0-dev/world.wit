@@ -1,0 +1,14 @@
+package root:component;
+
+world root {
+  import componentized:valkey/types@0.3.0-dev;
+  import componentized:valkey/connection@0.3.0-dev;
+  import componentized:valkey/connector@0.3.0-dev;
+  import componentized:valkey/commands@0.3.0-dev;
+  import wasi:config/store@0.2.0-rc.1;
+
+  export wasmcloud:keyvalue/types@0.2.0;
+  export wasmcloud:keyvalue/store@0.2.0;
+  export wasmcloud:keyvalue/atomics@0.2.0;
+  export wasmcloud:keyvalue/batch@0.2.0;
+}

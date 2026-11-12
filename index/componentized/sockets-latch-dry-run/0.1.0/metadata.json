@@ -1,0 +1,55 @@
+{
+  "package": "componentized:sockets-latch-dry-run",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-dry-run",
+    "tag": "0.1.0",
+    "digest": "sha256:33beefe33a999bd69f0f9149b892b36d94ffe7a2af1c01682e8ce95bf4ddfcf5",
+    "layer_digest": "sha256:1831d49e76eccc48839e04e4559e188f0b0dfca478a2045769da3c288f81a84e",
+    "size": 59442
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-dry-run",
+    "tag": "0.1.0_debug",
+    "digest": "sha256:3a231539a1f18e19c9ab2b3bd794c8c4025d82db87c20858f7d3f6eabd370777",
+    "layer_digest": "sha256:7f2d9b39451f505373dab4cf507acc9a7894fb852fe1d7e32b8367a965d99932",
+    "size": 439937
+  },
+  "created": "2026-10-15T19:09:34.287378591Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Sockets latch that wraps another latch, logging the operations it would deny without denying them.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "33379c373a0cebf66d2201adbb482a90f48dc01b",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-dry-run",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/33379c373a0cebf66d2201adbb482a90f48dc01b/components/latch-dry-run",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "imports": [
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:sockets/types@0.3.0",
+    "componentized:sockets/latch@0.1.0"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:45:12Z"
+}

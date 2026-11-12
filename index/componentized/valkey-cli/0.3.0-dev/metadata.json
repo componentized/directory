@@ -1,0 +1,72 @@
+{
+  "package": "componentized:valkey-cli",
+  "version": "0.3.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/cli",
+    "tag": "0.3.0-dev",
+    "digest": "sha256:bcf82719ff809689da7f5a237bf42e2a75bbc0dbd7e54800e76ddebb78cbc9f3",
+    "layer_digest": "sha256:179e06ffb09d7cfe2331cd7d794fe9dd6cc37f35ddff4212514187e6951ceb70",
+    "size": 1757142
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/cli",
+    "tag": "0.3.0-dev_debug",
+    "digest": "sha256:b3f3b7e11378d6fa8fe64c8e21d0dca810441188336fdb8983fc470a8b51fb23",
+    "layer_digest": "sha256:50dfc4c1d0b6d73c51795e2e5ebdbd8108967dc9c675468dad490875d54c3d30",
+    "size": 18934654
+  },
+  "created": "2026-11-09T19:22:37.081590435Z",
+  "annotations": {
+    "org.opencontainers.image.description": "A command line client for Valkey, sending its arguments as a command and printing the reply.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "69ad5c957f56b19c57322b25fdd9ddb36d7776a0",
+    "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
+    "org.opencontainers.image.title": "componentized:valkey-cli",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/69ad5c957f56b19c57322b25fdd9ddb36d7776a0/components/cli",
+    "org.opencontainers.image.version": "0.3.0-dev"
+  },
+  "imports": [
+    "wasi:clocks/types@0.3.0",
+    "wasi:clocks/system-clock@0.3.0",
+    "wasi:sockets/types@0.3.0",
+    "wasi:sockets/ip-name-lookup@0.3.0",
+    "wasi:clocks/monotonic-clock@0.3.0",
+    "wasi:config/store@0.2.0-rc.1",
+    "wasi:cli/environment@0.3.0",
+    "wasi:cli/types@0.3.0",
+    "wasi:cli/stdin@0.3.0",
+    "wasi:cli/stdout@0.3.0",
+    "wasi:cli/stderr@0.3.0",
+    "componentized:valkey/types@0.3.0-dev"
+  ],
+  "exports": [
+    "wasi:cli/run@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:valkey",
+      "version": "0.3.0-dev"
+    },
+    {
+      "package": "wasi:cli",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:13:32Z"
+}

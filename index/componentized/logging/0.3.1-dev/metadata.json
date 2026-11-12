@@ -1,0 +1,31 @@
+{
+  "package": "componentized:logging",
+  "version": "0.3.1-dev",
+  "kind": "interface",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/logging",
+    "tag": "0.3.1-dev",
+    "digest": "sha256:a7b3d7d916f56f6ee86e1b26cbced05faf7ad02d8710d6ba42933addb52a45b0",
+    "layer_digest": "sha256:64952c5b4a3daea00618df417c273599cb6693d32aa3d9fd24cd0ef2ba7e232c",
+    "size": 353
+  },
+  "created": "2026-10-15T12:58:57.240667529Z",
+  "annotations": {
+    "org.opencontainers.image.description": "A collection of utility components that remix wasi:logging types and interfaces.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "ba23d5927c062f51460677250130d4328c826116",
+    "org.opencontainers.image.source": "https://github.com/componentized/logging.git",
+    "org.opencontainers.image.title": "componentized:logging",
+    "org.opencontainers.image.url": "https://github.com/componentized/logging/tree/ba23d5927c062f51460677250130d4328c826116",
+    "org.opencontainers.image.version": "0.3.1-dev"
+  },
+  "dependencies": [
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:45Z"
+}

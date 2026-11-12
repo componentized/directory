@@ -1,0 +1,46 @@
+{
+  "package": "componentized:valkey-commands",
+  "version": "0.3.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/commands",
+    "tag": "0.3.0-dev",
+    "digest": "sha256:8ae44672d6ec9075c621c445999efb4ecbfb199b50351e1e9e0bf922a5364ac6",
+    "layer_digest": "sha256:2700ca302aa972bb0025af27a9ce7149d857bd7fe112fad4b9d4ba45d6f997f8",
+    "size": 1721113
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/commands",
+    "tag": "0.3.0-dev_debug",
+    "digest": "sha256:1dabe45663d488649a970dcd333f2cf93dd386f99f4a38a3fb0ba522e35d990f",
+    "layer_digest": "sha256:0d685d699706ab8bbf6f1604f660115a04931eebd5f0a18e04d94e92f7396fac",
+    "size": 20033835
+  },
+  "created": "2026-11-09T19:23:08.020021147Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Every implemented command interface, in one component.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "69ad5c957f56b19c57322b25fdd9ddb36d7776a0",
+    "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
+    "org.opencontainers.image.title": "componentized:valkey-commands",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/69ad5c957f56b19c57322b25fdd9ddb36d7776a0/components/commands",
+    "org.opencontainers.image.version": "0.3.0-dev"
+  },
+  "imports": [
+    "componentized:valkey/types@0.3.0-dev",
+    "componentized:valkey/connection@0.3.0-dev"
+  ],
+  "exports": [
+    "componentized:valkey/commands@0.3.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:valkey",
+      "version": "0.3.0-dev"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:13:33Z"
+}

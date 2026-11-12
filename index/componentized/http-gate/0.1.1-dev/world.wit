@@ -1,0 +1,12 @@
+package root:component;
+
+world root {
+  import wasi:http/types@0.3.0;
+  import componentized:http/latch@0.1.1-dev;
+  import wasi:logging/logging@0.1.0-draft;
+  import wasi:http/client@0.3.0;
+  import wasi:http/handler@0.3.0;
+
+  export wasi:http/client@0.3.0;
+  export wasi:http/handler@0.3.0;
+}

@@ -1,0 +1,42 @@
+{
+  "package": "componentized:sockets-latch-deny-private-networks-cidr-config",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-deny-private-networks-cidr-config",
+    "tag": "0.1.0",
+    "digest": "sha256:baea9185195000433a22716a029c9853b490edd0c40b891e4750fda84cffb74c",
+    "layer_digest": "sha256:f4d2542be6d7b3cfca32c16eeef276ebc358510c9390d24d5b093b9eb4d03351",
+    "size": 7437
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-deny-private-networks-cidr-config",
+    "tag": "0.1.0_debug",
+    "digest": "sha256:9e5691e56cf25bc445951db51435069019f271dea4b8791afddafccff766ef11",
+    "layer_digest": "sha256:f4d2542be6d7b3cfca32c16eeef276ebc358510c9390d24d5b093b9eb4d03351",
+    "size": 7437
+  },
+  "created": "2026-10-15T19:08:10.318839432Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Static config for `latch-cidr-egress` that denies originating outbound traffic to addresses that are not globally reachable, like private networks, loopback, link local and cloud metadata endpoints.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "33379c373a0cebf66d2201adbb482a90f48dc01b",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-deny-private-networks-cidr-config",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/33379c373a0cebf66d2201adbb482a90f48dc01b/components/latch-deny-private-networks-cidr-config",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "exports": [
+    "wasi:config/store@0.2.0-rc.1"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:45:11Z"
+}

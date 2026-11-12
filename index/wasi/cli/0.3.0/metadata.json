@@ -1,0 +1,41 @@
+{
+  "package": "wasi:cli",
+  "version": "0.3.0",
+  "kind": "interface",
+  "origin": "dependency",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "webassembly/wasi/cli",
+    "tag": "0.3.0",
+    "digest": "sha256:c55d8be8f0c89fce54f66056610b9485e511ae9a3198a7457b33214c0d298f3a",
+    "layer_digest": "sha256:3a2d58743b67a057f7210b9a73d3b21b34ec7895ffe34d1cb092927307156e40",
+    "size": 24862
+  },
+  "created": "2026-06-11T17:08:36.767703954Z",
+  "annotations": {
+    "org.opencontainers.image.description": "WASI CLI interfaces for command-line programs",
+    "org.opencontainers.image.licenses": "Apache-2.0 WITH LLVM-exception",
+    "org.opencontainers.image.source": "https://github.com/webassembly/wasi",
+    "org.opencontainers.image.url": "https://wasi.dev",
+    "org.opencontainers.image.version": "0.3.0"
+  },
+  "dependencies": [
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:random",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:43:38Z"
+}

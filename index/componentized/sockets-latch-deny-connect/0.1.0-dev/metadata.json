@@ -1,0 +1,49 @@
+{
+  "package": "componentized:sockets-latch-deny-connect",
+  "version": "0.1.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-deny-connect",
+    "tag": "0.1.0-dev",
+    "digest": "sha256:ce0732625e45f2b9fd2585f3d07502cff29daeb13f534c44fdb9766408ca034f",
+    "layer_digest": "sha256:3e25920d4cc37554ea7443b024e53b138e5f3838d4523b6b3a003314b9a652ad",
+    "size": 33455
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-deny-connect",
+    "tag": "0.1.0-dev_debug",
+    "digest": "sha256:6b9f14cf49f41909587476ccf0d53de294e040e58de32c8434c13694c9351e45",
+    "layer_digest": "sha256:c2b2d47f4e8cd82fe0c791ccc7743fb1080ca03cbc5a35e7774465bdd35deefc",
+    "size": 307310
+  },
+  "created": "2026-10-15T18:56:13.549841675Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Sockets latch that implicitly denies all outbound connections.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b90f9a86284d488ca5706e484b8f4f64110b3aaf",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-deny-connect",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/b90f9a86284d488ca5706e484b8f4f64110b3aaf/components/latch-deny-connect",
+    "org.opencontainers.image.version": "0.1.0-dev"
+  },
+  "imports": [
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.0-dev"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:13:10Z"
+}

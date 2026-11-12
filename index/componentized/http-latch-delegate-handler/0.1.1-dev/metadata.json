@@ -1,0 +1,50 @@
+{
+  "package": "componentized:http-latch-delegate-handler",
+  "version": "0.1.1-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-delegate-handler",
+    "tag": "0.1.1-dev",
+    "digest": "sha256:9b0cfee7be86642de749b590c8e01cbb0a9079710cc7416eb60bbdabd0284325",
+    "layer_digest": "sha256:284187f948c9c82746cd44cf6c0ce580b579f757d5c11032bab8d67659b0a683",
+    "size": 34162
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-delegate-handler",
+    "tag": "0.1.1-dev_debug",
+    "digest": "sha256:db7ecc98bcb940bb72352fc0af49292ca18b9c66136b9a6fe9faa16b529dc015",
+    "layer_digest": "sha256:349f86ba2b0749533a33986f3b8740ca3ea20a98f81bff8887e4a8a735eb5262",
+    "size": 114477
+  },
+  "created": "2026-11-09T19:16:42.935428024Z",
+  "annotations": {
+    "org.opencontainers.image.description": "HTTP latch that wraps another latch, delegating only `wasi:http/handler` requests to it. `wasi:http/client` requests are deferred without consulting the wrapped latch, it neither authorizes nor observes them.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "ca50fd6e7d0aba1b8694520c9c32b1d097e8dfe4",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-latch-delegate-handler",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/ca50fd6e7d0aba1b8694520c9c32b1d097e8dfe4/components/latch-delegate-handler",
+    "org.opencontainers.image.version": "0.1.1-dev"
+  },
+  "imports": [
+    "wasi:http/types@0.3.0",
+    "componentized:http/latch@0.1.1-dev"
+  ],
+  "exports": [
+    "componentized:http/latch@0.1.1-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:http",
+      "version": "0.1.1-dev"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:27Z"
+}

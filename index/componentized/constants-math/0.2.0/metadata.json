@@ -1,0 +1,34 @@
+{
+  "package": "componentized:constants-math",
+  "version": "0.2.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/constants/math",
+    "tag": "0.2.0",
+    "digest": "sha256:56f0b4ebd7a6f52bb52d854b0e9eb34f374178fb9667c839f4fc4a673609c32e",
+    "layer_digest": "sha256:61cc4b4dad895025a342cb5bd8ad865b11b31b5a802ac415581d9452f643ef0e",
+    "size": 23154
+  },
+  "created": "2026-10-19T16:33:03.390158589Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Common mathematical constants.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "4aaed83df97fb4397efbd0831c4fc9907c422799",
+    "org.opencontainers.image.source": "https://github.com/componentized/constants.git",
+    "org.opencontainers.image.title": "componentized:constants-math",
+    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/4aaed83df97fb4397efbd0831c4fc9907c422799/components/math",
+    "org.opencontainers.image.version": "v0.2.0"
+  },
+  "exports": [
+    "componentized:constants/math@0.2.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:constants",
+      "version": "0.2.0"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:30Z"
+}

@@ -1,0 +1,8 @@
+package root:component;
+
+world root {
+  import wasi:sockets/types@0.3.0;
+  import componentized:sockets/latch@0.1.0-dev;
+
+  export componentized:sockets/latch@0.1.0-dev;
+}

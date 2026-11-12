@@ -1,0 +1,55 @@
+{
+  "package": "componentized:http-trace-types",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/trace-types",
+    "tag": "0.1.0",
+    "digest": "sha256:14ebb4e7d37766010aed7602262cf503becd4ce72d01198a942aa68e7381fc71",
+    "layer_digest": "sha256:0db3ca97cc2173461fb8989179fa82e31544c902ce9353a1e1b8bef9dc0c4521",
+    "size": 174338
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/trace-types",
+    "tag": "0.1.0_debug",
+    "digest": "sha256:9b2293cb32913399f756769b590b4ca6eacaea69c7a554fd57fde5dbd1780739",
+    "layer_digest": "sha256:ac24cfedf1a638407e9c58ea89ee7ea8643a7b817d9dfbe73ef7643e3f567ea9",
+    "size": 520563
+  },
+  "created": "2026-10-05T18:19:51.145713305Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Virtualizes the wasi:http/types interface logging all method calls at the TRACE level and 'componentized-trace' component.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b0a0308c87a6b3089882cb6f7315968b47aceebb",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-trace-types",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/b0a0308c87a6b3089882cb6f7315968b47aceebb/components/trace-types",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "imports": [
+    "wasi:clocks/types@0.3.0",
+    "wasi:http/types@0.3.0",
+    "wasi:logging/logging@0.1.0-draft"
+  ],
+  "exports": [
+    "wasi:http/types@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:46Z"
+}

@@ -1,0 +1,53 @@
+{
+  "package": "componentized:services",
+  "version": "0.0.5-dev",
+  "kind": "interface",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services",
+    "tag": "0.0.5-dev",
+    "digest": "sha256:a19226c242e7185fe8236a5f8df66d1ae5fd792fb5e1e0c862c381dba21668d2",
+    "layer_digest": "sha256:2e9e4a89b25b5eb6a09d677822875f3a956dc50fc9eaf7c11099dd2926c4b243",
+    "size": 17374
+  },
+  "created": "2026-11-09T22:52:06.458307435Z",
+  "annotations": {
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "23a7aebfe82e30b9453f8d8ee6b297b8184d934c+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/services.git",
+    "org.opencontainers.image.title": "interface",
+    "org.opencontainers.image.version": "0.0.5-dev"
+  },
+  "dependencies": [
+    {
+      "package": "wasi:clocks",
+      "version": "0.2.6"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.2.6"
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.6"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:random",
+      "version": "0.2.6"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.2.6"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:52Z"
+}

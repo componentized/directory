@@ -1,0 +1,59 @@
+{
+  "package": "componentized:http-latch-scheme",
+  "version": "0.1.1-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-scheme",
+    "tag": "0.1.1-dev",
+    "digest": "sha256:f380ed58e89f8745ff0e5fbf70d7e001f6b2c4f81ecba1c06d32738ff4916044",
+    "layer_digest": "sha256:24194b7775aef1d889d9c608032697dcaba8a8c9830c0324f5923cbd4af86d03",
+    "size": 44128
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-scheme",
+    "tag": "0.1.1-dev_debug",
+    "digest": "sha256:6ea41156213f626a44ec5513d51f50d9a5460a9722eddead988a80be27ced001",
+    "layer_digest": "sha256:929d6908b5ec4514e8928704fab163c585fd1e61719cf23193898fa94d250d22",
+    "size": 167238
+  },
+  "created": "2026-11-09T19:19:53.734612975Z",
+  "annotations": {
+    "org.opencontainers.image.description": "HTTP latch that decides each request by its scheme.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "ca50fd6e7d0aba1b8694520c9c32b1d097e8dfe4",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-latch-scheme",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/ca50fd6e7d0aba1b8694520c9c32b1d097e8dfe4/components/latch-scheme",
+    "org.opencontainers.image.version": "0.1.1-dev"
+  },
+  "imports": [
+    "wasi:config/store@0.2.0-rc.1",
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:http/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:http/latch@0.1.1-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:http",
+      "version": "0.1.1-dev"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:37Z"
+}

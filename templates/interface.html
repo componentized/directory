@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% from "macros.html" import header, links, grouped, stability, kind_sprite, kind_icon, func_icon %}
+{% block description %}{{ iface.id }}{% endblock %}
+{% set toc = true %}
+{% block toc %}
+<ol>
+  {% if iface.docs %}<li><a href="#overview">Overview</a></li>{% endif %}
+  {% if iface.types %}<li><a href="#types">Types</a>
+    <ol>{% for t in iface.types %}<li><a href="#type-{{ t.name }}" title="{{ t.kind }} {% if t.used_kind %}{{ t.used_kind }} {% endif %}{{ t.name }}">{{ kind_icon(t.kind, t.used_kind) }}<code>{{ t.name }}</code></a>
+      {%- if t.functions %}
+      <ol>{% for f in t.functions %}<li><a href="#type-{{ t.name }}.{{ f.name }}" title="{{ f.role }} {{ t.name }}.{{ f.name }}">{{ func_icon(f.modifiers) }}{% if f.role == "constructor" %}<span class="k">constructor</span>{% else %}<code>{{ f.name }}</code>{% endif %}</a></li>{% endfor %}</ol>
+      {%- endif %}</li>{% endfor %}</ol></li>{% endif %}
+  {% if iface.functions %}<li><a href="#functions">Functions</a>
+    <ol>{% for f in iface.functions %}<li><a href="#func-{{ f.name }}" title="func {{ f.name }}">{{ func_icon(f.modifiers) }}<code>{{ f.name }}</code></a></li>{% endfor %}</ol></li>{% endif %}
+  <li><a href="#wit">WIT</a></li>
+  <li><a href="#imported-by">Imported by</a></li>
+  <li><a href="#exported-by">Exported by</a></li>
+</ol>
+{% endblock %}
+{% block main %}
+{{ kind_sprite() }}
+{{ header(pkg) }}
+<h2 class="iface-title">interface <code>{{ iface.name }}</code> <span class="dim"><code>{{ iface.id }}</code></span> {{ stability(iface.stability) }}</h2>
+<div class="layout">
+  <div class="content">
+    {% if iface.docs %}<section class="docs" id="overview">{{ iface.docs|safe }}</section>{% endif %}
+
+    {% if iface.types %}
+    <section id="types">
+      <h2>Types</h2>
+      {% for t in iface.types %}
+      <div class="item" id="type-{{ t.name }}">
+        <h3 class="head"><span class="head-main">{{ kind_icon(t.kind, t.used_kind) }}<span class="k">{{ t.kind }}{% if t.used_kind %} {{ t.used_kind }}{% endif %}</span> <code>{{ t.name }}</code></span>{{ stability(t.stability) }}</h3>
+        {% if t.from %}<p class="from">from {% if t.from.url %}<a href="{{ t.from.url }}"><code>{{ t.from.label }}</code></a>{% else %}<code>{{ t.from.label }}</code>{% endif %}</p>{% endif %}
+        {% if t.docs %}<div class="docs">{{ t.docs|safe }}</div>{% endif %}
+        {% if t.members %}
+        <ul class="members">
+          {% for m in t.members %}<li>{% if m.name %}<code class="c">{{ m.name }}</code>{% if m.ty %}: {% endif %}{% endif %}{% if m.ty %}<code>{{ m.ty|safe }}</code>{% endif %}{% if m.docs %}<div class="docs">{{ m.docs|safe }}</div>{% endif %}</li>{% endfor %}
+        </ul>
+        {% endif %}
+        {% if t.functions %}
+        <ul class="members">
+          {% for f in t.functions %}<li id="type-{{ t.name }}.{{ f.name }}"><div class="head"><span class="head-main">{{ func_icon(f.modifiers) }}<code class="sig">{{ f.ty|safe }}</code></span>{{ stability(f.stability) }}</div>{% if f.docs %}<div class="docs">{{ f.docs|safe }}</div>{% endif %}</li>{% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if iface.functions %}
+    <section id="functions">
+      <h2>Functions</h2>
+      {% for f in iface.functions %}
+      <div class="item" id="func-{{ f.name }}">
+        <h3 class="head"><span class="head-main">{{ func_icon(f.modifiers) }}<code class="sig">{{ f.ty|safe }}</code></span>{{ stability(f.stability) }}</h3>
+        {% if f.docs %}<div class="docs">{{ f.docs|safe }}</div>{% endif %}
+      </div>
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    <section id="wit">
+      <h2>WIT</h2>
+      <pre class="wit"><code>{{ iface.wit|safe }}</code></pre>
+    </section>
+  </div>
+  <aside>
+    <section id="imported-by">
+      <h3>Imported by</h3>
+      {{ grouped(imported_by) }}
+    </section>
+    <section id="exported-by">
+      <h3>Exported by</h3>
+      {{ grouped(exported_by) }}
+    </section>
+    <section id="package">
+      <h3>Package</h3>
+      <p><a href="{{ pkg.url }}"><code>{{ pkg.id }}</code></a></p>
+    </section>
+  </aside>
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{
+  "package": "componentized:component-wac-loader",
+  "version": "0.1.1-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component/wac-loader",
+    "tag": "0.1.1-dev",
+    "digest": "sha256:f212480d3019eb9d6bbff9ca7aba081d8a09ac98f21714bead43829509cb7acd",
+    "layer_digest": "sha256:21dbde99c0184a5563dd33180821310100dd25070301a0f459c05eed4ae0cd01",
+    "size": 1731776
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component/wac-loader",
+    "tag": "0.1.1-dev_debug",
+    "digest": "sha256:b52ebd0445430387a5289e7b4caf975f90fdf2945d4496a3f7b8e4a90f800f31",
+    "layer_digest": "sha256:f9f3eea24634c602281bcb5e40bfd6184eec476901893638f22a6f92fd90b559",
+    "size": 21234147
+  },
+  "created": "2026-11-09T14:18:59.960953492Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Compose a component from other components using wac.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "4f2ad363c1770efe24dd6477fe94e9e08bf5a82c",
+    "org.opencontainers.image.source": "https://github.com/componentized/component.git",
+    "org.opencontainers.image.title": "componentized:component-wac-loader",
+    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/4f2ad363c1770efe24dd6477fe94e9e08bf5a82c/components/wac-loader",
+    "org.opencontainers.image.version": "0.1.1-dev"
+  },
+  "imports": [
+    "componentized:component/types@0.1.1-dev"
+  ],
+  "exports": [
+    "componentized:component/wac-loader@0.1.1-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:component",
+      "version": "0.1.1-dev"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:11:56Z"
+}

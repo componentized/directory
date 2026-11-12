@@ -1,0 +1,62 @@
+{
+  "package": "componentized:sockets-gate",
+  "version": "0.1.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/gate",
+    "tag": "0.1.0-dev",
+    "digest": "sha256:379f530474f8a25373bef84fb7948229a1e82ab6746aeb2bedd9a0d5feaf60ae",
+    "layer_digest": "sha256:7131d7b56cccfe44f44ef82e7a53436bfa14dee03546f3604f33a68830a80e83",
+    "size": 304952
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/gate",
+    "tag": "0.1.0-dev_debug",
+    "digest": "sha256:fabb8bcc96daefa5bfd60f356c4ad2e5be8e519990198bca8223794e56363df9",
+    "layer_digest": "sha256:2742a97403263f2f04bac3c06205fad54b79a0dea95425d8120761e3b2b6866f",
+    "size": 2889239
+  },
+  "created": "2026-10-15T18:52:35.073419592Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Socket gate access control.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b90f9a86284d488ca5706e484b8f4f64110b3aaf",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-gate",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/b90f9a86284d488ca5706e484b8f4f64110b3aaf/components/gate",
+    "org.opencontainers.image.version": "0.1.0-dev"
+  },
+  "imports": [
+    "wasi:clocks/types@0.3.0",
+    "wasi:sockets/types@0.3.0",
+    "componentized:sockets/latch@0.1.0-dev",
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:sockets/ip-name-lookup@0.3.0"
+  ],
+  "exports": [
+    "wasi:sockets/types@0.3.0",
+    "wasi:sockets/ip-name-lookup@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.0-dev"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:59Z"
+}

@@ -1,0 +1,10 @@
+package root:component;
+
+world root {
+  import wasi:config/store@0.2.0-rc.1;
+  import wasi:logging/logging@0.1.0-draft;
+  import wasi:random/insecure@0.3.0;
+  import wasi:http/types@0.3.0;
+
+  export componentized:http/latch@0.1.1-dev;
+}

@@ -1,0 +1,40 @@
+{
+  "package": "componentized:config-from-environment",
+  "version": "0.2.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/config/from-environment",
+    "tag": "0.2.0",
+    "digest": "sha256:a635158db1e77dd8bbaa38d6239f503736057c49e419dfe137f1247a06de6483",
+    "layer_digest": "sha256:23dd9227cb87aa033a66ac9c1b7ba1e5cce597d03f4456c2b2207a18f20fb2a5",
+    "size": 27227
+  },
+  "created": "2025-11-05T03:23:40.884680882Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Exposes the content of wasi:cli/environment variables as wasi:config/store.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "497b7daa03103fc3c6963b7c91a9eb35ced91b7d+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/config.git",
+    "org.opencontainers.image.title": "from-environment",
+    "org.opencontainers.image.version": "v0.2.0"
+  },
+  "imports": [
+    "wasi:cli/environment@0.2.3"
+  ],
+  "exports": [
+    "wasi:config/store@0.2.0-rc.1"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:cli",
+      "version": "0.2.3"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:23Z"
+}

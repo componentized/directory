@@ -1,0 +1,55 @@
+{
+  "package": "componentized:sockets-latch-trace",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-trace",
+    "tag": "0.1.0",
+    "digest": "sha256:a5c1cba661f1cc88478b93d650d41b78dc3db55ec0869258a72c1996f273113b",
+    "layer_digest": "sha256:221fca4d943f991a9d190cab6d81d6cd407bb0b9f11941980d3be87f2c850ff8",
+    "size": 59348
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-trace",
+    "tag": "0.1.0_debug",
+    "digest": "sha256:9b10c5ff88954fd4b856f76b0c90b30012b68e05ae34163aab7b311c0275e1c6",
+    "layer_digest": "sha256:b838935312fc040cf5df855d3ae534c89666b095eb9a03d76df733b385435268",
+    "size": 439156
+  },
+  "created": "2026-10-15T19:11:31.472299958Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Sockets latch that wraps another latch, logging each decision it makes without changing it.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "33379c373a0cebf66d2201adbb482a90f48dc01b",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-trace",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/33379c373a0cebf66d2201adbb482a90f48dc01b/components/latch-trace",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "imports": [
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:sockets/types@0.3.0",
+    "componentized:sockets/latch@0.1.0"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:45:15Z"
+}

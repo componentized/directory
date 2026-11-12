@@ -1,0 +1,9 @@
+package root:component;
+
+world root {
+  import wasi:logging/logging@0.1.0-draft;
+  import wasi:sockets/types@0.3.0;
+  import componentized:sockets/latch@0.1.0;
+
+  export componentized:sockets/latch@0.1.0;
+}

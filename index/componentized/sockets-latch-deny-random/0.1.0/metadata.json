@@ -1,0 +1,64 @@
+{
+  "package": "componentized:sockets-latch-deny-random",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-deny-random",
+    "tag": "0.1.0",
+    "digest": "sha256:514d8e6d10a505f74dc1d30a80957294a60ab6afc860e940bf9e8ac084c3ee1f",
+    "layer_digest": "sha256:5a6c622585181f6441cec90dc59f9ed4aca60004ded804f316692ae92ea628a9",
+    "size": 83830
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-deny-random",
+    "tag": "0.1.0_debug",
+    "digest": "sha256:d0eaf8e299199252d7ea7509042501e4b30b39bdcc500ef19c635a2f417a7adf",
+    "layer_digest": "sha256:e3f537cde390f9657e2d51407aaa3c8a5194bc44bd542c91d03519802a76d84a",
+    "size": 569593
+  },
+  "created": "2026-10-15T19:08:29.027387800Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Sockets latch that randomly denies operations, to prove a component is resilient to failures.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "33379c373a0cebf66d2201adbb482a90f48dc01b",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-deny-random",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/33379c373a0cebf66d2201adbb482a90f48dc01b/components/latch-deny-random",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "imports": [
+    "wasi:random/insecure@0.3.0",
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:config/store@0.2.0-rc.1",
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.0"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:random",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:45:11Z"
+}

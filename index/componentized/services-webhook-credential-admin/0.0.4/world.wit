@@ -1,0 +1,179 @@
+package root:component;
+
+world root {
+  import wasi:io/poll@0.2.6;
+  import wasi:http/types@0.2.6;
+  import wasi:http/outgoing-handler@0.2.6;
+  import wasi:config/store@0.2.0-rc.1;
+  import componentized:services/types;
+
+  export componentized:services/credential-admin;
+}
+package wasi:io@0.2.6 {
+  interface poll {
+    resource pollable {
+      block: func();
+    }
+  }
+}
+
+
+package wasi:http@0.2.6 {
+  interface types {
+    use wasi:io/poll@0.2.6.{pollable};
+
+    resource fields {
+      constructor();
+      set: func(name: field-name, value: list<field-value>) -> result<_, header-error>;
+    }
+
+    type field-key = string;
+
+    type field-name = field-key;
+
+    type field-value = list<u8>;
+
+    variant header-error {
+      invalid-syntax,
+      forbidden,
+      immutable,
+    }
+
+    type headers = fields;
+
+    resource outgoing-request {
+      constructor(headers: headers);
+      set-method: func(method: method) -> result;
+      set-path-with-query: func(path-with-query: option<string>) -> result;
+      set-scheme: func(scheme: option<scheme>) -> result;
+      set-authority: func(authority: option<string>) -> result;
+    }
+
+    variant method {
+      get,
+      head,
+      post,
+      put,
+      delete,
+      connect,
+      options,
+      trace,
+      patch,
+      other(string),
+    }
+
+    variant scheme {
+      HTTP,
+      HTTPS,
+      other(string),
+    }
+
+    resource incoming-response {
+      status: func() -> status-code;
+    }
+
+    type status-code = u16;
+
+    resource future-incoming-response {
+      subscribe: func() -> pollable;
+      get: func() -> option<result<result<incoming-response, error-code>>>;
+    }
+
+    record DNS-error-payload {
+      rcode: option<string>,
+      info-code: option<u16>,
+    }
+
+    record TLS-alert-received-payload {
+      alert-id: option<u8>,
+      alert-message: option<string>,
+    }
+
+    record field-size-payload {
+      field-name: option<string>,
+      field-size: option<u32>,
+    }
+
+    variant error-code {
+      DNS-timeout,
+      DNS-error(DNS-error-payload),
+      destination-not-found,
+      destination-unavailable,
+      destination-IP-prohibited,
+      destination-IP-unroutable,
+      connection-refused,
+      connection-terminated,
+      connection-timeout,
+      connection-read-timeout,
+      connection-write-timeout,
+      connection-limit-reached,
+      TLS-protocol-error,
+      TLS-certificate-error,
+      TLS-alert-received(TLS-alert-received-payload),
+      HTTP-request-denied,
+      HTTP-request-length-required,
+      HTTP-request-body-size(option<u64>),
+      HTTP-request-method-invalid,
+      HTTP-request-URI-invalid,
+      HTTP-request-URI-too-long,
+      HTTP-request-header-section-size(option<u32>),
+      HTTP-request-header-size(option<field-size-payload>),
+      HTTP-request-trailer-section-size(option<u32>),
+      HTTP-request-trailer-size(field-size-payload),
+      HTTP-response-incomplete,
+      HTTP-response-header-section-size(option<u32>),
+      HTTP-response-header-size(field-size-payload),
+      HTTP-response-body-size(option<u64>),
+      HTTP-response-trailer-section-size(option<u32>),
+      HTTP-response-trailer-size(field-size-payload),
+      HTTP-response-transfer-coding(option<string>),
+      HTTP-response-content-coding(option<string>),
+      HTTP-response-timeout,
+      HTTP-upgrade-failed,
+      HTTP-protocol-error,
+      loop-detected,
+      configuration-error,
+      internal-error(option<string>),
+    }
+
+    resource request-options;
+  }
+  interface outgoing-handler {
+    use types.{outgoing-request, request-options, future-incoming-response, error-code};
+
+    handle: func(request: outgoing-request, options: option<request-options>) -> result<future-incoming-response, error-code>;
+  }
+}
+
+
+package wasi:config@0.2.0-rc.1 {
+  interface store {
+    variant error {
+      upstream(string),
+      io(string),
+    }
+
+    get: func(key: string) -> result<option<string>, error>;
+  }
+}
+
+
+package componentized:services {
+  interface types {
+    type service-id = string;
+
+    record credential {
+      key: string,
+      value: string,
+    }
+
+    type error = string;
+  }
+  interface credential-admin {
+    use types.{service-id, credential, error};
+
+    publish: func(id: service-id, credentials: list<credential>) -> result<_, error>;
+
+    destroy: func(id: service-id) -> result<_, error>;
+  }
+}

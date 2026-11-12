@@ -1,0 +1,26 @@
+{
+  "package": "wasmcloud:keyvalue",
+  "version": "0.2.0",
+  "kind": "interface",
+  "origin": "dependency",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "wasmcloud/interfaces/wasmcloud/keyvalue",
+    "tag": "0.2.0",
+    "digest": "sha256:2faf7fce164293107923c6100e88b162064c8622c86673ddd7190842634d771d",
+    "layer_digest": "sha256:a61448d7ffc36e0dc8433fad53691a6a1ca7da4d816355a32e4064f00e5eed83",
+    "size": 21454
+  },
+  "created": "2026-08-05T17:13:57.643450385Z",
+  "annotations": {
+    "org.opencontainers.image.authors": "wasmCloud Maintainers",
+    "org.opencontainers.image.created": "2026-08-05T17:13:57.592227662+00:00",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "e598479a1dd28488314542deeafb917925167169",
+    "org.opencontainers.image.source": "https://github.com/wasmCloud/wasmCloud",
+    "org.opencontainers.image.title": "wasmcloud:keyvalue",
+    "org.opencontainers.image.url": "https://wasmcloud.com/",
+    "org.opencontainers.image.version": "0.2.0"
+  },
+  "indexed_at": "2026-11-12T00:15:14Z"
+}

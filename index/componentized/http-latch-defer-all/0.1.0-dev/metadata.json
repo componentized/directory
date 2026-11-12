@@ -1,0 +1,49 @@
+{
+  "package": "componentized:http-latch-defer-all",
+  "version": "0.1.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-defer-all",
+    "tag": "0.1.0-dev",
+    "digest": "sha256:6bf5e4981020c106058c97533d823327c1cf40fd8de7201e730ec209a938a49d",
+    "layer_digest": "sha256:2bea02897122d466246dde679676f36bcaf75bc63d2a4e4c6ed4baba4004fc06",
+    "size": 28011
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-defer-all",
+    "tag": "0.1.0-dev_debug",
+    "digest": "sha256:64b1db0c22498f7f5f0c5bc48a3aa3b7a2ffa1620d9b25d713ae2cb2aea1c7a4",
+    "layer_digest": "sha256:b661376e424f0b824b29fc70e11a6af15d7c449dcdafe5be42eef7ab2b474454",
+    "size": 88894
+  },
+  "created": "2026-10-05T16:49:30.858670785Z",
+  "annotations": {
+    "org.opencontainers.image.description": "HTTP latch that defers every request, allowing all requests.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "84c2d1ecc4562b474b647b5057b8f868f993942a",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-latch-defer-all",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/84c2d1ecc4562b474b647b5057b8f868f993942a/components/latch-defer-all",
+    "org.opencontainers.image.version": "0.1.0-dev"
+  },
+  "imports": [
+    "wasi:http/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:http/latch@0.1.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:http",
+      "version": "0.1.0-dev"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:25Z"
+}

@@ -1,0 +1,503 @@
+//! Finds new releases in the registry and commits their WIT and metadata to the index.
+
+use crate::config::{Config, Mapping};
+use crate::data::{self, Metadata, OciRef, Origin};
+use crate::decode;
+use crate::http::{self, GitHub, Oci, OciLocation};
+use crate::resolve::{self, Loader};
+use crate::version::{self, Tag};
+use anyhow::{Context, Result, anyhow};
+use serde::Deserialize;
+use std::collections::{BTreeSet, HashMap};
+use std::path::PathBuf;
+
+pub struct Options {
+    /// The root of the index.
+    pub root: PathBuf,
+    /// The GitHub org, also the WIT namespace and the ghcr.io namespace, e.g. `componentized`.
+    pub org: String,
+    pub github_token: Option<String>,
+    /// Packages to scan in addition to the discovered ones, e.g. `logging/levels`.
+    pub packages: Vec<String>,
+    /// Only scan packages that start with one of these, e.g. `logging`.
+    pub only: Vec<String>,
+    /// The registry of each WIT namespace, from the wkg config.
+    pub registries: Config,
+}
+
+const REGISTRY: &str = "ghcr.io";
+
+pub fn run(options: &Options) -> Result<()> {
+    let client = http::client()?;
+    let oci = Oci::new(client.clone());
+    let github = GitHub::new(client.clone(), options.github_token.clone());
+    let mut scanner = Scanner {
+        options,
+        oci,
+        client,
+        locations: HashMap::new(),
+        added: Vec::new(),
+        failed: Vec::new(),
+    };
+
+    let mut packages = discover(&github, &options.org)?;
+    packages.extend(options.packages.iter().cloned());
+    packages.retain(|package| {
+        options.only.is_empty()
+            || options
+                .only
+                .iter()
+                .any(|only| package == only || package.starts_with(&format!("{only}/")))
+    });
+    eprintln!(
+        "scanning {} packages under {REGISTRY}/{}",
+        packages.len(),
+        options.org
+    );
+    for package in &packages {
+        if let Err(err) = scanner.scan_package(package) {
+            scanner.fail(format!("{}/{package}", options.org), err);
+        }
+    }
+    scanner.dependencies()?;
+    trim_nested(&options.root)?;
+    refresh_items(&options.root)?;
+
+    eprintln!("indexed {} new versions", scanner.added.len());
+    for added in &scanner.added {
+        println!("{added}");
+    }
+    for (what, err) in &scanner.failed {
+        println!("::warning::{what}: {err:#}");
+    }
+    Ok(())
+}
+
+/// Re-derives the imports and exports of the indexed components from their stored WIT, updating
+/// metadata written by an older scan, e.g. before named imports recorded the interface they alias.
+fn refresh_items(root: &std::path::Path) -> Result<()> {
+    let stored = data::load(root)?;
+    let loader = Loader::new(&stored);
+    let mut refreshed = 0;
+    for (index, stored) in stored.iter().enumerate() {
+        if stored.metadata.kind != data::Kind::Component {
+            continue;
+        }
+        let (resolve, pkg) = loader.resolve(index)?;
+        let (imports, exports) = decode::component_items(&resolve, pkg)
+            .with_context(|| format!("reading {}", stored.dir.display()))?;
+        if imports != stored.metadata.imports || exports != stored.metadata.exports {
+            let mut metadata = stored.metadata.clone();
+            metadata.imports = imports;
+            metadata.exports = exports;
+            data::write(root, &metadata, &stored.wit)?;
+            refreshed += 1;
+        }
+    }
+    if refreshed > 0 {
+        eprintln!("refreshed the imports and exports of {refreshed} indexed versions");
+    }
+    Ok(())
+}
+
+/// Reduces the stored WIT of each version to its main package. A decoded component or package
+/// nests the parts of the foreign packages it uses, the index holds those packages in full, with
+/// their docs. A version keeps its nested packages while a package it depends on is not indexed,
+/// so it still resolves on its own.
+fn trim_nested(root: &std::path::Path) -> Result<()> {
+    let stored = data::load(root)?;
+    let loader = Loader::new(&stored);
+    let mut trimmed = Vec::new();
+    for (index, stored) in stored.iter().enumerate() {
+        if !resolve::has_nested(&stored.wit) {
+            continue;
+        }
+        if !loader.dependencies_indexed(index) {
+            eprintln!(
+                "note: {} keeps its nested packages, a dependency is not indexed",
+                stored
+                    .dir
+                    .strip_prefix(root)
+                    .unwrap_or(&stored.dir)
+                    .display()
+            );
+            continue;
+        }
+        let main = resolve::main_only(&stored.wit)
+            .with_context(|| format!("trimming {}", stored.dir.display()))?;
+        data::write(root, &stored.metadata, &main)?;
+        trimmed.push((
+            stored.metadata.package.clone(),
+            stored.metadata.version.clone(),
+            stored.wit.clone(),
+        ));
+    }
+    // restore the versions that do not resolve from the index, e.g. a dependency itself depends
+    // on a package that is not indexed
+    loop {
+        let stored = data::load(root)?;
+        let loader = Loader::new(&stored);
+        let mut restored = 0;
+        trimmed.retain(|(package, version, wit)| {
+            let Some(index) = stored
+                .iter()
+                .position(|s| s.metadata.package == *package && s.metadata.version == *version)
+            else {
+                return false;
+            };
+            match loader.resolve(index) {
+                Ok(_) => true,
+                Err(err) => {
+                    eprintln!("note: {package}@{version} keeps its nested packages: {err:#}");
+                    let _ = data::write(root, &stored[index].metadata, wit);
+                    restored += 1;
+                    false
+                }
+            }
+        });
+        if restored == 0 {
+            break;
+        }
+    }
+    if !trimmed.is_empty() {
+        eprintln!(
+            "reduced the WIT of {} indexed versions to their main package",
+            trimmed.len()
+        );
+    }
+    Ok(())
+}
+
+/// Lists the container packages of the org: from the GitHub Packages API when the token may read
+/// them, and from the `components/*` directories of the org's repositories, which is all an
+/// anonymous scan can see.
+fn discover(github: &GitHub, org: &str) -> Result<BTreeSet<String>> {
+    #[derive(Deserialize)]
+    struct Package {
+        name: String,
+        #[serde(default)]
+        visibility: Option<String>,
+    }
+    #[derive(Deserialize)]
+    struct Repo {
+        name: String,
+        #[serde(default)]
+        archived: bool,
+        #[serde(default)]
+        fork: bool,
+        #[serde(default)]
+        private: bool,
+    }
+    #[derive(Deserialize)]
+    struct Content {
+        name: String,
+        #[serde(rename = "type")]
+        kind: String,
+    }
+
+    let mut found = BTreeSet::new();
+    match github.list::<Package>(&format!("/orgs/{org}/packages?package_type=container"))? {
+        Some(packages) => {
+            eprintln!(
+                "found {} packages with the GitHub Packages API",
+                packages.len()
+            );
+            found.extend(
+                packages
+                    .into_iter()
+                    .filter(|p| p.visibility.as_deref() != Some("private"))
+                    .map(|p| p.name),
+            );
+        }
+        None => eprintln!(
+            "the GitHub Packages API is not readable, `packages: read`, discovering packages from the repositories"
+        ),
+    }
+    let repos = github
+        .list::<Repo>(&format!("/orgs/{org}/repos?type=public"))?
+        .ok_or_else(|| anyhow!("listing the repositories of {org}"))?;
+    for repo in repos
+        .iter()
+        .filter(|r| !r.archived && !r.fork && !r.private)
+    {
+        found.insert(repo.name.clone());
+        let contents =
+            github.list::<Content>(&format!("/repos/{org}/{}/contents/components", repo.name))?;
+        for content in contents.unwrap_or_default() {
+            let internal = ["dep-", "internal-", "test-"]
+                .iter()
+                .any(|prefix| content.name.starts_with(prefix));
+            if content.kind == "dir" && !internal {
+                found.insert(format!("{}/{}", repo.name, content.name));
+            }
+        }
+    }
+    Ok(found)
+}
+
+struct Scanner<'a> {
+    options: &'a Options,
+    oci: Oci,
+    client: reqwest::blocking::Client,
+    locations: HashMap<String, std::result::Result<OciLocation, String>>,
+    added: Vec<String>,
+    failed: Vec<(String, anyhow::Error)>,
+}
+
+impl Scanner<'_> {
+    fn fail(&mut self, what: String, err: anyhow::Error) {
+        eprintln!("warning: {what}: {err:#}");
+        self.failed.push((what, err));
+    }
+
+    /// Indexes the new stable releases of a package of the org, e.g. `logging` or `logging/levels`.
+    fn scan_package(&mut self, package: &str) -> Result<()> {
+        let org = &self.options.org;
+        let repository = format!("{org}/{package}");
+        let Some(tags) = self.oci.tags(REGISTRY, &repository)? else {
+            return Ok(());
+        };
+        let debug: BTreeSet<_> = tags
+            .iter()
+            .filter_map(|tag| match version::classify(tag) {
+                Tag::Debug(version) => Some(version.to_string()),
+                _ => None,
+            })
+            .collect();
+        // a component of a repository is a package of its own, e.g. `componentized:logging-levels`
+        let package_id = format!("{org}:{}", package.replace('/', "-"));
+        let releases: BTreeSet<_> = tags
+            .iter()
+            .filter(|tag| matches!(version::classify(tag), Tag::Release(_)))
+            .collect();
+        for tag in &tags {
+            let version = match version::classify(tag) {
+                Tag::Release(version) => version.to_string(),
+                Tag::Dev(version) => version.to_string(),
+                _ => continue,
+            };
+            let mut refresh = false;
+            match version::release_of(&version) {
+                // a release is immutable, index it once
+                None => {
+                    if data::exists(&self.options.root, &package_id, &version) {
+                        continue;
+                    }
+                }
+                // a dev tag moves with each build, until its release is published
+                Some(release) => {
+                    if let Some(stored) = data::read(&self.options.root, &package_id, &version) {
+                        if releases.contains(&release) {
+                            continue;
+                        }
+                        let (digest, _) = match self.oci.manifest(REGISTRY, &repository, tag) {
+                            Ok(manifest) => manifest,
+                            Err(err) => {
+                                self.fail(format!("{REGISTRY}/{repository}:{tag}"), err);
+                                continue;
+                            }
+                        };
+                        if digest == stored.oci.digest {
+                            continue;
+                        }
+                        refresh = true;
+                    }
+                }
+            }
+            let debug_tag = debug.contains(&version).then(|| format!("{version}_debug"));
+            let location = OciLocation {
+                registry: REGISTRY.to_string(),
+                namespace_prefix: String::new(),
+            };
+            if let Err(err) = self.index(
+                &location,
+                &repository,
+                tag,
+                &package_id,
+                debug_tag.as_deref(),
+                Origin::Release,
+                refresh,
+            ) {
+                self.fail(format!("{REGISTRY}/{repository}:{tag}"), err);
+            }
+        }
+        Ok(())
+    }
+
+    /// Indexes the versions the index depends on that are not indexed yet, until every
+    /// dependency is indexed or failed. These are often pre-releases, e.g. `wasi:logging@0.1.0-draft`.
+    fn dependencies(&mut self) -> Result<()> {
+        let mut attempted = BTreeSet::new();
+        loop {
+            let missing: BTreeSet<_> = data::load(&self.options.root)?
+                .into_iter()
+                .flat_map(|stored| stored.metadata.dependencies)
+                .filter_map(|dep| Some((dep.package.clone(), dep.version.clone()?)))
+                .filter(|(package, version)| !data::exists(&self.options.root, package, version))
+                .filter(|dep| !attempted.contains(dep))
+                .collect();
+            if missing.is_empty() {
+                return Ok(());
+            }
+            for (package, version) in missing {
+                attempted.insert((package.clone(), version.clone()));
+                if let Err(err) = self.dependency(&package, &version) {
+                    self.fail(format!("{package}@{version}"), err);
+                }
+            }
+        }
+    }
+
+    fn dependency(&mut self, package: &str, version: &str) -> Result<()> {
+        let (namespace, name) =
+            data::split_id(package).ok_or_else(|| anyhow!("invalid package id"))?;
+        let location = self.location(package)?;
+        let repository = location.repository(namespace, name);
+        self.index(
+            &location,
+            &repository,
+            version,
+            package,
+            None,
+            Origin::Dependency,
+            false,
+        )
+    }
+
+    /// Where a package is published, from the registry the wkg config maps it to.
+    fn location(&mut self, package: &str) -> Result<OciLocation> {
+        let mapping = self
+            .options
+            .registries
+            .resolve(package)
+            .ok_or_else(|| anyhow!("no registry for {package} in the wkg config"))?;
+        match mapping {
+            Mapping::Custom { registry, metadata } => http::oci_location(metadata)
+                .with_context(|| format!("reading the metadata of {registry} in the wkg config")),
+            Mapping::Registry(host) => {
+                if !self.locations.contains_key(&host) {
+                    let location =
+                        http::well_known(&self.client, &host).map_err(|err| format!("{err:#}"));
+                    self.locations.insert(host.clone(), location);
+                }
+                self.locations[&host].clone().map_err(|err| anyhow!(err))
+            }
+        }
+    }
+
+    #[allow(clippy::too_many_arguments)]
+    fn index(
+        &mut self,
+        location: &OciLocation,
+        repository: &str,
+        tag: &str,
+        package_id: &str,
+        debug_tag: Option<&str>,
+        origin: Origin,
+        // replace an indexed version, e.g. a dev build that was rebuilt
+        refresh: bool,
+    ) -> Result<()> {
+        let registry = &location.registry;
+        let (oci, manifest) = self.fetch(registry, repository, tag)?;
+        let wasm = self
+            .oci
+            .blob(registry, repository, &oci.layer_digest)
+            .context("fetching the wasm layer")?;
+        let decoded = decode::decode(&wasm)?;
+
+        let mut package = package_id.to_string();
+        let mut version = tag.to_string();
+        if let Some((name, decoded_version)) = &decoded.package {
+            if *name != package {
+                eprintln!("note: {registry}/{repository}:{tag} is the WIT package {name}");
+                package = name.clone();
+            }
+            if let Some(decoded_version) = decoded_version
+                && *decoded_version != version
+            {
+                eprintln!(
+                    "note: {registry}/{repository}:{tag} is version {decoded_version} of {name}"
+                );
+                version = decoded_version.clone();
+            }
+        }
+        if !refresh && data::exists(&self.options.root, &package, &version) {
+            return Ok(());
+        }
+
+        let created = match &manifest.config {
+            Some(config) if config.size < 64 * 1024 => self
+                .oci
+                .blob(registry, repository, &config.digest)
+                .ok()
+                .and_then(|bytes| serde_json::from_slice::<http::WasmConfig>(&bytes).ok())
+                .and_then(|config| config.created),
+            _ => None,
+        };
+        let debug = match debug_tag {
+            Some(debug_tag) => match self.fetch(registry, repository, debug_tag) {
+                Ok((debug, _)) => Some(debug),
+                Err(err) => {
+                    eprintln!("warning: {registry}/{repository}:{debug_tag}: {err:#}");
+                    None
+                }
+            },
+            None => None,
+        };
+
+        let metadata = Metadata {
+            package,
+            version,
+            kind: decoded.kind,
+            origin,
+            oci,
+            debug,
+            created,
+            annotations: manifest.annotations,
+            imports: decoded.imports,
+            exports: decoded.exports,
+            dependencies: decoded.dependencies,
+            indexed_at: chrono::Utc::now().to_rfc3339_opts(chrono::SecondsFormat::Secs, true),
+        };
+        let dir = data::write(&self.options.root, &metadata, &decoded.wit)?;
+        let dir = dir.strip_prefix(&self.options.root).unwrap_or(&dir);
+        eprintln!("indexed {registry}/{repository}:{tag} -> {}", dir.display());
+        self.added
+            .push(format!("{}@{}", metadata.package, metadata.version));
+        Ok(())
+    }
+
+    fn fetch(
+        &self,
+        registry: &str,
+        repository: &str,
+        tag: &str,
+    ) -> Result<(OciRef, http::Manifest)> {
+        let (digest, manifest) = self.oci.manifest(registry, repository, tag)?;
+        if manifest
+            .media_type
+            .as_deref()
+            .is_some_and(|media_type| media_type.contains("index"))
+        {
+            anyhow::bail!("an image index, not a wasm artifact");
+        }
+        let layer = manifest
+            .layers
+            .iter()
+            .find(|layer| layer.media_type == "application/wasm")
+            .or_else(|| manifest.layers.first())
+            .ok_or_else(|| anyhow!("the manifest has no layers"))?
+            .clone();
+        Ok((
+            OciRef {
+                registry: registry.to_string(),
+                repository: repository.to_string(),
+                tag: tag.to_string(),
+                digest,
+                layer_digest: layer.digest,
+                size: layer.size,
+            },
+            manifest,
+        ))
+    }
+}

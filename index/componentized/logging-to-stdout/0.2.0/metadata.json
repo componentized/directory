@@ -1,0 +1,51 @@
+{
+  "package": "componentized:logging-to-stdout",
+  "version": "0.2.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/logging/to-stdout",
+    "tag": "0.2.0",
+    "digest": "sha256:15e5c35903b0a0a30311bd0a8494afc4d57a853ff0ca97399c0212b972b0faae",
+    "layer_digest": "sha256:b91e6a992c636c180dcbf68238085c93bba339b53edab80bd09f7a16b0d1f055",
+    "size": 83798
+  },
+  "created": "2025-11-05T03:52:08.193767243Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Implements wasi:logging/logging@0.1.0-draft writing log statements to stdout via wasi:cli/stdout@0.2.3. Timestamps for each log statement are generated from wasi:clocks/wall-clock@0.2.3.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "e25b3616bf3cb6d034d80c2f31cfee37fbcf0f85+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/logging.git",
+    "org.opencontainers.image.title": "to-stdout",
+    "org.opencontainers.image.version": "v0.2.0"
+  },
+  "imports": [
+    "wasi:io/error@0.2.3",
+    "wasi:io/streams@0.2.3",
+    "wasi:cli/stdout@0.2.3",
+    "wasi:clocks/wall-clock@0.2.3"
+  ],
+  "exports": [
+    "wasi:logging/logging@0.1.0-draft"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:cli",
+      "version": "0.2.3"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.2.3"
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.3"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:43:37Z"
+}

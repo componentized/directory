@@ -1,0 +1,40 @@
+package root:component;
+
+world root {
+  import componentized:services/types;
+  import componentized:services/credential-store;
+  import wasi:config/store@0.2.0-rc.1;
+
+  export wasi:config/store@0.2.0-rc.1;
+}
+package componentized:services {
+  interface types {
+    type service-id = string;
+
+    record credential {
+      key: string,
+      value: string,
+    }
+
+    type error = string;
+  }
+  interface credential-store {
+    use types.{service-id, credential, error};
+
+    fetch: func(id: service-id) -> result<list<credential>, error>;
+  }
+}
+
+
+package wasi:config@0.2.0-rc.1 {
+  interface store {
+    variant error {
+      upstream(string),
+      io(string),
+    }
+
+    get: func(key: string) -> result<option<string>, error>;
+
+    get-all: func() -> result<list<tuple<string, string>>, error>;
+  }
+}

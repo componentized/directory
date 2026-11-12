@@ -1,0 +1,29 @@
+package root:component;
+
+world root {
+  import componentized:services/types@0.0.5-dev;
+  import componentized:services/credential-admin@0.0.5-dev;
+  import wasi:config/store@0.2.0-rc.1;
+  import wasi:io/poll@0.2.12;
+  import wasi:clocks/monotonic-clock@0.2.12;
+  import wasi:clocks/wall-clock@0.2.12;
+  import wasi:io/error@0.2.12;
+  import wasi:io/streams@0.2.12;
+  import wasi:cli/stdout@0.2.12;
+  import wasi:cli/stderr@0.2.12;
+  import wasi:cli/stdin@0.2.12;
+  import wasi:cli/environment@0.2.12;
+  import wasi:cli/exit@0.2.12;
+  import wasi:cli/terminal-input@0.2.12;
+  import wasi:cli/terminal-output@0.2.12;
+  import wasi:cli/terminal-stdin@0.2.12;
+  import wasi:cli/terminal-stdout@0.2.12;
+  import wasi:cli/terminal-stderr@0.2.12;
+  import wasi:sockets/network@0.2.6;
+  import wasi:sockets/instance-network@0.2.6;
+  import wasi:sockets/tcp@0.2.6;
+  import wasi:sockets/tcp-create-socket@0.2.6;
+  import wasi:sockets/ip-name-lookup@0.2.6;
+
+  export componentized:services/lifecycle@0.0.5-dev;
+}

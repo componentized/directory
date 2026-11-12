@@ -1,0 +1,12 @@
+package root:component;
+
+world root {
+  import wasi:clocks/system-clock@0.3.0;
+  import wasi:filesystem/types@0.3.0;
+  import latch0: componentized:filesystem/latch@0.3.0-dev;
+  import latch1: componentized:filesystem/latch@0.3.0-dev;
+  import latch2: componentized:filesystem/latch@0.3.0-dev;
+  import latch3: componentized:filesystem/latch@0.3.0-dev;
+
+  export componentized:filesystem/latch@0.3.0-dev;
+}

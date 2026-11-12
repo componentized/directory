@@ -1,0 +1,52 @@
+{
+  "package": "componentized:services-lifecycle-host-http",
+  "version": "0.0.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/lifecycle-host-http",
+    "tag": "0.0.1",
+    "digest": "sha256:71c9e329c439b5dbdd85f72bd23b23add273fdf8b8f2b151b20a5555b454cd69",
+    "layer_digest": "sha256:dca337c56c4e05bd2d4dbe34e0e62e4b95259c0fdf4d3f77f1475e43957c88b6",
+    "size": 89382
+  },
+  "created": "2025-04-25T18:25:24.244912688Z",
+  "annotations": {
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "9dc04233920f991b6405d8112160094dbf92a472+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/services.git",
+    "org.opencontainers.image.title": "lifecycle-host-http",
+    "org.opencontainers.image.version": "v0.0.1"
+  },
+  "imports": [
+    "componentized:services/types",
+    "componentized:services/lifecycle",
+    "wasi:io/error@0.2.3",
+    "wasi:io/streams@0.2.3",
+    "wasi:http/types@0.2.3",
+    "wasi:logging/logging@0.1.0-draft"
+  ],
+  "exports": [
+    "wasi:http/incoming-handler@0.2.3"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:services",
+      "version": null
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.2.3"
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.3"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:57Z"
+}

@@ -1,0 +1,53 @@
+{
+  "package": "componentized:services-webhook-credential-store",
+  "version": "0.0.5-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/webhook-credential-store",
+    "tag": "0.0.5-dev",
+    "digest": "sha256:2622c5546901945d6c80e09acc6cce850aa6bb61407c06a4d647891a5260f9b6",
+    "layer_digest": "sha256:a60e64983026ee36e4c27f5e7bc60ddd1ca157fd6f342e67b3a056fbd7819511",
+    "size": 163546
+  },
+  "created": "2026-11-09T22:51:33.334899669Z",
+  "annotations": {
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "23a7aebfe82e30b9453f8d8ee6b297b8184d934c+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/services.git",
+    "org.opencontainers.image.title": "webhook-credential-store",
+    "org.opencontainers.image.version": "0.0.5-dev"
+  },
+  "imports": [
+    "wasi:io/poll@0.2.6",
+    "wasi:io/error@0.2.6",
+    "wasi:io/streams@0.2.6",
+    "wasi:http/types@0.2.6",
+    "wasi:http/outgoing-handler@0.2.6",
+    "wasi:config/store@0.2.0-rc.1",
+    "componentized:services/types@0.0.5-dev"
+  ],
+  "exports": [
+    "componentized:services/credential-store@0.0.5-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:services",
+      "version": "0.0.5-dev"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.2.6"
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.6"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:57Z"
+}

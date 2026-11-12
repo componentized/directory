@@ -1,0 +1,234 @@
+package root:component;
+
+world root {
+  import componentized:services/types;
+  import componentized:services/credential-admin;
+  import wasi:clocks/wall-clock@0.2.6;
+  import wasi:config/store@0.2.0-rc.1;
+  import wasi:io/error@0.2.6;
+  import wasi:io/streams@0.2.6;
+  import wasi:cli/environment@0.2.6;
+  import wasi:cli/exit@0.2.6;
+  import wasi:cli/stderr@0.2.6;
+  import wasi:sockets/network@0.2.6;
+  import wasi:sockets/instance-network@0.2.6;
+  import wasi:io/poll@0.2.6;
+  import wasi:sockets/tcp@0.2.6;
+  import wasi:sockets/tcp-create-socket@0.2.6;
+  import wasi:sockets/ip-name-lookup@0.2.6;
+
+  export componentized:services/lifecycle;
+}
+package componentized:services {
+  interface types {
+    type service-id = string;
+
+    type error = string;
+
+    record credential {
+      key: string,
+      value: string,
+    }
+
+    type service-instance-id = string;
+
+    type service-binding-id = string;
+
+    record request {
+      key: string,
+      value: string,
+    }
+
+    type scope = string;
+
+    type tier = string;
+  }
+  interface credential-admin {
+    use types.{service-id, error, credential};
+
+    publish: func(id: service-id, credentials: list<credential>) -> result<_, error>;
+
+    destroy: func(id: service-id) -> result<_, error>;
+  }
+  interface lifecycle {
+    use types.{service-instance-id, service-binding-id, request, scope, tier, error};
+
+    provision: func(instance-id: service-instance-id, %type: string, tier: option<tier>, requests: option<list<request>>) -> result<_, error>;
+
+    update: func(instance-id: service-instance-id, tier: option<tier>, requests: option<list<request>>) -> result<_, error>;
+
+    destroy: func(instance-id: service-instance-id, retain: option<bool>) -> result<_, error>;
+
+    bind: func(binding-id: service-binding-id, instance-id: service-instance-id, scopes: option<list<scope>>) -> result<_, error>;
+
+    list-bindings: func(instance-id: service-instance-id) -> result<list<service-binding-id>, error>;
+
+    unbind: func(binding-id: service-binding-id, instance-id: service-instance-id) -> result<_, error>;
+  }
+}
+
+
+package wasi:clocks@0.2.6 {
+  interface wall-clock {
+    record datetime {
+      seconds: u64,
+      nanoseconds: u32,
+    }
+
+    now: func() -> datetime;
+  }
+}
+
+
+package wasi:config@0.2.0-rc.1 {
+  interface store {
+    variant error {
+      upstream(string),
+      io(string),
+    }
+
+    get: func(key: string) -> result<option<string>, error>;
+  }
+}
+
+
+package wasi:io@0.2.6 {
+  interface error {
+    resource error {
+      to-debug-string: func() -> string;
+    }
+  }
+  interface streams {
+    use error.{error};
+
+    resource output-stream {
+      blocking-write-and-flush: func(contents: list<u8>) -> result<_, stream-error>;
+    }
+
+    variant stream-error {
+      last-operation-failed(error),
+      closed,
+    }
+
+    resource input-stream {
+      blocking-read: func(len: u64) -> result<list<u8>, stream-error>;
+    }
+  }
+  interface poll {
+    resource pollable {
+      block: func();
+    }
+  }
+}
+
+
+package wasi:cli@0.2.6 {
+  interface environment {
+    get-environment: func() -> list<tuple<string, string>>;
+  }
+  interface exit {
+    exit: func(status: result);
+  }
+  interface stderr {
+    use wasi:io/streams@0.2.6.{output-stream};
+
+    get-stderr: func() -> output-stream;
+  }
+}
+
+
+package wasi:sockets@0.2.6 {
+  interface network {
+    resource network;
+
+    type ipv4-address = tuple<u8, u8, u8, u8>;
+
+    record ipv4-socket-address {
+      port: u16,
+      address: ipv4-address,
+    }
+
+    type ipv6-address = tuple<u16, u16, u16, u16, u16, u16, u16, u16>;
+
+    record ipv6-socket-address {
+      port: u16,
+      flow-info: u32,
+      address: ipv6-address,
+      scope-id: u32,
+    }
+
+    variant ip-socket-address {
+      ipv4(ipv4-socket-address),
+      ipv6(ipv6-socket-address),
+    }
+
+    enum error-code {
+      unknown,
+      access-denied,
+      not-supported,
+      invalid-argument,
+      out-of-memory,
+      timeout,
+      concurrency-conflict,
+      not-in-progress,
+      would-block,
+      invalid-state,
+      new-socket-limit,
+      address-not-bindable,
+      address-in-use,
+      remote-unreachable,
+      connection-refused,
+      connection-reset,
+      connection-aborted,
+      datagram-too-large,
+      name-unresolvable,
+      temporary-resolver-failure,
+      permanent-resolver-failure,
+    }
+
+    enum ip-address-family {
+      ipv4,
+      ipv6,
+    }
+
+    variant ip-address {
+      ipv4(ipv4-address),
+      ipv6(ipv6-address),
+    }
+  }
+  interface instance-network {
+    use network.{network};
+
+    instance-network: func() -> network;
+  }
+  interface tcp {
+    use network.{network, ip-socket-address, error-code};
+    use wasi:io/streams@0.2.6.{input-stream, output-stream};
+    use wasi:io/poll@0.2.6.{pollable};
+
+    resource tcp-socket {
+      start-connect: func(network: borrow<network>, remote-address: ip-socket-address) -> result<_, error-code>;
+      finish-connect: func() -> result<tuple<input-stream, output-stream>, error-code>;
+      subscribe: func() -> pollable;
+    }
+  }
+  interface tcp-create-socket {
+    use network.{ip-address-family};
+    use tcp.{tcp-socket};
+    use network.{error-code};
+
+    create-tcp-socket: func(address-family: ip-address-family) -> result<tcp-socket, error-code>;
+  }
+  interface ip-name-lookup {
+    use network.{ip-address, error-code};
+    use wasi:io/poll@0.2.6.{pollable};
+    use network.{network};
+
+    resource resolve-address-stream {
+      resolve-next-address: func() -> result<option<ip-address>, error-code>;
+      subscribe: func() -> pollable;
+    }
+
+    resolve-addresses: func(network: borrow<network>, name: string) -> result<resolve-address-stream, error-code>;
+  }
+}

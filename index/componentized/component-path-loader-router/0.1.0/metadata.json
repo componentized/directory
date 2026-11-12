@@ -1,0 +1,48 @@
+{
+  "package": "componentized:component-path-loader-router",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component/path-loader-router",
+    "tag": "0.1.0",
+    "digest": "sha256:ea5d7c9f67bb55c5a381cd9cd1de0e0991496e1bef97d8abbd8eb1093699e6ca",
+    "layer_digest": "sha256:d89c11eff103db9038622adb713edbab38e1caf2cac1d3022cb94b2aff7484d2",
+    "size": 68057
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component/path-loader-router",
+    "tag": "0.1.0_debug",
+    "digest": "sha256:0314302142c4740baaf4805756e5369e397dfa306479842418641738d05c9b5c",
+    "layer_digest": "sha256:00794231e58132367c360328410080b4af796d8ba76a1791a916d902ad6e3d9f",
+    "size": 235864
+  },
+  "created": "2026-10-08T16:03:57.037034027Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Routes a component loader based on the path.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "60a42310d899e65248acf584221ba444607251f0",
+    "org.opencontainers.image.source": "https://github.com/componentized/component.git",
+    "org.opencontainers.image.title": "componentized:component-path-loader-router",
+    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/60a42310d899e65248acf584221ba444607251f0/components/path-loader-router",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "imports": [
+    "componentized:component/types@0.1.0",
+    "filesystem-loader: componentized:component/path-loader@0.1.0",
+    "http-loader: componentized:component/path-loader@0.1.0",
+    "oci-loader: componentized:component/path-loader@0.1.0"
+  ],
+  "exports": [
+    "componentized:component/path-loader@0.1.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:component",
+      "version": "0.1.0"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:19Z"
+}

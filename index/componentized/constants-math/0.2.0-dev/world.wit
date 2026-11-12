@@ -1,0 +1,5 @@
+package root:component;
+
+world root {
+  export componentized:constants/math@0.2.0-dev;
+}

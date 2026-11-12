@@ -1,0 +1,52 @@
+{
+  "package": "componentized:valkey-sample-http-incrementor",
+  "version": "0.3.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/sample-http-incrementor",
+    "tag": "0.3.0-dev",
+    "digest": "sha256:826c5e6b7d6f6b2df170275430ff3c3adee5922ca9eec4dbac8aabd34366cde6",
+    "layer_digest": "sha256:807625509a80f43c588792848007a298f172a1a72783ecf479674587845685db",
+    "size": 118609
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/sample-http-incrementor",
+    "tag": "0.3.0-dev_debug",
+    "digest": "sha256:fca21d0a573fa74efd426f6efb96d3c5c3124ab51f0839e9ce8e3e26741e2204",
+    "layer_digest": "sha256:7b31cc70dc1451f3f35dd5b560f40e361cbac09d0aff31fb703166c0c31817ad",
+    "size": 1303550
+  },
+  "created": "2026-11-09T19:23:57.002837810Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Sample component that exposes `wasi:http` incrementing a counter based on the http path.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "69ad5c957f56b19c57322b25fdd9ddb36d7776a0",
+    "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
+    "org.opencontainers.image.title": "componentized:valkey-sample-http-incrementor",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/69ad5c957f56b19c57322b25fdd9ddb36d7776a0/components/sample-http-incrementor",
+    "org.opencontainers.image.version": "0.3.0-dev"
+  },
+  "imports": [
+    "wasmcloud:keyvalue/types@0.2.0",
+    "wasmcloud:keyvalue/store@0.2.0",
+    "wasmcloud:keyvalue/atomics@0.2.0",
+    "wasi:http/types@0.3.0"
+  ],
+  "exports": [
+    "wasi:http/handler@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasmcloud:keyvalue",
+      "version": "0.2.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:13:34Z"
+}

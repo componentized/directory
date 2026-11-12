@@ -1,0 +1,7 @@
+package root:component;
+
+world root {
+  import componentized:component/types@0.1.1-dev;
+
+  export componentized:component/wac-loader@0.1.1-dev;
+}

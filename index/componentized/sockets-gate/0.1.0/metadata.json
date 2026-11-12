@@ -1,0 +1,62 @@
+{
+  "package": "componentized:sockets-gate",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/gate",
+    "tag": "0.1.0",
+    "digest": "sha256:91be0efd2190305e0e0ff44bd824c2426986b510ae78fcecc0bf60fe23660237",
+    "layer_digest": "sha256:1971a368a4671afc77369eaba218d64dddcf9fcd1c3dc30f02344b5e76d66e39",
+    "size": 304828
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/gate",
+    "tag": "0.1.0_debug",
+    "digest": "sha256:205770707c75c041746d237626a6acedd686181a49a724b66b0b64a9c841e71b",
+    "layer_digest": "sha256:c094d79b6f4b7d79d5af8199d34707330c8911e2c6ee47daaff08586d1cc0bb6",
+    "size": 2889115
+  },
+  "created": "2026-10-15T19:02:04.496563263Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Socket gate access control.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "33379c373a0cebf66d2201adbb482a90f48dc01b",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-gate",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/33379c373a0cebf66d2201adbb482a90f48dc01b/components/gate",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "imports": [
+    "wasi:clocks/types@0.3.0",
+    "wasi:sockets/types@0.3.0",
+    "componentized:sockets/latch@0.1.0",
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:sockets/ip-name-lookup@0.3.0"
+  ],
+  "exports": [
+    "wasi:sockets/types@0.3.0",
+    "wasi:sockets/ip-name-lookup@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.0"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:45:03Z"
+}

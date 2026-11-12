@@ -1,0 +1,57 @@
+{
+  "package": "componentized:http-trace-handler",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/trace-handler",
+    "tag": "0.1.0",
+    "digest": "sha256:c1636bc62ebdafb67b1f5b79264778bc200a96b48695a7ed48614353a392d533",
+    "layer_digest": "sha256:51c3bf51fa0ff9a07be652b3172911f2f22dc730bba18f795692d83717e1702a",
+    "size": 220744
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/trace-handler",
+    "tag": "0.1.0_debug",
+    "digest": "sha256:3fe6e776945459749c9f94aa43784c3b00a136276d193f05d42a6a077b3450ad",
+    "layer_digest": "sha256:57ee0511abe3486b5f9bb970a9b9e28c3c8f893a1617c802e234d6a0588b785b",
+    "size": 708863
+  },
+  "created": "2026-10-05T18:19:32.987473247Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Virtualizes the wasi:http/types and wasi:http/handler interfaces logging all method calls at the TRACE level and 'componentized-trace' component.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b0a0308c87a6b3089882cb6f7315968b47aceebb",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-trace-handler",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/b0a0308c87a6b3089882cb6f7315968b47aceebb/components/trace-handler",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "imports": [
+    "wasi:clocks/types@0.3.0",
+    "wasi:http/types@0.3.0",
+    "wasi:http/handler@0.3.0",
+    "wasi:logging/logging@0.1.0-draft"
+  ],
+  "exports": [
+    "wasi:http/types@0.3.0",
+    "wasi:http/handler@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:45Z"
+}

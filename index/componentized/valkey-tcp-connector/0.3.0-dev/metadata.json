@@ -1,0 +1,53 @@
+{
+  "package": "componentized:valkey-tcp-connector",
+  "version": "0.3.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/tcp-connector",
+    "tag": "0.3.0-dev",
+    "digest": "sha256:aef7966fecc38baac14bfc816e6c71ca093b41475129a6d3c81222bdb624a54a",
+    "layer_digest": "sha256:73f9d39efdca9f9a8a6f421a44d23714fee513e5a267f41b3175a4c109690da6",
+    "size": 65466
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/tcp-connector",
+    "tag": "0.3.0-dev_debug",
+    "digest": "sha256:5c861eec72b98a196ce726e4980a5900a57d0a8cb287259b62f5ae1d27b3ecba",
+    "layer_digest": "sha256:56b645ccfa48ad1505354c8eadaf13a89ffe1221d6b81af9cd65c37c6ddeb99a",
+    "size": 847456
+  },
+  "created": "2026-11-09T19:24:23.344450261Z",
+  "annotations": {
+    "org.opencontainers.image.description": "A connector for connections over TCP, to the server configured with `wasi:config`.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "69ad5c957f56b19c57322b25fdd9ddb36d7776a0",
+    "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
+    "org.opencontainers.image.title": "componentized:valkey-tcp-connector",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/69ad5c957f56b19c57322b25fdd9ddb36d7776a0/components/tcp-connector",
+    "org.opencontainers.image.version": "0.3.0-dev"
+  },
+  "imports": [
+    "wasi:config/store@0.2.0-rc.1",
+    "componentized:valkey/tcp-connector-constants@0.3.0-dev",
+    "componentized:valkey/types@0.3.0-dev",
+    "componentized:valkey/connection@0.3.0-dev",
+    "componentized:valkey/tcp@0.3.0-dev"
+  ],
+  "exports": [
+    "componentized:valkey/connector@0.3.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:valkey",
+      "version": "0.3.0-dev"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:13:36Z"
+}

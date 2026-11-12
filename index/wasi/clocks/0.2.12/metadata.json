@@ -1,0 +1,29 @@
+{
+  "package": "wasi:clocks",
+  "version": "0.2.12",
+  "kind": "interface",
+  "origin": "dependency",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "webassembly/wasi/clocks",
+    "tag": "0.2.12",
+    "digest": "sha256:67b51bd0fae87a148aae9695b3c4954573cad80b8b3e8320bcab75ce46bb9a45",
+    "layer_digest": "sha256:29e94d379b2239df6bc23cdfc6232dc69ffeb7cc236349fab2244803c323d92b",
+    "size": 7085
+  },
+  "created": "2026-06-02T14:08:35.213774933Z",
+  "annotations": {
+    "org.opencontainers.image.description": "WASI clock interfaces for monotonic and system clocks",
+    "org.opencontainers.image.licenses": "Apache-2.0 WITH LLVM-exception",
+    "org.opencontainers.image.source": "https://github.com/webassembly/wasi",
+    "org.opencontainers.image.url": "https://wasi.dev",
+    "org.opencontainers.image.version": "0.2.12"
+  },
+  "dependencies": [
+    {
+      "package": "wasi:io",
+      "version": "0.2.12"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:13:38Z"
+}

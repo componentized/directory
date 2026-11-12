@@ -1,0 +1,34 @@
+package root:component;
+
+world root {
+  import wasi:logging/logging@0.1.0-draft;
+  import wasi:config/store@0.2.0-draft;
+
+  export wasi:logging/logging@0.1.0-draft;
+}
+package wasi:logging@0.1.0-draft {
+  interface logging {
+    enum level {
+      trace,
+      debug,
+      info,
+      warn,
+      error,
+      critical,
+    }
+
+    log: func(level: level, context: string, message: string);
+  }
+}
+
+
+package wasi:config@0.2.0-draft {
+  interface store {
+    variant error {
+      upstream(string),
+      io(string),
+    }
+
+    get-all: func() -> result<list<tuple<string, string>>, error>;
+  }
+}

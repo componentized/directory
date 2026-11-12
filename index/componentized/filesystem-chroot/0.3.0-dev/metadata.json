@@ -1,0 +1,57 @@
+{
+  "package": "componentized:filesystem-chroot",
+  "version": "0.3.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem/chroot",
+    "tag": "0.3.0-dev",
+    "digest": "sha256:40ad8064f58034556fb2cff3dabbc4d70f5c6ab1ecdb938593df112691322004",
+    "layer_digest": "sha256:7db038e2c54c8d30dda8fb9c318cf9ff6c1ca9787f188eec0f7b1a0f7f832840",
+    "size": 331262
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem/chroot",
+    "tag": "0.3.0-dev_debug",
+    "digest": "sha256:59e86fabbbea31c4b42b01bed16d374c509245c7506daccdc9ab9cd3b3f2ff09",
+    "layer_digest": "sha256:70e7083ba51af732d46e2c6bc4953b5720d23e7312425f2b15106ab43b7749a5",
+    "size": 3100052
+  },
+  "created": "2026-11-09T19:51:07.879206536Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Virtualizes the `wasi:filesystem` interfaces limiting all access to a specific directory defined by the 'path' key in a `wasi:config/store`, mimicking the GNU chroot command.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "209ad270f66768627d3599274c8aeca6103fda67",
+    "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
+    "org.opencontainers.image.title": "componentized:filesystem-chroot",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/209ad270f66768627d3599274c8aeca6103fda67/components/chroot",
+    "org.opencontainers.image.version": "0.3.0-dev"
+  },
+  "imports": [
+    "wasi:config/store@0.2.0-rc.1",
+    "wasi:clocks/system-clock@0.3.0",
+    "wasi:filesystem/types@0.3.0",
+    "wasi:filesystem/preopens@0.3.0"
+  ],
+  "exports": [
+    "wasi:filesystem/types@0.3.0",
+    "wasi:filesystem/preopens@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:13Z"
+}

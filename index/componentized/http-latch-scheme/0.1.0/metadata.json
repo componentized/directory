@@ -1,0 +1,59 @@
+{
+  "package": "componentized:http-latch-scheme",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-scheme",
+    "tag": "0.1.0",
+    "digest": "sha256:1e139cd58c37fb05b2a86776be56e4a19af76f94bfe33ab7f34c682481f6ab2c",
+    "layer_digest": "sha256:b6da53c3da0a3b13d30266d4fc6e9d53e3d74176ce77105e126c4056c20884ea",
+    "size": 48774
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-scheme",
+    "tag": "0.1.0_debug",
+    "digest": "sha256:3912653e1c0656660bcdccab9b0c021daec8f6efa0c4550378c062bf9ee498f2",
+    "layer_digest": "sha256:c55be88f731725e0a1dcb984065bb2e9c927a29840894581a04852fae5621874",
+    "size": 167763
+  },
+  "created": "2026-10-05T18:17:14.463008284Z",
+  "annotations": {
+    "org.opencontainers.image.description": "HTTP latch that decides each request by its scheme.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b0a0308c87a6b3089882cb6f7315968b47aceebb",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-latch-scheme",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/b0a0308c87a6b3089882cb6f7315968b47aceebb/components/latch-scheme",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "imports": [
+    "wasi:config/store@0.2.0-rc.1",
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:http/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:http/latch@0.1.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:http",
+      "version": "0.1.0"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:42Z"
+}

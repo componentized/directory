@@ -1,0 +1,50 @@
+{
+  "package": "componentized:http-latch-delegate-client",
+  "version": "0.1.1-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-delegate-client",
+    "tag": "0.1.1-dev",
+    "digest": "sha256:07cf776dbb6b5c5f822f736fdd3e99a6c670180cc38d74f5f7238142ab1db3d5",
+    "layer_digest": "sha256:4a7fc586dfeeef6b3a9d1cf0ea3fe9d5abb7e879dc97cb9678229509f2d72f07",
+    "size": 34161
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-delegate-client",
+    "tag": "0.1.1-dev_debug",
+    "digest": "sha256:93dd50f51b40387c3735eb5aa800855a668beaefe99e2f9868f642d650eeb275",
+    "layer_digest": "sha256:e42ef020ddada4254b48d1a2984b3486ce90f8e3de31e8c64e507fcea96571ac",
+    "size": 114460
+  },
+  "created": "2026-11-09T19:16:22.863233593Z",
+  "annotations": {
+    "org.opencontainers.image.description": "HTTP latch that wraps another latch, delegating only `wasi:http/client` requests to it. `wasi:http/handler` requests are deferred without consulting the wrapped latch, it neither authorizes nor observes them.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "ca50fd6e7d0aba1b8694520c9c32b1d097e8dfe4",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-latch-delegate-client",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/ca50fd6e7d0aba1b8694520c9c32b1d097e8dfe4/components/latch-delegate-client",
+    "org.opencontainers.image.version": "0.1.1-dev"
+  },
+  "imports": [
+    "wasi:http/types@0.3.0",
+    "componentized:http/latch@0.1.1-dev"
+  ],
+  "exports": [
+    "componentized:http/latch@0.1.1-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:http",
+      "version": "0.1.1-dev"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:26Z"
+}

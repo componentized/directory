@@ -1,0 +1,48 @@
+{
+  "package": "componentized:valkey-as-keyvalue",
+  "version": "0.2.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/as-keyvalue",
+    "tag": "0.2.1",
+    "digest": "sha256:a7327edafae75ba28c38e209a681a3376c00053131c5f5d9d1bbe60a0c644377",
+    "layer_digest": "sha256:d8843a5b668310b415e282ec2d18fc17e9f9554c0edd6878d12f5260a9d05483",
+    "size": 75602
+  },
+  "created": "2025-12-12T19:19:00.526075394Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Adapter to back wasi:keyvalue with the componentized:valkey client.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "5b07001058a0d33566cfdc74694081f627a62626+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
+    "org.opencontainers.image.title": "keyvalue-to-valkey",
+    "org.opencontainers.image.version": "v0.2.1"
+  },
+  "imports": [
+    "componentized:valkey/resp",
+    "componentized:valkey/store",
+    "wasi:config/store@0.2.0-rc.1"
+  ],
+  "exports": [
+    "wasi:keyvalue/store@0.2.0-draft2",
+    "wasi:keyvalue/atomics@0.2.0-draft2",
+    "wasi:keyvalue/batch@0.2.0-draft2"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:valkey",
+      "version": null
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:keyvalue",
+      "version": "0.2.0-draft2"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:45:22Z"
+}

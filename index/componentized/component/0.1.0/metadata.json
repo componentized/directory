@@ -1,0 +1,25 @@
+{
+  "package": "componentized:component",
+  "version": "0.1.0",
+  "kind": "interface",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component",
+    "tag": "0.1.0",
+    "digest": "sha256:beaf693c5084f27eb4fc37dbf4e30e2b5b0f512e7626667bc72c54afc3cce99b",
+    "layer_digest": "sha256:b025920ca99a32febc514636a1dd04d1ad65cb8773d10d8e09a62445106ae90b",
+    "size": 19887
+  },
+  "created": "2026-10-08T16:02:39.356080825Z",
+  "annotations": {
+    "org.opencontainers.image.description": "WASM components for creating and interacting with WASM components.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "60a42310d899e65248acf584221ba444607251f0",
+    "org.opencontainers.image.source": "https://github.com/componentized/component.git",
+    "org.opencontainers.image.title": "componentized:component",
+    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/60a42310d899e65248acf584221ba444607251f0",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "indexed_at": "2026-11-11T23:44:17Z"
+}

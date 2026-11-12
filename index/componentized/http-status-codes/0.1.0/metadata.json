@@ -1,0 +1,42 @@
+{
+  "package": "componentized:http-status-codes",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/status-codes",
+    "tag": "0.1.0",
+    "digest": "sha256:51971663b7c5cdf78393740c4e30ceda9c165ff603eaf3b26c8cf6d83ceeec15",
+    "layer_digest": "sha256:2218cbf34600128d5f52fbb8000a375b391d2692ad6dfca6ead81ebcf1f05e82",
+    "size": 18747
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/status-codes",
+    "tag": "0.1.0_debug",
+    "digest": "sha256:6002ded13aef4996a7ea9cd06770bfd188de51b5aadab8a0585bd62bb3c3a467",
+    "layer_digest": "sha256:2218cbf34600128d5f52fbb8000a375b391d2692ad6dfca6ead81ebcf1f05e82",
+    "size": 18747
+  },
+  "created": "2026-10-05T18:18:22.276577736Z",
+  "annotations": {
+    "org.opencontainers.image.description": "HTTP status code constants.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b0a0308c87a6b3089882cb6f7315968b47aceebb",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-status-codes",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/b0a0308c87a6b3089882cb6f7315968b47aceebb/components/status-codes",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "exports": [
+    "componentized:http/status-codes@0.1.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:http",
+      "version": "0.1.0"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:44Z"
+}

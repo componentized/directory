@@ -1,0 +1,4 @@
+[namespace_registries]
+wasi = "wasi.dev"
+componentized = "componentized.dev"
+wasmcloud = "wasmcloud.com"

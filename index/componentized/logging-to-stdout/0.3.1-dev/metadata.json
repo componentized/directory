@@ -1,0 +1,55 @@
+{
+  "package": "componentized:logging-to-stdout",
+  "version": "0.3.1-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/logging/to-stdout",
+    "tag": "0.3.1-dev",
+    "digest": "sha256:34252b1490cc03544bcb3bdb686498e8f5721184c110f9b90bd582c110cea55d",
+    "layer_digest": "sha256:1f3b78ead135b52840070cb4190f35a13a7c751ac479dda00e4f17cecffdf67f",
+    "size": 89962
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/logging/to-stdout",
+    "tag": "0.3.1-dev_debug",
+    "digest": "sha256:db3bd4e5449fd4ac890ec4bbea6df76d7371320bb89bf876bd3dbea3d7a09620",
+    "layer_digest": "sha256:98f8a4566329037d40bb5a5c56eef3ad58d0a0b4e6fcb8b4f10ec019a30ab2eb",
+    "size": 336514
+  },
+  "created": "2026-10-15T12:59:46.561689871Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Implements wasi:logging/logging@0.1.0-draft writing log statements to stdout via wasi:cli/stdout@0.2.3. Timestamps for each log statement are generated from wasi:clocks/wall-clock@0.2.3.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "ba23d5927c062f51460677250130d4328c826116",
+    "org.opencontainers.image.source": "https://github.com/componentized/logging.git",
+    "org.opencontainers.image.title": "componentized:logging-to-stdout",
+    "org.opencontainers.image.url": "https://github.com/componentized/logging/tree/ba23d5927c062f51460677250130d4328c826116/components/to-stdout",
+    "org.opencontainers.image.version": "0.3.1-dev"
+  },
+  "imports": [
+    "wasi:cli/types@0.3.0",
+    "wasi:cli/stdout@0.3.0",
+    "wasi:clocks/system-clock@0.3.0"
+  ],
+  "exports": [
+    "wasi:logging/logging@0.1.0-draft"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:cli",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:48Z"
+}

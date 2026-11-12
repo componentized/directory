@@ -1,0 +1,15 @@
+package componentized:static-config@0.3.1-dev;
+
+@since(version = 0.3.0)
+interface factory {
+  use componentized:component/types@0.1.0.{wasm, error-code};
+
+  /// Create a component implementing `wasi:config/store` with the provided values.
+  @since(version = 0.3.0)
+  create: func(values: list<tuple<string, string>>) -> result<wasm, error-code>;
+}
+
+world imports {
+  import componentized:component/types@0.1.0;
+  import factory;
+}

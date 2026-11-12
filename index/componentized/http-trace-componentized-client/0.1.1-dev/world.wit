@@ -1,0 +1,8 @@
+package root:component;
+
+world root {
+  import componentized:http/client@0.1.1-dev;
+  import wasi:logging/logging@0.1.0-draft;
+
+  export componentized:http/client@0.1.1-dev;
+}

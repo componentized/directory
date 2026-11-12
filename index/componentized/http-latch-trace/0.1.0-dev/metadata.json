@@ -1,0 +1,55 @@
+{
+  "package": "componentized:http-latch-trace",
+  "version": "0.1.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-trace",
+    "tag": "0.1.0-dev",
+    "digest": "sha256:afd005f83af07a53add109dd158363b34c2756f9e881f3cc80cc7f0b2c3b7852",
+    "layer_digest": "sha256:5301bfb64435fb90f9d29c40a43d26d67469d52481ce7b7081198345ca8612a1",
+    "size": 54242
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-trace",
+    "tag": "0.1.0-dev_debug",
+    "digest": "sha256:00ee5e2cb5e37ceb45c88e2371a9314706c800c9246dc45dbbfe84a78fd4019c",
+    "layer_digest": "sha256:ceee4ce64802f5b3fe3aa57d19eecdca4ce8495f79f0f28139057543178a0ff7",
+    "size": 180020
+  },
+  "created": "2026-10-05T16:53:33.400177873Z",
+  "annotations": {
+    "org.opencontainers.image.description": "HTTP latch that wraps another latch, logging each decision it makes without changing it.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "84c2d1ecc4562b474b647b5057b8f868f993942a",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-latch-trace",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/84c2d1ecc4562b474b647b5057b8f868f993942a/components/latch-trace",
+    "org.opencontainers.image.version": "0.1.0-dev"
+  },
+  "imports": [
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:http/types@0.3.0",
+    "componentized:http/latch@0.1.0-dev"
+  ],
+  "exports": [
+    "componentized:http/latch@0.1.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:http",
+      "version": "0.1.0-dev"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:39Z"
+}

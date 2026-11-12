@@ -1,0 +1,10 @@
+package root:component;
+
+world root {
+  import wasi:sockets/types@0.3.0;
+  import wasi:sockets/ip-name-lookup@0.3.0;
+  import componentized:valkey/types@0.3.0-dev;
+  import componentized:valkey/connection@0.3.0-dev;
+
+  export componentized:valkey/tcp@0.3.0-dev;
+}

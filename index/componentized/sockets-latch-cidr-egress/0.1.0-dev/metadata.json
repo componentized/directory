@@ -1,0 +1,59 @@
+{
+  "package": "componentized:sockets-latch-cidr-egress",
+  "version": "0.1.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-cidr-egress",
+    "tag": "0.1.0-dev",
+    "digest": "sha256:4ce49d4d74e1835c1995d8bfe3543b2bc0bab5ad68160c0b12d0ebf802add037",
+    "layer_digest": "sha256:b41ee03ccbd6b2926c90b61a82548575fb5a70fc4f540f1610590dcfffb6beb0",
+    "size": 122689
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-cidr-egress",
+    "tag": "0.1.0-dev_debug",
+    "digest": "sha256:48d98fb0f5d9c2d190f6395db309e2890f91bb2f823d22c1a44aaa9472042196",
+    "layer_digest": "sha256:7f2b42a6c78334387e927eeb733a6b0d86d6733f1a4bdab0338dc8c7f828a3e8",
+    "size": 1473677
+  },
+  "created": "2026-10-15T18:54:03.313188992Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Socket latch that uses CIDR ranges to grant or deny originating outbound tcp/udp traffic based on the remote address. Return traffic to peers that reached the guest first is not restricted.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b90f9a86284d488ca5706e484b8f4f64110b3aaf",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-cidr-egress",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/b90f9a86284d488ca5706e484b8f4f64110b3aaf/components/latch-cidr-egress",
+    "org.opencontainers.image.version": "0.1.0-dev"
+  },
+  "imports": [
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:config/store@0.2.0-rc.1",
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.0-dev"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:13:04Z"
+}

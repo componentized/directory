@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% from "macros.html" import card %}
+{% set title = namespace %}
+{% set toc = groups|length > 1 %}
+{% block toc %}
+<ol>
+  {% for g in groups %}<li><a href="#{{ g.key or 'other' }}">{% if g.key %}<code>{{ g.name }}</code>{% else %}Other{% endif %}</a> <span class="dim">{{ g.cards|length }}</span></li>{% endfor %}
+</ol>
+{% endblock %}
+{% block main %}
+<h1><code>{{ namespace }}</code></h1>
+{% set repos = groups|selectattr("key")|list|length %}
+<p class="dim">{{ count }} package{% if count != 1 %}s{% endif %} from {{ repos }} repositor{% if repos == 1 %}y{% else %}ies{% endif %}</p>
+{% for g in groups %}
+<section class="group" id="{{ g.key or 'other' }}">
+  <div class="group-head">
+    {% if g.key %}
+    <h2><a href="{{ g.url }}" title="{{ g.key }}"><code>{{ g.name }}</code></a></h2>
+    <span class="dim">v{{ g.version }}</span>
+    {% else %}
+    <h2>Other</h2>
+    <span class="dim">no source repository</span>
+    {% endif %}
+    <span class="dim">·
+      {%- if g.interfaces %} {{ g.interfaces }} interface{% if g.interfaces != 1 %}s{% endif %}{% endif %}
+      {%- if g.interfaces and g.components %},{% endif %}
+      {%- if g.components %} {{ g.components }} component{% if g.components != 1 %}s{% endif %}{% endif %}</span>
+  </div>
+  {#- fold a long group after its first two rows, but never hide just one or two cards #}
+  {% set shown = 6 if g.cards|length > 8 else g.cards|length %}
+  <div class="cards">{% for c in g.cards[:shown] %}{{ card(c, short=true) }}{% endfor %}</div>
+  {% if g.cards|length > shown %}
+  {% set folded = g.cards|length - shown %}
+  <details class="fold">
+    <summary><span class="when-closed">Show {{ folded }} more</span><span class="when-open">Show fewer</span></summary>
+    <div class="cards">{% for c in g.cards[shown:] %}{{ card(c, short=true) }}{% endfor %}</div>
+  </details>
+  {% endif %}
+</section>
+{% endfor %}
+{% endblock %}

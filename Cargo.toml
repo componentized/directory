@@ -1,0 +1,25 @@
+[package]
+name = "directory"
+version = "0.1.0"
+edition = "2024"
+license = "Apache-2.0"
+publish = false
+description = "Indexes the components and WIT packages published by componentized and renders them as a static site"
+
+[dependencies]
+anyhow = "1"
+chrono = { version = "0.4", default-features = false, features = ["clock", "serde", "std"] }
+clap = { version = "4", features = ["derive", "env"] }
+minijinja = { version = "3", features = ["serde", "json"] }
+pulldown-cmark = { version = "0.13", default-features = false, features = ["html"] }
+reqwest = { version = "0.13", features = ["blocking", "json", "query"] }
+semver = { version = "1", features = ["serde"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.11"
+toml = "1"
+wit-component = "0.263"
+wit-parser = "0.263"
+
+[dev-dependencies]
+wit-component = { version = "0.263", features = ["dummy-module"] }

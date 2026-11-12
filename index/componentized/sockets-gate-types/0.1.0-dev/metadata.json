@@ -1,0 +1,60 @@
+{
+  "package": "componentized:sockets-gate-types",
+  "version": "0.1.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/gate-types",
+    "tag": "0.1.0-dev",
+    "digest": "sha256:d065351bbf1b85f82791f6cca4351573b63c268b339a9d10d40e47bab04c4aa5",
+    "layer_digest": "sha256:022317a45e7798c198e3455093d9b9affe771457f199117c5608a30cea471bab",
+    "size": 225327
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/gate-types",
+    "tag": "0.1.0-dev_debug",
+    "digest": "sha256:bb96f34fa9998e44a3b75b88ba5f00bc5420f700aeb7c3d32d2d3e681b0c8986",
+    "layer_digest": "sha256:c6df90eebdecc72d6276977f2271921f2bca4fdba8336bb147f0bbd065bc360b",
+    "size": 1894004
+  },
+  "created": "2026-10-15T18:53:09.283798482Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Socket gate access control for tcp and udp sockets.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b90f9a86284d488ca5706e484b8f4f64110b3aaf",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-gate-types",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/b90f9a86284d488ca5706e484b8f4f64110b3aaf/components/gate-types",
+    "org.opencontainers.image.version": "0.1.0-dev"
+  },
+  "imports": [
+    "wasi:clocks/types@0.3.0",
+    "wasi:sockets/types@0.3.0",
+    "componentized:sockets/latch@0.1.0-dev",
+    "wasi:logging/logging@0.1.0-draft"
+  ],
+  "exports": [
+    "wasi:sockets/types@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.0-dev"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:13:01Z"
+}

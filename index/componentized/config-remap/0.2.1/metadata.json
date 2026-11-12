@@ -1,0 +1,37 @@
+{
+  "package": "componentized:config-remap",
+  "version": "0.2.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/config/remap",
+    "tag": "0.2.1",
+    "digest": "sha256:6556f3eda779af968d6c7955666ae0b320ccd71e3ac21aa421fd3d50e89e7d3b",
+    "layer_digest": "sha256:1d9cd7c9b34acfc04c91011c124a11bef61f4e7e98f08becdc57ee383901d65c",
+    "size": 38748
+  },
+  "created": "2025-12-12T19:11:54.922571544Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Maps the keys in a wasi:config/store based on the content of a 'mapping' import which mimics wasi:config/store.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "55b29c4ac9bc55cac1cd3bcd157d05e621d5aa0a+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/config.git",
+    "org.opencontainers.image.title": "remap",
+    "org.opencontainers.image.version": "v0.2.1"
+  },
+  "imports": [
+    "wasi:config/store@0.2.0-rc.1",
+    "mapping: interface"
+  ],
+  "exports": [
+    "wasi:config/store@0.2.0-rc.1"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:25Z"
+}

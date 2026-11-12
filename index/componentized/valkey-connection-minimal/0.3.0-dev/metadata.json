@@ -1,0 +1,51 @@
+{
+  "package": "componentized:valkey-connection-minimal",
+  "version": "0.3.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/connection-minimal",
+    "tag": "0.3.0-dev",
+    "digest": "sha256:c875a02aa1929fec7d44f69dd884c6e673cd6f42ff3e10c8cc103d3a497ad58d",
+    "layer_digest": "sha256:ed9cf54ee4b5af3d935fbae700e98907bff4879d9d95b282ad87b1c34a2e1043",
+    "size": 331400
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/connection-minimal",
+    "tag": "0.3.0-dev_debug",
+    "digest": "sha256:bb1184a6c123d0733152aab1cc77ba61617075d2ec2a2399d445d93f391a1111",
+    "layer_digest": "sha256:84eff1c96b3b6ccb30aba808dd2b197783fcbf4587013f7f5dbdc861b6837954",
+    "size": 3948245
+  },
+  "created": "2026-11-09T19:23:44.467868830Z",
+  "annotations": {
+    "org.opencontainers.image.description": "A connection component built without pub/sub, for a smaller component when subscriptions are not needed.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "69ad5c957f56b19c57322b25fdd9ddb36d7776a0",
+    "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
+    "org.opencontainers.image.title": "componentized:valkey-connection-minimal",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/69ad5c957f56b19c57322b25fdd9ddb36d7776a0/components/connection-minimal",
+    "org.opencontainers.image.version": "0.3.0-dev"
+  },
+  "imports": [
+    "wasi:clocks/types@0.3.0",
+    "wasi:clocks/monotonic-clock@0.3.0",
+    "componentized:valkey/types@0.3.0-dev"
+  ],
+  "exports": [
+    "componentized:valkey/connection@0.3.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:valkey",
+      "version": "0.3.0-dev"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:13:34Z"
+}

@@ -1,0 +1,41 @@
+{
+  "package": "wasi:http",
+  "version": "0.2.6",
+  "kind": "interface",
+  "origin": "dependency",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "webassembly/wasi/http",
+    "tag": "0.2.6",
+    "digest": "sha256:418a53205b4499daffa7937d9869d867b04b6579c66217e53de37fee595aac7a",
+    "layer_digest": "sha256:26a636620af0485dfcfc9a0563a0606564eedcf3fcabda031ab4d4ec0e505ff1",
+    "size": 52387
+  },
+  "created": "2025-06-12T21:52:44.977050225Z",
+  "annotations": {
+    "org.opencontainers.image.description": "A WASI API for sending and receiving HTTP requests and responses.",
+    "org.opencontainers.image.licenses": "Apache-2.0 WITH LLVM-exception",
+    "org.opencontainers.image.source": "https://github.com/webassembly/wasi",
+    "org.opencontainers.image.url": "https://wasi.dev",
+    "org.opencontainers.image.version": "0.2.6"
+  },
+  "dependencies": [
+    {
+      "package": "wasi:cli",
+      "version": "0.2.6"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.2.6"
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.6"
+    },
+    {
+      "package": "wasi:random",
+      "version": "0.2.6"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:45:29Z"
+}

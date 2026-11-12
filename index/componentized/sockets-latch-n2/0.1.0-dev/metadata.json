@@ -1,0 +1,51 @@
+{
+  "package": "componentized:sockets-latch-n2",
+  "version": "0.1.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-n2",
+    "tag": "0.1.0-dev",
+    "digest": "sha256:829e737a7a137a2c38f34764344a91ba88cb2d00041b77bc96389720afa8aaeb",
+    "layer_digest": "sha256:1aa2181c20c5282ee233f6ec1c5d3138cd91bebc42a8d3f8696eee6bb695c693",
+    "size": 44937
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-n2",
+    "tag": "0.1.0-dev_debug",
+    "digest": "sha256:b57b7f7aa06de24b66f793dcefba3cbb62bfd7f194791cee74c9a9748a9bf94d",
+    "layer_digest": "sha256:c16429ad6baa9d66c1eab1aadacaf99e8560f173cb2a5430b0856c85a37c4754",
+    "size": 441810
+  },
+  "created": "2026-10-15T18:59:37.621155406Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Sockets latch that aggregates two other sockets latches.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b90f9a86284d488ca5706e484b8f4f64110b3aaf",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-n2",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/b90f9a86284d488ca5706e484b8f4f64110b3aaf/components/latch-n2",
+    "org.opencontainers.image.version": "0.1.0-dev"
+  },
+  "imports": [
+    "wasi:sockets/types@0.3.0",
+    "latch0: componentized:sockets/latch@0.1.0-dev",
+    "latch1: componentized:sockets/latch@0.1.0-dev"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.0-dev"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:13:21Z"
+}

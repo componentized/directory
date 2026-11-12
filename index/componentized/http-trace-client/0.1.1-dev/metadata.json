@@ -1,0 +1,57 @@
+{
+  "package": "componentized:http-trace-client",
+  "version": "0.1.1-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/trace-client",
+    "tag": "0.1.1-dev",
+    "digest": "sha256:dfc170cb25ea2e30afd53df172dfb54ad4b8a3f909ae21e586b0bf0ba5052dc8",
+    "layer_digest": "sha256:ab29b3c7acd02c47e0dfb563c3f3e9fd020ef79485a980d08b00997c35f0fe98",
+    "size": 186115
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/trace-client",
+    "tag": "0.1.1-dev_debug",
+    "digest": "sha256:e133e0596daf1c312e78fe8d9f1d7a67b2a583acbdcbc1daa579b69bb2bc832b",
+    "layer_digest": "sha256:a121c221f43ff7ed224bf2f28e5353d04623ccccf1e1b81b07571447c8299c4d",
+    "size": 714537
+  },
+  "created": "2026-11-09T19:21:06.149872463Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Virtualizes the wasi:http/types and wasi:http/client interfaces logging all method calls at the TRACE level and 'componentized-trace' component.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "ca50fd6e7d0aba1b8694520c9c32b1d097e8dfe4",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-trace-client",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/ca50fd6e7d0aba1b8694520c9c32b1d097e8dfe4/components/trace-client",
+    "org.opencontainers.image.version": "0.1.1-dev"
+  },
+  "imports": [
+    "wasi:clocks/types@0.3.0",
+    "wasi:http/types@0.3.0",
+    "wasi:http/client@0.3.0",
+    "wasi:logging/logging@0.1.0-draft"
+  ],
+  "exports": [
+    "wasi:http/types@0.3.0",
+    "wasi:http/client@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:42Z"
+}

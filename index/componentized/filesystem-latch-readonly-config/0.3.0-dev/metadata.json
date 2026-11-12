@@ -1,0 +1,42 @@
+{
+  "package": "componentized:filesystem-latch-readonly-config",
+  "version": "0.3.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem/latch-readonly-config",
+    "tag": "0.3.0-dev",
+    "digest": "sha256:dfb6f118a4ec999d2b3786200d12d6c94eb6e516a523d9e04f7fbc180554f956",
+    "layer_digest": "sha256:054c6a4d0f8ca68df9fa980f1e801e932abf366ba8e110f2c7783c3c1a0fc9f9",
+    "size": 6187
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem/latch-readonly-config",
+    "tag": "0.3.0-dev_debug",
+    "digest": "sha256:25b9dac29c2e3a28285d24fe689cc18cd4b4f25f775ddd6fb5cd3aa5ea23c8bc",
+    "layer_digest": "sha256:054c6a4d0f8ca68df9fa980f1e801e932abf366ba8e110f2c7783c3c1a0fc9f9",
+    "size": 6187
+  },
+  "created": "2026-11-09T19:53:52.911787065Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Config for `latch-path-glob` that makes every path readonly.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "209ad270f66768627d3599274c8aeca6103fda67",
+    "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
+    "org.opencontainers.image.title": "componentized:filesystem-latch-readonly-config",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/209ad270f66768627d3599274c8aeca6103fda67/components/latch-readonly-config",
+    "org.opencontainers.image.version": "0.3.0-dev"
+  },
+  "exports": [
+    "wasi:config/store@0.2.0-rc.1"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:20Z"
+}

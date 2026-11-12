@@ -1,0 +1,16 @@
+{
+  "package": "wasi:logging",
+  "version": "0.1.0-draft",
+  "kind": "interface",
+  "origin": "dependency",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "webassembly/wasi/logging",
+    "tag": "0.1.0-draft",
+    "digest": "sha256:6fdeb60f2f1359175f745b9d9b2d4f0bf1776e7fd242c175ead82cc6247c8942",
+    "layer_digest": "sha256:09621a45b12b0a9cddc798517f778aac0e5ae4bd234077b3d70758d6cf625580",
+    "size": 1375
+  },
+  "created": "2024-10-03T13:29:19.258941Z",
+  "indexed_at": "2026-11-11T23:43:40Z"
+}

@@ -1,0 +1,67 @@
+{
+  "package": "componentized:valkey-cli",
+  "version": "0.2.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/cli",
+    "tag": "0.2.1",
+    "digest": "sha256:10c4466811eb1aa57d1ca37930d1623a3c0103d6ddb674ab6712555555dbdb31",
+    "layer_digest": "sha256:01052bd9b3c1364313b620a13e1af4e5101148fe30337a20af0f74c8c6094ce6",
+    "size": 1024509
+  },
+  "created": "2025-12-12T19:19:05.873789352Z",
+  "annotations": {
+    "org.opencontainers.image.description": "A wasi:cli/command exposing valkey commands.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "5b07001058a0d33566cfdc74694081f627a62626+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
+    "org.opencontainers.image.title": "cli",
+    "org.opencontainers.image.version": "v0.2.1"
+  },
+  "imports": [
+    "wasi:cli/environment@0.2.6",
+    "wasi:cli/exit@0.2.6",
+    "wasi:io/error@0.2.6",
+    "wasi:io/poll@0.2.6",
+    "wasi:io/streams@0.2.6",
+    "wasi:cli/stdin@0.2.6",
+    "wasi:cli/stdout@0.2.6",
+    "wasi:cli/stderr@0.2.6",
+    "wasi:cli/terminal-input@0.2.6",
+    "wasi:cli/terminal-output@0.2.6",
+    "wasi:cli/terminal-stdin@0.2.6",
+    "wasi:cli/terminal-stdout@0.2.6",
+    "wasi:cli/terminal-stderr@0.2.6",
+    "wasi:filesystem/types@0.2.6",
+    "wasi:filesystem/preopens@0.2.6",
+    "wasi:sockets/network@0.2.6",
+    "wasi:sockets/instance-network@0.2.6",
+    "wasi:sockets/tcp@0.2.6",
+    "wasi:sockets/tcp-create-socket@0.2.6",
+    "wasi:sockets/ip-name-lookup@0.2.6"
+  ],
+  "exports": [
+    "wasi:cli/run@0.2.6"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:cli",
+      "version": "0.2.6"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.2.6"
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.6"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.2.6"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:45:24Z"
+}

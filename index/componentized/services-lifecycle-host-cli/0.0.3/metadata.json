@@ -1,0 +1,58 @@
+{
+  "package": "componentized:services-lifecycle-host-cli",
+  "version": "0.0.3",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/lifecycle-host-cli",
+    "tag": "0.0.3",
+    "digest": "sha256:3631301616d09ee7164ae210bb261e092e415dd6600708682c497259fe4fde55",
+    "layer_digest": "sha256:ffd8fe21a6642a2b96004b9f9c48b0be57a1e7a8eb2ea68b1765e8b92b0f3d52",
+    "size": 564769
+  },
+  "created": "2025-04-26T18:06:20.468267862Z",
+  "annotations": {
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "8997d6ce5ee8a02d6600320432409ce162dba834+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/services.git",
+    "org.opencontainers.image.title": "lifecycle-host-cli",
+    "org.opencontainers.image.version": "v0.0.3"
+  },
+  "imports": [
+    "componentized:services/types",
+    "componentized:services/lifecycle",
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:cli/environment@0.2.3",
+    "wasi:io/error@0.2.3",
+    "wasi:io/streams@0.2.3",
+    "wasi:cli/stdout@0.2.3",
+    "wasi:random/random@0.2.3"
+  ],
+  "exports": [
+    "wasi:cli/run@0.2.3"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:services",
+      "version": null
+    },
+    {
+      "package": "wasi:cli",
+      "version": "0.2.3"
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.3"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:random",
+      "version": "0.2.3"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:57Z"
+}

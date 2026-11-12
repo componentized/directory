@@ -1,0 +1,52 @@
+{
+  "package": "componentized:http-latch-n3",
+  "version": "0.1.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-n3",
+    "tag": "0.1.0-dev",
+    "digest": "sha256:bd6daf3fd80e76e692aeca0c407ca80f8185b314783916dc58e0e7bd0cc7d49a",
+    "layer_digest": "sha256:1a9efe3e1a24a080a620b9f5bc7e08268d4afbc2b97d908b3f240dc6c27fdae6",
+    "size": 45406
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-n3",
+    "tag": "0.1.0-dev_debug",
+    "digest": "sha256:47290609ba3c006abade0832e5a33a59c67760124cca2bbedf6ffef288f04689",
+    "layer_digest": "sha256:527424fd45f8e3adaa1f74f7ea928cb8e885fa64f1b5a6296d56122d5af625de",
+    "size": 170275
+  },
+  "created": "2026-10-05T16:52:03.812412608Z",
+  "annotations": {
+    "org.opencontainers.image.description": "HTTP latch that aggregates 3 latches, any latch can deny a request.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "84c2d1ecc4562b474b647b5057b8f868f993942a",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-latch-n3",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/84c2d1ecc4562b474b647b5057b8f868f993942a/components/latch-n3",
+    "org.opencontainers.image.version": "0.1.0-dev"
+  },
+  "imports": [
+    "wasi:http/types@0.3.0",
+    "latch0: componentized:http/latch@0.1.0-dev",
+    "latch1: componentized:http/latch@0.1.0-dev",
+    "latch2: componentized:http/latch@0.1.0-dev"
+  ],
+  "exports": [
+    "componentized:http/latch@0.1.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:http",
+      "version": "0.1.0-dev"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:33Z"
+}

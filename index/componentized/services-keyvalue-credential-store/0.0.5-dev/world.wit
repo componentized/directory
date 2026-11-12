@@ -1,0 +1,55 @@
+package root:component;
+
+world root {
+  import wasi:config/store@0.2.0-rc.1;
+  import wasi:keyvalue/store@0.2.0-draft2;
+  import componentized:services/types@0.0.5-dev;
+
+  export componentized:services/credential-store@0.0.5-dev;
+}
+package wasi:config@0.2.0-rc.1 {
+  interface store {
+    variant error {
+      upstream(string),
+      io(string),
+    }
+
+    get: func(key: string) -> result<option<string>, error>;
+  }
+}
+
+
+package wasi:keyvalue@0.2.0-draft2 {
+  interface store {
+    resource bucket {
+      get: func(key: string) -> result<option<list<u8>>, error>;
+    }
+
+    variant error {
+      no-such-store,
+      access-denied,
+      other(string),
+    }
+
+    open: func(identifier: string) -> result<bucket, error>;
+  }
+}
+
+
+package componentized:services@0.0.5-dev {
+  interface types {
+    type service-id = string;
+
+    record credential {
+      key: string,
+      value: string,
+    }
+
+    type error = string;
+  }
+  interface credential-store {
+    use types.{service-id, credential, error};
+
+    fetch: func(id: service-id) -> result<list<credential>, error>;
+  }
+}

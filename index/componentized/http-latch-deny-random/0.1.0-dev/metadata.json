@@ -1,0 +1,64 @@
+{
+  "package": "componentized:http-latch-deny-random",
+  "version": "0.1.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-deny-random",
+    "tag": "0.1.0-dev",
+    "digest": "sha256:fa7fd05ed0d06ad3ed40ae756600ae838e6c2e6f584e3e8538b836c52e56709e",
+    "layer_digest": "sha256:5e981205957f6e5d660bc0e21085987c4df90ed298d6d5c31b11b73f5f4c9430",
+    "size": 94232
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-deny-random",
+    "tag": "0.1.0-dev_debug",
+    "digest": "sha256:b5da00af5b0bd08eca9478c5922177acd3a669bc06a565197787718f87658a59",
+    "layer_digest": "sha256:26465d5f7b0e2ae809d22c4aac91c05241fd367e6090d206e538cb17d8fb291e",
+    "size": 189188
+  },
+  "created": "2026-10-05T16:50:31.824619206Z",
+  "annotations": {
+    "org.opencontainers.image.description": "HTTP latch that randomly denies requests, to prove a component is resilient to failures.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "84c2d1ecc4562b474b647b5057b8f868f993942a",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-latch-deny-random",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/84c2d1ecc4562b474b647b5057b8f868f993942a/components/latch-deny-random",
+    "org.opencontainers.image.version": "0.1.0-dev"
+  },
+  "imports": [
+    "wasi:config/store@0.2.0-rc.1",
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:random/insecure@0.3.0",
+    "wasi:http/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:http/latch@0.1.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:http",
+      "version": "0.1.0-dev"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:random",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:28Z"
+}

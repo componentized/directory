@@ -1,0 +1,78 @@
+{
+  "package": "componentized:services-filesystem-credential-admin",
+  "version": "0.0.5-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/filesystem-credential-admin",
+    "tag": "0.0.5-dev",
+    "digest": "sha256:334e12262b14ef88ebcf7167b0b7fe61d8ee05feb608f82139e6160445b6f40f",
+    "layer_digest": "sha256:675b54c3c7b2531d52d0de7b469bb4d46c6316df437a406c545703509fac6508",
+    "size": 140373
+  },
+  "created": "2026-11-09T22:53:37.443344739Z",
+  "annotations": {
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "23a7aebfe82e30b9453f8d8ee6b297b8184d934c+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/services.git",
+    "org.opencontainers.image.title": "filesystem-credential-admin",
+    "org.opencontainers.image.version": "0.0.5-dev"
+  },
+  "imports": [
+    "wasi:config/store@0.2.0-rc.1",
+    "componentized:services/types@0.0.5-dev",
+    "wasi:io/poll@0.2.12",
+    "wasi:clocks/monotonic-clock@0.2.12",
+    "wasi:clocks/wall-clock@0.2.12",
+    "wasi:io/error@0.2.12",
+    "wasi:io/streams@0.2.12",
+    "wasi:cli/stdout@0.2.12",
+    "wasi:cli/stderr@0.2.12",
+    "wasi:cli/stdin@0.2.12",
+    "wasi:cli/environment@0.2.12",
+    "wasi:cli/exit@0.2.12",
+    "wasi:cli/terminal-input@0.2.12",
+    "wasi:cli/terminal-output@0.2.12",
+    "wasi:cli/terminal-stdin@0.2.12",
+    "wasi:cli/terminal-stdout@0.2.12",
+    "wasi:cli/terminal-stderr@0.2.12",
+    "wasi:filesystem/types@0.2.12",
+    "wasi:filesystem/preopens@0.2.12",
+    "wasi:random/insecure-seed@0.2.12"
+  ],
+  "exports": [
+    "componentized:services/credential-admin@0.0.5-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:services",
+      "version": "0.0.5-dev"
+    },
+    {
+      "package": "wasi:cli",
+      "version": "0.2.12"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.2.12"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.2.12"
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.12"
+    },
+    {
+      "package": "wasi:random",
+      "version": "0.2.12"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:53Z"
+}

@@ -1,0 +1,413 @@
+package componentized:oci@0.1.0-dev;
+
+@since(version = 0.1.0-dev)
+interface client {
+  use wasi:clocks/system-clock@0.3.0.{instant};
+
+  /// time when a failed request should not be retried until. Part of code-14 `TOOMANYREQUESTS` error response
+  @since(version = 0.1.0-dev)
+  variant retry-after {
+    date(instant),
+    delay-seconds(u32),
+  }
+
+  /// Error codes defined by the OCI distribution spec, or other
+  @since(version = 0.1.0-dev)
+  variant error-code {
+    /// blob unknown to registry (code-1 `BLOB_UNKNOWN`)
+    blob-unknown(string),
+    /// blob upload invalid (code-2 `BLOB_UPLOAD_INVALID`)
+    blob-upload-invalid(string),
+    /// blob upload unknown to registry (code-3`BLOB_UPLOAD_UNKNOWN`)
+    blob-upload-unknown(string),
+    /// provided digest did not match uploaded content (code-4 `DIGEST_INVALID`)
+    digest-invalid(string),
+    /// manifest references a manifest or blob unknown to registry (code-5 `MANIFEST_BLOB_UNKNOWN`)
+    manifest-blob-unknown(string),
+    /// manifest invalid (code-6 `MANIFEST_INVALID`)
+    manifest-invalid(string),
+    /// manifest unknown to registry (code-7 `MANIFEST_UNKNOWN`)
+    manifest-unknown(string),
+    /// invalid repository name (code-8 `NAME_INVALID`)
+    name-invalid(string),
+    /// repository name not known to registry (code-9 `NAME_UNKNOWN`)
+    name-unknown(string),
+    /// provided length did not match content length (code-10 `SIZE_INVALID`)
+    size-invalid(string),
+    /// authentication required (code-11 `UNAUTHORIZED`)
+    unauthorized(string),
+    /// requested access to the resource is denied (code-12 `DENIED`)
+    denied(string),
+    /// the operation is unsupported (code-13 `UNSUPPORTED`)
+    unsupported(string),
+    /// too many requests (code-14 `TOOMANYREQUESTS`)
+    toomanyrequests(option<retry-after>),
+    /// other
+    other(option<string>),
+  }
+
+  /// Media type describing the content semantics and encoding
+  /// https://specs.opencontainers.org/image-spec/media-types/
+  @since(version = 0.1.0-dev)
+  type media-type = string;
+
+  /// OCI Image Index v1 - manifest entry platform
+  /// https://specs.opencontainers.org/image-spec/image-index/
+  @since(version = 0.1.0-dev)
+  record oci-image-index-manifest-v1-manifest-platform {
+    /// CPU architecture which the binaries in this image are built to run on
+    architecture: string,
+    /// name of the operating system which the image is built to run on
+    os: string,
+    /// version of the operating system
+    os-version: option<string>,
+    /// mandatory OS features
+    os-features: option<list<string>>,
+    /// variant of the CPU
+    %variant: option<string>,
+  }
+
+  /// OCI Image Config v1 - config
+  /// https://specs.opencontainers.org/image-spec/config/
+  @since(version = 0.1.0-dev)
+  record oci-image-config-v1-config {
+    /// username or UID which is a platform-specific structure that allows specific control over which user the process run as
+    user: option<string>,
+    /// set of ports to expose from a container running this image
+    exposed-ports: option<list<string>>,
+    /// values act as defaults and are merged with any specified when creating a container
+    env: option<list<string>>,
+    /// arguments to use as the command to execute when the container starts
+    entrypoint: option<list<string>>,
+    /// arguments to the entrypoint of the container
+    cmd: option<list<string>>,
+    /// directories describing where the process is likely to write data specific to a container instance
+    volumes: option<list<string>>,
+    /// current working directory of the entrypoint process in the container
+    working-dir: option<string>,
+    /// arbitrary metadata for the container
+    labels: option<map<string, string>>,
+    /// system call signal that will be sent to the container to exit
+    stop-signal: option<string>,
+    /// deprecated: present only for legacy compatibility
+    args-escaped: option<bool>,
+  }
+
+  /// OCI Image Config v1 - history entry
+  /// https://specs.opencontainers.org/image-spec/config/
+  @since(version = 0.1.0-dev)
+  record oci-image-config-v1-history-entry {
+    /// combined date and time at which the layer was created
+    created: option<instant>,
+    /// author of the build point
+    author: option<string>,
+    /// command which created the layer
+    created-by: option<string>,
+    /// custom message set when creating the layer
+    comment: option<string>,
+    /// mark if the history item created a filesystem diff
+    empty-layer: option<bool>,
+  }
+
+  /// WASM Config v0 - component
+  /// https://tag-runtime.cncf.io/wgs/wasm/deliverables/wasm-oci-artifact/
+  @since(version = 0.1.0-dev)
+  record wasm-config-v0-component {
+    /// items (interfaces, functions, types) exported by the component
+    exports: list<string>,
+    /// items (interfaces, functions, types) imported by the component
+    imports: list<string>,
+    /// target world the component implements
+    target: option<string>,
+  }
+
+  /// Content digest algorithm
+  variant digest-algorithm {
+    /// 256-bit secure hash
+    /// https://csrc.nist.gov/pubs/fips/180-4/upd1/final
+    sha256,
+    /// 512-bit secure hash
+    /// https://csrc.nist.gov/pubs/fips/180-4/upd1/final
+    sha512,
+    /// other algorithms may not be supported by the registry or client
+    other(string),
+  }
+
+  /// Content digest
+  @since(version = 0.1.0-dev)
+  record digest {
+    /// hashing algorithm. `sha256` is strongly recommended
+    algorithm: digest-algorithm,
+    /// digest value. Format is defined by the algorithm.
+    encoded: string,
+  }
+
+  /// OCI Descriptor v1
+  /// https://specs.opencontainers.org/image-spec/descriptor/
+  @since(version = 0.1.0-dev)
+  record oci-descriptor-v1 {
+    /// media type of the referenced content
+    media-type: media-type,
+    /// digest of the targeted content
+    digest: digest,
+    /// size, in bytes, of the raw content
+    size: u64,
+    /// list of URIs from which this object MAY be downloaded
+    urls: option<list<string>>,
+    /// arbitrary metadata for this descriptor
+    annotations: option<map<string, string>>,
+    /// embedded representation of the referenced content
+    data: option<string>,
+    /// type of an artifact when the descriptor points to an artifact
+    artifact-type: option<media-type>,
+  }
+
+  /// OCI Image Manifest v1
+  /// https://specs.opencontainers.org/image-spec/manifest/
+  @since(version = 0.1.0-dev)
+  record oci-image-manifest-v1 {
+    /// manifest schema version, must be 2
+    schema-version: option<u8>,
+    /// must contain the media type 'application/vnd.oci.image.manifest.v1+json'.
+    media-type: media-type,
+    /// type of an artifact when the manifest is used for an artifact
+    artifact-type: option<media-type>,
+    /// configuration object for a container
+    config: oci-descriptor-v1,
+    /// list of layer descriptors
+    layers: list<oci-descriptor-v1>,
+    /// weak association to another manifest
+    subject: option<oci-descriptor-v1>,
+    /// arbitrary metadata for the image manifest
+    annotations: option<map<string, string>>,
+  }
+
+  /// OCI Image Index v1 - manifest entry
+  /// https://specs.opencontainers.org/image-spec/image-index/
+  @since(version = 0.1.0-dev)
+  record oci-image-index-manifest-v1-manifest {
+    /// media type of the referenced content
+    media-type: media-type,
+    /// digest of the targeted content
+    digest: digest,
+    /// size, in bytes, of the raw content
+    size: u64,
+    /// list of URIs from which this object MAY be downloaded
+    urls: option<list<string>>,
+    /// arbitrary metadata for this descriptor
+    annotations: option<map<string, string>>,
+    /// embedded representation of the referenced content
+    data: option<string>,
+    /// type of an artifact when the descriptor points to an artifact
+    artifact-type: option<media-type>,
+    /// minimum runtime requirements of the image
+    platform: option<oci-image-index-manifest-v1-manifest-platform>,
+    /// descriptor of another manifest
+    subject: option<oci-descriptor-v1>,
+  }
+
+  /// OCI Image Index v1
+  /// https://specs.opencontainers.org/image-spec/image-index/
+  @since(version = 0.1.0-dev)
+  record oci-image-index-manifest-v1 {
+    /// manifest schema version, must be 2
+    schema-version: option<u8>,
+    /// must contain the media type 'application/vnd.oci.image.index.v1+json'.
+    media-type: media-type,
+    /// type of an artifact when the manifest is used for an artifact
+    artifact-type: option<media-type>,
+    /// manifests for specific platforms
+    manifests: list<oci-image-index-manifest-v1-manifest>,
+    /// weak association to another manifest
+    subject: option<oci-descriptor-v1>,
+    /// arbitrary metadata for the image manifest
+    annotations: option<map<string, string>>,
+  }
+
+  /// OCI Manifests
+  @since(version = 0.1.0-dev)
+  variant manifest {
+    /// oci image
+    oci-image-v1(oci-image-manifest-v1),
+    /// oci image index
+    oci-image-index-v1(oci-image-index-manifest-v1),
+    /// other, raw bytes of the manifest blob
+    other(list<u8>),
+  }
+
+  /// OCI Image Config v1 - content address
+  /// https://specs.opencontainers.org/image-spec/config/
+  @since(version = 0.1.0-dev)
+  record oci-image-config-v1-content-addresses {
+    /// must be 'layers'
+    %type: string,
+    /// layer content hashes, in order from first to last
+    diff-ids: list<digest>,
+  }
+
+  /// OCI Image Config v1
+  /// https://specs.opencontainers.org/image-spec/config/
+  @since(version = 0.1.0-dev)
+  record oci-image-config-v1 {
+    /// combined date and time at which the image was created
+    created: option<instant>,
+    /// name and/or email address of the person or entity which created and is responsible for maintaining the image
+    author: option<string>,
+    /// CPU architecture which the binaries in this image are built to run on
+    architecture: string,
+    /// name of the operating system which the image is built to run on
+    os: string,
+    /// version of the operating system
+    os-version: option<string>,
+    /// mandatory OS features
+    os-features: option<list<string>>,
+    /// variant of the specified CPU architecture
+    %variant: option<string>,
+    /// execution parameters which should be used as a base when running a container using the image
+    config: option<oci-image-config-v1-config>,
+    /// layer content addresses used by the image
+    rootfs: oci-image-config-v1-content-addresses,
+    /// history of each layer. The array is ordered from first to last
+    history: option<list<oci-image-config-v1-history-entry>>,
+  }
+
+  /// WASM Config v0
+  /// https://tag-runtime.cncf.io/wgs/wasm/deliverables/wasm-oci-artifact/
+  @since(version = 0.1.0-dev)
+  record wasm-config-v0 {
+    /// combined date and time at which the image was created
+    created: option<instant>,
+    /// name and/or email address of the person or entity which created and is responsible for maintaining the image
+    author: option<string>,
+    /// must match a GOARCH value
+    architecture: string,
+    /// must match a GOOS value
+    os: string,
+    /// digests of the layers in the same order
+    layer-digests: list<digest>,
+    /// component metadata
+    component: option<wasm-config-v0-component>,
+  }
+
+  /// OCI Configs
+  @since(version = 0.1.0-dev)
+  variant config {
+    /// oci iamge
+    oci-image-v1(oci-image-config-v1),
+    /// wasm module
+    wasm-v0(wasm-config-v0),
+    /// other, raw bytes of the config blob
+    other(list<u8>),
+  }
+
+  /// Image reference, typically created by `parse-reference(string)`
+  @since(version = 0.1.0-dev)
+  record reference {
+    /// host and port of the registry, defaults to `index.docker.io`
+    registry: string,
+    /// repository path within the registry
+    repository: string,
+    /// tag of the content, defaults to `latest`
+    tag: option<string>,
+    /// digest of the referenced content, supersedes any tag
+    digest: option<digest>,
+  }
+
+  /// Parse a string image reference like `ubuntu` or
+  /// `ghcr.io/componentized/oci:1.0.0` for use by the other methods.
+  @since(version = 0.1.0-dev)
+  parse-reference: func(reference: string) -> result<reference, error-code>;
+
+  /// Resolves a tagged reference to a digest with the registry. Digested
+  /// references are returned immediately.
+  @since(version = 0.1.0-dev)
+  resolve-digest: async func(reference: reference) -> result<digest, error-code>;
+
+  /// Gets a blob from the registry. The reference must be digested.
+  /// Manifests must be fetched with `get-manifest()`.
+  ///
+  /// The content streams as it's received from the registry. Errors from the
+  /// registry are returned before the content starts. The content is
+  /// verified against the digest as it streams, the future resolves once the
+  /// stream ends, with `digest-invalid` when the content does not match the
+  /// digest. Content read from the stream must not be trusted until the
+  /// future resolves successfully.
+  @since(version = 0.1.0-dev)
+  get-blob: async func(reference: reference) -> result<tuple<stream<u8>, future<result<_, error-code>>>, error-code>;
+
+  /// Gets a config from the registry decoding by media type. In many cases,
+  /// the media type cannot be inferred and must be passed explicitly. The
+  /// reference must be digested.
+  @since(version = 0.1.0-dev)
+  get-config: async func(reference: reference, default-media-type: option<media-type>) -> result<config, error-code>;
+
+  /// Gets a manifest from the registry decoding by media type. The reference
+  /// may be tagged or digested.
+  @since(version = 0.1.0-dev)
+  get-manifest: async func(reference: reference) -> result<manifest, error-code>;
+}
+
+/// Common OCI related media types
+@since(version = 0.1.0-dev)
+interface media-types {
+  /// Content Descriptor
+  /// https://specs.opencontainers.org/image-spec/media-types/#oci-image-media-types
+  /// @value "application/vnd.oci.descriptor.v1+json"
+  application-vnd-oci-descriptor-v1-json: func() -> string;
+
+  /// OCI Layout
+  /// https://specs.opencontainers.org/image-spec/media-types/#oci-image-media-types
+  /// @value "application/vnd.oci.layout.header.v1+json"
+  application-vnd-oci-layout-header-v1-json: func() -> string;
+
+  /// Image Index
+  /// https://specs.opencontainers.org/image-spec/media-types/#oci-image-media-types
+  /// @value "application/vnd.oci.image.index.v1+json"
+  application-vnd-oci-image-index-v1-json: func() -> string;
+
+  /// Image manifest
+  /// https://specs.opencontainers.org/image-spec/media-types/#oci-image-media-types
+  /// @value "application/vnd.oci.image.manifest.v1+json"
+  application-vnd-oci-image-manifest-v1-json: func() -> string;
+
+  /// Image config
+  /// https://specs.opencontainers.org/image-spec/media-types/#oci-image-media-types
+  /// @value "application/vnd.oci.image.config.v1+json"
+  application-vnd-oci-image-config-v1-json: func() -> string;
+
+  /// "Layer", as a tar archive
+  /// https://specs.opencontainers.org/image-spec/media-types/#oci-image-media-types
+  /// @value "application/vnd.oci.image.layer.v1.tar"
+  application-vnd-oci-image-layer-v1-tar: func() -> string;
+
+  /// "Layer", as a tar archive compressed with gzip
+  /// https://specs.opencontainers.org/image-spec/media-types/#oci-image-media-types
+  /// @value "application/vnd.oci.image.layer.v1.tar+gzip"
+  application-vnd-oci-image-layer-v1-tar-gzip: func() -> string;
+
+  /// "Layer", as a tar archive compressed with zstd
+  /// https://specs.opencontainers.org/image-spec/media-types/#oci-image-media-types
+  /// @value "application/vnd.oci.image.layer.v1.tar+zstd"
+  application-vnd-oci-image-layer-v1-tar-zstd: func() -> string;
+
+  /// Empty for unused descriptors
+  /// https://specs.opencontainers.org/image-spec/media-types/#oci-image-media-types
+  /// @value "application/vnd.oci.empty.v1+json"
+  application-vnd-oci-empty-v1-json: func() -> string;
+
+  /// WASM config
+  /// https://tag-runtime.cncf.io/wgs/wasm/deliverables/wasm-oci-artifact/#configmediatype-applicationvndwasmconfigv0json
+  /// @value "application/vnd.wasm.config.v0+json"
+  application-vnd-wasm-config-v0-json: func() -> string;
+
+  /// WASM
+  /// https://www.iana.org/assignments/media-types/application/wasm
+  /// @value "application/wasm"
+  application-wasm: func() -> string;
+}
+
+world imports {
+  import wasi:clocks/types@0.3.0;
+  import wasi:clocks/system-clock@0.3.0;
+  import client;
+}

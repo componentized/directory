@@ -1,0 +1,64 @@
+{
+  "package": "componentized:valkey-client",
+  "version": "0.2.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/client",
+    "tag": "0.2.1",
+    "digest": "sha256:c9672e1ce38df6635787cd9a832cf3b0392b0a5dc9c71016872b22fdf179d331",
+    "layer_digest": "sha256:372bffd82212e92e7839f7ea4aeea2d12e8919d87ac4b7609292ace8a0d8341e",
+    "size": 361976
+  },
+  "created": "2025-12-12T19:19:19.383685382Z",
+  "annotations": {
+    "org.opencontainers.image.description": "A WASM component client for Valkey (and Redis).",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "5b07001058a0d33566cfdc74694081f627a62626+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
+    "org.opencontainers.image.title": "valkey-client",
+    "org.opencontainers.image.version": "v0.2.1"
+  },
+  "imports": [
+    "wasi:io/error@0.2.6",
+    "wasi:sockets/network@0.2.6",
+    "wasi:sockets/instance-network@0.2.6",
+    "wasi:io/poll@0.2.6",
+    "wasi:io/streams@0.2.6",
+    "wasi:sockets/tcp@0.2.6",
+    "wasi:sockets/tcp-create-socket@0.2.6",
+    "wasi:sockets/ip-name-lookup@0.2.6",
+    "wasi:config/store@0.2.0-rc.1"
+  ],
+  "exports": [
+    "componentized:valkey/resp",
+    "componentized:valkey/store",
+    "wasi:keyvalue/store@0.2.0-draft2",
+    "wasi:keyvalue/atomics@0.2.0-draft2",
+    "wasi:keyvalue/batch@0.2.0-draft2"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:valkey",
+      "version": null
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.6"
+    },
+    {
+      "package": "wasi:keyvalue",
+      "version": "0.2.0-draft2"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.2.6"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:45:25Z"
+}

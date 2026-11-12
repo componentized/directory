@@ -1,0 +1,177 @@
+package root:component;
+
+world root {
+  import componentized:services/types;
+  import componentized:services/lifecycle;
+  import wasi:logging/logging@0.1.0-draft;
+  import wasi:io/error@0.2.6;
+  import wasi:io/streams@0.2.6;
+  import wasi:http/types@0.2.6;
+
+  export wasi:http/incoming-handler@0.2.6;
+}
+package componentized:services {
+  interface types {
+    type service-id = string;
+
+    type service-instance-id = service-id;
+
+    type tier = string;
+
+    record request {
+      key: string,
+      value: string,
+    }
+
+    type error = string;
+
+    type service-binding-id = service-id;
+
+    type scope = string;
+  }
+  interface lifecycle {
+    use types.{service-instance-id, tier, request, error, service-binding-id, scope};
+
+    provision: func(instance-id: service-instance-id, %type: string, tier: option<tier>, requests: option<list<request>>) -> result<_, error>;
+
+    update: func(instance-id: service-instance-id, tier: option<tier>, requests: option<list<request>>) -> result<_, error>;
+
+    destroy: func(instance-id: service-instance-id, retain: option<bool>) -> result<_, error>;
+
+    bind: func(binding-id: service-binding-id, instance-id: service-instance-id, scopes: option<list<scope>>) -> result<_, error>;
+
+    list-bindings: func(instance-id: service-instance-id) -> result<list<service-binding-id>, error>;
+
+    unbind: func(binding-id: service-binding-id, instance-id: service-instance-id) -> result<_, error>;
+  }
+}
+
+
+package wasi:logging@0.1.0-draft {
+  interface logging {
+    enum level {
+      trace,
+      debug,
+      info,
+      warn,
+      error,
+      critical,
+    }
+
+    log: func(level: level, context: string, message: string);
+  }
+}
+
+
+package wasi:io@0.2.6 {
+  interface error {
+    resource error;
+  }
+  interface streams {
+    use error.{error};
+
+    resource output-stream {
+      blocking-write-and-flush: func(contents: list<u8>) -> result<_, stream-error>;
+    }
+
+    variant stream-error {
+      last-operation-failed(error),
+      closed,
+    }
+  }
+}
+
+
+package wasi:http@0.2.6 {
+  interface types {
+    use wasi:io/streams@0.2.6.{output-stream};
+
+    resource fields {
+      constructor();
+    }
+
+    resource incoming-request {
+      path-with-query: func() -> option<string>;
+    }
+
+    resource response-outparam {
+      set: static func(param: response-outparam, response: result<outgoing-response, error-code>);
+    }
+
+    resource outgoing-response {
+      constructor(headers: headers);
+      body: func() -> result<outgoing-body>;
+    }
+
+    record DNS-error-payload {
+      rcode: option<string>,
+      info-code: option<u16>,
+    }
+
+    record TLS-alert-received-payload {
+      alert-id: option<u8>,
+      alert-message: option<string>,
+    }
+
+    record field-size-payload {
+      field-name: option<string>,
+      field-size: option<u32>,
+    }
+
+    variant error-code {
+      DNS-timeout,
+      DNS-error(DNS-error-payload),
+      destination-not-found,
+      destination-unavailable,
+      destination-IP-prohibited,
+      destination-IP-unroutable,
+      connection-refused,
+      connection-terminated,
+      connection-timeout,
+      connection-read-timeout,
+      connection-write-timeout,
+      connection-limit-reached,
+      TLS-protocol-error,
+      TLS-certificate-error,
+      TLS-alert-received(TLS-alert-received-payload),
+      HTTP-request-denied,
+      HTTP-request-length-required,
+      HTTP-request-body-size(option<u64>),
+      HTTP-request-method-invalid,
+      HTTP-request-URI-invalid,
+      HTTP-request-URI-too-long,
+      HTTP-request-header-section-size(option<u32>),
+      HTTP-request-header-size(option<field-size-payload>),
+      HTTP-request-trailer-section-size(option<u32>),
+      HTTP-request-trailer-size(field-size-payload),
+      HTTP-response-incomplete,
+      HTTP-response-header-section-size(option<u32>),
+      HTTP-response-header-size(field-size-payload),
+      HTTP-response-body-size(option<u64>),
+      HTTP-response-trailer-section-size(option<u32>),
+      HTTP-response-trailer-size(field-size-payload),
+      HTTP-response-transfer-coding(option<string>),
+      HTTP-response-content-coding(option<string>),
+      HTTP-response-timeout,
+      HTTP-upgrade-failed,
+      HTTP-protocol-error,
+      loop-detected,
+      configuration-error,
+      internal-error(option<string>),
+    }
+
+    type headers = fields;
+
+    resource outgoing-body {
+      write: func() -> result<output-stream>;
+      finish: static func(this: outgoing-body, trailers: option<trailers>) -> result<_, error-code>;
+    }
+
+    type trailers = fields;
+  }
+  interface incoming-handler {
+    use types.{incoming-request, response-outparam};
+
+    handle: func(request: incoming-request, response-out: response-outparam);
+  }
+}

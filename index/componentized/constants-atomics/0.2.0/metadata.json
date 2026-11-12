@@ -1,0 +1,34 @@
+{
+  "package": "componentized:constants-atomics",
+  "version": "0.2.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/constants/atomics",
+    "tag": "0.2.0",
+    "digest": "sha256:62a4abbbc7507879aeeee29295bd95598928aac5a221f3af9befb49eb9289417",
+    "layer_digest": "sha256:c9b63e43f67986f4c3f088f79c28479702f324ffc7bba9885e19a262b067c0ed",
+    "size": 5261
+  },
+  "created": "2026-10-19T16:32:13.704791428Z",
+  "annotations": {
+    "org.opencontainers.image.description": "lock-free, thread-safe operations on streams",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "4aaed83df97fb4397efbd0831c4fc9907c422799",
+    "org.opencontainers.image.source": "https://github.com/componentized/constants.git",
+    "org.opencontainers.image.title": "componentized:constants-atomics",
+    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/4aaed83df97fb4397efbd0831c4fc9907c422799/components/atomics",
+    "org.opencontainers.image.version": "v0.2.0"
+  },
+  "exports": [
+    "componentized:constants/atomics@0.2.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:constants",
+      "version": "0.2.0"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:27Z"
+}

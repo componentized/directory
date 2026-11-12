@@ -1,0 +1,5 @@
+package root:component;
+
+world root {
+  export componentized:constants/atomics@0.2.1-dev;
+}

@@ -1,0 +1,34 @@
+{
+  "package": "componentized:constants",
+  "version": "0.0.0-dev",
+  "kind": "interface",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/constants",
+    "tag": "0.0.0-dev",
+    "digest": "sha256:097c9e373bf95913090872a1bf5269a2ed66676556851406937b656934aa6cd1",
+    "layer_digest": "sha256:8944be20aeaf0db1dcc070b956b6db5fec11f961ded225907522ae0d5da89dfd",
+    "size": 15893
+  },
+  "created": "2026-10-01T19:23:46.769308165Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Create custom wasm components that export constant values.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "81e7893f39c4a3ab765cd687661cb9678cd2569a",
+    "org.opencontainers.image.source": "https://github.com/componentized/constants.git",
+    "org.opencontainers.image.title": "interface",
+    "org.opencontainers.image.version": "0.0.0-dev"
+  },
+  "dependencies": [
+    {
+      "package": "componentized:component",
+      "version": "0.0.0-dev"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:01Z"
+}

@@ -1,0 +1,56 @@
+{
+  "package": "componentized:component-oci-loader",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component/oci-loader",
+    "tag": "0.1.0",
+    "digest": "sha256:d682c7ccf7b34101bd9bf4134225204044b92123abe93bc6024e289fa5fe4cc1",
+    "layer_digest": "sha256:4e9a7a27c3825bb1ce6e9ba74b8d2bfdfe415327d0f3a66b7cf3c55b30a282a7",
+    "size": 116437
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component/oci-loader",
+    "tag": "0.1.0_debug",
+    "digest": "sha256:dc0fe63522f338be9e8e8c408f1f993adc39f7c491c7264ebe7d59e97817a5c9",
+    "layer_digest": "sha256:99135bd81e6bbf34f239f1f52a5d04a55d9c5641d7da8d07e8e1a6e37fbaa2f5",
+    "size": 483019
+  },
+  "created": "2026-10-08T16:03:23.300222628Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Loads a component from an OCI registry by reference.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "60a42310d899e65248acf584221ba444607251f0",
+    "org.opencontainers.image.source": "https://github.com/componentized/component.git",
+    "org.opencontainers.image.title": "componentized:component-oci-loader",
+    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/60a42310d899e65248acf584221ba444607251f0/components/oci-loader",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "imports": [
+    "wasi:clocks/system-clock@0.3.0",
+    "componentized:oci/client@0.1.0",
+    "componentized:oci/media-types@0.1.0",
+    "componentized:component/types@0.1.0"
+  ],
+  "exports": [
+    "componentized:component/path-loader@0.1.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:component",
+      "version": "0.1.0"
+    },
+    {
+      "package": "componentized:oci",
+      "version": "0.1.0"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:18Z"
+}

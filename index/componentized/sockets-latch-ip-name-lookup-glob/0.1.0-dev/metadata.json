@@ -1,0 +1,59 @@
+{
+  "package": "componentized:sockets-latch-ip-name-lookup-glob",
+  "version": "0.1.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-ip-name-lookup-glob",
+    "tag": "0.1.0-dev",
+    "digest": "sha256:b9e4afe57f41fdbba49c3fc36826dec6dfb9065f019894d7b6d630ee5fb0ed98",
+    "layer_digest": "sha256:7c42b2f4963e7596cc144912f36f085d0fd14848216987279bfd1e420378792a",
+    "size": 67096
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-ip-name-lookup-glob",
+    "tag": "0.1.0-dev_debug",
+    "digest": "sha256:3c752b63ad8ecb34509adec7c7e9117ba7344193bd304b92197a2f92ef4c1764",
+    "layer_digest": "sha256:6299a5a6dda191063f3c4d2abf2fb4aa751f728a6190a999f302aa5f70d6e7de",
+    "size": 824583
+  },
+  "created": "2026-10-15T18:59:18.914580498Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Socket latch that uses glob patterns to grant or deny ip-name lookups.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b90f9a86284d488ca5706e484b8f4f64110b3aaf",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-ip-name-lookup-glob",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/b90f9a86284d488ca5706e484b8f4f64110b3aaf/components/latch-ip-name-lookup-glob",
+    "org.opencontainers.image.version": "0.1.0-dev"
+  },
+  "imports": [
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:config/store@0.2.0-rc.1",
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.0-dev"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:13:20Z"
+}

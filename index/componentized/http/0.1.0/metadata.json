@@ -1,0 +1,35 @@
+{
+  "package": "componentized:http",
+  "version": "0.1.0",
+  "kind": "interface",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http",
+    "tag": "0.1.0",
+    "digest": "sha256:785ddc802bd663d215b3772011a7897026fd48506408e6b5abaef597b152ece1",
+    "layer_digest": "sha256:2a8f5b6658165f9773c751718793ea6c2c5c7678ecd250fc58d9aa20b9abc041",
+    "size": 21192
+  },
+  "created": "2026-10-05T18:12:18.208284508Z",
+  "annotations": {
+    "org.opencontainers.image.description": "A collection of utility components that remix wasi:http types and interfaces.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b0a0308c87a6b3089882cb6f7315968b47aceebb",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/b0a0308c87a6b3089882cb6f7315968b47aceebb",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "dependencies": [
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:34Z"
+}

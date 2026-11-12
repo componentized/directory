@@ -1,0 +1,69 @@
+{
+  "package": "componentized:services-valkey-lifecycle",
+  "version": "0.0.4",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/valkey-lifecycle",
+    "tag": "0.0.4",
+    "digest": "sha256:00d667788f5cc5f70441ac709363fc0b06e648e9eb5d63f0e6f632e1c58ff25f",
+    "layer_digest": "sha256:e565bcc8967edfc32c753484b6d4920ac7e091c28bcc8b51111882651004e560",
+    "size": 519286
+  },
+  "created": "2025-12-22T16:39:38.566748662Z",
+  "annotations": {
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "6eef7607d874c6507ebd8a56b63cb44225de313b+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/services.git",
+    "org.opencontainers.image.title": "valkey-lifecycle",
+    "org.opencontainers.image.version": "v0.0.4"
+  },
+  "imports": [
+    "componentized:services/types",
+    "componentized:services/credential-admin",
+    "wasi:clocks/wall-clock@0.2.6",
+    "wasi:config/store@0.2.0-rc.1",
+    "wasi:io/error@0.2.6",
+    "wasi:io/streams@0.2.6",
+    "wasi:cli/environment@0.2.6",
+    "wasi:cli/exit@0.2.6",
+    "wasi:cli/stderr@0.2.6",
+    "wasi:sockets/network@0.2.6",
+    "wasi:sockets/instance-network@0.2.6",
+    "wasi:io/poll@0.2.6",
+    "wasi:sockets/tcp@0.2.6",
+    "wasi:sockets/tcp-create-socket@0.2.6",
+    "wasi:sockets/ip-name-lookup@0.2.6"
+  ],
+  "exports": [
+    "componentized:services/lifecycle"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:services",
+      "version": null
+    },
+    {
+      "package": "wasi:cli",
+      "version": "0.2.6"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.2.6"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.6"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.2.6"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:59Z"
+}

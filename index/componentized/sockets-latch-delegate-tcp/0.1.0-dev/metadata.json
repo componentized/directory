@@ -1,0 +1,50 @@
+{
+  "package": "componentized:sockets-latch-delegate-tcp",
+  "version": "0.1.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-delegate-tcp",
+    "tag": "0.1.0-dev",
+    "digest": "sha256:c38a21aa0a28f291e5beb6b27ec3bac65e493e6abcfce519fd4203a3dfc70de4",
+    "layer_digest": "sha256:8c11989dc760ff7c83d5f5e33699b2ea9a04f29f745e32f55aaf39e408b4de02",
+    "size": 37838
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-delegate-tcp",
+    "tag": "0.1.0-dev_debug",
+    "digest": "sha256:eea111c181323f3e2fb4b93182ad02dc5ef1d9d1a3430d14c54390484d26401f",
+    "layer_digest": "sha256:1ef2a69f7cd95010dbdda14caa93ed488bed612a19fd592ecedca04a8c9954c7",
+    "size": 357572
+  },
+  "created": "2026-10-15T18:54:57.351180549Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Sockets latch that wraps another latch, delegating only tcp socket operations to it. Udp socket and ip-name-lookup operations are deferred without consulting the wrapped latch, it neither authorizes nor observes them.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b90f9a86284d488ca5706e484b8f4f64110b3aaf",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-delegate-tcp",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/b90f9a86284d488ca5706e484b8f4f64110b3aaf/components/latch-delegate-tcp",
+    "org.opencontainers.image.version": "0.1.0-dev"
+  },
+  "imports": [
+    "wasi:sockets/types@0.3.0",
+    "componentized:sockets/latch@0.1.0-dev"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.0-dev"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:13:07Z"
+}

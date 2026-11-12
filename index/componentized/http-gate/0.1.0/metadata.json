@@ -1,0 +1,58 @@
+{
+  "package": "componentized:http-gate",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/gate",
+    "tag": "0.1.0",
+    "digest": "sha256:fc87ba44d022388cc49156d3800268bea1bd735a1b6ff8368a8e7aac53b536cc",
+    "layer_digest": "sha256:28f6531d73b6ec9d9b779717e00845822b9ab99f23f1e85c9b6e603e1ea1ce73",
+    "size": 168136
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/gate",
+    "tag": "0.1.0_debug",
+    "digest": "sha256:9beb92184c0a3d664570dd9070b0d7008acff0a8afebce2ac13a58cb4cd42148",
+    "layer_digest": "sha256:7b901d5fe6089c87a43d0dc8c2afa96587b95d94f36469636ab47a6c35eb75a6",
+    "size": 566910
+  },
+  "created": "2026-10-05T18:12:42.753817410Z",
+  "annotations": {
+    "org.opencontainers.image.description": "HTTP gate access control for both requests sent and handled.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b0a0308c87a6b3089882cb6f7315968b47aceebb",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-gate",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/b0a0308c87a6b3089882cb6f7315968b47aceebb/components/gate",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "imports": [
+    "wasi:http/types@0.3.0",
+    "componentized:http/latch@0.1.0",
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:http/client@0.3.0",
+    "wasi:http/handler@0.3.0"
+  ],
+  "exports": [
+    "wasi:http/client@0.3.0",
+    "wasi:http/handler@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:http",
+      "version": "0.1.0"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:35Z"
+}

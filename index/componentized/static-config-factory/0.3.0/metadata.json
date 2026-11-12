@@ -1,0 +1,49 @@
+{
+  "package": "componentized:static-config-factory",
+  "version": "0.3.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/static-config/factory",
+    "tag": "0.3.0",
+    "digest": "sha256:1552b76ed86e4fa0cb54995ce38c6da8e20350388501c05398a7d8c12f0aedb3",
+    "layer_digest": "sha256:0d34f87acd843bc48a9a62a5608556c976db6361b51a42a60dc678ae09711173",
+    "size": 1646025
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/static-config/factory",
+    "tag": "0.3.0_debug",
+    "digest": "sha256:9bac5aade0928ba2419eb04c019cd3c6b08e3b66d38ff03992b55fcc70adef75",
+    "layer_digest": "sha256:5b43033ccb8b9b763ec771245654b830f3f287a061db109a6ab6687bb570102b",
+    "size": 6018879
+  },
+  "created": "2026-10-08T20:29:24.314199669Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Create wasi:config components with static values, from key value pairs.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "e6074c6b8d738bd57c4b0e78a033fe5fc9594da8",
+    "org.opencontainers.image.source": "https://github.com/componentized/static-config.git",
+    "org.opencontainers.image.title": "componentized:static-config-factory",
+    "org.opencontainers.image.url": "https://github.com/componentized/static-config/tree/e6074c6b8d738bd57c4b0e78a033fe5fc9594da8/components/factory",
+    "org.opencontainers.image.version": "v0.3.0"
+  },
+  "imports": [
+    "componentized:component/types@0.1.0"
+  ],
+  "exports": [
+    "componentized:static-config/factory@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:component",
+      "version": "0.1.0"
+    },
+    {
+      "package": "componentized:static-config",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:45:19Z"
+}

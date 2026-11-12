@@ -1,0 +1,41 @@
+{
+  "package": "componentized:services-credential-config",
+  "version": "0.0.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/credential-config",
+    "tag": "0.0.1",
+    "digest": "sha256:86b960481a7d715cb9734905be73cdd2532e699a29ff26426eb069d3a1eb383b",
+    "layer_digest": "sha256:a67a57782c9828e99ddf2a565cd401e527bc2b3b7bee013e76da7766942e77c8",
+    "size": 30734
+  },
+  "created": "2025-04-25T18:25:45.443399845Z",
+  "annotations": {
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "9dc04233920f991b6405d8112160094dbf92a472+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/services.git",
+    "org.opencontainers.image.title": "credential-config",
+    "org.opencontainers.image.version": "v0.0.1"
+  },
+  "imports": [
+    "componentized:services/types",
+    "componentized:services/credential-store",
+    "wasi:config/store@0.2.0-draft"
+  ],
+  "exports": [
+    "wasi:config/store@0.2.0-draft"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:services",
+      "version": null
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-draft"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:49Z"
+}

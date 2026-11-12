@@ -1,0 +1,9 @@
+package root:component;
+
+world root {
+  import componentized:services/types@0.0.5-dev;
+  import componentized:services/credential-store@0.0.5-dev;
+  import wasi:config/store@0.2.0-rc.1;
+
+  export wasi:config/store@0.2.0-rc.1;
+}

@@ -1,0 +1,56 @@
+{
+  "package": "componentized:filesystem-latch-n2",
+  "version": "0.3.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem/latch-n2",
+    "tag": "0.3.0-dev",
+    "digest": "sha256:73dc95bfbf209f1d7d97daf4410063dcf1c4a3bd7b95cf74f7ccc88f76fe8eb1",
+    "layer_digest": "sha256:faaa7b698ad5f67bbbfb3846b44642960d746d33cdfe6f9a9cb41d9c45c73fd8",
+    "size": 59955
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem/latch-n2",
+    "tag": "0.3.0-dev_debug",
+    "digest": "sha256:c8f2ba27e36fa2d95309f3428d6ec8ae08c6901ec50c91609d6b7f6077aa3c2b",
+    "layer_digest": "sha256:56dc2a2350ade70a2994014a297da8e0063d4e42db3f0ddc42b2f61cee00741e",
+    "size": 600807
+  },
+  "created": "2026-11-09T19:52:32.569325743Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Filesystem latch that aggregates two other filesystem latches.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "209ad270f66768627d3599274c8aeca6103fda67",
+    "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
+    "org.opencontainers.image.title": "componentized:filesystem-latch-n2",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/209ad270f66768627d3599274c8aeca6103fda67/components/latch-n2",
+    "org.opencontainers.image.version": "0.3.0-dev"
+  },
+  "imports": [
+    "wasi:clocks/system-clock@0.3.0",
+    "wasi:filesystem/types@0.3.0",
+    "latch0: componentized:filesystem/latch@0.3.0-dev",
+    "latch1: componentized:filesystem/latch@0.3.0-dev"
+  ],
+  "exports": [
+    "componentized:filesystem/latch@0.3.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:filesystem",
+      "version": "0.3.0-dev"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:17Z"
+}

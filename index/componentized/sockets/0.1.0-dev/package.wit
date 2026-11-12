@@ -1,0 +1,223 @@
+package componentized:sockets@0.1.0-dev;
+
+/// Access control for wasi:sockets.
+///
+/// A gate consults a latch before performing each socket operation. The latch either defers,
+/// raising no objection, or denies the operation. A latch never grants an operation, an
+/// operation proceeds when the latch defers. Several latches can be aggregated into one, the
+/// operation is denied when any of them denies it.
+///
+/// Deciding and acting on a decision are separate steps. `authorize` decides without side
+/// effects, then the gate reports the final decision to `observe-decision`, where a latch updates
+/// any state it keeps. A latch aggregated with others may not be asked to authorize an operation
+/// another latch already denied, but it always observes the final decision.
+@since(version = 0.1.0-dev)
+interface latch {
+  @since(version = 0.1.0-dev)
+  use wasi:sockets/types@0.3.0.{ip-address, ip-address-family, ip-socket-address, tcp-socket, udp-socket};
+
+  /// Arguments to wasi:sockets/ip-name-lookup#resolve-addresses.
+  @since(version = 0.1.0-dev)
+  record resolve-addresses-args {
+    /// The name to look up, as passed by the caller. DNS search paths are not applied.
+    name: string,
+  }
+
+  /// Items returned from calls to wasi:sockets/ip-name-lookup#resolve-addresses.
+  @since(version = 0.1.0-dev)
+  record resolve-addresses-returns-item {
+    /// An address the lookup returned.
+    ip-address: ip-address,
+  }
+
+  /// Operations of the wasi:sockets/ip-name-lookup interface.
+  @since(version = 0.1.0-dev)
+  variant ip-name-lookup-operation {
+    /// Authorized before the name is looked up. A denial fails the lookup.
+    resolve-addresses(resolve-addresses-args),
+    /// Authorized for each address the lookup returned. A denied address is removed from the
+    /// result, the lookup succeeds with the remaining addresses.
+    resolve-addresses-return(resolve-addresses-returns-item),
+  }
+
+  /// Arguments to wasi:sockets/types#tcp-socket.create.
+  @since(version = 0.1.0-dev)
+  record tcp-socket-create-args {
+    address-family: ip-address-family,
+  }
+
+  /// Arguments to wasi:sockets/types#tcp-socket.bind.
+  @since(version = 0.1.0-dev)
+  record tcp-socket-bind-args {
+    local-address: ip-socket-address,
+  }
+
+  /// Arguments to wasi:sockets/types#tcp-socket.connect.
+  @since(version = 0.1.0-dev)
+  record tcp-socket-connect-args {
+    remote-address: ip-socket-address,
+  }
+
+  /// Operations of the wasi:sockets/types#tcp-socket interface.
+  ///
+  /// The borrowed socket is the socket the operation is performed on, a latch may query it, for
+  /// example for its local or remote address.
+  @since(version = 0.1.0-dev)
+  variant tcp-socket-operation {
+    /// Authorized before the socket is created. A denial fails the create.
+    create(tcp-socket-create-args),
+    /// Authorized before the socket is bound. A denial fails the bind.
+    bind(tuple<borrow<tcp-socket>, tcp-socket-bind-args>),
+    /// Authorized before the socket connects. A denial fails the connect, nothing is sent to
+    /// the remote address.
+    connect(tuple<borrow<tcp-socket>, tcp-socket-connect-args>),
+    /// Authorized before the socket starts listening. A denial fails the listen.
+    listen(tuple<borrow<tcp-socket>>),
+    /// Authorized for each connection a listening socket accepts, the borrowed socket is the
+    /// accepted connection. A denied connection is closed before it reaches the caller, the
+    /// listening socket keeps accepting other connections.
+    listen-connection(tuple<borrow<tcp-socket>>),
+    /// Authorized once per socket before data is sent, `send` can only be called once and
+    /// streams all of its data. A denial fails the send.
+    send(tuple<borrow<tcp-socket>>),
+    /// Authorized once per socket before data is received, `receive` can only be called once
+    /// and streams all of its data. A denial fails the receive.
+    receive(tuple<borrow<tcp-socket>>),
+  }
+
+  /// Arguments to wasi:sockets/types#udp-socket.create.
+  @since(version = 0.1.0-dev)
+  record udp-socket-create-args {
+    address-family: ip-address-family,
+  }
+
+  /// Arguments to wasi:sockets/types#udp-socket.bind.
+  @since(version = 0.1.0-dev)
+  record udp-socket-bind-args {
+    local-address: ip-socket-address,
+  }
+
+  /// Arguments to wasi:sockets/types#udp-socket.connect.
+  @since(version = 0.1.0-dev)
+  record udp-socket-connect-args {
+    remote-address: ip-socket-address,
+  }
+
+  /// Arguments to wasi:sockets/types#udp-socket.send.
+  @since(version = 0.1.0-dev)
+  record udp-socket-send-args {
+    /// The length of the datagram in bytes.
+    data-length: u64,
+    /// Where the datagram is sent. `none` for a connected socket sending to the remote
+    /// address it is connected to.
+    remote-address: option<ip-socket-address>,
+  }
+
+  /// Returned value from calls to wasi:sockets/types#udp-socket.receive.
+  @since(version = 0.1.0-dev)
+  record udp-socket-receive-returns {
+    /// The length of the datagram in bytes.
+    data-length: u64,
+    /// Where the datagram was sent from. UDP source addresses are not authenticated.
+    remote-address: ip-socket-address,
+  }
+
+  /// Operations of wasi:sockets/types#udp-socket.
+  ///
+  /// The borrowed socket is the socket the operation is performed on, a latch may query it, for
+  /// example for its local or remote address.
+  @since(version = 0.1.0-dev)
+  variant udp-socket-operation {
+    /// Authorized before the socket is created. A denial fails the create.
+    create(udp-socket-create-args),
+    /// Authorized before the socket is bound. A denial fails the bind.
+    bind(tuple<borrow<udp-socket>, udp-socket-bind-args>),
+    /// Authorized before the socket connects. A denial fails the connect.
+    connect(tuple<borrow<udp-socket>, udp-socket-connect-args>),
+    /// Authorized for each datagram before it is sent. A denial fails the send, nothing is
+    /// sent.
+    send(tuple<borrow<udp-socket>, udp-socket-send-args>),
+    /// Authorized for each datagram after it is received, before it reaches the caller. A
+    /// denied datagram is dropped and the receive continues with the next datagram, so a
+    /// sender cannot fail the caller's receive.
+    receive(tuple<borrow<udp-socket>, udp-socket-receive-returns>),
+  }
+
+  /// Operations for the wasi:sockets package.
+  @since(version = 0.1.0-dev)
+  variant operation {
+    ip-name-lookup(ip-name-lookup-operation),
+    tcp-socket(tcp-socket-operation),
+    udp-socket(udp-socket-operation),
+  }
+
+  /// The name of a latch component, identifying which latch reported an error.
+  @since(version = 0.1.0-dev)
+  type latch-name = string;
+
+  /// A latch was unable to decide or observe. The gate fails the operation, except for an
+  /// accepted connection, which is closed as if it were denied.
+  @since(version = 0.1.0-dev)
+  variant error-code {
+    /// The latch's configuration is invalid, the cause is logged by the latch.
+    invalid-config(latch-name),
+    /// The latch was unable to act on the final decision.
+    observation-failed(latch-name),
+    /// Any other error.
+    other(option<string>),
+  }
+
+  /// The reason an operation is denied, returned to the caller as the wasi:sockets error code.
+  @since(version = 0.1.0-dev)
+  variant sockets-error-code {
+    /// Access denied.
+    ///
+    /// POSIX equivalent: EACCES, EPERM
+    access-denied,
+    /// One of the arguments is invalid.
+    ///
+    /// POSIX equivalent: EINVAL, EDESTADDRREQ, EAFNOSUPPORT
+    invalid-argument,
+    /// A catch-all for errors not captured by the existing variants.
+    /// Implementations can use this to extend the error type without
+    /// breaking existing code.
+    other(option<string>),
+  }
+
+  /// Whether the operation is allowed to proceed.
+  @since(version = 0.1.0-dev)
+  variant decision {
+    /// No objection to the operation.
+    deferred,
+    /// The operation must not proceed. The error code is returned to the caller for
+    /// operations that fail. For traffic that is dropped instead, like an accepted connection
+    /// or a received datagram, it is only logged.
+    denied(sockets-error-code),
+  }
+
+  /// Decide whether the operation may proceed.
+  ///
+  /// Must not have side effects. When latches are aggregated, a latch is not asked about an
+  /// operation another latch already denied, so state changed here could disagree with what
+  /// actually happened. Act on decisions in `observe-decision` instead.
+  @since(version = 0.1.0-dev)
+  authorize: func(operation: operation) -> result<decision, error-code>;
+
+  /// Observe the final decision for an operation, after `authorize` returned a decision.
+  ///
+  /// Called for both deferred and denied operations, including operations this latch was not
+  /// asked to authorize because an aggregated latch denied them first. The final decision is
+  /// what the gate enforces, so this is where a latch updates any state it keeps, for example
+  /// remembering peers the caller is allowed to exchange traffic with. Not called when
+  /// `authorize` returned an error.
+  ///
+  /// An error fails the operation, since the latch could not act on the decision.
+  @since(version = 0.1.0-dev)
+  observe-decision: func(final-decision: decision, operation: operation) -> result<_, error-code>;
+}
+
+world imports {
+  import wasi:clocks/types@0.3.0;
+  import wasi:sockets/types@0.3.0;
+  import latch;
+}

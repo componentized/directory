@@ -1,0 +1,18 @@
+package root:component;
+
+world root {
+  import wasi:clocks/system-clock@0.3.0;
+  import wasi:clocks/types@0.3.0;
+  import wasi:sockets/types@0.3.0;
+  import wasi:sockets/ip-name-lookup@0.3.0;
+  import wasi:clocks/monotonic-clock@0.3.0;
+  import wasi:config/store@0.2.0-rc.1;
+  import wasi:cli/environment@0.3.0;
+  import wasi:cli/types@0.3.0;
+  import wasi:cli/stdin@0.3.0;
+  import wasi:cli/stdout@0.3.0;
+  import wasi:cli/stderr@0.3.0;
+  import componentized:valkey/types@0.3.0-dev;
+
+  export wasi:cli/run@0.3.0;
+}

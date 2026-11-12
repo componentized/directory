@@ -1,0 +1,51 @@
+{
+  "package": "componentized:sockets-trace-ip-name-lookup",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/trace-ip-name-lookup",
+    "tag": "0.1.0",
+    "digest": "sha256:950a85062509b6b4b159797601e7ff379ddb8e2daa6056dfcf570fd4bbff9d9f",
+    "layer_digest": "sha256:5a72636026a4fd719491ef7876910348806e04365c0302ce9b4e12ac9f5aee5d",
+    "size": 65223
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/trace-ip-name-lookup",
+    "tag": "0.1.0_debug",
+    "digest": "sha256:719b61b55e4dacec4c44ed564c761a4f57e839510880ffc0fcd15979e6c3b021",
+    "layer_digest": "sha256:7be8127455f579b6457e8535ee8f24c110fafd7b7d544787182359f81ca8dcdd",
+    "size": 896317
+  },
+  "created": "2026-10-15T19:12:10.843207149Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Trace wasi:sockets/ip-name-lookup calls using a logger.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "33379c373a0cebf66d2201adbb482a90f48dc01b",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-trace-ip-name-lookup",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/33379c373a0cebf66d2201adbb482a90f48dc01b/components/trace-ip-name-lookup",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "imports": [
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:sockets/types@0.3.0",
+    "wasi:sockets/ip-name-lookup@0.3.0"
+  ],
+  "exports": [
+    "wasi:sockets/ip-name-lookup@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:45:17Z"
+}

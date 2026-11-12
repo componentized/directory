@@ -1,0 +1,9 @@
+package root:component;
+
+world root {
+  import wasi:cli/types@0.3.0;
+  import wasi:clocks/system-clock@0.3.0;
+  import wasi:cli/stderr@0.3.0;
+
+  export wasi:logging/logging@0.1.0-draft;
+}

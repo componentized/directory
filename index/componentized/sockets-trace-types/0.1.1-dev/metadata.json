@@ -1,0 +1,55 @@
+{
+  "package": "componentized:sockets-trace-types",
+  "version": "0.1.1-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/trace-types",
+    "tag": "0.1.1-dev",
+    "digest": "sha256:0595d3557c8dbcac20be9841e7181c2b222c858f65c04eeedb05ecf455abb874",
+    "layer_digest": "sha256:f772d7e3f76534578b55f71c4fa8140f02303423101fcdb71b9e44a59a645c43",
+    "size": 209171
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/trace-types",
+    "tag": "0.1.1-dev_debug",
+    "digest": "sha256:4db54147cf555f1aadf9bae57acde5a64356985e5a9f889da38751a50a3b62eb",
+    "layer_digest": "sha256:d2ffa159857bc5d8671ff02b527492abbe396e1821d9f9d2dd562a2aefafa2a3",
+    "size": 1790924
+  },
+  "created": "2026-11-09T19:56:12.442578242Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Trace wasi:sockets/types calls using a logger.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "51c87720416237042c1efbe3a990e7a5ba7e3141",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-trace-types",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/51c87720416237042c1efbe3a990e7a5ba7e3141/components/trace-types",
+    "org.opencontainers.image.version": "0.1.1-dev"
+  },
+  "imports": [
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:clocks/types@0.3.0",
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "wasi:sockets/types@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:13:28Z"
+}

@@ -1,0 +1,56 @@
+{
+  "package": "componentized:sockets-gate-ip-name-lookup",
+  "version": "0.1.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/gate-ip-name-lookup",
+    "tag": "0.1.0-dev",
+    "digest": "sha256:a1b73fd646cd2e214b1d070efff8f080c4955816c41057d99c9ef777acc1a4e1",
+    "layer_digest": "sha256:9b92b61790bee2f1a0f961f3a6beb4c82329003b741cbff6d466653d43cef881",
+    "size": 74415
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/gate-ip-name-lookup",
+    "tag": "0.1.0-dev_debug",
+    "digest": "sha256:bffbe3940ec7d6f145211c6777141d3d3e2cc1379a714d5297111ee7adea375d",
+    "layer_digest": "sha256:e52c706963f4414623393e1ccbbcbe72d96012b15ce0c5efe14c721e60db360e",
+    "size": 990025
+  },
+  "created": "2026-10-15T18:52:51.209915052Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Socket gate access control for wasi:sockets/ip-name-lookup.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b90f9a86284d488ca5706e484b8f4f64110b3aaf",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-gate-ip-name-lookup",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/b90f9a86284d488ca5706e484b8f4f64110b3aaf/components/gate-ip-name-lookup",
+    "org.opencontainers.image.version": "0.1.0-dev"
+  },
+  "imports": [
+    "wasi:sockets/types@0.3.0",
+    "componentized:sockets/latch@0.1.0-dev",
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:sockets/ip-name-lookup@0.3.0"
+  ],
+  "exports": [
+    "wasi:sockets/ip-name-lookup@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.0-dev"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:13:00Z"
+}

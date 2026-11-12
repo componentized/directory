@@ -1,0 +1,684 @@
+package componentized:constants@0.1.1;
+
+/// Constant config values for the `wasi:config/store` interface.
+interface config-values {
+  /// Values to be exposed via the `wasi:config/store` interface.
+  ///
+  /// Either use this interface with custom override values, or duplicate
+  /// this interface updating the default values defined below.
+  /// @value []
+  values: func() -> list<tuple<string, string>>;
+}
+
+/// Creates components whose exported functions return constant values.
+interface factory {
+  use componentized:component/types@0.0.0-dev.{component, error};
+  use componentized:component/wit@0.0.0-dev.{wit};
+
+  /// WIT defining the world for the created component to implement.
+  variant wit-source {
+    /// WIT text. Packages the world depends on may be defined inline with
+    /// nested `package ns:name { ... }` blocks.
+    text(string),
+    /// A WIT package encoded as wasm, including its dependencies, e.g. from
+    /// `wasm-tools component wit --wasm` or `wkg build`.
+    encoded(component),
+    /// WIT parsed by `componentized:component/wit#extract`. When
+    /// extracted from a component, rather than a WIT package, the
+    /// component's world is implemented by default.
+    parsed(wit),
+  }
+
+  /// Values replacing those from the WIT. The overrides are a record with
+  /// an optional field per world export. Interface exports are named by the
+  /// interface and hold a nested record with a field per function.
+  variant overrides {
+    /// The record as WAVE source, `//` line comments are allowed.
+    wave(string),
+  }
+
+  /// Creates a component implementing `world` from `wit`.
+  ///
+  /// Every function the world exports must be synchronous, take no
+  /// parameters and return a value. Values can't reach maps, handles,
+  /// futures, streams or error contexts, though result types may include
+  /// them in branches the value doesn't take, e.g. `none` for an
+  /// `option<own<r>>`. Each function's value is a WAVE expression following
+  /// a `@value` tag in its doc comment.
+  ///
+  /// - `world`: the world to implement, required when the WIT package
+  ///   defines more than one world.
+  /// - `overrides`: values replacing those from the WIT.
+  create: async func(wit: wit-source, %world: option<string>, overrides: option<overrides>) -> result<component, error>;
+}
+
+/// Common mathematical constants.
+interface math {
+  /// Euler's number (e)
+  /// @value 2.718281828459045
+  e: func() -> f64;
+
+  /// The Euler-Mascheroni constant (γ)
+  /// @value 0.5772156649015329
+  euler-gamma: func() -> f64;
+
+  /// 1/π
+  /// @value 0.3183098861837907
+  frac-n1-pi: func() -> f64;
+
+  /// 1/sqrt(2)
+  /// @value 0.7071067811865476
+  frac-n1-sqrt-n2: func() -> f64;
+
+  /// 2/π
+  /// @value 0.6366197723675814
+  frac-n2-pi: func() -> f64;
+
+  /// 2/sqrt(π)
+  /// @value 1.1283791670955126
+  frac-n2-sqrt-pi: func() -> f64;
+
+  /// π/2
+  /// @value 1.5707963267948966
+  frac-pi-n2: func() -> f64;
+
+  /// π/3
+  /// @value 1.0471975511965979
+  frac-pi-n3: func() -> f64;
+
+  /// π/4
+  /// @value 0.7853981633974483
+  frac-pi-n4: func() -> f64;
+
+  /// π/6
+  /// @value 0.5235987755982989
+  frac-pi-n6: func() -> f64;
+
+  /// π/8
+  /// @value 0.39269908169872414
+  frac-pi-n8: func() -> f64;
+
+  /// The golden ratio (φ)
+  /// @value 1.618033988749895
+  golden-ratio: func() -> f64;
+
+  /// ln(2)
+  /// @value 0.6931471805599453
+  ln-n2: func() -> f64;
+
+  /// ln(10)
+  /// @value 2.302585092994046
+  ln-n10: func() -> f64;
+
+  /// log2(10)
+  /// @value 3.321928094887362
+  log2-n10: func() -> f64;
+
+  /// log2(e)
+  /// @value 1.4426950408889634
+  log2-e: func() -> f64;
+
+  /// log10(2)
+  /// @value 0.3010299956639812
+  log10-n2: func() -> f64;
+
+  /// log10(e)
+  /// @value 0.4342944819032518
+  log10-e: func() -> f64;
+
+  /// Archimedes' constant (π)
+  /// @value 3.141592653589793
+  pi: func() -> f64;
+
+  /// sqrt(2)
+  /// @value 1.4142135623730951
+  sqrt-n2: func() -> f64;
+
+  /// The full circle constant (τ)
+  /// @value 6.283185307179586
+  tau: func() -> f64;
+}
+
+/// Constants for the `u8` unsigned integer type.
+interface %u8 {
+  /// u8 max value
+  /// @value 255
+  max: func() -> u8;
+
+  /// u8 min value
+  /// @value 0
+  min: func() -> u8;
+
+  /// The size of `u8` in bits.
+  /// @value 8
+  bits: func() -> u32;
+}
+
+/// Constants for the `u16` unsigned integer type.
+interface %u16 {
+  /// u16 max value
+  /// @value 65535
+  max: func() -> u16;
+
+  /// u16 min value
+  /// @value 0
+  min: func() -> u16;
+
+  /// The size of `u16` in bits.
+  /// @value 16
+  bits: func() -> u32;
+}
+
+/// Constants for the `u32` unsigned integer type.
+interface %u32 {
+  /// u32 max value
+  /// @value 4294967295
+  max: func() -> u32;
+
+  /// u32 min value
+  /// @value 0
+  min: func() -> u32;
+
+  /// The size of `u32` in bits.
+  /// @value 32
+  bits: func() -> u32;
+}
+
+/// Constants for the `u64` unsigned integer type.
+interface %u64 {
+  /// u64 max value
+  /// @value 18446744073709551615
+  max: func() -> u64;
+
+  /// u64 min value
+  /// @value 0
+  min: func() -> u64;
+
+  /// The size of `u64` in bits.
+  /// @value 64
+  bits: func() -> u32;
+}
+
+/// Constants for the `s8` signed integer type.
+interface %s8 {
+  /// s8 max value
+  /// @value 127
+  max: func() -> s8;
+
+  /// s8 min value
+  /// @value -128
+  min: func() -> s8;
+
+  /// The size of `s8` in bits.
+  /// @value 8
+  bits: func() -> u32;
+}
+
+/// Constants for the `s16` signed integer type.
+interface %s16 {
+  /// s16 max value
+  /// @value 32767
+  max: func() -> s16;
+
+  /// s16 min value
+  /// @value -32768
+  min: func() -> s16;
+
+  /// The size of `s16` in bits.
+  /// @value 16
+  bits: func() -> u32;
+}
+
+/// Constants for the `s32` signed integer type.
+interface %s32 {
+  /// s32 max value
+  /// @value 2147483647
+  max: func() -> s32;
+
+  /// s32 min value
+  /// @value -2147483648
+  min: func() -> s32;
+
+  /// The size of `s32` in bits.
+  /// @value 32
+  bits: func() -> u32;
+}
+
+/// Constants for the `s64` signed integer type.
+interface %s64 {
+  /// s64 max value
+  /// @value 9223372036854775807
+  max: func() -> s64;
+
+  /// s64 min value
+  /// @value -9223372036854775808
+  min: func() -> s64;
+
+  /// The size of `s64` in bits.
+  /// @value 64
+  bits: func() -> u32;
+}
+
+/// Constants for the `f32` floating point type.
+interface %f32 {
+  /// The radix or base of the internal representation of `f32`.
+  /// @value 2
+  radix: func() -> u32;
+
+  /// Number of significant digits in base 2.
+  /// @value 24
+  mantissa-digits: func() -> u32;
+
+  /// Approximate number of significant digits in base 10.
+  /// @value 6
+  digits: func() -> u32;
+
+  /// Machine epsilon value for `f32`, the difference between `1.0` and the next larger representable number.
+  /// @value 1.19209290e-07
+  epsilon: func() -> f32;
+
+  /// Smallest finite `f32` value.
+  /// @value -3.40282347e+38
+  min: func() -> f32;
+
+  /// Smallest positive normal `f32` value.
+  /// @value 1.17549435e-38
+  min-positive: func() -> f32;
+
+  /// Largest finite `f32` value.
+  /// @value 3.40282347e+38
+  max: func() -> f32;
+
+  /// One greater than the minimum possible normal power of 2 exponent.
+  /// @value -125
+  min-exp: func() -> s32;
+
+  /// Maximum possible power of 2 exponent.
+  /// @value 128
+  max-exp: func() -> s32;
+
+  /// Minimum *x* for which 10<sup>*x*</sup> is normal.
+  /// @value -37
+  min-n10-exp: func() -> s32;
+
+  /// Maximum *x* for which 10<sup>*x*</sup> is normal.
+  /// @value 38
+  max-n10-exp: func() -> s32;
+
+  /// Not a Number (NaN).
+  /// @value nan
+  nan: func() -> f32;
+
+  /// Infinity (∞).
+  /// @value inf
+  infinity: func() -> f32;
+
+  /// Negative infinity (−∞).
+  /// @value -inf
+  neg-infinity: func() -> f32;
+}
+
+/// Constants for the `f64` floating point type.
+interface %f64 {
+  /// The radix or base of the internal representation of `f64`.
+  /// @value 2
+  radix: func() -> u32;
+
+  /// Number of significant digits in base 2.
+  /// @value 53
+  mantissa-digits: func() -> u32;
+
+  /// Approximate number of significant digits in base 10.
+  /// @value 15
+  digits: func() -> u32;
+
+  /// Machine epsilon value for `f64`, the difference between `1.0` and the next larger representable number.
+  /// @value 2.2204460492503131e-16
+  epsilon: func() -> f64;
+
+  /// Smallest finite `f64` value.
+  /// @value -1.7976931348623157e+308
+  min: func() -> f64;
+
+  /// Smallest positive normal `f64` value.
+  /// @value 2.2250738585072014e-308
+  min-positive: func() -> f64;
+
+  /// Largest finite `f64` value.
+  /// @value 1.7976931348623157e+308
+  max: func() -> f64;
+
+  /// One greater than the minimum possible normal power of 2 exponent.
+  /// @value -1021
+  min-exp: func() -> s32;
+
+  /// Maximum possible power of 2 exponent.
+  /// @value 1024
+  max-exp: func() -> s32;
+
+  /// Minimum *x* for which 10<sup>*x*</sup> is normal.
+  /// @value -307
+  min-n10-exp: func() -> s32;
+
+  /// Maximum *x* for which 10<sup>*x*</sup> is normal.
+  /// @value 308
+  max-n10-exp: func() -> s32;
+
+  /// Not a Number (NaN).
+  /// @value nan
+  nan: func() -> f64;
+
+  /// Infinity (∞).
+  /// @value inf
+  infinity: func() -> f64;
+
+  /// Negative infinity (−∞).
+  /// @value -inf
+  neg-infinity: func() -> f64;
+}
+
+world config {
+  import config-values;
+
+  export wasi:config/store@0.2.0-rc.1;
+}
+world imports {
+  import config-values;
+  import componentized:component/types@0.0.0-dev;
+  import componentized:component/wit@0.0.0-dev;
+  import factory;
+  import %u8;
+  import %u16;
+  import %u32;
+  import %u64;
+  import %s8;
+  import %s16;
+  import %s32;
+  import %s64;
+  import %f32;
+  import %f64;
+}
+package componentized:component@0.0.0-dev {
+  interface types {
+    variant error {
+      other(option<string>),
+    }
+
+    type component = list<u8>;
+  }
+  interface wit {
+    use types.{component, error};
+
+    type type-id = string;
+
+    variant %type {
+      %bool,
+      %s8,
+      %s16,
+      %s32,
+      %s64,
+      %u8,
+      %u16,
+      %u32,
+      %u64,
+      %f32,
+      %f64,
+      %char,
+      %string,
+      %error-context,
+      id(type-id),
+    }
+
+    variant handle {
+      %own(type-id),
+      %borrow(type-id),
+    }
+
+    record %tuple {
+      types: list<%type>,
+    }
+
+    record %result {
+      ok: option<%type>,
+      err: option<%type>,
+    }
+
+    record %list {
+      %type: %type,
+      fixed-length: option<u32>,
+    }
+
+    record %map {
+      key: %type,
+      value: %type,
+    }
+
+    variant function-kind {
+      freestanding,
+      async-freestanding,
+      method(type-id),
+      async-method(type-id),
+      %static(type-id),
+      async-static(type-id),
+      %constructor(type-id),
+    }
+
+    record param {
+      name: string,
+      %type: %type,
+    }
+
+    record docs {
+      contents: option<string>,
+    }
+
+    record record-field {
+      name: string,
+      %type: %type,
+      docs: docs,
+    }
+
+    record %record {
+      fields: list<record-field>,
+    }
+
+    record flag {
+      name: string,
+      docs: docs,
+    }
+
+    record %flags {
+      %flags: list<flag>,
+    }
+
+    record variant-case {
+      name: string,
+      %type: option<%type>,
+      docs: docs,
+    }
+
+    record %variant {
+      cases: list<variant-case>,
+    }
+
+    record enum-case {
+      name: string,
+      docs: docs,
+    }
+
+    record %enum {
+      cases: list<enum-case>,
+    }
+
+    variant type-def-kind {
+      %record(%record),
+      %resource,
+      handle(handle),
+      %flags(%flags),
+      %tuple(%tuple),
+      %variant(%variant),
+      %enum(%enum),
+      %option(%type),
+      %result(%result),
+      %list(%list),
+      %map(%map),
+      %future(option<%type>),
+      %stream(option<%type>),
+      %type(%type),
+      unknown,
+    }
+
+    variant version-identifier {
+      %string(string),
+      numeric(u64),
+    }
+
+    record version {
+      major: u64,
+      minor: u64,
+      patch: u64,
+      prerelease: option<list<version-identifier>>,
+      build-metadata: option<list<version-identifier>>,
+    }
+
+    record unstable {
+      feature: string,
+      deprecated: option<version>,
+    }
+
+    record stable {
+      since: version,
+      deprecated: option<version>,
+    }
+
+    variant stability {
+      unknown,
+      unstable(unstable),
+      stable(stable),
+    }
+
+    record function {
+      name: string,
+      kind: function-kind,
+      params: list<param>,
+      %result: option<%type>,
+      docs: docs,
+      stability: stability,
+      external-id: option<string>,
+    }
+
+    type interface-id = string;
+
+    type world-id = string;
+
+    variant type-owner {
+      %world(world-id),
+      %interface(interface-id),
+      none,
+    }
+
+    record type-def {
+      name: option<string>,
+      kind: type-def-kind,
+      owner: type-owner,
+      docs: docs,
+      stability: stability,
+      external-id: option<string>,
+    }
+
+    record world-item-interface {
+      id: interface-id,
+      stability: stability,
+      external-id: option<string>,
+      docs: docs,
+    }
+
+    variant world-item {
+      %interface(world-item-interface),
+      function(function),
+      %type(type-id),
+    }
+
+    record include-name {
+      name: string,
+      %as: string,
+    }
+
+    record world-include {
+      stability: stability,
+      id: world-id,
+      names: list<include-name>,
+    }
+
+    variant world-key {
+      name(string),
+      %interface(interface-id),
+    }
+
+    type package-id = string;
+
+    record %interface {
+      name: option<string>,
+      types: list<tuple<string, type-id>>,
+      functions: list<tuple<string, function>>,
+      docs: docs,
+      stability: stability,
+      %package: option<package-id>,
+    }
+
+    record %world {
+      name: string,
+      imports: list<tuple<world-key, world-item>>,
+      exports: list<tuple<world-key, world-item>>,
+      %package: option<package-id>,
+      docs: docs,
+      stability: stability,
+      includes: list<world-include>,
+    }
+
+    record package-name {
+      namespace: string,
+      name: string,
+      version: option<version>,
+    }
+
+    record %package {
+      name: package-name,
+      docs: docs,
+      interfaces: list<tuple<string, interface-id>>,
+      worlds: list<tuple<string, world-id>>,
+    }
+
+    record wit {
+      interfaces: map<string, %interface>,
+      packages: map<string, %package>,
+      types: map<string, type-def>,
+      worlds: map<string, %world>,
+      default-package: package-id,
+      component-world: option<world-id>,
+    }
+
+    record world-summary {
+      imports: list<string>,
+      exports: list<string>,
+    }
+
+    extract: async func(component: component) -> result<wit, error>;
+
+    summarize-world: async func(component: component) -> result<world-summary, error>;
+  }
+}
+
+
+package wasi:config@0.2.0-rc.1 {
+  interface store {
+    variant error {
+      upstream(string),
+      io(string),
+    }
+
+    get: func(key: string) -> result<option<string>, error>;
+
+    get-all: func() -> result<list<tuple<string, string>>, error>;
+  }
+}

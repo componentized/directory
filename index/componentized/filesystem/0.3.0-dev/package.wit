@@ -1,0 +1,312 @@
+package componentized:filesystem@0.3.0-dev;
+
+/// Access control for `wasi:filesystem`.
+///
+/// A gate consults a latch before performing each filesystem operation. The latch either defers,
+/// raising no objection, or denies the operation. A latch never grants an operation, an
+/// operation proceeds when the latch defers. Several latches can be aggregated into one, the
+/// operation is denied when any of them denies it.
+///
+/// Deciding and acting on a decision are separate steps. `authorize` decides without side
+/// effects, then the gate reports the final decision to `observe-decision`, where a latch updates
+/// any state it keeps. A latch aggregated with others may not be asked to authorize an operation
+/// another latch already denied, but it always observes the final decision.
+@since(version = 0.3.0-dev)
+interface latch {
+  @since(version = 0.3.0-dev)
+  use wasi:filesystem/types@0.3.0.{advice, descriptor, descriptor-flags, directory-entry, error-code as filesystem-error-code, filesize, open-flags, new-timestamp, path-flags};
+
+  /// The path of a descriptor, the directory or file an operation is performed on, and that the
+  /// relative path arguments of the operation are resolved against.
+  ///
+  /// A preopen is labeled with its name, e.g. `/` or `.`. A descriptor opened with `open-at` is
+  /// labeled with the path it was opened at, joined to the path of the descriptor it was opened
+  /// from: `.` and `..` are applied, and symlinks are followed where the host follows them.
+  /// Path arguments of an operation are passed as given by the caller, relative to the
+  /// descriptor's path.
+  @since(version = 0.3.0-dev)
+  type path = string;
+
+  /// Arguments to wasi:filesystem/types#descriptor.read-via-stream.
+  @since(version = 0.3.0-dev)
+  record descriptor-read-via-stream-args {
+    /// The offset in the file to start reading at.
+    offset: filesize,
+  }
+
+  /// Arguments to wasi:filesystem/types#descriptor.write-via-stream.
+  @since(version = 0.3.0-dev)
+  record descriptor-write-via-stream-args {
+    /// The offset in the file to start writing at.
+    offset: filesize,
+  }
+
+  /// Arguments to wasi:filesystem/types#descriptor.advise.
+  @since(version = 0.3.0-dev)
+  record descriptor-advise-args {
+    /// The offset of the range the advice applies to.
+    offset: filesize,
+    /// The length of the range the advice applies to.
+    length: filesize,
+    /// The advice for the range.
+    advice: advice,
+  }
+
+  /// Arguments to wasi:filesystem/types#descriptor.set-size.
+  @since(version = 0.3.0-dev)
+  record descriptor-set-size-args {
+    /// The new size of the file.
+    size: filesize,
+  }
+
+  /// Arguments to wasi:filesystem/types#descriptor.set-times.
+  @since(version = 0.3.0-dev)
+  record descriptor-set-times-args {
+    /// The new access time.
+    data-access-timestamp: new-timestamp,
+    /// The new modification time.
+    data-modification-timestamp: new-timestamp,
+  }
+
+  /// Arguments to wasi:filesystem/types#descriptor.create-directory-at.
+  @since(version = 0.3.0-dev)
+  record descriptor-create-directory-at-args {
+    /// The directory to create, relative to the descriptor's path.
+    path: path,
+  }
+
+  /// Arguments to wasi:filesystem/types#descriptor.stat-at.
+  @since(version = 0.3.0-dev)
+  record descriptor-stat-at-args {
+    /// Whether a symlink at the last component of the path is followed.
+    path-flags: path-flags,
+    /// The file or directory to stat, relative to the descriptor's path.
+    path: path,
+  }
+
+  /// Arguments to wasi:filesystem/types#descriptor.set-times-at.
+  @since(version = 0.3.0-dev)
+  record descriptor-set-times-at-args {
+    /// Whether a symlink at the last component of the path is followed.
+    path-flags: path-flags,
+    /// The file or directory to change, relative to the descriptor's path.
+    path: path,
+    /// The new access time.
+    data-access-timestamp: new-timestamp,
+    /// The new modification time.
+    data-modification-timestamp: new-timestamp,
+  }
+
+  /// Arguments to wasi:filesystem/types#descriptor.link-at.
+  @since(version = 0.3.0-dev)
+  record descriptor-link-at-args {
+    /// Whether a symlink at the last component of the old path is followed.
+    old-path-flags: path-flags,
+    /// The existing file to link to, relative to the descriptor's path.
+    old-path: path,
+    /// The directory the new path is relative to, a latch may query it.
+    new-descriptor: borrow<descriptor>,
+    /// The link to create, relative to the new descriptor.
+    new-path: path,
+  }
+
+  /// Arguments to wasi:filesystem/types#descriptor.open-at.
+  @since(version = 0.3.0-dev)
+  record descriptor-open-at-args {
+    /// Whether a symlink at the last component of the path is followed.
+    path-flags: path-flags,
+    /// The file or directory to open, relative to the descriptor's path.
+    path: path,
+    /// How the file or directory is opened, e.g. whether it is created or truncated.
+    open-flags: open-flags,
+    /// What the opened descriptor may be used for, e.g. reading, writing or changing a
+    /// directory.
+    %flags: descriptor-flags,
+  }
+
+  /// Arguments to wasi:filesystem/types#descriptor.readlink-at.
+  @since(version = 0.3.0-dev)
+  record descriptor-readlink-at-args {
+    /// The symlink to read, relative to the descriptor's path.
+    path: path,
+  }
+
+  /// Arguments to wasi:filesystem/types#descriptor.remove-directory-at.
+  @since(version = 0.3.0-dev)
+  record descriptor-remove-directory-at-args {
+    /// The directory to remove, relative to the descriptor's path.
+    path: path,
+  }
+
+  /// Arguments to wasi:filesystem/types#descriptor.rename-at.
+  @since(version = 0.3.0-dev)
+  record descriptor-rename-at-args {
+    /// The file or directory to rename, relative to the descriptor's path.
+    old-path: path,
+    /// The directory the new path is relative to, a latch may query it.
+    new-descriptor: borrow<descriptor>,
+    /// The new path, relative to the new descriptor.
+    new-path: path,
+  }
+
+  /// Arguments to wasi:filesystem/types#descriptor.symlink-at.
+  @since(version = 0.3.0-dev)
+  record descriptor-symlink-at-args {
+    /// The contents of the symlink, the path it points to. It is not resolved by the gate.
+    old-path: path,
+    /// The symlink to create, relative to the descriptor's path.
+    new-path: path,
+  }
+
+  /// Arguments to wasi:filesystem/types#descriptor.unlink-file-at.
+  @since(version = 0.3.0-dev)
+  record descriptor-unlink-file-at-args {
+    /// The file to unlink, relative to the descriptor's path.
+    path: path,
+  }
+
+  /// Arguments to wasi:filesystem/types#descriptor.metadata-hash-at.
+  @since(version = 0.3.0-dev)
+  record descriptor-metadata-hash-at-args {
+    /// Whether a symlink at the last component of the path is followed.
+    path-flags: path-flags,
+    /// The file or directory to hash, relative to the descriptor's path.
+    path: path,
+  }
+
+  /// Operations of the wasi:filesystem/preopens interface.
+  @since(version = 0.3.0-dev)
+  variant preopens-operation {
+    /// Authorized before the preopens are returned. A denial returns no preopens.
+    get-directories,
+    /// Authorized for each preopen, with its name. A denied preopen is left out of the
+    /// preopens returned, the other preopens are still returned.
+    get-directories-item(tuple<borrow<descriptor>, path>),
+  }
+
+  /// Operations of the wasi:filesystem/types#descriptor resource.
+  ///
+  /// The borrowed descriptor is the descriptor the operation is performed on, followed by its
+  /// path, a latch may query the descriptor, for example for its type or flags. A denial fails
+  /// the operation with the denial's error code, unless noted otherwise.
+  @since(version = 0.3.0-dev)
+  variant descriptor-operation {
+    /// Authorized before reading a file. A denial returns an empty stream, the future
+    /// resolves to the error code.
+    read-via-stream(tuple<borrow<descriptor>, path, descriptor-read-via-stream-args>),
+    /// Authorized before writing a file. A denial reads nothing from the stream, the future
+    /// resolves to the error code.
+    write-via-stream(tuple<borrow<descriptor>, path, descriptor-write-via-stream-args>),
+    /// Authorized before appending to a file. A denial reads nothing from the stream, the
+    /// future resolves to the error code.
+    append-via-stream(tuple<borrow<descriptor>, path>),
+    /// Authorized before giving advice for a file.
+    advise(tuple<borrow<descriptor>, path, descriptor-advise-args>),
+    /// Authorized before syncing the data of a file.
+    sync-data(tuple<borrow<descriptor>, path>),
+    /// Authorized before reading the flags of a descriptor.
+    get-flags(tuple<borrow<descriptor>, path>),
+    /// Authorized before reading the type of a descriptor.
+    get-type(tuple<borrow<descriptor>, path>),
+    /// Authorized before changing the size of a file.
+    set-size(tuple<borrow<descriptor>, path, descriptor-set-size-args>),
+    /// Authorized before changing the times of a file or directory.
+    set-times(tuple<borrow<descriptor>, path, descriptor-set-times-args>),
+    /// Authorized before reading a directory. A denial returns an empty stream, the future
+    /// resolves to the error code.
+    read-directory(tuple<borrow<descriptor>, path>),
+    /// Authorized for each entry of a directory being read. A denied entry is left out of the
+    /// stream, the other entries are still returned.
+    read-directory-entry(tuple<borrow<descriptor>, path, directory-entry>),
+    /// Authorized before syncing the data and metadata of a file or directory.
+    sync(tuple<borrow<descriptor>, path>),
+    /// Authorized before creating a directory.
+    create-directory-at(tuple<borrow<descriptor>, path, descriptor-create-directory-at-args>),
+    /// Authorized before reading the attributes of a file or directory.
+    stat(tuple<borrow<descriptor>, path>),
+    /// Authorized before reading the attributes of a file or directory at a path.
+    stat-at(tuple<borrow<descriptor>, path, descriptor-stat-at-args>),
+    /// Authorized before changing the times of a file or directory at a path.
+    set-times-at(tuple<borrow<descriptor>, path, descriptor-set-times-at-args>),
+    /// Authorized before creating a hard link.
+    link-at(tuple<borrow<descriptor>, path, descriptor-link-at-args>),
+    /// Authorized before opening a file or directory.
+    open-at(tuple<borrow<descriptor>, path, descriptor-open-at-args>),
+    /// Authorized before reading the contents of a symlink.
+    readlink-at(tuple<borrow<descriptor>, path, descriptor-readlink-at-args>),
+    /// Authorized before removing a directory.
+    remove-directory-at(tuple<borrow<descriptor>, path, descriptor-remove-directory-at-args>),
+    /// Authorized before renaming a file or directory.
+    rename-at(tuple<borrow<descriptor>, path, descriptor-rename-at-args>),
+    /// Authorized before creating a symlink.
+    symlink-at(tuple<borrow<descriptor>, path, descriptor-symlink-at-args>),
+    /// Authorized before unlinking a file.
+    unlink-file-at(tuple<borrow<descriptor>, path, descriptor-unlink-file-at-args>),
+    /// Authorized before hashing the metadata of a file or directory.
+    metadata-hash(tuple<borrow<descriptor>, path>),
+    /// Authorized before hashing the metadata of a file or directory at a path.
+    metadata-hash-at(tuple<borrow<descriptor>, path, descriptor-metadata-hash-at-args>),
+  }
+
+  /// Operations of the wasi:filesystem package a gate asks a latch to authorize.
+  @since(version = 0.3.0-dev)
+  variant operation {
+    /// An operation of wasi:filesystem/preopens.
+    preopens(preopens-operation),
+    /// An operation on a wasi:filesystem/types#descriptor.
+    descriptor(descriptor-operation),
+  }
+
+  /// Whether the operation is allowed to proceed.
+  @since(version = 0.3.0-dev)
+  variant decision {
+    /// The latch raises no objection, the operation proceeds unless another latch denies it.
+    deferred,
+    /// The operation must not proceed. The error code is returned to the caller for
+    /// operations that fail. For items that are left out instead, a preopen or a directory
+    /// entry, it is only logged.
+    denied(filesystem-error-code),
+  }
+
+  /// The name of a latch component, identifying which latch reported an error.
+  @since(version = 0.3.0-dev)
+  type latch-name = string;
+
+  /// A latch was unable to decide or observe. The gate fails the operation, a directory entry
+  /// fails the directory read. Getting the preopens can't fail, the gate traps instead.
+  @since(version = 0.3.0-dev)
+  variant error-code {
+    /// The latch's configuration is invalid, the cause is logged by the latch.
+    invalid-config(latch-name),
+    /// The latch was unable to act on the final decision.
+    observation-failed(latch-name),
+    /// Any other error.
+    other(option<string>),
+  }
+
+  /// Decide whether the operation may proceed.
+  ///
+  /// Must not have side effects. When latches are aggregated, a latch is not asked about an
+  /// operation another latch already denied, so state changed here could disagree with what
+  /// actually happened. Act on decisions in `observe-decision` instead.
+  @since(version = 0.3.0-dev)
+  authorize: func(operation: operation) -> result<decision, error-code>;
+
+  /// Observe the final decision for an operation, after `authorize` returned a decision.
+  ///
+  /// Called for both deferred and denied operations, including operations this latch was not
+  /// asked to authorize because an aggregated latch denied them first. The final decision is
+  /// what the gate enforces, so this is where a latch updates any state it keeps. Not called
+  /// when `authorize` returned an error.
+  ///
+  /// An error fails the operation, since the latch could not act on the decision.
+  @since(version = 0.3.0-dev)
+  observe-decision: func(final-decision: decision, operation: operation) -> result<_, error-code>;
+}
+
+world imports {
+  import wasi:clocks/types@0.3.0;
+  import wasi:clocks/system-clock@0.3.0;
+  import wasi:filesystem/types@0.3.0;
+  import latch;
+}

@@ -1,0 +1,77 @@
+{
+  "package": "componentized:valkey-cli",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/cli",
+    "tag": "0.1.0",
+    "digest": "sha256:25df3842a78d5f73b01496431fb4a410b6c038b043e0eb7e454e8a71c9936973",
+    "layer_digest": "sha256:679a98edc45fb0aba5c629ed2d3ac4f66f31a046ecbf70fe8159e186a3d07fdf",
+    "size": 1123123
+  },
+  "created": "2025-04-23T01:11:55.401483368Z",
+  "annotations": {
+    "org.opencontainers.image.description": "A wasi:cli/command exposing valkey commands.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "ed884756ae7e6e70db8d76f8d01da3c92595c77a+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
+    "org.opencontainers.image.title": "cli",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "imports": [
+    "wasi:cli/environment@0.2.3",
+    "wasi:cli/exit@0.2.3",
+    "wasi:io/error@0.2.3",
+    "wasi:io/streams@0.2.3",
+    "wasi:cli/stdin@0.2.3",
+    "wasi:cli/stdout@0.2.3",
+    "wasi:cli/stderr@0.2.3",
+    "wasi:cli/terminal-input@0.2.3",
+    "wasi:cli/terminal-output@0.2.3",
+    "wasi:cli/terminal-stdin@0.2.3",
+    "wasi:cli/terminal-stdout@0.2.3",
+    "wasi:cli/terminal-stderr@0.2.3",
+    "wasi:clocks/wall-clock@0.2.3",
+    "wasi:filesystem/types@0.2.3",
+    "wasi:filesystem/preopens@0.2.3",
+    "wasi:sockets/network@0.2.3",
+    "wasi:sockets/instance-network@0.2.3",
+    "wasi:io/poll@0.2.3",
+    "wasi:sockets/tcp@0.2.3",
+    "wasi:sockets/tcp-create-socket@0.2.3",
+    "wasi:sockets/ip-name-lookup@0.2.3",
+    "wasi:config/store@0.2.0-draft"
+  ],
+  "exports": [
+    "wasi:cli/run@0.2.3"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:cli",
+      "version": "0.2.3"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.2.3"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-draft"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.2.3"
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.3"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.2.3"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:45:23Z"
+}

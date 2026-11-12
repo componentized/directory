@@ -1,0 +1,54 @@
+{
+  "package": "componentized:filesystem-chroot",
+  "version": "0.2.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem/chroot",
+    "tag": "0.2.0",
+    "digest": "sha256:804932cd173f4afab45cd955fa9b709f9d05f3604e40066b74760ccab4ec500b",
+    "layer_digest": "sha256:a68b9d785c82eb6a5d2516888e29e2598b955f5105b724a1ead50f667ca48bee",
+    "size": 101663
+  },
+  "created": "2025-11-05T04:00:31.259169259Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Virtualizes the wasi:filesystem interfaces limiting all access to a specific directory defined by the 'path' key in a wasi:config/store, mimicking the Unix chroot command.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "2f6e00e34c2cf97e7de5efb596f93341cafdc69c+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
+    "org.opencontainers.image.title": "chroot",
+    "org.opencontainers.image.version": "v0.2.0"
+  },
+  "imports": [
+    "wasi:config/store@0.2.0-rc.1",
+    "wasi:io/error@0.2.3",
+    "wasi:io/streams@0.2.3",
+    "wasi:clocks/wall-clock@0.2.3",
+    "wasi:filesystem/types@0.2.3",
+    "wasi:filesystem/preopens@0.2.3"
+  ],
+  "exports": [
+    "wasi:filesystem/types@0.2.3",
+    "wasi:filesystem/preopens@0.2.3"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:clocks",
+      "version": "0.2.3"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.2.3"
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.3"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:32Z"
+}

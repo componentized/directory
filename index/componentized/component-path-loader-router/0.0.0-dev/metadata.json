@@ -1,0 +1,48 @@
+{
+  "package": "componentized:component-path-loader-router",
+  "version": "0.0.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component/path-loader-router",
+    "tag": "0.0.0-dev",
+    "digest": "sha256:82ff070b4c56deeea9a13c8806fa9f88c008fa2e046901d12f1553c43446953b",
+    "layer_digest": "sha256:d962a146dd89a5c913bb962508459218b15d72b63fc690e31fd60d8179495697",
+    "size": 68153
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component/path-loader-router",
+    "tag": "0.0.0-dev_debug",
+    "digest": "sha256:3199d0ae5f4ec688b53c45d73f2da8e2478b4173da7b526e5e36c34c53f625dd",
+    "layer_digest": "sha256:8f52e7f614de21c9abd8694740d2b48f8de4dd67944f15bf308ae736c924de90",
+    "size": 235960
+  },
+  "created": "2026-10-08T16:00:36.961017649Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Routes a component loader based on the path.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "9baf4aee475565a3ab3e361f17d2cc294ca7aa80",
+    "org.opencontainers.image.source": "https://github.com/componentized/component.git",
+    "org.opencontainers.image.title": "componentized:component-path-loader-router",
+    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/9baf4aee475565a3ab3e361f17d2cc294ca7aa80/components/path-loader-router",
+    "org.opencontainers.image.version": "0.0.0-dev"
+  },
+  "imports": [
+    "componentized:component/types@0.0.0-dev",
+    "filesystem-loader: componentized:component/path-loader@0.0.0-dev",
+    "http-loader: componentized:component/path-loader@0.0.0-dev",
+    "oci-loader: componentized:component/path-loader@0.0.0-dev"
+  ],
+  "exports": [
+    "componentized:component/path-loader@0.0.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:component",
+      "version": "0.0.0-dev"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:11:55Z"
+}

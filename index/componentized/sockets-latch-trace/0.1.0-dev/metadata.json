@@ -1,0 +1,55 @@
+{
+  "package": "componentized:sockets-latch-trace",
+  "version": "0.1.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-trace",
+    "tag": "0.1.0-dev",
+    "digest": "sha256:16e48bc754fa5f9699b3af31d5df3396dd8df9597f25a101828d6dbedd05e55a",
+    "layer_digest": "sha256:c3b57deb7c9f0153c9eabbf84f571234b066d4d1ad7817294f9546e8b8bd00c4",
+    "size": 59493
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-trace",
+    "tag": "0.1.0-dev_debug",
+    "digest": "sha256:2d2bff89155f93c478f7877f1cf55a639300d74ca655e41ca1fdcb8773e5da05",
+    "layer_digest": "sha256:7ee37295aa7a5efe5c19705b0e60c7ed93854be1f98977804a86d2ad1a0ca75c",
+    "size": 439309
+  },
+  "created": "2026-10-15T19:01:10.116798130Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Sockets latch that wraps another latch, logging each decision it makes without changing it.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b90f9a86284d488ca5706e484b8f4f64110b3aaf",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-trace",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/b90f9a86284d488ca5706e484b8f4f64110b3aaf/components/latch-trace",
+    "org.opencontainers.image.version": "0.1.0-dev"
+  },
+  "imports": [
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:sockets/types@0.3.0",
+    "componentized:sockets/latch@0.1.0-dev"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.0-dev"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:13:25Z"
+}

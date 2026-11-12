@@ -1,0 +1,54 @@
+{
+  "package": "componentized:sockets-latch-deny-ip-name-lookup",
+  "version": "0.1.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-deny-ip-name-lookup",
+    "tag": "0.1.0-dev",
+    "digest": "sha256:5907ee0ae6284c554ddf52abf052d40c44c13e445f64eb5980e2133afcc62f58",
+    "layer_digest": "sha256:f36ded89af6a6ad19382587ff62c9fda006350dd19b15aec62a87c0289289113",
+    "size": 74047
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-deny-ip-name-lookup",
+    "tag": "0.1.0-dev_debug",
+    "digest": "sha256:a55ae9ec8861bb7811ebee430e0671635d5e6fd5acd071485a520fab3c0c5118",
+    "layer_digest": "sha256:2be332161512b2487849175e01073b3b7d76cf7b7c339ee1856c5b83c7efd1d8",
+    "size": 831534
+  },
+  "created": "2026-10-15T18:56:46.622850889Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Sockets latch that implicitly denies all ip-name lookups.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b90f9a86284d488ca5706e484b8f4f64110b3aaf",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-deny-ip-name-lookup",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/b90f9a86284d488ca5706e484b8f4f64110b3aaf/components/latch-deny-ip-name-lookup",
+    "org.opencontainers.image.version": "0.1.0-dev"
+  },
+  "imports": [
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.0-dev"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:13:12Z"
+}

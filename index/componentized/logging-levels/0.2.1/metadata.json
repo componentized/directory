@@ -1,0 +1,41 @@
+{
+  "package": "componentized:logging-levels",
+  "version": "0.2.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/logging/levels",
+    "tag": "0.2.1",
+    "digest": "sha256:ac7eff80e9854fdda7412c00bf35aa9d1194fdc539beba83ced990dba1be83fe",
+    "layer_digest": "sha256:bd626ceed6750b8ad84a023c82fa4c0ca2bdb3d6d06553f8f13766ca723e3a01",
+    "size": 58955
+  },
+  "created": "2025-12-12T19:13:34.123181842Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Virtual logger that selectively emits log events based on the context and level.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "7b5a971c9948a4e356dfba26cbecfef5ad289c83+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/logging.git",
+    "org.opencontainers.image.title": "levels",
+    "org.opencontainers.image.version": "v0.2.1"
+  },
+  "imports": [
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:config/store@0.2.0-rc.1"
+  ],
+  "exports": [
+    "wasi:logging/logging@0.1.0-draft"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:43:35Z"
+}

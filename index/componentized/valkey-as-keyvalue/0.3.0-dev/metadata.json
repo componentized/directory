@@ -1,0 +1,60 @@
+{
+  "package": "componentized:valkey-as-keyvalue",
+  "version": "0.3.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/as-keyvalue",
+    "tag": "0.3.0-dev",
+    "digest": "sha256:9ee982c69e66921f1e1f977cc2a4b21a87a7b3a3c97bf9e32e434c1a932f3c14",
+    "layer_digest": "sha256:32b6563bf5d5b3656a1b115bc930fa99a4e2aba67ecf0d66786c8ef5556a57ea",
+    "size": 153112
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/as-keyvalue",
+    "tag": "0.3.0-dev_debug",
+    "digest": "sha256:c7eb9dfdf31b65097b9f5a987a384bd08f9504e424a8571c5324a4fb37012ef5",
+    "layer_digest": "sha256:a21b1fc3cfd1fd32f8c6a0e2d973ae35bac1a6d0c446c369981d666ceebadff7",
+    "size": 1628323
+  },
+  "created": "2026-11-09T19:22:20.204947093Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Adapter to back `wasmcloud:keyvalue` with the `componentized:valkey` client.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "69ad5c957f56b19c57322b25fdd9ddb36d7776a0",
+    "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
+    "org.opencontainers.image.title": "componentized:valkey-as-keyvalue",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/69ad5c957f56b19c57322b25fdd9ddb36d7776a0/components/as-keyvalue",
+    "org.opencontainers.image.version": "0.3.0-dev"
+  },
+  "imports": [
+    "componentized:valkey/types@0.3.0-dev",
+    "componentized:valkey/connection@0.3.0-dev",
+    "componentized:valkey/connector@0.3.0-dev",
+    "componentized:valkey/commands@0.3.0-dev",
+    "wasi:config/store@0.2.0-rc.1"
+  ],
+  "exports": [
+    "wasmcloud:keyvalue/types@0.2.0",
+    "wasmcloud:keyvalue/store@0.2.0",
+    "wasmcloud:keyvalue/atomics@0.2.0",
+    "wasmcloud:keyvalue/batch@0.2.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:valkey",
+      "version": "0.3.0-dev"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasmcloud:keyvalue",
+      "version": "0.2.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:13:31Z"
+}

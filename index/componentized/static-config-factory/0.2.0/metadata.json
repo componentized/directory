@@ -1,0 +1,32 @@
+{
+  "package": "componentized:static-config-factory",
+  "version": "0.2.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/static-config/factory",
+    "tag": "0.2.0",
+    "digest": "sha256:0d941427bebcde2d93a8fd36eb8cd630c8ed6faf4b8d95b28048e9fb9bb0d193",
+    "layer_digest": "sha256:5b7e23bce1a5c3e33daeae8fc0f74cb5bf42e020c4706ba63c75ca911caa410d",
+    "size": 4717313
+  },
+  "created": "2025-11-05T02:03:04.137752745Z",
+  "annotations": {
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "99ab62f4f6556dd27c0c88243af0a75850b0f4ef+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/static-config.git",
+    "org.opencontainers.image.title": "factory",
+    "org.opencontainers.image.version": "v0.2.0"
+  },
+  "exports": [
+    "componentized:config/factory"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:config",
+      "version": null
+    }
+  ],
+  "indexed_at": "2026-11-11T23:45:19Z"
+}

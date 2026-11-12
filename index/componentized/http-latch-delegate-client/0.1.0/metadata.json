@@ -1,0 +1,50 @@
+{
+  "package": "componentized:http-latch-delegate-client",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-delegate-client",
+    "tag": "0.1.0",
+    "digest": "sha256:eb91a9920bd66782d88f72927763b7dfd5dfd8331ec045a9eba919f836da553d",
+    "layer_digest": "sha256:4e21a4377ad26a1588a6b0392afddfc550fe9743ebbd4763c0f0664b52319a2f",
+    "size": 36933
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-delegate-client",
+    "tag": "0.1.0_debug",
+    "digest": "sha256:ec0cb726346a35e4ac7aaea2dce5680b1e019a8be83e5bcb2432b6d4fb9ac134",
+    "layer_digest": "sha256:fe52d39ecc6f87f11e34e5c11dc5a1f334a04a8e45a5c43c2a7ce402cd8f129a",
+    "size": 114402
+  },
+  "created": "2026-10-05T18:13:51.924302725Z",
+  "annotations": {
+    "org.opencontainers.image.description": "HTTP latch that wraps another latch, delegating only  requests to it.  requests are deferred without consulting the wrapped latch, it neither authorizes nor observes them.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b0a0308c87a6b3089882cb6f7315968b47aceebb",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-latch-delegate-client",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/b0a0308c87a6b3089882cb6f7315968b47aceebb/components/latch-delegate-client",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "imports": [
+    "wasi:http/types@0.3.0",
+    "componentized:http/latch@0.1.0"
+  ],
+  "exports": [
+    "componentized:http/latch@0.1.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:http",
+      "version": "0.1.0"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:37Z"
+}

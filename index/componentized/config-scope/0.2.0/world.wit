@@ -1,0 +1,15 @@
+package root:component;
+
+world root {
+  import wasi:config/store@0.2.0-rc.1;
+  import scope: interface {
+    variant error {
+      upstream(string),
+      io(string),
+    }
+
+    get: func(key: string) -> result<option<string>, error>;
+  }
+
+  export wasi:config/store@0.2.0-rc.1;
+}

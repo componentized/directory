@@ -1,0 +1,53 @@
+{
+  "package": "componentized:sockets-latch-n4",
+  "version": "0.1.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-n4",
+    "tag": "0.1.0-dev",
+    "digest": "sha256:a0edc1467bda29a63992524cf1a4cf2db05c3abe0fabbd3c578c7037b41fc86e",
+    "layer_digest": "sha256:363210dd61fb90d3bd04fb2b515dd2fbf4d65287224df0d89eac72570dc50503",
+    "size": 55659
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-n4",
+    "tag": "0.1.0-dev_debug",
+    "digest": "sha256:926fe90c533b44bcdcaa6ed88c4c1e360bd4c6c86c860625c745225e1d18b284",
+    "layer_digest": "sha256:53e127d37a05725c77f709a4db9cdbba2179d437983c75d8dc03af59a0cf8dde",
+    "size": 517193
+  },
+  "created": "2026-10-15T19:00:27.899389719Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Sockets latch that aggregates four other sockets latches.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b90f9a86284d488ca5706e484b8f4f64110b3aaf",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-n4",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/b90f9a86284d488ca5706e484b8f4f64110b3aaf/components/latch-n4",
+    "org.opencontainers.image.version": "0.1.0-dev"
+  },
+  "imports": [
+    "wasi:sockets/types@0.3.0",
+    "latch0: componentized:sockets/latch@0.1.0-dev",
+    "latch1: componentized:sockets/latch@0.1.0-dev",
+    "latch2: componentized:sockets/latch@0.1.0-dev",
+    "latch3: componentized:sockets/latch@0.1.0-dev"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.0-dev"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:13:23Z"
+}

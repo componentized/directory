@@ -1,0 +1,50 @@
+{
+  "package": "componentized:sockets-latch-delegate-tcp",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-delegate-tcp",
+    "tag": "0.1.0",
+    "digest": "sha256:352bd647efd8b55638ad7301b0a6d226c9ebda0c02907925243cacce2045b06e",
+    "layer_digest": "sha256:0706c6879a4df58119d517eda279571d1ffca5e7daaeec9c1783286949088135",
+    "size": 37692
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-delegate-tcp",
+    "tag": "0.1.0_debug",
+    "digest": "sha256:0cc0e9e83e0677d1abb4291ec5a899d7c6d99f5a41c8c2cb09be8ec4eccd4890",
+    "layer_digest": "sha256:bfedf94d3bb43ffcdcf5b391a59acdba9c177d46e264efc6a5bd35b91cfa9c34",
+    "size": 357419
+  },
+  "created": "2026-10-15T19:05:05.728689629Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Sockets latch that wraps another latch, delegating only tcp socket operations to it. Udp socket and ip-name-lookup operations are deferred without consulting the wrapped latch, it neither authorizes nor observes them.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "33379c373a0cebf66d2201adbb482a90f48dc01b",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-delegate-tcp",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/33379c373a0cebf66d2201adbb482a90f48dc01b/components/latch-delegate-tcp",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "imports": [
+    "wasi:sockets/types@0.3.0",
+    "componentized:sockets/latch@0.1.0"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.0"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:45:06Z"
+}

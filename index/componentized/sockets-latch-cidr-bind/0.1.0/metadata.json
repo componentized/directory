@@ -1,0 +1,59 @@
+{
+  "package": "componentized:sockets-latch-cidr-bind",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-cidr-bind",
+    "tag": "0.1.0",
+    "digest": "sha256:75dd2bde92a6e397102c4a11bfaf095fbcb6390093853cc4355c18a2f318188d",
+    "layer_digest": "sha256:8fa5948cf43af630e7474ea49d57015f3a27ebc16971ded7b866e397801928ef",
+    "size": 97426
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-cidr-bind",
+    "tag": "0.1.0_debug",
+    "digest": "sha256:42ac929bf6117670327bbadc0786e10013738cf88279f6ac22baece01adfe581",
+    "layer_digest": "sha256:8d1ed00f553f468160bd644668eadd37c802fa79f70a21cb85f41e0765fb1642",
+    "size": 1141726
+  },
+  "created": "2026-10-15T19:03:47.539581579Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Socket latch that uses CIDR ranges to grant or deny binding tcp/udp sockets to a local address and port.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "33379c373a0cebf66d2201adbb482a90f48dc01b",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-cidr-bind",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/33379c373a0cebf66d2201adbb482a90f48dc01b/components/latch-cidr-bind",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "imports": [
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:config/store@0.2.0-rc.1",
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.0"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:45:05Z"
+}

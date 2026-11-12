@@ -1,0 +1,50 @@
+package root:component;
+
+world root {
+  export componentized:constants/math@0.1.0;
+}
+package componentized:constants@0.1.0 {
+  interface math {
+    e: func() -> f64;
+
+    euler-gamma: func() -> f64;
+
+    frac-n1-pi: func() -> f64;
+
+    frac-n1-sqrt-n2: func() -> f64;
+
+    frac-n2-pi: func() -> f64;
+
+    frac-n2-sqrt-pi: func() -> f64;
+
+    frac-pi-n2: func() -> f64;
+
+    frac-pi-n3: func() -> f64;
+
+    frac-pi-n4: func() -> f64;
+
+    frac-pi-n6: func() -> f64;
+
+    frac-pi-n8: func() -> f64;
+
+    golden-ratio: func() -> f64;
+
+    ln-n2: func() -> f64;
+
+    ln-n10: func() -> f64;
+
+    log2-n10: func() -> f64;
+
+    log2-e: func() -> f64;
+
+    log10-n2: func() -> f64;
+
+    log10-e: func() -> f64;
+
+    pi: func() -> f64;
+
+    sqrt-n2: func() -> f64;
+
+    tau: func() -> f64;
+  }
+}

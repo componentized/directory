@@ -1,0 +1,11 @@
+package root:component;
+
+world root {
+  import wasi:config/store@0.2.0-rc.1;
+  import componentized:valkey/tcp-connector-constants@0.3.0-dev;
+  import componentized:valkey/types@0.3.0-dev;
+  import componentized:valkey/connection@0.3.0-dev;
+  import componentized:valkey/tcp@0.3.0-dev;
+
+  export componentized:valkey/connector@0.3.0-dev;
+}

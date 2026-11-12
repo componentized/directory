@@ -1,0 +1,37 @@
+{
+  "package": "componentized:config-defaults",
+  "version": "0.2.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/config/defaults",
+    "tag": "0.2.0",
+    "digest": "sha256:62b78af23cb50f68129bfc57d5046319892fb1d24bc3b8498548e6c0a50f482d",
+    "layer_digest": "sha256:1bf79fed884e3445280db963c1611ded2cd19d98b032c0fc3628ce24a0f107bd",
+    "size": 39323
+  },
+  "created": "2025-11-05T03:23:47.581041410Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Combines value from two wasi:config/stores into a single store. The 'store' import is the base set of values, while the 'defaults' import, a mirror of the store interface, contributes default values when the config does not contain a value.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "497b7daa03103fc3c6963b7c91a9eb35ced91b7d+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/config.git",
+    "org.opencontainers.image.title": "defaults",
+    "org.opencontainers.image.version": "v0.2.0"
+  },
+  "imports": [
+    "wasi:config/store@0.2.0-rc.1",
+    "defaults: interface"
+  ],
+  "exports": [
+    "wasi:config/store@0.2.0-rc.1"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:21Z"
+}

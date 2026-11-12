@@ -1,0 +1,54 @@
+{
+  "package": "componentized:http-latch-scheme-httpsonly",
+  "version": "0.1.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-scheme-httpsonly",
+    "tag": "0.1.0-dev",
+    "digest": "sha256:eba9c304646f4e8b9a26603246e31feda088a45d89cad6416f0c79cdb16220f9",
+    "layer_digest": "sha256:5203a37693de463f889f96a17595791769beaa8311d8f9f3995b4b13e7030c3b",
+    "size": 64139
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-scheme-httpsonly",
+    "tag": "0.1.0-dev_debug",
+    "digest": "sha256:fd8d2984c85740474720dd6aa69555a48af81af602fe6adecec7a52dfe8dfe14",
+    "layer_digest": "sha256:e2e2511eddf5ffa9dbe467a35674c607ea08deac5883e0d7901d036915a0be43",
+    "size": 183128
+  },
+  "created": "2026-10-05T16:53:03.382164018Z",
+  "annotations": {
+    "org.opencontainers.image.description": "HTTP latch that denies every request scheme except HTTPS.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "84c2d1ecc4562b474b647b5057b8f868f993942a",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-latch-scheme-httpsonly",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/84c2d1ecc4562b474b647b5057b8f868f993942a/components/latch-scheme-httpsonly",
+    "org.opencontainers.image.version": "0.1.0-dev"
+  },
+  "imports": [
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:http/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:http/latch@0.1.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:http",
+      "version": "0.1.0-dev"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:37Z"
+}

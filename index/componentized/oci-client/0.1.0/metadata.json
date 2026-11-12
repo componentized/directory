@@ -1,0 +1,55 @@
+{
+  "package": "componentized:oci-client",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/oci/client",
+    "tag": "0.1.0",
+    "digest": "sha256:f8803d55c62f994c2e134e2b821ab8a400bf379179a0941c4396ad54d21664f6",
+    "layer_digest": "sha256:b802cffb05ec72dc8612fe8dd2d95e733731e8c6253160d327c87f551be857ad",
+    "size": 710846
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/oci/client",
+    "tag": "0.1.0_debug",
+    "digest": "sha256:5972e075b6dc9eff04ef7e986b81526ee657fb671ba3c8bec4e3aab61e70f2d6",
+    "layer_digest": "sha256:1209b47a179c91faa1d9b93dca84261e2494f5a02a489c48d6cc69a6ea9f6654",
+    "size": 2181077
+  },
+  "created": "2026-10-08T04:29:46.368206703Z",
+  "annotations": {
+    "org.opencontainers.image.description": "OCI image client component.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "8ce4b5d4e050750e627a892c86a9c75b0c07db4e",
+    "org.opencontainers.image.source": "https://github.com/componentized/oci.git",
+    "org.opencontainers.image.title": "componentized:oci-client",
+    "org.opencontainers.image.url": "https://github.com/componentized/oci/tree/8ce4b5d4e050750e627a892c86a9c75b0c07db4e/components/client",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "imports": [
+    "componentized:http/client@0.1.0",
+    "wasi:clocks/system-clock@0.3.0"
+  ],
+  "exports": [
+    "componentized:oci/client@0.1.0",
+    "componentized:oci/media-types@0.1.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:http",
+      "version": "0.1.0"
+    },
+    {
+      "package": "componentized:oci",
+      "version": "0.1.0"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:47Z"
+}

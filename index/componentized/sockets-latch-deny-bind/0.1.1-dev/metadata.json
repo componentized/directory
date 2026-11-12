@@ -1,0 +1,49 @@
+{
+  "package": "componentized:sockets-latch-deny-bind",
+  "version": "0.1.1-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-deny-bind",
+    "tag": "0.1.1-dev",
+    "digest": "sha256:0b7da479882ff5ecf3797d899bc48c35b8b426909d1f202c3e49eb4709977713",
+    "layer_digest": "sha256:0273bf42c9232beb7775b9cd67e8df523c1666c77cfe44bf398f87a6ada9a09f",
+    "size": 33440
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-deny-bind",
+    "tag": "0.1.1-dev_debug",
+    "digest": "sha256:023ce36ff079f90b14d68fec1e663acabd62ffc4a4abeab69ad924e2845d1709",
+    "layer_digest": "sha256:5282d64f5996174a8bf76e64c586ec66585b87c66bb98ce6a9d1a9ed1f71187d",
+    "size": 307276
+  },
+  "created": "2026-11-09T19:49:49.798854187Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Sockets latch that implicitly denies explicitly binding tcp and udp sockets to a local address.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "51c87720416237042c1efbe3a990e7a5ba7e3141",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-deny-bind",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/51c87720416237042c1efbe3a990e7a5ba7e3141/components/latch-deny-bind",
+    "org.opencontainers.image.version": "0.1.1-dev"
+  },
+  "imports": [
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.1-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.1-dev"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:13:10Z"
+}

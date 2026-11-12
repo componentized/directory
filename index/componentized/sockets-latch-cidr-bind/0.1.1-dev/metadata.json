@@ -1,0 +1,59 @@
+{
+  "package": "componentized:sockets-latch-cidr-bind",
+  "version": "0.1.1-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-cidr-bind",
+    "tag": "0.1.1-dev",
+    "digest": "sha256:fcb3521a6e6f17a9d1b416630d5880227ab2c32b044f9f5abe290451f76a7393",
+    "layer_digest": "sha256:0247fd37f8dba88f8bc6db2760d3603ba92b92909720404327199d4d737f7cba",
+    "size": 97944
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-cidr-bind",
+    "tag": "0.1.1-dev_debug",
+    "digest": "sha256:3faa81f74d3e2f632f575cbc30f6e0758f00011b8fda00926051186212ee0904",
+    "layer_digest": "sha256:1766f4dfe26951239a5a3bf91d4da1212a4e56b9e105749e9286a5eec820901d",
+    "size": 1140712
+  },
+  "created": "2026-11-09T19:47:37.492517547Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Socket latch that uses CIDR ranges to grant or deny binding tcp/udp sockets to a local address and port.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "51c87720416237042c1efbe3a990e7a5ba7e3141",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-cidr-bind",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/51c87720416237042c1efbe3a990e7a5ba7e3141/components/latch-cidr-bind",
+    "org.opencontainers.image.version": "0.1.1-dev"
+  },
+  "imports": [
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:config/store@0.2.0-rc.1",
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.1-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.1-dev"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:13:03Z"
+}

@@ -1,0 +1,563 @@
+package componentized:component@0.0.0-dev;
+
+/// Types shared by the interfaces in this package.
+@since(version = 0.0.0-dev)
+interface types {
+  /// A `malformed` input.
+  @since(version = 0.0.0-dev)
+  record malformed {
+    /// Calls accepting multiple inputs name the one that is malformed.
+    name: option<string>,
+    /// Why the input is invalid.
+    message: string,
+  }
+
+  /// An error from a call.
+  @since(version = 0.0.0-dev)
+  variant error-code {
+    /// A value cannot be parsed to its expected type.
+    malformed(malformed),
+    /// A wasm that must be a component is not, e.g. a core module. Calls accepting multiple
+    /// wasms name the one that is not a component.
+    not-component(option<string>),
+    /// The item does not exist, optionally naming it, e.g. a path, URL, reference or package.
+    not-found(option<string>),
+    /// Any other error, with an optional message.
+    other(option<string>),
+  }
+
+  /// The bytes of a WebAssembly binary, a component unless stated otherwise.
+  @since(version = 0.0.0-dev)
+  type wasm = list<u8>;
+}
+
+/// Loads a component from a path.
+@since(version = 0.0.0-dev)
+interface path-loader {
+  use types.{wasm, error-code};
+
+  /// Loads the component at `path`. The forms of path supported depend on the
+  /// implementation, e.g. a filesystem path, an HTTP URL or an OCI reference.
+  @since(version = 0.0.0-dev)
+  load: async func(path: string) -> result<wasm, error-code>;
+}
+
+/// Composes components with WAC (WebAssembly Compositions).
+@since(version = 0.0.0-dev)
+interface wac-loader {
+  use types.{wasm, error-code};
+
+  type package-name = string;
+
+  /// A component, named by the package a WAC composition refers to it as.
+  @since(version = 0.0.0-dev)
+  type dependency = tuple<package-name, wasm>;
+
+  /// How to compose components.
+  @since(version = 0.0.0-dev)
+  variant plan {
+    /// A WAC script.
+    wac(string),
+  }
+
+  /// Plugs the exports of each of `plugs` into the matching imports of `socket`, returning the
+  /// composed component.
+  @since(version = 0.0.0-dev)
+  plug: async func(socket: wasm, plugs: list<wasm>) -> result<wasm, error-code>;
+
+  /// Composes the `dependencies` as described by `plan`, returning the composed component.
+  @since(version = 0.0.0-dev)
+  compose: async func(plan: plan, dependencies: list<dependency>) -> result<wasm, error-code>;
+}
+
+/// Tools for working with the WIT (Wasm Interface Type) of a component.
+///
+/// A component, or a WIT package encoded as a component, is parsed into a `wit` record, a model of
+/// the types, interfaces, worlds and packages it references. The model mirrors the `Resolve` from
+/// the `wit-parser` crate. Items reference each other by id, an opaque string unique within a
+/// `wit`, e.g. `type:4`.
+@since(version = 0.0.0-dev)
+interface wit {
+  use types.{wasm, error-code};
+
+  /// The id of a `type-def` in `wit.types`.
+  @since(version = 0.0.0-dev)
+  type type-id = string;
+
+  /// A wit primitive, or a reference to a `type-def`.
+  @since(version = 0.0.0-dev)
+  variant %type {
+    %bool,
+    %s8,
+    %s16,
+    %s32,
+    %s64,
+    %u8,
+    %u16,
+    %u32,
+    %u64,
+    %f32,
+    %f64,
+    %char,
+    %string,
+    %error-context,
+    id(type-id),
+  }
+
+  /// A handle to a wit resource.
+  @since(version = 0.0.0-dev)
+  variant handle {
+    /// An owned handle, `own<resource>`.
+    %own(type-id),
+    /// A borrowed handle, `borrow<resource>`.
+    %borrow(type-id),
+  }
+
+  /// A wit `tuple` type.
+  @since(version = 0.0.0-dev)
+  record %tuple {
+    types: list<%type>,
+  }
+
+  /// A wit `result` type.
+  @since(version = 0.0.0-dev)
+  record %result {
+    /// The type of an ok result, absent for `result<_, e>` and `result`.
+    ok: option<%type>,
+    /// The type of an error result, absent for `result<t>` and `result`.
+    err: option<%type>,
+  }
+
+  /// A wit `list` type.
+  @since(version = 0.0.0-dev)
+  record %list {
+    %type: %type,
+    /// The length of a fixed length list, e.g. `list<u8, 4>`.
+    fixed-length: option<u32>,
+  }
+
+  /// A wit `map` type.
+  @since(version = 0.0.0-dev)
+  record %map {
+    key: %type,
+    value: %type,
+  }
+
+  /// The kind of a wit `function`.
+  @since(version = 0.0.0-dev)
+  variant function-kind {
+    /// A function, e.g. `f: func();`.
+    freestanding,
+    /// An async function, e.g. `f: async func();`.
+    async-freestanding,
+    /// A method of the resource, the first parameter is `borrow<resource>`.
+    method(type-id),
+    /// An async method of the resource.
+    async-method(type-id),
+    /// A static function of the resource.
+    %static(type-id),
+    /// An async static function of the resource.
+    async-static(type-id),
+    /// A constructor of the resource.
+    %constructor(type-id),
+    /// A getter, which takes no parameters and returns a value.
+    getter,
+    /// A setter, which takes one parameter.
+    setter,
+    /// A getter of the resource, the first parameter is `borrow<resource>`.
+    method-getter(type-id),
+    /// A setter of the resource, the first parameter is `borrow<resource>`.
+    method-setter(type-id),
+    /// A static getter of the resource.
+    static-getter(type-id),
+    /// A static setter of the resource.
+    static-setter(type-id),
+  }
+
+  /// A parameter of a wit `function`.
+  @since(version = 0.0.0-dev)
+  record param {
+    name: string,
+    %type: %type,
+  }
+
+  /// Documentation comments.
+  @since(version = 0.0.0-dev)
+  record docs {
+    /// The text of the comments, without the `///`, absent when there are none.
+    contents: option<string>,
+  }
+
+  /// A field of a wit `record`.
+  @since(version = 0.0.0-dev)
+  record record-field {
+    name: string,
+    %type: %type,
+    docs: docs,
+  }
+
+  /// A wit `record` type.
+  @since(version = 0.0.0-dev)
+  record %record {
+    fields: list<record-field>,
+  }
+
+  /// A flag of a wit `flags` type.
+  @since(version = 0.0.0-dev)
+  record flag {
+    name: string,
+    docs: docs,
+  }
+
+  /// A wit `flags` type.
+  @since(version = 0.0.0-dev)
+  record %flags {
+    %flags: list<flag>,
+  }
+
+  /// A case of a wit `variant`.
+  @since(version = 0.0.0-dev)
+  record variant-case {
+    name: string,
+    /// The type of the cases value.
+    %type: option<%type>,
+    docs: docs,
+  }
+
+  /// A wit `variant` type.
+  @since(version = 0.0.0-dev)
+  record %variant {
+    cases: list<variant-case>,
+  }
+
+  /// A case of a wit `enum`.
+  @since(version = 0.0.0-dev)
+  record enum-case {
+    name: string,
+    docs: docs,
+  }
+
+  /// A wit `enum` type.
+  @since(version = 0.0.0-dev)
+  record %enum {
+    cases: list<enum-case>,
+  }
+
+  /// The wit type kind of a `type-def`, and its definition.
+  @since(version = 0.0.0-dev)
+  variant type-def-kind {
+    %record(%record),
+    %resource,
+    handle(handle),
+    %flags(%flags),
+    %tuple(%tuple),
+    %variant(%variant),
+    %enum(%enum),
+    %option(%type),
+    %result(%result),
+    %list(%list),
+    %map(%map),
+    %future(option<%type>),
+    %stream(option<%type>),
+    %type(%type),
+    /// A type whose definition is unknown.
+    unknown,
+  }
+
+  /// A dot separated identifier in the prerelease or build metadata of a `version`.
+  @since(version = 0.0.0-dev)
+  variant version-identifier {
+    /// An alphanumeric identifier, e.g. `alpha`.
+    %string(string),
+    /// A numeric identifier, e.g. `1`.
+    numeric(u64),
+  }
+
+  /// A semantic version.
+  @since(version = 0.0.0-dev)
+  record version {
+    major: u64,
+    minor: u64,
+    patch: u64,
+    /// The prerelease identifiers, e.g. `alpha.1` in `1.0.0-alpha.1`.
+    prerelease: option<list<version-identifier>>,
+    /// The build metadata identifiers, e.g. `build.5` in `1.0.0+build.5`.
+    build-metadata: option<list<version-identifier>>,
+  }
+
+  /// An item annotated `@unstable(feature = ...)`.
+  @since(version = 0.0.0-dev)
+  record unstable {
+    /// The feature that enables the item.
+    feature: string,
+    /// The version deprecating the item, from `@deprecated`.
+    deprecated: option<version>,
+  }
+
+  /// An item annotated `@since(version = ...)`.
+  @since(version = 0.0.0-dev)
+  record stable {
+    /// The version the item is stable since.
+    since: version,
+    /// The version deprecating the item, from `@deprecated`.
+    deprecated: option<version>,
+  }
+
+  /// The stability of an item, from its `@since` or `@unstable` annotation.
+  @since(version = 0.0.0-dev)
+  variant stability {
+    /// Neither `@since` nor `@unstable`.
+    unknown,
+    /// Annotated `@unstable`.
+    unstable(unstable),
+    /// Annotated `@since`.
+    stable(stable),
+  }
+
+  /// A function, freestanding or part of a resource.
+  @since(version = 0.0.0-dev)
+  record function {
+    /// The name of the function. For a resource function, e.g. `[method]r.f`.
+    name: string,
+    /// The kind of the function.
+    kind: function-kind,
+    /// The parameters of the function, in order.
+    params: list<param>,
+    /// The type the function returns, absent when it returns nothing.
+    %result: option<%type>,
+    docs: docs,
+    stability: stability,
+    /// The `@external-id` annotation of the item, if any.
+    external-id: option<string>,
+  }
+
+  /// The id of an `interface` in `wit.interfaces`.
+  @since(version = 0.0.0-dev)
+  type interface-id = string;
+
+  /// The id of a `world` in `wit.worlds`.
+  @since(version = 0.0.0-dev)
+  type world-id = string;
+
+  /// Where a `type-def` is defined.
+  @since(version = 0.0.0-dev)
+  variant type-owner {
+    /// Defined in a world.
+    %world(world-id),
+    /// Defined in an interface.
+    %interface(interface-id),
+    /// Not defined in a world or interface, e.g. an anonymous `list<u8>`.
+    none,
+  }
+
+  /// A type definition.
+  @since(version = 0.0.0-dev)
+  record type-def {
+    /// The name of the type, absent for an anonymous type, e.g. `list<u8>`.
+    name: option<string>,
+    /// The kind of the type, and its definition.
+    kind: type-def-kind,
+    /// Where the type is defined.
+    owner: type-owner,
+    /// Documentation comments on the item.
+    docs: docs,
+    /// The stability of the item.
+    stability: stability,
+    /// The `@external-id` annotation of the item, if any.
+    external-id: option<string>,
+  }
+
+  /// An interface imported or exported by a world.
+  @since(version = 0.0.0-dev)
+  record world-item-interface {
+    /// The interface.
+    id: interface-id,
+    stability: stability,
+    /// The `@external-id` annotation of the import or export, if any.
+    external-id: option<string>,
+    docs: docs,
+  }
+
+  /// An item imported or exported by a world.
+  @since(version = 0.0.0-dev)
+  variant world-item {
+    /// An interface.
+    %interface(world-item-interface),
+    /// A function.
+    function(function),
+    /// A type.
+    %type(type-id),
+  }
+
+  /// An item renamed by an `include ... with { name as as }`.
+  @since(version = 0.0.0-dev)
+  record include-name {
+    /// The name of the item in the included world.
+    name: string,
+    /// The name of the item in the including world.
+    %as: string,
+  }
+
+  /// An `include` of another world.
+  @since(version = 0.0.0-dev)
+  record world-include {
+    stability: stability,
+    /// The world included.
+    id: world-id,
+    /// The items renamed by the include.
+    names: list<include-name>,
+  }
+
+  /// The name of an item imported or exported by a world.
+  @since(version = 0.0.0-dev)
+  variant world-key {
+    /// A named item, e.g. `import foo: func();` or an inline interface.
+    name(string),
+    /// An interface imported or exported by its own name, e.g. `import wasi:cli/stdout;`.
+    %interface(interface-id),
+  }
+
+  /// The id of a `package` in `wit.packages`.
+  @since(version = 0.0.0-dev)
+  type package-id = string;
+
+  /// A wit `interface`.
+  @since(version = 0.0.0-dev)
+  record %interface {
+    /// The name of the interface, absent for an interface defined inline in a world.
+    name: option<string>,
+    /// The types of the interface, by name.
+    types: list<tuple<string, type-id>>,
+    /// The functions of the interface, by name.
+    functions: list<tuple<string, function>>,
+    docs: docs,
+    stability: stability,
+    /// The package of the interface.
+    %package: option<package-id>,
+  }
+
+  /// A wit `world`.
+  @since(version = 0.0.0-dev)
+  record %world {
+    name: string,
+    /// The items (interfaces, functions and types) the world imports.
+    imports: list<tuple<world-key, world-item>>,
+    /// The items (interfaces, functions and types) the world exports.
+    exports: list<tuple<world-key, world-item>>,
+    /// The package of the world.
+    %package: option<package-id>,
+    docs: docs,
+    stability: stability,
+    /// The worlds the world includes, empty once the includes are resolved.
+    includes: list<world-include>,
+  }
+
+  /// The name of a package, e.g. `wasi:cli@0.3.0`.
+  @since(version = 0.0.0-dev)
+  record package-name {
+    /// The namespace, e.g. `wasi` in `wasi:cli`.
+    namespace: string,
+    /// The name, e.g. `cli` in `wasi:cli`.
+    name: string,
+    /// The version, absent for an unversioned package.
+    version: option<version>,
+  }
+
+  /// A wit package of interfaces and worlds.
+  @since(version = 0.0.0-dev)
+  record %package {
+    name: package-name,
+    docs: docs,
+    /// The interfaces of the package, by name.
+    interfaces: list<tuple<string, interface-id>>,
+    /// The worlds of the package, by name.
+    worlds: list<tuple<string, world-id>>,
+  }
+
+  /// The WIT of a component or WIT package.
+  @since(version = 0.0.0-dev)
+  record wit {
+    /// Every interface, keyed by id.
+    interfaces: map<string, %interface>,
+    /// Every package, keyed by id.
+    packages: map<string, %package>,
+    /// Every type, keyed by id.
+    types: map<string, type-def>,
+    /// Every world, keyed by id.
+    worlds: map<string, %world>,
+    /// The package that was parsed. For a component, the synthesized `root:component` package
+    /// that contains the component's world.
+    default-package: package-id,
+    /// The world of the component, absent when a WIT package was parsed.
+    component-world: option<world-id>,
+  }
+
+  /// The WIT to work with.
+  @since(version = 0.0.0-dev)
+  variant wit-source {
+    /// A component, or a WIT package encoded as a WebAssembly binary module. Anything else,
+    /// e.g. a core module, is a `not-component` error.
+    wasm(wasm),
+    /// WIT text, a package that may contain nested packages. Packages it uses must be nested.
+    wit(string),
+    /// A `wit` from `parse`, possibly modified.
+    parsed(wit),
+  }
+
+  /// Which packages, other than the default package, `print` includes.
+  @since(version = 0.0.0-dev)
+  variant printed-packages {
+    /// Every package.
+    all,
+    /// Only the default package.
+    default,
+    /// The packages with these names, in addition to the default package. A name without a
+    /// version selects every version of the package. Naming a package that is not in the `wit`
+    /// is a `not-found` error.
+    selected(list<package-name>),
+  }
+
+  /// Options for `print`.
+  @since(version = 0.0.0-dev)
+  record print-options {
+    /// The packages to print. The default package is always printed first. Defaults to `all`.
+    packages: option<printed-packages>,
+  }
+
+  /// The names of the imports and exports of a component's world.
+  @since(version = 0.0.0-dev)
+  record summary {
+    /// Each import, e.g. `wasi:cli/stdout@0.3.0` for an interface, otherwise its name.
+    imports: list<string>,
+    /// Each export, e.g. `wasi:cli/run@0.3.0` for an interface, otherwise its name.
+    exports: list<string>,
+  }
+
+  /// Parses a source into a `wit`, a `parsed` source is returned as is.
+  @since(version = 0.0.0-dev)
+  parse: func(source: wit-source) -> result<wit, error-code>;
+
+  /// Prints a source as WIT text.
+  ///
+  /// The default package is printed first, followed by the additional packages in nested
+  /// `package namespace:name { ... }` blocks, sorted by name. Without options every package is
+  /// printed. A `parsed` source may be modified before printing, a reference to an id that
+  /// does not exist is an error.
+  @since(version = 0.0.0-dev)
+  print: func(source: wit-source, options: option<print-options>) -> result<string, error-code>;
+
+  /// Summarizes the imports and exports of a component's world.
+  ///
+  /// The source must have a component world, a WIT package (encoded or text) is an error.
+  @since(version = 0.0.0-dev)
+  summarize: func(source: wit-source) -> result<summary, error-code>;
+}
+
+/// Imports every interface in the package, for consumers of the package.
+@since(version = 0.0.0-dev)
+world imports {
+  import types;
+  import path-loader;
+  import wac-loader;
+  import wit;
+}

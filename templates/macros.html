@@ -1,0 +1,94 @@
+{% macro link(l) %}{% if l.url %}<a href="{{ l.url }}"><code>{{ l.label }}</code></a>{% else %}<code class="dim">{{ l.label }}</code>{% endif %}{% endmacro %}
+
+{% macro links(items, empty="None") %}
+{% if items %}<ul class="links">{% for l in items %}<li>{{ link(l) }}</li>{% endfor %}</ul>{% else %}<p class="dim">{{ empty }}</p>{% endif %}
+{% endmacro %}
+
+{% macro grouped(groups, empty="None") %}
+{% if groups %}<ul class="links">{% for g in groups %}<li>
+  <details class="versions-group">
+    <summary><code>{{ g.package }}</code> <span class="dim">{{ g.versions|length }} version{% if g.versions|length != 1 %}s{% endif %}</span></summary>
+    <ul class="links">{% for v in g.versions %}<li>{% if v.url %}<a href="{{ v.url }}"><code>{{ v.label }}</code></a>{% else %}<code class="dim">{{ v.label }}</code>{% endif %}</li>{% endfor %}</ul>
+  </details>
+</li>{% endfor %}</ul>{% else %}<p class="dim">{{ empty }}</p>{% endif %}
+{% endmacro %}
+
+{% macro stability(s) %}{% if s %}<span class="gates">
+  {%- if s.since %}<span class="gate since" title="@since(version = {{ s.since }})">since {{ s.since }}</span>{% endif -%}
+  {%- if s.unstable %}<span class="gate unstable" title="@unstable(feature = {{ s.unstable }})">unstable: {{ s.unstable }}</span>{% endif -%}
+  {%- if s.deprecated %}<span class="gate deprecated" title="@deprecated(version = {{ s.deprecated }})">deprecated {{ s.deprecated }}</span>{% endif -%}
+</span>{% endif %}{% endmacro %}
+
+{#- the icon of each kind of type, and of functions, referenced by `kind_icon` #}
+{% macro kind_sprite() %}
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="kind-resource" viewBox="0 0 16 16"><path d="M8 1.8 2.5 4.8v6.4L8 14.2l5.5-3V4.8L8 1.8ZM2.5 4.8 8 7.8l5.5-3M8 7.8v6.4"/></symbol>
+  <symbol id="kind-record" viewBox="0 0 16 16"><rect x="2.5" y="2.5" width="11" height="11" rx="2"/><path d="M2.5 6.2h11M2.5 9.8h11M6 2.5v11"/></symbol>
+  <symbol id="kind-variant" viewBox="0 0 16 16"><path d="M8 2v4.2M8 6.2 4 10v3.5M8 6.2l4 3.8v3.5"/><circle cx="8" cy="2.2" r=".9"/><circle cx="4" cy="13.6" r=".9"/><circle cx="12" cy="13.6" r=".9"/></symbol>
+  <symbol id="kind-enum" viewBox="0 0 16 16"><circle cx="3.8" cy="4" r="1.3"/><circle cx="3.8" cy="8" r="1.3"/><circle cx="3.8" cy="12" r="1.3"/><path d="M7 4h6.5M7 8h6.5M7 12h6.5"/></symbol>
+  <symbol id="kind-flags" viewBox="0 0 16 16"><path d="M3.5 14.5V2M3.5 2.8h8.5l-2 3 2 3H3.5"/></symbol>
+  <symbol id="kind-type" viewBox="0 0 16 16"><rect x="2.5" y="2.5" width="11" height="11" rx="2"/><path d="M5.5 6.6h5M5.5 9.4h5"/></symbol>
+  <symbol id="kind-use" viewBox="0 0 16 16"><path d="M1.8 8h7.4M6.6 5.4 9.2 8l-2.6 2.6M9.8 2.5h2.7a1.5 1.5 0 0 1 1.5 1.5v8a1.5 1.5 0 0 1-1.5 1.5H9.8"/></symbol>
+  <symbol id="kind-used" viewBox="0 0 16 16"><path d="M1.2 5.6h6.6V1.8L14.8 8l-7 6.2v-3.8H1.2z"/></symbol>
+  <symbol id="mod-static" viewBox="0 0 16 16"><path d="M4.6 1.5h6.8l-1.2 5.2 2.6 2.8H9v5L8 15.5 7 14.5v-5H3.2l2.6-2.8z"/></symbol>
+  <symbol id="mod-async" viewBox="0 0 16 16"><path d="M3 1.5h10L8 8zM3 14.5h10L8 8z"/></symbol>
+  <symbol id="mod-get" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M.8 8C2.6 4.6 5.1 3 8 3s5.4 1.6 7.2 5c-1.8 3.4-4.3 5-7.2 5S2.6 11.4.8 8Zm7.2 2.6a2.6 2.6 0 1 0 0-5.2 2.6 2.6 0 0 0 0 5.2Z"/></symbol>
+  <symbol id="mod-set" viewBox="0 0 16 16"><path d="M11.2 1.4l3.4 3.4-8.3 8.3-4.6 1.2 1.2-4.6z"/></symbol>
+  <symbol id="mod-constructor" viewBox="0 0 16 16"><path d="M8 .8l1.9 5.3L15.2 8l-5.3 1.9L8 15.2l-1.9-5.3L.8 8l5.3-1.9z"/></symbol>
+  <symbol id="kind-func" viewBox="0 0 16 16"><path d="M11.5 2.6c-1.9-.4-3 .3-3.4 2.3L6.6 12c-.4 1.9-1.4 2.6-3.2 2.2M5.3 6.4h5.4"/></symbol>
+</svg>
+{% endmacro %}
+
+{#- the icon of a kind of type, `record`, `variant`, ..., or `func`. A type used from another
+    interface shows the icon of the type it uses, badged as used. #}
+{% macro kind_icon(kind, used_kind=none) %}
+{%- if kind == "use" and used_kind -%}
+<span class="kind-icon-used" aria-hidden="true"><svg class="kind-icon kind-{{ used_kind }}" focusable="false"><use href="#kind-{{ used_kind }}"/></svg><svg class="kind-badge" viewBox="0 0 16 16" focusable="false"><use href="#kind-used"/></svg></span>
+{%- else -%}
+<svg class="kind-icon kind-{{ kind }}" aria-hidden="true" focusable="false"><use href="#kind-{{ kind }}"/></svg>
+{%- endif -%}
+{% endmacro %}
+
+{#- a function's icon, with a badge on a corner for each of its modifiers: `static` on the
+    upper right, `async` on the lower right, and `get`, `set` or `constructor`, which exclude one
+    another, on the lower left #}
+{% macro func_icon(mods) %}
+{%- set label = (mods|join(" ") ~ " function")|trim -%}
+<span class="kind-icon-badged" title="{{ label }}"><svg class="kind-icon kind-func" aria-hidden="true" focusable="false"><use href="#kind-func"/></svg>
+{%- for m in mods %}<svg class="fbadge fbadge-{{ m }}" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#mod-{{ m }}"/></svg>{% endfor -%}
+<span class="visually-hidden">{{ label }}</span></span>
+{%- endmacro %}
+
+{% macro kind(k) %}<span class="badge {{ k }}">{{ k }}</span>{% endmacro %}
+
+{#- `short` labels a card by its name alone, on a page that already names its namespace #}
+{% macro card(c, short=false) %}
+<a class="card" href="{{ c.url }}" data-kind="{{ c.kind }}" data-namespace="{{ c.namespace }}" data-text="{{ c.package|lower }} {{ c.description|lower }}">
+  <div class="card-head"><code class="pkg"{% if short %} title="{{ c.package }}"{% endif %}>{% if short %}{{ c.name }}{% else %}{{ c.package }}{% endif %}</code> {{ kind(c.kind) }}{% if c.dependency %} <span class="badge dep" title="Indexed because a componentized release depends on it">dependency</span>{% endif %}</div>
+  <p>{{ c.description or "No description." }}</p>
+  <div class="meta"><span>v{{ c.version }}</span><span>{{ c.versions }} version{% if c.versions != 1 %}s{% endif %}</span><span>{{ c.date }}</span></div>
+</a>
+{% endmacro %}
+
+{% macro repo_card(r) %}
+<a class="card" href="{{ r.url }}">
+  <div class="card-head"><code class="pkg">{{ r.key }}</code>{% if r.dependency %} <span class="badge dep" title="Indexed because a componentized release depends on it">dependency</span>{% endif %}</div>
+  <p>{{ r.description or "No description." }}</p>
+  <div class="meta"><span>v{{ r.version }}</span>{% if r.interfaces %}<span>{{ r.interfaces|length }} interface{% if r.interfaces|length != 1 %}s{% endif %}</span>{% endif %}<span>{{ r.components }} component{% if r.components != 1 %}s{% endif %}</span><span>{{ r.date }}</span></div>
+</a>
+{% endmacro %}
+
+{% macro header(pkg) %}
+<nav class="crumbs"><a href="/{{ pkg.namespace }}/">{{ pkg.namespace }}</a> : <a href="{{ pkg.package_url }}">{{ pkg.name }}</a> @ <a href="{{ pkg.url }}">{{ pkg.version }}</a></nav>
+<div class="title-row">
+  <h1><code>{{ pkg.package }}</code></h1>
+  {{ kind(pkg.kind) }}
+  {% if pkg.dependency %}<span class="badge dep" title="Indexed because a componentized release depends on it">dependency</span>{% endif %}
+  {% if pkg.dev %}<span class="badge pre" title="A development build of the upcoming release">dev</span>{% elif not pkg.stable %}<span class="badge pre">pre-release</span>{% endif %}
+  <select class="versions" aria-label="Version" onchange="location.href=this.value">
+    {% for v in pkg.versions %}<option value="{{ v.url }}"{% if v.current %} selected{% endif %}>{{ v.version }}</option>{% endfor %}
+  </select>
+</div>
+{% if pkg.superseded_by %}<p class="notice">This development build was superseded by the release of <a href="{{ pkg.superseded_by.url }}">{{ pkg.superseded_by.version }}</a>.</p>{% endif %}
+{% if pkg.description %}<p class="lede">{{ pkg.description }}</p>{% endif %}
+{% endmacro %}

@@ -1,0 +1,130 @@
+package root:component;
+
+world root {
+  export componentized:constants/%u8@0.1.2-dev;
+  export componentized:constants/%u16@0.1.2-dev;
+  export componentized:constants/%u32@0.1.2-dev;
+  export componentized:constants/%u64@0.1.2-dev;
+  export componentized:constants/%s8@0.1.2-dev;
+  export componentized:constants/%s16@0.1.2-dev;
+  export componentized:constants/%s32@0.1.2-dev;
+  export componentized:constants/%s64@0.1.2-dev;
+  export componentized:constants/%f32@0.1.2-dev;
+  export componentized:constants/%f64@0.1.2-dev;
+}
+package componentized:constants@0.1.2-dev {
+  interface %u8 {
+    max: func() -> u8;
+
+    min: func() -> u8;
+
+    bits: func() -> u32;
+  }
+  interface %u16 {
+    max: func() -> u16;
+
+    min: func() -> u16;
+
+    bits: func() -> u32;
+  }
+  interface %u32 {
+    max: func() -> u32;
+
+    min: func() -> u32;
+
+    bits: func() -> u32;
+  }
+  interface %u64 {
+    max: func() -> u64;
+
+    min: func() -> u64;
+
+    bits: func() -> u32;
+  }
+  interface %s8 {
+    max: func() -> s8;
+
+    min: func() -> s8;
+
+    bits: func() -> u32;
+  }
+  interface %s16 {
+    max: func() -> s16;
+
+    min: func() -> s16;
+
+    bits: func() -> u32;
+  }
+  interface %s32 {
+    max: func() -> s32;
+
+    min: func() -> s32;
+
+    bits: func() -> u32;
+  }
+  interface %s64 {
+    max: func() -> s64;
+
+    min: func() -> s64;
+
+    bits: func() -> u32;
+  }
+  interface %f32 {
+    radix: func() -> u32;
+
+    mantissa-digits: func() -> u32;
+
+    digits: func() -> u32;
+
+    epsilon: func() -> f32;
+
+    min: func() -> f32;
+
+    min-positive: func() -> f32;
+
+    max: func() -> f32;
+
+    min-exp: func() -> s32;
+
+    max-exp: func() -> s32;
+
+    min-n10-exp: func() -> s32;
+
+    max-n10-exp: func() -> s32;
+
+    nan: func() -> f32;
+
+    infinity: func() -> f32;
+
+    neg-infinity: func() -> f32;
+  }
+  interface %f64 {
+    radix: func() -> u32;
+
+    mantissa-digits: func() -> u32;
+
+    digits: func() -> u32;
+
+    epsilon: func() -> f64;
+
+    min: func() -> f64;
+
+    min-positive: func() -> f64;
+
+    max: func() -> f64;
+
+    min-exp: func() -> s32;
+
+    max-exp: func() -> s32;
+
+    min-n10-exp: func() -> s32;
+
+    max-n10-exp: func() -> s32;
+
+    nan: func() -> f64;
+
+    infinity: func() -> f64;
+
+    neg-infinity: func() -> f64;
+  }
+}

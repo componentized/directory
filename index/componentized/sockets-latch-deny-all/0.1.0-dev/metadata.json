@@ -1,0 +1,49 @@
+{
+  "package": "componentized:sockets-latch-deny-all",
+  "version": "0.1.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-deny-all",
+    "tag": "0.1.0-dev",
+    "digest": "sha256:b2a94405ac45b99538e411b3a052719aa700913a6b6c0e44170705d3174c21e6",
+    "layer_digest": "sha256:5627d4599903ddd1d6ba69bc0adf9d96f2f35d355f4bdf4fed429d350bf4bc79",
+    "size": 30798
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-deny-all",
+    "tag": "0.1.0-dev_debug",
+    "digest": "sha256:df733be99b409b9a617122fd5b2cdac821f4fc604ebd36a20c3254f3f5380564",
+    "layer_digest": "sha256:9d3d6ca49f65f4dd44b270fff987537394e62d5e412ad7c1f1b3e2f354da72c1",
+    "size": 294823
+  },
+  "created": "2026-10-15T18:55:37.004943462Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Sockets latch that implicitly denies all operations.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b90f9a86284d488ca5706e484b8f4f64110b3aaf",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-deny-all",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/b90f9a86284d488ca5706e484b8f4f64110b3aaf/components/latch-deny-all",
+    "org.opencontainers.image.version": "0.1.0-dev"
+  },
+  "imports": [
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.0-dev"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:13:08Z"
+}

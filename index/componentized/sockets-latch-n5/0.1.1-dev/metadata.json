@@ -1,0 +1,54 @@
+{
+  "package": "componentized:sockets-latch-n5",
+  "version": "0.1.1-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-n5",
+    "tag": "0.1.1-dev",
+    "digest": "sha256:386374b1318facbbab42bf239fec8a6e43d94daf3c66beaa717783da2205e58b",
+    "layer_digest": "sha256:01408c962134fa69beb79124ed141b9c24da67ca62c18d84dccb9407ad594b26",
+    "size": 61022
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-n5",
+    "tag": "0.1.1-dev_debug",
+    "digest": "sha256:2a8eabca831acebbe1a1924fc86fc64a0f1271a25e1c0bcc33a3d8929a82cdf2",
+    "layer_digest": "sha256:2b78c8935042384f6e8fc48d7f960632ea94ed90caae1291419d1a47bc95aec5",
+    "size": 554806
+  },
+  "created": "2026-11-09T19:54:57.373033042Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Sockets latch that aggregates five other sockets latches.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "51c87720416237042c1efbe3a990e7a5ba7e3141",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-n5",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/51c87720416237042c1efbe3a990e7a5ba7e3141/components/latch-n5",
+    "org.opencontainers.image.version": "0.1.1-dev"
+  },
+  "imports": [
+    "wasi:sockets/types@0.3.0",
+    "latch0: componentized:sockets/latch@0.1.1-dev",
+    "latch1: componentized:sockets/latch@0.1.1-dev",
+    "latch2: componentized:sockets/latch@0.1.1-dev",
+    "latch3: componentized:sockets/latch@0.1.1-dev",
+    "latch4: componentized:sockets/latch@0.1.1-dev"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.1-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.1-dev"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:13:24Z"
+}

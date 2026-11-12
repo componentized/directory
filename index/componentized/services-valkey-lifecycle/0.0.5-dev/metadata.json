@@ -1,0 +1,77 @@
+{
+  "package": "componentized:services-valkey-lifecycle",
+  "version": "0.0.5-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/valkey-lifecycle",
+    "tag": "0.0.5-dev",
+    "digest": "sha256:e324d5694d4ccf1d9521e243a4033cd0f036554b249e1174350274b560ec79b3",
+    "layer_digest": "sha256:3f2b65e48674101965b76927f1e48c2523a55666e2f746323751461853c44e19",
+    "size": 516506
+  },
+  "created": "2026-11-09T22:51:15.645721278Z",
+  "annotations": {
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "23a7aebfe82e30b9453f8d8ee6b297b8184d934c+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/services.git",
+    "org.opencontainers.image.title": "valkey-lifecycle",
+    "org.opencontainers.image.version": "0.0.5-dev"
+  },
+  "imports": [
+    "componentized:services/types@0.0.5-dev",
+    "componentized:services/credential-admin@0.0.5-dev",
+    "wasi:config/store@0.2.0-rc.1",
+    "wasi:io/poll@0.2.12",
+    "wasi:clocks/monotonic-clock@0.2.12",
+    "wasi:clocks/wall-clock@0.2.12",
+    "wasi:io/error@0.2.12",
+    "wasi:io/streams@0.2.12",
+    "wasi:cli/stdout@0.2.12",
+    "wasi:cli/stderr@0.2.12",
+    "wasi:cli/stdin@0.2.12",
+    "wasi:cli/environment@0.2.12",
+    "wasi:cli/exit@0.2.12",
+    "wasi:cli/terminal-input@0.2.12",
+    "wasi:cli/terminal-output@0.2.12",
+    "wasi:cli/terminal-stdin@0.2.12",
+    "wasi:cli/terminal-stdout@0.2.12",
+    "wasi:cli/terminal-stderr@0.2.12",
+    "wasi:sockets/network@0.2.6",
+    "wasi:sockets/instance-network@0.2.6",
+    "wasi:sockets/tcp@0.2.6",
+    "wasi:sockets/tcp-create-socket@0.2.6",
+    "wasi:sockets/ip-name-lookup@0.2.6"
+  ],
+  "exports": [
+    "componentized:services/lifecycle@0.0.5-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:services",
+      "version": "0.0.5-dev"
+    },
+    {
+      "package": "wasi:cli",
+      "version": "0.2.12"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.2.12"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.12"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.2.6"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:57Z"
+}

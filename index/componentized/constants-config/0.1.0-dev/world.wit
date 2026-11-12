@@ -1,0 +1,26 @@
+package root:component;
+
+world root {
+  import componentized:constants/config-values@0.1.0-dev;
+
+  export wasi:config/store@0.2.0-rc.1;
+}
+package componentized:constants@0.1.0-dev {
+  interface config-values {
+    values: func() -> list<tuple<string, string>>;
+  }
+}
+
+
+package wasi:config@0.2.0-rc.1 {
+  interface store {
+    variant error {
+      upstream(string),
+      io(string),
+    }
+
+    get: func(key: string) -> result<option<string>, error>;
+
+    get-all: func() -> result<list<tuple<string, string>>, error>;
+  }
+}

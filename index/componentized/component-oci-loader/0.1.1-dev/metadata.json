@@ -1,0 +1,56 @@
+{
+  "package": "componentized:component-oci-loader",
+  "version": "0.1.1-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component/oci-loader",
+    "tag": "0.1.1-dev",
+    "digest": "sha256:bc3e9d75f67a49a8543cd7c6722303e93f3a63591966fef0cf748a5196b0bb68",
+    "layer_digest": "sha256:857a07dabe0d52e9f5460272ab7997177e2055f25fcb3d1e5991326002c3a0cc",
+    "size": 116944
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component/oci-loader",
+    "tag": "0.1.1-dev_debug",
+    "digest": "sha256:8dfc4b94753a3cb0334b948ef5d65b7a7771328b546c96687d5a41bb5c473151",
+    "layer_digest": "sha256:9926b8e1dffbb0106b41b22b150b55d8463f3c1a09a88052c79f8c4932fd2780",
+    "size": 1800739
+  },
+  "created": "2026-11-09T14:18:23.218844327Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Loads a component from an OCI registry by reference.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "4f2ad363c1770efe24dd6477fe94e9e08bf5a82c",
+    "org.opencontainers.image.source": "https://github.com/componentized/component.git",
+    "org.opencontainers.image.title": "componentized:component-oci-loader",
+    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/4f2ad363c1770efe24dd6477fe94e9e08bf5a82c/components/oci-loader",
+    "org.opencontainers.image.version": "0.1.1-dev"
+  },
+  "imports": [
+    "wasi:clocks/system-clock@0.3.0",
+    "componentized:oci/client@0.1.0",
+    "componentized:oci/media-types@0.1.0",
+    "componentized:component/types@0.1.1-dev"
+  ],
+  "exports": [
+    "componentized:component/path-loader@0.1.1-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:component",
+      "version": "0.1.1-dev"
+    },
+    {
+      "package": "componentized:oci",
+      "version": "0.1.0"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:11:54Z"
+}

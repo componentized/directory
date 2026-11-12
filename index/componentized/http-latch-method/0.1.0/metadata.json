@@ -1,0 +1,59 @@
+{
+  "package": "componentized:http-latch-method",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-method",
+    "tag": "0.1.0",
+    "digest": "sha256:0a2e647001230d5df9535042fb8f96df236f665ad2730f37a9b42b479debb16b",
+    "layer_digest": "sha256:3b7a3feb56c03da6a919c15ff726f920b0a97822ecf4dd45eb04a2dfa254402b",
+    "size": 49024
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-method",
+    "tag": "0.1.0_debug",
+    "digest": "sha256:29c69e0b26f59ab54766375088f868d3db17bc1a437c6032f202570eaeb3b9e9",
+    "layer_digest": "sha256:da2c2f718f1dd9d582651f6e864adb72a3a539d6033ff937c65851599b3fbdd4",
+    "size": 167678
+  },
+  "created": "2026-10-05T18:15:15.360089945Z",
+  "annotations": {
+    "org.opencontainers.image.description": "HTTP latch that decides each request by its method.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b0a0308c87a6b3089882cb6f7315968b47aceebb",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-latch-method",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/b0a0308c87a6b3089882cb6f7315968b47aceebb/components/latch-method",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "imports": [
+    "wasi:config/store@0.2.0-rc.1",
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:http/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:http/latch@0.1.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:http",
+      "version": "0.1.0"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:44:39Z"
+}

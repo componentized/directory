@@ -1,0 +1,10 @@
+package root:component;
+
+world root {
+  import wasi:io/error@0.2.3;
+  import wasi:io/streams@0.2.3;
+  import wasi:cli/stdout@0.2.3;
+  import wasi:clocks/wall-clock@0.2.3;
+
+  export wasi:logging/logging@0.1.0-draft;
+}

@@ -1,0 +1,29 @@
+package root:component;
+
+world root {
+  import wasi:config/store@0.2.0-draft;
+  import defaults: interface {
+    variant error {
+      upstream(string),
+      io(string),
+    }
+
+    get: func(key: string) -> result<option<string>, error>;
+
+    get-all: func() -> result<list<tuple<string, string>>, error>;
+  }
+
+  export wasi:config/store@0.2.0-draft;
+}
+package wasi:config@0.2.0-draft {
+  interface store {
+    variant error {
+      upstream(string),
+      io(string),
+    }
+
+    get: func(key: string) -> result<option<string>, error>;
+
+    get-all: func() -> result<list<tuple<string, string>>, error>;
+  }
+}

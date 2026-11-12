@@ -1,0 +1,301 @@
+package root:component;
+
+world root {
+  import wasi:sockets/network@0.2.3;
+  import wasi:sockets/instance-network@0.2.3;
+  import wasi:io/poll@0.2.3;
+  import wasi:io/error@0.2.3;
+  import wasi:io/streams@0.2.3;
+  import wasi:sockets/tcp@0.2.3;
+  import wasi:sockets/tcp-create-socket@0.2.3;
+  import wasi:sockets/ip-name-lookup@0.2.3;
+  import wasi:config/store@0.2.0-draft;
+
+  export componentized:valkey/resp;
+  export componentized:valkey/store;
+  export wasi:keyvalue/store@0.2.0-draft2;
+  export wasi:keyvalue/atomics@0.2.0-draft2;
+  export wasi:keyvalue/batch@0.2.0-draft2;
+}
+package wasi:io@0.2.3 {
+  interface poll {
+    resource pollable {
+      block: func();
+    }
+  }
+  interface error {
+    resource error {
+      to-debug-string: func() -> string;
+    }
+  }
+  interface streams {
+    use error.{error};
+
+    resource input-stream {
+      blocking-read: func(len: u64) -> result<list<u8>, stream-error>;
+    }
+
+    variant stream-error {
+      last-operation-failed(error),
+      closed,
+    }
+
+    resource output-stream {
+      blocking-write-and-flush: func(contents: list<u8>) -> result<_, stream-error>;
+    }
+  }
+}
+
+
+package wasi:sockets@0.2.3 {
+  interface network {
+    resource network;
+
+    type ipv4-address = tuple<u8, u8, u8, u8>;
+
+    record ipv4-socket-address {
+      port: u16,
+      address: ipv4-address,
+    }
+
+    type ipv6-address = tuple<u16, u16, u16, u16, u16, u16, u16, u16>;
+
+    record ipv6-socket-address {
+      port: u16,
+      flow-info: u32,
+      address: ipv6-address,
+      scope-id: u32,
+    }
+
+    variant ip-socket-address {
+      ipv4(ipv4-socket-address),
+      ipv6(ipv6-socket-address),
+    }
+
+    enum error-code {
+      unknown,
+      access-denied,
+      not-supported,
+      invalid-argument,
+      out-of-memory,
+      timeout,
+      concurrency-conflict,
+      not-in-progress,
+      would-block,
+      invalid-state,
+      new-socket-limit,
+      address-not-bindable,
+      address-in-use,
+      remote-unreachable,
+      connection-refused,
+      connection-reset,
+      connection-aborted,
+      datagram-too-large,
+      name-unresolvable,
+      temporary-resolver-failure,
+      permanent-resolver-failure,
+    }
+
+    enum ip-address-family {
+      ipv4,
+      ipv6,
+    }
+
+    variant ip-address {
+      ipv4(ipv4-address),
+      ipv6(ipv6-address),
+    }
+  }
+  interface instance-network {
+    use network.{network};
+
+    instance-network: func() -> network;
+  }
+  interface tcp {
+    use network.{network, ip-socket-address, error-code};
+    use wasi:io/streams@0.2.3.{input-stream, output-stream};
+    use wasi:io/poll@0.2.3.{pollable};
+
+    resource tcp-socket {
+      start-connect: func(network: borrow<network>, remote-address: ip-socket-address) -> result<_, error-code>;
+      finish-connect: func() -> result<tuple<input-stream, output-stream>, error-code>;
+      subscribe: func() -> pollable;
+    }
+  }
+  interface tcp-create-socket {
+    use network.{ip-address-family};
+    use tcp.{tcp-socket};
+    use network.{error-code};
+
+    create-tcp-socket: func(address-family: ip-address-family) -> result<tcp-socket, error-code>;
+  }
+  interface ip-name-lookup {
+    use network.{ip-address, error-code};
+    use wasi:io/poll@0.2.3.{pollable};
+    use network.{network};
+
+    resource resolve-address-stream {
+      resolve-next-address: func() -> result<option<ip-address>, error-code>;
+      subscribe: func() -> pollable;
+    }
+
+    resolve-addresses: func(network: borrow<network>, name: string) -> result<resolve-address-stream, error-code>;
+  }
+}
+
+
+package wasi:config@0.2.0-draft {
+  interface store {
+    variant error {
+      upstream(string),
+      io(string),
+    }
+
+    get: func(key: string) -> result<option<string>, error>;
+  }
+}
+
+
+package componentized:valkey {
+  interface resp {
+    type error = string;
+
+    type nested-value = list<u8>;
+
+    variant value {
+      %string(string),
+      error(string),
+      integer(s64),
+      bulk-string(string),
+      array(list<nested-value>),
+      null,
+      boolean(bool),
+      double(f64),
+      big-number(string),
+      bulk-error(string),
+      verbatim-string(tuple<string, string>),
+      %map(list<tuple<nested-value, nested-value>>),
+      set(list<nested-value>),
+      push(list<nested-value>),
+    }
+
+    decode: func(data: list<u8>) -> result<value, error>;
+
+    encode: func(value: value) -> result<list<u8>, error>;
+  }
+  interface store {
+    use resp.{error as resp-error, value};
+
+    variant error {
+      client(string),
+      resp(resp-error),
+      valkey(string),
+    }
+
+    record hello-opts {
+      proto-ver: option<string>,
+      auth: option<tuple<string, string>>,
+      client-name: option<string>,
+    }
+
+    record hrandfield-opts {
+      count: option<s64>,
+      with-values: option<bool>,
+    }
+
+    record hscan-opts {
+      match: option<string>,
+      count: option<s64>,
+      no-values: option<bool>,
+    }
+
+    resource connection {
+      send: func(command: list<value>) -> result<value, error>;
+      acl-deluser: func(username: string) -> result<_, error>;
+      acl-genpass: func() -> result<string, error>;
+      acl-setuser: func(username: string, rules: list<string>) -> result<_, error>;
+      auth: func(username: string, password: string) -> result<_, error>;
+      del: func(key: string) -> result<_, error>;
+      exists: func(key: string) -> result<bool, error>;
+      get: func(key: string) -> result<option<string>, error>;
+      hdel: func(key: string, field: string) -> result<_, error>;
+      hello: func(opts: option<hello-opts>) -> result<list<tuple<string, value>>, error>;
+      hexists: func(key: string, field: string) -> result<bool, error>;
+      hget: func(key: string, field: string) -> result<option<string>, error>;
+      hgetall: func(key: string) -> result<list<tuple<string, string>>, error>;
+      hincrby: func(key: string, field: string, increment: s64) -> result<s64, error>;
+      hincrbyfloat: func(key: string, field: string, increment: f64) -> result<string, error>;
+      hkeys: func(key: string) -> result<list<string>, error>;
+      hlen: func(key: string) -> result<u64, error>;
+      hmget: func(key: string, fields: list<string>) -> result<list<option<string>>, error>;
+      hmset: func(key: string, fields: list<tuple<string, string>>) -> result<_, error>;
+      hrandfield: func(key: string, opts: option<hrandfield-opts>) -> result<option<list<tuple<string, option<string>>>>, error>;
+      hscan: func(key: string, cursor: option<string>, opts: option<hscan-opts>) -> result<tuple<option<string>, list<tuple<string, option<string>>>>, error>;
+      hset: func(key: string, field: string, value: string) -> result<_, error>;
+      hsetnx: func(key: string, field: string, value: string) -> result<bool, error>;
+      hstrlen: func(key: string, field: string) -> result<u64, error>;
+      hvals: func(key: string) -> result<list<string>, error>;
+      incr: func(key: string) -> result<s64, error>;
+      incrby: func(key: string, increment: s64) -> result<s64, error>;
+      keys: func(pattern: string) -> result<list<string>, error>;
+      ping: func() -> result<_, error>;
+      publish: func(channel: string, message: string) -> result<s64, error>;
+      quit: func() -> result<_, error>;
+      set: func(key: string, value: string) -> result<_, error>;
+    }
+
+    connect: func(host: string, port: u16, opts: option<hello-opts>) -> result<connection, error>;
+  }
+}
+
+
+package wasi:keyvalue@0.2.0-draft2 {
+  interface store {
+    variant error {
+      no-such-store,
+      access-denied,
+      other(string),
+    }
+
+    record key-response {
+      keys: list<string>,
+      cursor: option<string>,
+    }
+
+    resource bucket {
+      get: func(key: string) -> result<option<list<u8>>, error>;
+      set: func(key: string, value: list<u8>) -> result<_, error>;
+      delete: func(key: string) -> result<_, error>;
+      exists: func(key: string) -> result<bool, error>;
+      list-keys: func(cursor: option<string>) -> result<key-response, error>;
+    }
+
+    open: func(identifier: string) -> result<bucket, error>;
+  }
+  interface atomics {
+    use store.{bucket, error};
+
+    resource cas {
+      new: static func(bucket: borrow<bucket>, key: string) -> result<cas, error>;
+      current: func() -> result<option<list<u8>>, error>;
+    }
+
+    variant cas-error {
+      store-error(error),
+      cas-failed(cas),
+    }
+
+    increment: func(bucket: borrow<bucket>, key: string, delta: s64) -> result<s64, error>;
+
+    swap: func(cas: cas, value: list<u8>) -> result<_, cas-error>;
+  }
+  interface batch {
+    use store.{bucket, error};
+
+    get-many: func(bucket: borrow<bucket>, keys: list<string>) -> result<list<option<tuple<string, list<u8>>>>, error>;
+
+    set-many: func(bucket: borrow<bucket>, key-values: list<tuple<string, list<u8>>>) -> result<_, error>;
+
+    delete-many: func(bucket: borrow<bucket>, keys: list<string>) -> result<_, error>;
+  }
+}

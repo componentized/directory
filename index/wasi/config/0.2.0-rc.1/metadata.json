@@ -1,0 +1,23 @@
+{
+  "package": "wasi:config",
+  "version": "0.2.0-rc.1",
+  "kind": "interface",
+  "origin": "dependency",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "webassembly/wasi/config",
+    "tag": "0.2.0-rc.1",
+    "digest": "sha256:c4fdf7fbde183412e1e3917c096aa3426c92febe147d5f07c75b43852229aceb",
+    "layer_digest": "sha256:1b7f1b0fd07bb4cede16c6a6ec8852815dfb924639a78735fc7bdffdc164485d",
+    "size": 1609
+  },
+  "created": "2025-11-04T15:47:18.446196Z",
+  "annotations": {
+    "org.opencontainers.image.description": "A WASI API for providing configuration to a component.",
+    "org.opencontainers.image.licenses": "Apache-2.0 WITH LLVM-exception",
+    "org.opencontainers.image.source": "https://github.com/webassembly/wasi",
+    "org.opencontainers.image.url": "https://wasi.dev",
+    "org.opencontainers.image.version": "0.2.0-rc.1"
+  },
+  "indexed_at": "2026-11-11T23:43:40Z"
+}

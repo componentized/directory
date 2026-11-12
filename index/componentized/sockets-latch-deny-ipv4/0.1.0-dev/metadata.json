@@ -1,0 +1,49 @@
+{
+  "package": "componentized:sockets-latch-deny-ipv4",
+  "version": "0.1.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-deny-ipv4",
+    "tag": "0.1.0-dev",
+    "digest": "sha256:8d34a1273717573de7cda7ccb26bbe3028f707d995d0c604ab9e28a1a19993a9",
+    "layer_digest": "sha256:ad83694a4241ee120608540bd93a32b0fa1f857a52312d9024bf6fdf801c06eb",
+    "size": 63504
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-deny-ipv4",
+    "tag": "0.1.0-dev_debug",
+    "digest": "sha256:35df09d6f4e440d12819ff7a7540c9b3537f699a2c99967acaa46a29b5405eec",
+    "layer_digest": "sha256:b0569871322b6955d1e92a97b058812f04f22832601a411942e4155f80d2b777",
+    "size": 489807
+  },
+  "created": "2026-10-15T18:57:17.474055664Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Sockets latch that implicitly denies all IPv4 operations.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b90f9a86284d488ca5706e484b8f4f64110b3aaf",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-deny-ipv4",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/b90f9a86284d488ca5706e484b8f4f64110b3aaf/components/latch-deny-ipv4",
+    "org.opencontainers.image.version": "0.1.0-dev"
+  },
+  "imports": [
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.0-dev"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:13:14Z"
+}

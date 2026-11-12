@@ -1,0 +1,46 @@
+{
+  "package": "componentized:config-overlay",
+  "version": "0.2.2-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/config/overlay",
+    "tag": "0.2.2-dev",
+    "digest": "sha256:4c4fe9478bb176c307471e3dc0148d1584df73a6bb45fba1b2ef17a51f7dba25",
+    "layer_digest": "sha256:235b86ef42465609d5df4ade4c87625eeafbb44bfa2eebfafca0e8a816610efd",
+    "size": 34699
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/config/overlay",
+    "tag": "0.2.2-dev_debug",
+    "digest": "sha256:c0a3f93d18cc0640349547d7efc6de4e6e55a651380c810b9f2d43643c49f859",
+    "layer_digest": "sha256:ee67e6bb83f0816bb8368bdb061cebf5c4dc53f612df1c8417c5fef8551a999d",
+    "size": 121639
+  },
+  "created": "2026-11-09T17:31:34.898705520Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Combines value from two wasi:config/stores into a single store. The 'store' import is the base set of values, while the 'overlay' import, a mirror of the store interface, contributes additional values overriding in the case of a conflict.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "52c6cacc0a6c6f12e3f2415a276ef1980dac6346",
+    "org.opencontainers.image.source": "https://github.com/componentized/config.git",
+    "org.opencontainers.image.title": "componentized:config-overlay",
+    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/52c6cacc0a6c6f12e3f2415a276ef1980dac6346/components/overlay",
+    "org.opencontainers.image.version": "0.2.2-dev"
+  },
+  "imports": [
+    "wasi:config/store@0.2.0-rc.1",
+    "overlay: interface"
+  ],
+  "exports": [
+    "wasi:config/store@0.2.0-rc.1"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:12:00Z"
+}

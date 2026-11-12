@@ -1,0 +1,49 @@
+{
+  "package": "componentized:sockets-latch-deny-tcp",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-deny-tcp",
+    "tag": "0.1.0",
+    "digest": "sha256:6ca315992b74fcba42ae8a90ba13eef14e18580106b211d87731468f0a04f23b",
+    "layer_digest": "sha256:cfb9007f450fbaf47fde967298d3217b81a191472e1c564d94c0ceb152bb3074",
+    "size": 30749
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-deny-tcp",
+    "tag": "0.1.0_debug",
+    "digest": "sha256:fa896bbf2663df5fe5bfb804cb3cd4e5f7af886b6133de4ab0aa6971a561d2a1",
+    "layer_digest": "sha256:aad580a5214dcc74562906fcea69d66719023a153721d7638425fb1144692af3",
+    "size": 306780
+  },
+  "created": "2026-10-15T19:08:51.262294894Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Sockets latch that implicitly denies all TCP operations.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "33379c373a0cebf66d2201adbb482a90f48dc01b",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-deny-tcp",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/33379c373a0cebf66d2201adbb482a90f48dc01b/components/latch-deny-tcp",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "imports": [
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.0"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "indexed_at": "2026-11-11T23:45:12Z"
+}
