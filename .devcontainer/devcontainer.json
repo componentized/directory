@@ -4,7 +4,9 @@
 	"name": "componentized-directory",
 	"image": "mcr.microsoft.com/devcontainers/rust",
 	"runArgs": [
-		"--name=componentized-directory"
+		"--name=componentized-directory",
+		// Allow the non-root user to bind low ports (Live Preview serves on :80).
+		"--sysctl=net.ipv4.ip_unprivileged_port_start=0"
 	],
 	// Use 'mounts' to make the cargo cache persistent in a Docker Volume.
 	"mounts": [
@@ -19,6 +21,7 @@
 			"type": "volume"
 		}
 	],
+	"postStartCommand": "cargo run --locked -- build --out _site && npx --yes live-server@1.2.2 _site --host=0.0.0.0 --port=80 --no-browser",
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
 		"ghcr.io/devcontainers/features/common-utils:2": {},
