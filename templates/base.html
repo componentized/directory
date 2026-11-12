@@ -60,8 +60,27 @@
   </main>
   <footer class="site">
     <div class="wrap">
-      Indexed from <code>ghcr.io/componentized</code>. Metadata only: components are pulled from their registry.
-      <a href="https://github.com/componentized/directory">Source</a>
+      <div class="footer-about">
+        <p>A directory of the Wasm components and WIT interfaces.</p>
+        {% if updated %}<p>Index updated {% if updated.commit %}<a href="https://github.com/componentized/directory/commit/{{ updated.commit }}" title="Built from commit {{ updated.commit[:7] }}">{% endif %}<time datetime="{{ updated.datetime }}">{{ updated.text }}</time>{% if updated.commit %}</a>{% endif %}</p>{% endif %}
+      </div>
+      <nav class="footer-links" aria-label="Project">
+        <h2><a href="https://github.com/componentized/directory">Directory</a></h2>
+        <ul>
+          <li><a href="https://github.com/componentized/directory">Source</a></li>
+          <li><a href="https://github.com/componentized/directory/issues">Report an issue</a></li>
+          <li><a href="https://github.com/componentized/directory/blob/main/CONTRIBUTING.md">Contributing</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-links" aria-label="Community">
+        <h2><a href="https://github.com/componentized">Componentized</a></h2>
+        <ul>
+          <li><a href="https://github.com/orgs/componentized/discussions">Discussions</a></li>
+          <li><a href="https://github.com/orgs/componentized/packages">Packages</a></li>
+          <li><a href="https://github.com/componentized/directory/blob/main/CODE_OF_CONDUCT.md">Code of conduct</a></li>
+        </ul>
+      </nav>
+      <p class="footer-legal">&copy; The original author or authors. Directory licensed under the <a href="https://github.com/componentized/directory/blob/main/LICENSE">Apache License 2.0</a>. Individual components and interfaces are subject to their own license terms.</p>
     </div>
   </footer>
 </body>

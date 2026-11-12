@@ -33,6 +33,8 @@
 html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
+  /* a short page still keeps the footer at the bottom of the window */
+  display: flex; flex-direction: column; min-height: 100vh; min-height: 100dvh;
   background: var(--bg);
   color: var(--text);
   font: 15px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -48,7 +50,7 @@ h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; colo
 .dim { color: var(--dim); }
 [hidden] { display: none !important; }
 
-.wrap { max-width: 1180px; margin: 0 auto; padding: 0 16px; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: 16px; }
 
 header.site { border-bottom: 1px solid var(--line); background: var(--panel); position: sticky; top: 0; z-index: 10; }
 header.site .wrap { display: flex; align-items: center; gap: 16px; min-height: 56px; flex-wrap: wrap; padding-block: 8px; }
@@ -72,8 +74,23 @@ header nav a { color: var(--dim); }
 .suggest a:hover, .suggest a:focus { background: var(--accent-soft); text-decoration: none; outline: none; }
 .suggest .dim { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 0.85em; }
 
-main { padding-bottom: 48px; }
-footer.site { border-top: 1px solid var(--line); color: var(--dim); font-size: 0.85rem; padding: 20px 0; }
+/* the space above the footer is the main's padding alone: the trailing margins of the page's
+   last blocks are trimmed, so it's the same on every page */
+main { flex: 1 0 auto; width: 100%; padding-bottom: 48px; }
+.page > :last-child, .page > .layout > * > :last-child, .page > .layout > * > :last-child > :last-child { margin-bottom: 0; }
+footer.site { border-top: 1px solid var(--line); background: var(--panel); color: var(--dim); font-size: 0.85rem; padding-block: 28px 24px; }
+footer.site .wrap { display: grid; grid-template-columns: minmax(0, 1fr) repeat(2, minmax(140px, auto)); gap: 16px 48px; }
+footer.site p { margin: 0 0 6px; max-width: 60ch; }
+footer.site h2 { margin: 0 0 8px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text); }
+footer.site ul { list-style: none; margin: 0; padding: 0; }
+footer.site li { padding: 2px 0; }
+footer.site a { color: var(--dim); }
+footer.site a:hover { color: var(--text); }
+footer.site .footer-legal { grid-column: 1 / -1; max-width: none; margin: 8px 0 0; padding-top: 16px; text-align: center; }
+@media (max-width: 640px) {
+  footer.site .wrap { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  footer.site .footer-about { grid-column: 1 / -1; }
+}
 
 .hero { padding: 24px 0 8px; }
 .hero h1 { font-size: 2rem; margin-bottom: 0.2em; }

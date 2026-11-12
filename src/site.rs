@@ -187,11 +187,22 @@ pub fn build(root: &Path, out: &Path, base_url: &str) -> Result<()> {
             pkg,
         });
     }
+    let updated = last_indexed(stored.iter().map(|s| s.metadata.indexed_at.as_str()));
     let site = Site::new(entries);
 
     prepare(out)?;
     let mut env = environment()?;
     env.add_global("base_url", base_url.trim_end_matches('/').to_string());
+    if let Some(updated) = updated {
+        env.add_global(
+            "updated",
+            ctx! {
+                datetime => updated.to_rfc3339_opts(chrono::SecondsFormat::Secs, true),
+                text => updated.format("%Y-%m-%d %H:%M UTC").to_string(),
+                commit => head_commit(root),
+            },
+        );
+    }
     // each asset is referenced with a fingerprint of its contents, so a browser fetches it again
     // once it changes rather than keeping a cached copy
     let fingerprint = |contents: &str| crate::http::sha256(contents.as_bytes())[7..19].to_string();
@@ -310,6 +321,33 @@ fn prepare(out: &Path) -> Result<()> {
     }
     std::fs::create_dir_all(out)?;
     Ok(())
+}
+
+/// When the index last changed: the latest time a version in it was indexed.
+fn last_indexed<'a>(
+    indexed_at: impl IntoIterator<Item = &'a str>,
+) -> Option<chrono::DateTime<chrono::Utc>> {
+    indexed_at
+        .into_iter()
+        .filter_map(|at| chrono::DateTime::parse_from_rfc3339(at).ok())
+        .map(|at| at.to_utc())
+        .max()
+}
+
+/// The commit checked out in the index's git repository, which the site is built from. A build
+/// with uncommitted changes still names its last commit, assumed to be pushed.
+fn head_commit(root: &Path) -> Option<String> {
+    let output = std::process::Command::new("git")
+        .arg("-C")
+        .arg(root)
+        .args(["rev-parse", "--verify", "HEAD"])
+        .output()
+        .ok()?;
+    let commit = String::from_utf8(output.stdout).ok()?.trim().to_string();
+    let valid = output.status.success()
+        && commit.len() == 40
+        && commit.chars().all(|c| c.is_ascii_hexdigit());
+    valid.then_some(commit)
 }
 
 fn environment() -> Result<Environment<'static>> {
@@ -1480,6 +1518,32 @@ mod tests {
                 ..l
             })
         );
+    }
+
+    #[test]
+    fn finds_when_the_index_last_changed() {
+        let updated = last_indexed([
+            "2026-11-11T00:00:00Z",
+            "2026-11-12T09:30:00+02:00",
+            "not a time",
+            "2026-11-12T00:15:14Z",
+        ])
+        .unwrap();
+        assert_eq!(updated.to_rfc3339(), "2026-11-12T07:30:00+00:00");
+        assert_eq!(last_indexed([]), None);
+    }
+
+    #[test]
+    fn finds_the_commit_built_from() {
+        let outside = std::env::temp_dir().join(format!("directory-no-git-{}", std::process::id()));
+        std::fs::create_dir_all(&outside).unwrap();
+        let commit = head_commit(&outside);
+        std::fs::remove_dir_all(&outside).unwrap();
+        // the temp dir is only inside a repository on an unusual machine
+        if let Some(commit) = commit {
+            assert_eq!(commit.len(), 40);
+        }
+        assert_eq!(head_commit(Path::new("/nonexistent/index")), None);
     }
 
     #[test]
