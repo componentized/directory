@@ -1,0 +1,111 @@
+name: Preview
+
+# Deploys each PR's rendered site to Cloudflare Pages and links it on the PR.
+#
+# CI renders the site without secrets, so it's safe for PRs from forks, and
+# uploads it as an artifact. This workflow runs once CI completes, in the
+# context of this repo, so it can read the Cloudflare secrets. It never runs
+# the PR's code: it only uploads the static files CI rendered.
+#
+# A fork PR's CI run waits for a maintainer's approval, when the repo requires
+# it, and the preview follows once CI passes.
+#
+# Needs:
+# - secrets.CLOUDFLARE_API_TOKEN: an account token with Cloudflare Pages: Edit
+# - secrets.CLOUDFLARE_ACCOUNT_ID
+# - vars.CLOUDFLARE_PAGES_PROJECT: an existing Pages project, created once with
+#   `wrangler pages project create <name> --production-branch=main`
+
+on:
+  workflow_run:
+    workflows:
+      - CI
+    types:
+      - completed
+
+permissions: {}
+
+concurrency:
+  group: preview-${{ github.event.workflow_run.head_repository.full_name }}-${{ github.event.workflow_run.head_branch }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    if: >-
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    permissions:
+      # download the site from the CI run
+      actions: read
+      # comment the preview's URL on the PR
+      pull-requests: write
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: preview-site
+          path: _site
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
+
+      # the artifact comes from the PR, so its PR number is only trusted once
+      # that PR's head is the commit CI ran on
+      - name: Find the PR
+        id: pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          number="$(cat _site/.pr-number)"
+          rm _site/.pr-number
+          if ! [[ "$number" =~ ^[0-9]+$ ]]; then
+            echo "::error::Invalid PR number"
+            exit 1
+          fi
+          read -r state head < <(gh api "repos/$REPO/pulls/$number" --jq '"\(.state) \(.head.sha)"')
+          # a closed PR's previews are deleted by the Preview cleanup workflow
+          if [[ "$state" != "open" ]]; then
+            echo "::notice::PR #$number is closed, skipping its preview"
+            exit 0
+          fi
+          if [[ "$head" != "$HEAD_SHA" ]]; then
+            echo "::notice::PR #$number has moved on from $HEAD_SHA, skipping its preview"
+            exit 0
+          fi
+          echo "number=$number" >> "$GITHUB_OUTPUT"
+
+      - name: Deploy
+        id: deploy
+        if: steps.pr.outputs.number
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: >-
+            pages deploy _site
+            --project-name=${{ vars.CLOUDFLARE_PAGES_PROJECT }}
+            --branch=pr-${{ steps.pr.outputs.number }}
+            --commit-hash=${{ github.event.workflow_run.head_sha }}
+            --commit-dirty=true
+
+      - name: Comment the preview
+        if: steps.pr.outputs.number
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR: ${{ steps.pr.outputs.number }}
+          SHA: ${{ github.event.workflow_run.head_sha }}
+          ALIAS_URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}
+          DEPLOY_URL: ${{ steps.deploy.outputs.deployment-url }}
+        run: |
+          marker='<!-- preview -->'
+          body="$(printf '%s\n**Preview:** %s\n\nBuilt from %s ([this deploy](%s)).' \
+            "$marker" "${ALIAS_URL:-$DEPLOY_URL}" "$SHA" "$DEPLOY_URL")"
+          id="$(gh api --paginate "repos/$REPO/issues/$PR/comments" \
+            --jq "map(select(.user.login == \"github-actions[bot]\" and (.body | startswith(\"$marker\")))) | .[0].id // empty" | head -n1)"
+          if [[ -n "$id" ]]; then
+            gh api -X PATCH "repos/$REPO/issues/comments/$id" -f body="$body" > /dev/null
+          else
+            gh api "repos/$REPO/issues/$PR/comments" -f body="$body" > /dev/null
+          fi

@@ -1,0 +1,66 @@
+name: Preview cleanup
+
+# Deletes a PR's Cloudflare Pages previews once the PR is merged or closed.
+#
+# pull_request_target runs in the context of this repo, so it can read the
+# Cloudflare secrets for PRs from forks too. It must never check out or run the
+# PR's code: it only uses the PR number from the event.
+#
+# Needs the same secrets and variable as the Preview workflow.
+
+on:
+  pull_request_target:
+    types:
+      - closed
+
+permissions: {}
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    permissions:
+      # mark the preview comment as removed
+      pull-requests: write
+    steps:
+      - name: Delete the PR's deployments
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          PROJECT: ${{ vars.CLOUDFLARE_PAGES_PROJECT }}
+          BRANCH: pr-${{ github.event.number }}
+        run: |
+          api="https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/pages/projects/$PROJECT/deployments"
+          auth="Authorization: Bearer $CLOUDFLARE_API_TOKEN"
+
+          # collect every page first, deleting while paging would shift the pages
+          ids=()
+          page=1
+          while :; do
+            resp="$(curl -fsS -H "$auth" "$api?env=preview&page=$page&per_page=25")"
+            mapfile -t found < <(jq -r --arg branch "$BRANCH" \
+              '.result[] | select(.deployment_trigger.metadata.branch == $branch) | .id' <<< "$resp")
+            ids+=("${found[@]}")
+            [[ "$(jq '.result | length' <<< "$resp")" -lt 25 ]] && break
+            page=$((page + 1))
+          done
+
+          for id in "${ids[@]}"; do
+            # force, so the deployment behind the branch alias goes too
+            curl -fsS -X DELETE -H "$auth" "$api/$id?force=true" > /dev/null
+            echo "Deleted $id"
+          done
+          echo "Deleted ${#ids[@]} deployments of $BRANCH"
+
+      - name: Update the preview comment
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR: ${{ github.event.number }}
+        run: |
+          marker='<!-- preview -->'
+          id="$(gh api --paginate "repos/$REPO/issues/$PR/comments" \
+            --jq "map(select(.user.login == \"github-actions[bot]\" and (.body | startswith(\"$marker\")))) | .[0].id // empty" | head -n1)"
+          if [[ -n "$id" ]]; then
+            body="$(printf '%s\n**Preview:** removed now that this PR is closed.' "$marker")"
+            gh api -X PATCH "repos/$REPO/issues/comments/$id" -f body="$body" > /dev/null
+          fi
