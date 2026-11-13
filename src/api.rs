@@ -31,6 +31,9 @@ pub struct Api {
 #[derive(Serialize)]
 pub struct Interface {
     pub deprecated: bool,
+    /// The feature its `@unstable(feature = ..)` gate names, e.g. `clocks-timezone`.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub unstable: Option<String>,
     /// Its types, its functions, e.g. `get-value`, and its resources' functions, e.g.
     /// `canvas.plot`, by name. An interface's types and functions share its names.
     pub items: BTreeMap<String, Item>,
@@ -50,6 +53,9 @@ pub struct Item {
     /// The members highlighted, in the same order.
     pub members_html: Vec<String>,
     pub deprecated: bool,
+    /// The feature its `@unstable(feature = ..)` gate names: it's only there when the feature is.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub unstable: Option<String>,
     /// Its anchor on its interface's page, e.g. `type-point` or `func-area`.
     pub anchor: String,
     /// The kind of the type a `use` refers to, e.g. `resource`, which its icon shows, badged.
@@ -99,14 +105,19 @@ pub struct Ref {
     /// `wasi:cli/types@0.3.0`. Importing it asks nothing of a host, as there's nothing to call.
     #[serde(skip_serializing_if = "std::ops::Not::not")]
     pub types_only: bool,
+    /// The feature its `@unstable(feature = ..)` gate names, e.g. `clocks-timezone` for a world's
+    /// `wasi:clocks/timezone` import, which only a host with the feature provides.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub unstable: Option<String>,
 }
 
 impl Ref {
-    pub fn new(label: &str, types_only: bool) -> Self {
+    pub fn new(label: &str, types_only: bool, unstable: Option<String>) -> Self {
         Self {
             key: unversioned(label),
             label: label.to_string(),
             types_only,
+            unstable,
         }
     }
 }

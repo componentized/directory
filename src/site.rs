@@ -1631,6 +1631,7 @@ impl Site {
             let (types, functions) = self.interface_items(index, id);
             let deprecated =
                 |s: &Option<StabilityView>| s.as_ref().is_some_and(|s| s.deprecated.is_some());
+            let unstable = |s: &Option<StabilityView>| s.as_ref().and_then(|s| s.unstable.clone());
             // a type's link within its interface's page, e.g. `#type-point`, from the page of the
             // interface, so it holds on a compare page too
             let page = format!("{}{name}/", entry.url());
@@ -1665,6 +1666,7 @@ impl Site {
                 members: Vec::new(),
                 members_html: Vec::new(),
                 deprecated: deprecated(&f.stability),
+                unstable: unstable(&f.stability),
                 anchor,
                 used_kind: None,
                 modifiers: f.modifiers.clone(),
@@ -1744,6 +1746,7 @@ impl Site {
                         members,
                         members_html,
                         deprecated: deprecated(&t.stability),
+                        unstable: unstable(&t.stability),
                         anchor: format!("type-{}", t.name),
                         used_kind: t.used_kind,
                         modifiers: Vec::new(),
@@ -1769,6 +1772,7 @@ impl Site {
                 name.to_string(),
                 api::Interface {
                     deprecated: deprecated(&stability(&resolve.interfaces[id].stability)),
+                    unstable: unstable(&stability(&resolve.interfaces[id].stability)),
                     items,
                 },
             );
@@ -1789,10 +1793,11 @@ impl Site {
                         })
                 })
         };
+        // a component's imports and exports, whose gates were settled when it was built
         let refs = |items: &[String]| {
             items
                 .iter()
-                .map(|i| api::Ref::new(i, types_only(i)))
+                .map(|i| api::Ref::new(i, types_only(i), None))
                 .collect()
         };
         let worlds = resolve.packages[entry.pkg]
@@ -1801,7 +1806,15 @@ impl Site {
             .filter(|_| entry.meta.kind == Kind::Interface)
             .map(|(name, id)| {
                 let world = &resolve.worlds[*id];
-                let items = |items| refs(&decode::world_items(resolve, items));
+                let items = |items| {
+                    decode::gated_world_items(resolve, items)
+                        .into_iter()
+                        .map(|(i, gate)| {
+                            let unstable = stability(gate).and_then(|s| s.unstable);
+                            api::Ref::new(&i, types_only(&i), unstable)
+                        })
+                        .collect()
+                };
                 (
                     name.clone(),
                     api::World {
@@ -2262,7 +2275,7 @@ mod tests {
     fn renders_cross_links() {
         let root = std::env::temp_dir().join(format!("directory-site-test-{}", std::process::id()));
         let _ = std::fs::remove_dir_all(&root);
-        let logging = "package wasi:logging@0.1.0-draft;\n\ninterface logging {\n  /// A level.\n  enum level { info, warn }\n  @since(version = 0.0.1)\n  @deprecated(version = 0.0.2)\n  log: func(level: level, message: string);\n  @unstable(feature = tracing)\n  trace: func(message: string);\n}\n\ninterface consumer {\n  use logging.{level};\n}\n\nworld app {\n  import logging;\n  export run: func();\n}\n";
+        let logging = "package wasi:logging@0.1.0-draft;\n\ninterface logging {\n  /// A level.\n  enum level { info, warn }\n  @since(version = 0.0.1)\n  @deprecated(version = 0.0.2)\n  log: func(level: level, message: string);\n  @unstable(feature = tracing)\n  trace: func(message: string);\n}\n\ninterface consumer {\n  use logging.{level};\n}\n\nworld app {\n  import logging;\n  @unstable(feature = tracing)\n  import consumer;\n  export run: func();\n}\n";
         data::write(
             &root,
             &metadata(
@@ -2431,6 +2444,19 @@ mod tests {
             logging["interfaces"]["logging"]["items"]["log"]["def"],
             "log: func(level: level, message: string)"
         );
+        // an item behind a feature gate names the feature, which a compare page labels
+        assert_eq!(
+            logging["interfaces"]["logging"]["items"]["trace"]["unstable"],
+            "tracing"
+        );
+        assert!(
+            logging["interfaces"]["logging"]["items"]["log"]
+                .get("unstable")
+                .is_none()
+        );
+        let imports = &logging["worlds"]["app"]["imports"];
+        assert!(imports[0].get("unstable").is_none(), "{imports}");
+        assert_eq!(imports[1]["unstable"], "tracing", "{imports}");
         // a package's WIT links each interface to its page, and each type to its definition
         let wit = logging["wit"].as_str().unwrap();
         assert!(wit.contains(r#"<a class="i" href="&#x2f;wasi&#x2f;logging&#x2f;0.1.0-draft&#x2f;logging&#x2f;">logging</a>"#) || wit.contains(r#"<a class="i" href="/wasi/logging/0.1.0-draft/logging/">logging</a>"#), "{wit}");
