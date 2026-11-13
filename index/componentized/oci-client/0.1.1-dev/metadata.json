@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/oci/client",
     "tag": "0.1.1-dev",
-    "digest": "sha256:ab55164da3abeb94e0b84dc952448fbbd2edef114b032efb16c5b3d6a0428efd",
-    "layer_digest": "sha256:a242c0610b4ec7425feb492ae8880db8698f6861b1297da812821e6f733a69de",
-    "size": 565442
+    "digest": "sha256:24591f69c9876230e648d88b0b441a67390d773f48d323b9c67cadba3d93ede4",
+    "layer_digest": "sha256:60406af873bb0dfdf7711713697c4c0d301b6c0c1ebbd3fa90a5a7708f8db61c",
+    "size": 565415
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/oci/client",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:57c035b33d5b05a7e2eb48f4ff919b40b2ed80f1a578297eab6d89e078206ec0",
-    "layer_digest": "sha256:be53e8685f8656b7215cb11d990614c622d3735256fbdf2c4e0e2b5b1a328020",
-    "size": 6312027
+    "digest": "sha256:272271f8949db22ec8c7d31b6ae1721986929b4bcdcb127b344065c1fe180573",
+    "layer_digest": "sha256:ba6173a57e2150abc0a4dcf47f36ba2464e3350a88c46c64d581a8b256c0bb2e",
+    "size": 6283278
   },
-  "created": "2026-11-09T17:15:32.588025360Z",
+  "created": "2026-11-13T14:29:44.057126601Z",
   "annotations": {
     "org.opencontainers.image.description": "OCI image client component.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "2581b69677d898c215d5cb47bea8e01fb401157b",
+    "org.opencontainers.image.revision": "2489f774530a749e4ccffe4efd3db7aa55b7dc24",
     "org.opencontainers.image.source": "https://github.com/componentized/oci.git",
     "org.opencontainers.image.title": "componentized:oci-client",
-    "org.opencontainers.image.url": "https://github.com/componentized/oci/tree/2581b69677d898c215d5cb47bea8e01fb401157b/components/client",
+    "org.opencontainers.image.url": "https://github.com/componentized/oci/tree/2489f774530a749e4ccffe4efd3db7aa55b7dc24/components/client",
     "org.opencontainers.image.version": "0.1.1-dev"
   },
   "imports": [
@@ -51,5 +51,5 @@
       "version": "0.3.0"
     }
   ],
-  "indexed_at": "2026-11-12T00:12:51Z"
+  "indexed_at": "2026-11-13T18:36:08Z"
 }

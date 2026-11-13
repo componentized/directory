@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/tcp",
     "tag": "0.3.0-dev",
-    "digest": "sha256:14d373f76c50bb10071d8c96b15317106f91f97bc0b97b676d6099affaebb38a",
-    "layer_digest": "sha256:1ba9c596eb02963cd622a18f9c9e57fd16acbe78915e6be0c61266aacc4283c5",
-    "size": 248951
+    "digest": "sha256:5e83f0beb2e12ab79598945c7ecdac2203e3f87cecaa98b66950abd6669c427b",
+    "layer_digest": "sha256:bbd7e1f49db80d5a6e454fbe306125a8b91dc515d53751054a59cdda28a42adb",
+    "size": 249394
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/valkey/tcp",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:3d1bb4e2be8fac294040484a0c5a7bdaccaf04ce1c08d2978312343f196d51ef",
-    "layer_digest": "sha256:aa53d138e5287efa8a74bd3fb8494c9cc2d98cea989e8e75ebc14daf157b7d0d",
-    "size": 2633623
+    "digest": "sha256:a03143b29b1075cfd7f14ebb6a8c6c753cf534c9352debeab2e239f6b5ec1b21",
+    "layer_digest": "sha256:e1acbd0105d590922bf20df366a94b63268e23e952679d3677920cc60aab0b38",
+    "size": 2633583
   },
-  "created": "2026-11-09T19:24:09.862136525Z",
+  "created": "2026-11-13T16:15:16.196300393Z",
   "annotations": {
     "org.opencontainers.image.description": "Connections to a Valkey server over `wasi:sockets` TCP.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "69ad5c957f56b19c57322b25fdd9ddb36d7776a0",
+    "org.opencontainers.image.revision": "3a7667fbb55e772d3dff26580de27a3bce91daf2",
     "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
     "org.opencontainers.image.title": "componentized:valkey-tcp",
-    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/69ad5c957f56b19c57322b25fdd9ddb36d7776a0/components/tcp",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/3a7667fbb55e772d3dff26580de27a3bce91daf2/components/tcp",
     "org.opencontainers.image.version": "0.3.0-dev"
   },
   "imports": [
@@ -48,5 +48,5 @@
       "version": "0.3.0"
     }
   ],
-  "indexed_at": "2026-11-12T00:13:35Z"
+  "indexed_at": "2026-11-13T18:36:26Z"
 }

@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/connection-minimal",
     "tag": "0.3.0-dev",
-    "digest": "sha256:c875a02aa1929fec7d44f69dd884c6e673cd6f42ff3e10c8cc103d3a497ad58d",
-    "layer_digest": "sha256:ed9cf54ee4b5af3d935fbae700e98907bff4879d9d95b282ad87b1c34a2e1043",
-    "size": 331400
+    "digest": "sha256:c8282dd9b4435a589136b8e8f813db38b351cd76bbc5243afaa560e19cb905a7",
+    "layer_digest": "sha256:036b8bfee8e8d85b9930ce367400ce6319895439ff7c49ef2ade3443ce3fda05",
+    "size": 332026
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/valkey/connection-minimal",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:bb1184a6c123d0733152aab1cc77ba61617075d2ec2a2399d445d93f391a1111",
-    "layer_digest": "sha256:84eff1c96b3b6ccb30aba808dd2b197783fcbf4587013f7f5dbdc861b6837954",
-    "size": 3948245
+    "digest": "sha256:6acfb30eb3becca9b226494cbd13eade563744487e982cc9451f75b2ccbb5fdb",
+    "layer_digest": "sha256:3fd7487f2ee42a4d9e84fc48fd85914941e573c29ed028e65cb5023ea8b3f9f3",
+    "size": 3937837
   },
-  "created": "2026-11-09T19:23:44.467868830Z",
+  "created": "2026-11-13T16:14:32.081037813Z",
   "annotations": {
     "org.opencontainers.image.description": "A connection component built without pub/sub, for a smaller component when subscriptions are not needed.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "69ad5c957f56b19c57322b25fdd9ddb36d7776a0",
+    "org.opencontainers.image.revision": "3a7667fbb55e772d3dff26580de27a3bce91daf2",
     "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
     "org.opencontainers.image.title": "componentized:valkey-connection-minimal",
-    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/69ad5c957f56b19c57322b25fdd9ddb36d7776a0/components/connection-minimal",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/3a7667fbb55e772d3dff26580de27a3bce91daf2/components/connection-minimal",
     "org.opencontainers.image.version": "0.3.0-dev"
   },
   "imports": [
@@ -47,5 +47,5 @@
       "version": "0.3.0"
     }
   ],
-  "indexed_at": "2026-11-12T00:13:34Z"
+  "indexed_at": "2026-11-13T18:36:25Z"
 }

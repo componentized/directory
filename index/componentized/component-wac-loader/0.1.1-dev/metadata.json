@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/component/wac-loader",
     "tag": "0.1.1-dev",
-    "digest": "sha256:f212480d3019eb9d6bbff9ca7aba081d8a09ac98f21714bead43829509cb7acd",
-    "layer_digest": "sha256:21dbde99c0184a5563dd33180821310100dd25070301a0f459c05eed4ae0cd01",
-    "size": 1731776
+    "digest": "sha256:8736f78f6a536fe9a29c4b2ea6e0735f8d71462bd71132b41a5f304ae1eb5b43",
+    "layer_digest": "sha256:1b9ff48d474f495f5eb4fa2c27d84a61f7836a086e9d259fd8ba81d956ed8d45",
+    "size": 1730791
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/component/wac-loader",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:b52ebd0445430387a5289e7b4caf975f90fdf2945d4496a3f7b8e4a90f800f31",
-    "layer_digest": "sha256:f9f3eea24634c602281bcb5e40bfd6184eec476901893638f22a6f92fd90b559",
-    "size": 21234147
+    "digest": "sha256:d3eec0ede08bb7621eeddf08d151d9c93aaa35406522ecdbb7879f31792a6480",
+    "layer_digest": "sha256:8fd056d2daac117dfc6fe020a2eacafa642305a533add9f9af96a29c17969058",
+    "size": 21164589
   },
-  "created": "2026-11-09T14:18:59.960953492Z",
+  "created": "2026-11-13T14:30:28.509294718Z",
   "annotations": {
     "org.opencontainers.image.description": "Compose a component from other components using wac.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "4f2ad363c1770efe24dd6477fe94e9e08bf5a82c",
+    "org.opencontainers.image.revision": "c3180589a667d6b4d49f3fa85e612fc7f3b95006",
     "org.opencontainers.image.source": "https://github.com/componentized/component.git",
     "org.opencontainers.image.title": "componentized:component-wac-loader",
-    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/4f2ad363c1770efe24dd6477fe94e9e08bf5a82c/components/wac-loader",
+    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/c3180589a667d6b4d49f3fa85e612fc7f3b95006/components/wac-loader",
     "org.opencontainers.image.version": "0.1.1-dev"
   },
   "imports": [
@@ -41,5 +41,5 @@
       "version": "0.1.1-dev"
     }
   ],
-  "indexed_at": "2026-11-12T00:11:56Z"
+  "indexed_at": "2026-11-13T18:35:46Z"
 }

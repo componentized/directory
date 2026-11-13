@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/config/remap",
     "tag": "0.2.2-dev",
-    "digest": "sha256:11ee641ecee0458e4fb87759fbfaa4d3b87d5d04dad56f9dee528f69d4c79118",
-    "layer_digest": "sha256:d1c46fcd750bb5c5546929e1007d4c37d28d75a1ce5dbb8cc51b8520f78ae727",
-    "size": 37266
+    "digest": "sha256:5d1cae17beca064ffc4d0e4b06f7e469e6fb2116d282fce353d932fac671b53f",
+    "layer_digest": "sha256:885166c183df4a5d980a9600248e22b32812ae817d2fa798cbe10a77bbd063fd",
+    "size": 37345
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/config/remap",
     "tag": "0.2.2-dev_debug",
-    "digest": "sha256:d4d95c2c15af0e3b47eee82dd950fcd8e8e791e599f88432966707bfa5ac69bd",
-    "layer_digest": "sha256:5cbcdf9cbb1435a28ca93ebf3dca1e64d07a5ab48e15073d390965d43ea1ff42",
-    "size": 126088
+    "digest": "sha256:ec0fd86346076cc4812bfcb3543f18cc59a4a6ba4a95c8aeb2eabb633c57cea4",
+    "layer_digest": "sha256:3cfa0de6d6a0f3c3ff5e58b447f2bf31b4747f418cb7e3cfe31e0039e4700793",
+    "size": 125769
   },
-  "created": "2026-11-09T17:31:49.742102583Z",
+  "created": "2026-11-13T14:28:51.781851492Z",
   "annotations": {
     "org.opencontainers.image.description": "Maps the keys in a wasi:config/store based on the content of a 'mapping' import which mimics wasi:config/store.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "52c6cacc0a6c6f12e3f2415a276ef1980dac6346",
+    "org.opencontainers.image.revision": "1f7ed971a43aac35676f6b705f84f0ca7ef313da",
     "org.opencontainers.image.source": "https://github.com/componentized/config.git",
     "org.opencontainers.image.title": "componentized:config-remap",
-    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/52c6cacc0a6c6f12e3f2415a276ef1980dac6346/components/remap",
+    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/1f7ed971a43aac35676f6b705f84f0ca7ef313da/components/remap",
     "org.opencontainers.image.version": "0.2.2-dev"
   },
   "imports": [
@@ -42,5 +42,5 @@
       "version": "0.2.0-rc.1"
     }
   ],
-  "indexed_at": "2026-11-12T00:12:00Z"
+  "indexed_at": "2026-11-13T18:35:51Z"
 }

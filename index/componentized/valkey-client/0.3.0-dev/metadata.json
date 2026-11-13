@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/client",
     "tag": "0.3.0-dev",
-    "digest": "sha256:3d7e2e77edac3937b928c1fe0bcb8427e85e9dd3c91863252592a4d5cfda7131",
-    "layer_digest": "sha256:3b04ca198b71a15a59edfb868275944df46be7bcef18638f96b4904713d8f8b0",
-    "size": 2615206
+    "digest": "sha256:a26e773d4978a418b08a1af3313ed383267366204f0939afff00f5b77b00e6d0",
+    "layer_digest": "sha256:73966227e07f6e9f0c7713bfadb302815cccd9937b7032422acd9c0f9d51abeb",
+    "size": 2616233
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/valkey/client",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:947e3e70a745cc01db507e50e2f87ed5a156601f22681157830a043767839985",
-    "layer_digest": "sha256:b795b9b69730bd5ce96cd983a56c1c24503a63499a064b51a61302aa251a039b",
-    "size": 30629156
+    "digest": "sha256:b5dc2018428cfd68a9d37fe0a19c738174694cd28ce93aece7330bb24b476ae3",
+    "layer_digest": "sha256:f1c2dbbc064fe675527351fdfe711aca431b53c46bb6e0c68066608957a3a896",
+    "size": 30461559
   },
-  "created": "2026-11-09T19:22:52.693528424Z",
+  "created": "2026-11-13T16:13:17.683308367Z",
   "annotations": {
     "org.opencontainers.image.description": "Client for interacting with a Valkey server, as `componentized:valkey` and `wasmcloud:keyvalue`.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "69ad5c957f56b19c57322b25fdd9ddb36d7776a0",
+    "org.opencontainers.image.revision": "3a7667fbb55e772d3dff26580de27a3bce91daf2",
     "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
     "org.opencontainers.image.title": "componentized:valkey-client",
-    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/69ad5c957f56b19c57322b25fdd9ddb36d7776a0/components/client",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/3a7667fbb55e772d3dff26580de27a3bce91daf2/components/client",
     "org.opencontainers.image.version": "0.3.0-dev"
   },
   "imports": [
@@ -69,5 +69,5 @@
       "version": "0.2.0"
     }
   ],
-  "indexed_at": "2026-11-12T00:13:32Z"
+  "indexed_at": "2026-11-13T18:36:23Z"
 }

@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/component/wit-tools",
     "tag": "0.1.1-dev",
-    "digest": "sha256:dd9c7081becab27306e81e9ffada12641f372bf661cdc3cdc77eae714b54f77c",
-    "layer_digest": "sha256:badad1bfe78c861961f82d83c3dcc918030b57381081fdef0633452bc9d716d6",
-    "size": 1767394
+    "digest": "sha256:b533550fd30cf2f6595017702308cf4451528c4405219768060b038321381bb4",
+    "layer_digest": "sha256:5133fbb372c4670e2b696354f5711db6eeb2b17a0e2d5629a9fa32a5b2c23fb3",
+    "size": 1763429
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/component/wit-tools",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:cb303e7be37d1bb6a7f3987b533a5a31ba8c0657758c5f746e01f2ec1bf8689e",
-    "layer_digest": "sha256:369d5939e1988d74890f02371c3c463a5261e746e1517760034a8b75a11c4664",
-    "size": 29088775
+    "digest": "sha256:24f866536a99f223d27606c69d1cad3532b85139b191a1665b2393fcd5aee2d4",
+    "layer_digest": "sha256:1f634fa4c18b05a344b14be7c285a58aca0a371811a71a46882e5d93638afc0a",
+    "size": 28902996
   },
-  "created": "2026-11-09T14:19:12.364979219Z",
+  "created": "2026-11-13T14:30:48.442470343Z",
   "annotations": {
     "org.opencontainers.image.description": "Extracts the WIT (Wasm Interface Type) from a component.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "4f2ad363c1770efe24dd6477fe94e9e08bf5a82c",
+    "org.opencontainers.image.revision": "c3180589a667d6b4d49f3fa85e612fc7f3b95006",
     "org.opencontainers.image.source": "https://github.com/componentized/component.git",
     "org.opencontainers.image.title": "componentized:component-wit-tools",
-    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/4f2ad363c1770efe24dd6477fe94e9e08bf5a82c/components/wit-tools",
+    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/c3180589a667d6b4d49f3fa85e612fc7f3b95006/components/wit-tools",
     "org.opencontainers.image.version": "0.1.1-dev"
   },
   "imports": [
@@ -41,5 +41,5 @@
       "version": "0.1.1-dev"
     }
   ],
-  "indexed_at": "2026-11-12T00:11:57Z"
+  "indexed_at": "2026-11-13T18:35:47Z"
 }

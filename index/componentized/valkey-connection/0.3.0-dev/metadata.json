@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/connection",
     "tag": "0.3.0-dev",
-    "digest": "sha256:a0ecccd1cc7e7ca0d1b9476cabbfc0426393325feb1acd824b81b15bb9b23887",
-    "layer_digest": "sha256:8cdb693c669132756c9a3efdbf5fe2d839bf4eb8ac2e0e0bc1854ff23191ceca",
-    "size": 409501
+    "digest": "sha256:0424ab3bef8ac3d28db694944d4d0c2b0692d0a15f003f8444a25e5b044c62d0",
+    "layer_digest": "sha256:2e9f08ccaf9a5ae91ec874b1754043a03d5cf48505c34c5a128c51be4f3aa72b",
+    "size": 410082
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/valkey/connection",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:d6f2fd11ff58d90a2bd5a8fc6ea6c858eaacd07d984e67c24be11da4b8d5a0e1",
-    "layer_digest": "sha256:2ac8e8e4837b21e70762fb962ccdd7202225d134c583a9ed7a6e50467dedc07d",
-    "size": 5468853
+    "digest": "sha256:61dfa816b2d72dce253d3209ec567aab1851724ff34bbfdc3f5881dbcb1b4421",
+    "layer_digest": "sha256:dbaa88d1b6dd111d28822b47f9136b7930a68bf6f0a4464affd27be6c8aee537",
+    "size": 5452570
   },
-  "created": "2026-11-09T19:23:31.897655971Z",
+  "created": "2026-11-13T16:14:09.527459982Z",
   "annotations": {
     "org.opencontainers.image.description": "The mechanics of a connection to a Valkey server, independent of the transport carrying it.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "69ad5c957f56b19c57322b25fdd9ddb36d7776a0",
+    "org.opencontainers.image.revision": "3a7667fbb55e772d3dff26580de27a3bce91daf2",
     "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
     "org.opencontainers.image.title": "componentized:valkey-connection",
-    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/69ad5c957f56b19c57322b25fdd9ddb36d7776a0/components/connection",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/3a7667fbb55e772d3dff26580de27a3bce91daf2/components/connection",
     "org.opencontainers.image.version": "0.3.0-dev"
   },
   "imports": [
@@ -47,5 +47,5 @@
       "version": "0.3.0"
     }
   ],
-  "indexed_at": "2026-11-12T00:13:33Z"
+  "indexed_at": "2026-11-13T18:36:24Z"
 }

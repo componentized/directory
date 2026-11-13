@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/config/empty",
     "tag": "0.2.2-dev",
-    "digest": "sha256:4e90ade1206d3bb3084a68ef6d4b610c488a8ac80089dfb50018cf7c6edd54e2",
-    "layer_digest": "sha256:1af83f2a636536412c3e5cfd29703d1a8b64f60252bf3c84ca25143bd9dd66e6",
-    "size": 22580
+    "digest": "sha256:b64636e4da73b5b3924b57e8318b8a235f993f7f25307090f4ead13d37b37885",
+    "layer_digest": "sha256:cd1327a2d53ad26cc6b56cd983b049bce22e92f31a1f22c2adbbe343aff399ee",
+    "size": 22636
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/config/empty",
     "tag": "0.2.2-dev_debug",
-    "digest": "sha256:7b0ad6f942af368d14059d13d0149dfd0fd290d59ed40ebc777418851459c7a7",
-    "layer_digest": "sha256:588b147f48e1b59c710bbd0070a4d402f6a6d05c75b720e62ca6639d4bc57826",
-    "size": 62102
+    "digest": "sha256:dae8292de9728c004fc9fba4d34aa88cfb4f08ec4f0ad0a215e559a644763750",
+    "layer_digest": "sha256:1d510906f65a617ca4c2a4b24d8ef2cd4b2c00c19321f273a831f412e7e74978",
+    "size": 62010
   },
-  "created": "2026-11-09T17:31:03.659937945Z",
+  "created": "2026-11-13T14:27:19.824371202Z",
   "annotations": {
     "org.opencontainers.image.description": "Exposes an empty wasi:config/store which returns neither errors, nor values.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "52c6cacc0a6c6f12e3f2415a276ef1980dac6346",
+    "org.opencontainers.image.revision": "1f7ed971a43aac35676f6b705f84f0ca7ef313da",
     "org.opencontainers.image.source": "https://github.com/componentized/config.git",
     "org.opencontainers.image.title": "componentized:config-empty",
-    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/52c6cacc0a6c6f12e3f2415a276ef1980dac6346/components/empty",
+    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/1f7ed971a43aac35676f6b705f84f0ca7ef313da/components/empty",
     "org.opencontainers.image.version": "0.2.2-dev"
   },
   "exports": [
@@ -38,5 +38,5 @@
       "version": "0.2.0-rc.1"
     }
   ],
-  "indexed_at": "2026-11-12T00:11:59Z"
+  "indexed_at": "2026-11-13T18:35:49Z"
 }

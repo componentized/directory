@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/logging/to-stdout",
     "tag": "0.3.2-dev",
-    "digest": "sha256:e49d831a849e51e40ebd0981cf97288b8e16e371af1328cc60d1d52b32ea5763",
-    "layer_digest": "sha256:94b9b01a2a9b561c9e31437ca7de540766053b80ac779506bbd5bde18787fc03",
-    "size": 90263
+    "digest": "sha256:5ca93bea16c1231d78298207b18df9f0e44197c9441c0ecfcacb9211085bc70a",
+    "layer_digest": "sha256:9c018b546994bbaa5d7e95cd2c729d0ac70bb83a7ed6ef119831303327309204",
+    "size": 90277
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/logging/to-stdout",
     "tag": "0.3.2-dev_debug",
-    "digest": "sha256:b383375084f516ff6c940f7311f588f5de9b1a743808092d5527e69c06ef42db",
-    "layer_digest": "sha256:b6646d5d5e713037c7387c54a043b6c8631ff3185bb551547097c603bffd27ac",
-    "size": 337979
+    "digest": "sha256:48f03f43310893e6c6108fe7f57212643320da1b3ed9ac9dffda6e416351cd35",
+    "layer_digest": "sha256:e1331ebde24d173d6195ec8ee1fc81fe5051d87db25db5059f198c49a28e5d0b",
+    "size": 339087
   },
-  "created": "2026-11-09T19:57:50.987702669Z",
+  "created": "2026-11-13T14:28:04.636528172Z",
   "annotations": {
     "org.opencontainers.image.description": "Implements wasi:logging/logging@0.1.0-draft writing log statements to stdout via wasi:cli/stdout@0.2.3. Timestamps for each log statement are generated from wasi:clocks/wall-clock@0.2.3.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "62098f84356d0f2e2be49ff88a9bff557d8cce02",
+    "org.opencontainers.image.revision": "7d8682201c04eed5e31c8d0a6369010ba660f7be",
     "org.opencontainers.image.source": "https://github.com/componentized/logging.git",
     "org.opencontainers.image.title": "componentized:logging-to-stdout",
-    "org.opencontainers.image.url": "https://github.com/componentized/logging/tree/62098f84356d0f2e2be49ff88a9bff557d8cce02/components/to-stdout",
+    "org.opencontainers.image.url": "https://github.com/componentized/logging/tree/7d8682201c04eed5e31c8d0a6369010ba660f7be/components/to-stdout",
     "org.opencontainers.image.version": "0.3.2-dev"
   },
   "imports": [
@@ -51,5 +51,5 @@
       "version": "0.1.0-draft"
     }
   ],
-  "indexed_at": "2026-11-12T00:12:49Z"
+  "indexed_at": "2026-11-13T18:36:07Z"
 }

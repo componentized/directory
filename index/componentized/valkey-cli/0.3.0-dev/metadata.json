@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/cli",
     "tag": "0.3.0-dev",
-    "digest": "sha256:bcf82719ff809689da7f5a237bf42e2a75bbc0dbd7e54800e76ddebb78cbc9f3",
-    "layer_digest": "sha256:179e06ffb09d7cfe2331cd7d794fe9dd6cc37f35ddff4212514187e6951ceb70",
-    "size": 1757142
+    "digest": "sha256:3873b3dd78364036bd7a5a551c61a8ef313a400e8f5cc9ed5a7a24502f0fecdb",
+    "layer_digest": "sha256:32cbc43ceadba49d8bcb09427f34d4d26f0ad88423ed8231cf0fc410843990a7",
+    "size": 1758581
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/valkey/cli",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:b3f3b7e11378d6fa8fe64c8e21d0dca810441188336fdb8983fc470a8b51fb23",
-    "layer_digest": "sha256:50dfc4c1d0b6d73c51795e2e5ebdbd8108967dc9c675468dad490875d54c3d30",
-    "size": 18934654
+    "digest": "sha256:0cc33149265330b44abab730a97022b3a1f0fb6f3624f84ea9f1d88b5ad053fd",
+    "layer_digest": "sha256:7efd2c2ccebf89dcab810422439de01380fa22b42aea0166f8d93da76cff622f",
+    "size": 18908019
   },
-  "created": "2026-11-09T19:22:37.081590435Z",
+  "created": "2026-11-13T16:12:53.923222233Z",
   "annotations": {
     "org.opencontainers.image.description": "A command line client for Valkey, sending its arguments as a command and printing the reply.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "69ad5c957f56b19c57322b25fdd9ddb36d7776a0",
+    "org.opencontainers.image.revision": "3a7667fbb55e772d3dff26580de27a3bce91daf2",
     "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
     "org.opencontainers.image.title": "componentized:valkey-cli",
-    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/69ad5c957f56b19c57322b25fdd9ddb36d7776a0/components/cli",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/3a7667fbb55e772d3dff26580de27a3bce91daf2/components/cli",
     "org.opencontainers.image.version": "0.3.0-dev"
   },
   "imports": [
@@ -68,5 +68,5 @@
       "version": "0.3.0"
     }
   ],
-  "indexed_at": "2026-11-12T00:13:32Z"
+  "indexed_at": "2026-11-13T18:36:22Z"
 }

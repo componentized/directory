@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/sample-http-incrementor",
     "tag": "0.3.0-dev",
-    "digest": "sha256:826c5e6b7d6f6b2df170275430ff3c3adee5922ca9eec4dbac8aabd34366cde6",
-    "layer_digest": "sha256:807625509a80f43c588792848007a298f172a1a72783ecf479674587845685db",
-    "size": 118609
+    "digest": "sha256:fca24866fd133b4b450176fdf872de87c864a9d0a4548c8c4454d94b51dd1ed0",
+    "layer_digest": "sha256:d7648981b06d5d67636800cadc9932261055e8f6d935d520f4de77421f0da889",
+    "size": 118815
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/valkey/sample-http-incrementor",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:fca21d0a573fa74efd426f6efb96d3c5c3124ab51f0839e9ce8e3e26741e2204",
-    "layer_digest": "sha256:7b31cc70dc1451f3f35dd5b560f40e361cbac09d0aff31fb703166c0c31817ad",
-    "size": 1303550
+    "digest": "sha256:7402fee8687dfd734579af22ac80d289b041fadb7308c490f0f9addab6ce95f5",
+    "layer_digest": "sha256:7596da3cd229940a5fd81afe7a0a00ff30dc46cf49d7c5377eb50bceb24f0906",
+    "size": 1301699
   },
-  "created": "2026-11-09T19:23:57.002837810Z",
+  "created": "2026-11-13T16:14:53.529634811Z",
   "annotations": {
     "org.opencontainers.image.description": "Sample component that exposes `wasi:http` incrementing a counter based on the http path.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "69ad5c957f56b19c57322b25fdd9ddb36d7776a0",
+    "org.opencontainers.image.revision": "3a7667fbb55e772d3dff26580de27a3bce91daf2",
     "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
     "org.opencontainers.image.title": "componentized:valkey-sample-http-incrementor",
-    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/69ad5c957f56b19c57322b25fdd9ddb36d7776a0/components/sample-http-incrementor",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/3a7667fbb55e772d3dff26580de27a3bce91daf2/components/sample-http-incrementor",
     "org.opencontainers.image.version": "0.3.0-dev"
   },
   "imports": [
@@ -48,5 +48,5 @@
       "version": "0.2.0"
     }
   ],
-  "indexed_at": "2026-11-12T00:13:34Z"
+  "indexed_at": "2026-11-13T18:36:26Z"
 }

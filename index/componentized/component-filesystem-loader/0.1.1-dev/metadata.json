@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/component/filesystem-loader",
     "tag": "0.1.1-dev",
-    "digest": "sha256:16031ea47d535d216da16d382c9e2f8e7394f93c132b7d01bca032fbea6a6815",
-    "layer_digest": "sha256:122bb87875df6a041461f7176a39c732f7dc580aa88d2e1ea54807c602f8ec73",
-    "size": 91777
+    "digest": "sha256:4e210696483e3a975e19492e64a7ec4451b830cf722f92928fe1ec2249abc6ba",
+    "layer_digest": "sha256:80ff59962218c13acb2772a0e914ede2c6e82d9551cd69995a57bd8c93bf0d1d",
+    "size": 91807
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/component/filesystem-loader",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:a2057612cfacc65443c65fa689a41d2a9c35cbfbda4a864fb66d2c572f4df7a3",
-    "layer_digest": "sha256:35d91f7ebf434de5aea7f3cca11c313db909ab426d7d6b8b6ff322cad3421857",
-    "size": 1032656
+    "digest": "sha256:662d3c1653b696ed0731d0dc1eef4dceff7a1cf8354bcee084e26535258d039d",
+    "layer_digest": "sha256:df2096b264c4fd3112d5528307f72a2434d609670f5e8f2bd2ed401f6a93b537",
+    "size": 1029488
   },
-  "created": "2026-11-09T14:17:58.430284812Z",
+  "created": "2026-11-13T14:28:59.633952490Z",
   "annotations": {
     "org.opencontainers.image.description": "Loads a component from a filesystem path.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "4f2ad363c1770efe24dd6477fe94e9e08bf5a82c",
+    "org.opencontainers.image.revision": "c3180589a667d6b4d49f3fa85e612fc7f3b95006",
     "org.opencontainers.image.source": "https://github.com/componentized/component.git",
     "org.opencontainers.image.title": "componentized:component-filesystem-loader",
-    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/4f2ad363c1770efe24dd6477fe94e9e08bf5a82c/components/filesystem-loader",
+    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/c3180589a667d6b4d49f3fa85e612fc7f3b95006/components/filesystem-loader",
     "org.opencontainers.image.version": "0.1.1-dev"
   },
   "imports": [
@@ -47,5 +47,5 @@
       "version": "0.3.0"
     }
   ],
-  "indexed_at": "2026-11-12T00:11:52Z"
+  "indexed_at": "2026-11-13T18:35:43Z"
 }
