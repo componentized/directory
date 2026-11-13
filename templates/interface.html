@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "macros.html" import header, links, grouped, stability, kind_sprite, kind_icon, func_icon %}
+{% from "macros.html" import header, links, grouped, stability, kind_icon, func_icon %}
 {% block description %}{{ iface.id }}{% endblock %}
 {% set toc = true %}
 {% block toc %}
@@ -8,19 +8,18 @@
   {% if iface.types %}<li><a href="#types">Types</a>
     <ol>{% for t in iface.types %}<li><a href="#type-{{ t.name }}" title="{{ t.kind }} {% if t.used_kind %}{{ t.used_kind }} {% endif %}{{ t.name }}">{{ kind_icon(t.kind, t.used_kind) }}<code>{{ t.name }}</code></a>
       {%- if t.functions %}
-      <ol>{% for f in t.functions %}<li><a href="#type-{{ t.name }}.{{ f.name }}" title="{{ f.role }} {{ t.name }}.{{ f.name }}">{{ func_icon(f.modifiers) }}{% if f.role == "constructor" %}<span class="k">constructor</span>{% else %}<code>{{ f.name }}</code>{% endif %}</a></li>{% endfor %}</ol>
+      <ol>{% for f in t.functions %}<li><a href="#type-{{ t.name }}.{{ f.name }}" title="{{ f.role }} {{ t.name }}.{{ f.name }}">{{ func_icon(f.modifiers) }}<code>{% if f.role == "constructor" %}constructor{% else %}{{ f.name }}{% endif %}</code></a></li>{% endfor %}</ol>
       {%- endif %}</li>{% endfor %}</ol></li>{% endif %}
   {% if iface.functions %}<li><a href="#functions">Functions</a>
     <ol>{% for f in iface.functions %}<li><a href="#func-{{ f.name }}" title="func {{ f.name }}">{{ func_icon(f.modifiers) }}<code>{{ f.name }}</code></a></li>{% endfor %}</ol></li>{% endif %}
   <li><a href="#wit">WIT</a></li>
-  <li><a href="#imported-by">Imported by</a></li>
-  <li><a href="#exported-by">Exported by</a></li>
+  <li class="toc-aside"><a href="#package">Package</a></li>
+  <li class="toc-aside"><a href="#imported-by">Imported by</a></li>
+  <li class="toc-aside"><a href="#exported-by">Exported by</a></li>
 </ol>
 {% endblock %}
 {% block main %}
-{{ kind_sprite() }}
-{{ header(pkg) }}
-<h2 class="iface-title">interface <code>{{ iface.name }}</code> <span class="dim"><code>{{ iface.id }}</code></span> {{ stability(iface.stability) }}</h2>
+{{ header(pkg, iface) }}
 <div class="layout">
   <div class="content">
     {% if iface.docs %}<section class="docs" id="overview">{{ iface.docs|safe }}</section>{% endif %}
@@ -62,10 +61,14 @@
 
     <section id="wit">
       <h2>WIT</h2>
-      <pre class="wit"><code>{{ iface.wit|safe }}</code></pre>
+      <pre class="wit" data-copy data-copy-label="Copy the WIT"><code>{{ iface.wit|safe }}</code></pre>
     </section>
   </div>
   <aside>
+    <section id="package">
+      <h3>Package</h3>
+      <p><a href="{{ pkg.url }}"><code>{{ pkg.id }}</code></a></p>
+    </section>
     <section id="imported-by">
       <h3>Imported by</h3>
       {{ grouped(imported_by) }}
@@ -73,10 +76,6 @@
     <section id="exported-by">
       <h3>Exported by</h3>
       {{ grouped(exported_by) }}
-    </section>
-    <section id="package">
-      <h3>Package</h3>
-      <p><a href="{{ pkg.url }}"><code>{{ pkg.id }}</code></a></p>
     </section>
   </aside>
 </div>

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "macros.html" import card, repo_card %}
+{% from "macros.html" import card, repo_card, kind_icon %}
 {% block main %}
 <section class="hero">
   <h1>Componentized Directory</h1>
@@ -11,7 +11,7 @@
     <div><dt>Interfaces</dt><dd>{{ stats.interfaces }}</dd></div>
     <div><dt>Versions</dt><dd>{{ stats.versions }}</dd></div>
   </dl>
-  <p class="namespaces">{% for ns, count in namespaces %}<a href="/{{ ns }}/"><code>{{ ns }}</code> <span class="dim">{{ count }}</span></a>{% endfor %}</p>
+  <p class="namespaces">{% for ns, count in namespaces %}<a href="/{{ ns }}/">{{ kind_icon("namespace") }}<code>{{ ns }}</code> <span class="dim">{{ count }}</span></a>{% endfor %}</p>
 </section>
 
 <section>
@@ -20,7 +20,7 @@
 </section>
 
 <section>
-  <h2>Repositories <a class="more" href="/repos/">all</a></h2>
+  <h2>Repositories</h2>
   <div class="cards">{% for r in repos %}{{ repo_card(r) }}{% endfor %}</div>
 </section>
 

@@ -1,9 +1,0 @@
-{% extends "base.html" %}
-{% from "macros.html" import repo_card %}
-{% set title = "Repositories" %}
-{% set canonical = "/repos/" %}
-{% block main %}
-<h1>Repositories</h1>
-<p class="lede">Each repository releases its interface package and its components together, with the same version.</p>
-<div class="cards">{% for r in repos %}{{ repo_card(r) }}{% endfor %}</div>
-{% endblock %}

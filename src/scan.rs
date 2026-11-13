@@ -62,6 +62,9 @@ pub fn run(options: &Options) -> Result<()> {
     scanner.dependencies()?;
     trim_nested(&options.root)?;
     refresh_items(&options.root)?;
+    if let Err(err) = refresh_releases(&options.root, &github) {
+        scanner.fail("the GitHub releases".to_string(), err);
+    }
 
     eprintln!("indexed {} new versions", scanner.added.len());
     for added in &scanner.added {
@@ -71,6 +74,91 @@ pub fn run(options: &Options) -> Result<()> {
         println!("::warning::{what}: {err:#}");
     }
     Ok(())
+}
+
+/// Links each stable version to the GitHub release of its source repository tagged with the
+/// version, `v0.3.1` or else `0.3.1`. A repository's releases are listed once, and only while one
+/// of its stable versions has no release recorded: a release can be published after its packages
+/// are indexed. Dev versions have no releases. A repository that isn't on GitHub, or whose releases
+/// can't be listed, e.g. without a token past the rate limit, is skipped.
+///
+/// A version that records the commit it was built from is linked only when the release's tag is
+/// that commit: a repository can tag versions of something else, e.g. `wasmCloud/wasmCloud` tags
+/// its host's versions, not those of the `wasmcloud:keyvalue` package it publishes.
+fn refresh_releases(root: &std::path::Path, github: &GitHub) -> Result<()> {
+    #[derive(Deserialize)]
+    struct Release {
+        tag_name: String,
+        html_url: String,
+        #[serde(default)]
+        draft: bool,
+    }
+    #[derive(Deserialize)]
+    struct Commit {
+        sha: String,
+    }
+
+    let stored = data::load(root)?;
+    // the versions still without a release, by the repository they're built from
+    let mut pending: std::collections::BTreeMap<String, Vec<&data::Stored>> = Default::default();
+    for stored in &stored {
+        let meta = &stored.metadata;
+        if meta.release.is_some() || version::stable(&meta.version).is_none() {
+            continue;
+        }
+        let Some(repo) = meta.annotation("source").and_then(github_repo) else {
+            continue;
+        };
+        pending.entry(repo).or_default().push(stored);
+    }
+    let mut linked = 0;
+    for (repo, versions) in pending {
+        let Some(releases) = github.list::<Release>(&format!("/repos/{repo}/releases"))? else {
+            continue;
+        };
+        let tags: HashMap<&str, &str> = releases
+            .iter()
+            .filter(|release| !release.draft)
+            .map(|release| (release.tag_name.as_str(), release.html_url.as_str()))
+            .collect();
+        for stored in versions {
+            let version = &stored.metadata.version;
+            let tagged = format!("v{version}");
+            let Some((tag, url)) = [tagged.as_str(), version.as_str()]
+                .into_iter()
+                .find_map(|tag| tags.get(tag).map(|url| (tag, *url)))
+            else {
+                continue;
+            };
+            if let Some(revision) = stored.metadata.annotation("revision") {
+                let revision = revision.trim_end_matches("+dirty");
+                let commit = github.get::<Commit>(&format!("/repos/{repo}/commits/{tag}"))?;
+                if !commit.is_some_and(|commit| commit.sha.starts_with(revision)) {
+                    continue;
+                }
+            }
+            let mut metadata = stored.metadata.clone();
+            metadata.release = Some(url.to_string());
+            data::write(root, &metadata, &stored.wit)?;
+            linked += 1;
+        }
+    }
+    if linked > 0 {
+        eprintln!("linked {linked} indexed versions to their GitHub releases");
+    }
+    Ok(())
+}
+
+/// The `owner/repo` of a source repository on GitHub, e.g. `componentized/logging` for
+/// `https://github.com/componentized/logging.git`.
+fn github_repo(source: &str) -> Option<String> {
+    let path = source
+        .trim_end_matches('/')
+        .trim_end_matches(".git")
+        .strip_prefix("https://github.com/")?;
+    let (owner, repo) = path.split_once('/')?;
+    (!owner.is_empty() && !repo.is_empty() && !repo.contains('/'))
+        .then(|| format!("{owner}/{repo}"))
 }
 
 /// Re-derives the imports and exports of the indexed components from their stored WIT, updating
@@ -457,6 +545,7 @@ impl Scanner<'_> {
             imports: decoded.imports,
             exports: decoded.exports,
             dependencies: decoded.dependencies,
+            release: None,
             indexed_at: chrono::Utc::now().to_rfc3339_opts(chrono::SecondsFormat::Secs, true),
         };
         let dir = data::write(&self.options.root, &metadata, &decoded.wit)?;
@@ -499,5 +588,34 @@ impl Scanner<'_> {
             },
             manifest,
         ))
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn finds_the_github_repository_of_a_source() {
+        for source in [
+            "https://github.com/componentized/logging",
+            "https://github.com/componentized/logging.git",
+            "https://github.com/componentized/logging/",
+        ] {
+            assert_eq!(
+                github_repo(source).as_deref(),
+                Some("componentized/logging"),
+                "{source}"
+            );
+        }
+        assert_eq!(
+            github_repo("https://gitlab.com/componentized/logging"),
+            None
+        );
+        assert_eq!(github_repo("https://github.com/componentized"), None);
+        assert_eq!(
+            github_repo("https://github.com/componentized/logging/tree/main"),
+            None
+        );
     }
 }

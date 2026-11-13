@@ -302,6 +302,28 @@ impl GitHub {
         Self { client, token }
     }
 
+    /// GETs a single resource, `None` when the endpoint answers 403 or 404.
+    pub fn get<T: serde::de::DeserializeOwned>(&self, path: &str) -> Result<Option<T>> {
+        let url = format!("https://api.github.com{path}");
+        let mut request = self
+            .client
+            .get(&url)
+            .header(ACCEPT, "application/vnd.github+json")
+            .header("X-GitHub-Api-Version", "2022-11-28");
+        if let Some(token) = &self.token {
+            request = request.header(AUTHORIZATION, format!("Bearer {token}"));
+        }
+        let response = request.send()?;
+        match response.status() {
+            StatusCode::NOT_FOUND
+            | StatusCode::FORBIDDEN
+            | StatusCode::UNAUTHORIZED
+            | StatusCode::UNPROCESSABLE_ENTITY => Ok(None),
+            status if !status.is_success() => bail!("GET {url}: {status}"),
+            _ => Ok(Some(response.json()?)),
+        }
+    }
+
     /// GETs every page of a list endpoint, `None` when the endpoint answers 403 or 404.
     pub fn list<T: serde::de::DeserializeOwned>(&self, path: &str) -> Result<Option<Vec<T>>> {
         let mut items = Vec::new();

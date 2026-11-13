@@ -50,5 +50,6 @@
       "version": "0.2.3"
     }
   ],
+  "release": "https://github.com/componentized/filesystem/releases/tag/v0.1.0",
   "indexed_at": "2026-11-11T23:44:32Z"
 }

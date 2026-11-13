@@ -4,11 +4,25 @@
 {% if items %}<ul class="links">{% for l in items %}<li>{{ link(l) }}</li>{% endfor %}</ul>{% else %}<p class="dim">{{ empty }}</p>{% endif %}
 {% endmacro %}
 
+{#- a world's imports or exports, each with the icon of its kind, an interface or a function #}
+{% macro world_items(items, empty="None") %}
+{% if items %}<ul class="links world-items">{% for l in items %}<li title="{{ l.kind }}">{{ kind_icon(l.kind) }}{{ link(l) }}</li>{% endfor %}</ul>{% else %}<p class="dim">{{ empty }}</p>{% endif %}
+{% endmacro %}
+
+{#- `package@version` links, each with its package's icon, e.g. a version's dependencies #}
+{% macro packages(items, empty="None") %}
+{% if items %}<ul class="links packages">{% for l in items %}<li title="{{ l.kind }}">{{ kind_icon(l.kind) }}{{ link(l) }}</li>{% endfor %}</ul>{% else %}<p class="dim">{{ empty }}</p>{% endif %}
+{% endmacro %}
+
+{#- packages and their versions, e.g. a version's dependents. Each package opens a menu of its
+    versions, like a breadcrumb's; a version that isn't indexed is listed without a link. #}
 {% macro grouped(groups, empty="None") %}
-{% if groups %}<ul class="links">{% for g in groups %}<li>
-  <details class="versions-group">
-    <summary><code>{{ g.package }}</code> <span class="dim">{{ g.versions|length }} version{% if g.versions|length != 1 %}s{% endif %}</span></summary>
-    <ul class="links">{% for v in g.versions %}<li>{% if v.url %}<a href="{{ v.url }}"><code>{{ v.label }}</code></a>{% else %}<code class="dim">{{ v.label }}</code>{% endif %}</li>{% endfor %}</ul>
+{% if groups %}<ul class="links groups">{% for g in groups %}{% set n = g.versions|length %}<li>
+  <details class="pivot pivot-group" data-pivot data-pivot-what="version">
+    <summary title="{{ g.package }}, {{ g.kind }}: {{ n }} version{% if n != 1 %}s{% endif %}"><span class="group-line">{{ kind_icon(g.kind) }}<code>{{ g.package }}</code><span class="count-chip">{{ n }}<span class="visually-hidden"> version{% if n != 1 %}s{% endif %}</span></span><svg class="pivot-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 6.5 3.5 3.5 3.5-3.5"/></svg></span></summary>
+    <ul class="pivot-menu" aria-label="Versions of {{ g.package }}">
+      {%- for v in g.versions %}<li>{% if v.url %}<a href="{{ v.url }}"><code>{{ v.label }}</code></a>{% else %}<span class="pivot-unlinked" title="Not in the directory"><code>{{ v.label }}</code></span>{% endif %}</li>{% endfor -%}
+    </ul>
   </details>
 </li>{% endfor %}</ul>{% else %}<p class="dim">{{ empty }}</p>{% endif %}
 {% endmacro %}
@@ -19,7 +33,8 @@
   {%- if s.deprecated %}<span class="gate deprecated" title="@deprecated(version = {{ s.deprecated }})">deprecated {{ s.deprecated }}</span>{% endif -%}
 </span>{% endif %}{% endmacro %}
 
-{#- the icon of each kind of type, and of functions, referenced by `kind_icon` #}
+{#- the icon of each kind of type, of functions, and of namespaces, components, worlds,
+    interfaces and repositories, referenced by `kind_icon`. Every page has it, from the base template. #}
 {% macro kind_sprite() %}
 <svg class="sprite" aria-hidden="true" focusable="false">
   <symbol id="kind-resource" viewBox="0 0 16 16"><path d="M8 1.8 2.5 4.8v6.4L8 14.2l5.5-3V4.8L8 1.8ZM2.5 4.8 8 7.8l5.5-3M8 7.8v6.4"/></symbol>
@@ -35,6 +50,16 @@
   <symbol id="mod-get" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M.8 8C2.6 4.6 5.1 3 8 3s5.4 1.6 7.2 5c-1.8 3.4-4.3 5-7.2 5S2.6 11.4.8 8Zm7.2 2.6a2.6 2.6 0 1 0 0-5.2 2.6 2.6 0 0 0 0 5.2Z"/></symbol>
   <symbol id="mod-set" viewBox="0 0 16 16"><path d="M11.2 1.4l3.4 3.4-8.3 8.3-4.6 1.2 1.2-4.6z"/></symbol>
   <symbol id="mod-constructor" viewBox="0 0 16 16"><path d="M8 .8l1.9 5.3L15.2 8l-5.3 1.9L8 15.2l-1.9-5.3L.8 8l5.3-1.9z"/></symbol>
+  <symbol id="kind-world" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><path d="M2 8h12M8 2c-1.7 1.6-2.5 3.6-2.5 6s.8 4.4 2.5 6M8 2c1.7 1.6 2.5 3.6 2.5 6s-.8 4.4-2.5 6"/></symbol>
+  <symbol id="kind-interface" viewBox="0 0 16 16"><path d="M5.6 2.5c-1.5 0-2 .6-2 1.9v1.9c0 .9-.5 1.5-1.6 1.7 1.1.2 1.6.8 1.6 1.7v1.9c0 1.3.5 1.9 2 1.9M10.4 2.5c1.5 0 2 .6 2 1.9v1.9c0 .9.5 1.5 1.6 1.7-1.1.2-1.6.8-1.6 1.7v1.9c0 1.3-.5 1.9-2 1.9"/></symbol>
+  <symbol id="kind-component" viewBox="0 0 16 16"><rect x="4" y="4" width="8" height="8" rx="1.2"/><path d="M6.5 1.8V4M9.5 1.8V4M6.5 12v2.2M9.5 12v2.2M1.8 6.5H4M1.8 9.5H4M12 6.5h2.2M12 9.5h2.2"/></symbol>
+  <symbol id="kind-namespace" viewBox="0 0 16 16"><path d="M8 1.8 1.8 5 8 8.2 14.2 5zM1.8 8 8 11.2 14.2 8M1.8 11 8 14.2l6.2-3.2"/></symbol>
+  <symbol id="kind-repo" viewBox="0 0 16 16"><path d="M3 12.6V3.2c0-.6.5-1.2 1.2-1.2H13v10.2H4.3c-.7 0-1.3.6-1.3 1.2s.6 1.2 1.3 1.2H13"/><path d="m7 5.2-1.6 1.9L7 9M9.4 5.2 11 7.1 9.4 9"/></symbol>
+  <symbol id="meta-date" viewBox="0 0 16 16"><rect x="2.2" y="3.2" width="11.6" height="10.6" rx="1.6"/><path d="M2.2 6.6h11.6M5.4 1.8v2.6M10.6 1.8v2.6"/></symbol>
+  <symbol id="meta-commit" viewBox="0 0 16 16"><circle cx="8" cy="8" r="2.6"/><path d="M1.2 8h4.2M10.6 8h4.2"/></symbol>
+  <symbol id="meta-copy" viewBox="0 0 16 16"><rect x="5.2" y="5.2" width="8.6" height="8.6" rx="1.6"/><path d="M10.8 5.2V3.8c0-.9-.7-1.6-1.6-1.6H3.8c-.9 0-1.6.7-1.6 1.6v5.4c0 .9.7 1.6 1.6 1.6h1.4"/></symbol>
+  <symbol id="meta-check" viewBox="0 0 16 16"><path d="m3 8.4 3.2 3.2L13 4.8"/></symbol>
+  <symbol id="meta-notes" viewBox="0 0 16 16"><path d="M3.8 1.8h5.6l2.8 2.8v9.6H3.8z"/><path d="M9.4 1.8v2.8h2.8M6 8h4M6 10.6h4"/></symbol>
   <symbol id="kind-func" viewBox="0 0 16 16"><path d="M11.5 2.6c-1.9-.4-3 .3-3.4 2.3L6.6 12c-.4 1.9-1.4 2.6-3.2 2.2M5.3 6.4h5.4"/></symbol>
 </svg>
 {% endmacro %}
@@ -59,6 +84,9 @@
 <span class="visually-hidden">{{ label }}</span></span>
 {%- endmacro %}
 
+{#- an icon for a detail beside it, `date`, `commit` or `notes`, in the detail's color #}
+{% macro meta_icon(name) %}<svg class="meta-icon" aria-hidden="true" focusable="false"><use href="#meta-{{ name }}"/></svg>{% endmacro %}
+
 {% macro kind(k) %}<span class="badge {{ k }}">{{ k }}</span>{% endmacro %}
 
 {#- `short` labels a card by its name alone, on a page that already names its namespace #}
@@ -66,29 +94,51 @@
 <a class="card" href="{{ c.url }}" data-kind="{{ c.kind }}" data-namespace="{{ c.namespace }}" data-text="{{ c.package|lower }} {{ c.description|lower }}">
   <div class="card-head"><code class="pkg"{% if short %} title="{{ c.package }}"{% endif %}>{% if short %}{{ c.name }}{% else %}{{ c.package }}{% endif %}</code> {{ kind(c.kind) }}{% if c.dependency %} <span class="badge dep" title="Indexed because a componentized release depends on it">dependency</span>{% endif %}</div>
   <p>{{ c.description or "No description." }}</p>
-  <div class="meta"><span>v{{ c.version }}</span><span>{{ c.versions }} version{% if c.versions != 1 %}s{% endif %}</span><span>{{ c.date }}</span></div>
+  <div class="meta"><span>v{{ c.version }}</span><span>{{ c.versions }} version{% if c.versions != 1 %}s{% endif %}</span><time datetime="{{ c.date }}">{{ c.date }}</time></div>
 </a>
 {% endmacro %}
 
 {% macro repo_card(r) %}
 <a class="card" href="{{ r.url }}">
-  <div class="card-head"><code class="pkg">{{ r.key }}</code>{% if r.dependency %} <span class="badge dep" title="Indexed because a componentized release depends on it">dependency</span>{% endif %}</div>
+  <div class="card-head">{{ kind_icon("repo") }}<code class="pkg">{{ r.key }}</code>{% if r.dependency %} <span class="badge dep" title="Indexed because a componentized release depends on it">dependency</span>{% endif %}</div>
   <p>{{ r.description or "No description." }}</p>
-  <div class="meta"><span>v{{ r.version }}</span>{% if r.interfaces %}<span>{{ r.interfaces|length }} interface{% if r.interfaces|length != 1 %}s{% endif %}</span>{% endif %}<span>{{ r.components }} component{% if r.components != 1 %}s{% endif %}</span><span>{{ r.date }}</span></div>
+  <div class="meta"><span>v{{ r.version }}</span>{% if r.interfaces %}<span>{{ r.interfaces|length }} interface{% if r.interfaces|length != 1 %}s{% endif %}</span>{% endif %}<span>{{ r.components }} component{% if r.components != 1 %}s{% endif %}</span><time datetime="{{ r.date }}">{{ r.date }}</time></div>
 </a>
 {% endmacro %}
 
-{% macro header(pkg) %}
-<nav class="crumbs"><a href="/{{ pkg.namespace }}/">{{ pkg.namespace }}</a> : <a href="{{ pkg.package_url }}">{{ pkg.name }}</a> @ <a href="{{ pkg.url }}">{{ pkg.version }}</a></nav>
+{#- a breadcrumb that switches to another of its kind: its menu lists each choice, a namespace,
+    package, version or interface, with the current one marked. `items` are pivots, or versions
+    noted by their date. #}
+{#- `switch`, rather than linking to each choice's page, switches the panels of the section it's in
+    to the chosen version in place; the links remain for a browser without scripts #}
+{% macro pivot(current, items, what, switch=false) %}
+<details class="pivot" data-pivot{% if switch %} data-pivot-switch{% endif %}>
+  <summary title="Switch {{ what }}"><span class="visually-hidden">{{ what }}: </span><span data-pivot-label>{{ current }}</span><svg class="pivot-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 6.5 3.5 3.5 3.5-3.5"/></svg></summary>
+  <ul class="pivot-menu" aria-label="{{ what|capitalize }}s">
+    {%- for i in items %}<li><a href="{{ i.url }}"{% if i.current %} aria-current="true"{% endif %}{% if switch %} data-version="{{ i.version }}"{% endif %}{% if i.kind %} title="{{ i.label }}, {{ i.kind }}"{% endif %}><code>{% if i.kind %}{{ kind_icon(i.kind) }}<span class="visually-hidden">{{ i.kind }} </span>{% endif %}{{ i.label or i.version }}</code>{% if i.date %}<time class="dim" datetime="{{ i.date }}">{{ i.date }}</time>{% elif i.note %}<span class="dim">{{ i.note }}</span>{% endif %}</a></li>{% endfor -%}
+  </ul>
+</details>
+{%- endmacro %}
+
+{#- `iface`, on an interface's page, adds the interface's breadcrumb, switches versions to the
+    same interface, and titles the page with the interface rather than its package: the
+    interface's id holds the package's name and version #}
+{% macro header(pkg, iface=none) %}
+<div class="page-head" data-page-head>
+<nav class="crumbs" aria-label="Breadcrumbs">{{ pivot(pkg.namespace, pkg.namespaces, "namespace") }} : {{ pivot(pkg.name, pkg.packages, "package") }} @ {{ pivot(pkg.version, iface.versions if iface else pkg.versions, "version") }}{% if iface %} / {{ pivot(iface.name, iface.siblings, "interface") }}{% endif %}</nav>
 <div class="title-row">
-  <h1><code>{{ pkg.package }}</code></h1>
+  {% if iface %}
+  <h1>{{ kind_icon("interface") }}<code>{{ iface.id }}</code></h1>
+  {{ kind("interface") }}
+  {{ stability(iface.stability) }}
+  {% else %}
+  <h1>{{ kind_icon(pkg.kind) }}<code>{{ pkg.package }}</code></h1>
   {{ kind(pkg.kind) }}
+  {% endif %}
   {% if pkg.dependency %}<span class="badge dep" title="Indexed because a componentized release depends on it">dependency</span>{% endif %}
   {% if pkg.dev %}<span class="badge pre" title="A development build of the upcoming release">dev</span>{% elif not pkg.stable %}<span class="badge pre">pre-release</span>{% endif %}
-  <select class="versions" aria-label="Version" onchange="location.href=this.value">
-    {% for v in pkg.versions %}<option value="{{ v.url }}"{% if v.current %} selected{% endif %}>{{ v.version }}</option>{% endfor %}
-  </select>
+</div>
 </div>
 {% if pkg.superseded_by %}<p class="notice">This development build was superseded by the release of <a href="{{ pkg.superseded_by.url }}">{{ pkg.superseded_by.version }}</a>.</p>{% endif %}
-{% if pkg.description %}<p class="lede">{{ pkg.description }}</p>{% endif %}
+{% if pkg.description and not iface %}<p class="lede">{{ pkg.description }}</p>{% endif %}
 {% endmacro %}

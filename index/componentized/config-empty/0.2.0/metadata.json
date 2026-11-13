@@ -29,5 +29,6 @@
       "version": "0.2.0-rc.1"
     }
   ],
+  "release": "https://github.com/componentized/config/releases/tag/v0.2.0",
   "indexed_at": "2026-11-11T23:44:22Z"
 }
