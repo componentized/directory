@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/tcp-connector",
     "tag": "0.3.0-dev",
-    "digest": "sha256:35924d933f0963a7f5f5a9f86f3dd79a81b2d84251a2294fb3b780119b5e5823",
+    "digest": "sha256:d4763dacbcbac4c040ee78fa98c355baad6ceb56f7057cd5ed6642c50cba0ae8",
     "layer_digest": "sha256:e3469a2a688032f966c9f9db33852dd1bad30fa72089ef9e81fa536f80fc2cd4",
     "size": 65523
   },
@@ -15,19 +15,19 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/tcp-connector",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:03e7f44e51163e6bc177ab2b8fa66b8df122ab24bbc8ee344cc35efc74a5b42a",
+    "digest": "sha256:f0167a02c08d8d3c3fcc0a53603799f21d475c761ef672420e3151b1dfaca446",
     "layer_digest": "sha256:b228d3913a72e79ab030662cf1db20d5af7c3a13dde76829c4b10bc50f6d8f47",
     "size": 844073
   },
-  "created": "2026-11-13T16:15:43.463525806Z",
+  "created": "2026-11-13T20:28:23.322948519Z",
   "annotations": {
     "org.opencontainers.image.description": "A connector for connections over TCP, to the server configured with `wasi:config`.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "3a7667fbb55e772d3dff26580de27a3bce91daf2",
+    "org.opencontainers.image.revision": "61fe3d670aeafe976f50323920cf573b51b9f989",
     "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
     "org.opencontainers.image.title": "componentized:valkey-tcp-connector",
-    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/3a7667fbb55e772d3dff26580de27a3bce91daf2/components/tcp-connector",
-    "org.opencontainers.image.version": "0.3.0-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/61fe3d670aeafe976f50323920cf573b51b9f989/components/tcp-connector",
+    "org.opencontainers.image.version": "v0.3.0-dev"
   },
   "imports": [
     "wasi:config/store@0.2.0-rc.1",
@@ -49,5 +49,5 @@
       "version": "0.2.0-rc.1"
     }
   ],
-  "indexed_at": "2026-11-13T18:36:27Z"
+  "indexed_at": "2026-11-13T20:30:09Z"
 }

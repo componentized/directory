@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/sample-http-incrementor",
     "tag": "0.3.0-dev",
-    "digest": "sha256:fca24866fd133b4b450176fdf872de87c864a9d0a4548c8c4454d94b51dd1ed0",
+    "digest": "sha256:f396260f6b4ceea9ba3cb40d3baf71d54f0581b0f2105fb3d3d96fee85601899",
     "layer_digest": "sha256:d7648981b06d5d67636800cadc9932261055e8f6d935d520f4de77421f0da889",
     "size": 118815
   },
@@ -15,19 +15,19 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/sample-http-incrementor",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:7402fee8687dfd734579af22ac80d289b041fadb7308c490f0f9addab6ce95f5",
+    "digest": "sha256:d50a3eaa37e14b8160a1e5679c698c5a28a6151556755c27996618d257fe6e8a",
     "layer_digest": "sha256:7596da3cd229940a5fd81afe7a0a00ff30dc46cf49d7c5377eb50bceb24f0906",
     "size": 1301699
   },
-  "created": "2026-11-13T16:14:53.529634811Z",
+  "created": "2026-11-13T20:27:41.343980452Z",
   "annotations": {
     "org.opencontainers.image.description": "Sample component that exposes `wasi:http` incrementing a counter based on the http path.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "3a7667fbb55e772d3dff26580de27a3bce91daf2",
+    "org.opencontainers.image.revision": "61fe3d670aeafe976f50323920cf573b51b9f989",
     "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
     "org.opencontainers.image.title": "componentized:valkey-sample-http-incrementor",
-    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/3a7667fbb55e772d3dff26580de27a3bce91daf2/components/sample-http-incrementor",
-    "org.opencontainers.image.version": "0.3.0-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/61fe3d670aeafe976f50323920cf573b51b9f989/components/sample-http-incrementor",
+    "org.opencontainers.image.version": "v0.3.0-dev"
   },
   "imports": [
     "wasmcloud:keyvalue/types@0.2.0",
@@ -48,5 +48,5 @@
       "version": "0.2.0"
     }
   ],
-  "indexed_at": "2026-11-13T18:36:26Z"
+  "indexed_at": "2026-11-13T20:30:08Z"
 }

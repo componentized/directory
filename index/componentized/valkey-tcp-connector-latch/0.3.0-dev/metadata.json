@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/tcp-connector-latch",
     "tag": "0.3.0-dev",
-    "digest": "sha256:d60bb9e961d54de11dfe53c4c1f50fc7799c6a748261418771909e2e40b2d8e6",
+    "digest": "sha256:36a887c77fe6ee52ac25063158c443099eb6e0cf4f46d1f66d94bdababcab33b",
     "layer_digest": "sha256:5e7787acf3fdd2c9dedddebb6d6f56865a45f94df390a01a2a36060662c92b8c",
     "size": 418982
   },
@@ -15,19 +15,19 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/tcp-connector-latch",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:be5c320f4295d7b1a7daed16be274aeca95184cf256810beb4853a7cc10650d6",
+    "digest": "sha256:d9d86f5da6522978ac8057b307bebdb5143d8afda325e9a69387c0fe8405905d",
     "layer_digest": "sha256:9efb6eabf22fb689f852a8c2d74e9b41a9b9a64773aee0725c7e6869da7c91db",
     "size": 4573800
   },
-  "created": "2026-11-13T16:16:24.081437144Z",
+  "created": "2026-11-13T20:28:55.719973300Z",
   "annotations": {
     "org.opencontainers.image.description": "A `componentized:sockets` latch limiting network access to the Valkey server in the `tcp-connector` config, denying every other socket.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "3a7667fbb55e772d3dff26580de27a3bce91daf2",
+    "org.opencontainers.image.revision": "61fe3d670aeafe976f50323920cf573b51b9f989",
     "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
     "org.opencontainers.image.title": "componentized:valkey-tcp-connector-latch",
-    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/3a7667fbb55e772d3dff26580de27a3bce91daf2/components/tcp-connector-latch",
-    "org.opencontainers.image.version": "0.3.0-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/61fe3d670aeafe976f50323920cf573b51b9f989/components/tcp-connector-latch",
+    "org.opencontainers.image.version": "v0.3.0-dev"
   },
   "imports": [
     "wasi:config/store@0.2.0-rc.1",
@@ -55,5 +55,5 @@
       "version": "0.3.0"
     }
   ],
-  "indexed_at": "2026-11-13T18:36:28Z"
+  "indexed_at": "2026-11-13T20:30:11Z"
 }

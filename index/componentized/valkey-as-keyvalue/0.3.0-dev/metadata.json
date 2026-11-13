@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/as-keyvalue",
     "tag": "0.3.0-dev",
-    "digest": "sha256:9c0cd73555bc4eb43ff860f90ed5fa88a0e97faca16197ec03ec5e2f21732b12",
+    "digest": "sha256:e70b958f88794d7c9540dac4966c4db12f1be4494093396dc3b11c0fed9cda7b",
     "layer_digest": "sha256:0291ffaf6fc462afe4352f37314f0ef8f0b16717c6b54fc6d6a09b54e7880ce6",
     "size": 153171
   },
@@ -15,19 +15,19 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/as-keyvalue",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:45a0eb7b024ec3459aa2778170d077a441f69af1b0353e02280532a815d0a13f",
+    "digest": "sha256:c4f9beff34933bfb23c868cb8f964e2d9e7543a86554fa95045003cf37cf4e7a",
     "layer_digest": "sha256:bea211340d9549ee66bc5d28c486f51ad53fe5fb883aded09b8085dac1ec0112",
     "size": 1620920
   },
-  "created": "2026-11-13T16:12:31.722560962Z",
+  "created": "2026-11-13T20:25:35.654888857Z",
   "annotations": {
     "org.opencontainers.image.description": "Adapter to back `wasmcloud:keyvalue` with the `componentized:valkey` client.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "3a7667fbb55e772d3dff26580de27a3bce91daf2",
+    "org.opencontainers.image.revision": "61fe3d670aeafe976f50323920cf573b51b9f989",
     "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
     "org.opencontainers.image.title": "componentized:valkey-as-keyvalue",
-    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/3a7667fbb55e772d3dff26580de27a3bce91daf2/components/as-keyvalue",
-    "org.opencontainers.image.version": "0.3.0-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/61fe3d670aeafe976f50323920cf573b51b9f989/components/as-keyvalue",
+    "org.opencontainers.image.version": "v0.3.0-dev"
   },
   "imports": [
     "componentized:valkey/types@0.3.0-dev",
@@ -56,5 +56,5 @@
       "version": "0.2.0"
     }
   ],
-  "indexed_at": "2026-11-13T18:36:22Z"
+  "indexed_at": "2026-11-13T20:30:04Z"
 }

@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/connection",
     "tag": "0.3.0-dev",
-    "digest": "sha256:0424ab3bef8ac3d28db694944d4d0c2b0692d0a15f003f8444a25e5b044c62d0",
+    "digest": "sha256:755a8e23f203b26cbe9ab846ce1d9ab2e549befe2855b442904322619f7db408",
     "layer_digest": "sha256:2e9f08ccaf9a5ae91ec874b1754043a03d5cf48505c34c5a128c51be4f3aa72b",
     "size": 410082
   },
@@ -15,19 +15,19 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/connection",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:61dfa816b2d72dce253d3209ec567aab1851724ff34bbfdc3f5881dbcb1b4421",
+    "digest": "sha256:d0a930417d54555b2f846cbf2d46a9982d110a6283831eb89e11e232c31e2b47",
     "layer_digest": "sha256:dbaa88d1b6dd111d28822b47f9136b7930a68bf6f0a4464affd27be6c8aee537",
     "size": 5452570
   },
-  "created": "2026-11-13T16:14:09.527459982Z",
+  "created": "2026-11-13T20:27:05.544464798Z",
   "annotations": {
     "org.opencontainers.image.description": "The mechanics of a connection to a Valkey server, independent of the transport carrying it.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "3a7667fbb55e772d3dff26580de27a3bce91daf2",
+    "org.opencontainers.image.revision": "61fe3d670aeafe976f50323920cf573b51b9f989",
     "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
     "org.opencontainers.image.title": "componentized:valkey-connection",
-    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/3a7667fbb55e772d3dff26580de27a3bce91daf2/components/connection",
-    "org.opencontainers.image.version": "0.3.0-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/61fe3d670aeafe976f50323920cf573b51b9f989/components/connection",
+    "org.opencontainers.image.version": "v0.3.0-dev"
   },
   "imports": [
     "wasi:clocks/types@0.3.0",
@@ -47,5 +47,5 @@
       "version": "0.3.0"
     }
   ],
-  "indexed_at": "2026-11-13T18:36:24Z"
+  "indexed_at": "2026-11-13T20:30:07Z"
 }

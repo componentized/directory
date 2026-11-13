@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/commands",
     "tag": "0.3.0-dev",
-    "digest": "sha256:e3db1dce858346519838af5791390890990c261f2ce7b4a58b1cdeb93b3cd48f",
+    "digest": "sha256:c36b76762259e3e6f1a53e8b3acfe0e7c764790f032597c2765719c20c49dc8d",
     "layer_digest": "sha256:5dd4c0111531879ce3162b245bff018449a7e4bf53d8f6d2822066cbfd2a9a04",
     "size": 1721000
   },
@@ -15,19 +15,19 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/commands",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:514cd19eeadbadfc89fe7ccb69e056b75ff4504047d1845908f52f2674aaaef0",
+    "digest": "sha256:e68593c8021882a8111c87095dcea22a05f93443982a56062fa16b0710d99c7c",
     "layer_digest": "sha256:0cf61e74fcaf597ff6392724c68e192604a2c9ac41d30fd072e96d4983123b77",
     "size": 19893347
   },
-  "created": "2026-11-13T16:13:43.378164119Z",
+  "created": "2026-11-13T20:26:43.902878928Z",
   "annotations": {
     "org.opencontainers.image.description": "Every implemented command interface, in one component.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "3a7667fbb55e772d3dff26580de27a3bce91daf2",
+    "org.opencontainers.image.revision": "61fe3d670aeafe976f50323920cf573b51b9f989",
     "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
     "org.opencontainers.image.title": "componentized:valkey-commands",
-    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/3a7667fbb55e772d3dff26580de27a3bce91daf2/components/commands",
-    "org.opencontainers.image.version": "0.3.0-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/61fe3d670aeafe976f50323920cf573b51b9f989/components/commands",
+    "org.opencontainers.image.version": "v0.3.0-dev"
   },
   "imports": [
     "componentized:valkey/types@0.3.0-dev",
@@ -42,5 +42,5 @@
       "version": "0.3.0-dev"
     }
   ],
-  "indexed_at": "2026-11-13T18:36:24Z"
+  "indexed_at": "2026-11-13T20:30:06Z"
 }

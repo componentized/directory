@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/cli",
     "tag": "0.3.0-dev",
-    "digest": "sha256:3873b3dd78364036bd7a5a551c61a8ef313a400e8f5cc9ed5a7a24502f0fecdb",
+    "digest": "sha256:3148d1194cfd3e2a9cd767c0121cebf4d710c9220a04680be8b0ce7d5b22cc7d",
     "layer_digest": "sha256:32cbc43ceadba49d8bcb09427f34d4d26f0ad88423ed8231cf0fc410843990a7",
     "size": 1758581
   },
@@ -15,19 +15,19 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/cli",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:0cc33149265330b44abab730a97022b3a1f0fb6f3624f84ea9f1d88b5ad053fd",
+    "digest": "sha256:eee02489439e1c11aa777230a0ee2072a443cdaec2d444411f7b5c481b60cbb8",
     "layer_digest": "sha256:7efd2c2ccebf89dcab810422439de01380fa22b42aea0166f8d93da76cff622f",
     "size": 18908019
   },
-  "created": "2026-11-13T16:12:53.923222233Z",
+  "created": "2026-11-13T20:25:59.726738653Z",
   "annotations": {
     "org.opencontainers.image.description": "A command line client for Valkey, sending its arguments as a command and printing the reply.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "3a7667fbb55e772d3dff26580de27a3bce91daf2",
+    "org.opencontainers.image.revision": "61fe3d670aeafe976f50323920cf573b51b9f989",
     "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
     "org.opencontainers.image.title": "componentized:valkey-cli",
-    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/3a7667fbb55e772d3dff26580de27a3bce91daf2/components/cli",
-    "org.opencontainers.image.version": "0.3.0-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/61fe3d670aeafe976f50323920cf573b51b9f989/components/cli",
+    "org.opencontainers.image.version": "v0.3.0-dev"
   },
   "imports": [
     "wasi:clocks/types@0.3.0",
@@ -68,5 +68,5 @@
       "version": "0.3.0"
     }
   ],
-  "indexed_at": "2026-11-13T18:36:22Z"
+  "indexed_at": "2026-11-13T20:30:05Z"
 }
