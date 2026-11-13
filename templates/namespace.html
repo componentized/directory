@@ -47,7 +47,12 @@
       {%- if v.revision %}{% if v.date %} <span class="dim">·</span> {% endif %}{% if v.commit %}<a href="{{ v.commit }}" title="The commit {{ v.version }} was built from">{{ meta_icon("commit") }}<span class="visually-hidden">commit </span><code>{{ v.revision }}</code></a>{% else %}<span title="The commit {{ v.version }} was built from">{{ meta_icon("commit") }}<code>{{ v.revision }}</code></span>{% endif %}{% endif %}
       {%- if v.release %}{% if v.date or v.revision %} <span class="dim">·</span> {% endif %}<a href="{{ v.release.url }}" title="The GitHub release of {{ v.version }}, {{ v.release.tag }}">{{ meta_icon("notes") }}release notes</a>{% endif %}</span>{% endfor %}
   </div>
-  {% for v in g.versions %}<div data-version-panel="{{ v.version }}"{% if v.version != sel %} hidden{% endif %}>{{ cards(v.listing) }}</div>{% endfor %}
+  {% for v in g.versions %}<div data-version-panel="{{ v.version }}"{% if v.version != sel %} hidden{% endif %}>{{ cards(v.listing) }}
+    {#- the repository's packages it didn't release at this version, at their own latest #}
+    {%- if v.others %}
+    <p class="group-others"><span class="dim">Released at other versions:</span>
+      {%- for o in v.others %} <a href="{{ o.url }}">{{ kind_icon(o.kind) }}<code>{{ o.name }}</code> <span class="dim">{{ o.version }}</span></a>{% endfor %}</p>
+    {%- endif %}</div>{% endfor %}
   {% else %}
   <div class="group-head">
     <h2>{% if g.key %}{{ kind_icon("repo") }}<code title="{{ g.key }}">{{ g.name }}</code>{% else %}Other{% endif %}</h2>

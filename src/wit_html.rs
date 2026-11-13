@@ -14,14 +14,60 @@ pub struct Html {
     needs_indent: bool,
     /// The url of each type a reference links to, by name.
     links: HashMap<String, String>,
+    /// For a whole package, the links of each of its interfaces, by the interface's name, which
+    /// replace `links` as the printer reaches each interface, with the url of the interface.
+    scopes: HashMap<String, (String, HashMap<String, String>)>,
+    /// How many packages the printer has declared: the package, then any it nests, whose names
+    /// aren't the package's to link.
+    packages: usize,
+    /// The url of each interface by its id, e.g. `wasi:io/streams@0.2.6`, or by its name alone for
+    /// one of the package's own, which a path to it, e.g. in a `use` or an `import`, links to.
+    interfaces: HashMap<String, String>,
+    /// The path to an interface being printed, a token at a time: where its HTML starts, and its
+    /// text so far, e.g. `wasi:io/streams`.
+    path: Option<(usize, String)>,
+    /// The url of the interface of the `use` being printed, which the types it uses link into.
+    use_url: Option<String>,
 }
 
 impl Html {
     fn span(&mut self, class: &str, src: &str) {
         self.indent_if_needed();
         self.output.push_str(&format!("<span class=\"{class}\">"));
-        self.push_str(src);
+        self.output.push_str(&escape(src));
         self.output.push_str("</span>");
+    }
+
+    /// Ends the path to an interface being printed, linking it to the interface's page, which a
+    /// `use` then links the types it uses into.
+    fn finish_path(&mut self) {
+        let Some((start, path)) = self.path.take() else {
+            return;
+        };
+        // a path within the package names the interface alone, e.g. `types`
+        let url = if path.contains(':') {
+            self.interfaces.get(&path).cloned()
+        } else {
+            self.scopes
+                .get(&path)
+                .map(|(url, _)| url.clone())
+                .or_else(|| self.interfaces.get(&path).cloned())
+        };
+        // the path is one name, its separators and all, linked to the interface when it has a page
+        match &url {
+            Some(url) => {
+                self.output.insert_str(
+                    start,
+                    &format!("<a class=\"path\" href=\"{}\">", escape(url)),
+                );
+                self.output.push_str("</a>");
+            }
+            None => {
+                self.output.insert_str(start, "<span class=\"path\">");
+                self.output.push_str("</span>");
+            }
+        }
+        self.use_url = url;
     }
 }
 
@@ -41,6 +87,11 @@ pub fn escape(src: &str) -> String {
 
 impl Output for Html {
     fn push_str(&mut self, src: &str) {
+        // the separators of a path to an interface are part of it, anything else ends it
+        match &mut self.path {
+            Some((_, path)) if matches!(src, ":" | "/") => path.push_str(src),
+            _ => self.finish_path(),
+        }
         self.output.push_str(&escape(src));
     }
 
@@ -57,12 +108,14 @@ impl Output for Html {
     }
 
     fn indent_start(&mut self) {
+        self.finish_path();
         self.output.push_str(" {");
         self.indent += 1;
         self.newline();
     }
 
     fn indent_end(&mut self) {
+        self.finish_path();
         self.indent = self.indent.saturating_sub(1);
         self.indent_if_needed();
         self.output.push('}');
@@ -70,18 +123,60 @@ impl Output for Html {
     }
 
     fn newline(&mut self) {
+        self.finish_path();
+        self.use_url = None;
         self.output.push('\n');
         self.needs_indent = true;
     }
 
     fn keyword(&mut self, src: &str) {
+        self.finish_path();
         self.span("k", src);
     }
 
     fn ty(&mut self, src: &str, kind: TypeKind) {
+        // a path to an interface, e.g. `wasi:io/streams@0.2.6`, comes a token at a time, its
+        // namespace, package, interface and version, which together link to the interface
+        match kind {
+            TypeKind::NamespacePath => {
+                self.finish_path();
+                self.indent_if_needed();
+                self.path = Some((self.output.len(), src.to_string()));
+            }
+            TypeKind::PackageNamePath | TypeKind::VersionPath => {
+                if let Some((_, path)) = &mut self.path {
+                    path.push_str(src);
+                }
+            }
+            TypeKind::InterfacePath => match &mut self.path {
+                Some((_, path)) => path.push_str(src),
+                // a path within the package, the interface alone
+                None => {
+                    self.indent_if_needed();
+                    self.path = Some((self.output.len(), src.to_string()));
+                }
+            },
+            _ => self.finish_path(),
+        }
+        // a type a `use` uses links to its definition in the interface it's used from
+        if matches!(kind, TypeKind::TypeImport)
+            && let Some(url) = self.use_url.clone()
+        {
+            self.indent_if_needed();
+            let html = format!(
+                "<a class=\"t\" href=\"{}#type-{}\">{}</a>",
+                escape(&url),
+                escape(src.trim_start_matches('%')),
+                escape(src)
+            );
+            self.output.push_str(&html);
+            return;
+        }
         // a reference to a named type, or a resource in a handle, links to the type's definition
-        if matches!(kind, TypeKind::Other | TypeKind::Resource)
-            && let Some(url) = self.links.get(src.trim_start_matches('%')).cloned()
+        if matches!(
+            kind,
+            TypeKind::Other | TypeKind::Resource | TypeKind::TypeAlias
+        ) && let Some(url) = self.links.get(src.trim_start_matches('%')).cloned()
         {
             self.indent_if_needed();
             let html = format!(
@@ -91,6 +186,34 @@ impl Output for Html {
             );
             self.output.push_str(&html);
             return;
+        }
+        // a package's interfaces scope its links: entering one, its types link to it, and its
+        // name links to its page; a world, or a nested package, links nothing
+        match kind {
+            TypeKind::PackageNameDeclaration => {
+                self.packages += 1;
+                if self.packages > 1 {
+                    self.scopes.clear();
+                }
+                self.links.clear();
+            }
+            TypeKind::WorldDeclaration => self.links.clear(),
+            // a single interface keeps the links it was given
+            TypeKind::InterfaceDeclaration if !self.scopes.is_empty() || self.packages > 0 => {
+                if let Some((url, links)) = self.scopes.get(src.trim_start_matches('%')).cloned() {
+                    self.links = links;
+                    self.indent_if_needed();
+                    let html = format!(
+                        "<a class=\"i\" href=\"{}\">{}</a>",
+                        escape(&url),
+                        escape(src)
+                    );
+                    self.output.push_str(&html);
+                    return;
+                }
+                self.links.clear();
+            }
+            _ => {}
         }
         let class = match kind {
             TypeKind::BuiltIn => "b",
@@ -113,14 +236,17 @@ impl Output for Html {
     }
 
     fn param(&mut self, src: &str) {
+        self.finish_path();
         self.span("p", src);
     }
 
     fn case(&mut self, src: &str) {
+        self.finish_path();
         self.span("c", src);
     }
 
     fn doc(&mut self, doc: &str) {
+        self.finish_path();
         self.indent_if_needed();
         let doc = if doc.is_empty() {
             "///".to_string()
@@ -132,8 +258,16 @@ impl Output for Html {
     }
 }
 
-/// A package, followed by the foreign packages it uses when `nested`.
-pub fn package(resolve: &Resolve, pkg: PackageId, nested: bool) -> Result<String> {
+/// A package with its interfaces linked to their pages: `scopes` holds the url of each interface by
+/// its name, with the url of each type it defines or uses by the type's name. Foreign packages it
+/// nests, and its worlds, are left unlinked.
+pub fn package_linked(
+    resolve: &Resolve,
+    pkg: PackageId,
+    nested: bool,
+    scopes: HashMap<String, (String, HashMap<String, String>)>,
+    interfaces: HashMap<String, String>,
+) -> Result<String> {
     let nested: Vec<_> = if nested {
         resolve
             .topological_packages()
@@ -143,8 +277,13 @@ pub fn package(resolve: &Resolve, pkg: PackageId, nested: bool) -> Result<String
     } else {
         Vec::new()
     };
-    let mut printer = WitPrinter::new(Html::default());
+    let mut printer = WitPrinter::new(Html {
+        scopes,
+        interfaces,
+        ..Html::default()
+    });
     printer.print(resolve, pkg, &nested)?;
+    printer.output.finish_path();
     Ok(printer.output.output)
 }
 
@@ -155,9 +294,11 @@ pub fn interface(
     id: InterfaceId,
     name: &str,
     links: HashMap<String, String>,
+    interfaces: HashMap<String, String>,
 ) -> Result<String> {
     let mut printer = WitPrinter::new(Html {
         links,
+        interfaces,
         ..Html::default()
     });
     printer.print_interface_outer(resolve, id, name)?;

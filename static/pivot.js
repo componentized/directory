@@ -8,8 +8,11 @@
   // a menu with more choices than this gets a filter
   const FILTER_AT = 12;
 
+  // a menu's choices, and buttons such as one that shows a line's older versions
   const links = (pivot) =>
-    [...pivot.querySelectorAll(".pivot-menu a")].filter((a) => !a.closest("li").hidden);
+    [...pivot.querySelectorAll(".pivot-menu a, .pivot-menu li > button")].filter(
+      (a) => !a.closest("li").hidden,
+    );
 
   const close = (pivot, refocus) => {
     if (!pivot.open) return;
@@ -22,7 +25,9 @@
     const items = [...menu.querySelectorAll("li")];
     let filter = null;
 
-    if (items.length > FILTER_AT) {
+    // a menu that folds its choices, e.g. a compare page's versions, has no filter, which would
+    // unfold them
+    if (items.length > FILTER_AT && !pivot.hasAttribute("data-pivot-no-filter")) {
       const what =
         pivot.dataset.pivotWhat ?? pivot.querySelector("summary").title.replace(/^Switch /, "");
       const wrap = document.createElement("li");

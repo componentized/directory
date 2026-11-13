@@ -1,6 +1,7 @@
 //! The componentized directory: indexes the components and WIT packages published under
 //! ghcr.io/componentized and renders them as a static site.
 
+mod api;
 mod config;
 mod data;
 mod decode;
@@ -21,6 +22,9 @@ struct Cli {
     /// The root of the index, `{namespace}/{name}/{version}/`
     #[arg(long, global = true, default_value = "index")]
     data: PathBuf,
+    /// Corrections to the source repositories packages' images name
+    #[arg(long, global = true, default_value = ".config/directory/sources.toml")]
+    sources: PathBuf,
     #[command(subcommand)]
     command: Command,
 }
@@ -76,11 +80,18 @@ fn main() -> Result<()> {
             packages,
             only,
             registries: config::Config::load(&config)?,
+            sources: config::Sources::load(&cli.sources)?,
         }),
         Command::Build {
             out,
             base_url,
             samples,
-        } => site::build(&cli.data, &samples, &out, &base_url),
+        } => site::build(
+            &cli.data,
+            &samples,
+            &out,
+            &base_url,
+            &config::Sources::load(&cli.sources)?,
+        ),
     }
 }
