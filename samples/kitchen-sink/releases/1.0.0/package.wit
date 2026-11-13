@@ -1,0 +1,14 @@
+/// A counter released over three major versions, to show how the directory lists and
+/// compares a package's versions.
+///
+/// A synthetic package: it isn't published to any registry.
+package kitchen-sink:releases@1.0.0;
+
+/// A counter, counting up from zero, one at a time.
+interface counter {
+  /// The current count, now wide enough to never wrap.
+  get: func() -> u64;
+
+  /// Adds one to the count.
+  increment: func();
+}

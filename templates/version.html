@@ -119,9 +119,12 @@
       {{ grouped(dependents) }}
     </section>
     <section id="versions">
-      <h3>Versions</h3>
+      <h3>Versions{% if pkg.compare %} <a class="more" href="{{ pkg.compare }}">compare</a>{% endif %}</h3>
       {#- each version's whole row is its link, the version on one end and its date on the other #}
       <ul class="links versions-list">{% for v in pkg.versions %}<li>
+        {#- a version's comparison with the one on view, then its page #}
+        {%- if v.compare %}<a class="version-compare" href="{{ v.compare }}" title="Compare {{ v.version }} with {{ pkg.version }}" aria-label="Compare {{ v.version }} with {{ pkg.version }}">{{ meta_icon("diff") }}</a>
+        {%- elif pkg.compare %}<span class="version-compare" aria-hidden="true"></span>{% endif %}
         {%- set row %}<span class="version">{{ v.version }}</span> <span class="dim" title="Published">{{ meta_icon("date") }}<span class="visually-hidden">published </span><time datetime="{{ v.date }}">{{ v.date }}</time></span>{% endset -%}
         {% if v.current %}<span class="version-row" aria-current="page">{{ row }}</span>{% else %}<a class="version-row" href="{{ v.url }}">{{ row }}</a>{% endif -%}
       </li>{% endfor %}</ul>

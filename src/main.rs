@@ -1,6 +1,7 @@
 //! The componentized directory: indexes the components and WIT packages published under
 //! ghcr.io/componentized and renders them as a static site.
 
+mod api;
 mod config;
 mod data;
 mod decode;

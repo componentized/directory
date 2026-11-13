@@ -1,6 +1,7 @@
 //! Renders the committed index as a static site. The WIT stored in the index is the source of
 //! every page.
 
+use crate::api;
 use crate::data::{self, Kind, Metadata, Origin};
 use crate::decode;
 use crate::resolve::{self, Loader};
@@ -207,6 +208,8 @@ pub fn build(root: &Path, samples: &Path, out: &Path, base_url: &str) -> Result<
             pivot => fingerprint(include_str!("../static/pivot.js")),
             head => fingerprint(include_str!("../static/head.js")),
             copy => fingerprint(include_str!("../static/copy.js")),
+            tip => fingerprint(include_str!("../static/tip.js")),
+            compare => fingerprint(include_str!("../static/compare.js")),
         },
     );
 
@@ -226,6 +229,8 @@ pub fn build(root: &Path, samples: &Path, out: &Path, base_url: &str) -> Result<
     write_file(out, "pivot.js", include_str!("../static/pivot.js"))?;
     write_file(out, "head.js", include_str!("../static/head.js"))?;
     write_file(out, "copy.js", include_str!("../static/copy.js"))?;
+    write_file(out, "tip.js", include_str!("../static/tip.js"))?;
+    write_file(out, "compare.js", include_str!("../static/compare.js"))?;
     write_file(out, "search.json", &serde_json::to_string(&site.search())?)?;
     write_file(
         out,
@@ -340,6 +345,20 @@ fn render_packages(site: &Site, env: &Environment, out: &Path) -> Result<()> {
                         .render(site.interface(index, name, id)?)?,
                 )?;
             }
+            write_file(
+                out,
+                &format!("{}api.json", entry.url()),
+                serde_json::to_string(&site.api(index))?,
+            )?;
+        }
+        // a package's versions are compared on one page, in the browser, from their APIs
+        if let Some(ctx) = site.compare(indexes) {
+            let latest = &site.entries[*site.latest(indexes).unwrap_or(&indexes[0])];
+            write_file(
+                out,
+                &format!("{}compare/index.html", latest.package_url()),
+                &env.get_template("compare.html")?.render(ctx)?,
+            )?;
         }
     }
     Ok(())
@@ -412,6 +431,7 @@ fn environment() -> Result<Environment<'static>> {
             include_str!("../templates/interface.html"),
         ),
         ("404.html", include_str!("../templates/404.html")),
+        ("compare.html", include_str!("../templates/compare.html")),
     ] {
         env.add_template(name, source)?;
     }
@@ -466,6 +486,17 @@ fn docs(docs: &wit_parser::Docs, under: usize) -> String {
 
 fn summary(src: &str) -> String {
     src.split("\n\n").next().unwrap_or("").replace('\n', " ")
+}
+
+/// The release line of a version, the versions it's compatible with by semver: `0.2.x` for a
+/// 0.x version, whose minor versions each break, else its major, e.g. `1.x`. A version that
+/// isn't semver is a line of its own.
+fn release_line(version: &str) -> String {
+    match semver::Version::parse(version) {
+        Ok(v) if v.major == 0 => format!("0.{}.x", v.minor),
+        Ok(v) => format!("{}.x", v.major),
+        Err(_) => version.to_string(),
+    }
 }
 
 /// The page of a commit of a repository on GitHub, e.g.
@@ -606,6 +637,10 @@ struct VersionLink {
     current: bool,
     stable: bool,
     date: String,
+    /// The comparison of the version with the one on view, the older of the two first. `None`
+    /// for the version on view, or when either isn't listed to compare.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    compare: Option<String>,
 }
 
 #[derive(Serialize)]
@@ -1122,18 +1157,39 @@ impl Site {
 
     fn versions(&self, index: usize) -> Vec<VersionLink> {
         let entry = &self.entries[index];
+        let comparable = self.listed(index) && self.comparable(&entry.meta.package);
         self.packages[&entry.meta.package]
             .iter()
+            .enumerate()
             // a superseded dev version is listed only on its own page
-            .filter(|i| self.listed(**i) || **i == index)
-            .map(|i| {
+            .filter(|(_, i)| self.listed(**i) || **i == index)
+            .map(|(at, i)| {
                 let other = &self.entries[*i];
+                // the versions are newest first, so the one further on is the older
+                let here = self.packages[&entry.meta.package]
+                    .iter()
+                    .position(|j| *j == index)
+                    .unwrap_or(at);
+                let compare = (comparable && *i != index).then(|| {
+                    let (from, to) = if at > here {
+                        (other, entry)
+                    } else {
+                        (entry, other)
+                    };
+                    format!(
+                        "{}compare/?from={}&to={}",
+                        entry.package_url(),
+                        from.meta.version,
+                        to.meta.version
+                    )
+                });
                 VersionLink {
                     version: other.meta.version.clone(),
                     url: other.url(),
                     current: *i == index,
                     stable: other.stable(),
                     date: other.date(),
+                    compare,
                 }
             })
             .collect()
@@ -1300,6 +1356,7 @@ impl Site {
                 url => self.repo_url(repo),
             }),
             released_with => self.released_with(index),
+            compare => self.compare_url(index),
             release => meta.release.as_ref().map(|url| release_link(url)),
             revision,
             versions => self.versions(index),
@@ -1396,15 +1453,380 @@ impl Site {
             // `wasi:io`, each listed as it is
             dependencies => self.listed_packages(dependencies),
             dependents => self.grouped(dependents),
-            wit => wit_html::package(resolve, entry.pkg, entry.nested)?,
+            wit => self.package_wit(index)?,
         })
     }
 
-    fn interface(&self, index: usize, name: &str, id: InterfaceId) -> Result<minijinja::Value> {
+    /// The pages of the interfaces a version's WIT links to by their ids, e.g. in a `use`, and of
+    /// its own by their names. Foreign ones aren't linked for a version that keeps the foreign
+    /// packages it was built against nested in its WIT: the indexed versions of those packages
+    /// differ from them, e.g. a dev build that has since moved.
+    fn foreign_interface_urls(&self, index: usize) -> HashMap<String, String> {
+        let entry = &self.entries[index];
+        let mut urls = if entry.nested {
+            HashMap::new()
+        } else {
+            self.interface_urls.clone()
+        };
+        // the version's own interfaces by name, as a path within its package names them
+        for (name, _, _) in entry.interfaces() {
+            urls.insert(name.to_string(), format!("{}{name}/", entry.url()));
+        }
+        urls
+    }
+
+    /// A version's WIT, highlighted, each interface linked to its page and each type to its
+    /// definition there, by absolute urls, which hold on its page and on a compare page alike.
+    fn package_wit(&self, index: usize) -> Result<String> {
+        let entry = &self.entries[index];
+        let resolve = &entry.resolve;
+        let scopes = entry
+            .interfaces()
+            .into_iter()
+            .map(|(name, id, _)| {
+                let url = format!("{}{name}/", entry.url());
+                let types = resolve.interfaces[id]
+                    .types
+                    .keys()
+                    .map(|t| (t.clone(), format!("{url}#type-{t}")))
+                    .collect();
+                (name.to_string(), (url, types))
+            })
+            .collect();
+        wit_html::package_linked(
+            resolve,
+            entry.pkg,
+            entry.nested,
+            scopes,
+            self.foreign_interface_urls(index),
+        )
+    }
+
+    /// A version's API, for a compare page to diff against another's, see [`api`].
+    fn api(&self, index: usize) -> api::Api {
+        let entry = &self.entries[index];
+        let resolve = &entry.resolve;
+        let mut interfaces = BTreeMap::new();
+        for (name, id, _) in entry.interfaces() {
+            let (types, functions) = self.interface_items(index, id);
+            let deprecated =
+                |s: &Option<StabilityView>| s.as_ref().is_some_and(|s| s.deprecated.is_some());
+            // a type's link within its interface's page, e.g. `#type-point`, from the page of the
+            // interface, so it holds on a compare page too
+            let page = format!("{}{name}/", entry.url());
+            let absolute = |html: &str| html.replace("href=\"#", &format!("href=\"{page}#"));
+            let esc = wit_html::escape;
+            // a member as WIT writes it, e.g. `x: f64`, a case, e.g. `circle(f64)`, or a flag, as
+            // text and as highlighted HTML
+            let member = |m: &Member, kind: &str| -> (String, String) {
+                let ty = api::text(&m.ty);
+                let ty_html = absolute(&m.ty);
+                let name_html = format!("<span class=\"c\">{}</span>", esc(&m.name));
+                match (m.name.is_empty(), ty.is_empty(), kind) {
+                    (true, _, _) => (ty, ty_html),
+                    (false, true, _) => (m.name.clone(), name_html),
+                    (false, false, "variant") => (
+                        format!("{}({ty})", m.name),
+                        format!("{name_html}({ty_html})"),
+                    ),
+                    (false, false, _) => (
+                        format!("{}: {ty}", m.name),
+                        format!("{name_html}: {ty_html}"),
+                    ),
+                }
+            };
+            let keyword = |k: &str| format!("<span class=\"k\">{k}</span>");
+            let type_name = |t: &str| format!("<span class=\"t\">{}</span>", esc(t));
+            // a function's item, its signature as text and as highlighted HTML
+            let func = |f: &Member, anchor: String| api::Item {
+                kind: "func",
+                def: api::text(&f.ty),
+                def_html: absolute(&f.ty),
+                members: Vec::new(),
+                members_html: Vec::new(),
+                deprecated: deprecated(&f.stability),
+                anchor,
+                used_kind: None,
+                modifiers: f.modifiers.clone(),
+                summary: api::summary(&f.docs),
+                origin: None,
+            };
+            let mut items = BTreeMap::new();
+            for t in &types {
+                let kind = t.used_kind.unwrap_or(t.kind);
+                let (members, members_html): (Vec<String>, Vec<String>) =
+                    t.members.iter().map(|m| member(m, kind)).unzip();
+                let (def, def_html) = match t.kind {
+                    "use" => {
+                        let from = t
+                            .from
+                            .as_ref()
+                            .map(|f| api::unversioned(&f.label))
+                            .unwrap_or_default();
+                        (
+                            format!("use {from}.{{{}}}", t.name),
+                            format!(
+                                "{} {}.{{{}}}",
+                                keyword("use"),
+                                esc(&from),
+                                type_name(&t.name)
+                            ),
+                        )
+                    }
+                    "type" => (
+                        format!("type {} = {}", t.name, members.join(", ")),
+                        format!(
+                            "{} {} = {}",
+                            keyword("type"),
+                            type_name(&t.name),
+                            members_html.join(", ")
+                        ),
+                    ),
+                    "resource" => (
+                        format!("resource {}", t.name),
+                        format!("{} {}", keyword("resource"), type_name(&t.name)),
+                    ),
+                    kind => (
+                        format!("{kind} {} {{ {} }}", t.name, members.join(", ")),
+                        format!(
+                            "{} {} {{ {} }}",
+                            keyword(kind),
+                            type_name(&t.name),
+                            members_html.join(", ")
+                        ),
+                    ),
+                };
+                // a used type's own definition, by the kind and members it has where it's defined
+                let origin = t.used_kind.map(|used| api::Origin {
+                    def_html: match used {
+                        "type" => format!(
+                            "{} {} = {}",
+                            keyword("type"),
+                            type_name(&t.name),
+                            members_html.join(", ")
+                        ),
+                        "resource" => format!("{} {}", keyword("resource"), type_name(&t.name)),
+                        kind => format!(
+                            "{} {} {{ {} }}",
+                            keyword(kind),
+                            type_name(&t.name),
+                            members_html.join(", ")
+                        ),
+                    },
+                    from: t.from.as_ref().map(|f| f.label.clone()).unwrap_or_default(),
+                });
+                items.insert(
+                    t.name.clone(),
+                    api::Item {
+                        kind: t.kind,
+                        def,
+                        def_html,
+                        members,
+                        members_html,
+                        deprecated: deprecated(&t.stability),
+                        anchor: format!("type-{}", t.name),
+                        used_kind: t.used_kind,
+                        modifiers: Vec::new(),
+                        summary: api::summary(&t.docs),
+                        origin,
+                    },
+                );
+                // a resource's functions, but not those of one used from another interface,
+                // which that interface lists
+                if t.kind != "use" {
+                    for f in &t.functions {
+                        items.insert(
+                            format!("{}.{}", t.name, f.name),
+                            func(f, format!("type-{}.{}", t.name, f.name)),
+                        );
+                    }
+                }
+            }
+            for f in &functions {
+                items.insert(f.name.clone(), func(f, format!("func-{}", f.name)));
+            }
+            interfaces.insert(
+                name.to_string(),
+                api::Interface {
+                    deprecated: deprecated(&stability(&resolve.interfaces[id].stability)),
+                    items,
+                },
+            );
+        }
+        // whether an imported or exported interface is types alone, which nothing has to provide
+        let types_only = |item: &str| -> bool {
+            let Some(interface) = decode::interface_of(item) else {
+                return false;
+            };
+            resolve
+                .interfaces
+                .iter()
+                .find(|(id, _)| resolve.id_of(*id).as_deref() == Some(interface))
+                .is_some_and(|(_, iface)| {
+                    iface.functions.is_empty()
+                        && iface.types.values().all(|t| {
+                            !matches!(resolve.types[*t].kind, wit_parser::TypeDefKind::Resource)
+                        })
+                })
+        };
+        let refs = |items: &[String]| {
+            items
+                .iter()
+                .map(|i| api::Ref::new(i, types_only(i)))
+                .collect()
+        };
+        let worlds = resolve.packages[entry.pkg]
+            .worlds
+            .iter()
+            .filter(|_| entry.meta.kind == Kind::Interface)
+            .map(|(name, id)| {
+                let world = &resolve.worlds[*id];
+                let items = |items| refs(&decode::world_items(resolve, items));
+                (
+                    name.clone(),
+                    api::World {
+                        imports: items(&world.imports),
+                        exports: items(&world.exports),
+                    },
+                )
+            })
+            .collect();
+        api::Api {
+            package: entry.meta.package.clone(),
+            version: entry.meta.version.clone(),
+            kind: entry.meta.kind,
+            interfaces,
+            worlds,
+            imports: refs(&entry.meta.imports),
+            exports: refs(&entry.meta.exports),
+            dependencies: entry.meta.dependencies.iter().map(|d| d.id()).collect(),
+            wit: self.package_wit(index).unwrap_or_default(),
+        }
+    }
+
+    /// The version to compare with in the line of `version`, of `versions` newest first: the
+    /// line's latest release, rather than a pre-release such as a dev build, unless the line has
+    /// no release.
+    fn released_in_line(&self, versions: &[usize], version: usize) -> usize {
+        let line = release_line(&self.entries[version].meta.version);
+        versions
+            .iter()
+            .copied()
+            .filter(|i| release_line(&self.entries[*i].meta.version) == line)
+            .find(|i| self.entries[*i].stable())
+            .unwrap_or(version)
+    }
+
+    /// The comparison of a version with the one before it, or, for the oldest, the one after it.
+    /// `None` for a package with one version listed.
+    fn compare_url(&self, index: usize) -> Option<String> {
+        let entry = &self.entries[index];
+        let listed: Vec<usize> = self.packages[&entry.meta.package]
+            .iter()
+            .copied()
+            .filter(|i| self.listed(*i) || *i == index)
+            .collect();
+        let at = listed.iter().position(|i| *i == index)?;
+        let (from, to) = match listed.get(at + 1) {
+            Some(older) => (self.released_in_line(&listed[at + 1..], *older), index),
+            None => (index, *listed.get(at.checked_sub(1)?)?),
+        };
+        Some(format!(
+            "{}compare/?from={}&to={}",
+            entry.package_url(),
+            self.entries[from].meta.version,
+            self.entries[to].meta.version
+        ))
+    }
+
+    /// Whether a package has a compare page: it lists more than one version.
+    fn comparable(&self, package: &str) -> bool {
+        self.packages
+            .get(package)
+            .is_some_and(|indexes| indexes.iter().filter(|i| self.listed(**i)).count() > 1)
+    }
+
+    /// The page that compares two versions of a package, `None` for a package with one version.
+    fn compare(&self, indexes: &[usize]) -> Option<minijinja::Value> {
+        let &latest = self.latest(indexes)?;
+        let entry = &self.entries[latest];
+        let versions: Vec<_> = indexes
+            .iter()
+            .filter(|i| self.listed(**i))
+            .map(|i| {
+                let other = &self.entries[*i];
+                ctx! {
+                    version => other.meta.version,
+                    line => release_line(&other.meta.version),
+                    api => format!("{}api.json", other.url()),
+                    url => other.url(),
+                    date => other.date(),
+                    stable => other.stable(),
+                }
+            })
+            .collect();
+        if versions.len() < 2 {
+            return None;
+        }
+        // the versions by release line, `0.2.x` for a 0.x version, whose minor versions are each
+        // a line of their own, else `1.x`, newest first. A line leads with its latest version, its
+        // newest stable one, else its newest, after any newer pre-release, e.g. the next dev
+        // build, and folds its older versions, which are seldom compared.
+        let mut lines: Vec<(String, Vec<minijinja::Value>)> = Vec::new();
+        for (i, version) in indexes.iter().filter(|i| self.listed(**i)).zip(&versions) {
+            let line = release_line(&self.entries[*i].meta.version);
+            match lines.last_mut() {
+                Some((label, members)) if *label == line => members.push(version.clone()),
+                _ => lines.push((line, vec![version.clone()])),
+            }
+        }
+        let lines: Vec<_> = lines
+            .into_iter()
+            .map(|(label, mut members)| {
+                let lead = members
+                    .iter()
+                    .position(|v| v.get_attr("stable").is_ok_and(|s| s.is_true()))
+                    .unwrap_or(0);
+                let older = members.split_off(lead + 1);
+                ctx! { label, shown => members, older }
+            })
+            .collect();
+        Some(ctx! {
+            lines,
+            title => format!("Compare {}", entry.meta.package),
+            canonical => format!("{}compare/", entry.package_url()),
+            noindex => true,
+            pkg => ctx! {
+                package => entry.meta.package,
+                namespace => entry.namespace(),
+                name => entry.name(),
+                kind => entry.meta.kind,
+                package_url => entry.package_url(),
+                namespaces => self.namespace_pivots(entry.namespace()),
+                // switching package stays on the comparison, for a package with versions to
+                // compare, or goes to the package's page
+                packages => self
+                    .package_pivots(latest)
+                    .into_iter()
+                    .map(|mut pivot| {
+                        let package = format!("{}:{}", entry.namespace(), pivot.label);
+                        if self.comparable(&package) {
+                            pivot.url = format!("{}compare/", pivot.url);
+                        }
+                        pivot
+                    })
+                    .collect::<Vec<_>>(),
+            },
+            versions,
+            latest => entry.meta.version,
+        })
+    }
+
+    /// The types and functions of an interface, as its page shows them and its API lists them.
+    fn interface_items(&self, index: usize, id: InterfaceId) -> (Vec<TypeView>, Vec<Member>) {
         let entry = &self.entries[index];
         let resolve = &entry.resolve;
         let iface = &resolve.interfaces[id];
-        let iid = resolve.id_of(id).unwrap_or_else(|| name.to_string());
 
         // a named type links to its definition: on this page for this interface's types, on the
         // page of the interface that defines it for a type used from another interface
@@ -1590,6 +2012,15 @@ impl Site {
             };
             types.push(view);
         }
+        (types, functions)
+    }
+
+    fn interface(&self, index: usize, name: &str, id: InterfaceId) -> Result<minijinja::Value> {
+        let entry = &self.entries[index];
+        let resolve = &entry.resolve;
+        let iface = &resolve.interfaces[id];
+        let iid = resolve.id_of(id).unwrap_or_else(|| name.to_string());
+        let (types, functions) = self.interface_items(index, id);
 
         Ok(ctx! {
             title => iid,
@@ -1638,6 +2069,7 @@ impl Site {
                         .keys()
                         .map(|name| (name.clone(), format!("#type-{name}")))
                         .collect(),
+                    self.foreign_interface_urls(index),
                 )?,
             },
             imported_by => self.grouped(self.imported_by.get(&iid).cloned().unwrap_or_default()),
@@ -1757,6 +2189,18 @@ mod tests {
         );
         assert!(package.contains(r##"<li title="func"><svg class="kind-icon kind-func""##));
         assert!(package.contains(r##"<use href="#kind-world"/>"##));
+        // a `use` links its interface to its page, and each type it uses to its definition there
+        let used = consumer.replace("&#x2f;", "/");
+        assert!(
+            used.contains(r#"<a class="path" href="/wasi/logging/0.1.0-draft/logging/">"#),
+            "the interface used"
+        );
+        assert!(
+            used.contains(
+                r#"<a class="t" href="/wasi/logging/0.1.0-draft/logging/#type-level">level</a>"#
+            ),
+            "the type used"
+        );
         // a type in a signature links to its definition on the page
         assert_eq!(
             iface
@@ -1810,6 +2254,40 @@ mod tests {
         // others it released with it, at the same version
         assert!(!out.join("repos").exists(), "no repository pages");
         assert!(version.contains(r#"<dt>Repository</dt>"#));
+        // each version's API is written for comparing versions, on the package's one compare page
+        let api: serde_json::Value =
+            serde_json::from_str(&read("example/to-stdout/0.1.0/api.json")).unwrap();
+        assert_eq!(api["kind"], "component");
+        assert_eq!(api["imports"][0]["key"], "wasi:logging/logging");
+        // with its WIT highlighted, for a line by line diff of its text
+        assert!(
+            api::plain(api["wit"].as_str().unwrap())
+                .contains("import wasi:logging/logging@0.1.0-draft;")
+        );
+        let logging: serde_json::Value =
+            serde_json::from_str(&read("wasi/logging/0.1.0-draft/api.json")).unwrap();
+        assert_eq!(
+            logging["interfaces"]["logging"]["items"]["level"]["def"],
+            "enum level { info, warn }"
+        );
+        assert_eq!(
+            logging["interfaces"]["logging"]["items"]["log"]["def"],
+            "log: func(level: level, message: string)"
+        );
+        // a package's WIT links each interface to its page, and each type to its definition
+        let wit = logging["wit"].as_str().unwrap();
+        assert!(wit.contains(r#"<a class="i" href="&#x2f;wasi&#x2f;logging&#x2f;0.1.0-draft&#x2f;logging&#x2f;">logging</a>"#) || wit.contains(r#"<a class="i" href="/wasi/logging/0.1.0-draft/logging/">logging</a>"#), "{wit}");
+        assert!(wit.contains("logging/#type-level") || wit.contains("logging&#x2f;#type-level"));
+        let compare = read("example/to-stdout/compare/index.html");
+        // its versions by release line, each line leading with its latest
+        assert!(compare.contains(r#"<li class="pivot-line" aria-hidden="true">0.2.x</li>"#));
+        assert!(compare.contains(r#"data-version="0.2.0-dev""#));
+        assert!(version.contains("compare&#x2f;?from=") || version.contains("compare/?from="));
+        assert!(
+            !out.join("wasi/logging/compare").exists(),
+            "a package with one version has nothing to compare"
+        );
+
         // a version links the commit it was built from
         assert!(version.contains(
             "https:&#x2f;&#x2f;github.com&#x2f;example&#x2f;to&#x2f;commit&#x2f;0123456789abcdef0123456789abcdef01234567"
@@ -1995,6 +2473,20 @@ mod tests {
             "<h5>A</h5>\n<h6>B</h6>\n<h6>C</h6>\n"
         );
         assert_eq!(markdown("No headings.", 3), "<p>No headings.</p>\n");
+    }
+
+    #[test]
+    fn groups_versions_by_release_line() {
+        // before 1.0 each minor version is a line, its patches compatible
+        assert_eq!(release_line("0.2.0"), "0.2.x");
+        assert_eq!(release_line("0.2.6"), "0.2.x");
+        assert_eq!(release_line("0.3.0-dev"), "0.3.x");
+        // from 1.0 each major version is a line, its minor versions and patches compatible
+        assert_eq!(release_line("1.0.0"), "1.x");
+        assert_eq!(release_line("1.2.1"), "1.x");
+        assert_eq!(release_line("2.1.0-dev"), "2.x");
+        assert_eq!(release_line("0.1.0-draft"), "0.1.x");
+        assert_eq!(release_line("latest"), "latest");
     }
 
     #[test]

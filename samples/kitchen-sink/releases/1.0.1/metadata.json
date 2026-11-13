@@ -1,0 +1,19 @@
+{
+  "package": "kitchen-sink:releases",
+  "version": "1.0.1",
+  "kind": "interface",
+  "origin": "synthetic",
+  "oci": {
+    "registry": "synthetic.invalid",
+    "repository": "kitchen-sink/releases",
+    "tag": "1.0.1",
+    "digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "layer_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "size": 0
+  },
+  "created": "2025-06-20T00:00:00Z",
+  "annotations": {
+    "org.opencontainers.image.description": "A counter released over three major versions. Synthetic: not published to any registry."
+  },
+  "indexed_at": "2025-06-20T00:00:00Z"
+}

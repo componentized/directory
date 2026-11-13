@@ -14,7 +14,8 @@
   --interface-soft: light-dark(#fbf0d9, #352a14);
   --code-bg: light-dark(#f4f4f1, #1f2124);
   --k: light-dark(#a626a4, #e08be0);
-  --t: light-dark(#0b6bcb, #6cb6ff);
+  /* types, in the teal-cyan editors use, which doesn't read as a link */
+  --t: light-dark(#1f6f86, #5cc4e0);
   --b: light-dark(#b04a00, #ff9f5a);
   --f: light-dark(#3b7d1f, #8ad36a);
   --n: light-dark(#7a4cc2, #c3a6ff);
@@ -180,6 +181,111 @@ footer.site .footer-legal { grid-column: 1 / -1; max-width: none; margin: 8px 0 
 .notice { background: var(--interface-soft); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; max-width: 70ch; }
 .notice.synthetic { margin-top: 16px; }
 
+/* comparing two versions of a package */
+/* the compare page's head: each row's start on the left, its controls on the right, wrapping
+   under it on a narrow screen */
+.compare-row { display: flex; align-items: center; justify-content: space-between; gap: 6px 16px; flex-wrap: wrap; }
+/* the package's title and the versions on its line share a baseline: the title's, the labels'
+   and the versions' text */
+.compare-head .title-row { align-items: baseline; padding-bottom: 8px; }
+.compare-pick { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-left: auto; }
+/* on a narrow screen the versions share one line, under the package, their menus narrower */
+@media (max-width: 560px) {
+  .compare-pick { flex-wrap: nowrap; width: 100%; margin-left: 0; gap: 6px; }
+  .compare-pick .compare-side { flex: 1 1 0; min-width: 0; }
+  .compare-pick .compare-version { flex: 1 1 0; min-width: 0; }
+  .compare-pick .compare-version > summary { display: flex; min-width: 0; width: 100%; padding: 0 8px; gap: 4px; }
+  .compare-pick .compare-version [data-pivot-label] { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+}
+/* a version to compare: a menu that looks like a field, its versions by release line */
+.compare-side { display: flex; align-items: baseline; gap: 6px; font-size: 0.8rem; color: var(--dim); }
+/* the menus and the swap button between them share one height */
+.compare-version > summary {
+  min-width: 9em; height: 36px; justify-content: space-between; margin: 0; padding: 0 10px;
+  font-family: var(--mono); font-size: 0.9rem; color: var(--text);
+  background: var(--bg); border: 1px solid var(--line); border-radius: 8px;
+}
+.compare-version > summary:hover, .compare-version[open] > summary { background: var(--bg); border-color: var(--dim); }
+.compare-version .pivot-menu { left: 0; font-size: 0.85rem; }
+.pivot-line { padding: 8px 8px 2px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; color: var(--dim); }
+.pivot-line:first-child { padding-top: 2px; }
+.pivot-fold button {
+  display: block; width: 100%; padding: 3px 8px 3px 20px; border: 0; border-radius: 6px; background: none;
+  color: var(--accent); font: inherit; font-size: 0.85em; text-align: left; cursor: pointer;
+}
+.pivot-fold button:hover, .pivot-fold button:focus-visible { background: var(--code-bg); outline: none; }
+.compare-swap {
+  display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; padding: 0;
+  border: 1px solid var(--line); border-radius: 8px; background: var(--panel); color: var(--dim); cursor: pointer;
+}
+.compare-swap:hover { color: var(--text); border-color: var(--dim); }
+.compare-swap:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.compare-swap svg { width: 16px; height: 16px; }
+.compare-result[aria-busy] { opacity: 0.6; }
+/* how many changes of each kind, at the end of the version selectors */
+/* the counts, on the breadcrumbs' line, at their size */
+.compare-counts { display: flex; align-items: center; gap: 6px; margin: 0 0 0 auto; font-family: var(--mono); font-size: 0.85rem; line-height: inherit; }
+.compare-count { display: inline-flex; align-items: center; gap: 3px; padding: 0 4px; border-radius: 6px; font-weight: 600; }
+.compare-count:hover { background: var(--code-bg); text-decoration: none; }
+.compare-count .meta-icon { width: 14px; height: 14px; margin: 0; }
+.compare-count-stop { color: var(--deprecated); }
+.compare-count-caution { color: var(--interface); }
+.compare-count-info { color: var(--dim); }
+.compare-section h2 { display: flex; align-items: center; gap: 8px; }
+.compare-section h2 .count-chip { font-size: 0.8rem; }
+.change-group { display: flex; align-items: center; gap: 6px; margin: 1.2em 0 0.4em; font-size: 0.95rem; }
+.change-group .kind-icon { margin: 0; }
+ul.changes { list-style: none; margin: 0; padding: 0; }
+.change { padding: 6px 0 6px 12px; border-left: 2px solid var(--line); margin: 4px 0; }
+.change > .kind-icon { width: 14px; height: 14px; margin: 0 4px 0 6px; vertical-align: -2px; }
+/* a badged icon, a used type's or a function's, sized like the others in a change */
+.change > .kind-icon-used, .change > .kind-icon-badged { margin: 0 6px 0 6px; vertical-align: -2px; }
+.change > .kind-icon-used .kind-icon, .change > .kind-icon-badged .kind-icon { width: 14px; height: 14px; margin: 0; vertical-align: 0; }
+.change .kind-badge, .change .fbadge { width: 10px; height: 10px; }
+.change code { overflow-wrap: anywhere; }
+/* what happened to an item: removed and changed can break an upgrade, added rarely does */
+.change-badge {
+  display: inline-block; padding: 0 7px; border-radius: 999px; font-size: 0.72rem; font-weight: 650;
+  text-transform: lowercase; vertical-align: 1px;
+}
+.change-removed { color: var(--deprecated); background: var(--deprecated-soft); }
+.change-changed, .change-deprecated, .change-upgraded { color: var(--interface); background: var(--interface-soft); }
+.change-added { color: var(--component); background: var(--component-soft); }
+.change-caveat { display: block; margin-top: 2px; color: var(--dim); font-size: 0.85rem; }
+/* a changed item's members, or its definition, before and after */
+.diff { display: grid; gap: 2px; margin-top: 6px; }
+.diff code { display: block; padding: 2px 8px; border-radius: 4px; font-size: 0.85rem; white-space: pre-wrap; }
+.diff-mark { display: inline-block; width: 1.2em; color: var(--dim); }
+.diff-del { background: var(--deprecated-soft); }
+/* an IDE style tooltip for a type or function in a comparison: its definition, docs and origin */
+.wit-tip {
+  position: fixed; z-index: 40; max-width: min(560px, calc(100vw - 16px)); padding: 10px 12px;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
+  box-shadow: 0 8px 24px var(--shadow-color); font-size: 0.85rem; line-height: 1.45; pointer-events: none;
+}
+.wit-tip-head { display: flex; align-items: baseline; gap: 6px; }
+.wit-tip-head > .kind-icon, .wit-tip-head > .kind-icon-used, .wit-tip-head > .kind-icon-badged { flex: none; align-self: flex-start; margin: 2px 2px 0 0; }
+.wit-tip-head .kind-icon { width: 14px; height: 14px; }
+.wit-tip .kind-badge, .wit-tip .fbadge { width: 10px; height: 10px; }
+.wit-tip-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.wit-tip-def { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 1em; }
+/* a used type's own definition, under its `use` */
+.wit-tip-origin { margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--line); }
+.wit-tip-docs { margin: 8px 0 0; color: var(--text); }
+/* the interface a definition is in, beneath it */
+.wit-tip-from { color: var(--dim); font-family: var(--mono); font-size: 0.85em; overflow-wrap: anywhere; }
+
+/* the WIT, line by line, with the lines around each change and the rest folded */
+.wit-options { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 8px; color: var(--dim); font-size: 0.85rem; }
+pre.wit-diff { padding: 8px 0; line-height: 1.5; font-size: 0.85rem; }
+.wit-line { display: block; padding: 0 14px 0 8px; white-space: pre; }
+.wit-del { background: var(--deprecated-soft); }
+.wit-add { background: var(--component-soft); }
+/* the lines around a change, highlighted, but set back from the change */
+.wit-ctx { opacity: 0.72; }
+.wit-fold { display: block; margin: 4px 0; padding: 2px 14px; color: var(--dim); font-style: italic; border-block: 1px dashed var(--line); }
+.diff-add { background: var(--component-soft); }
+
 .layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 32px; align-items: start; }
 aside { position: sticky; top: calc(var(--site-header) + var(--page-head) + 16px); font-size: 0.9rem; }
 aside section { border-bottom: 1px solid var(--line); padding-bottom: 12px; }
@@ -224,12 +330,25 @@ pre.wit { line-height: 1.5; }
 .wit .t { color: var(--t); }
 .wit .b { color: var(--b); }
 .wit .f, code .f { color: var(--f); }
-.wit .i { color: var(--t); font-weight: 600; }
+.wit .i { color: var(--t); }
+/* code isn't bold: a field's or case's name, bold in a list of a type's members, isn't in code */
+.wit .c { font-weight: inherit; }
 .wit .n { color: var(--n); }
 .wit .d { color: var(--d); font-style: italic; }
 /* a linked type keeps its highlighting, underlined on hover */
+/* a link to a type or function, which has a tooltip: in its syntax color, its dotted underline
+   telling it apart from the text around it, solid on hover */
 a.t, .wit a.t { color: var(--t); }
-a.t:hover { text-decoration: underline; text-decoration-color: var(--dim); }
+a.f, .wit a.f { color: var(--f); }
+a.t, a.f {
+  text-decoration: underline dotted; text-decoration-thickness: 1px; text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, currentColor 60%, transparent);
+}
+a.t:hover, a.f:hover { text-decoration-style: solid; text-decoration-color: currentColor; }
+/* a path to an interface, e.g. `wasi:io/streams@0.2.6` in a `use` or an `import`, is one name: its
+   namespace, package, interface, version and separators in one color, linked to the interface */
+.path, .wit .path * { color: var(--n); }
+a.path:hover { text-decoration: underline; text-decoration-color: var(--dim); }
 code .k { color: var(--k); } code .t { color: var(--t); } code .b { color: var(--b); } code .p { color: var(--text); }
 
 ul.links, ul.items, ul.members { list-style: none; padding: 0; margin: 0; }
@@ -269,7 +388,15 @@ ul.members li > .head + .docs { margin-top: 4px; }
 .pivot-unlinked { display: block; padding: 5px 8px; color: var(--dim); }
 ul.links.groups li { padding: 0; }
 /* a version and its date at the end of its line, the whole row its link */
-.versions-list li { padding: 0; }
+.versions-list li { display: flex; align-items: center; gap: 4px; padding: 0; }
+.versions-list .version-row { flex: 1; min-width: 0; }
+/* a version's comparison with the one on view, beside it */
+.version-compare {
+  display: inline-flex; align-items: center; justify-content: center; flex: none;
+  width: 24px; height: 24px; border-radius: 6px; color: var(--dim);
+}
+a.version-compare:hover, a.version-compare:focus-visible { color: var(--accent); background: var(--code-bg); outline: none; }
+.version-compare .meta-icon { margin: 0; vertical-align: 0; }
 .version-row {
   display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
   margin: 0 -6px; padding: 3px 6px; border-radius: 6px; color: inherit;

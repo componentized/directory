@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% from "macros.html" import pivot, kind_icon %}
+{% block description %}What changed between two versions of {{ pkg.package }}{% endblock %}
+{% block main %}
+{#- the versions are chosen in the pinned head, so they stay in reach as the changes scroll #}
+{#- a version to compare, chosen from a menu of the release lines, each leading with its latest
+    version and folding its older ones. Without scripts each choice is a link. #}
+{% macro pick(side, label) %}
+<div class="compare-side">
+  <span class="compare-label" id="compare-{{ side }}-label">{{ label }}</span>
+  <details class="pivot compare-version" data-pivot data-pivot-no-filter data-compare-side="{{ side }}">
+    <summary aria-labelledby="compare-{{ side }}-label compare-{{ side }}-value"><span id="compare-{{ side }}-value" data-pivot-label></span><svg class="pivot-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 6.5 3.5 3.5 3.5-3.5"/></svg></summary>
+    <ul class="pivot-menu" aria-label="{{ label }} versions">
+      {%- for line in lines %}
+      <li class="pivot-line" aria-hidden="true">{{ line.label }}</li>
+      {%- for v in line.shown %}{{ version_choice(side, v) }}{% endfor %}
+      {%- if line.older %}
+      {%- set fold = side ~ "-" ~ loop.index %}
+      <li class="pivot-fold"><button type="button" data-fold="{{ fold }}" aria-label="Show {{ line.older|length }} older {{ line.label }} version{% if line.older|length != 1 %}s{% endif %}">{{ line.older|length }} older</button></li>
+      {%- for v in line.older %}{{ version_choice(side, v, fold) }}{% endfor %}
+      {%- endif %}
+      {%- endfor %}
+    </ul>
+  </details>
+</div>
+{% endmacro %}
+{% macro version_choice(side, v, fold=none) %}<li{% if fold %} data-folded="{{ fold }}" hidden{% endif %}><a href="?{{ side }}={{ v.version }}" data-version="{{ v.version }}"><code>{{ v.version }}</code><time class="dim" datetime="{{ v.date }}">{{ v.date }}</time></a></li>{% endmacro %}
+{#- the head: the breadcrumbs and how many changes of each kind on one row, the package and the
+    versions compared on the next, all pinned, so they stay in reach as the changes scroll #}
+<div class="page-head compare-head" data-page-head>
+<div class="compare-row">
+  <nav class="crumbs" aria-label="Breadcrumbs">{{ pivot(pkg.namespace, pkg.namespaces, "namespace") }} : {{ pivot(pkg.name, pkg.packages, "package") }} / <span>compare</span></nav>
+  {#- how many changes of each kind, each linking to its section of the comparison #}
+  <p class="compare-counts" data-compare-counts hidden></p>
+</div>
+<div class="compare-row title-row">
+  <h1>{{ kind_icon(pkg.kind) }}<code>{{ pkg.package }}</code></h1>
+  <form class="compare-pick" data-compare>
+    {{ pick("from", "From") }}
+    <button type="button" class="compare-swap" data-compare-swap title="Swap the versions" aria-label="Swap the versions">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 5.5h10.5M10.5 3 13 5.5 10.5 8M13.5 10.5H3M5.5 8 3 10.5 5.5 13"/></svg>
+    </button>
+    {{ pick("to", "To") }}
+  </form>
+</div>
+</div>
+
+<script type="application/json" id="compare-versions">{{ versions|tojson }}</script>
+
+<div class="compare-result" data-compare-result aria-live="polite">
+  <noscript><p class="notice">Comparing versions needs JavaScript. Each version's page lists its interfaces and WIT.</p></noscript>
+</div>
+<script src="/compare.js?v={{ assets.compare }}" defer></script>
+{% endblock %}
