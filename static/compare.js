@@ -95,12 +95,16 @@
       const is = b.interfaces[name];
       const where = { interface: name };
       if (!is) {
-        breaking.push({ ...where, change: "removed", kind: "interface", label: name, version: a.version });
+        const unstable = was.unstable;
+        (unstable ? cautions : breaking).push({ ...where, change: "removed", kind: "interface", label: name, version: a.version, unstable, caveat: gated(unstable, null) });
         continue;
       }
       if (!was) {
-        cautions.push({ ...where, change: "added", kind: "interface", label: name, version: b.version });
+        cautions.push({ ...where, change: "added", kind: "interface", label: name, version: b.version, unstable: is.unstable });
         continue;
+      }
+      if (was.unstable && !is.unstable) {
+        notes.push({ ...where, change: "stabilized", kind: "interface", label: name, version: b.version, caveat: STABILIZED(was.unstable) });
       }
       if (!was.deprecated && is.deprecated) {
         notes.push({ ...where, change: "deprecated", kind: "interface", label: name, version: b.version });
@@ -109,8 +113,11 @@
         const old = was.items[key];
         const now = is.items[key];
         const item = { ...where, key, label: key };
+        // an item of an unstable interface is as unstable as it is
+        const wasUnstable = old && (old.unstable ?? was.unstable);
+        const isUnstable = now && (now.unstable ?? is.unstable);
         if (!now) {
-          breaking.push({ ...item, change: "removed", kind: old.kind, anchor: old.anchor, version: a.version, old });
+          (wasUnstable ? cautions : breaking).push({ ...item, change: "removed", kind: old.kind, anchor: old.anchor, version: a.version, old, unstable: wasUnstable, caveat: gated(wasUnstable, null) });
         } else if (!old) {
           cautions.push({
             ...item,
@@ -119,18 +126,24 @@
             anchor: now.anchor,
             version: b.version,
             now,
-            caveat: now.kind === "func" ? "a component exporting the interface must implement it" : null,
+            unstable: isUnstable,
+            caveat: now.kind === "func" ? gated(isUnstable, "a component exporting the interface must implement it") : null,
           });
         } else if (old.def !== now.def) {
-          breaking.push({ ...item, change: "changed", kind: now.kind, anchor: now.anchor, version: b.version, old, now });
+          // a change to an item that was unstable breaks only a component using its feature
+          (wasUnstable ? cautions : breaking).push({ ...item, change: "changed", kind: now.kind, anchor: now.anchor, version: b.version, old, now, unstable: wasUnstable, caveat: gated(wasUnstable, null) });
+        } else if (wasUnstable && !isUnstable) {
+          notes.push({ ...item, change: "stabilized", kind: now.kind, anchor: now.anchor, version: b.version, now, caveat: STABILIZED(wasUnstable) });
         } else if (!old.deprecated && now.deprecated) {
-          notes.push({ ...item, change: "deprecated", kind: now.kind, anchor: now.anchor, version: b.version, now });
+          notes.push({ ...item, change: "deprecated", kind: now.kind, anchor: now.anchor, version: b.version, now, unstable: isUnstable });
         }
       }
     }
 
     // a world's imports and exports: a removed one, or a new export a component targeting the
-    // world must provide, can break it; a new import is optional for it, but a host must provide it
+    // world must provide, can break it; a new import is optional for it, but a host must provide it.
+    // One behind a feature gate, `@unstable(feature = ..)`, is only there when the feature is, so
+    // it asks something only of a host or component with the feature, and breaks nothing else
     for (const name of keys(a.worlds, b.worlds)) {
       const was = a.worlds[name];
       const is = b.worlds[name];
@@ -144,11 +157,14 @@
         continue;
       }
       for (const side of ["imports", "exports"]) {
-        refs(was[side], is[side], (ref, change) => {
-          const entry = { ...where, change, kind: ref.label.endsWith(": func") ? "func" : "interface", label: `${side === "imports" ? "import" : "export"} ${ref.label}` };
-          if (ref.types_only) notes.push({ ...entry, caveat: TYPES_ONLY });
-          else if (change === "removed" || side === "exports") breaking.push({ ...entry, caveat: side === "exports" && change === "added" ? "a component targeting the world must export it" : null });
-          else cautions.push({ ...entry, caveat: "a host must provide it" });
+        refs(was[side], is[side], (ref, change, old) => {
+          const entry = { ...where, change, kind: ref.label.endsWith(": func") ? "func" : "interface", label: `${side === "imports" ? "import" : "export"} ${ref.label}`, unstable: ref.unstable };
+          if (change === "stabilized") notes.push({ ...entry, unstable: null, caveat: STABILIZED(old.unstable) });
+          else if (ref.types_only) notes.push({ ...entry, caveat: TYPES_ONLY });
+          else if (change === "removed" || side === "exports") {
+            const caveat = side === "exports" && change === "added" ? "a component targeting the world must export it" : null;
+            (ref.unstable ? cautions : breaking).push({ ...entry, caveat: gated(ref.unstable, caveat) });
+          } else cautions.push({ ...entry, caveat: gated(ref.unstable, "a host must provide it") });
         });
       }
     }
@@ -201,6 +217,15 @@
   // host: there's nothing to call, so importing or exporting it is informational
   const TYPES_ONLY = "types only: there's nothing to provide or call, so nothing has to supply it";
 
+  // what a change asks, when it's behind a feature gate: only with the feature enabled. A change
+  // that would otherwise break, e.g. a removal, breaks only a component using the feature
+  const gated = (feature, caveat) => {
+    if (!feature) return caveat;
+    if (!caveat) return `unstable, so it breaks only a component using the ${feature} feature`;
+    return `${caveat} when the ${feature} feature is enabled`;
+  };
+  const STABILIZED = (feature) => `no longer behind the ${feature} feature`;
+
   // how far apart two versions are, `major`, `minor` or `patch`, by their `major.minor.patch`,
   // or `null` when they share it, e.g. two pre-releases of one version
   function release(a, b) {
@@ -212,12 +237,17 @@
     return null;
   }
 
-  // calls back with each ref only one side has, by its key, the ref without its version
+  // calls back with each ref only one side has, by its key, the ref without its version, and each
+  // both have that's no longer behind a feature gate, with the ref it was
   function refs(was = [], is = [], each) {
     const wasKeys = new Map(was.map((r) => [r.key, r]));
     const isKeys = new Map(is.map((r) => [r.key, r]));
     for (const [key, ref] of wasKeys) if (!isKeys.has(key)) each(ref, "removed");
-    for (const [key, ref] of isKeys) if (!wasKeys.has(key)) each(ref, "added");
+    for (const [key, ref] of isKeys) {
+      const old = wasKeys.get(key);
+      if (!old) each(ref, "added");
+      else if (old.unstable && !ref.unstable) each(ref, "stabilized", old);
+    }
   }
 
   // a changed item's members, a record's fields or a variant's cases, as removed and added lines;
@@ -252,6 +282,7 @@
     return `<li class="change">
       <span class="change-badge change-${c.change}">${esc(c.change)}</span>
       ${itemIcon(c.kind, c.now ?? c.old)}${href ? `<a${syntax} href="${esc(href)}">${label}</a>` : label}
+      ${c.unstable ? `<span class="gate unstable" title="@unstable(feature = ${esc(c.unstable)})">unstable: ${esc(c.unstable)}</span>` : ""}
       ${c.caveat ? `<span class="change-caveat">${esc(c.caveat)}</span>` : ""}
       ${c.old && c.now ? changes(c.old, c.now) : ""}
     </li>`;

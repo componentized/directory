@@ -4,7 +4,7 @@
 use crate::data::{Dependency, Kind};
 use anyhow::{Context, Result};
 use wit_component::{DecodedWasm, WitPrinter};
-use wit_parser::{IndexMap, PackageId, Resolve, WorldItem, WorldKey};
+use wit_parser::{IndexMap, PackageId, Resolve, Stability, WorldItem, WorldKey};
 
 #[derive(Debug)]
 pub struct Decoded {
@@ -57,19 +57,32 @@ pub fn decode(wasm: &[u8]) -> Result<Decoded> {
 /// - an inline interface, `scope: interface`
 /// - a function, `run: func`
 pub fn world_items(resolve: &Resolve, items: &IndexMap<WorldKey, WorldItem>) -> Vec<String> {
+    gated_world_items(resolve, items)
+        .into_iter()
+        .map(|(item, _)| item)
+        .collect()
+}
+
+/// The items of [`world_items`], each with its gate, e.g. the `@unstable(feature = ..)` of an
+/// import only a host with the feature provides.
+pub fn gated_world_items<'a>(
+    resolve: &Resolve,
+    items: &'a IndexMap<WorldKey, WorldItem>,
+) -> Vec<(String, &'a Stability)> {
     items
         .iter()
         .filter_map(|(key, item)| match (key, item) {
-            (WorldKey::Interface(_), WorldItem::Interface { .. }) => {
-                Some(resolve.name_world_key(key))
+            (WorldKey::Interface(_), WorldItem::Interface { stability, .. }) => {
+                Some((resolve.name_world_key(key), stability))
             }
-            (WorldKey::Name(name), WorldItem::Interface { id, .. }) => {
-                Some(match resolve.id_of(*id) {
+            (WorldKey::Name(name), WorldItem::Interface { id, stability, .. }) => Some((
+                match resolve.id_of(*id) {
                     Some(aliased) => format!("{name}: {aliased}"),
                     None => format!("{name}: interface"),
-                })
-            }
-            (_, WorldItem::Function(f)) => Some(format!("{}: func", f.name)),
+                },
+                stability,
+            )),
+            (_, WorldItem::Function(f)) => Some((format!("{}: func", f.name), &f.stability)),
             (_, WorldItem::Type { .. }) => None,
         })
         .collect()
