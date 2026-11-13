@@ -127,7 +127,7 @@ footer.site .footer-legal { grid-column: 1 / -1; max-width: none; margin: 8px 0 
 .badge { font-size: 0.7rem; font-weight: 600; padding: 1px 7px; border-radius: 999px; text-transform: lowercase; white-space: nowrap; }
 .badge.component { color: var(--component); background: var(--component-soft); }
 .badge.interface { color: var(--interface); background: var(--interface-soft); }
-.badge.dep, .badge.pre { color: var(--dim); border: 1px solid var(--line); }
+.badge.pre { color: var(--dim); border: 1px solid var(--line); }
 
 .filters { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 16px; }
 .filters input { flex: 1 1 220px; width: auto; }

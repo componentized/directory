@@ -31,6 +31,9 @@ pub enum Origin {
     Release,
     /// A version a release depends on, e.g. a WASI pre-release.
     Dependency,
+    /// A version of a package indexed in full, as `.config/directory/tracked.toml` lists, e.g.
+    /// each release of `wasi:http`, whether or not a release depends on it.
+    Tracked,
     /// A sample made up to show how each WIT feature renders, e.g. the `kitchen-sink`
     /// namespace. It's in `samples/`, never the index, and isn't published to any registry.
     Synthetic,

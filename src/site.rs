@@ -89,7 +89,10 @@ impl Entry {
         let web = source.trim_end_matches('/').trim_end_matches(".git");
         let path = web.split_once("://").map_or(web, |(_, rest)| rest);
         let (_, key) = path.split_once('/')?;
-        (!key.is_empty()).then(|| (key.to_string(), web.to_string()))
+        // GitHub's owners and repositories are case-insensitive, and images spell them either way,
+        // e.g. `WebAssembly/wasi-otel` beside `webassembly/wasi`, so the key that groups, sorts and
+        // names them is lowercase, while the link keeps the spelling given
+        (!key.is_empty()).then(|| (key.to_lowercase(), web.to_string()))
     }
 
     fn date(&self) -> String {
@@ -495,6 +498,37 @@ fn summary(src: &str) -> String {
     src.split("\n\n").next().unwrap_or("").replace('\n', " ")
 }
 
+/// Versions, newest first, each with `version` and `stable`, by release line, see
+/// [`release_line`], for a menu: each line leads with its latest version, its newest stable one,
+/// after any newer pre-release, e.g. the next dev build, and folds its older versions, which are
+/// seldom chosen.
+fn release_lines(versions: &[minijinja::Value]) -> Vec<minijinja::Value> {
+    let mut lines: Vec<(String, Vec<minijinja::Value>)> = Vec::new();
+    for version in versions {
+        let v = version
+            .get_attr("version")
+            .ok()
+            .and_then(|v| v.as_str().map(str::to_string))
+            .unwrap_or_default();
+        let line = release_line(&v);
+        match lines.last_mut() {
+            Some((label, members)) if *label == line => members.push(version.clone()),
+            _ => lines.push((line, vec![version.clone()])),
+        }
+    }
+    lines
+        .into_iter()
+        .map(|(label, mut members)| {
+            let lead = members
+                .iter()
+                .position(|v| v.get_attr("stable").is_ok_and(|s| s.is_true()))
+                .unwrap_or(0);
+            let older = members.split_off(lead + 1);
+            ctx! { label, shown => members, older }
+        })
+        .collect()
+}
+
 /// The release line of a version, the versions it's compatible with by semver: `0.2.x` for a
 /// 0.x version, whose minor versions each break, else its major, e.g. `1.x`. A version that
 /// isn't semver is a line of its own.
@@ -583,7 +617,8 @@ struct Card {
     url: String,
     date: String,
     versions: usize,
-    dependency: bool,
+    /// Why the version is indexed: the org's release, a tracked package's, or a dependency.
+    origin: Origin,
 }
 
 #[derive(Serialize)]
@@ -596,7 +631,9 @@ struct RepoCard {
     interfaces: Vec<String>,
     components: usize,
     date: String,
-    dependency: bool,
+    /// Why its latest version's packages are indexed: the org's releases, else a tracked package's,
+    /// else what a release depends on.
+    origin: Origin,
 }
 
 #[derive(Serialize)]
@@ -901,9 +938,19 @@ impl Site {
                 .map(|i| self.entries[*i].date())
                 .min()
                 .unwrap_or_default(),
-            dependency: members
-                .iter()
-                .all(|i| self.entries[*i].meta.origin == Origin::Dependency),
+            origin: {
+                let origins: Vec<Origin> = members
+                    .iter()
+                    .map(|i| self.entries[*i].meta.origin)
+                    .collect();
+                if origins.contains(&Origin::Release) {
+                    Origin::Release
+                } else if origins.contains(&Origin::Tracked) {
+                    Origin::Tracked
+                } else {
+                    origins.first().copied().unwrap_or(Origin::Dependency)
+                }
+            },
         }
     }
 
@@ -979,7 +1026,7 @@ impl Site {
                 .iter()
                 .filter(|i| self.listed(**i))
                 .count(),
-            dependency: entry.meta.origin == Origin::Dependency,
+            origin: entry.meta.origin,
         }
     }
 
@@ -1087,16 +1134,25 @@ impl Site {
                         cards => members.iter().map(|i| self.card(*i)).collect::<Vec<_>>(),
                     }
                 };
+                // the one owner of the namespace's repositories, when they share one, e.g.
+                // `webassembly` for `webassembly/wasi` and `webassembly/wasi-config` in `wasi`
+                let owners: std::collections::BTreeSet<String> = groups
+                    .iter()
+                    .filter_map(|(key, _)| key.as_ref()?.split_once('/'))
+                    .map(|(owner, _)| owner.to_lowercase())
+                    .collect();
+                let one_owner = owners.len() == 1;
                 let groups: Vec<_> = groups
                     .into_iter()
                     .map(|(key, members)| {
                         let repo = key.as_ref().and_then(|key| self.repos.get(key));
-                        // the repository's name, without the namespace when the namespace owns it,
-                        // e.g. `cli` for `componentized/cli` in `componentized`
-                        let name = key.as_ref().map(|key| {
-                            key.strip_prefix(&format!("{namespace}/"))
-                                .unwrap_or(key)
-                                .to_string()
+                        // the repository's name, without its owner when the namespace's repositories
+                        // share it, e.g. `cli` for `componentized/cli` in `componentized`, or
+                        // `wasi-config` for `webassembly/wasi-config` in `wasi`; with it otherwise,
+                        // to tell repositories of different owners apart
+                        let name = key.as_ref().map(|key| match key.split_once('/') {
+                            Some((_, repo)) if one_owner => repo.to_string(),
+                            _ => key.clone(),
                         });
                         // a repository lists the packages it released together at one version,
                         // the latest at first, switching to each other version it released
@@ -1159,6 +1215,7 @@ impl Site {
                                             .collect();
                                         Some(ctx! {
                                             version,
+                                            stable => version::stable(version).is_some(),
                                             others,
                                             // without scripts, a version is chosen from the
                                             // repository's section
@@ -1182,6 +1239,7 @@ impl Site {
                         ctx! {
                             key,
                             name,
+                            version_lines => release_lines(&versions),
                             versions,
                             listing,
                         }
@@ -1377,7 +1435,7 @@ impl Site {
             url => entry.url(),
             package_url => entry.package_url(),
             description => entry.description(),
-            dependency => meta.origin == Origin::Dependency,
+            origin => meta.origin,
             stable => entry.stable(),
             dev => version::dev(&meta.version).is_some(),
             superseded_by => self.superseded_by[index].map(|i| ctx! {
@@ -1397,6 +1455,13 @@ impl Site {
             release => meta.release.as_ref().map(|url| release_link(url)),
             revision,
             versions => self.versions(index),
+            version_lines => release_lines(
+                &self
+                    .versions(index)
+                    .iter()
+                    .map(|v| minijinja::Value::from(minijinja::value::Serde(v)))
+                    .collect::<Vec<_>>(),
+            ),
             namespaces => self.namespace_pivots(entry.namespace()),
             packages => self.package_pivots(index),
         }
@@ -1867,25 +1932,7 @@ impl Site {
         // a line of their own, else `1.x`, newest first. A line leads with its latest version, its
         // newest stable one, else its newest, after any newer pre-release, e.g. the next dev
         // build, and folds its older versions, which are seldom compared.
-        let mut lines: Vec<(String, Vec<minijinja::Value>)> = Vec::new();
-        for (i, version) in indexes.iter().filter(|i| self.listed(**i)).zip(&versions) {
-            let line = release_line(&self.entries[*i].meta.version);
-            match lines.last_mut() {
-                Some((label, members)) if *label == line => members.push(version.clone()),
-                _ => lines.push((line, vec![version.clone()])),
-            }
-        }
-        let lines: Vec<_> = lines
-            .into_iter()
-            .map(|(label, mut members)| {
-                let lead = members
-                    .iter()
-                    .position(|v| v.get_attr("stable").is_ok_and(|s| s.is_true()))
-                    .unwrap_or(0);
-                let older = members.split_off(lead + 1);
-                ctx! { label, shown => members, older }
-            })
-            .collect();
+        let lines = release_lines(&versions);
         Some(ctx! {
             lines,
             title => format!("Compare {}", entry.meta.package),
@@ -2117,6 +2164,21 @@ impl Site {
         let iid = resolve.id_of(id).unwrap_or_else(|| name.to_string());
         let (types, functions) = self.interface_items(index, id);
 
+        // the interface in each version, or that version's page when it doesn't have the interface
+        let versions: Vec<VersionLink> = self
+            .versions(index)
+            .into_iter()
+            .map(|mut version| {
+                let has = self.packages[&entry.meta.package].iter().any(|i| {
+                    self.entries[*i].meta.version == version.version
+                        && self.entries[*i].interfaces().iter().any(|(n, _, _)| *n == name)
+                });
+                if has {
+                    version.url = format!("{}{name}/", version.url);
+                }
+                version
+            })
+            .collect();
         Ok(ctx! {
             title => iid,
             canonical => format!("{}{name}/", entry.url()),
@@ -2137,20 +2199,10 @@ impl Site {
                         kind: Some("interface"),
                     })
                     .collect::<Vec<_>>(),
-                versions => self
-                    .versions(index)
-                    .into_iter()
-                    .map(|mut version| {
-                        let has = self.packages[&entry.meta.package].iter().any(|i| {
-                            self.entries[*i].meta.version == version.version
-                                && self.entries[*i].interfaces().iter().any(|(n, _, _)| *n == name)
-                        });
-                        if has {
-                            version.url = format!("{}{name}/", version.url);
-                        }
-                        version
-                    })
-                    .collect::<Vec<_>>(),
+                version_lines => release_lines(
+                    &versions.iter().map(|v| minijinja::Value::from(minijinja::value::Serde(v))).collect::<Vec<_>>(),
+                ),
+                versions,
                 docs => docs(&iface.docs, 2),
                 stability => stability(&iface.stability),
                 types,

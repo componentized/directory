@@ -1,0 +1,34 @@
+{
+  "package": "wasi:filesystem",
+  "version": "0.2.11",
+  "kind": "interface",
+  "origin": "tracked",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "webassembly/wasi/filesystem",
+    "tag": "0.2.11",
+    "digest": "sha256:36388184fe1d1a5a79b709749b63e678db4acef69fb18b885c2c2dfe068ae12c",
+    "layer_digest": "sha256:f4d7836eb4070385c4104ef5da1ca044d2d39339da2ec463e73685a76049ce74",
+    "size": 31587
+  },
+  "created": "2026-04-07T13:39:08.144372491Z",
+  "annotations": {
+    "org.opencontainers.image.description": "WASI filesystem interfaces",
+    "org.opencontainers.image.licenses": "Apache-2.0 WITH LLVM-exception",
+    "org.opencontainers.image.source": "https://github.com/webassembly/wasi",
+    "org.opencontainers.image.url": "https://wasi.dev",
+    "org.opencontainers.image.version": "0.2.11"
+  },
+  "dependencies": [
+    {
+      "package": "wasi:clocks",
+      "version": "0.2.11"
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.11"
+    }
+  ],
+  "release": "https://github.com/WebAssembly/WASI/releases/tag/v0.2.11",
+  "indexed_at": "2026-11-13T17:28:54Z"
+}

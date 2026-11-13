@@ -1,0 +1,23 @@
+{
+  "package": "wasi:webgpu",
+  "version": "0.3.0-rc.2",
+  "kind": "interface",
+  "origin": "tracked",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "webassembly/wasi/webgpu",
+    "tag": "0.3.0-rc.2",
+    "digest": "sha256:28ebeea229658a8524b71ebd13d06ee77bf74950d6e285a0367a3bc066a07aa1",
+    "layer_digest": "sha256:9ba613b2be1cc74135f496e684f3b2bdd373507302c56ddae8a16398f3c70866",
+    "size": 55334
+  },
+  "created": "2026-07-02T15:02:48.989211386Z",
+  "annotations": {
+    "org.opencontainers.image.description": "WASI WebGPU API",
+    "org.opencontainers.image.licenses": "Apache-2.0 WITH LLVM-exception",
+    "org.opencontainers.image.source": "https://github.com/WebAssembly/wasi-webgpu",
+    "org.opencontainers.image.url": "https://github.com/WebAssembly/wasi-webgpu",
+    "org.opencontainers.image.version": "0.3.0-rc.2"
+  },
+  "indexed_at": "2026-11-13T18:14:55Z"
+}

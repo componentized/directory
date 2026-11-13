@@ -96,7 +96,7 @@
 {#- `short` labels a card by its name alone, on a page that already names its namespace #}
 {% macro card(c, short=false) %}
 <a class="card" href="{{ c.url }}" data-kind="{{ c.kind }}" data-namespace="{{ c.namespace }}" data-text="{{ c.package|lower }} {{ c.description|lower }}">
-  <div class="card-head"><code class="pkg"{% if short %} title="{{ c.package }}"{% endif %}>{% if short %}{{ c.name }}{% else %}{{ c.package }}{% endif %}</code> {{ kind(c.kind) }}{% if c.dependency %} <span class="badge dep" title="Indexed because a componentized release depends on it">dependency</span>{% endif %}</div>
+  <div class="card-head"><code class="pkg"{% if short %} title="{{ c.package }}"{% endif %}>{% if short %}{{ c.name }}{% else %}{{ c.package }}{% endif %}</code> {{ kind(c.kind) }}</div>
   <p>{{ c.description or "No description." }}</p>
   <div class="meta"><span>v{{ c.version }}</span><span>{{ c.versions }} version{% if c.versions != 1 %}s{% endif %}</span><time datetime="{{ c.date }}">{{ c.date }}</time></div>
 </a>
@@ -104,7 +104,7 @@
 
 {% macro repo_card(r) %}
 <a class="card" href="{{ r.url }}">
-  <div class="card-head">{{ kind_icon("repo") }}<code class="pkg">{{ r.key }}</code>{% if r.dependency %} <span class="badge dep" title="Indexed because a componentized release depends on it">dependency</span>{% endif %}</div>
+  <div class="card-head">{{ kind_icon("repo") }}<code class="pkg">{{ r.key }}</code></div>
   <p>{{ r.description or "No description." }}</p>
   <div class="meta"><span>v{{ r.version }}</span>{% if r.interfaces %}<span>{{ r.interfaces|length }} interface{% if r.interfaces|length != 1 %}s{% endif %}</span>{% endif %}<span>{{ r.components }} component{% if r.components != 1 %}s{% endif %}</span><time datetime="{{ r.date }}">{{ r.date }}</time></div>
 </a>
@@ -124,12 +124,33 @@
 </details>
 {%- endmacro %}
 
+{#- a version breadcrumb, its versions by release line: each line leads with its latest version,
+    after any newer pre-release, and folds its older ones, the version on view always shown.
+    `id` tells the menu's folds apart from those of others on the page; `switch` is as `pivot`'s. #}
+{% macro version_pivot(current, lines, id, switch=false) %}
+<details class="pivot" data-pivot data-pivot-no-filter{% if switch %} data-pivot-switch{% endif %}>
+  <summary title="Switch version"><span class="visually-hidden">version: </span><span data-pivot-label>{{ current }}</span><svg class="pivot-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 6.5 3.5 3.5 3.5-3.5"/></svg></summary>
+  <ul class="pivot-menu" aria-label="Versions">
+    {%- for line in lines %}
+    <li class="pivot-line" aria-hidden="true">{{ line.label }}</li>
+    {%- for v in line.shown %}{{ version_item(v, switch) }}{% endfor %}
+    {%- if line.older %}
+    {%- set fold = id ~ "-" ~ loop.index %}
+    <li class="pivot-fold"><button type="button" data-fold="{{ fold }}" aria-label="Show {{ line.older|length }} older {{ line.label }} version{% if line.older|length != 1 %}s{% endif %}">{{ line.older|length }} older</button></li>
+    {%- for v in line.older %}{{ version_item(v, switch, fold) }}{% endfor %}
+    {%- endif %}
+    {%- endfor %}
+  </ul>
+</details>
+{%- endmacro %}
+{% macro version_item(v, switch, fold=none) %}<li{% if fold %} data-folded="{{ fold }}"{% if not v.current %} hidden{% endif %}{% endif %}><a href="{{ v.url }}"{% if v.current %} aria-current="true"{% endif %}{% if switch %} data-version="{{ v.version }}"{% endif %}><code>{{ v.version }}</code>{% if v.date %}<time class="dim" datetime="{{ v.date }}">{{ v.date }}</time>{% endif %}</a></li>{% endmacro %}
+
 {#- `iface`, on an interface's page, adds the interface's breadcrumb, switches versions to the
     same interface, and titles the page with the interface rather than its package: the
     interface's id holds the package's name and version #}
 {% macro header(pkg, iface=none) %}
 <div class="page-head" data-page-head>
-<nav class="crumbs" aria-label="Breadcrumbs">{{ pivot(pkg.namespace, pkg.namespaces, "namespace") }} : {{ pivot(pkg.name, pkg.packages, "package") }} @ {{ pivot(pkg.version, iface.versions if iface else pkg.versions, "version") }}{% if iface %} / {{ pivot(iface.name, iface.siblings, "interface") }}{% endif %}</nav>
+<nav class="crumbs" aria-label="Breadcrumbs">{{ pivot(pkg.namespace, pkg.namespaces, "namespace") }} : {{ pivot(pkg.name, pkg.packages, "package") }} @ {{ version_pivot(pkg.version, iface.version_lines if iface else pkg.version_lines, "crumb") }}{% if iface %} / {{ pivot(iface.name, iface.siblings, "interface") }}{% endif %}</nav>
 <div class="title-row">
   {% if iface %}
   <h1>{{ kind_icon("interface") }}<code>{{ iface.id }}</code></h1>
@@ -139,7 +160,6 @@
   <h1>{{ kind_icon(pkg.kind) }}<code>{{ pkg.package }}</code></h1>
   {{ kind(pkg.kind) }}
   {% endif %}
-  {% if pkg.dependency %}<span class="badge dep" title="Indexed because a componentized release depends on it">dependency</span>{% endif %}
   {% if pkg.dev %}<span class="badge pre" title="A development build of the upcoming release">dev</span>{% elif not pkg.stable %}<span class="badge pre">pre-release</span>{% endif %}
 </div>
 </div>

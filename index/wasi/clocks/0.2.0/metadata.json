@@ -1,0 +1,26 @@
+{
+  "package": "wasi:clocks",
+  "version": "0.2.0",
+  "kind": "interface",
+  "origin": "tracked",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "webassembly/wasi/clocks",
+    "tag": "0.2.0",
+    "digest": "sha256:04cd7d563bed72e9549d02004d1cfce3448fad00fc8138ccea7975bfe6c1012b",
+    "layer_digest": "sha256:51911098e929732f65d1d84f8dc393299f18a9e8de632d854714f37142efe97b",
+    "size": 3612
+  },
+  "created": "2024-06-17T18:55:21.493427Z",
+  "annotations": {
+    "org.opencontainers.image.source": "https://github.com/webassembly/wasi"
+  },
+  "dependencies": [
+    {
+      "package": "wasi:io",
+      "version": "0.2.0"
+    }
+  ],
+  "release": "https://github.com/WebAssembly/WASI/releases/tag/v0.2.0",
+  "indexed_at": "2026-11-13T17:28:48Z"
+}

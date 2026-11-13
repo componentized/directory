@@ -1,0 +1,30 @@
+{
+  "package": "wasi:sockets",
+  "version": "0.2.0",
+  "kind": "interface",
+  "origin": "tracked",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "webassembly/wasi/sockets",
+    "tag": "0.2.0",
+    "digest": "sha256:8a22e44c1fa4c39d885eb22aa88d86a908acc26b889dfa57b702b69e441acdbc",
+    "layer_digest": "sha256:68640584237d98077cec4631264ff28ed74fe04619ce5dcd8020383df5c3969f",
+    "size": 52092
+  },
+  "created": "2024-06-17T18:56:11.411002Z",
+  "annotations": {
+    "org.opencontainers.image.source": "https://github.com/webassembly/wasi"
+  },
+  "dependencies": [
+    {
+      "package": "wasi:clocks",
+      "version": "0.2.0"
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.0"
+    }
+  ],
+  "release": "https://github.com/WebAssembly/WASI/releases/tag/v0.2.0",
+  "indexed_at": "2026-11-13T17:29:06Z"
+}

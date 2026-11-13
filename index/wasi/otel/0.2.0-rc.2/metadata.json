@@ -1,0 +1,33 @@
+{
+  "package": "wasi:otel",
+  "version": "0.2.0-rc.2",
+  "kind": "interface",
+  "origin": "tracked",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "webassembly/wasi/otel",
+    "tag": "0.2.0-rc.2",
+    "digest": "sha256:c6c09dfcf8617484c5779e108ea715ab5d0e2d9fcfd46e050205b07bf6db4591",
+    "layer_digest": "sha256:cd1c073a1875e04072951871a2c29d1725d15d0e824a9e4c2ae730810eab1c54",
+    "size": 22297
+  },
+  "created": "2026-02-04T22:56:53.485054440Z",
+  "annotations": {
+    "org.opencontainers.image.description": "WASI OpenTelemetry API",
+    "org.opencontainers.image.licenses": "Apache-2.0 WITH LLVM-exception",
+    "org.opencontainers.image.source": "https://github.com/WebAssembly/wasi-otel",
+    "org.opencontainers.image.url": "https://github.com/WebAssembly/wasi-otel",
+    "org.opencontainers.image.version": "0.2.0-rc.2"
+  },
+  "dependencies": [
+    {
+      "package": "wasi:clocks",
+      "version": "0.2.0"
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.0"
+    }
+  ],
+  "indexed_at": "2026-11-13T18:14:55Z"
+}

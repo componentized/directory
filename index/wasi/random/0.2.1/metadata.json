@@ -1,0 +1,24 @@
+{
+  "package": "wasi:random",
+  "version": "0.2.1",
+  "kind": "interface",
+  "origin": "tracked",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "webassembly/wasi/random",
+    "tag": "0.2.1",
+    "digest": "sha256:99c0de03727d55b377a4095722125722a06dd2f6232f51ac728a01f4e548777a",
+    "layer_digest": "sha256:d069e5ac7cb30dffa2e4a0da034bcd39e342935c37fc5c5ce2f40a4c6058b693",
+    "size": 4021
+  },
+  "created": "2024-08-01T20:46:12.250474Z",
+  "annotations": {
+    "org.opencontainers.image.description": "WASI Random is a WASI API for obtaining pseudo-random data.",
+    "org.opencontainers.image.licenses": "Apache-2.0 WITH LLVM-exception",
+    "org.opencontainers.image.source": "https://github.com/webassembly/wasi",
+    "org.opencontainers.image.url": "https://wasi.dev",
+    "org.opencontainers.image.version": "0.2.1"
+  },
+  "release": "https://github.com/WebAssembly/WASI/releases/tag/v0.2.1",
+  "indexed_at": "2026-11-13T17:29:03Z"
+}

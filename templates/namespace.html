@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "macros.html" import card, pivot, kind_icon, meta_icon %}
+{% from "macros.html" import card, pivot, version_pivot, kind_icon, meta_icon %}
 {% set title = namespace %}
 {% set toc = groups|length > 1 %}
 {#- the version a group lists at first: its repository's latest, or for packages without one,
@@ -39,7 +39,7 @@
   {% set sel = selected(g)|string %}
   <div class="group-head">
     <h2>{{ kind_icon("repo") }}<code title="{{ g.key }}">{{ g.name }}</code></h2>
-    {{ pivot(sel, g.versions, "version", switch=true) }}
+    {{ version_pivot(sel, g.version_lines, g.key, switch=true) }}
     {% for v in g.versions %}<span class="group-version" data-version-panel="{{ v.version }}"{% if v.version != sel %} hidden{% endif %}>{{ counts(v.listing) }}</span>{% endfor %}
     {#- the version's date, commit and release notes, at the end of the heading #}
     {% for v in g.versions %}<span class="group-version group-details" data-version-panel="{{ v.version }}"{% if v.version != sel %} hidden{% endif %}>

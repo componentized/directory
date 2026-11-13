@@ -1,0 +1,24 @@
+{
+  "package": "wasi:io",
+  "version": "0.2.1",
+  "kind": "interface",
+  "origin": "tracked",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "webassembly/wasi/io",
+    "tag": "0.2.1",
+    "digest": "sha256:9336931400fa04b65a870a9851946ade52999035b21d6ac6902a52fa0bc5d5a1",
+    "layer_digest": "sha256:5034a51928ed3ca261a85ecef0cc8b81f9fc9edbdceb4bf8ee00ba888f3f6b25",
+    "size": 15802
+  },
+  "created": "2024-08-01T20:37:11.506551Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Wasi I/O is an API providing I/O stream abstractions. There are two types, input-stream, and output-stream, which support read and write, respectively, as well as a number of utility functions.",
+    "org.opencontainers.image.licenses": "Apache-2.0 WITH LLVM-exception",
+    "org.opencontainers.image.source": "https://github.com/webassembly/wasi",
+    "org.opencontainers.image.url": "https://wasi.dev",
+    "org.opencontainers.image.version": "0.2.1"
+  },
+  "release": "https://github.com/WebAssembly/WASI/releases/tag/v0.2.1",
+  "indexed_at": "2026-11-13T17:29:00Z"
+}

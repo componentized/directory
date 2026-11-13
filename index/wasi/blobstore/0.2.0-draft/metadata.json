@@ -1,0 +1,22 @@
+{
+  "package": "wasi:blobstore",
+  "version": "0.2.0-draft",
+  "kind": "interface",
+  "origin": "tracked",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "webassembly/wasi/blobstore",
+    "tag": "0.2.0-draft",
+    "digest": "sha256:5e0b0a89714d092d2c1a0ffd99c52764b515df54e4c0d3589c2b87c4dfeb6ab0",
+    "layer_digest": "sha256:de369d910c03300962eff97e9cb16d344c064da16e4a3d0c9b12b5c0d7ab8781",
+    "size": 12924
+  },
+  "created": "2024-10-03T17:39:54.655660Z",
+  "dependencies": [
+    {
+      "package": "wasi:io",
+      "version": "0.2.1"
+    }
+  ],
+  "indexed_at": "2026-11-13T17:29:09Z"
+}

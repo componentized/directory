@@ -1,0 +1,16 @@
+{
+  "package": "wasi:keyvalue",
+  "version": "0.2.0-draft",
+  "kind": "interface",
+  "origin": "tracked",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "webassembly/wasi/keyvalue",
+    "tag": "0.2.0-draft",
+    "digest": "sha256:e16b652643e754611f1ac39b8de3fa49b31e5a7ffd07769c228cf14e704392eb",
+    "layer_digest": "sha256:f5afa14646d3f32cee23106add8d7da53774083fef32f5648176aee7be61d36b",
+    "size": 13445
+  },
+  "created": "2024-10-02T02:57:29.771597Z",
+  "indexed_at": "2026-11-13T17:29:10Z"
+}
