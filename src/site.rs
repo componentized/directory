@@ -2171,7 +2171,10 @@ impl Site {
             .map(|mut version| {
                 let has = self.packages[&entry.meta.package].iter().any(|i| {
                     self.entries[*i].meta.version == version.version
-                        && self.entries[*i].interfaces().iter().any(|(n, _, _)| *n == name)
+                        && self.entries[*i]
+                            .interfaces()
+                            .iter()
+                            .any(|(n, _, _)| *n == name)
                 });
                 if has {
                     version.url = format!("{}{name}/", version.url);
