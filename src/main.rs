@@ -53,6 +53,10 @@ enum Command {
         /// The URL the site is served from, for canonical links
         #[arg(long, default_value = "https://directory.componentized.dev")]
         base_url: String,
+        /// Synthetic packages, laid out like the index, whose pages are rendered but not listed,
+        /// counted or linked from the index's pages
+        #[arg(long, default_value = "samples")]
+        samples: PathBuf,
     },
 }
 
@@ -73,6 +77,10 @@ fn main() -> Result<()> {
             only,
             registries: config::Config::load(&config)?,
         }),
-        Command::Build { out, base_url } => site::build(&cli.data, &out, &base_url),
+        Command::Build {
+            out,
+            base_url,
+            samples,
+        } => site::build(&cli.data, &samples, &out, &base_url),
     }
 }

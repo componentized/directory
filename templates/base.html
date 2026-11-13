@@ -1,3 +1,4 @@
+{% from "macros.html" import kind_sprite %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,7 +8,7 @@
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#1b1d20" media="(prefers-color-scheme: dark)">
   <title>{% block title %}{% if title %}{{ title }} · {% endif %}Componentized Directory{% endblock %}</title>
-  {% if noindex or (pkg and pkg.superseded_by) %}<meta name="robots" content="noindex">{% endif %}
+  {% if noindex or synthetic or (pkg and pkg.superseded_by) %}<meta name="robots" content="noindex">{% endif %}
   {% if canonical %}<link rel="canonical" href="{{ base_url }}{{ canonical }}">{% endif %}
   <meta name="description" content="{% block description %}Wasm components and WIT interfaces published by the componentized project.{% endblock %}">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -17,8 +18,12 @@
   <script src="/search.js?v={{ assets.search }}" defer></script>
   <script src="/theme.js?v={{ assets.theme }}" defer></script>
   <script src="/toc.js?v={{ assets.toc }}" defer></script>
+  <script src="/pivot.js?v={{ assets.pivot }}" defer></script>
+  <script src="/head.js?v={{ assets.head }}" defer></script>
+  <script src="/copy.js?v={{ assets.copy }}" defer></script>
 </head>
 <body>
+  {{ kind_sprite() }}
   <header class="site">
     <div class="wrap">
       <a class="brand" href="/"><span class="mark">{% include "logo.svg" %}</span>componentized<span class="dim">/directory</span></a>
@@ -26,7 +31,6 @@
         <input type="search" name="q" placeholder="Search packages  /" aria-label="Search packages" autocomplete="off" data-search>
       </form>
       <nav>
-        <a href="/repos/">Repositories</a>
         <a href="/all/">All packages</a>
         <a href="https://github.com/componentized">GitHub</a>
       </nav>
@@ -56,7 +60,10 @@
       <div class="toc-list" id="toc-list">{% block toc %}{% endblock %}</div>
     </nav>
     {% endif %}
-    <div class="page">{% block main %}{% endblock %}</div>
+    <div class="page">
+      {% if synthetic %}<p class="notice synthetic"><strong>Synthetic sample.</strong> This package shows how the directory renders each WIT feature. It isn't published to any registry.</p>{% endif %}
+      {% block main %}{% endblock %}
+    </div>
   </main>
   <footer class="site">
     <div class="wrap">

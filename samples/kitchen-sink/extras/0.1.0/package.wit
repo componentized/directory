@@ -1,0 +1,23 @@
+/// Uses and includes items from another package.
+///
+/// A synthetic package: it isn't published to any registry.
+package kitchen-sink:extras@0.1.0;
+
+/// Uses types from another package, one under a new name.
+interface greeter {
+  use kitchen-sink:types/shapes@0.1.0.{point, direction as heading};
+  use kitchen-sink:types/resources@0.1.0.{canvas};
+
+  /// Greets a point, facing a heading.
+  greet: func(name: string, at: point, facing: heading) -> string;
+  /// Draws a greeting.
+  draw: func(on: borrow<canvas>, name: string);
+}
+
+/// Includes a world from another package, and imports one of its interfaces.
+world greeting {
+  include kitchen-sink:types/base@0.1.0;
+  import kitchen-sink:types/gates@0.1.0;
+
+  export greeter;
+}

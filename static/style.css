@@ -25,7 +25,14 @@
   --badge-strength: 70%;
   --shadow-color: light-dark(rgb(0 0 0 / 0.12), rgb(0 0 0 / 0.5));
   --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  /* the heights of what's pinned to the top of the window, kept up to date by head.js: the site's
+     header, and a page's breadcrumbs and title */
+  --site-header: 57px;
+  --page-head: 0px;
+  /* where a link to a section scrolls it to, clear of what's pinned */
+  --anchor-offset: calc(var(--site-header) + var(--page-head) + 16px);
 }
+html { scroll-padding-top: var(--anchor-offset); }
 :root[data-theme="light"] { color-scheme: light; }
 :root[data-theme="dark"] { color-scheme: dark; }
 
@@ -48,6 +55,8 @@ h2 { font-size: 1.2rem; }
 h3 { font-size: 1rem; }
 h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--dim); }
 .dim { color: var(--dim); }
+/* a date in the monospace font, so the dates in a list line up */
+time { font-family: var(--mono); font-size: 0.9em; font-variant-numeric: tabular-nums; }
 [hidden] { display: none !important; }
 
 .wrap { max-width: 1180px; margin: 0 auto; padding-inline: 16px; }
@@ -61,7 +70,7 @@ header.site .wrap { display: flex; align-items: center; gap: 16px; min-height: 5
 header nav { display: flex; gap: 16px; margin-left: auto; }
 header nav a { color: var(--dim); }
 .search { position: relative; flex: 1 1 260px; max-width: 460px; }
-.search input, .filters input, .filters select, select.versions {
+.search input, .filters input, .filters select {
   width: 100%; font: inherit; color: inherit; background: var(--bg);
   border: 1px solid var(--line); border-radius: 8px; padding: 7px 10px;
 }
@@ -112,34 +121,72 @@ footer.site .footer-legal { grid-column: 1 / -1; max-width: none; margin: 8px 0 
 .card-head { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
 .card .pkg { font-weight: 600; overflow-wrap: anywhere; }
 .card p { margin: 0; color: var(--dim); font-size: 0.9rem; flex: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-.card .meta { display: flex; gap: 12px; color: var(--dim); font-size: 0.8rem; font-variant-numeric: tabular-nums; }
+.card .meta { display: flex; align-items: baseline; gap: 12px; color: var(--dim); font-size: 0.8rem; font-variant-numeric: tabular-nums; }
 
 .badge { font-size: 0.7rem; font-weight: 600; padding: 1px 7px; border-radius: 999px; text-transform: lowercase; white-space: nowrap; }
 .badge.component { color: var(--component); background: var(--component-soft); }
 .badge.interface { color: var(--interface); background: var(--interface-soft); }
-.badge.repo { color: var(--accent); background: var(--accent-soft); }
 .badge.dep, .badge.pre { color: var(--dim); border: 1px solid var(--line); }
 
 .filters { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 16px; }
 .filters input { flex: 1 1 220px; width: auto; }
 .filters select { width: auto; }
 
-.crumbs { margin-top: 20px; font-family: var(--mono); font-size: 0.85rem; color: var(--dim); }
+/* a page's breadcrumbs and title, pinned under the site's header while the page scrolls under them */
+/* its space above is padding rather than margin, so it's pinned from the first pixel scrolled */
+.page-head { padding-top: 16px; background: var(--bg); }
+@media (min-width: 701px) and (min-height: 560px) {
+  .page-head { position: sticky; top: var(--site-header); z-index: 9; }
+  /* once the page has scrolled under it, a line parts it from the page */
+  .page-head.stuck { box-shadow: 0 1px 0 var(--line); }
+}
+.crumbs { font-family: var(--mono); font-size: 0.85rem; color: var(--dim); }
 .title-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .title-row h1 { margin: 0.3em 0; overflow-wrap: anywhere; }
-select.versions { width: auto; margin-left: auto; font-family: var(--mono); font-size: 0.85rem; }
+
+/* a breadcrumb that switches to another namespace, package, version or interface */
+.crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; }
+.pivot { position: relative; display: inline-block; }
+.pivot > summary {
+  display: inline-flex; align-items: center; gap: 2px; list-style: none; cursor: pointer;
+  color: var(--accent); border-radius: 6px; padding: 1px 4px; margin: 0 -4px;
+}
+.pivot > summary::-webkit-details-marker { display: none; }
+.pivot > summary:hover, .pivot[open] > summary { background: var(--accent-soft); }
+.pivot > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.pivot-chevron { width: 14px; height: 14px; flex: none; transition: transform 0.15s; }
+.pivot[open] .pivot-chevron { transform: rotate(180deg); }
+.pivot-menu {
+  position: absolute; left: -4px; top: calc(100% + 6px); z-index: 20; margin: 0; padding: 4px; list-style: none;
+  /* as wide as its longest choice, rather than the breadcrumb it hangs from */
+  width: max-content; min-width: 240px; max-width: min(600px, calc(100vw - 32px)); max-height: min(60vh, 420px); overflow-y: auto;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 8px 24px var(--shadow-color);
+  font-size: 0.85rem;
+}
+.pivot-menu a { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 5px 8px; border-radius: 6px; color: var(--text); }
+.pivot-menu a code { font-size: 1em; overflow-wrap: anywhere; }
+.pivot-menu a .kind-icon { width: 14px; height: 14px; margin-right: 6px; vertical-align: -2px; }
+.pivot-menu a[aria-current] .kind-icon { color: currentColor; }
+.pivot-menu a .dim { flex: none; }
+.pivot-menu a span.dim { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; font-size: 0.9em; }
+.pivot-menu a:hover, .pivot-menu a:focus-visible { background: var(--code-bg); text-decoration: none; outline: none; }
+.pivot-menu a[aria-current] { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.pivot-menu li[hidden] { display: none; }
+.pivot-filter { position: sticky; top: -4px; margin: -4px -4px 4px; padding: 4px; background: var(--panel); }
+.pivot-filter input { width: 100%; font: inherit; color: inherit; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 5px 8px; }
+.pivot-filter input:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+.pivot-empty { padding: 5px 8px; color: var(--dim); }
 .lede { font-size: 1.05rem; color: var(--dim); max-width: 70ch; margin-top: 0; }
 .notice { background: var(--interface-soft); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; max-width: 70ch; }
-.iface-title { font-size: 1.3rem; }
+.notice.synthetic { margin-top: 16px; }
 
 .layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 32px; align-items: start; }
-aside { position: sticky; top: 72px; font-size: 0.9rem; }
+aside { position: sticky; top: calc(var(--site-header) + var(--page-head) + 16px); font-size: 0.9rem; }
 aside section { border-bottom: 1px solid var(--line); padding-bottom: 12px; }
 aside h3 { margin-top: 1.2em; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--dim); }
 @media (max-width: 860px) {
   .layout { grid-template-columns: minmax(0, 1fr); }
   aside { position: static; }
-  select.versions { margin-left: 0; }
 }
 
 .facts { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 12px; margin: 8px 0 0; }
@@ -150,6 +197,29 @@ aside h3 { margin-top: 1.2em; font-size: 0.8rem; text-transform: uppercase; lett
 pre { background: var(--code-bg); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; overflow-x: auto; }
 pre.cmd { padding: 8px 10px; font-size: 0.8rem; white-space: pre-wrap; overflow-wrap: anywhere; }
 pre.wit { line-height: 1.5; }
+
+/* a button that copies a value: in the corner of a block, outside its scrolling, or after an
+   inline value. Its icon turns to a check for a moment once it has copied. */
+.copy {
+  display: inline-flex; align-items: center; justify-content: center; flex: none;
+  width: 24px; height: 24px; padding: 0; border: 1px solid transparent; border-radius: 6px;
+  background: transparent; color: var(--dim); cursor: pointer;
+}
+.copy:hover { color: var(--text); background: var(--panel); border-color: var(--line); }
+.copy:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.copy-icon { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.copy .copy-icon-check, .copy.copied .copy-icon-copy { display: none; }
+.copy.copied .copy-icon-check { display: block; }
+.copy.copied { color: var(--component); }
+.copy-wrap { position: relative; }
+.copy-wrap > .copy { position: absolute; top: 6px; right: 6px; background: var(--code-bg); }
+.copy-wrap > .copy:hover { background: var(--panel); }
+/* room for the button beside a command, which wraps */
+.copy-wrap > pre.cmd { padding-right: 36px; }
+/* an inline value and its button share its line, the value giving way */
+.copy-line { display: flex; align-items: flex-start; gap: 4px; }
+.copy-line > code { min-width: 0; }
+.copy-line > .copy { width: 22px; height: 22px; margin-block: -3px; }
 .wit .k, .k { color: var(--k); }
 .wit .t { color: var(--t); }
 .wit .b { color: var(--b); }
@@ -167,20 +237,61 @@ ul.links li { padding: 3px 0; overflow-wrap: anywhere; }
 ul.items li { padding: 6px 0; border-bottom: 1px solid var(--line); }
 ul.members li { padding: 6px 0 6px 12px; border-left: 2px solid var(--line); margin: 4px 0; }
 .members .docs, .item .docs { color: var(--dim); font-size: 0.9rem; }
-.members .docs p, .item .docs p { margin: 2px 0; }
+/* a paragraph break reads clearly apart from a wrapped line: the lines of a paragraph are set closer,
+   and paragraphs further apart */
+.docs { line-height: 1.45; }
+/* a heading in docs, whatever its level, as a modest subheading of the docs it's in */
+.docs :is(h3, h4, h5, h6) {
+  font-size: 1em; font-weight: 650; color: var(--text); text-transform: none; letter-spacing: normal;
+  margin: 1.1em 0 0.4em;
+}
+.docs p, .docs ul, .docs ol, .docs pre { margin: 0.75em 0; }
+.members .docs :where(p, ul, ol, pre), .item .docs :where(p, ul, ol, pre) { margin: 0.6em 0; }
+.docs > :first-child { margin-top: 0; }
+.docs > :last-child { margin-bottom: 0; }
+/* a member's docs sit a little apart from its signature */
+ul.members li > .head + .docs { margin-top: 4px; }
 .c { color: var(--text); font-weight: 600; }
 
-.item { padding: 4px 0 12px; border-bottom: 1px solid var(--line); scroll-margin-top: 72px; }
+.item { padding: 4px 0 12px; border-bottom: 1px solid var(--line); }
 .item h3 { font-weight: 500; overflow-wrap: anywhere; }
-.world { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 4px 16px 12px; margin-bottom: 12px; scroll-margin-top: 72px; }
+.world { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 4px 16px 12px; margin-bottom: 12px; }
 .world h3 { margin-top: 0.8em; }
 .two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 @media (max-width: 600px) { .two { grid-template-columns: 1fr; } }
 .docs { max-width: 75ch; }
 
-.versions-group summary { cursor: pointer; overflow-wrap: anywhere; }
-.versions-group summary::marker { color: var(--dim); }
-.versions-group > ul.links { padding-left: 18px; }
+/* a group's package: its icon, its name wrapping in a column of its own, and its count at the end */
+/* a package opening a menu of its versions, its whole line the button */
+.pivot.pivot-group { display: block; }
+.pivot.pivot-group > summary { display: block; margin: 0 -6px; padding: 2px 6px; color: var(--text); }
+.pivot-group .pivot-chevron { align-self: flex-start; margin-top: 0.25em; color: var(--dim); }
+.pivot-unlinked { display: block; padding: 5px 8px; color: var(--dim); }
+ul.links.groups li { padding: 0; }
+/* a version and its date at the end of its line, the whole row its link */
+.versions-list li { padding: 0; }
+.version-row {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+  margin: 0 -6px; padding: 3px 6px; border-radius: 6px; color: inherit;
+}
+.version-row .version { min-width: 0; overflow-wrap: anywhere; }
+.version-row > .dim { flex: none; }
+a.version-row .version { color: var(--accent); }
+a.version-row:hover, a.version-row:focus-visible { background: var(--code-bg); text-decoration: none; outline: none; }
+a.version-row:hover .version { text-decoration: underline; }
+/* the version on view, highlighted like the current choice of a menu */
+.version-row[aria-current] { background: var(--accent-soft); }
+.version-row[aria-current] .version { color: var(--accent); font-weight: 600; }
+.group-line { display: flex; align-items: baseline; gap: 6px; }
+.group-line > .kind-icon { align-self: flex-start; margin: 0.2em 0 0; }
+.group-line > code { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+/* the number of versions in a group, as a chip at the end of its package's line */
+.count-chip {
+  flex: none; display: inline-block; min-width: 1.6em; padding: 0 6px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--panel); color: var(--dim);
+  font-family: var(--mono); font-size: 0.75rem; line-height: 1.5; text-align: center;
+  font-variant-numeric: tabular-nums; vertical-align: 1px;
+}
 
 .theme { position: relative; }
 .theme-button {
@@ -216,9 +327,21 @@ ul.members li { padding: 6px 0 6px 12px; border-left: 2px solid var(--line); mar
 .gate.deprecated { color: var(--deprecated); background: var(--deprecated-soft); border-color: transparent; }
 
 .jump { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 4px 0 8px; font-family: var(--mono); font-size: 0.85rem; }
-.group { margin-top: 28px; scroll-margin-top: 72px; }
+.group { margin-top: 28px; }
 .group-head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
 .group-head h2 { margin: 0; font-size: 1.1rem; }
+.group-head .pivot { font-family: var(--mono); font-size: 0.85rem; }
+/* a version's details, one size throughout */
+.group-version { font-size: 0.85rem; }
+.group-version code, .group-version time { font-size: 1em; }
+.group-head .count .kind-icon { width: 14px; height: 14px; margin-right: 3px; vertical-align: -2px; }
+/* an icon for a detail beside it, a date, commit or release notes, in the detail's color */
+.meta-icon {
+  width: 14px; height: 14px; margin-right: 4px; vertical-align: -2px; flex: none;
+  fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round;
+}
+.group-details { margin-left: auto; }
+.released-with .kind-icon, .packages .kind-icon { width: 14px; height: 14px; margin-right: 6px; vertical-align: -2px; }
 
 .fold { margin-top: 12px; }
 .fold > summary {
@@ -242,7 +365,7 @@ ul.members li { padding: 6px 0 6px 12px; border-left: 2px solid var(--line); mar
 main.wrap.has-toc { max-width: 1440px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 32px; align-items: start; }
 .page { min-width: 0; }
 .toc {
-  position: sticky; top: 64px; max-height: calc(100vh - 72px); overflow-y: auto; overscroll-behavior: contain;
+  position: sticky; top: calc(var(--site-header) + 7px); max-height: calc(100vh - var(--site-header) - 15px); overflow-y: auto; overscroll-behavior: contain;
   padding: 20px 4px 24px 0; font-size: 0.85rem; scrollbar-width: thin;
 }
 .toc-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
@@ -272,6 +395,12 @@ main.wrap.has-toc { max-width: 1440px; display: grid; grid-template-columns: 220
 :root[data-toc="collapsed"] .toc-title, :root[data-toc="collapsed"] .toc-list { display: none; }
 :root[data-toc="collapsed"] .toc-head { justify-content: center; }
 :root[data-toc="collapsed"] .toc-toggle svg { transform: rotate(180deg); }
+
+/* the right column's sections are listed in the contents only once it stacks under the content:
+   beside the content, it's always in view */
+@media (min-width: 1241px) {
+  .toc .toc-aside { display: none; }
+}
 
 /* beside a contents column, the right column of a page stacks under its content sooner */
 @media (max-width: 1240px) {
@@ -305,6 +434,15 @@ main.wrap.has-toc { max-width: 1440px; display: grid; grid-template-columns: 220
 .kind-icon.kind-resource { color: var(--n); }
 .kind-icon.kind-use { color: var(--k); }
 .kind-icon.kind-func { color: var(--f); }
+.kind-icon.kind-world { color: var(--component); }
+.kind-icon.kind-interface { color: var(--interface); }
+.kind-icon.kind-component { color: var(--component); }
+.kind-icon.kind-repo { color: var(--accent); }
+.kind-icon.kind-namespace { color: var(--n); }
+.namespaces a .kind-icon { width: 14px; height: 14px; margin-right: 4px; vertical-align: -2px; }
+.card-head > .kind-icon { width: 15px; height: 15px; margin-right: 0; vertical-align: -2px; }
+/* a heading's icon grows with its text */
+h1 > .kind-icon, h2 > .kind-icon, h3 > .kind-icon { width: 0.95em; height: 0.95em; vertical-align: -0.1em; margin-right: 0.35em; }
 .kind-icon.kind-variant circle, .kind-icon.kind-enum circle { fill: currentColor; stroke: none; }
 .toc a .kind-icon { width: 14px; height: 14px; margin-right: 5px; vertical-align: -2px; }
 .toc a[aria-current] .kind-icon { color: currentColor; }
@@ -324,12 +462,11 @@ ul.members li > .kind-icon { margin-right: 4px; }
 .toc a .kind-icon-used .kind-icon { width: 14px; height: 14px; margin: 0; vertical-align: 0; }
 .toc a .kind-badge { width: 10px; height: 10px; }
 .toc a:hover .kind-badge { stroke: var(--code-bg); }
-.toc a[aria-current] .kind-badge { stroke: var(--accent-soft); }
+/* on the current entry, a badge takes the entry's color like its icon, blended toward the highlight */
+.toc a[aria-current] .kind-badge { stroke: var(--accent-soft); fill: color-mix(in srgb, currentColor var(--badge-strength), var(--accent-soft)); }
 
 /* a resource's functions sit closer under it than a section's entries */
 .toc ol ol ol { margin: 0 0 4px 8px; }
-.toc a .k { font-family: var(--mono); font-size: 0.95em; }
-ul.members li[id] { scroll-margin-top: 72px; }
 
 /* a function's modifiers, as badges on the corners of its icon */
 .kind-icon-badged { position: relative; display: inline-block; margin-right: 8px; vertical-align: -3px; line-height: 0; }
@@ -341,17 +478,17 @@ ul.members li[id] { scroll-margin-top: 72px; }
   stroke: var(--bg); stroke-width: 3.2; stroke-linejoin: round; paint-order: stroke;
 }
 .fbadge-static { top: -5px; right: -5px; --mod: var(--n); }
-.fbadge-async { bottom: -5px; right: -5px; --mod: var(--f); }
+.fbadge-async { bottom: -5px; right: -5px; --mod: var(--b); }
 .fbadge-get, .fbadge-set, .fbadge-constructor { bottom: -5px; left: -5px; }
 .fbadge-get, .fbadge-set { --mod: var(--t); }
 .fbadge-constructor { --mod: var(--k); }
-/* a lower left badge needs room before the icon */
-.kind-icon-badged:has(.fbadge-get, .fbadge-set, .fbadge-constructor) { margin-left: 4px; }
+/* a lower left badge hangs into the padding before the icon, rather than pushing the icon and its
+   label out of line with the functions without one */
 .toc a .kind-icon-badged { margin-right: 7px; vertical-align: -2px; }
 .toc a .kind-icon-badged .kind-icon { width: 14px; height: 14px; margin: 0; vertical-align: 0; }
 .toc a .fbadge { width: 10px; height: 10px; }
 .toc a:hover .fbadge { stroke: var(--code-bg); }
-.toc a[aria-current] .fbadge { stroke: var(--accent-soft); }
+.toc a[aria-current] .fbadge { stroke: var(--accent-soft); fill: color-mix(in srgb, currentColor var(--badge-strength), var(--accent-soft)); }
 
 .item .from { margin: -4px 0 6px; font-size: 0.85rem; color: var(--dim); }
 

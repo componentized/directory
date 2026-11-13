@@ -37,5 +37,6 @@
       "version": "0.2.3"
     }
   ],
+  "release": "https://github.com/componentized/cli/releases/tag/v0.1.0",
   "indexed_at": "2026-11-11T23:44:15Z"
 }

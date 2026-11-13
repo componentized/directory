@@ -1,40 +1,60 @@
 {% extends "base.html" %}
-{% from "macros.html" import card %}
+{% from "macros.html" import card, pivot, kind_icon, meta_icon %}
 {% set title = namespace %}
 {% set toc = groups|length > 1 %}
+{#- the version a group lists at first: its repository's latest, or for packages without one,
+    each at its own latest #}
+{% macro selected(g) %}{% for v in g.versions if v.current %}{{ v.version }}{% else %}{{ (g.versions|first).version if g.versions else "" }}{% endfor %}{% endmacro %}
+{% macro listing_of(g) %}{% set sel = selected(g)|string %}{% for v in g.versions if v.version == sel %}{{ v.listing.cards|length }}{% else %}{{ g.listing.cards|length }}{% endfor %}{% endmacro %}
 {% block toc %}
 <ol>
-  {% for g in groups %}<li><a href="#{{ g.key or 'other' }}">{% if g.key %}<code>{{ g.name }}</code>{% else %}Other{% endif %}</a> <span class="dim">{{ g.cards|length }}</span></li>{% endfor %}
+  {% for g in groups %}<li><a href="#{{ g.key or 'other' }}">{% if g.key %}{{ kind_icon("repo") }}<code>{{ g.name }}</code>{% else %}Other{% endif %}</a> <span class="dim">{{ listing_of(g) }}</span></li>{% endfor %}
 </ol>
 {% endblock %}
+{#- the counts of a listing's packages by kind, each by its kind's icon #}
+{% macro counts(l) %}<span class="dim">
+  {%- if l.interfaces %} <span class="count" title="{{ l.interfaces }} interface{% if l.interfaces != 1 %}s{% endif %}">{{ kind_icon("interface") }}{{ l.interfaces }}<span class="visually-hidden"> interface{% if l.interfaces != 1 %}s{% endif %}</span></span>{% endif %}
+  {%- if l.interfaces and l.components %} · {% endif %}
+  {%- if l.components %} <span class="count" title="{{ l.components }} component{% if l.components != 1 %}s{% endif %}">{{ kind_icon("component") }}{{ l.components }}<span class="visually-hidden"> component{% if l.components != 1 %}s{% endif %}</span></span>{% endif %}</span>{% endmacro %}
+{#- fold a long listing after its first two rows, but never hide just one or two cards #}
+{% macro cards(l) %}
+  {% set shown = 6 if l.cards|length > 8 else l.cards|length %}
+  <div class="cards">{% for c in l.cards[:shown] %}{{ card(c, short=true) }}{% endfor %}</div>
+  {% if l.cards|length > shown %}
+  {% set folded = l.cards|length - shown %}
+  <details class="fold">
+    <summary><span class="when-closed">Show {{ folded }} more</span><span class="when-open">Show fewer</span></summary>
+    <div class="cards">{% for c in l.cards[shown:] %}{{ card(c, short=true) }}{% endfor %}</div>
+  </details>
+  {% endif %}
+{% endmacro %}
 {% block main %}
-<h1><code>{{ namespace }}</code></h1>
+<h1>{{ kind_icon("namespace") }}<code>{{ namespace }}</code></h1>
 {% set repos = groups|selectattr("key")|list|length %}
 <p class="dim">{{ count }} package{% if count != 1 %}s{% endif %} from {{ repos }} repositor{% if repos == 1 %}y{% else %}ies{% endif %}</p>
 {% for g in groups %}
 <section class="group" id="{{ g.key or 'other' }}">
+  {% if g.versions %}
+  {#- the packages the repository released together, at the version chosen #}
+  {% set sel = selected(g)|string %}
   <div class="group-head">
-    {% if g.key %}
-    <h2><a href="{{ g.url }}" title="{{ g.key }}"><code>{{ g.name }}</code></a></h2>
-    <span class="dim">v{{ g.version }}</span>
-    {% else %}
-    <h2>Other</h2>
-    <span class="dim">no source repository</span>
-    {% endif %}
-    <span class="dim">·
-      {%- if g.interfaces %} {{ g.interfaces }} interface{% if g.interfaces != 1 %}s{% endif %}{% endif %}
-      {%- if g.interfaces and g.components %},{% endif %}
-      {%- if g.components %} {{ g.components }} component{% if g.components != 1 %}s{% endif %}{% endif %}</span>
+    <h2>{{ kind_icon("repo") }}<code title="{{ g.key }}">{{ g.name }}</code></h2>
+    {{ pivot(sel, g.versions, "version", switch=true) }}
+    {% for v in g.versions %}<span class="group-version" data-version-panel="{{ v.version }}"{% if v.version != sel %} hidden{% endif %}>{{ counts(v.listing) }}</span>{% endfor %}
+    {#- the version's date, commit and release notes, at the end of the heading #}
+    {% for v in g.versions %}<span class="group-version group-details" data-version-panel="{{ v.version }}"{% if v.version != sel %} hidden{% endif %}>
+      {%- if v.date %}<span class="dim" title="Published">{{ meta_icon("date") }}<span class="visually-hidden">published </span><time datetime="{{ v.date }}">{{ v.date }}</time></span>{% endif %}
+      {%- if v.revision %}{% if v.date %} <span class="dim">·</span> {% endif %}{% if v.commit %}<a href="{{ v.commit }}" title="The commit {{ v.version }} was built from">{{ meta_icon("commit") }}<span class="visually-hidden">commit </span><code>{{ v.revision }}</code></a>{% else %}<span title="The commit {{ v.version }} was built from">{{ meta_icon("commit") }}<code>{{ v.revision }}</code></span>{% endif %}{% endif %}
+      {%- if v.release %}{% if v.date or v.revision %} <span class="dim">·</span> {% endif %}<a href="{{ v.release.url }}" title="The GitHub release of {{ v.version }}, {{ v.release.tag }}">{{ meta_icon("notes") }}release notes</a>{% endif %}</span>{% endfor %}
   </div>
-  {#- fold a long group after its first two rows, but never hide just one or two cards #}
-  {% set shown = 6 if g.cards|length > 8 else g.cards|length %}
-  <div class="cards">{% for c in g.cards[:shown] %}{{ card(c, short=true) }}{% endfor %}</div>
-  {% if g.cards|length > shown %}
-  {% set folded = g.cards|length - shown %}
-  <details class="fold">
-    <summary><span class="when-closed">Show {{ folded }} more</span><span class="when-open">Show fewer</span></summary>
-    <div class="cards">{% for c in g.cards[shown:] %}{{ card(c, short=true) }}{% endfor %}</div>
-  </details>
+  {% for v in g.versions %}<div data-version-panel="{{ v.version }}"{% if v.version != sel %} hidden{% endif %}>{{ cards(v.listing) }}</div>{% endfor %}
+  {% else %}
+  <div class="group-head">
+    <h2>{% if g.key %}{{ kind_icon("repo") }}<code title="{{ g.key }}">{{ g.name }}</code>{% else %}Other{% endif %}</h2>
+    {% if not g.key %}<span class="dim">no source repository</span>{% endif %}
+    {{ counts(g.listing) }}
+  </div>
+  {{ cards(g.listing) }}
   {% endif %}
 </section>
 {% endfor %}

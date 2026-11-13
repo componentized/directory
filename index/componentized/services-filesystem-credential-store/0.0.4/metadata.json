@@ -79,5 +79,6 @@
       "version": "0.2.6"
     }
   ],
+  "release": "https://github.com/componentized/services/releases/tag/v0.0.4",
   "indexed_at": "2026-11-11T23:44:52Z"
 }

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "macros.html" import header, links, link, grouped, stability %}
+{% from "macros.html" import header, links, link, world_items, grouped, packages, stability, kind_icon, meta_icon %}
 {% block description %}{{ pkg.description or pkg.id }}{% endblock %}
 {% set toc = true %}
 {% block toc %}
@@ -7,15 +7,17 @@
   {% if docs %}<li><a href="#overview">Overview</a></li>{% endif %}
   {% if pkg.kind == "component" %}<li><a href="#imports">Imports</a></li><li><a href="#exports">Exports</a></li>{% endif %}
   {% if interfaces %}<li><a href="#interfaces">Interfaces</a>
-    <ol>{% for i in interfaces %}<li><a href="{{ i.url }}"><code>{{ i.name }}</code></a></li>{% endfor %}</ol></li>{% endif %}
+    <ol>{% for i in interfaces %}<li><a href="#interface-{{ i.name }}" title="interface {{ i.name }}">{{ kind_icon("interface") }}<code>{{ i.name }}</code></a></li>{% endfor %}</ol></li>{% endif %}
   {% if pkg.kind == "interface" and worlds %}<li><a href="#worlds">Worlds</a>
-    <ol>{% for w in worlds %}<li><a href="#world-{{ w.name }}"><code>{{ w.name }}</code></a></li>{% endfor %}</ol></li>{% endif %}
+    <ol>{% for w in worlds %}<li><a href="#world-{{ w.name }}" title="world {{ w.name }}">{{ kind_icon("world") }}<code>{{ w.name }}</code></a></li>{% endfor %}</ol></li>{% endif %}
   <li><a href="#wit">WIT</a></li>
-  <li><a href="#pull">Pull</a></li>
-  <li><a href="#about">About</a></li>
-  <li><a href="#dependencies">Dependencies</a></li>
-  <li><a href="#dependents">Dependents</a></li>
-  <li><a href="#versions">Versions</a></li>
+  <li class="toc-aside"><a href="#about">About</a></li>
+  {% if not synthetic %}<li class="toc-aside"><a href="#pull">Pull</a></li>{% endif %}
+  {% if debug %}<li class="toc-aside"><a href="#debug">Debug</a></li>{% endif %}
+  {% if pkg.released_with %}<li class="toc-aside"><a href="#released-with">Released with</a></li>{% endif %}
+  <li class="toc-aside"><a href="#dependencies">Dependencies</a></li>
+  <li class="toc-aside"><a href="#dependents">Dependents</a></li>
+  <li class="toc-aside"><a href="#versions">Versions</a></li>
 </ol>
 {% endblock %}
 {% block main %}
@@ -27,9 +29,9 @@
     {% if pkg.kind == "component" %}
     <section id="imports">
       <h2>Imports</h2>
-      {{ links(imports, "This component imports nothing.") }}
+      {{ world_items(imports, "This component imports nothing.") }}
       <h2 id="exports">Exports</h2>
-      {{ links(exports, "This component exports nothing.") }}
+      {{ world_items(exports, "This component exports nothing.") }}
     </section>
     {% endif %}
 
@@ -37,7 +39,7 @@
     <section id="interfaces">
       <h2>Interfaces</h2>
       <ul class="items">
-        {% for i in interfaces %}<li><a href="{{ i.url }}"><code>{{ i.name }}</code></a> {{ stability(i.stability) }}{% if i.summary %}<span class="dim"> — {{ i.summary }}</span>{% endif %}</li>{% endfor %}
+        {% for i in interfaces %}<li id="interface-{{ i.name }}">{{ kind_icon("interface") }}<a href="{{ i.url }}"><code>{{ i.name }}</code></a> {{ stability(i.stability) }}{% if i.summary %}<span class="dim"> — {{ i.summary }}</span>{% endif %}</li>{% endfor %}
       </ul>
     </section>
     {% endif %}
@@ -47,11 +49,11 @@
       <h2>Worlds</h2>
       {% for w in worlds %}
       <div class="world" id="world-{{ w.name }}">
-        <h3><code>{{ w.name }}</code></h3>
+        <h3>{{ kind_icon("world") }}<code>{{ w.name }}</code></h3>
         {% if w.docs %}<div class="docs">{{ w.docs|safe }}</div>{% endif %}
         <div class="two">
-          <div><h4>Imports</h4>{{ links(w.imports) }}</div>
-          <div><h4>Exports</h4>{{ links(w.exports) }}</div>
+          <div><h4>Imports</h4>{{ world_items(w.imports) }}</div>
+          <div><h4>Exports</h4>{{ world_items(w.exports) }}</div>
         </div>
       </div>
       {% endfor %}
@@ -60,37 +62,57 @@
 
     <section id="wit">
       <h2>WIT</h2>
-      <pre class="wit"><code>{{ wit|safe }}</code></pre>
+      <pre class="wit" data-copy data-copy-label="Copy the WIT"><code>{{ wit|safe }}</code></pre>
     </section>
   </div>
 
   <aside>
-    <section id="pull">
-      <h3>Pull</h3>
-      {% if pkg.kind == "interface" %}
-      <pre class="cmd"><code>wkg get {{ pkg.id }}</code></pre>
-      {% endif %}
-      <pre class="cmd"><code>wkg oci pull {{ oci.pinned }}</code></pre>
-      <dl class="facts">
-        <dt>Image</dt><dd><code>{{ oci.reference }}</code></dd>
-        <dt>Digest</dt><dd><code class="digest" title="{{ oci.digest }}">{{ oci.digest }}</code></dd>
-        <dt>Size</dt><dd>{{ oci.size }}</dd>
-        {% if debug %}<dt>Debug build</dt><dd><code>{{ debug.reference }}</code> <span class="dim">{{ debug.size }}</span></dd>{% endif %}
-      </dl>
-    </section>
     <section id="about">
       <h3>About</h3>
       <dl class="facts">
-        <dt>Published</dt><dd>{{ pkg.date }}</dd>
+        <dt>Published</dt><dd><time datetime="{{ pkg.date }}">{{ pkg.date }}</time></dd>
         {% if pkg.license %}<dt>License</dt><dd>{{ pkg.license }}</dd>{% endif %}
         {% if pkg.repository %}<dt>Repository</dt><dd><a href="{{ pkg.repository.url }}">{{ pkg.repository.key }}</a></dd>{% endif %}
-        {% if pkg.source %}<dt>Source</dt><dd><a href="{{ pkg.source }}">{{ pkg.source|replace("https://github.com/", "") }}</a></dd>{% endif %}
-        {% if pkg.revision %}<dt>Revision</dt><dd>{% if pkg.tree %}<a href="{{ pkg.tree }}"><code>{{ pkg.revision }}</code></a>{% else %}<code>{{ pkg.revision }}</code>{% endif %}</dd>{% endif %}
+        {#- the repository's section of its namespace links its source #}
+        {% if pkg.source and not pkg.repository %}<dt>Source</dt><dd><a href="{{ pkg.source }}">{{ pkg.source|replace("https://github.com/", "") }}</a></dd>{% endif %}
+        {% if pkg.release %}<dt>Release</dt><dd><a href="{{ pkg.release.url }}" title="The GitHub release of {{ pkg.version }}"><code>{{ pkg.release.tag }}</code></a></dd>{% endif %}
+        {% if pkg.revision %}<dt>Revision</dt><dd>{% if pkg.commit %}<a href="{{ pkg.commit }}" title="The commit {{ pkg.version }} was built from"><code>{{ pkg.revision }}</code></a>{% else %}<code>{{ pkg.revision }}</code>{% endif %}</dd>{% endif %}
       </dl>
     </section>
+    {% if not synthetic %}
+    <section id="pull">
+      <h3>Pull</h3>
+      {% if pkg.kind == "interface" %}
+      <pre class="cmd" data-copy data-copy-label="Copy the command"><code>wkg get {{ pkg.id }}</code></pre>
+      {% endif %}
+      <pre class="cmd" data-copy data-copy-label="Copy the command"><code>wkg oci pull {{ oci.pinned }}</code></pre>
+      <dl class="facts">
+        <dt>Image</dt><dd><code data-copy data-copy-label="Copy the image">{{ oci.reference }}</code></dd>
+        <dt>Digest</dt><dd><code class="digest" title="{{ oci.digest }}" data-copy data-copy-label="Copy the digest">{{ oci.digest }}</code></dd>
+        <dt>Size</dt><dd><code>{{ oci.size }}</code></dd>
+      </dl>
+    </section>
+    {% if debug %}
+    {#- the debug build of the version, its own image #}
+    <section id="debug">
+      <h3>Debug</h3>
+      <dl class="facts">
+        <dt>Image</dt><dd><code data-copy data-copy-label="Copy the debug image">{{ debug.reference }}</code></dd>
+        <dt>Digest</dt><dd><code class="digest" title="{{ debug.digest }}" data-copy data-copy-label="Copy the debug digest">{{ debug.digest }}</code></dd>
+        <dt>Size</dt><dd><code>{{ debug.size }}</code></dd>
+      </dl>
+    </section>
+    {% endif %}
+    {% endif %}
+    {% if pkg.released_with %}
+    <section id="released-with">
+      <h3>Released with</h3>
+      <ul class="links released-with">{% for r in pkg.released_with %}<li title="{{ r.kind }}">{{ kind_icon(r.kind) }}<a href="{{ r.url }}"><code>{{ r.label }}</code></a></li>{% endfor %}</ul>
+    </section>
+    {% endif %}
     <section id="dependencies">
       <h3>Dependencies</h3>
-      {{ grouped(dependencies) }}
+      {{ packages(dependencies) }}
     </section>
     <section id="dependents">
       <h3>Dependents</h3>
@@ -98,7 +120,11 @@
     </section>
     <section id="versions">
       <h3>Versions</h3>
-      <ul class="links">{% for v in pkg.versions %}<li>{% if v.current %}<strong>{{ v.version }}</strong>{% else %}<a href="{{ v.url }}">{{ v.version }}</a>{% endif %} <span class="dim">{{ v.date }}</span></li>{% endfor %}</ul>
+      {#- each version's whole row is its link, the version on one end and its date on the other #}
+      <ul class="links versions-list">{% for v in pkg.versions %}<li>
+        {%- set row %}<span class="version">{{ v.version }}</span> <span class="dim" title="Published">{{ meta_icon("date") }}<span class="visually-hidden">published </span><time datetime="{{ v.date }}">{{ v.date }}</time></span>{% endset -%}
+        {% if v.current %}<span class="version-row" aria-current="page">{{ row }}</span>{% else %}<a class="version-row" href="{{ v.url }}">{{ row }}</a>{% endif -%}
+      </li>{% endfor %}</ul>
     </section>
   </aside>
 </div>

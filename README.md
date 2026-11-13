@@ -16,8 +16,9 @@ A directory of the Wasm components and WIT interfaces published by the Component
    - A release is immutable, so it is indexed once.
    - A dev tag moves with each build. It is re-indexed whenever its digest changes, until its release is published.
 3. It then indexes the package versions those releases depend on, transitively, even when they are pre-releases, e.g. `wasi:logging@0.1.0-draft`. Each dependency's registry host comes from the wkg config, [`.config/wasm-pkg/config.toml`](.config/wasm-pkg/config.toml). The host's `/.well-known/wasm-pkg/registry.json` then gives the OCI repository, e.g. `wasi` → `wasi.dev` → `ghcr.io/webassembly/wasi/*`. As in wkg, `package_registry_overrides` takes precedence over `namespace_registries`, which takes precedence over `default_registry`. A mapping may also carry the registry metadata inline. To index the dependencies of a new namespace, add its registry to the config.
-4. `directory build` renders the committed index as a static site. Versions are grouped by the repository they're built from, which comes from their `org.opencontainers.image.source` annotation. A repository releases its interface package and components together, with the same version, so `/repos/{owner}/{repo}/{version}/` lists everything the repository released at that version.
-5. The site is built only from the committed index, never from the registry.
+4. `directory build` renders the committed index as a static site. Versions are grouped by the repository they're built from, which comes from their `org.opencontainers.image.source` annotation. A repository releases its interface package and components together, with the same version, so a namespace's page lists each repository's packages at one version, switching between its versions in place, and each package's page links the others its repository released with it.
+5. `directory scan` also links each stable version to the GitHub release of its source repository tagged with the version, `v0.3.1` or else `0.3.1`. When the version records the commit it was built from, the tag must be that commit. A release published after its packages is linked by a later scan.
+6. The site is built only from the committed index, never from the registry.
 
 The id of a WIT package is the package it declares, e.g. `ghcr.io/componentized/logging` holds `componentized:logging`. A component's id comes from its repository path, e.g. `ghcr.io/componentized/logging/levels` is `componentized:logging-levels`.
 
@@ -27,7 +28,7 @@ The index is committed in [`index/`](index), one directory per version:
 
 ```
 index/{namespace}/{name}/{version}/
-  metadata.json   # kind, origin, OCI location and digests, annotations, imports, exports, dependencies
+  metadata.json   # kind, origin, OCI location and digests, annotations, imports, exports, dependencies, GitHub release
   package.wit     # a WIT package, its main package only
   world.wit       # a component's world, its main package only
 ```
@@ -67,6 +68,15 @@ python3 -m http.server -d _site
 ```
 
 `cargo run -- scan --help` lists the other options, e.g. `--config` for a different wkg config.
+
+## Samples
+
+[`samples/`](samples) holds synthetic packages, laid out like the index, that exercise every WIT feature and keyword so the site's rendering of each can be checked: the `kitchen-sink` namespace, at [`/kitchen-sink/`](https://directory.componentized.dev/kitchen-sink/). They aren't published to any registry.
+
+- Their `metadata.json` has `"origin": "synthetic"`. A component's imports and exports are derived from its WIT at build time, so its metadata needn't list them.
+- `directory build` renders their pages apart from the index's: no page of the index lists, counts, searches or links them, while their own pages link each other. Each page notes it's a synthetic sample, is kept out of search engines and has no pull commands.
+- A sample must be synthetic and keep to a namespace the index doesn't hold, and the index can't hold a synthetic version; the build fails otherwise.
+- `scan` never reads them. `--samples` builds from another directory.
 
 ## Workflows
 

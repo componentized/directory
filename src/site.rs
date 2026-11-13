@@ -151,14 +151,6 @@ struct Repo {
 }
 
 impl Repo {
-    fn url(&self) -> String {
-        format!("/repos/{}/", self.key)
-    }
-
-    fn version_url(&self, version: &str) -> String {
-        format!("/repos/{}/{version}/", self.key)
-    }
-
     /// A dev version is superseded once the repository releases its version.
     fn superseded(&self, version: &str) -> bool {
         version::release_of(version)
@@ -174,21 +166,20 @@ impl Repo {
     }
 }
 
-pub fn build(root: &Path, out: &Path, base_url: &str) -> Result<()> {
-    let mut entries = Vec::new();
+pub fn build(root: &Path, samples: &Path, out: &Path, base_url: &str) -> Result<()> {
     let stored = data::load(root)?;
-    let loader = Loader::new(&stored);
-    for (index, stored) in stored.iter().enumerate() {
-        let (resolve, pkg) = loader.resolve(index)?;
-        entries.push(Entry {
-            meta: stored.metadata.clone(),
-            nested: resolve::has_nested(&stored.wit),
-            resolve,
-            pkg,
-        });
+    if let Some(sample) = stored
+        .iter()
+        .find(|s| s.metadata.origin == Origin::Synthetic)
+    {
+        bail!(
+            "{} is synthetic, it belongs in the samples rather than the index",
+            sample.dir.display()
+        );
     }
     let updated = last_indexed(stored.iter().map(|s| s.metadata.indexed_at.as_str()));
-    let site = Site::new(entries);
+    let site = Site::new(entries(&stored)?);
+    let samples = load_samples(samples, &site)?;
 
     prepare(out)?;
     let mut env = environment()?;
@@ -213,6 +204,9 @@ pub fn build(root: &Path, out: &Path, base_url: &str) -> Result<()> {
             search => fingerprint(include_str!("../static/search.js")),
             theme => fingerprint(include_str!("../static/theme.js")),
             toc => fingerprint(include_str!("../static/toc.js")),
+            pivot => fingerprint(include_str!("../static/pivot.js")),
+            head => fingerprint(include_str!("../static/head.js")),
+            copy => fingerprint(include_str!("../static/copy.js")),
         },
     );
 
@@ -229,6 +223,9 @@ pub fn build(root: &Path, out: &Path, base_url: &str) -> Result<()> {
     write_file(out, "search.js", include_str!("../static/search.js"))?;
     write_file(out, "theme.js", include_str!("../static/theme.js"))?;
     write_file(out, "toc.js", include_str!("../static/toc.js"))?;
+    write_file(out, "pivot.js", include_str!("../static/pivot.js"))?;
+    write_file(out, "head.js", include_str!("../static/head.js"))?;
+    write_file(out, "copy.js", include_str!("../static/copy.js"))?;
     write_file(out, "search.json", &serde_json::to_string(&site.search())?)?;
     write_file(
         out,
@@ -245,26 +242,79 @@ pub fn build(root: &Path, out: &Path, base_url: &str) -> Result<()> {
         "404.html",
         &env.get_template("404.html")?.render(ctx! {})?,
     )?;
-    write_file(
-        out,
-        "repos/index.html",
-        &env.get_template("repos.html")?.render(site.repos_page())?,
-    )?;
-    for repo in site.repos.values() {
-        for (at, (version, _)) in repo.versions.iter().enumerate() {
-            let page = env
-                .get_template("repo.html")?
-                .render(site.repo_page(repo, at))?;
-            write_file(
-                out,
-                &format!("{}index.html", repo.version_url(version)),
-                &page,
-            )?;
-            if at == repo.latest() {
-                write_file(out, &format!("{}index.html", repo.url()), &page)?;
-            }
+    render_packages(&site, &env, out)?;
+    eprintln!(
+        "rendered {} packages, {} versions to {}",
+        site.packages.len(),
+        site.entries.len(),
+        out.display()
+    );
+    if let Some(samples) = samples {
+        // the samples are a site of their own, so the index's pages never list, count or link
+        // them, while their pages are published like any other
+        let mut env = env.clone();
+        env.add_global("synthetic", true);
+        render_packages(&samples, &env, out)?;
+        eprintln!(
+            "rendered {} synthetic sample packages, {} versions",
+            samples.packages.len(),
+            samples.entries.len()
+        );
+    }
+    Ok(())
+}
+
+/// Resolves each stored version for rendering.
+fn entries(stored: &[data::Stored]) -> Result<Vec<Entry>> {
+    let loader = Loader::new(stored);
+    let mut entries = Vec::new();
+    for (index, stored) in stored.iter().enumerate() {
+        let (resolve, pkg) = loader.resolve(index)?;
+        entries.push(Entry {
+            meta: stored.metadata.clone(),
+            nested: resolve::has_nested(&stored.wit),
+            resolve,
+            pkg,
+        });
+    }
+    Ok(entries)
+}
+
+/// Loads the synthetic samples as a site of their own, `None` when there are none.
+fn load_samples(dir: &Path, site: &Site) -> Result<Option<Site>> {
+    let stored = data::load(dir)?;
+    if stored.is_empty() {
+        return Ok(None);
+    }
+    for sample in &stored {
+        if sample.metadata.origin != Origin::Synthetic {
+            bail!(
+                "{} is in the samples, but its origin isn't synthetic",
+                sample.dir.display()
+            );
+        }
+        let namespace = data::split_id(&sample.metadata.package).map_or("", |(ns, _)| ns);
+        if site.entries.iter().any(|e| e.namespace() == namespace) {
+            bail!(
+                "{} is in the {namespace} namespace, which the index holds as well",
+                sample.dir.display()
+            );
         }
     }
+    let mut entries = entries(&stored)?;
+    // a component's imports and exports come from its WIT, as a scan derives them for the index
+    for entry in &mut entries {
+        if entry.meta.kind == Kind::Component {
+            let (imports, exports) = decode::component_items(&entry.resolve, entry.pkg)?;
+            entry.meta.imports = imports;
+            entry.meta.exports = exports;
+        }
+    }
+    Ok(Some(Site::new(entries)))
+}
+
+/// Renders the page of each namespace, package version and interface of a site.
+fn render_packages(site: &Site, env: &Environment, out: &Path) -> Result<()> {
     for (namespace, ctx) in site.namespaces() {
         write_file(
             out,
@@ -292,12 +342,6 @@ pub fn build(root: &Path, out: &Path, base_url: &str) -> Result<()> {
             }
         }
     }
-    eprintln!(
-        "rendered {} packages, {} versions to {}",
-        site.packages.len(),
-        site.entries.len(),
-        out.display()
-    );
     Ok(())
 }
 
@@ -368,26 +412,75 @@ fn environment() -> Result<Environment<'static>> {
             include_str!("../templates/interface.html"),
         ),
         ("404.html", include_str!("../templates/404.html")),
-        ("repos.html", include_str!("../templates/repos.html")),
-        ("repo.html", include_str!("../templates/repo.html")),
     ] {
         env.add_template(name, source)?;
     }
     Ok(env)
 }
 
-fn markdown(src: &str) -> String {
+/// Renders markdown docs that sit under a heading of the page at level `under`, e.g. 3 for the docs
+/// of a type under its `<h3>`. Their headings are moved to fit under it: the docs' top level
+/// becomes `under + 1`, the levels below it follow, and none goes deeper than `<h6>`. The WASI
+/// docs, e.g., start a function's "Typical errors" with an `<h1>`.
+fn markdown(src: &str, under: usize) -> String {
+    use pulldown_cmark::{Event, HeadingLevel, Tag, TagEnd};
+    let events: Vec<_> = pulldown_cmark::Parser::new(src).collect();
+    let top = events
+        .iter()
+        .filter_map(|event| match event {
+            Event::Start(Tag::Heading { level, .. }) => Some(*level as usize),
+            _ => None,
+        })
+        .min();
+    let fit = |level: HeadingLevel| -> HeadingLevel {
+        let top = top.unwrap_or(level as usize);
+        HeadingLevel::try_from((level as usize - top + under + 1).min(6)).unwrap_or(level)
+    };
+    let events = events.into_iter().map(|event| match event {
+        Event::Start(Tag::Heading {
+            level,
+            id,
+            classes,
+            attrs,
+        }) => Event::Start(Tag::Heading {
+            level: fit(level),
+            id,
+            classes,
+            attrs,
+        }),
+        Event::End(TagEnd::Heading(level)) => Event::End(TagEnd::Heading(fit(level))),
+        event => event,
+    });
     let mut html = String::new();
-    pulldown_cmark::html::push_html(&mut html, pulldown_cmark::Parser::new(src));
+    pulldown_cmark::html::push_html(&mut html, events);
     html
 }
 
-fn docs(docs: &wit_parser::Docs) -> String {
-    docs.contents.as_deref().map(markdown).unwrap_or_default()
+/// Renders docs that sit under a heading of the page at level `under`, see [`markdown`].
+fn docs(docs: &wit_parser::Docs, under: usize) -> String {
+    docs.contents
+        .as_deref()
+        .map(|src| markdown(src, under))
+        .unwrap_or_default()
 }
 
 fn summary(src: &str) -> String {
     src.split("\n\n").next().unwrap_or("").replace('\n', " ")
+}
+
+/// The page of a commit of a repository on GitHub, e.g.
+/// `https://github.com/componentized/cli/commit/465de9402d6d…`. `None` for another host, whose
+/// commit pages differ.
+fn commit_url(web: &str, revision: &str) -> Option<String> {
+    web.starts_with("https://github.com/")
+        .then(|| format!("{web}/commit/{revision}"))
+}
+
+/// A link to a GitHub release, labeled with its tag, e.g. `v0.3.1` for
+/// `https://github.com/componentized/logging/releases/tag/v0.3.1`.
+fn release_link(url: &str) -> minijinja::Value {
+    let tag = url.rsplit_once("/tag/").map_or(url, |(_, tag)| tag);
+    ctx! { url, tag }
 }
 
 /// The versions of one package, e.g. the dependents `componentized:logging-levels@0.3.1` and
@@ -395,6 +488,8 @@ fn summary(src: &str) -> String {
 #[derive(Serialize, Debug, PartialEq)]
 struct VersionGroup {
     package: String,
+    /// The kind its icon shows, `interface`, `component` or `world`, set by [`Site::grouped`].
+    kind: &'static str,
     /// Each version, labeled with the version alone, newest first.
     versions: Vec<Link>,
 }
@@ -415,6 +510,7 @@ fn group_versions(links: Vec<Link>) -> Vec<VersionGroup> {
             Some(group) => group.versions.push(versioned),
             None => groups.push(VersionGroup {
                 package,
+                kind: "",
                 versions: vec![versioned],
             }),
         }
@@ -469,8 +565,16 @@ struct RepoCard {
 struct WorldView {
     name: String,
     docs: String,
-    imports: Vec<Link>,
-    exports: Vec<Link>,
+    imports: Vec<WorldItemLink>,
+    exports: Vec<WorldItemLink>,
+}
+
+/// An item a world imports or exports, with the kind its icon shows: `interface` or `func`.
+#[derive(Serialize)]
+struct WorldItemLink {
+    #[serde(flatten)]
+    link: Link,
+    kind: &'static str,
 }
 
 #[derive(Serialize)]
@@ -480,6 +584,19 @@ struct InterfaceSummary {
     summary: String,
     url: String,
     stability: Option<StabilityView>,
+}
+
+/// A choice in a breadcrumb's menu, e.g. another package of the namespace.
+#[derive(Serialize)]
+struct Pivot {
+    label: String,
+    url: String,
+    current: bool,
+    /// What the menu notes beside the label, e.g. a namespace's package count.
+    note: Option<String>,
+    /// The kind of the choice the menu shows by its icon, e.g. `namespace`, `interface` or
+    /// `component`.
+    kind: Option<&'static str>,
 }
 
 #[derive(Serialize)]
@@ -707,12 +824,25 @@ impl Site {
         self.repos.get(&key)
     }
 
+    /// Where a repository is listed: its section of its namespace's page, e.g.
+    /// `/componentized/#componentized/cli`. A repository's packages share a namespace.
+    fn repo_url(&self, repo: &Repo) -> String {
+        let namespace = repo
+            .versions
+            .iter()
+            .flat_map(|(_, members)| members)
+            .map(|i| self.entries[*i].namespace())
+            .next()
+            .unwrap_or_default();
+        format!("/{namespace}/#{}", repo.key)
+    }
+
     fn repo_card(&self, repo: &Repo) -> RepoCard {
         let (version, members) = &repo.versions[repo.latest()];
         let lead = &self.entries[members[0]];
         RepoCard {
             key: repo.key.clone(),
-            url: repo.url(),
+            url: self.repo_url(repo),
             version: version.clone(),
             description: lead.description(),
             interfaces: members
@@ -742,66 +872,6 @@ impl Site {
             .collect()
     }
 
-    fn repos_page(&self) -> minijinja::Value {
-        ctx! { repos => self.repo_cards() }
-    }
-
-    fn repo_page(&self, repo: &Repo, at: usize) -> minijinja::Value {
-        let (version, members) = &repo.versions[at];
-        let cards = |kind: Kind| -> Vec<Card> {
-            members
-                .iter()
-                .filter(|i| self.entries[**i].meta.kind == kind)
-                .map(|i| self.card(*i))
-                .collect()
-        };
-        let versions: Vec<_> = repo
-            .versions
-            .iter()
-            .enumerate()
-            // a superseded dev version is listed only on its own page
-            .filter(|(i, (v, _))| *i == at || !repo.superseded(v))
-            .map(|(i, (v, members))| VersionLink {
-                version: v.clone(),
-                url: repo.version_url(v),
-                current: i == at,
-                stable: version::stable(v).is_some(),
-                date: members
-                    .iter()
-                    .map(|m| self.entries[*m].date())
-                    .min()
-                    .unwrap_or_default(),
-            })
-            .collect();
-        let lead = &self.entries[members[0]].meta;
-        let revision = lead
-            .annotation("revision")
-            .map(|r| r.trim_end_matches("+dirty").to_string());
-        let release = version::release_of(version)
-            .filter(|release| repo.versions.iter().any(|(v, _)| v == release))
-            .map(|release| ctx! { version => release, url => repo.version_url(&release) });
-        ctx! {
-            title => format!("{}@{version}", repo.key),
-            canonical => repo.version_url(version),
-            noindex => release.is_some(),
-            repo => ctx! {
-                key => repo.key,
-                url => repo.url(),
-                web => repo.web,
-                version,
-                stable => version::stable(version).is_some(),
-                dev => version::dev(version).is_some(),
-                superseded_by => release,
-                date => versions.iter().find(|v| v.current).map(|v| v.date.clone()),
-                revision => revision.as_ref().map(|r| r.chars().take(12).collect::<String>()),
-                tree => revision.as_ref().map(|r| format!("{}/tree/{r}", repo.web)),
-                versions,
-            },
-            interfaces => cards(Kind::Interface),
-            components => cards(Kind::Component),
-        }
-    }
-
     fn listed(&self, index: usize) -> bool {
         self.superseded_by[index].is_none()
     }
@@ -820,6 +890,17 @@ impl Site {
         Link {
             label: item.to_string(),
             url: decode::interface_of(item).and_then(|id| self.interface_urls.get(id).cloned()),
+        }
+    }
+
+    fn world_item_link(&self, item: &str) -> WorldItemLink {
+        WorldItemLink {
+            link: self.interface_link(item),
+            kind: if item.ends_with(": func") {
+                "func"
+            } else {
+                "interface"
+            },
         }
     }
 
@@ -941,15 +1022,32 @@ impl Site {
                 // the packages without a known repository last
                 let mut groups: Vec<_> = groups.into_iter().collect();
                 groups.sort_by_key(|(key, _)| (key.is_none(), key.clone()));
+                // the interface packages, then the components, by name
+                let ordered = |mut members: Vec<usize>| -> Vec<usize> {
+                    members.sort_by(|a, b| {
+                        let (a, b) = (&self.entries[*a].meta, &self.entries[*b].meta);
+                        (a.kind != Kind::Interface, &a.package)
+                            .cmp(&(b.kind != Kind::Interface, &b.package))
+                    });
+                    members
+                };
+                // the packages a group lists, as cards with their counts by kind
+                let listing = |members: &[usize]| {
+                    let count = |kind| {
+                        members
+                            .iter()
+                            .filter(|i| self.entries[**i].meta.kind == kind)
+                            .count()
+                    };
+                    ctx! {
+                        interfaces => count(Kind::Interface),
+                        components => count(Kind::Component),
+                        cards => members.iter().map(|i| self.card(*i)).collect::<Vec<_>>(),
+                    }
+                };
                 let groups: Vec<_> = groups
                     .into_iter()
-                    .map(|(key, mut members)| {
-                        // the interface packages, then the components, by name
-                        members.sort_by(|a, b| {
-                            let (a, b) = (&self.entries[*a].meta, &self.entries[*b].meta);
-                            (a.kind != Kind::Interface, &a.package)
-                                .cmp(&(b.kind != Kind::Interface, &b.package))
-                        });
+                    .map(|(key, members)| {
                         let repo = key.as_ref().and_then(|key| self.repos.get(key));
                         // the repository's name, without the namespace when the namespace owns it,
                         // e.g. `cli` for `componentized/cli` in `componentized`
@@ -958,14 +1056,62 @@ impl Site {
                                 .unwrap_or(key)
                                 .to_string()
                         });
+                        // a repository lists the packages it released together at one version,
+                        // the latest at first, switching to each other version it released
+                        // packages of this namespace at. A superseded dev version is left out, as
+                        // it is on the repository's page.
+                        let versions: Vec<_> = repo
+                            .map(|repo| {
+                                let latest = repo.latest();
+                                repo.versions
+                                    .iter()
+                                    .enumerate()
+                                    .filter(|(i, (v, _))| *i == latest || !repo.superseded(v))
+                                    .filter_map(|(i, (version, members))| {
+                                        let members: Vec<usize> = members
+                                            .iter()
+                                            .copied()
+                                            .filter(|m| self.entries[*m].namespace() == namespace)
+                                            .collect();
+                                        if members.is_empty() {
+                                            return None;
+                                        }
+                                        let date = members
+                                            .iter()
+                                            .map(|m| self.entries[*m].date())
+                                            .min()
+                                            .unwrap_or_default();
+                                        // the commit the version was built from
+                                        let revision = self.entries[members[0]]
+                                            .meta
+                                            .annotation("revision")
+                                            .map(|r| r.trim_end_matches("+dirty").to_string());
+                                        Some(ctx! {
+                                            version,
+                                            // without scripts, a version is chosen from the
+                                            // repository's section
+                                            url => self.repo_url(repo),
+                                            current => i == latest,
+                                            date,
+                                            revision => revision.as_ref().map(|r| r.chars().take(7).collect::<String>()),
+                                            release => members
+                                                .iter()
+                                                .find_map(|m| self.entries[*m].meta.release.as_deref())
+                                                .map(release_link),
+                                            commit => revision.as_ref().and_then(|r| commit_url(&repo.web, r)),
+                                            listing => listing(&ordered(members)),
+                                        })
+                                    })
+                                    .collect()
+                            })
+                            .unwrap_or_default();
+                        // the packages without a repository each at their own latest version
+                        let listing = listing(&ordered(members));
                         ctx! {
                             key,
                             name,
-                            url => repo.map(Repo::url),
-                            version => repo.map(|repo| repo.versions[repo.latest()].0.clone()),
-                            interfaces => members.iter().filter(|i| self.entries[**i].meta.kind == Kind::Interface).count(),
-                            components => members.iter().filter(|i| self.entries[**i].meta.kind == Kind::Component).count(),
-                            cards => members.into_iter().map(|i| self.card(i)).collect::<Vec<_>>(),
+                            versions,
+                            listing,
                         }
                     })
                     .collect();
@@ -993,15 +1139,141 @@ impl Site {
             .collect()
     }
 
+    /// Each namespace, to switch to from a breadcrumb.
+    fn namespace_pivots(&self, current: &str) -> Vec<Pivot> {
+        self.namespace_counts()
+            .into_iter()
+            .map(|(namespace, count)| Pivot {
+                url: format!("/{namespace}/"),
+                current: namespace == current,
+                note: Some(format!(
+                    "{count} package{}",
+                    if count == 1 { "" } else { "s" }
+                )),
+                label: namespace,
+                kind: Some("namespace"),
+            })
+            .collect()
+    }
+
+    /// The packages of a version's namespace, to switch to from a breadcrumb.
+    fn package_pivots(&self, index: usize) -> Vec<Pivot> {
+        let entry = &self.entries[index];
+        self.packages
+            .iter()
+            .filter_map(|(package, indexes)| {
+                let latest = &self.entries[*self.latest(indexes)?];
+                (latest.namespace() == entry.namespace()).then(|| Pivot {
+                    label: latest.name().to_string(),
+                    url: latest.package_url(),
+                    current: *package == entry.meta.package,
+                    note: None,
+                    kind: Some(match latest.meta.kind {
+                        Kind::Interface => "interface",
+                        Kind::Component => "component",
+                    }),
+                })
+            })
+            .collect()
+    }
+
+    /// Groups `package@version` links by package, as [`group_versions`] does, with the kind of
+    /// each: a world of a WIT package is labeled by its path, e.g. `wasi:http/proxy`, an indexed
+    /// package has its own kind, and a package that isn't indexed is a dependency, a WIT package.
+    fn grouped(&self, links: Vec<Link>) -> Vec<VersionGroup> {
+        let mut groups = group_versions(links);
+        for group in &mut groups {
+            group.kind = self.kind_of(&group.package);
+        }
+        groups
+    }
+
+    /// The kind of a package, or of a world labeled by its path, e.g. `wasi:http/proxy`, for its
+    /// icon. A package that isn't indexed is a dependency, a WIT package.
+    fn kind_of(&self, package: &str) -> &'static str {
+        if package.contains('/') {
+            return "world";
+        }
+        match self
+            .packages
+            .get(package)
+            .and_then(|indexes| indexes.first())
+            .map(|i| self.entries[*i].meta.kind)
+        {
+            Some(Kind::Component) => "component",
+            _ => "interface",
+        }
+    }
+
+    /// `package@version` links, each with the kind of its package, by label.
+    fn listed_packages(&self, mut links: Vec<Link>) -> Vec<minijinja::Value> {
+        links.sort();
+        links
+            .into_iter()
+            .map(|link| {
+                let package = link
+                    .label
+                    .rsplit_once('@')
+                    .map_or(link.label.as_str(), |(package, _)| package);
+                ctx! { kind => self.kind_of(package), label => link.label, url => link.url }
+            })
+            .collect()
+    }
+
+    /// The other packages the repository of a version released with it, at the same version.
+    fn released_with(&self, index: usize) -> Vec<Pivot> {
+        let entry = &self.entries[index];
+        let Some(repo) = self.repo_of(index) else {
+            return Vec::new();
+        };
+        repo.versions
+            .iter()
+            .find(|(version, _)| *version == entry.meta.version)
+            .map(|(_, members)| {
+                let mut others: Vec<usize> =
+                    members.iter().copied().filter(|i| *i != index).collect();
+                // the interface packages, then the components, by name
+                others.sort_by(|a, b| {
+                    let (a, b) = (&self.entries[*a].meta, &self.entries[*b].meta);
+                    (a.kind != Kind::Interface, &a.package)
+                        .cmp(&(b.kind != Kind::Interface, &b.package))
+                });
+                others
+                    .into_iter()
+                    .map(|i| {
+                        let other = &self.entries[i];
+                        Pivot {
+                            label: other.meta.package.clone(),
+                            url: other.url(),
+                            current: false,
+                            note: None,
+                            kind: Some(match other.meta.kind {
+                                Kind::Interface => "interface",
+                                Kind::Component => "component",
+                            }),
+                        }
+                    })
+                    .collect()
+            })
+            .unwrap_or_default()
+    }
+
     fn header(&self, index: usize) -> minijinja::Value {
         let entry = &self.entries[index];
         let meta = &entry.meta;
         let source = meta
             .annotation("source")
             .map(|s| s.trim_end_matches(".git").to_string());
-        let revision = meta
+        let full_revision = meta
             .annotation("revision")
-            .map(|r| r.chars().take(12).collect::<String>());
+            .map(|r| r.trim_end_matches("+dirty"));
+        let revision = full_revision.map(|r| r.chars().take(12).collect::<String>());
+        // the commit the version was built from, on GitHub, else the source's own link to it
+        let commit = entry
+            .repository()
+            .zip(full_revision)
+            .and_then(|((_, web), revision)| commit_url(&web, revision))
+            .or_else(|| meta.annotation("url").map(str::to_string));
         ctx! {
             id => entry.id(),
             package => meta.package,
@@ -1022,13 +1294,17 @@ impl Site {
             date => entry.date(),
             license => meta.annotation("licenses"),
             source,
-            tree => meta.annotation("url"),
+            commit,
             repository => self.repo_of(index).map(|repo| ctx! {
                 key => repo.key,
-                url => repo.version_url(&meta.version),
+                url => self.repo_url(repo),
             }),
+            released_with => self.released_with(index),
+            release => meta.release.as_ref().map(|url| release_link(url)),
             revision,
             versions => self.versions(index),
+            namespaces => self.namespace_pivots(entry.namespace()),
+            packages => self.package_pivots(index),
         }
     }
 
@@ -1038,10 +1314,10 @@ impl Site {
         let resolve = &entry.resolve;
         let package = &resolve.packages[entry.pkg];
 
-        let world_items = |items: &wit_parser::IndexMap<WorldKey, WorldItem>| -> Result<Vec<Link>> {
+        let world_items = |items: &wit_parser::IndexMap<WorldKey, WorldItem>| -> Result<Vec<_>> {
             Ok(decode::world_items(resolve, items)
                 .iter()
-                .map(|item| self.interface_link(item))
+                .map(|item| self.world_item_link(item))
                 .collect())
         };
         let mut worlds = Vec::new();
@@ -1049,7 +1325,7 @@ impl Site {
             let world = &resolve.worlds[*id];
             worlds.push(WorldView {
                 name: name.clone(),
-                docs: docs(&world.docs),
+                docs: docs(&world.docs, 3),
                 imports: world_items(&world.imports)?,
                 exports: world_items(&world.exports)?,
             });
@@ -1073,12 +1349,12 @@ impl Site {
         let imports: Vec<_> = meta
             .imports
             .iter()
-            .map(|i| self.interface_link(i))
+            .map(|i| self.world_item_link(i))
             .collect();
         let exports: Vec<_> = meta
             .exports
             .iter()
-            .map(|i| self.interface_link(i))
+            .map(|i| self.world_item_link(i))
             .collect();
         let dependencies: Vec<_> = meta
             .dependencies
@@ -1094,6 +1370,7 @@ impl Site {
             ctx! {
                 reference => debug.reference(),
                 pinned => debug.pinned(),
+                digest => debug.digest,
                 size => human_size(debug.size),
             }
         });
@@ -1102,7 +1379,8 @@ impl Site {
             title => entry.id(),
             canonical => entry.url(),
             pkg => self.header(index),
-            docs => docs(&package.docs),
+            // the overview sits beside the page's h2 sections, as one of its own
+            docs => docs(&package.docs, 2),
             oci => ctx! {
                 reference => meta.oci.reference(),
                 pinned => meta.oci.pinned(),
@@ -1114,8 +1392,10 @@ impl Site {
             interfaces,
             imports,
             exports,
-            dependencies => group_versions(dependencies),
-            dependents => group_versions(dependents),
+            // a version depends on one version of a package, or now and then on two, e.g. of
+            // `wasi:io`, each listed as it is
+            dependencies => self.listed_packages(dependencies),
+            dependents => self.grouped(dependents),
             wit => wit_html::package(resolve, entry.pkg, entry.nested)?,
         })
     }
@@ -1143,6 +1423,9 @@ impl Site {
 
         // a function, a freestanding one or one of a resource
         let func_member = |func: &wit_parser::Function| {
+            // a freestanding function's docs are under its h3, a resource's function is a member
+            // under the resource's h3
+            let under = if func.kind.resource().is_some() { 4 } else { 3 };
             let role = match func.kind {
                 FunctionKind::Constructor(_) => Some("constructor"),
                 FunctionKind::Static(_) | FunctionKind::AsyncStatic(_) => Some("static"),
@@ -1156,7 +1439,7 @@ impl Site {
                     _ => func.item_name().to_string(),
                 },
                 ty: wit_html::signature(resolve, func, &link),
-                docs: docs(&func.docs),
+                docs: docs(&func.docs, under),
                 stability: stability(&func.stability),
                 role,
                 modifiers: wit_html::modifiers(&func.kind),
@@ -1188,7 +1471,8 @@ impl Site {
                 ty: ty
                     .map(|ty| wit_html::type_ref(resolve, ty, &link))
                     .unwrap_or_default(),
-                docs: docs(d),
+                // under the member of a type under its h3
+                docs: docs(d, 4),
                 stability: None,
                 role: None,
                 modifiers: Vec::new(),
@@ -1276,9 +1560,9 @@ impl Site {
                         kind: "use",
                         used_kind: Some(used_kind),
                         // the docs of the use, or else those of the type it uses
-                        docs: match docs(&def.docs) {
+                        docs: match docs(&def.docs, 3) {
                             local if !local.is_empty() => local,
-                            _ => docs(&origin_def.docs),
+                            _ => docs(&origin_def.docs, 3),
                         },
                         stability: stability(&def.stability),
                         members,
@@ -1296,7 +1580,7 @@ impl Site {
                         name: type_name.clone(),
                         kind,
                         used_kind: None,
-                        docs: docs(&def.docs),
+                        docs: docs(&def.docs, 3),
                         stability: stability(&def.stability),
                         members,
                         functions: resource_functions(*type_id),
@@ -1314,7 +1598,34 @@ impl Site {
             iface => ctx! {
                 name,
                 id => iid,
-                docs => docs(&iface.docs),
+                // the other interfaces of the version, and this interface in each other version,
+                // or that version's page when it doesn't have the interface
+                siblings => entry
+                    .interfaces()
+                    .into_iter()
+                    .map(|(other, _, _)| Pivot {
+                        label: other.to_string(),
+                        url: format!("{}{other}/", entry.url()),
+                        current: other == name,
+                        note: None,
+                        kind: Some("interface"),
+                    })
+                    .collect::<Vec<_>>(),
+                versions => self
+                    .versions(index)
+                    .into_iter()
+                    .map(|mut version| {
+                        let has = self.packages[&entry.meta.package].iter().any(|i| {
+                            self.entries[*i].meta.version == version.version
+                                && self.entries[*i].interfaces().iter().any(|(n, _, _)| *n == name)
+                        });
+                        if has {
+                            version.url = format!("{}{name}/", version.url);
+                        }
+                        version
+                    })
+                    .collect::<Vec<_>>(),
+                docs => docs(&iface.docs, 2),
                 stability => stability(&iface.stability),
                 types,
                 functions,
@@ -1329,8 +1640,8 @@ impl Site {
                         .collect(),
                 )?,
             },
-            imported_by => group_versions(self.imported_by.get(&iid).cloned().unwrap_or_default()),
-            exported_by => group_versions(self.exported_by.get(&iid).cloned().unwrap_or_default()),
+            imported_by => self.grouped(self.imported_by.get(&iid).cloned().unwrap_or_default()),
+            exported_by => self.grouped(self.exported_by.get(&iid).cloned().unwrap_or_default()),
         })
     }
 }
@@ -1360,6 +1671,7 @@ mod tests {
             imports: Vec::new(),
             exports: Vec::new(),
             dependencies: Vec::new(),
+            release: None,
             indexed_at: "2026-11-11T00:00:00Z".to_string(),
         }
     }
@@ -1368,7 +1680,7 @@ mod tests {
     fn renders_cross_links() {
         let root = std::env::temp_dir().join(format!("directory-site-test-{}", std::process::id()));
         let _ = std::fs::remove_dir_all(&root);
-        let logging = "package wasi:logging@0.1.0-draft;\n\ninterface logging {\n  /// A level.\n  enum level { info, warn }\n  @since(version = 0.0.1)\n  @deprecated(version = 0.0.2)\n  log: func(level: level, message: string);\n  @unstable(feature = tracing)\n  trace: func(message: string);\n}\n\ninterface consumer {\n  use logging.{level};\n}\n";
+        let logging = "package wasi:logging@0.1.0-draft;\n\ninterface logging {\n  /// A level.\n  enum level { info, warn }\n  @since(version = 0.0.1)\n  @deprecated(version = 0.0.2)\n  log: func(level: level, message: string);\n  @unstable(feature = tracing)\n  trace: func(message: string);\n}\n\ninterface consumer {\n  use logging.{level};\n}\n\nworld app {\n  import logging;\n  export run: func();\n}\n";
         data::write(
             &root,
             &metadata(
@@ -1390,6 +1702,11 @@ mod tests {
             "org.opencontainers.image.source".to_string(),
             "https://github.com/example/to.git".to_string(),
         );
+        component.release = Some("https://github.com/example/to/releases/tag/v0.1.0".to_string());
+        component.annotations.insert(
+            "org.opencontainers.image.revision".to_string(),
+            "0123456789abcdef0123456789abcdef01234567".to_string(),
+        );
         component.imports = vec!["wasi:logging/logging@0.1.0-draft".to_string()];
         component.exports = vec!["wasi:logging/logging@0.1.0-draft".to_string()];
         component.dependencies = vec![Dependency {
@@ -1408,12 +1725,13 @@ mod tests {
         }
 
         let out = root.join("_site");
-        build(&root, &out, "https://example.com").unwrap();
+        build(&root, &root.join("no-samples"), &out, "https://example.com").unwrap();
         let read = |path: &str| std::fs::read_to_string(out.join(path)).unwrap();
 
         let iface = read("wasi/logging/0.1.0-draft/logging/index.html");
         assert!(
-            iface.contains("<summary><code>example:to-stdout</code>"),
+            iface
+                .contains(r##"<use href="#kind-component"/></svg><code>example:to-stdout</code>"##),
             "imported by the component"
         );
         assert!(iface.contains("A level."));
@@ -1432,6 +1750,13 @@ mod tests {
             "the cases of the used enum"
         );
         assert!(consumer.contains(r#"<p class="from">from"#));
+        // a world's imports and exports show the icon of their kind
+        let package = read("wasi/logging/0.1.0-draft/index.html");
+        assert!(
+            package.contains(r##"<li title="interface"><svg class="kind-icon kind-interface""##)
+        );
+        assert!(package.contains(r##"<li title="func"><svg class="kind-icon kind-func""##));
+        assert!(package.contains(r##"<use href="#kind-world"/>"##));
         // a type in a signature links to its definition on the page
         assert_eq!(
             iface
@@ -1454,6 +1779,14 @@ mod tests {
         );
         assert!(read("search.json").contains("example:to-stdout"));
 
+        // a namespace lists a repository's packages at one version, the latest at first, and
+        // switches in place to each other version, leaving out a superseded dev build
+        let namespace = read("example/index.html");
+        assert!(namespace.contains(r#"<span data-pivot-label>0.1.0</span>"#));
+        assert!(namespace.contains(r#"<div data-version-panel="0.1.0">"#));
+        assert!(namespace.contains(r#"<div data-version-panel="0.2.0-dev" hidden>"#));
+        assert!(!namespace.contains("0.1.0-dev"));
+
         // the superseded dev build keeps its page, but is listed nowhere else
         let superseded = read("example/to-stdout/0.1.0-dev/index.html");
         assert!(superseded.contains("noindex"));
@@ -1473,20 +1806,28 @@ mod tests {
         );
         assert!(read("example/to-stdout/0.2.0-dev/index.html").contains(">dev<"));
 
-        // the repository groups what it releases at each version, and links back
-        let repo = read("repos/example/to/0.1.0/index.html");
-        assert!(repo.contains("example:to-stdout"));
-        assert_eq!(read("repos/example/to/index.html"), repo, "latest version");
-        assert!(
-            !repo.contains(">0.1.0-dev<"),
-            "superseded dev build not listed"
-        );
-        assert!(repo.contains(">0.2.0-dev<"));
+        // a repository is listed in its namespace's section, and each package links the
+        // others it released with it, at the same version
+        assert!(!out.join("repos").exists(), "no repository pages");
         assert!(version.contains(r#"<dt>Repository</dt>"#));
-        assert!(read("repos/index.html").contains("example&#x2f;to"));
+        // a version links the commit it was built from
+        assert!(version.contains(
+            "https:&#x2f;&#x2f;github.com&#x2f;example&#x2f;to&#x2f;commit&#x2f;0123456789abcdef0123456789abcdef01234567"
+        ));
+        // a version links its GitHub release, by its tag
+        assert!(version.contains("<dt>Release</dt>"));
+        assert!(version.contains("<code>v0.1.0</code></a>"));
+        assert!(
+            read("example/index.html")
+                .contains(r##"<use href="#meta-notes"/></svg>release notes</a>"##)
+        );
+        assert!(
+            version.contains("/example/#example/to")
+                || version.contains("&#x2f;example&#x2f;#example&#x2f;to")
+        );
 
         // a second build replaces the output it rendered
-        build(&root, &out, "https://example.com").unwrap();
+        build(&root, &root.join("no-samples"), &out, "https://example.com").unwrap();
         std::fs::remove_dir_all(&root).unwrap();
     }
 
@@ -1544,6 +1885,116 @@ mod tests {
             assert_eq!(commit.len(), 40);
         }
         assert_eq!(head_commit(Path::new("/nonexistent/index")), None);
+    }
+
+    #[test]
+    fn renders_samples_apart_from_the_index() {
+        let root =
+            std::env::temp_dir().join(format!("directory-site-samples-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&root);
+        let (index, samples, out) = (root.join("index"), root.join("samples"), root.join("_site"));
+        let wit = "package wasi:logging@0.1.0-draft;\n\ninterface logging {\n  log: func(message: string);\n}\n";
+        data::write(
+            &index,
+            &metadata(
+                "wasi:logging",
+                "0.1.0-draft",
+                Kind::Interface,
+                Origin::Dependency,
+            ),
+            wit,
+        )
+        .unwrap();
+        let mut sample = metadata("sink:sample", "0.1.0", Kind::Component, Origin::Synthetic);
+        sample.dependencies = vec![Dependency {
+            package: "sink:types".to_string(),
+            version: Some("0.1.0".to_string()),
+        }];
+        data::write(
+            &samples,
+            &metadata("sink:types", "0.1.0", Kind::Interface, Origin::Synthetic),
+            "package sink:types@0.1.0;\n\ninterface shapes {\n  area: func() -> f64;\n}\n",
+        )
+        .unwrap();
+        // the imports and exports come from the sample's WIT, its metadata names none
+        data::write(
+            &samples,
+            &sample,
+            "package root:component;\n\nworld root {\n  import sink:types/shapes@0.1.0;\n  export run: func();\n}\n",
+        )
+        .unwrap();
+
+        build(&index, &samples, &out, "https://example.com").unwrap();
+        let read = |path: &str| std::fs::read_to_string(out.join(path)).unwrap();
+
+        // the samples' pages are published, marked as synthetic and kept out of search engines
+        let page = read("sink/sample/0.1.0/index.html");
+        assert!(page.contains("Synthetic sample."));
+        assert!(page.contains(r#"<meta name="robots" content="noindex">"#));
+        assert!(!page.contains(r#"id="pull""#), "nothing to pull");
+        assert!(
+            page.contains("sink/types/0.1.0/shapes/")
+                || page.contains("sink&#x2f;types&#x2f;0.1.0&#x2f;shapes&#x2f;"),
+            "the samples link each other"
+        );
+        assert!(
+            page.contains(r#"<li title="func">"#),
+            "the exports come from the WIT"
+        );
+        assert!(read("sink/types/0.1.0/shapes/index.html").contains("Synthetic sample."));
+        assert!(read("sink/index.html").contains("Synthetic sample."));
+        // and no page of the index lists, counts or links them
+        for path in [
+            "index.html",
+            "all/index.html",
+            "search.json",
+            "wasi/index.html",
+            "wasi/logging/0.1.0-draft/index.html",
+            "wasi/logging/0.1.0-draft/logging/index.html",
+        ] {
+            let page = read(path);
+            assert!(!page.contains("sink"), "{path} mentions the samples");
+            assert!(!page.contains("Synthetic sample."), "{path}");
+        }
+
+        // a sample must be synthetic, and keep to a namespace of its own
+        let mut real = metadata("wasi:other", "0.1.0", Kind::Interface, Origin::Synthetic);
+        data::write(&samples, &real, "package wasi:other@0.1.0;\n").unwrap();
+        let err = build(&index, &samples, &out, "https://example.com").unwrap_err();
+        assert!(err.to_string().contains("which the index holds as well"));
+        real.origin = Origin::Release;
+        data::write(&samples, &real, "package wasi:other@0.1.0;\n").unwrap();
+        let err = build(&index, &samples, &out, "https://example.com").unwrap_err();
+        assert!(err.to_string().contains("isn't synthetic"));
+        std::fs::remove_dir_all(samples.join("wasi")).unwrap();
+        // and the index holds no samples
+        data::write(
+            &index,
+            &sample,
+            "package root:component;\n\nworld root {}\n",
+        )
+        .unwrap();
+        let err = build(&index, &samples, &out, "https://example.com").unwrap_err();
+        assert!(err.to_string().contains("belongs in the samples"));
+
+        std::fs::remove_dir_all(&root).unwrap();
+    }
+
+    #[test]
+    fn fits_docs_headings_under_the_page() {
+        // the top level becomes the one under the page's heading, the levels below it follow
+        assert_eq!(
+            markdown("Text.\n\n# Errors\n\n## Timeouts\n", 3),
+            "<p>Text.</p>\n<h4>Errors</h4>\n<h5>Timeouts</h5>\n"
+        );
+        // whatever level the docs start at
+        assert_eq!(markdown("### Errors\n", 2), "<h3>Errors</h3>\n");
+        // and none deeper than h6
+        assert_eq!(
+            markdown("# A\n\n## B\n\n### C\n", 4),
+            "<h5>A</h5>\n<h6>B</h6>\n<h6>C</h6>\n"
+        );
+        assert_eq!(markdown("No headings.", 3), "<p>No headings.</p>\n");
     }
 
     #[test]

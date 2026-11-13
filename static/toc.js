@@ -52,14 +52,20 @@
     .map((link) => [link, document.getElementById(decodeURIComponent(link.hash.slice(1)))])
     .filter(([, target]) => target);
   let current = null;
+  // where a link to a section scrolls it to, below what's pinned to the top of the window
+  const offset = () => parseFloat(getComputedStyle(root).scrollPaddingTop) || 72;
   const spy = () => {
     let active = null;
-    for (const [link, target] of links) {
-      if (target.getBoundingClientRect().top <= 96) active = link;
+    // the right column's sections are left out while it's beside the content
+    const listed = links.filter(
+      ([link]) => getComputedStyle(link.closest(".toc-aside") ?? link).display !== "none",
+    );
+    for (const [link, target] of listed) {
+      if (target.getBoundingClientRect().top <= offset() + 24) active = link;
     }
     // at the bottom of the page, the last sections can't scroll past the header
-    if (innerHeight + scrollY >= document.body.scrollHeight - 2 && links.length) {
-      const visible = links.filter(([, t]) => t.getBoundingClientRect().top < innerHeight);
+    if (innerHeight + scrollY >= document.body.scrollHeight - 2 && listed.length) {
+      const visible = listed.filter(([, t]) => t.getBoundingClientRect().top < innerHeight);
       if (visible.length) active = visible[visible.length - 1][0];
     }
     if (active === current) return;
@@ -67,7 +73,12 @@
     active?.setAttribute("aria-current", "location");
     current = active;
     if (active && !narrow.matches && toc.scrollHeight > toc.clientHeight) {
-      active.scrollIntoView({ block: "nearest" });
+      // scroll the contents alone: scrollIntoView would scroll the page as well, which in Safari
+      // fights the reader's own scrolling
+      const box = toc.getBoundingClientRect();
+      const item = active.getBoundingClientRect();
+      if (item.top < box.top + 8) toc.scrollTop -= box.top + 8 - item.top;
+      else if (item.bottom > box.bottom - 8) toc.scrollTop += item.bottom - (box.bottom - 8);
     }
   };
   let queued = false;
@@ -83,5 +94,7 @@
     },
     { passive: true },
   );
+  // the right column moves beside or under the content as the window resizes
+  addEventListener("resize", spy, { passive: true });
   spy();
 })();

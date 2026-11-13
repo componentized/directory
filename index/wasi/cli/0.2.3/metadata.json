@@ -41,5 +41,6 @@
       "version": "0.2.3"
     }
   ],
+  "release": "https://github.com/WebAssembly/WASI/releases/tag/v0.2.3",
   "indexed_at": "2026-11-11T23:43:38Z"
 }

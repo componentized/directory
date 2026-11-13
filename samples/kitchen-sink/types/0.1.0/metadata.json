@@ -1,0 +1,19 @@
+{
+  "package": "kitchen-sink:types",
+  "version": "0.1.0",
+  "kind": "interface",
+  "origin": "synthetic",
+  "oci": {
+    "registry": "synthetic.invalid",
+    "repository": "kitchen-sink/types",
+    "tag": "0.1.0",
+    "digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "layer_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "size": 0
+  },
+  "created": "2026-11-12T00:00:00Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Every kind of WIT type, function and gate. Synthetic: not published to any registry."
+  },
+  "indexed_at": "2026-11-12T00:00:00Z"
+}

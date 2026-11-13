@@ -31,6 +31,9 @@ pub enum Origin {
     Release,
     /// A version a release depends on, e.g. a WASI pre-release.
     Dependency,
+    /// A sample made up to show how each WIT feature renders, e.g. the `kitchen-sink`
+    /// namespace. It's in `samples/`, never the index, and isn't published to any registry.
+    Synthetic,
 }
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
@@ -94,6 +97,11 @@ pub struct Metadata {
     pub exports: Vec<String>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub dependencies: Vec<Dependency>,
+    /// The GitHub release of the version in its source repository, tagged with the version, e.g.
+    /// `https://github.com/componentized/logging/releases/tag/v0.3.1`. A scan looks for it until
+    /// it's found, as a release can be published after its packages.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub release: Option<String>,
     pub indexed_at: String,
 }
 

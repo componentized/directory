@@ -1,0 +1,25 @@
+{
+  "package": "kitchen-sink:extras",
+  "version": "0.1.0",
+  "kind": "interface",
+  "origin": "synthetic",
+  "oci": {
+    "registry": "synthetic.invalid",
+    "repository": "kitchen-sink/extras",
+    "tag": "0.1.0",
+    "digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "layer_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "size": 0
+  },
+  "created": "2026-11-12T00:00:00Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Uses and includes items from another package. Synthetic: not published to any registry."
+  },
+  "dependencies": [
+    {
+      "package": "kitchen-sink:types",
+      "version": "0.1.0"
+    }
+  ],
+  "indexed_at": "2026-11-12T00:00:00Z"
+}

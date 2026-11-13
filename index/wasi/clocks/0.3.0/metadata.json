@@ -19,5 +19,6 @@
     "org.opencontainers.image.url": "https://wasi.dev",
     "org.opencontainers.image.version": "0.3.0"
   },
+  "release": "https://github.com/WebAssembly/WASI/releases/tag/v0.3.0",
   "indexed_at": "2026-11-11T23:43:39Z"
 }

@@ -1,0 +1,242 @@
+/// Every kind of WIT type, function and gate, to check how the directory renders each one.
+///
+/// A synthetic package: it isn't published to any registry.
+package kitchen-sink:types@0.1.0;
+
+/// Each primitive type, by an alias of its own.
+interface primitives {
+  type a-bool = bool;
+  type an-s8 = s8;
+  type an-s16 = s16;
+  type an-s32 = s32;
+  type an-s64 = s64;
+  type a-u8 = u8;
+  type a-u16 = u16;
+  type a-u32 = u32;
+  type a-u64 = u64;
+  type an-f32 = f32;
+  type an-f64 = f64;
+  type a-char = char;
+  type a-string = string;
+}
+
+/// The generic types, alone and nested.
+interface containers {
+  use primitives.{a-u8, a-string as text};
+
+  type bytes = list<a-u8>;
+  type rgba = list<u8, 4>;
+  type pair = tuple<u32, text>;
+  type maybe = option<text>;
+  type lookup = map<string, list<u32>>;
+  type nested = option<list<tuple<string, option<u64>>>>;
+
+  type no-payload = result;
+  type ok-only = result<u32>;
+  type err-only = result<_, text>;
+  type ok-and-err = result<bytes, text>;
+}
+
+/// Records, variants, enums and flags.
+interface shapes {
+  use containers.{pair, maybe};
+
+  /// A point on a plane.
+  record point {
+    /// Across.
+    x: f64,
+    /// Down.
+    y: f64,
+  }
+
+  /// A record of other types.
+  record labeled {
+    label: maybe,
+    at: point,
+    tags: list<string>,
+    pair: pair,
+  }
+
+  record empty-ish {
+    only: bool,
+  }
+
+  /// A shape, with or without a payload.
+  variant shape {
+    /// A point has no size.
+    dot,
+    circle(f64),
+    rectangle(tuple<point, point>),
+    polygon(list<point>),
+  }
+
+  /// The cardinal directions.
+  enum direction {
+    north,
+    east,
+    south,
+    west,
+  }
+
+  /// A file's permissions.
+  flags permissions {
+    read,
+    write,
+    execute,
+  }
+
+  /// An alias of an alias.
+  type heading = direction;
+
+  /** A block comment documents too. */
+  area: func(s: shape) -> f64;
+  /// A keyword as a name, escaped with `%`.
+  turn: func(%from: direction, quarter-turns: s8) -> direction;
+  allowed: func(have: permissions, want: permissions) -> bool;
+}
+
+/// Resources and each kind of function on them.
+interface resources {
+  use shapes.{point};
+
+  /// A resource with no functions.
+  resource token;
+
+  /// A resource with every kind of member.
+  resource canvas {
+    /// Makes an empty canvas.
+    constructor(width: u32, height: u32);
+
+    /// A method.
+    plot: func(at: point, color: list<u8, 4>);
+    /// A method that borrows another canvas.
+    copy-from: func(other: borrow<canvas>) -> result<_, string>;
+    /// A method that hands back a resource it owns.
+    snapshot: func() -> own<canvas>;
+    /// An async method.
+    render: async func() -> list<u8>;
+
+    /// A static function.
+    open: static func(path: string) -> result<canvas, string>;
+    /// A static async function.
+    load: static async func(url: string) -> result<canvas, string>;
+
+    /// A property with a getter and a setter.
+    title: get() -> string;
+    title: set(value: string);
+    /// A property with a getter alone.
+    area: get() -> u64;
+    /// A static property.
+    max-size: static get() -> u32;
+    max-size: static set(value: u32) -> result<_, string>;
+  }
+
+  /// A free function taking and returning resources.
+  merge: func(a: own<canvas>, b: borrow<canvas>) -> canvas;
+  /// A free function that names the resource without `own`.
+  issue: func() -> token;
+}
+
+/// Futures, streams and error contexts, and async functions.
+interface concurrency {
+  use resources.{canvas};
+
+  type signal = future;
+  type eventually = future<result<string, error-context>>;
+  type ticks = stream;
+  type bytes = stream<u8>;
+  type frames = stream<canvas>;
+  type failure = error-context;
+
+  /// An async function.
+  fetch: async func(url: string) -> result<list<u8>, error-context>;
+  /// A function that returns a stream and a future of its end.
+  watch: func(path: string) -> tuple<stream<string>, future<result>>;
+  /// A function with neither params nor results.
+  tick: func();
+  /// An async function with neither params nor results.
+  wait: async func();
+}
+
+/// Features gated by version and by feature.
+@since(version = 0.1.0)
+interface gates {
+  @since(version = 0.1.0)
+  record since-record {
+    value: u32,
+  }
+
+  @unstable(feature = experimental)
+  record unstable-record {
+    value: u32,
+  }
+
+  @since(version = 0.1.0)
+  @deprecated(version = 0.1.0)
+  record deprecated-record {
+    value: u32,
+  }
+
+  @unstable(feature = experimental)
+  resource unstable-resource {
+    @unstable(feature = experimental)
+    constructor();
+    @unstable(feature = experimental)
+    poke: func();
+  }
+
+  @since(version = 0.1.0)
+  stable: func();
+  @unstable(feature = experimental)
+  unstable: func();
+  @since(version = 0.1.0)
+  @deprecated(version = 0.1.0)
+  deprecated: func();
+}
+
+/// Imports each kind of world item.
+world base {
+  /// An interface, by its path in the package.
+  import primitives;
+  /// An interface under a name of its own.
+  import pictures: resources;
+  /// An inline interface.
+  import inline: interface {
+    use shapes.{point};
+
+    ping: func(at: point) -> bool;
+  }
+  /// A function.
+  import log: func(message: string);
+  /// An async function.
+  import sleep: async func(ms: u64);
+  /// A property of the world.
+  import volume: get() -> u8;
+  import volume: set(value: u8);
+
+  /// A type used from an interface into the world.
+  use shapes.{direction};
+  /// A type defined in the world.
+  type compass = direction;
+  /// A world-level resource.
+  resource session {
+    constructor();
+    end: func();
+  }
+
+  export concurrency;
+  export run: func(args: list<string>) -> result;
+}
+
+/// Includes another world, renaming one of its items.
+world extended {
+  include base with { log as trace }
+
+  @unstable(feature = experimental)
+  import gates;
+
+  export serve: async func() -> result<_, string>;
+}
+
+/// A world with nothing in it.
+world empty {}
