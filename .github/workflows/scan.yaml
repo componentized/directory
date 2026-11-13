@@ -5,8 +5,19 @@ on:
     # hourly, off the top of the hour
     - cron: "23 * * * *"
   workflow_dispatch:
-  # a release workflow can ask for a scan right away, e.g.
-  # `gh api repos/componentized/directory/dispatches -f event_type=release`
+    inputs:
+      only:
+        description: Only scan the packages of these repositories, e.g. `componentized/valkey`, or else all
+        type: string
+        required: false
+      version:
+        description: Only scan this version of their packages, e.g. `0.3.1`
+        type: string
+        required: false
+  # a release workflow can ask for a scan of the version it just published, e.g.
+  # `gh api repos/componentized/directory/dispatches -f event_type=release -f 'client_payload[only]=componentized/valkey' -f 'client_payload[version]=0.3.1'`
+  # `only` is a repository, e.g. `componentized/valkey` or `valkey`, or a space separated list of them, and `version` needs `only`; without
+  # them, it's a full scan
   repository_dispatch:
     types:
       - release
@@ -15,9 +26,11 @@ on:
 # secrets.CUSTODIAN_CLIENT_ID and secrets.CUSTODIAN_PRIVATE_KEY
 permissions: {}
 
+# runs queue
 concurrency:
   group: scan
   cancel-in-progress: false
+  queue: max
 
 jobs:
   scan:
@@ -33,9 +46,37 @@ jobs:
         # without pipefail, the step would take tee's status and pass when the scan fails
         run: |
           set -o pipefail
-          cargo run --release --locked -- scan | tee "${RUNNER_TEMP}/added.txt"
+          args=()
+          for repo in ${ONLY//,/ } ; do
+            if ! [[ "${repo}" =~ ^([A-Za-z0-9._-]+/)?([A-Za-z0-9._-]+)$ ]] ; then
+              echo "::error::'${repo}' is not a repository, e.g. ${OWNER}/valkey"
+              exit 1
+            fi
+            # the scan's packages are the org's, a repository of another owner has none
+            if [ -n "${BASH_REMATCH[1]}" ] && [ "${BASH_REMATCH[1],,}" != "${OWNER,,}/" ] ; then
+              echo "::error::'${repo}' is not a repository of ${OWNER}"
+              exit 1
+            fi
+            args+=( --only "${BASH_REMATCH[2]}" )
+          done
+          if [ -n "${VERSION}" ] ; then
+            if ! [[ "${VERSION}" =~ ^v?[0-9]+\.[0-9]+\.[0-9]+(-dev)?$ ]] ; then
+              echo "::error::'${VERSION}' is not a release or dev version, e.g. 0.3.1"
+              exit 1
+            fi
+            if [ "${#args[@]}" -eq 0 ] ; then
+              echo "::error::a version needs the repositories to scan it for, in only"
+              exit 1
+            fi
+            args+=( --version "${VERSION}" )
+          fi
+          cargo run --release --locked -- scan "${args[@]}" | tee "${RUNNER_TEMP}/added.txt"
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          OWNER: ${{ github.repository_owner }}
+          # untrusted, passed through the environment rather than into the script
+          ONLY: ${{ github.event.client_payload.only || inputs.only }}
+          VERSION: ${{ github.event.client_payload.version || inputs.version }}
       - name: Stage
         id: stage
         run: |
