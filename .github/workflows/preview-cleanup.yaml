@@ -6,7 +6,7 @@ name: Preview cleanup
 # Cloudflare secrets for PRs from forks too. It must never check out or run the
 # PR's code: it only uses the PR number from the event.
 #
-# Needs the same secrets and variable as the Preview workflow.
+# Needs the same secrets and variable as the Preview workflow, and comments as the custodian app.
 
 on:
   pull_request_target:
@@ -18,9 +18,8 @@ permissions: {}
 jobs:
   cleanup:
     runs-on: ubuntu-latest
-    permissions:
-      # mark the preview comment as removed
-      pull-requests: write
+    # the custodian app marks the preview comment as removed
+    permissions: {}
     steps:
       - name: Delete the PR's deployments
         env:
@@ -51,15 +50,26 @@ jobs:
           done
           echo "Deleted ${#ids[@]} deployments of $BRANCH"
 
+      - name: Create custodian app token
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ secrets.CUSTODIAN_CLIENT_ID }}
+          private-key: ${{ secrets.CUSTODIAN_PRIVATE_KEY }}
+          # only this repository, with only the permission the comment needs
+          repositories: ${{ github.event.repository.name }}
+          permission-pull-requests: write
       - name: Update the preview comment
         env:
-          GH_TOKEN: ${{ github.token }}
+          # the custodian app comments, rather than github-actions
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          BOT: ${{ steps.app-token.outputs.app-slug }}[bot]
           REPO: ${{ github.repository }}
           PR: ${{ github.event.number }}
         run: |
           marker='<!-- preview -->'
           id="$(gh api --paginate "repos/$REPO/issues/$PR/comments" \
-            --jq "map(select(.user.login == \"github-actions[bot]\" and (.body | startswith(\"$marker\")))) | .[0].id // empty" | head -n1)"
+            --jq "map(select(.user.login == \"$BOT\" and (.body | startswith(\"$marker\")))) | .[0].id // empty" | head -n1)"
           if [[ -n "$id" ]]; then
             body="$(printf '%s\n**Preview:** removed now that this PR is closed.' "$marker")"
             gh api -X PATCH "repos/$REPO/issues/comments/$id" -f body="$body" > /dev/null

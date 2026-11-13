@@ -291,6 +291,17 @@ pub fn oci_location(metadata: serde_json::Value) -> Result<OciLocation> {
     })
 }
 
+/// The explanation GitHub gives with an error, e.g. `: You need at least read:packages scope`, or
+/// nothing when it gives none.
+fn github_message(response: Response) -> String {
+    response
+        .json::<serde_json::Value>()
+        .ok()
+        .and_then(|body| body.get("message")?.as_str().map(str::to_string))
+        .map(|message| format!(": {message}"))
+        .unwrap_or_default()
+}
+
 /// The few GitHub API calls discovery needs.
 pub struct GitHub {
     client: Client,
@@ -319,7 +330,9 @@ impl GitHub {
             | StatusCode::FORBIDDEN
             | StatusCode::UNAUTHORIZED
             | StatusCode::UNPROCESSABLE_ENTITY => Ok(None),
-            status if !status.is_success() => bail!("GET {url}: {status}"),
+            status if !status.is_success() => {
+                bail!("GET {url}: {status}{}", github_message(response))
+            }
             _ => Ok(Some(response.json()?)),
         }
     }
@@ -343,7 +356,9 @@ impl GitHub {
                 StatusCode::NOT_FOUND | StatusCode::FORBIDDEN | StatusCode::UNAUTHORIZED => {
                     return Ok(None);
                 }
-                status if !status.is_success() => bail!("GET {url}: {status}"),
+                status if !status.is_success() => {
+                    bail!("GET {url}: {status}{}", github_message(response))
+                }
                 _ => {}
             }
             let next = next_link(response.headers());
