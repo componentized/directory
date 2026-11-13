@@ -256,16 +256,10 @@ fn trim_nested(root: &std::path::Path) -> Result<()> {
     Ok(())
 }
 
-/// Lists the container packages of the org: from the GitHub Packages API when the token may read
-/// them, and from the `components/*` directories of the org's repositories, which is all an
-/// anonymous scan can see.
+/// Lists the container packages of the org: a package for each of its public repositories, and one
+/// for each of their `components/*` directories. The GitHub Packages API would list them directly,
+/// but it only accepts a personal access token (classic), not a workflow's or an app's token.
 fn discover(github: &GitHub, org: &str) -> Result<BTreeSet<String>> {
-    #[derive(Deserialize)]
-    struct Package {
-        name: String,
-        #[serde(default)]
-        visibility: Option<String>,
-    }
     #[derive(Deserialize)]
     struct Repo {
         name: String,
@@ -284,31 +278,6 @@ fn discover(github: &GitHub, org: &str) -> Result<BTreeSet<String>> {
     }
 
     let mut found = BTreeSet::new();
-    // the Packages API is optional: a token that can't read it, or an error reading it, falls back
-    // to discovering the packages from the repositories
-    match github.list::<Package>(&format!("/orgs/{org}/packages?package_type=container")) {
-        Ok(Some(packages)) => {
-            eprintln!(
-                "found {} packages with the GitHub Packages API",
-                packages.len()
-            );
-            found.extend(
-                packages
-                    .into_iter()
-                    .filter(|p| p.visibility.as_deref() != Some("private"))
-                    .map(|p| p.name),
-            );
-        }
-        Ok(None) => eprintln!(
-            "the GitHub Packages API is not readable, `packages: read`, discovering packages from the repositories"
-        ),
-        Err(err) => {
-            println!(
-                "::warning::the GitHub Packages API failed, discovering packages from the repositories: {err:#}"
-            );
-            eprintln!("the GitHub Packages API failed: {err:#}");
-        }
-    }
     let repos = github
         .list::<Repo>(&format!("/orgs/{org}/repos?type=public"))?
         .ok_or_else(|| anyhow!("listing the repositories of {org}"))?;
