@@ -32,7 +32,7 @@ enum Command {
         /// The GitHub org whose ghcr.io packages are scanned, also their WIT namespace
         #[arg(long, default_value = "componentized")]
         org: String,
-        /// A GitHub token, `packages: read` lets discovery use the GitHub Packages API
+        /// A GitHub token, which raises the GitHub API's rate limits for discovery and releases
         #[arg(long, env = "GITHUB_TOKEN", hide_env_values = true)]
         github_token: Option<String>,
         /// A package to scan in addition to the discovered ones, e.g. `logging/levels`

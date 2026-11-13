@@ -11,7 +11,7 @@ A directory of the Wasm components and WIT interfaces published by the Component
 
 ## How it works
 
-1. `directory scan` finds the org's packages. It reads the GitHub Packages API when the token may (`packages: read`). It also reads the org's public repositories and their `components/*` directories.
+1. `directory scan` finds the org's packages from its public repositories: a package for each repository, and one for each of its `components/*` directories. A package published from anywhere else can be added with `--package`.
 2. It lists each package's tags on ghcr.io and indexes every stable release (`x.y.z`) and dev build (`x.y.z-dev`) that isn't in the index yet. It pulls the wasm layer, verifies its digest, and decodes it to WIT. A `_debug` tag is recorded as the debug build of its version. Other tags are skipped: other pre-releases, build metadata, `v`-prefixed tags, `dev`, and cosign signatures.
    - A release is immutable, so it is indexed once.
    - A dev tag moves with each build. It is re-indexed whenever its digest changes, until its release is published.
@@ -56,7 +56,7 @@ Once `x.y.z` is released, the site hides `x.y.z-dev` from version lists, search,
 ## Commands
 
 ```sh
-# index new releases; a token lets discovery use the Packages API and raises rate limits
+# index new releases; a token raises the GitHub API's rate limits
 GITHUB_TOKEN=$(gh auth token) cargo run -- scan
 
 # only the packages of a repository, e.g. while testing
