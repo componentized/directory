@@ -63,6 +63,14 @@
     <section id="wit">
       <h2>WIT</h2>
       <pre class="wit" data-copy data-copy-label="Copy the WIT"><code>{{ wit|safe }}</code></pre>
+      {#- the foreign packages a version keeps with it, apart from its own #}
+      {% if nested_wit %}
+      <details class="nested-wit">
+        <summary>The WIT of its dependencies, as it was built against them</summary>
+        <p class="dim">This version keeps the parts of its dependencies it uses, as they were when it was built: their indexed versions differ from them, e.g. a pre-release that has since moved, or aren't indexed.</p>
+        <pre class="wit"><code>{{ nested_wit|safe }}</code></pre>
+      </details>
+      {% endif %}
     </section>
   </div>
 

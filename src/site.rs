@@ -167,8 +167,15 @@ impl Repo {
     }
 }
 
-pub fn build(root: &Path, samples: &Path, out: &Path, base_url: &str) -> Result<()> {
-    let stored = data::load(root)?;
+pub fn build(
+    root: &Path,
+    samples: &Path,
+    out: &Path,
+    base_url: &str,
+    sources: &crate::config::Sources,
+) -> Result<()> {
+    let mut stored = data::load(root)?;
+    sources.apply(&mut stored);
     if let Some(sample) = stored
         .iter()
         .find(|s| s.metadata.origin == Origin::Synthetic)
@@ -1098,6 +1105,14 @@ impl Site {
                         let versions: Vec<_> = repo
                             .map(|repo| {
                                 let latest = repo.latest();
+                                // the repository's packages of this namespace, at any version
+                                let packages: std::collections::BTreeSet<&str> = repo
+                                    .versions
+                                    .iter()
+                                    .flat_map(|(_, members)| members)
+                                    .filter(|m| self.entries[**m].namespace() == namespace)
+                                    .map(|m| self.entries[*m].meta.package.as_str())
+                                    .collect();
                                 repo.versions
                                     .iter()
                                     .enumerate()
@@ -1121,8 +1136,30 @@ impl Site {
                                             .meta
                                             .annotation("revision")
                                             .map(|r| r.trim_end_matches("+dirty").to_string());
+                                        // the repository's packages it didn't release at this
+                                        // version, e.g. one released at a version of its own, at
+                                        // their latest, so they're found from any version
+                                        let released: std::collections::BTreeSet<&str> = members
+                                            .iter()
+                                            .map(|m| self.entries[*m].meta.package.as_str())
+                                            .collect();
+                                        let others: Vec<_> = packages
+                                            .iter()
+                                            .filter(|p| !released.contains(*p))
+                                            .filter_map(|p| self.compatible(&self.packages[*p], version))
+                                            .map(|i| {
+                                                let other = &self.entries[*i];
+                                                ctx! {
+                                                    name => other.name(),
+                                                    version => other.meta.version,
+                                                    url => other.url(),
+                                                    kind => other.meta.kind,
+                                                }
+                                            })
+                                            .collect();
                                         Some(ctx! {
                                             version,
+                                            others,
                                             // without scripts, a version is chosen from the
                                             // repository's section
                                             url => self.repo_url(repo),
@@ -1453,7 +1490,8 @@ impl Site {
             // `wasi:io`, each listed as it is
             dependencies => self.listed_packages(dependencies),
             dependents => self.grouped(dependents),
-            wit => self.package_wit(index)?,
+            wit => self.package_wit(index)?.0,
+            nested_wit => self.package_wit(index)?.1,
         })
     }
 
@@ -1477,10 +1515,14 @@ impl Site {
 
     /// A version's WIT, highlighted, each interface linked to its page and each type to its
     /// definition there, by absolute urls, which hold on its page and on a compare page alike.
-    fn package_wit(&self, index: usize) -> Result<String> {
+    ///
+    /// The version's own package alone, with, for a version that keeps the foreign packages it was
+    /// built against nested in its WIT, those packages apart: the WIT it uses of its dependencies,
+    /// which differs from their indexed versions, or isn't indexed.
+    fn package_wit(&self, index: usize) -> Result<(String, Option<String>)> {
         let entry = &self.entries[index];
         let resolve = &entry.resolve;
-        let scopes = entry
+        let scopes: HashMap<String, (String, HashMap<String, String>)> = entry
             .interfaces()
             .into_iter()
             .map(|(name, id, _)| {
@@ -1493,13 +1535,26 @@ impl Site {
                 (name.to_string(), (url, types))
             })
             .collect();
-        wit_html::package_linked(
-            resolve,
-            entry.pkg,
-            entry.nested,
-            scopes,
-            self.foreign_interface_urls(index),
-        )
+        let print = |nested| {
+            wit_html::package_linked(
+                resolve,
+                entry.pkg,
+                nested,
+                scopes.clone(),
+                self.foreign_interface_urls(index),
+            )
+        };
+        let own = print(false)?;
+        if !entry.nested {
+            return Ok((own, None));
+        }
+        // the nested packages follow the version's own, printed alike
+        let all = print(true)?;
+        let nested = all
+            .strip_prefix(own.as_str())
+            .map(|rest| rest.trim_start_matches('\n').to_string())
+            .filter(|rest| !rest.trim().is_empty());
+        Ok((own, nested))
     }
 
     /// A version's API, for a compare page to diff against another's, see [`api`].
@@ -1700,7 +1755,10 @@ impl Site {
             imports: refs(&entry.meta.imports),
             exports: refs(&entry.meta.exports),
             dependencies: entry.meta.dependencies.iter().map(|d| d.id()).collect(),
-            wit: self.package_wit(index).unwrap_or_default(),
+            wit: self
+                .package_wit(index)
+                .map(|(own, _)| own)
+                .unwrap_or_default(),
         }
     }
 
@@ -1737,6 +1795,43 @@ impl Site {
             self.entries[from].meta.version,
             self.entries[to].meta.version
         ))
+    }
+
+    /// The version of a package most compatible with `version`, of those listed: its newest in
+    /// the release line of `version` that isn't newer, e.g. `0.2.6` for `0.2.12`, else its newest
+    /// older than `version` in any line, else its latest. A version that isn't semver is matched to
+    /// the latest.
+    fn compatible<'a>(&self, indexes: &'a [usize], version: &str) -> Option<&'a usize> {
+        let Ok(target) = semver::Version::parse(version) else {
+            return self.latest(indexes);
+        };
+        let line = release_line(version);
+        let listed: Vec<(&usize, semver::Version)> = indexes
+            .iter()
+            .filter(|i| self.listed(**i))
+            .filter_map(|i| {
+                Some((
+                    i,
+                    semver::Version::parse(&self.entries[*i].meta.version).ok()?,
+                ))
+            })
+            .collect();
+        let newest = |candidates: Vec<&(&'a usize, semver::Version)>| {
+            candidates
+                .into_iter()
+                .max_by(|a, b| a.1.cmp(&b.1))
+                .map(|(i, _)| *i)
+        };
+        newest(
+            listed
+                .iter()
+                .filter(|(i, v)| {
+                    *v <= target && release_line(&self.entries[**i].meta.version) == line
+                })
+                .collect(),
+        )
+        .or_else(|| newest(listed.iter().filter(|(_, v)| *v <= target).collect()))
+        .or_else(|| self.latest(indexes))
     }
 
     /// Whether a package has a compare page: it lists more than one version.
@@ -2157,7 +2252,14 @@ mod tests {
         }
 
         let out = root.join("_site");
-        build(&root, &root.join("no-samples"), &out, "https://example.com").unwrap();
+        build(
+            &root,
+            &root.join("no-samples"),
+            &out,
+            "https://example.com",
+            &Default::default(),
+        )
+        .unwrap();
         let read = |path: &str| std::fs::read_to_string(out.join(path)).unwrap();
 
         let iface = read("wasi/logging/0.1.0-draft/logging/index.html");
@@ -2305,7 +2407,14 @@ mod tests {
         );
 
         // a second build replaces the output it rendered
-        build(&root, &root.join("no-samples"), &out, "https://example.com").unwrap();
+        build(
+            &root,
+            &root.join("no-samples"),
+            &out,
+            "https://example.com",
+            &Default::default(),
+        )
+        .unwrap();
         std::fs::remove_dir_all(&root).unwrap();
     }
 
@@ -2402,7 +2511,14 @@ mod tests {
         )
         .unwrap();
 
-        build(&index, &samples, &out, "https://example.com").unwrap();
+        build(
+            &index,
+            &samples,
+            &out,
+            "https://example.com",
+            &Default::default(),
+        )
+        .unwrap();
         let read = |path: &str| std::fs::read_to_string(out.join(path)).unwrap();
 
         // the samples' pages are published, marked as synthetic and kept out of search engines
@@ -2438,11 +2554,25 @@ mod tests {
         // a sample must be synthetic, and keep to a namespace of its own
         let mut real = metadata("wasi:other", "0.1.0", Kind::Interface, Origin::Synthetic);
         data::write(&samples, &real, "package wasi:other@0.1.0;\n").unwrap();
-        let err = build(&index, &samples, &out, "https://example.com").unwrap_err();
+        let err = build(
+            &index,
+            &samples,
+            &out,
+            "https://example.com",
+            &Default::default(),
+        )
+        .unwrap_err();
         assert!(err.to_string().contains("which the index holds as well"));
         real.origin = Origin::Release;
         data::write(&samples, &real, "package wasi:other@0.1.0;\n").unwrap();
-        let err = build(&index, &samples, &out, "https://example.com").unwrap_err();
+        let err = build(
+            &index,
+            &samples,
+            &out,
+            "https://example.com",
+            &Default::default(),
+        )
+        .unwrap_err();
         assert!(err.to_string().contains("isn't synthetic"));
         std::fs::remove_dir_all(samples.join("wasi")).unwrap();
         // and the index holds no samples
@@ -2452,7 +2582,14 @@ mod tests {
             "package root:component;\n\nworld root {}\n",
         )
         .unwrap();
-        let err = build(&index, &samples, &out, "https://example.com").unwrap_err();
+        let err = build(
+            &index,
+            &samples,
+            &out,
+            "https://example.com",
+            &Default::default(),
+        )
+        .unwrap_err();
         assert!(err.to_string().contains("belongs in the samples"));
 
         std::fs::remove_dir_all(&root).unwrap();

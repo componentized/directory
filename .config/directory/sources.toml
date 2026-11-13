@@ -1,0 +1,13 @@
+# Corrections to the source repository a package's published image names, its
+# `org.opencontainers.image.source`, for an image whose publishing workflow named the wrong one.
+# The index keeps what the registry says; `directory build` and `directory scan` apply these as
+# they read it.
+
+[packages."wasi:config"]
+source = "https://github.com/webassembly/wasi-config"
+
+[packages."wasi:keyvalue"]
+source = "https://github.com/webassembly/wasi-keyvalue"
+
+[packages."wasi:logging"]
+source = "https://github.com/webassembly/wasi-logging"

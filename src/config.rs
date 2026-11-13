@@ -51,9 +51,69 @@ impl Config {
     }
 }
 
+/// Corrections to what packages' published images say of themselves, `.config/directory/sources.toml`,
+/// for an image that names the wrong source repository, e.g. one its publishing workflow filled in:
+///
+/// ```toml
+/// [packages."wasi:config"]
+/// source = "https://github.com/webassembly/wasi-config"
+/// ```
+///
+/// The index keeps what the registry says; a correction applies as the index is read.
+#[derive(Debug, Default, Deserialize)]
+pub struct Sources {
+    #[serde(default)]
+    pub packages: HashMap<String, PackageSource>,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct PackageSource {
+    /// The repository the package is built from, its `org.opencontainers.image.source`.
+    pub source: String,
+}
+
+impl Sources {
+    /// The corrections at `path`, none when there's no file.
+    pub fn load(path: &Path) -> Result<Self> {
+        match std::fs::read_to_string(path) {
+            Ok(source) => {
+                toml::from_str(&source).with_context(|| format!("parsing {}", path.display()))
+            }
+            Err(err) if err.kind() == std::io::ErrorKind::NotFound => Ok(Self::default()),
+            Err(err) => Err(err).with_context(|| format!("reading {}", path.display())),
+        }
+    }
+
+    /// Corrects the source repository of the stored versions of each package it names.
+    pub fn apply(&self, stored: &mut [crate::data::Stored]) {
+        for stored in stored {
+            if let Some(correction) = self.packages.get(&stored.metadata.package) {
+                stored.metadata.annotations.insert(
+                    "org.opencontainers.image.source".to_string(),
+                    correction.source.clone(),
+                );
+            }
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn corrects_sources() {
+        let sources: Sources = toml::from_str(
+            "[packages.\"wasi:config\"]\nsource = \"https://github.com/webassembly/wasi-config\"\n",
+        )
+        .unwrap();
+        assert_eq!(
+            sources.packages["wasi:config"].source,
+            "https://github.com/webassembly/wasi-config"
+        );
+        let missing = Sources::load(Path::new("/nonexistent/sources.toml")).unwrap();
+        assert!(missing.packages.is_empty());
+    }
 
     #[test]
     fn resolution_order() {

@@ -303,6 +303,11 @@ aside h3 { margin-top: 1.2em; font-size: 0.8rem; text-transform: uppercase; lett
 pre { background: var(--code-bg); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; overflow-x: auto; }
 pre.cmd { padding: 8px 10px; font-size: 0.8rem; white-space: pre-wrap; overflow-wrap: anywhere; }
 pre.wit { line-height: 1.5; }
+/* the WIT a version keeps of its dependencies, folded under its own */
+.nested-wit { margin-top: 12px; }
+.nested-wit > summary { cursor: pointer; color: var(--dim); font-size: 0.9rem; }
+.nested-wit > summary:hover { color: var(--text); }
+.nested-wit > p { margin: 8px 0; font-size: 0.85rem; max-width: 75ch; }
 
 /* a button that copies a value: in the corner of a block, outside its scrolling, or after an
    inline value. Its icon turns to a check for a moment once it has copied. */
@@ -458,6 +463,11 @@ a.version-row:hover .version { text-decoration: underline; }
 .group-head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
 .group-head h2 { margin: 0; font-size: 1.1rem; }
 .group-head .pivot { font-family: var(--mono); font-size: 0.85rem; }
+/* a repository's packages it didn't release at the version shown, at their own latest */
+.group-others { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin: 10px 0 0; font-size: 0.85rem; }
+.group-others a .kind-icon { width: 14px; height: 14px; margin-right: 4px; vertical-align: -2px; }
+.group-others a code { font-size: 1em; }
+.group-others a .dim { font-family: var(--mono); font-size: 0.95em; }
 /* a version's details, one size throughout */
 .group-version { font-size: 0.85rem; }
 .group-version code, .group-version time { font-size: 1em; }

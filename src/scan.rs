@@ -23,6 +23,8 @@ pub struct Options {
     pub only: Vec<String>,
     /// The registry of each WIT namespace, from the wkg config.
     pub registries: Config,
+    /// Corrections to the source repositories packages' images name.
+    pub sources: crate::config::Sources,
 }
 
 const REGISTRY: &str = "ghcr.io";
@@ -62,7 +64,7 @@ pub fn run(options: &Options) -> Result<()> {
     scanner.dependencies()?;
     trim_nested(&options.root)?;
     refresh_items(&options.root)?;
-    if let Err(err) = refresh_releases(&options.root, &github) {
+    if let Err(err) = refresh_releases(&options.root, &github, &options.sources) {
         scanner.fail("the GitHub releases".to_string(), err);
     }
 
@@ -85,7 +87,11 @@ pub fn run(options: &Options) -> Result<()> {
 /// A version that records the commit it was built from is linked only when the release's tag is
 /// that commit: a repository can tag versions of something else, e.g. `wasmCloud/wasmCloud` tags
 /// its host's versions, not those of the `wasmcloud:keyvalue` package it publishes.
-fn refresh_releases(root: &std::path::Path, github: &GitHub) -> Result<()> {
+fn refresh_releases(
+    root: &std::path::Path,
+    github: &GitHub,
+    sources: &crate::config::Sources,
+) -> Result<()> {
     #[derive(Deserialize)]
     struct Release {
         tag_name: String,
@@ -98,7 +104,9 @@ fn refresh_releases(root: &std::path::Path, github: &GitHub) -> Result<()> {
         sha: String,
     }
 
-    let stored = data::load(root)?;
+    // the source a correction names is where the releases are
+    let mut stored = data::load(root)?;
+    sources.apply(&mut stored);
     // the versions still without a release, by the repository they're built from
     let mut pending: std::collections::BTreeMap<String, Vec<&data::Stored>> = Default::default();
     for stored in &stored {
