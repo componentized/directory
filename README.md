@@ -64,6 +64,9 @@ GITHUB_TOKEN=$(gh auth token) cargo run -- scan
 # only the packages of a repository, e.g. while testing
 cargo run -- scan --only logging
 
+# only one version of them, e.g. the release a repository just published
+cargo run -- scan --only logging --version 0.3.1
+
 # render the site to _site and preview it
 cargo run -- build
 python3 -m http.server -d _site
@@ -86,11 +89,31 @@ python3 -m http.server -d _site
 - [`pages.yaml`](.github/workflows/pages.yaml) renders the site and deploys it to GitHub Pages on every push to `main`.
 - [`ci.yaml`](.github/workflows/ci.yaml) checks formatting, lints, tests, and renders the index.
 
-A component repository's release workflow can request a scan as soon as it publishes, using a token that may dispatch to this repository:
+A component repository's release workflow can request a scan of the version it just published, as soon as it publishes. `only` names the repository, e.g. `componentized/valkey`, the publishing workflow's `GITHUB_REPOSITORY`, so just its packages are scanned, e.g. `componentized:valkey` and `componentized:valkey-*` for the `valkey` repository, and `version` the version, e.g. `0.3.1` or `0.3.2-dev`. The versions they depend on are still indexed, and the GitHub releases still linked, while the tracked packages wait for the next full scan. Without `version`, all the versions of the repository's packages are scanned, and without `only`, it's a full scan.
 
 ```sh
-gh api repos/componentized/directory/dispatches -f event_type=release
+gh api repos/componentized/directory/dispatches -f event_type=release -f 'client_payload[only]=componentized/valkey' -f 'client_payload[version]=0.3.1'
 ```
+
+The token must be allowed to dispatch to this repository, e.g. a GitHub App token with contents write permission on `componentized/directory`. A workflow's own `GITHUB_TOKEN` can't. As a step of the publish job, after the components are pushed to ghcr.io:
+
+```yaml
+- name: Create directory token
+  id: directory-token
+  uses: actions/create-github-app-token@v3
+  with:
+    client-id: ${{ secrets.CUSTODIAN_CLIENT_ID }}
+    private-key: ${{ secrets.CUSTODIAN_PRIVATE_KEY }}
+    repositories: directory
+    permission-contents: write
+- name: Request a directory scan
+  env:
+    GH_TOKEN: ${{ steps.directory-token.outputs.token }}
+    VERSION: 0.3.1 # the version just published
+  run: gh api repos/componentized/directory/dispatches -f event_type=release -f "client_payload[only]=${GITHUB_REPOSITORY}" -f "client_payload[version]=${VERSION}"
+```
+
+Scans queue, one at a time, but only one waits: a newer request replaces it. A request replaced before it runs is caught by the next full scan.
 
 ## Setup
 

@@ -45,9 +45,14 @@ enum Command {
         /// A package to scan in addition to the discovered ones, e.g. `logging/levels`
         #[arg(long = "package")]
         packages: Vec<String>,
-        /// Only scan the packages of these repositories, e.g. `logging`
+        /// Only scan the packages of these repositories, e.g. `logging`. The tracked packages wait
+        /// for a full scan
         #[arg(long)]
         only: Vec<String>,
+        /// Only scan this version of the packages, e.g. `0.3.1` or `0.3.2-dev`, the release a
+        /// repository just published. A leading `v` is dropped, e.g. a release's tag `v0.3.1`
+        #[arg(long, requires = "only")]
+        version: Option<String>,
         /// The wkg config that maps WIT namespaces to registries
         #[arg(long, default_value = ".config/wasm-pkg/config.toml")]
         config: PathBuf,
@@ -75,6 +80,7 @@ fn main() -> Result<()> {
             github_token,
             packages,
             only,
+            version,
             config,
         } => scan::run(&scan::Options {
             root: cli.data,
@@ -82,6 +88,7 @@ fn main() -> Result<()> {
             github_token: github_token.filter(|token| !token.is_empty()),
             packages,
             only,
+            version: version.map(|version| version.trim_start_matches('v').to_string()),
             registries: config::Config::load(&config)?,
             sources: config::Sources::load(&cli.sources)?,
             tracked: config::Tracked::load(&cli.tracked)?,

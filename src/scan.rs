@@ -21,6 +21,8 @@ pub struct Options {
     pub packages: Vec<String>,
     /// Only scan packages that start with one of these, e.g. `logging`.
     pub only: Vec<String>,
+    /// Only scan this version of the packages, e.g. `0.3.1`.
+    pub version: Option<String>,
     /// The registry of each WIT namespace, from the wkg config.
     pub registries: Config,
     /// Corrections to the source repositories packages' images name.
@@ -44,7 +46,7 @@ pub fn run(options: &Options) -> Result<()> {
         failed: Vec::new(),
     };
 
-    let mut packages = discover(&github, &options.org)?;
+    let mut packages = discover(&github, &options.org, &options.only)?;
     packages.extend(options.packages.iter().cloned());
     packages.retain(|package| {
         options.only.is_empty()
@@ -54,18 +56,25 @@ pub fn run(options: &Options) -> Result<()> {
                 .any(|only| package == only || package.starts_with(&format!("{only}/")))
     });
     eprintln!(
-        "scanning {} packages under {REGISTRY}/{}",
+        "scanning {} packages under {REGISTRY}/{}{}",
         packages.len(),
-        options.org
+        options.org,
+        match &options.version {
+            Some(version) => format!(", only {version}"),
+            None => String::new(),
+        }
     );
     for package in &packages {
         if let Err(err) = scanner.scan_package(package) {
             scanner.fail(format!("{}/{package}", options.org), err);
         }
     }
-    for package in &options.tracked.packages {
-        if let Err(err) = scanner.track(package) {
-            scanner.fail(package.clone(), err);
+    // a partial scan, e.g. of a repository that just published, leaves them to the next full scan
+    if options.only.is_empty() {
+        for package in &options.tracked.packages {
+            if let Err(err) = scanner.track(package) {
+                scanner.fail(package.clone(), err);
+            }
         }
     }
     scanner.dependencies()?;
@@ -274,7 +283,9 @@ fn trim_nested(root: &std::path::Path) -> Result<()> {
 /// Lists the container packages of the org: a package for each of its public repositories, and one
 /// for each of their `components/*` directories. The GitHub Packages API would list them directly,
 /// but it only accepts a personal access token (classic), not a workflow's or an app's token.
-fn discover(github: &GitHub, org: &str) -> Result<BTreeSet<String>> {
+/// Given `only`, just those repositories are looked up, rather than listing every repository of the
+/// org, e.g. for a scan a repository requests once it publishes.
+fn discover(github: &GitHub, org: &str, only: &[String]) -> Result<BTreeSet<String>> {
     #[derive(Deserialize)]
     struct Repo {
         name: String,
@@ -293,9 +304,22 @@ fn discover(github: &GitHub, org: &str) -> Result<BTreeSet<String>> {
     }
 
     let mut found = BTreeSet::new();
-    let repos = github
-        .list::<Repo>(&format!("/orgs/{org}/repos?type=public"))?
-        .ok_or_else(|| anyhow!("listing the repositories of {org}"))?;
+    let repos = if only.is_empty() {
+        github
+            .list::<Repo>(&format!("/orgs/{org}/repos?type=public"))?
+            .ok_or_else(|| anyhow!("listing the repositories of {org}"))?
+    } else {
+        let mut repos = Vec::new();
+        for name in only {
+            // `--only` names a repository, its packages are those it publishes, e.g. `logging`
+            let name = name.split('/').next().unwrap_or(name);
+            match github.get::<Repo>(&format!("/repos/{org}/{name}"))? {
+                Some(repo) => repos.push(repo),
+                None => eprintln!("warning: {org}/{name} is not a repository"),
+            }
+        }
+        repos
+    };
     for repo in repos
         .iter()
         .filter(|r| !r.archived && !r.fork && !r.private)
@@ -356,6 +380,14 @@ impl Scanner<'_> {
                 Tag::Dev(version) => version.to_string(),
                 _ => continue,
             };
+            if self
+                .options
+                .version
+                .as_ref()
+                .is_some_and(|only| *only != version)
+            {
+                continue;
+            }
             let mut refresh = false;
             match version::release_of(&version) {
                 // a release is immutable, index it once
