@@ -11,6 +11,8 @@ on:
     types:
       - release
 
+# commits the new versions as the componentized custodian GitHub App, from
+# secrets.CUSTODIAN_CLIENT_ID and secrets.CUSTODIAN_PRIVATE_KEY
 permissions: {}
 
 concurrency:
@@ -21,53 +23,71 @@ jobs:
   scan:
     runs-on: ubuntu-latest
     permissions:
-      # commit the new versions to the index
-      contents: write
+      # the index is committed by the custodian app, this job's token only reads
+      contents: read
       # discover the org's packages with the GitHub Packages API
       packages: read
-    outputs:
-      changed: ${{ steps.commit.outputs.changed }}
-      sha: ${{ steps.commit.outputs.sha }}
     steps:
       - uses: actions/checkout@v7
       - uses: actions-rust-lang/setup-rust-toolchain@v2
       - name: Scan
         id: scan
+        # without pipefail, the step would take tee's status and pass when the scan fails
         run: |
+          set -o pipefail
           cargo run --release --locked -- scan | tee "${RUNNER_TEMP}/added.txt"
         env:
           GITHUB_TOKEN: ${{ github.token }}
-      - name: Commit
-        id: commit
+      - name: Stage
+        id: stage
         run: |
           git add --all
           if git diff --cached --quiet ; then
             echo "no new versions"
             echo "changed=false" >> "${GITHUB_OUTPUT}"
-            exit 0
+          else
+            echo "changed=true" >> "${GITHUB_OUTPUT}"
           fi
+      - name: Create custodian app token
+        id: app-token
+        if: steps.stage.outputs.changed == 'true'
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ secrets.CUSTODIAN_CLIENT_ID }}
+          private-key: ${{ secrets.CUSTODIAN_PRIVATE_KEY }}
+          # only this repository, with only the permission the commit needs
+          repositories: ${{ github.event.repository.name }}
+          permission-contents: write
+      # main requires signed commits, which the custodian app's commits created with the REST API
+      # are, and the app bypasses its required checks. A push by the app starts the Pages workflow,
+      # which deploys the new index.
+      - name: Commit
+        if: steps.stage.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          APP_SLUG: ${{ steps.app-token.outputs.app-slug }}
+          # a run started by hand credits whoever started it as a co-author; a scheduled run, or one
+          # a release asked for, credits no one
+          GITHUB_ACTOR: ${{ github.event_name == 'workflow_dispatch' && github.actor || '' }}
+        run: |
           added=$( grep -v '^::' "${RUNNER_TEMP}/added.txt" || true )
           count=$( printf '%s\n' "${added}" | grep -c . || true )
-          {
-            echo "Index ${count} new version(s)"
-            echo
-            printf '%s\n' "${added}" | sed 's/^/- /'
-          } > "${RUNNER_TEMP}/message.txt"
-          git -c user.name="github-actions[bot]" \
-              -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
-              commit --quiet --file "${RUNNER_TEMP}/message.txt"
-          git push
-          echo "changed=true" >> "${GITHUB_OUTPUT}"
-          echo "sha=$( git rev-parse HEAD )" >> "${GITHUB_OUTPUT}"
-
-  # a push with the GITHUB_TOKEN does not start other workflows, deploy the new index from here
-  deploy:
-    needs: scan
-    if: needs.scan.outputs.changed == 'true'
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    uses: ./.github/workflows/pages.yaml
-    with:
-      ref: ${{ needs.scan.outputs.sha }}
+          if [ "${count}" -gt 0 ] ; then
+            {
+              echo "Index ${count} new version(s)"
+              echo
+              printf '%s\n' "${added}" | sed 's/^/- /'
+            } > "${RUNNER_TEMP}/message.txt"
+          else
+            # no new versions, but those indexed changed, e.g. linked to their GitHub releases
+            echo "Update the indexed versions" > "${RUNNER_TEMP}/message.txt"
+          fi
+          base=$( git rev-parse HEAD )
+          commit=$( .github/scripts/create-commit.sh "${base}" "$( cat "${RUNNER_TEMP}/message.txt" )" )
+          # fast forwards main to the commit, failing rather than losing commits pushed since the
+          # scan started
+          if ! gh api --method PATCH "repos/${GITHUB_REPOSITORY}/git/refs/heads/${GITHUB_REF_NAME}" -f sha="${commit}" -F force=false --silent ; then
+            echo "::error::failed to push ${commit} to ${GITHUB_REF_NAME}, either the branch moved since ${base} and the scan should be run again, or the custodian app is not allowed to bypass the branch's ruleset"
+            exit 1
+          fi
+          echo "pushed ${commit} to ${GITHUB_REF_NAME}"

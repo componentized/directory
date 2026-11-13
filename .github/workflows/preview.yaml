@@ -13,6 +13,8 @@ name: Preview
 # Needs:
 # - secrets.CLOUDFLARE_API_TOKEN: an account token with Cloudflare Pages: Edit
 # - secrets.CLOUDFLARE_ACCOUNT_ID
+# - secrets.CUSTODIAN_CLIENT_ID and secrets.CUSTODIAN_PRIVATE_KEY: the componentized custodian
+#   GitHub App, which comments the preview on the PR
 # - vars.CLOUDFLARE_PAGES_PROJECT: an existing Pages project, created once with
 #   `wrangler pages project create <name> --production-branch=main`
 
@@ -36,10 +38,9 @@ jobs:
       github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     permissions:
-      # download the site from the CI run
+      # download the site from the CI run, and read the PR; the custodian app comments
       actions: read
-      # comment the preview's URL on the PR
-      pull-requests: write
+      pull-requests: read
     steps:
       - uses: actions/download-artifact@v8
         with:
@@ -89,10 +90,22 @@ jobs:
             --commit-hash=${{ github.event.workflow_run.head_sha }}
             --commit-dirty=true
 
+      - name: Create custodian app token
+        id: app-token
+        if: steps.pr.outputs.number
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ secrets.CUSTODIAN_CLIENT_ID }}
+          private-key: ${{ secrets.CUSTODIAN_PRIVATE_KEY }}
+          # only this repository, with only the permission the comment needs
+          repositories: ${{ github.event.repository.name }}
+          permission-pull-requests: write
       - name: Comment the preview
         if: steps.pr.outputs.number
         env:
-          GH_TOKEN: ${{ github.token }}
+          # the custodian app comments, rather than github-actions
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          BOT: ${{ steps.app-token.outputs.app-slug }}[bot]
           REPO: ${{ github.repository }}
           PR: ${{ steps.pr.outputs.number }}
           SHA: ${{ github.event.workflow_run.head_sha }}
@@ -103,7 +116,7 @@ jobs:
           body="$(printf '%s\n**Preview:** %s\n\nBuilt from %s ([this deploy](%s)).' \
             "$marker" "${ALIAS_URL:-$DEPLOY_URL}" "$SHA" "$DEPLOY_URL")"
           id="$(gh api --paginate "repos/$REPO/issues/$PR/comments" \
-            --jq "map(select(.user.login == \"github-actions[bot]\" and (.body | startswith(\"$marker\")))) | .[0].id // empty" | head -n1)"
+            --jq "map(select(.user.login == \"$BOT\" and (.body | startswith(\"$marker\")))) | .[0].id // empty" | head -n1)"
           if [[ -n "$id" ]]; then
             gh api -X PATCH "repos/$REPO/issues/comments/$id" -f body="$body" > /dev/null
           else

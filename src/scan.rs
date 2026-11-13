@@ -284,8 +284,10 @@ fn discover(github: &GitHub, org: &str) -> Result<BTreeSet<String>> {
     }
 
     let mut found = BTreeSet::new();
-    match github.list::<Package>(&format!("/orgs/{org}/packages?package_type=container"))? {
-        Some(packages) => {
+    // the Packages API is optional: a token that can't read it, or an error reading it, falls back
+    // to discovering the packages from the repositories
+    match github.list::<Package>(&format!("/orgs/{org}/packages?package_type=container")) {
+        Ok(Some(packages)) => {
             eprintln!(
                 "found {} packages with the GitHub Packages API",
                 packages.len()
@@ -297,9 +299,15 @@ fn discover(github: &GitHub, org: &str) -> Result<BTreeSet<String>> {
                     .map(|p| p.name),
             );
         }
-        None => eprintln!(
+        Ok(None) => eprintln!(
             "the GitHub Packages API is not readable, `packages: read`, discovering packages from the repositories"
         ),
+        Err(err) => {
+            println!(
+                "::warning::the GitHub Packages API failed, discovering packages from the repositories: {err:#}"
+            );
+            eprintln!("the GitHub Packages API failed: {err:#}");
+        }
     }
     let repos = github
         .list::<Repo>(&format!("/orgs/{org}/repos?type=public"))?
