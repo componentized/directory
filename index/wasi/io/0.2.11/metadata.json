@@ -1,0 +1,24 @@
+{
+  "package": "wasi:io",
+  "version": "0.2.11",
+  "kind": "interface",
+  "origin": "tracked",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "webassembly/wasi/io",
+    "tag": "0.2.11",
+    "digest": "sha256:2981a5293d3a0d668ff7913f8e3713029cce782a2a3dbd717353f278c07e40a7",
+    "layer_digest": "sha256:15ce2f7abfb523719361293475b6d9969c4d5fe382d109ae171229e562ae5c6d",
+    "size": 15183
+  },
+  "created": "2026-04-07T13:38:10.181582194Z",
+  "annotations": {
+    "org.opencontainers.image.description": "WASI I/O interfaces for streams and poll",
+    "org.opencontainers.image.licenses": "Apache-2.0 WITH LLVM-exception",
+    "org.opencontainers.image.source": "https://github.com/webassembly/wasi",
+    "org.opencontainers.image.url": "https://wasi.dev",
+    "org.opencontainers.image.version": "0.2.11"
+  },
+  "release": "https://github.com/WebAssembly/WASI/releases/tag/v0.2.11",
+  "indexed_at": "2026-11-13T17:29:02Z"
+}

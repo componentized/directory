@@ -1,0 +1,20 @@
+{
+  "package": "wasi:random",
+  "version": "0.2.0",
+  "kind": "interface",
+  "origin": "tracked",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "webassembly/wasi/random",
+    "tag": "0.2.0",
+    "digest": "sha256:1565ceb4dde15608cd9970f66c8c4dacf52df9109f58499ed81cadea02e25a7c",
+    "layer_digest": "sha256:5d535edc544d06719cf337861b7917c3d565360295e5dc424046dceddb0a0e42",
+    "size": 3351
+  },
+  "created": "2024-06-17T18:56:01.731620Z",
+  "annotations": {
+    "org.opencontainers.image.source": "https://github.com/webassembly/wasi"
+  },
+  "release": "https://github.com/WebAssembly/WASI/releases/tag/v0.2.0",
+  "indexed_at": "2026-11-13T17:29:02Z"
+}

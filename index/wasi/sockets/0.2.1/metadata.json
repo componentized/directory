@@ -1,0 +1,34 @@
+{
+  "package": "wasi:sockets",
+  "version": "0.2.1",
+  "kind": "interface",
+  "origin": "tracked",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "webassembly/wasi/sockets",
+    "tag": "0.2.1",
+    "digest": "sha256:4c82d4b90439a58a6ba1379bf388a9638d24717ca3d421e708f4ec5101d52807",
+    "layer_digest": "sha256:ccbda2d88e133f4f29250266c3a6729893ace88c8c8caedf44824b555174f6a8",
+    "size": 58615
+  },
+  "created": "2024-08-01T20:50:27.354925Z",
+  "annotations": {
+    "org.opencontainers.image.description": "A WASI API for TCP & UDP sockets and domain name lookup.",
+    "org.opencontainers.image.licenses": "Apache-2.0 WITH LLVM-exception",
+    "org.opencontainers.image.source": "https://github.com/webassembly/wasi",
+    "org.opencontainers.image.url": "https://wasi.dev",
+    "org.opencontainers.image.version": "0.2.1"
+  },
+  "dependencies": [
+    {
+      "package": "wasi:clocks",
+      "version": "0.2.1"
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.1"
+    }
+  ],
+  "release": "https://github.com/WebAssembly/WASI/releases/tag/v0.2.1",
+  "indexed_at": "2026-11-13T17:29:06Z"
+}

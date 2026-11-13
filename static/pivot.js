@@ -137,6 +137,18 @@
     });
   }
 
+  // a line's older versions, folded in a version menu, shown on asking
+  document.addEventListener("click", (e) => {
+    const fold = e.target.closest?.(".pivot-menu [data-fold]");
+    if (!fold) return;
+    const menu = fold.closest(".pivot-menu");
+    const revealed = [...menu.querySelectorAll(`[data-folded="${CSS.escape(fold.dataset.fold)}"]`)];
+    for (const li of revealed) li.hidden = false;
+    // hidden rather than removed, so the click still counts as inside the menu, which stays open
+    fold.closest("li").hidden = true;
+    revealed.find((li) => li.querySelector("a"))?.querySelector("a").focus({ preventScroll: true });
+  });
+
   document.addEventListener("click", (e) => {
     for (const pivot of pivots) if (!pivot.contains(e.target)) close(pivot, false);
   });

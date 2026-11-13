@@ -1,0 +1,38 @@
+{
+  "package": "wasi:http",
+  "version": "0.2.0",
+  "kind": "interface",
+  "origin": "tracked",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "webassembly/wasi/http",
+    "tag": "0.2.0",
+    "digest": "sha256:b292aade5066edbbd860b0c87180085a813121c61103702ecd09772a4c03283a",
+    "layer_digest": "sha256:5a568e6e2d60c1ce51220e1833cdd5b88db9f615720edc762a9b4a6f36b383bd",
+    "size": 37882
+  },
+  "created": "2024-06-17T18:54:54.727423Z",
+  "annotations": {
+    "org.opencontainers.image.source": "https://github.com/webassembly/wasi"
+  },
+  "dependencies": [
+    {
+      "package": "wasi:cli",
+      "version": "0.2.0"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.2.0"
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.0"
+    },
+    {
+      "package": "wasi:random",
+      "version": "0.2.0"
+    }
+  ],
+  "release": "https://github.com/WebAssembly/WASI/releases/tag/v0.2.0",
+  "indexed_at": "2026-11-13T17:28:55Z"
+}

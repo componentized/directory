@@ -1,0 +1,42 @@
+{
+  "package": "wasi:http",
+  "version": "0.2.5",
+  "kind": "interface",
+  "origin": "tracked",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "webassembly/wasi/http",
+    "tag": "0.2.5",
+    "digest": "sha256:1dfc1960aa9853ab3dd513966cbf9aabb5674a3fe5a57025b0976b16b3754f66",
+    "layer_digest": "sha256:acde12466e25b604bbbe3add2c96d494ac86107dda2dddd6c478c9fad54c1c8a",
+    "size": 52387
+  },
+  "created": "2025-04-03T18:31:05.263090346Z",
+  "annotations": {
+    "org.opencontainers.image.description": "A WASI API for sending and receiving HTTP requests and responses.",
+    "org.opencontainers.image.licenses": "Apache-2.0 WITH LLVM-exception",
+    "org.opencontainers.image.source": "https://github.com/webassembly/wasi",
+    "org.opencontainers.image.url": "https://wasi.dev",
+    "org.opencontainers.image.version": "0.2.5"
+  },
+  "dependencies": [
+    {
+      "package": "wasi:cli",
+      "version": "0.2.5"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.2.5"
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.5"
+    },
+    {
+      "package": "wasi:random",
+      "version": "0.2.5"
+    }
+  ],
+  "release": "https://github.com/WebAssembly/WASI/releases/tag/v0.2.5",
+  "indexed_at": "2026-11-13T17:28:57Z"
+}

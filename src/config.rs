@@ -51,6 +51,31 @@ impl Config {
     }
 }
 
+/// The WIT packages indexed in full, `.config/directory/tracked.toml`: each of their releases,
+/// beyond the versions the org's releases depend on, e.g. `wasi:http`.
+///
+/// ```toml
+/// packages = ["wasi:cli", "wasi:http"]
+/// ```
+#[derive(Debug, Default, Deserialize)]
+pub struct Tracked {
+    #[serde(default)]
+    pub packages: Vec<String>,
+}
+
+impl Tracked {
+    /// The packages at `path`, none when there's no file.
+    pub fn load(path: &Path) -> Result<Self> {
+        match std::fs::read_to_string(path) {
+            Ok(source) => {
+                toml::from_str(&source).with_context(|| format!("parsing {}", path.display()))
+            }
+            Err(err) if err.kind() == std::io::ErrorKind::NotFound => Ok(Self::default()),
+            Err(err) => Err(err).with_context(|| format!("reading {}", path.display())),
+        }
+    }
+}
+
 /// Corrections to what packages' published images say of themselves, `.config/directory/sources.toml`,
 /// for an image that names the wrong source repository, e.g. one its publishing workflow filled in:
 ///

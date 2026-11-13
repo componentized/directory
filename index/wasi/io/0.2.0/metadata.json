@@ -1,0 +1,20 @@
+{
+  "package": "wasi:io",
+  "version": "0.2.0",
+  "kind": "interface",
+  "origin": "tracked",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "webassembly/wasi/io",
+    "tag": "0.2.0",
+    "digest": "sha256:468e50efd8c1c20d554985ed3e3260469c9eba72f7da0532db079c8c6e57ca52",
+    "layer_digest": "sha256:c33b1dbf050f64229ff4decbf9a3d3420e0643a86f5f0cea29f81054820020a6",
+    "size": 13987
+  },
+  "created": "2024-06-17T18:55:47.101560Z",
+  "annotations": {
+    "org.opencontainers.image.source": "https://github.com/webassembly/wasi"
+  },
+  "release": "https://github.com/WebAssembly/WASI/releases/tag/v0.2.0",
+  "indexed_at": "2026-11-13T17:28:59Z"
+}

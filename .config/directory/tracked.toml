@@ -1,0 +1,21 @@
+# WIT packages indexed in full: each of their releases, rather than only the versions the org's
+# releases depend on, and their pre-releases of the versions they never released, e.g. a draft.
+# The registry can't list a namespace's packages, so each is named.
+
+packages = [
+  # WASI 0.2 and 0.3
+  "wasi:cli",
+  "wasi:clocks",
+  "wasi:filesystem",
+  "wasi:http",
+  "wasi:io",
+  "wasi:random",
+  "wasi:sockets",
+  # proposals
+  "wasi:blobstore",
+  "wasi:config",
+  "wasi:keyvalue",
+  "wasi:logging",
+  "wasi:otel",
+  "wasi:webgpu",
+]

@@ -1,0 +1,24 @@
+{
+  "package": "wasi:random",
+  "version": "0.2.11",
+  "kind": "interface",
+  "origin": "tracked",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "webassembly/wasi/random",
+    "tag": "0.2.11",
+    "digest": "sha256:aed7ae6c57e99d6b11542c4924420b410b0e5580e52cfd41acfe5aba251f4336",
+    "layer_digest": "sha256:8f84dc1433ac75d5f152847619bffc6a8cc89b4f1ae94750532d914f12110530",
+    "size": 4063
+  },
+  "created": "2026-04-07T13:38:12.960090450Z",
+  "annotations": {
+    "org.opencontainers.image.description": "WASI random number generation interfaces",
+    "org.opencontainers.image.licenses": "Apache-2.0 WITH LLVM-exception",
+    "org.opencontainers.image.source": "https://github.com/webassembly/wasi",
+    "org.opencontainers.image.url": "https://wasi.dev",
+    "org.opencontainers.image.version": "0.2.11"
+  },
+  "release": "https://github.com/WebAssembly/WASI/releases/tag/v0.2.11",
+  "indexed_at": "2026-11-13T17:29:05Z"
+}

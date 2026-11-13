@@ -1,0 +1,42 @@
+{
+  "package": "wasi:cli",
+  "version": "0.2.0",
+  "kind": "interface",
+  "origin": "tracked",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "webassembly/wasi/cli",
+    "tag": "0.2.0",
+    "digest": "sha256:4218f7d8fdce0833d56328563f1eee8699b6ff69c949498a58adf0b789501d32",
+    "layer_digest": "sha256:e7e85458e11caf76554b724ebf4f113259decf0f3b1ee2e2930de096f72114a7",
+    "size": 25598
+  },
+  "created": "2024-06-17T18:55:10.803919Z",
+  "annotations": {
+    "org.opencontainers.image.source": "https://github.com/webassembly/wasi"
+  },
+  "dependencies": [
+    {
+      "package": "wasi:clocks",
+      "version": "0.2.0"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.2.0"
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.0"
+    },
+    {
+      "package": "wasi:random",
+      "version": "0.2.0"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.2.0"
+    }
+  ],
+  "release": "https://github.com/WebAssembly/WASI/releases/tag/v0.2.0",
+  "indexed_at": "2026-11-13T17:28:44Z"
+}

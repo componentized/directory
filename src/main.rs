@@ -25,6 +25,9 @@ struct Cli {
     /// Corrections to the source repositories packages' images name
     #[arg(long, global = true, default_value = ".config/directory/sources.toml")]
     sources: PathBuf,
+    /// The WIT packages indexed in full, each of their releases
+    #[arg(long, global = true, default_value = ".config/directory/tracked.toml")]
+    tracked: PathBuf,
     #[command(subcommand)]
     command: Command,
 }
@@ -81,6 +84,7 @@ fn main() -> Result<()> {
             only,
             registries: config::Config::load(&config)?,
             sources: config::Sources::load(&cli.sources)?,
+            tracked: config::Tracked::load(&cli.tracked)?,
         }),
         Command::Build {
             out,

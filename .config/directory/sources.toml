@@ -1,5 +1,6 @@
 # Corrections to the source repository a package's published image names, its
-# `org.opencontainers.image.source`, for an image whose publishing workflow named the wrong one.
+# `org.opencontainers.image.source`, for an image whose publishing workflow named the wrong one, or
+# none, e.g. the WASI 0.2.0 releases and the proposals' drafts.
 # The index keeps what the registry says; `directory build` and `directory scan` apply these as
 # they read it.
 
@@ -11,3 +12,34 @@ source = "https://github.com/webassembly/wasi-keyvalue"
 
 [packages."wasi:logging"]
 source = "https://github.com/webassembly/wasi-logging"
+
+[packages."wasi:otel"]
+source = "https://github.com/webassembly/wasi-otel"
+
+[packages."wasi:webgpu"]
+source = "https://github.com/webassembly/wasi-webgpu"
+
+[packages."wasi:blobstore"]
+source = "https://github.com/webassembly/wasi-blobstore"
+
+# WASI's own packages, whose 0.2.0 releases name no source
+[packages."wasi:cli"]
+source = "https://github.com/webassembly/wasi"
+
+[packages."wasi:clocks"]
+source = "https://github.com/webassembly/wasi"
+
+[packages."wasi:filesystem"]
+source = "https://github.com/webassembly/wasi"
+
+[packages."wasi:http"]
+source = "https://github.com/webassembly/wasi"
+
+[packages."wasi:io"]
+source = "https://github.com/webassembly/wasi"
+
+[packages."wasi:random"]
+source = "https://github.com/webassembly/wasi"
+
+[packages."wasi:sockets"]
+source = "https://github.com/webassembly/wasi"

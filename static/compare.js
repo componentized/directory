@@ -34,17 +34,6 @@
       }
     }
   };
-  // an older version of a line, shown on asking
-  form.addEventListener("click", (e) => {
-    const fold = e.target.closest("[data-fold]");
-    if (!fold) return;
-    const menu = fold.closest(".pivot-menu");
-    const revealed = [...menu.querySelectorAll(`[data-folded="${fold.dataset.fold}"]`)];
-    for (const li of revealed) li.hidden = false;
-    // hidden rather than removed, so the click still counts as inside the menu, which stays open
-    fold.closest("li").hidden = true;
-    revealed.find((li) => li.querySelector("a"))?.querySelector("a").focus({ preventScroll: true });
-  });
   // choosing a version compares it in place, rather than following its link
   form.addEventListener("click", (e) => {
     const link = e.target.closest("a[data-version]");

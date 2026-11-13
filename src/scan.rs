@@ -25,6 +25,8 @@ pub struct Options {
     pub registries: Config,
     /// Corrections to the source repositories packages' images name.
     pub sources: crate::config::Sources,
+    /// The WIT packages indexed in full, each of their releases, e.g. `wasi:http`.
+    pub tracked: crate::config::Tracked,
 }
 
 const REGISTRY: &str = "ghcr.io";
@@ -59,6 +61,11 @@ pub fn run(options: &Options) -> Result<()> {
     for package in &packages {
         if let Err(err) = scanner.scan_package(package) {
             scanner.fail(format!("{}/{package}", options.org), err);
+        }
+    }
+    for package in &options.tracked.packages {
+        if let Err(err) = scanner.track(package) {
+            scanner.fail(package.clone(), err);
         }
     }
     scanner.dependencies()?;
@@ -435,6 +442,45 @@ impl Scanner<'_> {
             Origin::Dependency,
             false,
         )
+    }
+
+    /// Indexes each release of a tracked package that isn't indexed yet, e.g. every `wasi:http`
+    /// 0.2.x and 0.3.x, and its pre-releases of the versions it never released, e.g.
+    /// `wasi:config@0.2.0-draft`, but not the release candidates of a version since released.
+    fn track(&mut self, package: &str) -> Result<()> {
+        let (namespace, name) =
+            data::split_id(package).ok_or_else(|| anyhow!("invalid package id {package}"))?;
+        let location = self.location(package)?;
+        let repository = location.repository(namespace, name);
+        let Some(tags) = self.oci.tags(&location.registry, &repository)? else {
+            return Ok(());
+        };
+        let released: BTreeSet<String> = tags
+            .iter()
+            .filter_map(|tag| version::stable(tag))
+            .map(|v| v.to_string())
+            .collect();
+        for tag in &tags {
+            let wanted = version::stable(tag).is_some()
+                || version::prerelease(tag).is_some_and(|v| {
+                    !released.contains(&format!("{}.{}.{}", v.major, v.minor, v.patch))
+                });
+            if !wanted || data::exists(&self.options.root, package, tag) {
+                continue;
+            }
+            if let Err(err) = self.index(
+                &location,
+                &repository,
+                tag,
+                package,
+                None,
+                Origin::Tracked,
+                false,
+            ) {
+                self.fail(format!("{package}@{tag}"), err);
+            }
+        }
+        Ok(())
     }
 
     /// Where a package is published, from the registry the wkg config maps it to.

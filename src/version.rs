@@ -33,6 +33,17 @@ pub fn dev(tag: &str) -> Option<Version> {
         .then_some(version)
 }
 
+/// Parses a pre-release other than a development version, e.g. `0.2.0-draft`, `0.2.0-rc.1` or
+/// `0.3.0-rc-2025-08-15`, in its canonical form.
+pub fn prerelease(tag: &str) -> Option<Version> {
+    let version = Version::parse(tag).ok()?;
+    (!version.pre.is_empty()
+        && version.pre.as_str() != "dev"
+        && version.build.is_empty()
+        && version.to_string() == tag)
+        .then_some(version)
+}
+
 /// The release a development version leads up to, e.g. `0.3.2` for `0.3.2-dev`.
 pub fn release_of(dev_version: &str) -> Option<String> {
     let version = dev(dev_version)?;
@@ -70,6 +81,19 @@ pub fn cmp_desc(a: &str, b: &str) -> std::cmp::Ordering {
 
 #[cfg(test)]
 mod tests {
+
+    #[test]
+    fn prereleases() {
+        assert!(prerelease("0.2.0-draft").is_some());
+        assert!(prerelease("0.2.0-rc.1").is_some());
+        assert!(prerelease("0.3.0-rc-2025-08-15").is_some());
+        assert!(
+            prerelease("0.3.2-dev").is_none(),
+            "a dev build is its own kind"
+        );
+        assert!(prerelease("0.3.0").is_none());
+        assert!(prerelease("v0.3.0-rc.1").is_none());
+    }
     use super::*;
 
     fn v(s: &str) -> Version {
