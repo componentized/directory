@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-deny-connect-unless-lookup-address",
     "tag": "0.1.1-dev",
-    "digest": "sha256:d55c4fe1cf7165631177695b25e6762cc3a2443cc4ae2831c730dd0309b69d2d",
-    "layer_digest": "sha256:b4b0bab2d541b4a9d70e256fcbd8b16f4da3fee1b6fff14e7dbc8a751e25976f",
-    "size": 41785
+    "digest": "sha256:87da680ee0e523ca8d49cc5b285147a8851cf94ca6d90370cf7a0da22b2cf0ee",
+    "layer_digest": "sha256:87674d48ff786ff27b0f18897b22efe538e75d3a1cbe00192e98c63c53f4e6dc",
+    "size": 41827
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-deny-connect-unless-lookup-address",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:1599aa2a3617a8121396ed6e92a7537018b50a5f5416b20adf6301429b7a02f8",
-    "layer_digest": "sha256:86c0e47ad92e0a86492840c5d740caee6e0c41d1edfe9f7e904bfd577a3a7cc2",
-    "size": 499753
+    "digest": "sha256:5e0b020aabbfc409fb6fd5a162821bec49a5e63dfd3724eb1fc24d2b80e5d9a7",
+    "layer_digest": "sha256:371d2ef7f13a7c3a22eb96c28c97389b38a1aac973af4ff4d21eb02a15873adc",
+    "size": 498725
   },
-  "created": "2026-11-09T19:50:29.534683897Z",
+  "created": "2026-11-13T11:58:10.100958014Z",
   "annotations": {
     "org.opencontainers.image.description": "Sockets latch that implicitly denies connecting to addresses, unless they were granted for wasi:sockets/ip-name-lookup.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "51c87720416237042c1efbe3a990e7a5ba7e3141",
+    "org.opencontainers.image.revision": "5448e5aa36904b8f6e87387eafd2e1ef1d4ae239",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-latch-deny-connect-unless-lookup-address",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/51c87720416237042c1efbe3a990e7a5ba7e3141/components/latch-deny-connect-unless-lookup-address",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/5448e5aa36904b8f6e87387eafd2e1ef1d4ae239/components/latch-deny-connect-unless-lookup-address",
     "org.opencontainers.image.version": "0.1.1-dev"
   },
   "imports": [
@@ -45,5 +45,5 @@
       "version": "0.3.0"
     }
   ],
-  "indexed_at": "2026-11-12T00:13:11Z"
+  "indexed_at": "2026-11-13T12:55:21Z"
 }

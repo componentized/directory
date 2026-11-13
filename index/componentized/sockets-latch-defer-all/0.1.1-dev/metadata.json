@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-defer-all",
     "tag": "0.1.1-dev",
-    "digest": "sha256:d02fa5f5760a50bd9623af9539dcc7bb58193f1924c07979e805938453849ae4",
-    "layer_digest": "sha256:e1137c89f9409e106b855e6a58e913bc757040ce3b2e9699de37fda074cb116e",
-    "size": 30790
+    "digest": "sha256:1cb22e79209986456299e66246fa04cb928b2a88b84a511321c09cfff38140f9",
+    "layer_digest": "sha256:85971428182c5c50ebad55d858fda4cc3a035369f79bd8b64172b49b80202a12",
+    "size": 30843
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-defer-all",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:c6f33f5f4613dc981d0812eb7d39e21655f5ac7e40bbb11d28241d9204096924",
-    "layer_digest": "sha256:5a3ace3f700e76aff671ffb800afb6cc3c88caeea9bd62f028dc033ca053b0e6",
-    "size": 294956
+    "digest": "sha256:d2a6a5a20ebaea1fd211ac02c57df42204edc18c219559efd38895f7bc865677",
+    "layer_digest": "sha256:bc0f7c5f13ee5cdd08a309baa8e29a20d29634b858f3ea6ef3119e9dd73b2a2a",
+    "size": 294360
   },
-  "created": "2026-11-09T19:48:36.179682977Z",
+  "created": "2026-11-13T11:56:19.560989981Z",
   "annotations": {
     "org.opencontainers.image.description": "Sockets latch that implicitly defers all decisions.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "51c87720416237042c1efbe3a990e7a5ba7e3141",
+    "org.opencontainers.image.revision": "5448e5aa36904b8f6e87387eafd2e1ef1d4ae239",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-latch-defer-all",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/51c87720416237042c1efbe3a990e7a5ba7e3141/components/latch-defer-all",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/5448e5aa36904b8f6e87387eafd2e1ef1d4ae239/components/latch-defer-all",
     "org.opencontainers.image.version": "0.1.1-dev"
   },
   "imports": [
@@ -45,5 +45,5 @@
       "version": "0.3.0"
     }
   ],
-  "indexed_at": "2026-11-12T00:13:06Z"
+  "indexed_at": "2026-11-13T12:55:16Z"
 }

@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-cidr-egress",
     "tag": "0.1.1-dev",
-    "digest": "sha256:d69e2038736a87318f39146fb67bf72a74804d3c7d11db6b0ae5b758c14be0d4",
-    "layer_digest": "sha256:e29e166f81481def05b39d3efa206ac614c600d500d7bb9e4d6df45a463c4a66",
-    "size": 123118
+    "digest": "sha256:277dfb5f18479a0f48a6fbccdeacee471928f3fdf062179e108c4022237be6da",
+    "layer_digest": "sha256:33279943c152ae79efd7e1893825c1e9e26c09b90cf3357d972812b67c5fe3a3",
+    "size": 124144
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-cidr-egress",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:9d0fd555723fc48e68ec976e1209bf482f15c55940b392d613fcec77d0032950",
-    "layer_digest": "sha256:d2ecc43e1fcbb83c207d615370b9d461a169cc44554b0451cd84ec4cee9d1994",
-    "size": 1472563
+    "digest": "sha256:f4258c494964806eb5b8126706b934d37c1703c78757100ceb09fbcc908fd875",
+    "layer_digest": "sha256:dcf5ff94e587bed7a49e8e4881ef17593afc619913808b1cbbe1360be4d42847",
+    "size": 1468807
   },
-  "created": "2026-11-09T19:47:56.890357328Z",
+  "created": "2026-11-13T11:55:41.891221334Z",
   "annotations": {
     "org.opencontainers.image.description": "Socket latch that uses CIDR ranges to grant or deny originating outbound tcp/udp traffic based on the remote address. Return traffic to peers that reached the guest first is not restricted.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "51c87720416237042c1efbe3a990e7a5ba7e3141",
+    "org.opencontainers.image.revision": "5448e5aa36904b8f6e87387eafd2e1ef1d4ae239",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-latch-cidr-egress",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/51c87720416237042c1efbe3a990e7a5ba7e3141/components/latch-cidr-egress",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/5448e5aa36904b8f6e87387eafd2e1ef1d4ae239/components/latch-cidr-egress",
     "org.opencontainers.image.version": "0.1.1-dev"
   },
   "imports": [
@@ -55,5 +55,5 @@
       "version": "0.3.0"
     }
   ],
-  "indexed_at": "2026-11-12T00:13:04Z"
+  "indexed_at": "2026-11-13T12:55:14Z"
 }

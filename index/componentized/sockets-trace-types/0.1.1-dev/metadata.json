@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/trace-types",
     "tag": "0.1.1-dev",
-    "digest": "sha256:0595d3557c8dbcac20be9841e7181c2b222c858f65c04eeedb05ecf455abb874",
-    "layer_digest": "sha256:f772d7e3f76534578b55f71c4fa8140f02303423101fcdb71b9e44a59a645c43",
-    "size": 209171
+    "digest": "sha256:3a73e6845cd4c09c5b9264f414c58d0c859b83930a6eb924aad5b74bc70dbfde",
+    "layer_digest": "sha256:ac1014bb488b4b1a054d03f83c6e0ad98654080d488e14112f1b21e96cc0fea7",
+    "size": 209370
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/trace-types",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:4db54147cf555f1aadf9bae57acde5a64356985e5a9f889da38751a50a3b62eb",
-    "layer_digest": "sha256:d2ffa159857bc5d8671ff02b527492abbe396e1821d9f9d2dd562a2aefafa2a3",
-    "size": 1790924
+    "digest": "sha256:c4c58c9fa012b460a99dfaf90f9d3e51d872c35b0eff1c2604a869375c178246",
+    "layer_digest": "sha256:a5c3f934d7aa1f0e84d91fc9d210b9571490e0a2bb0742235156a97b51d010d7",
+    "size": 1790170
   },
-  "created": "2026-11-09T19:56:12.442578242Z",
+  "created": "2026-11-13T12:03:56.518417097Z",
   "annotations": {
     "org.opencontainers.image.description": "Trace wasi:sockets/types calls using a logger.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "51c87720416237042c1efbe3a990e7a5ba7e3141",
+    "org.opencontainers.image.revision": "5448e5aa36904b8f6e87387eafd2e1ef1d4ae239",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-trace-types",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/51c87720416237042c1efbe3a990e7a5ba7e3141/components/trace-types",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/5448e5aa36904b8f6e87387eafd2e1ef1d4ae239/components/trace-types",
     "org.opencontainers.image.version": "0.1.1-dev"
   },
   "imports": [
@@ -51,5 +51,5 @@
       "version": "0.3.0"
     }
   ],
-  "indexed_at": "2026-11-12T00:13:28Z"
+  "indexed_at": "2026-11-13T12:55:36Z"
 }

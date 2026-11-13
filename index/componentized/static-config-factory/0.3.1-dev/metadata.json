@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/static-config/factory",
     "tag": "0.3.1-dev",
-    "digest": "sha256:a0b0dc75e187190d21a644a46123228ae911908d0c4b6be8d6515e806d18c5e9",
-    "layer_digest": "sha256:2753fc7f840fadf36e3ed799b9fbb353acf3b717691aa78cd9007fb19cc15a05",
-    "size": 1973327
+    "digest": "sha256:d1fe296e226301f4d8220e6fc35fd60b87773250bd7de463e453f16ad5b602ab",
+    "layer_digest": "sha256:d91812ecab4095017b687e33ed0b77871dca7f701241ecf1f67ea1f280e69481",
+    "size": 1969913
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/static-config/factory",
     "tag": "0.3.1-dev_debug",
-    "digest": "sha256:ca0a2449793af51c9672f8a8c15253fa6cb0ecc96a1bd56b2525a908685aa7d5",
-    "layer_digest": "sha256:db0cc05d1838576233a0a410746fe48f26385d07c681dece96c3a17bbf9b9e74",
-    "size": 39206161
+    "digest": "sha256:9be6bb1645a8ecc405c2e5eed76295733931b1f21e50957260a0a0cf8b16645d",
+    "layer_digest": "sha256:d1ae955f8004a6714d62f5be58f08fc871c2424958a78e3242000f62ef039818",
+    "size": 39049490
   },
-  "created": "2026-11-09T19:50:20.047213126Z",
+  "created": "2026-11-13T11:58:03.492884779Z",
   "annotations": {
     "org.opencontainers.image.description": "Create wasi:config components with static values, from key value pairs.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "35c18e7973f025aca07d0532032ed36b820512c5",
+    "org.opencontainers.image.revision": "7c239f88d7ba8c22be6fe3db1ec7e2bc8742b0e1",
     "org.opencontainers.image.source": "https://github.com/componentized/static-config.git",
     "org.opencontainers.image.title": "componentized:static-config-factory",
-    "org.opencontainers.image.url": "https://github.com/componentized/static-config/tree/35c18e7973f025aca07d0532032ed36b820512c5/components/factory",
+    "org.opencontainers.image.url": "https://github.com/componentized/static-config/tree/7c239f88d7ba8c22be6fe3db1ec7e2bc8742b0e1/components/factory",
     "org.opencontainers.image.version": "0.3.1-dev"
   },
   "imports": [
@@ -45,5 +45,5 @@
       "version": "0.3.1-dev"
     }
   ],
-  "indexed_at": "2026-11-12T00:13:30Z"
+  "indexed_at": "2026-11-13T12:55:38Z"
 }

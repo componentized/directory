@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-ip-name-lookup-glob",
     "tag": "0.1.1-dev",
-    "digest": "sha256:397b64d7a0845c6f8158eee107a1b926588aa16aebd9dfee80023bb8d94e58a9",
-    "layer_digest": "sha256:b1b779608fddba85d9edbd0c635c62bd660dad8193f703562a9f4cbe40fc82ab",
-    "size": 67506
+    "digest": "sha256:9cdb9262c07ae2f4a42abda53a9c038977d3755d47ab95b674599cadbb001b2f",
+    "layer_digest": "sha256:65c0ec454801cf0bf790d4fd26aaa43f10db8b4ddf2c85e621d7be356e24bb71",
+    "size": 67580
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-ip-name-lookup-glob",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:5f0d65070e1a40ae3a0a116ed429cf947087d91a5cbb985febbca282b1b4802d",
-    "layer_digest": "sha256:73bf5d688886ed7a6fcab37c0920957850ba8286fba9352ea8a08b47a32b93a5",
-    "size": 824411
+    "digest": "sha256:5205710b9d72ef2dc5d792a1f9370addf2c19d4b7150afcd22566285fb27389a",
+    "layer_digest": "sha256:147ae18eec7d02b0b8222a2f2161b76a79fac4d8d5e2a69c5e30d9bb8232fb00",
+    "size": 823565
   },
-  "created": "2026-11-09T19:53:38.654808314Z",
+  "created": "2026-11-13T12:01:17.342335371Z",
   "annotations": {
     "org.opencontainers.image.description": "Socket latch that uses glob patterns to grant or deny ip-name lookups.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "51c87720416237042c1efbe3a990e7a5ba7e3141",
+    "org.opencontainers.image.revision": "5448e5aa36904b8f6e87387eafd2e1ef1d4ae239",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-latch-ip-name-lookup-glob",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/51c87720416237042c1efbe3a990e7a5ba7e3141/components/latch-ip-name-lookup-glob",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/5448e5aa36904b8f6e87387eafd2e1ef1d4ae239/components/latch-ip-name-lookup-glob",
     "org.opencontainers.image.version": "0.1.1-dev"
   },
   "imports": [
@@ -55,5 +55,5 @@
       "version": "0.3.0"
     }
   ],
-  "indexed_at": "2026-11-12T00:13:21Z"
+  "indexed_at": "2026-11-13T12:55:30Z"
 }

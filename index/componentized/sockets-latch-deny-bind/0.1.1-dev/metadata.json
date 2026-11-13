@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-deny-bind",
     "tag": "0.1.1-dev",
-    "digest": "sha256:0b7da479882ff5ecf3797d899bc48c35b8b426909d1f202c3e49eb4709977713",
-    "layer_digest": "sha256:0273bf42c9232beb7775b9cd67e8df523c1666c77cfe44bf398f87a6ada9a09f",
-    "size": 33440
+    "digest": "sha256:3a20e0b3539c61c0b4d0fc1df05e90262149481ebc541e1c9da1b10362e2b342",
+    "layer_digest": "sha256:63cdb14f47a59bd66daaad52c664c788d60e3ec0041b4095482cdef99204561f",
+    "size": 33493
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-deny-bind",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:023ce36ff079f90b14d68fec1e663acabd62ffc4a4abeab69ad924e2845d1709",
-    "layer_digest": "sha256:5282d64f5996174a8bf76e64c586ec66585b87c66bb98ce6a9d1a9ed1f71187d",
-    "size": 307276
+    "digest": "sha256:2a52580412afb2dfab4a007ff0f7cdcd8b2f71057843e37e373c3ba012db1989",
+    "layer_digest": "sha256:0288e172452f2e7a95ea4c32c73bcd32265a76e316759268242ccf344ccbb932",
+    "size": 306627
   },
-  "created": "2026-11-09T19:49:49.798854187Z",
+  "created": "2026-11-13T11:57:31.793176365Z",
   "annotations": {
     "org.opencontainers.image.description": "Sockets latch that implicitly denies explicitly binding tcp and udp sockets to a local address.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "51c87720416237042c1efbe3a990e7a5ba7e3141",
+    "org.opencontainers.image.revision": "5448e5aa36904b8f6e87387eafd2e1ef1d4ae239",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-latch-deny-bind",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/51c87720416237042c1efbe3a990e7a5ba7e3141/components/latch-deny-bind",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/5448e5aa36904b8f6e87387eafd2e1ef1d4ae239/components/latch-deny-bind",
     "org.opencontainers.image.version": "0.1.1-dev"
   },
   "imports": [
@@ -45,5 +45,5 @@
       "version": "0.3.0"
     }
   ],
-  "indexed_at": "2026-11-12T00:13:10Z"
+  "indexed_at": "2026-11-13T12:55:19Z"
 }

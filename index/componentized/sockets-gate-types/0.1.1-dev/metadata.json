@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/gate-types",
     "tag": "0.1.1-dev",
-    "digest": "sha256:b5d2483f6c41319aba08a23ae19be68436c93aad543dbfe5aacffe2557aaa62c",
-    "layer_digest": "sha256:6715fc78a4b40cbd650d5ea3ada1c8912cf027766eac3ebd016d93145c0b8ada",
-    "size": 233019
+    "digest": "sha256:0c81bbdd6045bf0cee10cc7bce1941f7409de95f21f9a0c0b4496d3e58ef8b3b",
+    "layer_digest": "sha256:9d134e7d9484ef44f261c521f263ef7a4068c3b1ce631547518ef5b7ac326522",
+    "size": 233217
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/gate-types",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:17e9c2e02ca766f809534cd796a7ae313a558e6796ef1480b07a9be2b5ae749a",
-    "layer_digest": "sha256:7333aeb34b6e36cc366e02f0db8e19ebbdf21c7ea879a6bfcf586ee35fc0493d",
-    "size": 1996902
+    "digest": "sha256:e1d613c1dd5fa00023a41940f9a871dc1e64fde6e6700097ad557dddbdfb5daa",
+    "layer_digest": "sha256:f11ed91abbf6c4310dc7b92732ad3fcc961b117e95a9ff4dd5faf69bd5dbca26",
+    "size": 1994122
   },
-  "created": "2026-11-09T19:46:59.194241160Z",
+  "created": "2026-11-13T11:54:48.796538572Z",
   "annotations": {
     "org.opencontainers.image.description": "Socket gate access control for tcp and udp sockets.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "51c87720416237042c1efbe3a990e7a5ba7e3141",
+    "org.opencontainers.image.revision": "5448e5aa36904b8f6e87387eafd2e1ef1d4ae239",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-gate-types",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/51c87720416237042c1efbe3a990e7a5ba7e3141/components/gate-types",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/5448e5aa36904b8f6e87387eafd2e1ef1d4ae239/components/gate-types",
     "org.opencontainers.image.version": "0.1.1-dev"
   },
   "imports": [
@@ -56,5 +56,5 @@
       "version": "0.3.0"
     }
   ],
-  "indexed_at": "2026-11-12T00:13:01Z"
+  "indexed_at": "2026-11-13T12:55:11Z"
 }

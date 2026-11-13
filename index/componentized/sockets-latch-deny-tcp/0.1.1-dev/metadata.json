@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-deny-tcp",
     "tag": "0.1.1-dev",
-    "digest": "sha256:b63c6fa09f5252b6d33390753199dd87e68f9b14fff752c039b533e8484204cd",
-    "layer_digest": "sha256:08a1c1a6211eacd218226ff670c39a432c44e0d5c2c5a5626c54dc20b2954794",
-    "size": 30839
+    "digest": "sha256:472d444f46ee00594d0f785a46f8eb3d055ac698cda53e88b1d6a69e8de0fa5c",
+    "layer_digest": "sha256:b08d64c60fa910604c9ec6b71bf11e17ec5166499747d1bf3e21ba8545750408",
+    "size": 30892
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-deny-tcp",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:97dd26a96a3bec79f4bd7564d8457b9cb2dc700a4e164a5e3679e27cfe7b86d8",
-    "layer_digest": "sha256:61414675a3f0ab1ae6420c4da6b8096a0f6d4d2b7e20561a9d62bce240a0bd3b",
-    "size": 306996
+    "digest": "sha256:09c6ceb57f1c92d9d4787f60c452ff6bc8b20b2a8b9eb5785e3845bbc7f6d1d9",
+    "layer_digest": "sha256:69d11949e56242e2f28aebb92fbb0d79228219e2f62a3f65f560973e339e9b7d",
+    "size": 306349
   },
-  "created": "2026-11-09T19:52:26.009647614Z",
+  "created": "2026-11-13T11:59:59.084750880Z",
   "annotations": {
     "org.opencontainers.image.description": "Sockets latch that implicitly denies all TCP operations.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "51c87720416237042c1efbe3a990e7a5ba7e3141",
+    "org.opencontainers.image.revision": "5448e5aa36904b8f6e87387eafd2e1ef1d4ae239",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-latch-deny-tcp",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/51c87720416237042c1efbe3a990e7a5ba7e3141/components/latch-deny-tcp",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/5448e5aa36904b8f6e87387eafd2e1ef1d4ae239/components/latch-deny-tcp",
     "org.opencontainers.image.version": "0.1.1-dev"
   },
   "imports": [
@@ -45,5 +45,5 @@
       "version": "0.3.0"
     }
   ],
-  "indexed_at": "2026-11-12T00:13:18Z"
+  "indexed_at": "2026-11-13T12:55:27Z"
 }

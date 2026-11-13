@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/constants/factory",
     "tag": "0.2.1-dev",
-    "digest": "sha256:2a2cd456224920f99e8ad9ab61da96132c891fbd9015e7dc11a4ccf464a23251",
-    "layer_digest": "sha256:18dcf986e0044ca534bf502aff493db2d3b8a644992d1cb9a75651a8fbf97307",
-    "size": 2196027
+    "digest": "sha256:cb027ec50d46f03f6c14f13a93ab479b25cf97fcdac038378e7af132323a89ce",
+    "layer_digest": "sha256:146c49ef3da6c9b369121a0c8e5ce23bad196ad7528b969113e79b59c33df4b5",
+    "size": 2200508
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/constants/factory",
     "tag": "0.2.1-dev_debug",
-    "digest": "sha256:cd2c6ef448fa8ab0752cce7b0a10dd5aa27d9cddc63834d808752b02e25081ab",
-    "layer_digest": "sha256:6a50783b26b5e9d4443fa62dbf0e9358fa477b810735e20ca4fc2aac59c179cf",
-    "size": 45851480
+    "digest": "sha256:d01239cdcb16078e28c8c6e70dfd45fb0da1c90cf80c726f6067aba1c05ba830",
+    "layer_digest": "sha256:05d1a82f7ba04db987c6ca5b3314bb409aa944947a629fd8dc1a7338208b825b",
+    "size": 45620888
   },
-  "created": "2026-11-11T19:33:16.407568994Z",
+  "created": "2026-11-13T11:59:38.602463018Z",
   "annotations": {
     "org.opencontainers.image.description": "Create components whose exported functions return constant values, from a WIT world with values in its doc comments.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "216fb033c30c19695d6f674a8c9cfaa0ed4b3a32",
+    "org.opencontainers.image.revision": "e0daeaf05e53b897056db3728187a0bc86dec268",
     "org.opencontainers.image.source": "https://github.com/componentized/constants.git",
     "org.opencontainers.image.title": "componentized:constants-factory",
-    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/216fb033c30c19695d6f674a8c9cfaa0ed4b3a32/components/factory",
+    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/e0daeaf05e53b897056db3728187a0bc86dec268/components/factory",
     "org.opencontainers.image.version": "0.2.1-dev"
   },
   "imports": [
@@ -46,5 +46,5 @@
       "version": "0.2.1-dev"
     }
   ],
-  "indexed_at": "2026-11-12T00:12:08Z"
+  "indexed_at": "2026-11-13T12:54:46Z"
 }

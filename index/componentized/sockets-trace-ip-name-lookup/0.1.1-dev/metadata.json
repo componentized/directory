@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/trace-ip-name-lookup",
     "tag": "0.1.1-dev",
-    "digest": "sha256:31c7edd0a470ff068a2f027667ff06c95197e0ffe7daa21fc29e522010d12e50",
-    "layer_digest": "sha256:903f91017bfa463b16d2ec8c29ea1e671463d614975d75bf898078439c87645d",
-    "size": 67859
+    "digest": "sha256:7b480b5468bc3c2cb73894626dabae2af37db83987d15798489e14f5827a6d19",
+    "layer_digest": "sha256:48b5cef37745c4ce3b9bd647eb290fd3dfbcd4fe8c0d84e9d52c59250afd782c",
+    "size": 67912
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/trace-ip-name-lookup",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:a1a0d02e851aa325a16ea9e4ab6b272df82a4a1919a96c07aa15df9f972e6459",
-    "layer_digest": "sha256:f2370b0986012e924e6e005165f7e8462c38aceb29621c75dc15929aa669a6c8",
-    "size": 919206
+    "digest": "sha256:8ccf949c29d8d61fb50d0958948114aa23a73bdf5abf45558a52424defe3fe85",
+    "layer_digest": "sha256:d23b23ae19708470bf1f67d73e49fdab434b8ff60ec81d44ae7caf63f6bd963c",
+    "size": 915731
   },
-  "created": "2026-11-09T19:55:54.027108956Z",
+  "created": "2026-11-13T12:03:38.134608150Z",
   "annotations": {
     "org.opencontainers.image.description": "Trace wasi:sockets/ip-name-lookup calls using a logger.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "51c87720416237042c1efbe3a990e7a5ba7e3141",
+    "org.opencontainers.image.revision": "5448e5aa36904b8f6e87387eafd2e1ef1d4ae239",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-trace-ip-name-lookup",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/51c87720416237042c1efbe3a990e7a5ba7e3141/components/trace-ip-name-lookup",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/5448e5aa36904b8f6e87387eafd2e1ef1d4ae239/components/trace-ip-name-lookup",
     "org.opencontainers.image.version": "0.1.1-dev"
   },
   "imports": [
@@ -47,5 +47,5 @@
       "version": "0.3.0"
     }
   ],
-  "indexed_at": "2026-11-12T00:13:27Z"
+  "indexed_at": "2026-11-13T12:55:36Z"
 }

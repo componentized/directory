@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-deny-connect",
     "tag": "0.1.1-dev",
-    "digest": "sha256:fdc6eed122e23bdcb5d57f9f1a9c238f7569fd6ab68dd3f5e97a976781a7a671",
-    "layer_digest": "sha256:b419545fffe8cd5c4716650555c16733b6a2c982022981705d215a160966a56b",
-    "size": 33455
+    "digest": "sha256:71bc5a90d3225692586f374939a06c1109677391c7460d67fb05b938d3c79398",
+    "layer_digest": "sha256:bcc84efc2025aaed2e7b098dab2ade54118ccca775c21ccccf45d151e6766e6e",
+    "size": 33508
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-deny-connect",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:0e8862e106387eec585c4d33f094c8db6b5701e2b791eff588a454e3852e7d7c",
-    "layer_digest": "sha256:e8233742bce11ccb091ba3a114cc8bf6fda3e283f61dd7254454a70b6c398049",
-    "size": 307428
+    "digest": "sha256:4fc9ac312c627211de21d492bec793accba90631ff20258cd423fc8f6450e63d",
+    "layer_digest": "sha256:49edf077acb735a090eced80ccabccb6e86a4eec1fc6f71796a33a8be9f33b65",
+    "size": 306776
   },
-  "created": "2026-11-09T19:50:08.857509933Z",
+  "created": "2026-11-13T11:57:50.733335638Z",
   "annotations": {
     "org.opencontainers.image.description": "Sockets latch that implicitly denies all outbound connections.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "51c87720416237042c1efbe3a990e7a5ba7e3141",
+    "org.opencontainers.image.revision": "5448e5aa36904b8f6e87387eafd2e1ef1d4ae239",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-latch-deny-connect",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/51c87720416237042c1efbe3a990e7a5ba7e3141/components/latch-deny-connect",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/5448e5aa36904b8f6e87387eafd2e1ef1d4ae239/components/latch-deny-connect",
     "org.opencontainers.image.version": "0.1.1-dev"
   },
   "imports": [
@@ -45,5 +45,5 @@
       "version": "0.3.0"
     }
   ],
-  "indexed_at": "2026-11-12T00:13:11Z"
+  "indexed_at": "2026-11-13T12:55:20Z"
 }

@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-cidr-bind",
     "tag": "0.1.1-dev",
-    "digest": "sha256:fcb3521a6e6f17a9d1b416630d5880227ab2c32b044f9f5abe290451f76a7393",
-    "layer_digest": "sha256:0247fd37f8dba88f8bc6db2760d3603ba92b92909720404327199d4d737f7cba",
-    "size": 97944
+    "digest": "sha256:bd4f05f1e9d5099a5e3dbb514a6fa3b5d53100dd96685a1f3502c6305326376f",
+    "layer_digest": "sha256:921427ff69f06b9ae3ae14cfaadb03bddcc9d8b5809e4905b0234b0183a85bdb",
+    "size": 98703
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-cidr-bind",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:3faa81f74d3e2f632f575cbc30f6e0758f00011b8fda00926051186212ee0904",
-    "layer_digest": "sha256:1766f4dfe26951239a5a3bf91d4da1212a4e56b9e105749e9286a5eec820901d",
-    "size": 1140712
+    "digest": "sha256:a078abea163abafa90ea1e78606b9ed4be4abcd0305e47f2de080e602fc9e19d",
+    "layer_digest": "sha256:6517de1879d2548ac6b5e54def415520fbe7d4c35dd840d8d0e2a995a2ee7878",
+    "size": 1137426
   },
-  "created": "2026-11-09T19:47:37.492517547Z",
+  "created": "2026-11-13T11:55:23.829243790Z",
   "annotations": {
     "org.opencontainers.image.description": "Socket latch that uses CIDR ranges to grant or deny binding tcp/udp sockets to a local address and port.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "51c87720416237042c1efbe3a990e7a5ba7e3141",
+    "org.opencontainers.image.revision": "5448e5aa36904b8f6e87387eafd2e1ef1d4ae239",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-latch-cidr-bind",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/51c87720416237042c1efbe3a990e7a5ba7e3141/components/latch-cidr-bind",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/5448e5aa36904b8f6e87387eafd2e1ef1d4ae239/components/latch-cidr-bind",
     "org.opencontainers.image.version": "0.1.1-dev"
   },
   "imports": [
@@ -55,5 +55,5 @@
       "version": "0.3.0"
     }
   ],
-  "indexed_at": "2026-11-12T00:13:03Z"
+  "indexed_at": "2026-11-13T12:55:13Z"
 }

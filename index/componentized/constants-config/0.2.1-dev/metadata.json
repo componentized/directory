@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/constants/config",
     "tag": "0.2.1-dev",
-    "digest": "sha256:461d29cda072354d84ca84da5c387e5a80ae6c734d362f7e6ce77bddeead3a7a",
-    "layer_digest": "sha256:8d05f8cb02b1dab073dbe9c04a5f8e8a2b7a1631d42cd3c839a5d8156c0a66b8",
+    "digest": "sha256:547c1e01a16682dd9f4842d2a8fcd2ffd3de8c7ad2b195cf0a25f034820b41e1",
+    "layer_digest": "sha256:f68024d79779fbca153dd85364c86a7d2515f9bb81cce3313854ba247cdde5fd",
     "size": 5477
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/constants/config",
     "tag": "0.2.1-dev_debug",
-    "digest": "sha256:f5a34d69a6c1e91a157e7a0da659d533f1d1c6280c1ca1ded106c341e5a047b3",
-    "layer_digest": "sha256:d4fa177dd6d27757b41aaae05e78d9b19b01e956df5311308bb373ca949671c0",
-    "size": 189874
+    "digest": "sha256:089b50589d9c0209b307eac8c7f6355f97df64aa34880d9c58c4b3d8f07b5386",
+    "layer_digest": "sha256:8bc0588293e06b20ae6f49725b5b1f5c89c77fd6e5605d7b3b986209987e9fee",
+    "size": 188352
   },
-  "created": "2026-11-11T19:33:04.276409346Z",
+  "created": "2026-11-13T11:59:20.565750597Z",
   "annotations": {
     "org.opencontainers.image.description": "Config values for the wasi:config/store interface, served from a list of key value pairs.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "216fb033c30c19695d6f674a8c9cfaa0ed4b3a32",
+    "org.opencontainers.image.revision": "e0daeaf05e53b897056db3728187a0bc86dec268",
     "org.opencontainers.image.source": "https://github.com/componentized/constants.git",
     "org.opencontainers.image.title": "componentized:constants-config",
-    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/216fb033c30c19695d6f674a8c9cfaa0ed4b3a32/components/config",
+    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/e0daeaf05e53b897056db3728187a0bc86dec268/components/config",
     "org.opencontainers.image.version": "0.2.1-dev"
   },
   "imports": [
@@ -45,5 +45,5 @@
       "version": "0.2.0-rc.1"
     }
   ],
-  "indexed_at": "2026-11-12T00:12:05Z"
+  "indexed_at": "2026-11-13T12:54:45Z"
 }

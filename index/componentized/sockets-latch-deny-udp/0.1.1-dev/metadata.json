@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-deny-udp",
     "tag": "0.1.1-dev",
-    "digest": "sha256:92d06be6cb317b64c5f398f8e776bc8bc78da0f7db21ab44f0c34f4830be9591",
-    "layer_digest": "sha256:0c4d38b989976e2d485956eaf51754c4fbc2729add71294e49fcb8aa163e785a",
-    "size": 30839
+    "digest": "sha256:83627a9e5c14d81905f6a0fe3a19ee1f0f792bfeff75193706643c05e98ab5ea",
+    "layer_digest": "sha256:88b95ab6614a3f902583a653f937137f738855eb5749c8328b3bed4f8eabe948",
+    "size": 30892
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-deny-udp",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:357594c9f9f7b8770c7020c82d1bfaa9312e6f5efd1bc9bcdbfca87241e4aca9",
-    "layer_digest": "sha256:8131b40e9a58cfc57308bea239e314b55fd7ca2aa6d99b68c50b4546922d8e81",
-    "size": 306973
+    "digest": "sha256:f0190f7d278782923b93ac1a5fc6e2123a2d3be0eafbe9dd50ed1058cf24db4d",
+    "layer_digest": "sha256:bec573463d5485e27ff757e992791325dbdf75a15552e42cdcc8369a440a7430",
+    "size": 306356
   },
-  "created": "2026-11-09T19:53:01.340019755Z",
+  "created": "2026-11-13T12:00:32.386109233Z",
   "annotations": {
     "org.opencontainers.image.description": "Sockets latch that implicitly denies all UDP operations.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "51c87720416237042c1efbe3a990e7a5ba7e3141",
+    "org.opencontainers.image.revision": "5448e5aa36904b8f6e87387eafd2e1ef1d4ae239",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-latch-deny-udp",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/51c87720416237042c1efbe3a990e7a5ba7e3141/components/latch-deny-udp",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/5448e5aa36904b8f6e87387eafd2e1ef1d4ae239/components/latch-deny-udp",
     "org.opencontainers.image.version": "0.1.1-dev"
   },
   "imports": [
@@ -45,5 +45,5 @@
       "version": "0.3.0"
     }
   ],
-  "indexed_at": "2026-11-12T00:13:18Z"
+  "indexed_at": "2026-11-13T12:55:28Z"
 }
