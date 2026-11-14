@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/lifecycle-host-cli",
     "tag": "0.0.5-dev",
-    "digest": "sha256:f60047a27a7183c78faa372b3f00a9604f5bc5ff671c3f8fed3b58129f3f83cb",
+    "digest": "sha256:bf7ca1914b43e118bd2fb1f8fcf341c12abfefc3133aef41b8132f70bd3a3011",
     "layer_digest": "sha256:82d9bd245c53bd2b914abb2cad8b3f0be4628be12850622cf043067b36d32f82",
     "size": 552279
   },
@@ -15,18 +15,18 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/lifecycle-host-cli",
     "tag": "0.0.5-dev_debug",
-    "digest": "sha256:72dfbdd00378bb8debf955f912a4d87c5d3f3ae188bf5bc1e07c6e01622849f0",
+    "digest": "sha256:d5c392ffe2209e761d08c135c74e4bb7e31069cd93cb8fce0d9a1e85523b421c",
     "layer_digest": "sha256:a151b3d2d293cbca0b86dd251f84f85878a025dc2ed8a7f2a36c828a0a85ef84",
     "size": 2265549
   },
-  "created": "2026-11-14T22:11:42.708796202Z",
+  "created": "2026-11-14T23:49:08.932596928Z",
   "annotations": {
     "org.opencontainers.image.description": "Exposes a `componentized:services/lifecycle` as a cli, exporting `wasi:cli/run`.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "4376dde4cf62e54b61222e3bad7105a06c222c98",
+    "org.opencontainers.image.revision": "af98b1dec5990c07c2bb4a6db491526ab8d45bb6",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-lifecycle-host-cli",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/4376dde4cf62e54b61222e3bad7105a06c222c98/components/lifecycle-host-cli",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/af98b1dec5990c07c2bb4a6db491526ab8d45bb6/components/lifecycle-host-cli",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
@@ -64,5 +64,5 @@
       "version": "0.2.6"
     }
   ],
-  "indexed_at": "2026-11-14T22:15:15Z"
+  "indexed_at": "2026-11-14T23:52:26Z"
 }

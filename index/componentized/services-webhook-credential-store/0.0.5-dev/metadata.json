@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/webhook-credential-store",
     "tag": "0.0.5-dev",
-    "digest": "sha256:20258f2d0fd9055636e8ecd8908afc5dbd7515421c984197e721e2053fdb6d56",
+    "digest": "sha256:ce2da9e9b5de7ff3abaea94e17be6f2ec44eacea1f36127eea909e0b9cedc324",
     "layer_digest": "sha256:1ac235c8767c03efd99c26dd55b177a2a84193256ad63ef2ab51192447e8131e",
     "size": 163546
   },
@@ -15,18 +15,18 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/webhook-credential-store",
     "tag": "0.0.5-dev_debug",
-    "digest": "sha256:25f2ad0bb507ea0ccd5ca0142fe3eeba9e4635d9f0f202f3bec06f57bf05e4c6",
+    "digest": "sha256:e479965c3a82c8c4a980e5d2439478f1cd08506f3e86c0b095c4ca16d9429fc9",
     "layer_digest": "sha256:b6ac328cf4f841ae7e01110593ea80f8cc650aae235cb9c662f488dd5e8aa873",
     "size": 395092
   },
-  "created": "2026-11-14T22:13:56.270060874Z",
+  "created": "2026-11-14T23:51:21.759032123Z",
   "annotations": {
     "org.opencontainers.image.description": "Implements `componentized:services/credential-store`, fetching the credentials of service bindings from a webhook over `wasi:http`, at the `scheme` and `host` keys in `wasi:config`.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "4376dde4cf62e54b61222e3bad7105a06c222c98",
+    "org.opencontainers.image.revision": "af98b1dec5990c07c2bb4a6db491526ab8d45bb6",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-webhook-credential-store",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/4376dde4cf62e54b61222e3bad7105a06c222c98/components/webhook-credential-store",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/af98b1dec5990c07c2bb4a6db491526ab8d45bb6/components/webhook-credential-store",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
@@ -59,5 +59,5 @@
       "version": "0.2.6"
     }
   ],
-  "indexed_at": "2026-11-14T22:15:21Z"
+  "indexed_at": "2026-11-14T23:52:27Z"
 }

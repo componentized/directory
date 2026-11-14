@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/webhook-credential-admin",
     "tag": "0.0.5-dev",
-    "digest": "sha256:c4cfe1602a40b7347bd5d636c1215942baea8b3d97b51b91c3106d0899c0674c",
+    "digest": "sha256:67c403925500450d11f34596f1def54b6ee3aa5c09efd7a888e84d4aa778fb0d",
     "layer_digest": "sha256:b207e003626a244769aed706897cd5c40759b1e3a7dd6a7291efd9f95901c541",
     "size": 90561
   },
@@ -15,18 +15,18 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/webhook-credential-admin",
     "tag": "0.0.5-dev_debug",
-    "digest": "sha256:f439fe43a2ba4950c19a8559113e5c6e45bbb6a666ec0391f3af728e9d80329e",
+    "digest": "sha256:b993005ca70ec3506526bf3a2eef82ba26a8e50b109258b500796e0bd7c5e782",
     "layer_digest": "sha256:53127df4b742ce725b23e721dfe97d0717bb78e5cf53c7f787938ccb80f3ae8d",
     "size": 241127
   },
-  "created": "2026-11-14T22:13:35.760740202Z",
+  "created": "2026-11-14T23:51:00.200403465Z",
   "annotations": {
     "org.opencontainers.image.description": "Implements `componentized:services/credential-admin`, publishing and destroying the credentials of service bindings with a webhook over `wasi:http`, at the `scheme` and `host` keys in `wasi:config`.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "4376dde4cf62e54b61222e3bad7105a06c222c98",
+    "org.opencontainers.image.revision": "af98b1dec5990c07c2bb4a6db491526ab8d45bb6",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-webhook-credential-admin",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/4376dde4cf62e54b61222e3bad7105a06c222c98/components/webhook-credential-admin",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/af98b1dec5990c07c2bb4a6db491526ab8d45bb6/components/webhook-credential-admin",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
@@ -57,5 +57,5 @@
       "version": "0.2.6"
     }
   ],
-  "indexed_at": "2026-11-14T22:15:20Z"
+  "indexed_at": "2026-11-14T23:52:27Z"
 }

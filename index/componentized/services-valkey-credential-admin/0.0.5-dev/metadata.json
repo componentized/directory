@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/valkey-credential-admin",
     "tag": "0.0.5-dev",
-    "digest": "sha256:07853a523ed492a46ed49923067b0e9f55e63430b0af7ee744e8a0f224a65880",
+    "digest": "sha256:025836d2b0ad5469c4d99765b550979ddb7540d178bd8b14916d8521f22bb77e",
     "layer_digest": "sha256:c199c8cd0a5eea2e8d54869cb0460a8de4932c4031ebdbecefbf2ddb090905c4",
     "size": 412719
   },
@@ -15,18 +15,18 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/valkey-credential-admin",
     "tag": "0.0.5-dev_debug",
-    "digest": "sha256:a8df74dae2929163c0f2f0f5ca694a6d16e2387ae0fa1c8673d1e03cb7fa36e5",
+    "digest": "sha256:cee17902643d63a3da6bf1efb018b9ff02b4562aaa80f53ffc659b9727e2ace9",
     "layer_digest": "sha256:468cc0b7d58efc17870b61131975b16419c05451ade248233e22b274fe791ea0",
     "size": 518104
   },
-  "created": "2026-11-14T22:12:29.025736899Z",
+  "created": "2026-11-14T23:49:54.255350173Z",
   "annotations": {
     "org.opencontainers.image.description": "Implements `componentized:services/credential-admin`, publishing and destroying the credentials of service bindings in a Valkey server.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "4376dde4cf62e54b61222e3bad7105a06c222c98",
+    "org.opencontainers.image.revision": "af98b1dec5990c07c2bb4a6db491526ab8d45bb6",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-valkey-credential-admin",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/4376dde4cf62e54b61222e3bad7105a06c222c98/components/valkey-credential-admin",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/af98b1dec5990c07c2bb4a6db491526ab8d45bb6/components/valkey-credential-admin",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
@@ -62,5 +62,5 @@
       "version": "0.2.6"
     }
   ],
-  "indexed_at": "2026-11-14T22:15:17Z"
+  "indexed_at": "2026-11-14T23:52:26Z"
 }

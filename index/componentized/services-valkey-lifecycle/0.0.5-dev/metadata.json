@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/valkey-lifecycle",
     "tag": "0.0.5-dev",
-    "digest": "sha256:2237e4ce328f7d7e1b80982d32e4ec75819e6f0d998e5ad730b9f4ad4ea156f9",
+    "digest": "sha256:76886f05693f14148a3c48aa0cfe8c696f13f41954263f2a274f53455a307394",
     "layer_digest": "sha256:a9a3560f6a247b1a29a8d8033e9f8a751d531c74217f677957b626cebfee59d6",
     "size": 517038
   },
@@ -15,18 +15,18 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/valkey-lifecycle",
     "tag": "0.0.5-dev_debug",
-    "digest": "sha256:404ca020947769104d51aa7680864475f6caea2c6a1f3e3aa702a920b9fa5578",
+    "digest": "sha256:15fd4cd24cb4099553c0bd9eb926a0f44d223b665c7fd0dcf5ef00d0dfdf29c0",
     "layer_digest": "sha256:5bf36b626328f66906100bb7f33590f6d401a7f5182b3a0419818a90b9ace41f",
     "size": 737006
   },
-  "created": "2026-11-14T22:13:13.421409891Z",
+  "created": "2026-11-14T23:50:34.741489777Z",
   "annotations": {
     "org.opencontainers.image.description": "Implements `componentized:services/service-lifecycle` for `valkey` services on a Valkey server, at the `hostname` and `port` keys in `wasi:config`, `127.0.0.1:6379` by default.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "4376dde4cf62e54b61222e3bad7105a06c222c98",
+    "org.opencontainers.image.revision": "af98b1dec5990c07c2bb4a6db491526ab8d45bb6",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-valkey-lifecycle",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/4376dde4cf62e54b61222e3bad7105a06c222c98/components/valkey-lifecycle",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/af98b1dec5990c07c2bb4a6db491526ab8d45bb6/components/valkey-lifecycle",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
@@ -83,5 +83,5 @@
       "version": "0.2.6"
     }
   ],
-  "indexed_at": "2026-11-14T22:15:19Z"
+  "indexed_at": "2026-11-14T23:52:27Z"
 }

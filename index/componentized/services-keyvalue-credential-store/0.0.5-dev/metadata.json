@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/keyvalue-credential-store",
     "tag": "0.0.5-dev",
-    "digest": "sha256:8cdcc0ba868c3f4ce3d4cae7c75d9fd82be841866498616af0ee04f0ec8cef9d",
+    "digest": "sha256:3315bfcebe68541501f64db939cd9b2ece112aac7a28eb7ec9600e578ea1b9f8",
     "layer_digest": "sha256:086a382e3a9e60ec3d140f63400cdee21da5dccc9d0ab3def2424ca71c0e04de",
     "size": 127207
   },
@@ -15,18 +15,18 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/keyvalue-credential-store",
     "tag": "0.0.5-dev_debug",
-    "digest": "sha256:1c30bb01481d63d3047914806e9563f4c6e8e7b67c6f1903290c79308d13e7b7",
+    "digest": "sha256:aa2ece7226df08da4275a9d712ca4e26d95a77c727da037cfb8f17367d03e7b2",
     "layer_digest": "sha256:f6881d22db962f0c5eaad98716c0088da466cc2c7eb72395f924d1f28bbc27c6",
     "size": 308459
   },
-  "created": "2026-11-14T22:11:18.579294532Z",
+  "created": "2026-11-14T23:48:42.400139095Z",
   "annotations": {
     "org.opencontainers.image.description": "Implements `componentized:services/credential-store`, fetching the credentials of service bindings from a `wasi:keyvalue` bucket, named by the `bucket` key in `wasi:config`, `bindings` by default.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "4376dde4cf62e54b61222e3bad7105a06c222c98",
+    "org.opencontainers.image.revision": "af98b1dec5990c07c2bb4a6db491526ab8d45bb6",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-keyvalue-credential-store",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/4376dde4cf62e54b61222e3bad7105a06c222c98/components/keyvalue-credential-store",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/af98b1dec5990c07c2bb4a6db491526ab8d45bb6/components/keyvalue-credential-store",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
@@ -51,5 +51,5 @@
       "version": "0.2.0-draft2"
     }
   ],
-  "indexed_at": "2026-11-14T22:15:13Z"
+  "indexed_at": "2026-11-14T23:52:25Z"
 }

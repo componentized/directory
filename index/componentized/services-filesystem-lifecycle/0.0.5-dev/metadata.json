@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/filesystem-lifecycle",
     "tag": "0.0.5-dev",
-    "digest": "sha256:819a9f779038601aef93896ba828759205e126b84c0c9d5c5c45ce662badf922",
+    "digest": "sha256:6eb90f683be208fccdd09c9a333b60c787dae74c50f6f277313f4a4771369a8f",
     "layer_digest": "sha256:36ddde74ae7c2d23575124c5fe89f9b4db1b5305f71e9375258bd6e88c3a72ef",
     "size": 187227
   },
@@ -15,18 +15,18 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/filesystem-lifecycle",
     "tag": "0.0.5-dev_debug",
-    "digest": "sha256:d8d11e3e8acae53e9d23dacad074365ce9d99737770c08f855c52d4529cfba51",
+    "digest": "sha256:ea5c4104e1ef1560260a28aad84b360c52770339256d1d6c772a6f5f8313e6db",
     "layer_digest": "sha256:0be47c60764715aa46e064de8b9fd0a9dee1008d555215386721d2d5e3fad55e",
     "size": 377282
   },
-  "created": "2026-11-14T22:10:17.927960511Z",
+  "created": "2026-11-14T23:47:54.644113050Z",
   "annotations": {
     "org.opencontainers.image.description": "Implements `componentized:services/service-lifecycle` for `filesystem` services, each service instance a directory in `wasi:filesystem`, under the directory of the `path` key in `wasi:config`, `services` by default.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "4376dde4cf62e54b61222e3bad7105a06c222c98",
+    "org.opencontainers.image.revision": "af98b1dec5990c07c2bb4a6db491526ab8d45bb6",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-filesystem-lifecycle",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/4376dde4cf62e54b61222e3bad7105a06c222c98/components/filesystem-lifecycle",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/af98b1dec5990c07c2bb4a6db491526ab8d45bb6/components/filesystem-lifecycle",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
@@ -80,5 +80,5 @@
       "version": "0.2.12"
     }
   ],
-  "indexed_at": "2026-11-14T22:15:11Z"
+  "indexed_at": "2026-11-14T23:52:25Z"
 }

@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/valkey-credential-store",
     "tag": "0.0.5-dev",
-    "digest": "sha256:2cb658d45907c6952e51178f957f638dd5afef40d526e28703286f64fa3e8d83",
+    "digest": "sha256:3d5062bf056ed9aa0ceb8804b38f624cb0afb5835e9742013d1e7a95e295dcef",
     "layer_digest": "sha256:46c8d9f64bec4defd977a8165167e07a1cc026411a82e68c3df7e60c3322a116",
     "size": 492331
   },
@@ -15,18 +15,18 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/valkey-credential-store",
     "tag": "0.0.5-dev_debug",
-    "digest": "sha256:4c8d78fc1682bfb31069a12bce0ca3c732bf8905aa13a1dea53735d2fbc3e6c2",
+    "digest": "sha256:f3c21a095c022671428c05ad815da08cffba6484a67e414c8628be71461079f2",
     "layer_digest": "sha256:99157ccf9bde746dc7de979061f38829d363a176faaad9c8df1de606ad6dd6cd",
     "size": 673583
   },
-  "created": "2026-11-14T22:12:53.438306155Z",
+  "created": "2026-11-14T23:50:14.943448182Z",
   "annotations": {
     "org.opencontainers.image.description": "Implements `componentized:services/credential-store`, fetching the credentials of service bindings from a Valkey server.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "4376dde4cf62e54b61222e3bad7105a06c222c98",
+    "org.opencontainers.image.revision": "af98b1dec5990c07c2bb4a6db491526ab8d45bb6",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-valkey-credential-store",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/4376dde4cf62e54b61222e3bad7105a06c222c98/components/valkey-credential-store",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/af98b1dec5990c07c2bb4a6db491526ab8d45bb6/components/valkey-credential-store",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
@@ -62,5 +62,5 @@
       "version": "0.2.6"
     }
   ],
-  "indexed_at": "2026-11-14T22:15:18Z"
+  "indexed_at": "2026-11-14T23:52:27Z"
 }

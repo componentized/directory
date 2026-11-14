@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/keyvalue-credential-admin",
     "tag": "0.0.5-dev",
-    "digest": "sha256:776997f6b71cfeefd0e84f8d031ec064b29448c6c9832faa067ae6db5f4933d6",
+    "digest": "sha256:b93c65e22f3e22a78cdaa0c44a4d63ad32689b5a3f5d9cbe4388fb4823d63bb9",
     "layer_digest": "sha256:f48cc84d6a2b05c577854770fdd7fa67ac9282be0afd4e58addaebf30cab1950",
     "size": 47595
   },
@@ -15,18 +15,18 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/keyvalue-credential-admin",
     "tag": "0.0.5-dev_debug",
-    "digest": "sha256:8fb24c2832b8b62bc745b236f4fe3d4c5c80f99b7a3456f597688cb46c4b1b14",
+    "digest": "sha256:d44b63cc79322d35b808f3ac20ec761c0f9eff718da63ad62284676012fe99dc",
     "layer_digest": "sha256:88608573c170bb5336eaaa1712364106bba81c8ebff29feb7ee80308b4fe3ee4",
     "size": 152980
   },
-  "created": "2026-11-14T22:10:51.323619408Z",
+  "created": "2026-11-14T23:48:15.802601771Z",
   "annotations": {
     "org.opencontainers.image.description": "Implements `componentized:services/credential-admin`, publishing and destroying the credentials of service bindings in a `wasi:keyvalue` bucket, named by the `bucket` key in `wasi:config`, `bindings` by default.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "4376dde4cf62e54b61222e3bad7105a06c222c98",
+    "org.opencontainers.image.revision": "af98b1dec5990c07c2bb4a6db491526ab8d45bb6",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-keyvalue-credential-admin",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/4376dde4cf62e54b61222e3bad7105a06c222c98/components/keyvalue-credential-admin",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/af98b1dec5990c07c2bb4a6db491526ab8d45bb6/components/keyvalue-credential-admin",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
@@ -51,5 +51,5 @@
       "version": "0.2.0-draft2"
     }
   ],
-  "indexed_at": "2026-11-14T22:15:12Z"
+  "indexed_at": "2026-11-14T23:52:25Z"
 }
