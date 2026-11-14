@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/latch-readonly",
     "tag": "0.3.0-dev",
-    "digest": "sha256:9dc8be8d64da39257cc8ef923ce980d243f902c38be5cc8cbdbe69374a097c5e",
-    "layer_digest": "sha256:4887280e148a76bb04a162da48c00de788b334a65ad1b6869c0805e123f91e0f",
-    "size": 89808
+    "digest": "sha256:68cb220fee313f92ff0b7c38579b19828a1533a814cee803f52547cee1cfde3a",
+    "layer_digest": "sha256:140538084aee7a70dd9949613d0bbf37158c7dca89d93b06cde8ed2d579587e9",
+    "size": 90097
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/latch-readonly",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:23f54cb80bf8ed0ca598e4bc07dbef2700fa8ff4b4bbd87b918e6c5545808d28",
-    "layer_digest": "sha256:954c8b80876f044a2193811523eac2c944a1fd243e65fe435d5ad580d3383ce0",
-    "size": 994547
+    "digest": "sha256:4e383ea5c49f77d7b97cb7bffdaa96e89bf54ff7a67b122e15189f99512492ff",
+    "layer_digest": "sha256:630860fa952b74360ef388cb8f6c28c00fd878e8b1216507d10a4509590d0e0b",
+    "size": 986107
   },
-  "created": "2026-11-09T19:53:39.829604518Z",
+  "created": "2026-11-13T23:02:19.242831591Z",
   "annotations": {
     "org.opencontainers.image.description": "Filesystem latch that denies operations which would mutate the filesystem.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "209ad270f66768627d3599274c8aeca6103fda67",
+    "org.opencontainers.image.revision": "adac5bfdf6ae0d2a8556e4a837b995b27642444d",
     "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
     "org.opencontainers.image.title": "componentized:filesystem-latch-readonly",
-    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/209ad270f66768627d3599274c8aeca6103fda67/components/latch-readonly",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/adac5bfdf6ae0d2a8556e4a837b995b27642444d/components/latch-readonly",
     "org.opencontainers.image.version": "0.3.0-dev"
   },
   "imports": [
@@ -55,5 +55,5 @@
       "version": "0.1.0-draft"
     }
   ],
-  "indexed_at": "2026-11-12T00:12:19Z"
+  "indexed_at": "2026-11-14T00:23:02Z"
 }

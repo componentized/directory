@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/latch-deny-random",
     "tag": "0.3.0-dev",
-    "digest": "sha256:43fd9d2a0d3de56a7e391f112526b7000b12dc205a584fba643c48b242a1d97a",
-    "layer_digest": "sha256:66b17d23a7de56f95ad6f6b09793c9b935bc7b153ca49e6bdb6fe0852d2875c4",
-    "size": 114168
+    "digest": "sha256:c587c8d4bcae59a5f6ced1b33a0369aa42bfc366c29d13fbb66369e0dfc006f1",
+    "layer_digest": "sha256:e4e1d96883f23527067a299066f3196fb63fda1ebdc4581eb5b9b3e36d67e520",
+    "size": 114527
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/latch-deny-random",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:f059e4cf4d8c8c71198ca3dcb900d31cdc5392e0619e2051e242184bfbb03c68",
-    "layer_digest": "sha256:4c75a8e654d37698e532222cc9a2bcba4b052f8abd146373416f411b69e7c234",
-    "size": 1002509
+    "digest": "sha256:061df0a7a00cf6ab6e1ae32b6d74c857fb169106369294a4cf4b6f3090fa3df5",
+    "layer_digest": "sha256:8ad11642edf857fc6fc16bb420d39b619867520796bc165c048e5839751055a6",
+    "size": 996893
   },
-  "created": "2026-11-09T19:52:06.636599521Z",
+  "created": "2026-11-13T22:59:58.437910489Z",
   "annotations": {
     "org.opencontainers.image.description": "Filesystem latch that randomly denies operations, to prove a component is resilient to failures.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "209ad270f66768627d3599274c8aeca6103fda67",
+    "org.opencontainers.image.revision": "adac5bfdf6ae0d2a8556e4a837b995b27642444d",
     "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
     "org.opencontainers.image.title": "componentized:filesystem-latch-deny-random",
-    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/209ad270f66768627d3599274c8aeca6103fda67/components/latch-deny-random",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/adac5bfdf6ae0d2a8556e4a837b995b27642444d/components/latch-deny-random",
     "org.opencontainers.image.version": "0.3.0-dev"
   },
   "imports": [
@@ -65,5 +65,5 @@
       "version": "0.3.0"
     }
   ],
-  "indexed_at": "2026-11-12T00:12:16Z"
+  "indexed_at": "2026-11-14T00:22:55Z"
 }

@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/latch-n3",
     "tag": "0.3.0-dev",
-    "digest": "sha256:2bdd361a3aa85683d7553b96449ff826dac055c0f652ea334cb34fb8e4faf415",
-    "layer_digest": "sha256:bd70c0b92ad2a575eca2c37e7d9d0902a5d4b62ea1405d30a68dc246df141cab",
-    "size": 67819
+    "digest": "sha256:ba7c011e97d6894ad12f69089e666781fae6dda8625cb8254bbdc506d859bb2a",
+    "layer_digest": "sha256:2ccdc394bda2699d85de1103b1f6836afa3155ed488c7f8b253d7df237a29dc7",
+    "size": 67872
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/latch-n3",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:2a211cb24c9c30b6d4e9a1fec47845818c738485937418476e5cda4ffc36ce17",
-    "layer_digest": "sha256:fb05beb7a2bca460be1143d5910794efbb0fa13834fc17e92df76ef525891da3",
-    "size": 663875
+    "digest": "sha256:fe74009ed9d84fda7cf910338df295ebe4d4a39f71f04c42176258b9b843819b",
+    "layer_digest": "sha256:664887638c8517e8c78a44dcc4c89316eceaff84e420fa8d8e1274057629f95c",
+    "size": 656259
   },
-  "created": "2026-11-09T19:52:46.133578004Z",
+  "created": "2026-11-13T23:01:07.292388878Z",
   "annotations": {
     "org.opencontainers.image.description": "Filesystem latch that aggregates three other filesystem latches.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "209ad270f66768627d3599274c8aeca6103fda67",
+    "org.opencontainers.image.revision": "adac5bfdf6ae0d2a8556e4a837b995b27642444d",
     "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
     "org.opencontainers.image.title": "componentized:filesystem-latch-n3",
-    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/209ad270f66768627d3599274c8aeca6103fda67/components/latch-n3",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/adac5bfdf6ae0d2a8556e4a837b995b27642444d/components/latch-n3",
     "org.opencontainers.image.version": "0.3.0-dev"
   },
   "imports": [
@@ -53,5 +53,5 @@
       "version": "0.3.0"
     }
   ],
-  "indexed_at": "2026-11-12T00:12:17Z"
+  "indexed_at": "2026-11-14T00:22:58Z"
 }

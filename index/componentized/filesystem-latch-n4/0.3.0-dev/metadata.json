@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/latch-n4",
     "tag": "0.3.0-dev",
-    "digest": "sha256:b7e4ebb9ab942e1884fa50a318325d6405fb1c214c34e6041c56909126838383",
-    "layer_digest": "sha256:92b30e3637b4c3a60f4e191a8c28abf3b5da5692497b8b6e7554dd7020a401b2",
-    "size": 75690
+    "digest": "sha256:2657330427a5f0df1a545947e0586bba8dd6a4b4a03496ff800db93b548739e5",
+    "layer_digest": "sha256:bb9aff5b22000e359b4d89f2f813e0380280e3dfbc1076222f28464b2bebe8d4",
+    "size": 75743
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/latch-n4",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:2ee96d7182ed92c0e1330a993976120f0f9f48063b1c030ec99161f1f78f8719",
-    "layer_digest": "sha256:45377223ab01f09d6e7df06e965cafcf03c84debd3002752f76da91cd913336e",
-    "size": 726795
+    "digest": "sha256:5ab2a7e465728bfb0040ab70242feb997ffb4e153307956c7ea8559efcb03ba2",
+    "layer_digest": "sha256:c305fd7ef54102468ca250410216e4cc1e847ac97caae70908397bebe82fd3a6",
+    "size": 718699
   },
-  "created": "2026-11-09T19:53:00.844251112Z",
+  "created": "2026-11-13T23:01:27.267188532Z",
   "annotations": {
     "org.opencontainers.image.description": "Fileystem latch that aggregates four other filesystem latches.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "209ad270f66768627d3599274c8aeca6103fda67",
+    "org.opencontainers.image.revision": "adac5bfdf6ae0d2a8556e4a837b995b27642444d",
     "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
     "org.opencontainers.image.title": "componentized:filesystem-latch-n4",
-    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/209ad270f66768627d3599274c8aeca6103fda67/components/latch-n4",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/adac5bfdf6ae0d2a8556e4a837b995b27642444d/components/latch-n4",
     "org.opencontainers.image.version": "0.3.0-dev"
   },
   "imports": [
@@ -54,5 +54,5 @@
       "version": "0.3.0"
     }
   ],
-  "indexed_at": "2026-11-12T00:12:18Z"
+  "indexed_at": "2026-11-14T00:22:59Z"
 }

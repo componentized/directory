@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/latch-deny-all",
     "tag": "0.3.0-dev",
-    "digest": "sha256:2f6fc5d32e58e1823641234edd8108c40d29cc449c064e44b236377783ff6ab4",
-    "layer_digest": "sha256:1962b5874bccdd7d72944e7c01599b4effd4a77d4658e73ba2cec66de0afdde5",
-    "size": 41102
+    "digest": "sha256:3dfd95566437deada760330fba7ec304e34f2465500dfe0fc0194aad622b172c",
+    "layer_digest": "sha256:a6304c5d596e878c21569f10a7af43639b74d580cb5a65e1fb76ed3fca1ca891",
+    "size": 41155
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/latch-deny-all",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:96272aaaa59d1f97d862ae0c0259e8be816d9971d49cc508d90ef1f22307f5b8",
-    "layer_digest": "sha256:af42b0ec5d318fc0556a902c48abd405a52f17cd6669a678312befc1f08f084b",
-    "size": 430600
+    "digest": "sha256:5a7ba0e8d206764f4a3f8a0aa62dfb859a2760ffb6ce8cad9fc8425bccee4091",
+    "layer_digest": "sha256:e3f1dce2bbb9672b77232eb961e14208e29f7734ea03ea5a7c2902db4cf78485",
+    "size": 426455
   },
-  "created": "2026-11-09T19:51:54.261134889Z",
+  "created": "2026-11-13T22:59:41.648893990Z",
   "annotations": {
     "org.opencontainers.image.description": "Filesystem latch that implicitly denies all operations.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "209ad270f66768627d3599274c8aeca6103fda67",
+    "org.opencontainers.image.revision": "adac5bfdf6ae0d2a8556e4a837b995b27642444d",
     "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
     "org.opencontainers.image.title": "componentized:filesystem-latch-deny-all",
-    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/209ad270f66768627d3599274c8aeca6103fda67/components/latch-deny-all",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/adac5bfdf6ae0d2a8556e4a837b995b27642444d/components/latch-deny-all",
     "org.opencontainers.image.version": "0.3.0-dev"
   },
   "imports": [
@@ -50,5 +50,5 @@
       "version": "0.3.0"
     }
   ],
-  "indexed_at": "2026-11-12T00:12:15Z"
+  "indexed_at": "2026-11-14T00:22:54Z"
 }

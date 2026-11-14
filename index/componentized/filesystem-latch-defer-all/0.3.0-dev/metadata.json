@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/latch-defer-all",
     "tag": "0.3.0-dev",
-    "digest": "sha256:3009969afa935f3267957578c6cc727ba6d04b7cd5575dffffd7fa70531b709c",
-    "layer_digest": "sha256:6e9aaccb78597a24c280d9e947466cdc86577f00127f7d7cc5cc771435e166ee",
-    "size": 41097
+    "digest": "sha256:f4dea555978377ed3558379fae7cdf8caf8cb4f2fd1ff73ddb8f094ee34fffb8",
+    "layer_digest": "sha256:2b7af47c31a7fc6f8d7ac82c4ba7abcfa3596d6f6b87ffe8d2c2697f5adbf32a",
+    "size": 41150
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/latch-defer-all",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:18b365c13cbb31c0ae27378fbf0e618582b3e6ad3eac86222305580c111e86fb",
-    "layer_digest": "sha256:dc8d3fdfd216256b35026ad7e4e6bf76f173506abca9899784d5f8f68434f702",
-    "size": 430633
+    "digest": "sha256:9ab93d29a8d88f1880e1b980c51208b62d23a31cd6d3ee5ebe09e53198d4d0cc",
+    "layer_digest": "sha256:3c4215abcf6e32cb7c73e0f544a2f0bf8876d868496466f553ee0e0fbf54fce0",
+    "size": 426593
   },
-  "created": "2026-11-09T19:51:39.284278857Z",
+  "created": "2026-11-13T22:59:25.117736442Z",
   "annotations": {
     "org.opencontainers.image.description": "Filesystem latch that implicitly defers all operations.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "209ad270f66768627d3599274c8aeca6103fda67",
+    "org.opencontainers.image.revision": "adac5bfdf6ae0d2a8556e4a837b995b27642444d",
     "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
     "org.opencontainers.image.title": "componentized:filesystem-latch-defer-all",
-    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/209ad270f66768627d3599274c8aeca6103fda67/components/latch-defer-all",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/adac5bfdf6ae0d2a8556e4a837b995b27642444d/components/latch-defer-all",
     "org.opencontainers.image.version": "0.3.0-dev"
   },
   "imports": [
@@ -50,5 +50,5 @@
       "version": "0.3.0"
     }
   ],
-  "indexed_at": "2026-11-12T00:12:14Z"
+  "indexed_at": "2026-11-14T00:22:53Z"
 }

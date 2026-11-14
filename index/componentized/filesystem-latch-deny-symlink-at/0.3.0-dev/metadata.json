@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/latch-deny-symlink-at",
     "tag": "0.3.0-dev",
-    "digest": "sha256:c32cbc53c68c163eab83e603f922e55446e450047b30b171d0fa19e1a0d56b5e",
-    "layer_digest": "sha256:e65e65b6380f9f486328d368ddf2bcd6f7ac7adca5fced1407e40244b76e5b28",
-    "size": 41591
+    "digest": "sha256:4963064346aae9fa6b5d4c1a41180d207a1a2f13f52c2f03974fdc7dedfa3cd4",
+    "layer_digest": "sha256:affa199e0bb7bc04e6614b0e3f7ce5743caf82a386c28d2fb0b57dd9283ac148",
+    "size": 41644
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/latch-deny-symlink-at",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:74de086d815c77b9064363cbc64cace8e729f1545751f2424219672269e88f3d",
-    "layer_digest": "sha256:2b750d863bf35cba11c55d1703bb7d442d35388af9040b0f561f2fcdd8079be1",
-    "size": 434456
+    "digest": "sha256:7427fd3025ab06df9d48da0eaf7f13620976b1232344435412bbdae9dd56819d",
+    "layer_digest": "sha256:c824648f6bc0777a14b58938c9cb705527d2260812b2f84b8fbf7d0c41873042",
+    "size": 430218
   },
-  "created": "2026-11-09T19:52:19.662118936Z",
+  "created": "2026-11-13T23:00:25.410728434Z",
   "annotations": {
     "org.opencontainers.image.description": "Filesystem latch that denies creating symlinks.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "209ad270f66768627d3599274c8aeca6103fda67",
+    "org.opencontainers.image.revision": "adac5bfdf6ae0d2a8556e4a837b995b27642444d",
     "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
     "org.opencontainers.image.title": "componentized:filesystem-latch-deny-symlink-at",
-    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/209ad270f66768627d3599274c8aeca6103fda67/components/latch-deny-symlink-at",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/adac5bfdf6ae0d2a8556e4a837b995b27642444d/components/latch-deny-symlink-at",
     "org.opencontainers.image.version": "0.3.0-dev"
   },
   "imports": [
@@ -50,5 +50,5 @@
       "version": "0.3.0"
     }
   ],
-  "indexed_at": "2026-11-12T00:12:16Z"
+  "indexed_at": "2026-11-14T00:22:56Z"
 }

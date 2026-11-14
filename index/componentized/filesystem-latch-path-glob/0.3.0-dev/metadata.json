@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/latch-path-glob",
     "tag": "0.3.0-dev",
-    "digest": "sha256:c3b4e08451c61a46bbad97b5b9e659a2481d8998a80a6f3bed33940015f800fe",
-    "layer_digest": "sha256:30f5faae55e7684e6ea7ce171463ed13c3ee96b08f85bacd9b83f78746ad1bff",
-    "size": 81976
+    "digest": "sha256:c3f587877b5a63e3fbb7430a7ca4585797a085bfaca6e07641a932477f34b48a",
+    "layer_digest": "sha256:b7edeb4b5fea278c4e4ef851dbcb6a007955705a2ad50d106afcd2cc1f366703",
+    "size": 82265
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/latch-path-glob",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:380d564d409a6cf6de104b94196416ed80d69e539611ad7e85b391fa3ecd32a3",
-    "layer_digest": "sha256:4db5aa85de985f69622ac2734a81bb55adf2620897121e08144ff85d3105b081",
-    "size": 986715
+    "digest": "sha256:629da9fa40316e9cbbc2f718d7b9ef7007fc9ca794e3c7bc62decfddbc616bf0",
+    "layer_digest": "sha256:141336300471514a3998e18e6c9269776247d15278de6046b02982bd745164a4",
+    "size": 978275
   },
-  "created": "2026-11-09T19:53:26.265369951Z",
+  "created": "2026-11-13T23:02:02.131316096Z",
   "annotations": {
     "org.opencontainers.image.description": "Filesystem latch that uses glob patterns to defer or deny operations on a path.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "209ad270f66768627d3599274c8aeca6103fda67",
+    "org.opencontainers.image.revision": "adac5bfdf6ae0d2a8556e4a837b995b27642444d",
     "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
     "org.opencontainers.image.title": "componentized:filesystem-latch-path-glob",
-    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/209ad270f66768627d3599274c8aeca6103fda67/components/latch-path-glob",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/adac5bfdf6ae0d2a8556e4a837b995b27642444d/components/latch-path-glob",
     "org.opencontainers.image.version": "0.3.0-dev"
   },
   "imports": [
@@ -60,5 +60,5 @@
       "version": "0.1.0-draft"
     }
   ],
-  "indexed_at": "2026-11-12T00:12:19Z"
+  "indexed_at": "2026-11-14T00:23:01Z"
 }

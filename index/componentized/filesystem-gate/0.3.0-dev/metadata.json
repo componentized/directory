@@ -7,26 +7,26 @@
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/gate",
     "tag": "0.3.0-dev",
-    "digest": "sha256:f2bdae928568f695c1a513e6368f916ede0392b7cef09cf7073d5c734902998c",
-    "layer_digest": "sha256:2b7876f01b156cf1acabdf3dddac65dc8fe805dbc0f7be3f31ed1b0932f91d66",
-    "size": 390097
+    "digest": "sha256:78061c2c894e5e57e9b226f1ee2f2a30dfee5a7e3a32f4cbfb5f520f74757779",
+    "layer_digest": "sha256:75f2a6956ce098daa0aed668c08195ea56f4694ac7cb70f467d4364d63b59034",
+    "size": 391103
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/gate",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:3e942aa21b8e17a594cca3339b3a77e9c695344dae464183c7d9812eaae1cb3c",
-    "layer_digest": "sha256:4eed9afccfa08cddceb7cc9114a015fe8f43ea9837455bb7417367e9b7ec551d",
-    "size": 3584729
+    "digest": "sha256:18150997e44bae0bcc1817dbf1197bcaabbe32cc95af6e544f78f5179cf66ed1",
+    "layer_digest": "sha256:0ed60107ab2d16cad46c3aa0833cac545126d2f928b5f3cee7ac00b78bd125e8",
+    "size": 3583047
   },
-  "created": "2026-11-09T19:51:23.480613106Z",
+  "created": "2026-11-13T22:59:07.484479631Z",
   "annotations": {
     "org.opencontainers.image.description": "Filesystem gate access control for preopens and descriptors.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "209ad270f66768627d3599274c8aeca6103fda67",
+    "org.opencontainers.image.revision": "adac5bfdf6ae0d2a8556e4a837b995b27642444d",
     "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
     "org.opencontainers.image.title": "componentized:filesystem-gate",
-    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/209ad270f66768627d3599274c8aeca6103fda67/components/gate",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/adac5bfdf6ae0d2a8556e4a837b995b27642444d/components/gate",
     "org.opencontainers.image.version": "0.3.0-dev"
   },
   "imports": [
@@ -58,5 +58,5 @@
       "version": "0.1.0-draft"
     }
   ],
-  "indexed_at": "2026-11-12T00:12:14Z"
+  "indexed_at": "2026-11-14T00:22:52Z"
 }
