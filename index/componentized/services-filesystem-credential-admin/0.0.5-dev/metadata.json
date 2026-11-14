@@ -7,17 +7,27 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/filesystem-credential-admin",
     "tag": "0.0.5-dev",
-    "digest": "sha256:334e12262b14ef88ebcf7167b0b7fe61d8ee05feb608f82139e6160445b6f40f",
+    "digest": "sha256:bf5242d0187e6cdf9a58d4d887c1b4e67f4e57d978d79067456d4c371b2762ea",
     "layer_digest": "sha256:675b54c3c7b2531d52d0de7b469bb4d46c6316df437a406c545703509fac6508",
     "size": 140373
   },
-  "created": "2026-11-09T22:53:37.443344739Z",
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/filesystem-credential-admin",
+    "tag": "0.0.5-dev_debug",
+    "digest": "sha256:57e9d71ab0a0634009eac18f8168e329fab1508e6b59a789ad15a7af4b90404e",
+    "layer_digest": "sha256:37a9ee7a6aaa8e4e88bb5e47efaa24bbd434f1401669d4a09cf8743866b65729",
+    "size": 253403
+  },
+  "created": "2026-11-14T22:09:07.499435896Z",
   "annotations": {
+    "org.opencontainers.image.description": "Implements `componentized:services/credential-admin`, publishing and destroying the credentials of service bindings as files in `wasi:filesystem`, under the directory of the `path` key in `wasi:config`, `services` by default.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "23a7aebfe82e30b9453f8d8ee6b297b8184d934c+dirty",
+    "org.opencontainers.image.revision": "4376dde4cf62e54b61222e3bad7105a06c222c98",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
-    "org.opencontainers.image.title": "filesystem-credential-admin",
-    "org.opencontainers.image.version": "0.0.5-dev"
+    "org.opencontainers.image.title": "componentized:services-filesystem-credential-admin",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/4376dde4cf62e54b61222e3bad7105a06c222c98/components/filesystem-credential-admin",
+    "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
     "wasi:config/store@0.2.0-rc.1",
@@ -74,5 +84,5 @@
       "version": "0.2.12"
     }
   ],
-  "indexed_at": "2026-11-12T00:12:53Z"
+  "indexed_at": "2026-11-14T22:15:09Z"
 }

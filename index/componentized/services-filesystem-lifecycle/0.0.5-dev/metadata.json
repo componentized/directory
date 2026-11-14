@@ -7,17 +7,27 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/filesystem-lifecycle",
     "tag": "0.0.5-dev",
-    "digest": "sha256:f93ade6dd9c62f71b7f3452d456f3e297dfc9cc16d25cff38bfddd2ef351d4b8",
-    "layer_digest": "sha256:cbf5c92fa0ad058c9971eb134fd2da911875b9fdce9d7e58ca38a38d8f00ebd7",
-    "size": 187233
+    "digest": "sha256:819a9f779038601aef93896ba828759205e126b84c0c9d5c5c45ce662badf922",
+    "layer_digest": "sha256:36ddde74ae7c2d23575124c5fe89f9b4db1b5305f71e9375258bd6e88c3a72ef",
+    "size": 187227
   },
-  "created": "2026-11-09T22:52:46.692831127Z",
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/filesystem-lifecycle",
+    "tag": "0.0.5-dev_debug",
+    "digest": "sha256:d8d11e3e8acae53e9d23dacad074365ce9d99737770c08f855c52d4529cfba51",
+    "layer_digest": "sha256:0be47c60764715aa46e064de8b9fd0a9dee1008d555215386721d2d5e3fad55e",
+    "size": 377282
+  },
+  "created": "2026-11-14T22:10:17.927960511Z",
   "annotations": {
+    "org.opencontainers.image.description": "Implements `componentized:services/service-lifecycle` for `filesystem` services, each service instance a directory in `wasi:filesystem`, under the directory of the `path` key in `wasi:config`, `services` by default.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "23a7aebfe82e30b9453f8d8ee6b297b8184d934c+dirty",
+    "org.opencontainers.image.revision": "4376dde4cf62e54b61222e3bad7105a06c222c98",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
-    "org.opencontainers.image.title": "filesystem-lifecycle",
-    "org.opencontainers.image.version": "0.0.5-dev"
+    "org.opencontainers.image.title": "componentized:services-filesystem-lifecycle",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/4376dde4cf62e54b61222e3bad7105a06c222c98/components/filesystem-lifecycle",
+    "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
     "componentized:services/types@0.0.5-dev",
@@ -70,5 +80,5 @@
       "version": "0.2.12"
     }
   ],
-  "indexed_at": "2026-11-12T00:12:54Z"
+  "indexed_at": "2026-11-14T22:15:11Z"
 }

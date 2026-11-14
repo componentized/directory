@@ -7,17 +7,27 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/filesystem-credential-store",
     "tag": "0.0.5-dev",
-    "digest": "sha256:9b32438aae1d66128d1d8a7eacad3c67c8a8bd9a5ad665811f26933afa0f3ffe",
+    "digest": "sha256:81ff1e6661aee9fde7ac372eb7baa5a72b2b19c607fe7e377f9d482e8c189dce",
     "layer_digest": "sha256:4607948d0e5e6602f11209af8ee2b145570726cf8a5e6c4ba08b279358ac03f5",
     "size": 201070
   },
-  "created": "2026-11-09T22:54:00.854578933Z",
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/filesystem-credential-store",
+    "tag": "0.0.5-dev_debug",
+    "digest": "sha256:64c63040d0c385a01d18f29142ac895a4c5f9edfadc500bd8905cdabdc929657",
+    "layer_digest": "sha256:123750488368ff806020fcd0a9b7834c2fd4c61843d1effbd3d4465236ab73b8",
+    "size": 389522
+  },
+  "created": "2026-11-14T22:09:41.120337039Z",
   "annotations": {
+    "org.opencontainers.image.description": "Implements `componentized:services/credential-store`, fetching the credentials of service bindings from files in `wasi:filesystem`, under the directory of the `path` key in `wasi:config`, `services` by default.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "23a7aebfe82e30b9453f8d8ee6b297b8184d934c+dirty",
+    "org.opencontainers.image.revision": "4376dde4cf62e54b61222e3bad7105a06c222c98",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
-    "org.opencontainers.image.title": "filesystem-credential-store",
-    "org.opencontainers.image.version": "0.0.5-dev"
+    "org.opencontainers.image.title": "componentized:services-filesystem-credential-store",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/4376dde4cf62e54b61222e3bad7105a06c222c98/components/filesystem-credential-store",
+    "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
     "wasi:config/store@0.2.0-rc.1",
@@ -74,5 +84,5 @@
       "version": "0.2.12"
     }
   ],
-  "indexed_at": "2026-11-12T00:12:54Z"
+  "indexed_at": "2026-11-14T22:15:10Z"
 }

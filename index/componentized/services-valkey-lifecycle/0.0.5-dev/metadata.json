@@ -7,17 +7,27 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/valkey-lifecycle",
     "tag": "0.0.5-dev",
-    "digest": "sha256:e324d5694d4ccf1d9521e243a4033cd0f036554b249e1174350274b560ec79b3",
-    "layer_digest": "sha256:3f2b65e48674101965b76927f1e48c2523a55666e2f746323751461853c44e19",
-    "size": 516506
+    "digest": "sha256:2237e4ce328f7d7e1b80982d32e4ec75819e6f0d998e5ad730b9f4ad4ea156f9",
+    "layer_digest": "sha256:a9a3560f6a247b1a29a8d8033e9f8a751d531c74217f677957b626cebfee59d6",
+    "size": 517038
   },
-  "created": "2026-11-09T22:51:15.645721278Z",
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/valkey-lifecycle",
+    "tag": "0.0.5-dev_debug",
+    "digest": "sha256:404ca020947769104d51aa7680864475f6caea2c6a1f3e3aa702a920b9fa5578",
+    "layer_digest": "sha256:5bf36b626328f66906100bb7f33590f6d401a7f5182b3a0419818a90b9ace41f",
+    "size": 737006
+  },
+  "created": "2026-11-14T22:13:13.421409891Z",
   "annotations": {
+    "org.opencontainers.image.description": "Implements `componentized:services/service-lifecycle` for `valkey` services on a Valkey server, at the `hostname` and `port` keys in `wasi:config`, `127.0.0.1:6379` by default.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "23a7aebfe82e30b9453f8d8ee6b297b8184d934c+dirty",
+    "org.opencontainers.image.revision": "4376dde4cf62e54b61222e3bad7105a06c222c98",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
-    "org.opencontainers.image.title": "valkey-lifecycle",
-    "org.opencontainers.image.version": "0.0.5-dev"
+    "org.opencontainers.image.title": "componentized:services-valkey-lifecycle",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/4376dde4cf62e54b61222e3bad7105a06c222c98/components/valkey-lifecycle",
+    "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
     "componentized:services/types@0.0.5-dev",
@@ -73,5 +83,5 @@
       "version": "0.2.6"
     }
   ],
-  "indexed_at": "2026-11-12T00:12:57Z"
+  "indexed_at": "2026-11-14T22:15:19Z"
 }

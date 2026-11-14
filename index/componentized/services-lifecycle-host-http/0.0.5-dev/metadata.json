@@ -7,17 +7,27 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/lifecycle-host-http",
     "tag": "0.0.5-dev",
-    "digest": "sha256:82bcc79c49cba12bdaa3108a1df500af7456303f61fa9e93a418334593ac9b79",
-    "layer_digest": "sha256:91431d5cb21fa4f6fac189bfffa346f118ee72d4bf60bf998606089b82d893e1",
-    "size": 92164
+    "digest": "sha256:c6033b02157224fe65c0599b05871b821d4b613943b28845e98cb16e9299d0c2",
+    "layer_digest": "sha256:61749fdffc06e72b2039348fbdaf488f3894f3969d3e9239e2e81d83e50c9407",
+    "size": 92167
   },
-  "created": "2026-11-09T22:53:25.468197326Z",
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/lifecycle-host-http",
+    "tag": "0.0.5-dev_debug",
+    "digest": "sha256:58869db34fd25580566f806e298192d4473b07c3ad8156d7eb520f80b6897031",
+    "layer_digest": "sha256:179d04e531bc9fd7cbc39c0111c8e0abe17e65c2197708f268778a38518b526f",
+    "size": 226645
+  },
+  "created": "2026-11-14T22:12:05.680240463Z",
   "annotations": {
+    "org.opencontainers.image.description": "Exposes a `componentized:services/lifecycle` over http, exporting `wasi:http/incoming-handler`.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "23a7aebfe82e30b9453f8d8ee6b297b8184d934c+dirty",
+    "org.opencontainers.image.revision": "4376dde4cf62e54b61222e3bad7105a06c222c98",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
-    "org.opencontainers.image.title": "lifecycle-host-http",
-    "org.opencontainers.image.version": "0.0.5-dev"
+    "org.opencontainers.image.title": "componentized:services-lifecycle-host-http",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/4376dde4cf62e54b61222e3bad7105a06c222c98/components/lifecycle-host-http",
+    "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
     "componentized:services/types@0.0.5-dev",
@@ -48,5 +58,5 @@
       "version": "0.1.0-draft"
     }
   ],
-  "indexed_at": "2026-11-12T00:12:56Z"
+  "indexed_at": "2026-11-14T22:15:16Z"
 }

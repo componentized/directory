@@ -7,17 +7,27 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/webhook-credential-admin",
     "tag": "0.0.5-dev",
-    "digest": "sha256:55b0e90b42b349191ec90c7870a625ea89c50c9e26b1de095003e54506617b9b",
-    "layer_digest": "sha256:6628df0f3fa4a1f8d4939b77c6eb6860e1d0137ef387e13599f54247210d74cd",
+    "digest": "sha256:c4cfe1602a40b7347bd5d636c1215942baea8b3d97b51b91c3106d0899c0674c",
+    "layer_digest": "sha256:b207e003626a244769aed706897cd5c40759b1e3a7dd6a7291efd9f95901c541",
     "size": 90561
   },
-  "created": "2026-11-09T22:52:31.295871924Z",
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/webhook-credential-admin",
+    "tag": "0.0.5-dev_debug",
+    "digest": "sha256:f439fe43a2ba4950c19a8559113e5c6e45bbb6a666ec0391f3af728e9d80329e",
+    "layer_digest": "sha256:53127df4b742ce725b23e721dfe97d0717bb78e5cf53c7f787938ccb80f3ae8d",
+    "size": 241127
+  },
+  "created": "2026-11-14T22:13:35.760740202Z",
   "annotations": {
+    "org.opencontainers.image.description": "Implements `componentized:services/credential-admin`, publishing and destroying the credentials of service bindings with a webhook over `wasi:http`, at the `scheme` and `host` keys in `wasi:config`.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "23a7aebfe82e30b9453f8d8ee6b297b8184d934c+dirty",
+    "org.opencontainers.image.revision": "4376dde4cf62e54b61222e3bad7105a06c222c98",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
-    "org.opencontainers.image.title": "webhook-credential-admin",
-    "org.opencontainers.image.version": "0.0.5-dev"
+    "org.opencontainers.image.title": "componentized:services-webhook-credential-admin",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/4376dde4cf62e54b61222e3bad7105a06c222c98/components/webhook-credential-admin",
+    "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
     "wasi:io/poll@0.2.6",
@@ -47,5 +57,5 @@
       "version": "0.2.6"
     }
   ],
-  "indexed_at": "2026-11-12T00:12:57Z"
+  "indexed_at": "2026-11-14T22:15:20Z"
 }

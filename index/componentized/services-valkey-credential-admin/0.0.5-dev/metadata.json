@@ -1,0 +1,66 @@
+{
+  "package": "componentized:services-valkey-credential-admin",
+  "version": "0.0.5-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/valkey-credential-admin",
+    "tag": "0.0.5-dev",
+    "digest": "sha256:07853a523ed492a46ed49923067b0e9f55e63430b0af7ee744e8a0f224a65880",
+    "layer_digest": "sha256:c199c8cd0a5eea2e8d54869cb0460a8de4932c4031ebdbecefbf2ddb090905c4",
+    "size": 412719
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/valkey-credential-admin",
+    "tag": "0.0.5-dev_debug",
+    "digest": "sha256:a8df74dae2929163c0f2f0f5ca694a6d16e2387ae0fa1c8673d1e03cb7fa36e5",
+    "layer_digest": "sha256:468cc0b7d58efc17870b61131975b16419c05451ade248233e22b274fe791ea0",
+    "size": 518104
+  },
+  "created": "2026-11-14T22:12:29.025736899Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Implements `componentized:services/credential-admin`, publishing and destroying the credentials of service bindings in a Valkey server.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "4376dde4cf62e54b61222e3bad7105a06c222c98",
+    "org.opencontainers.image.source": "https://github.com/componentized/services.git",
+    "org.opencontainers.image.title": "componentized:services-valkey-credential-admin",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/4376dde4cf62e54b61222e3bad7105a06c222c98/components/valkey-credential-admin",
+    "org.opencontainers.image.version": "v0.0.5-dev"
+  },
+  "imports": [
+    "wasi:config/store@0.2.0-rc.1",
+    "componentized:services/types@0.0.5-dev",
+    "wasi:io/error@0.2.6",
+    "wasi:sockets/network@0.2.6",
+    "wasi:sockets/instance-network@0.2.6",
+    "wasi:io/poll@0.2.6",
+    "wasi:io/streams@0.2.6",
+    "wasi:sockets/tcp@0.2.6",
+    "wasi:sockets/tcp-create-socket@0.2.6",
+    "wasi:sockets/ip-name-lookup@0.2.6"
+  ],
+  "exports": [
+    "componentized:services/credential-admin@0.0.5-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:services",
+      "version": "0.0.5-dev"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.6"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.2.6"
+    }
+  ],
+  "indexed_at": "2026-11-14T22:15:17Z"
+}

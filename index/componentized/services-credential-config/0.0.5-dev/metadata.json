@@ -7,17 +7,27 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/credential-config",
     "tag": "0.0.5-dev",
-    "digest": "sha256:76093e2608310133396c98ab8ff0cdc6384a51df7ffe1134e933a308d531eb57",
+    "digest": "sha256:1cf6a9f457bb58e309ef0fe6a42611eb1a2d68d4c6611aa300165d2481269dcf",
     "layer_digest": "sha256:093ebdf918dbeb8cadd4d154d634a558ced25ade6a33d0412f66965ac84f4889",
     "size": 30778
   },
-  "created": "2026-11-09T22:51:55.973241794Z",
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/credential-config",
+    "tag": "0.0.5-dev_debug",
+    "digest": "sha256:dd5e91935e463717fdabce6c3a7ba547781f6ee12ad34de73197d16452d5c90e",
+    "layer_digest": "sha256:252f61f0ac62920890c76f004ee22a529a464ff52e678e186fb6ead927298f6a",
+    "size": 100065
+  },
+  "created": "2026-11-14T22:08:35.548922437Z",
   "annotations": {
+    "org.opencontainers.image.description": "Exports `wasi:config/store` with the credentials of a service binding, the binding named by the `binding-id` key of the imported `wasi:config/store`, fetched from a `componentized:services/credential-store`.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "23a7aebfe82e30b9453f8d8ee6b297b8184d934c+dirty",
+    "org.opencontainers.image.revision": "4376dde4cf62e54b61222e3bad7105a06c222c98",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
-    "org.opencontainers.image.title": "credential-config",
-    "org.opencontainers.image.version": "0.0.5-dev"
+    "org.opencontainers.image.title": "componentized:services-credential-config",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/4376dde4cf62e54b61222e3bad7105a06c222c98/components/credential-config",
+    "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
     "componentized:services/types@0.0.5-dev",
@@ -37,5 +47,5 @@
       "version": "0.2.0-rc.1"
     }
   ],
-  "indexed_at": "2026-11-12T00:12:53Z"
+  "indexed_at": "2026-11-14T22:15:08Z"
 }
