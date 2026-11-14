@@ -1,0 +1,57 @@
+{
+  "package": "componentized:services-valkey-credential-store",
+  "version": "0.0.4",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/valkey-credential-store",
+    "tag": "0.0.4",
+    "digest": "sha256:7f1401a026f38b2ea0954c3c36fdffd718029e800ab265349faddf4193c3185b",
+    "layer_digest": "sha256:7306a1f29468194769dfb3bb82f01bedc8ae8a860738e9d826a03bfca3d40ae5",
+    "size": 490859
+  },
+  "created": "2025-12-22T16:39:23.212464411Z",
+  "annotations": {
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "6eef7607d874c6507ebd8a56b63cb44225de313b+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/services.git",
+    "org.opencontainers.image.title": "valkey-credential-store",
+    "org.opencontainers.image.version": "v0.0.4"
+  },
+  "imports": [
+    "wasi:config/store@0.2.0-rc.1",
+    "componentized:services/types",
+    "wasi:io/error@0.2.6",
+    "wasi:sockets/network@0.2.6",
+    "wasi:sockets/instance-network@0.2.6",
+    "wasi:io/poll@0.2.6",
+    "wasi:io/streams@0.2.6",
+    "wasi:sockets/tcp@0.2.6",
+    "wasi:sockets/tcp-create-socket@0.2.6",
+    "wasi:sockets/ip-name-lookup@0.2.6"
+  ],
+  "exports": [
+    "componentized:services/credential-store"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:services",
+      "version": null
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.6"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.2.6"
+    }
+  ],
+  "release": "https://github.com/componentized/services/releases/tag/v0.0.4",
+  "indexed_at": "2026-11-14T23:03:15Z"
+}
