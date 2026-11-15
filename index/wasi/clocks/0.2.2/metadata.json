@@ -9,7 +9,10 @@
     "tag": "0.2.2",
     "digest": "sha256:f13ecc94312715b266b903a84422261082da23bcea5ac520dc1742186aa743af",
     "layer_digest": "sha256:ed3e88c85ef2d23d51be35e794e24d5b65567c3ce299596673b9b17aa75f63f6",
-    "size": 4386
+    "size": 4386,
+    "signature": {
+      "status": "unsigned"
+    }
   },
   "created": "2024-10-03T23:04:01.130827Z",
   "annotations": {

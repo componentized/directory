@@ -761,6 +761,61 @@ struct TypeView {
     stability: Option<StabilityView>,
     members: Vec<Member>,
     functions: Vec<Member>,
+    /// For an alias of a named type, `type a = b`, the type it refers to, following any aliases
+    /// and uses that type is in turn.
+    aliased: Option<Aliased>,
+    /// The docs of the type a `use` or an alias refers to, as it's defined where it comes from.
+    origin_docs: String,
+}
+
+/// The type an alias refers to, as it's defined where it comes from.
+#[derive(Serialize)]
+struct Aliased {
+    name: String,
+    kind: &'static str,
+    members: Vec<Member>,
+    /// The interface that defines it, e.g. `wasi:clocks/types@0.3.1`.
+    from: Option<Link>,
+}
+
+/// An image's signature as its page shows it: for a GitHub Actions workflow, the workflow's file
+/// at the ref it ran on, and the signature's entry in the transparency log.
+fn signature_view(signature: &data::Signature) -> minijinja::Value {
+    match signature {
+        data::Signature::Unsigned => ctx! { status => "unsigned" },
+        data::Signature::Failed { reason } => ctx! { status => "failed", reason },
+        data::Signature::Verified(signer) => {
+            // `https://github.com/{repository}/{path}@{ref}`, e.g. `.github/workflows/ci.yaml`
+            let workflow = signer
+                .identity
+                .strip_prefix("https://github.com/")
+                .and_then(|rest| rest.split_once('@'))
+                .and_then(|(path, git_ref)| {
+                    let mut parts = path.splitn(3, '/');
+                    let (owner, repo, file) = (parts.next()?, parts.next()?, parts.next()?);
+                    let at = git_ref
+                        .strip_prefix("refs/heads/")
+                        .or_else(|| git_ref.strip_prefix("refs/tags/"))
+                        .unwrap_or(git_ref);
+                    Some(ctx! {
+                        name => file.rsplit('/').next().unwrap_or(file),
+                        url => format!("https://github.com/{owner}/{repo}/blob/{at}/{file}"),
+                    })
+                });
+            ctx! {
+                status => "verified",
+                identity => signer.identity,
+                issuer => signer.issuer,
+                repository => signer.repository,
+                git_ref => signer.git_ref.as_ref().map(|r| {
+                    r.strip_prefix("refs/heads/").or_else(|| r.strip_prefix("refs/tags/")).unwrap_or(r).to_string()
+                }),
+                workflow,
+                log_index => signer.log_index,
+                log_url => signer.log_index.map(|i| format!("https://search.sigstore.dev/?logIndex={i}")),
+            }
+        }
+    }
 }
 
 /// The definition a `use` imports: the type it refers to, following any uses that type is in
@@ -1667,9 +1722,9 @@ impl Site {
         let debug = meta.debug.as_ref().map(|debug| {
             ctx! {
                 reference => debug.reference(),
-                pinned => debug.pinned(),
                 digest => debug.digest,
                 size => human_size(debug.size),
+                signature => debug.signature.as_ref().map(signature_view),
             }
         });
 
@@ -1681,9 +1736,9 @@ impl Site {
             docs => docs(&package.docs, 2),
             oci => ctx! {
                 reference => meta.oci.reference(),
-                pinned => meta.oci.pinned(),
                 digest => meta.oci.digest,
                 size => human_size(meta.oci.size),
+                signature => meta.oci.signature.as_ref().map(signature_view),
             },
             debug,
             worlds,
@@ -1866,25 +1921,55 @@ impl Site {
                         ),
                     ),
                 };
-                // a used type's own definition, by the kind and members it has where it's defined
-                let origin = t.used_kind.map(|used| api::Origin {
-                    def_html: match used {
-                        "type" => format!(
-                            "{} {} = {}",
-                            keyword("type"),
-                            type_name(&t.name),
-                            members_html.join(", ")
-                        ),
-                        "resource" => format!("{} {}", keyword("resource"), type_name(&t.name)),
-                        kind => format!(
-                            "{} {} {{ {} }}",
-                            keyword(kind),
-                            type_name(&t.name),
-                            members_html.join(", ")
-                        ),
-                    },
-                    from: t.from.as_ref().map(|f| f.label.clone()).unwrap_or_default(),
-                });
+                // a type's definition, by its kind, name and members, highlighted
+                let definition = |kind: &str, name: &str, members_html: &[String]| match kind {
+                    "type" => format!(
+                        "{} {} = {}",
+                        keyword("type"),
+                        type_name(name),
+                        members_html.join(", ")
+                    ),
+                    "resource" => format!("{} {}", keyword("resource"), type_name(name)),
+                    kind => format!(
+                        "{} {} {{ {} }}",
+                        keyword(kind),
+                        type_name(name),
+                        members_html.join(", ")
+                    ),
+                };
+                // the type a use or an alias refers to, as it's defined where it comes from: a
+                // used type's members are those it has there
+                let origin_summary = api::summary(&t.origin_docs);
+                let origin = match (&t.used_kind, &t.aliased) {
+                    (Some(used), _) => Some(api::Origin {
+                        def_html: definition(used, &t.name, &members_html),
+                        from: t.from.as_ref().map(|f| f.label.clone()).unwrap_or_default(),
+                        kind: used,
+                        name: t.name.clone(),
+                        members_html: members_html.clone(),
+                        summary: origin_summary,
+                    }),
+                    (None, Some(aliased)) => {
+                        let html: Vec<String> = aliased
+                            .members
+                            .iter()
+                            .map(|m| member(m, aliased.kind).1)
+                            .collect();
+                        Some(api::Origin {
+                            def_html: definition(aliased.kind, &aliased.name, &html),
+                            from: aliased
+                                .from
+                                .as_ref()
+                                .map(|f| f.label.clone())
+                                .unwrap_or_default(),
+                            kind: aliased.kind,
+                            name: aliased.name.clone(),
+                            members_html: html,
+                            summary: origin_summary,
+                        })
+                    }
+                    (None, None) => None,
+                };
                 items.insert(
                     t.name.clone(),
                     api::Item {
@@ -1921,6 +2006,12 @@ impl Site {
                 api::Interface {
                     deprecated: deprecated(&stability(&resolve.interfaces[id].stability)),
                     unstable: unstable(&stability(&resolve.interfaces[id].stability)),
+                    summary: resolve.interfaces[id]
+                        .docs
+                        .contents
+                        .as_deref()
+                        .map(summary)
+                        .unwrap_or_default(),
                     items,
                 },
             );
@@ -1976,6 +2067,8 @@ impl Site {
             package: entry.meta.package.clone(),
             version: entry.meta.version.clone(),
             kind: entry.meta.kind,
+            summary: entry.description(),
+            date: entry.date(),
             interfaces,
             worlds,
             imports: refs(&entry.meta.imports),
@@ -2248,6 +2341,25 @@ impl Site {
             }
         };
 
+        // where a type is defined: its interface, linking to its definition there
+        let from_of = |origin: wit_parser::TypeId, fallback: &str| -> Option<Link> {
+            let origin_def = &resolve.types[origin];
+            match origin_def.owner {
+                TypeOwner::Interface(owner) => resolve.id_of(owner).map(|owner_id| {
+                    let url = self.interface_urls.get(&owner_id).map(|url| {
+                        format!(
+                            "{url}#type-{}",
+                            origin_def.name.as_deref().unwrap_or(fallback)
+                        )
+                    });
+                    Link {
+                        label: owner_id,
+                        url,
+                    }
+                }),
+                _ => None,
+            }
+        };
         let mut types = Vec::new();
         for (type_name, type_id) in &iface.types {
             let def = &resolve.types[*type_id];
@@ -2265,21 +2377,7 @@ impl Site {
                 Some(origin) => {
                     let origin_def = &resolve.types[origin];
                     let (used_kind, members) = details(origin);
-                    let from = match origin_def.owner {
-                        TypeOwner::Interface(owner) => resolve.id_of(owner).map(|owner_id| {
-                            let url = self.interface_urls.get(&owner_id).map(|url| {
-                                format!(
-                                    "{url}#type-{}",
-                                    origin_def.name.as_deref().unwrap_or(type_name)
-                                )
-                            });
-                            Link {
-                                label: owner_id,
-                                url,
-                            }
-                        }),
-                        _ => None,
-                    };
+                    let from = from_of(origin, type_name);
                     TypeView {
                         name: type_name.clone(),
                         kind: "use",
@@ -2297,10 +2395,35 @@ impl Site {
                             Vec::new()
                         },
                         from,
+                        aliased: None,
+                        origin_docs: docs(&origin_def.docs, 3),
                     }
                 }
                 None => {
                     let (kind, members) = details(*type_id);
+                    // an alias of a named type, `type a = b`, refers to the type `b` is, as it's
+                    // defined where it comes from
+                    let aliased = match def.kind {
+                        TypeDefKind::Type(wit_parser::Type::Id(other))
+                            if resolve.types[other].name.is_some() =>
+                        {
+                            Some(origin_of(resolve, other))
+                        }
+                        _ => None,
+                    };
+                    let origin_docs = aliased
+                        .map(|origin| docs(&resolve.types[origin].docs, 3))
+                        .unwrap_or_default();
+                    let aliased = aliased.map(|origin| {
+                        let (kind, members) = details(origin);
+                        let name = resolve.types[origin].name.clone().unwrap_or_default();
+                        Aliased {
+                            from: from_of(origin, &name),
+                            name,
+                            kind,
+                            members,
+                        }
+                    });
                     TypeView {
                         name: type_name.clone(),
                         kind,
@@ -2310,6 +2433,8 @@ impl Site {
                         members,
                         functions: resource_functions(*type_id),
                         from: None,
+                        aliased,
+                        origin_docs,
                     }
                 }
             };
@@ -2407,6 +2532,7 @@ mod tests {
                 digest: format!("sha256:{}", "0".repeat(64)),
                 layer_digest: format!("sha256:{}", "1".repeat(64)),
                 size: 1234,
+                signature: None,
             },
             debug: None,
             created: Some("2026-10-15T13:03:05Z".to_string()),
@@ -2503,10 +2629,11 @@ mod tests {
         assert!(consumer.contains(r#"<p class="from">from"#));
         // a world's imports and exports show the icon of their kind
         let package = read("wasi/logging/0.1.0-draft/index.html");
-        assert!(
-            package.contains(r##"<li title="interface"><svg class="kind-icon kind-interface""##)
-        );
-        assert!(package.contains(r##"<li title="func"><svg class="kind-icon kind-func""##));
+        assert!(package.contains(r##"<li><svg class="kind-icon kind-interface""##));
+        assert!(package.contains(r##"<li><svg class="kind-icon kind-func""##));
+        // with no title, whose browser tooltip would cover the link's own
+        assert!(package.contains(r#"<span class="visually-hidden">interface </span>"#));
+        assert!(!package.contains(r#"<li title="#));
         assert!(package.contains(r##"<use href="#kind-world"/>"##));
         // a `use` links its interface to its page, and each type it uses to its definition there
         let used = consumer.replace("&#x2f;", "/");
@@ -2822,7 +2949,7 @@ mod tests {
             "the samples link each other"
         );
         assert!(
-            page.contains(r#"<li title="func">"#),
+            page.contains(r#"<span class="visually-hidden">func </span>"#),
             "the exports come from the WIT"
         );
         assert!(read("sink/types/0.1.0/shapes/index.html").contains("Synthetic sample."));

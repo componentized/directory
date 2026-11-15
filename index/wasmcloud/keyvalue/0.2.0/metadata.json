@@ -9,7 +9,15 @@
     "tag": "0.2.0",
     "digest": "sha256:2faf7fce164293107923c6100e88b162064c8622c86673ddd7190842634d771d",
     "layer_digest": "sha256:a61448d7ffc36e0dc8433fad53691a6a1ca7da4d816355a32e4064f00e5eed83",
-    "size": 21454
+    "size": 21454,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/wasmCloud/wasmCloud/.github/workflows/wit.yml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "wasmCloud/wasmCloud",
+      "git_ref": "refs/heads/main",
+      "log_index": 2347505056
+    }
   },
   "created": "2026-08-05T17:13:57.643450385Z",
   "annotations": {

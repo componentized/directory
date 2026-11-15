@@ -2,6 +2,25 @@
 {% from "macros.html" import header, links, link, world_items, grouped, packages, stability, kind_icon, meta_icon %}
 {% block description %}{{ pkg.description or pkg.id }}{% endblock %}
 {% set toc = true %}
+{#- an image's cosign signature, verified the first time the image was seen: who signed it, and
+    its entry in the transparency log. A version's image and its debug build's are each signed. #}
+{% macro signature(sig) %}{% if sig %}<dt>Signature</dt><dd>
+  {%- if sig.status == "verified" %}
+  {#- verified, and who signed it and its log entry behind a fold #}
+  <details class="sig-fold">
+    <summary title="Who signed it"><span class="signed">verified</span><svg class="pivot-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 6.5 3.5 3.5 3.5-3.5"/></svg></summary>
+    <dl class="facts sig-facts">
+      {%- if sig.workflow %}<dt>Workflow</dt><dd><a href="{{ sig.workflow.url }}"><code>{{ sig.workflow.name }}</code></a></dd>{% endif %}
+      {#- a workflow names who signed it; any other identity is shown as its certificate has it #}
+      {%- if not sig.workflow %}
+      <dt>Issuer</dt><dd><code>{{ sig.issuer }}</code></dd>
+      <dt>Identity</dt><dd><code>{{ sig.identity }}</code></dd>
+      {%- endif %}
+      {%- if sig.log_url %}<dt>Log</dt><dd><a href="{{ sig.log_url }}" title="The signature's entry in Sigstore's transparency log, Rekor">Rekor <code>#{{ sig.log_index }}</code></a></dd>{% endif %}
+    </dl>
+  </details>
+  {%- elif sig.status == "failed" %}<span class="unverified" title="{{ sig.reason }}">didn't verify</span>
+  {%- else %}<span class="dim">not signed</span>{% endif %}</dd>{% endif %}{% endmacro %}
 {% block toc %}
 <ol>
   {% if docs %}<li><a href="#overview">Overview</a></li>{% endif %}
@@ -104,14 +123,11 @@
     {% if not synthetic %}
     <section id="pull">
       <h3>Pull</h3>
-      {% if pkg.kind == "interface" %}
-      <pre class="cmd" data-copy data-copy-label="Copy the command"><code>wkg get {{ pkg.id }}</code></pre>
-      {% endif %}
-      <pre class="cmd" data-copy data-copy-label="Copy the command"><code>wkg oci pull {{ oci.pinned }}</code></pre>
       <dl class="facts">
-        <dt>Image</dt><dd><code data-copy data-copy-label="Copy the image">{{ oci.reference }}</code></dd>
-        <dt>Digest</dt><dd><code class="digest" title="{{ oci.digest }}" data-copy data-copy-label="Copy the digest">{{ oci.digest }}</code></dd>
+        <dt>Image</dt><dd><code data-copy="{{ oci.reference }}@{{ oci.digest }}" data-copy-label="Copy the image with digest">{{ oci.reference }}</code></dd>
+        <dt>Digest</dt><dd><code data-copy data-copy-label="Copy the digest">{{ oci.digest }}</code></dd>
         <dt>Size</dt><dd><code>{{ oci.size }}</code></dd>
+        {{ signature(oci.signature) }}
       </dl>
     </section>
     {% if debug %}
@@ -119,9 +135,10 @@
     <section id="debug">
       <h3>Debug</h3>
       <dl class="facts">
-        <dt>Image</dt><dd><code data-copy data-copy-label="Copy the debug image">{{ debug.reference }}</code></dd>
-        <dt>Digest</dt><dd><code class="digest" title="{{ debug.digest }}" data-copy data-copy-label="Copy the debug digest">{{ debug.digest }}</code></dd>
+        <dt>Image</dt><dd><code data-copy="{{ debug.reference }}@{{ debug.digest }}" data-copy-label="Copy the debug image with digest">{{ debug.reference }}</code></dd>
+        <dt>Digest</dt><dd><code data-copy data-copy-label="Copy the digest">{{ debug.digest }}</code></dd>
         <dt>Size</dt><dd><code>{{ debug.size }}</code></dd>
+        {{ signature(debug.signature) }}
       </dl>
     </section>
     {% endif %}
@@ -129,7 +146,7 @@
     {% if pkg.released_with %}
     <section id="released-with">
       <h3>Released with</h3>
-      <ul class="links released-with">{% for r in pkg.released_with %}<li title="{{ r.kind }}">{{ kind_icon(r.kind) }}<a href="{{ r.url }}"><code>{{ r.label }}</code></a></li>{% endfor %}</ul>
+      <ul class="links released-with">{% for r in pkg.released_with %}<li>{{ kind_icon(r.kind) }}<span class="visually-hidden">{{ r.kind }} </span><a href="{{ r.url }}"><code>{{ r.label }}</code></a></li>{% endfor %}</ul>
     </section>
     {% endif %}
     {% if used_in %}

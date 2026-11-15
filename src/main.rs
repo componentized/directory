@@ -8,6 +8,7 @@ mod decode;
 mod http;
 mod resolve;
 mod scan;
+mod signature;
 mod site;
 mod version;
 mod wit_html;

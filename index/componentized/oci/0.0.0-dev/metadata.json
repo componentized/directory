@@ -9,7 +9,15 @@
     "tag": "0.0.0-dev",
     "digest": "sha256:efa26b49d085dc7cde9631b3898a1a877c37b62f8487f23381111e0b2d1245b6",
     "layer_digest": "sha256:fe33e6ac5f37a1a5f37b249c382b28e5224d4f2b28a7b6f8499a8bb11762e400",
-    "size": 12305
+    "size": 12305,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/oci/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/oci",
+      "git_ref": "refs/heads/main",
+      "log_index": 3056721923
+    }
   },
   "created": "2026-10-02T14:14:27.586585459Z",
   "annotations": {

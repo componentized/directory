@@ -9,7 +9,15 @@
     "tag": "0.1.2-dev",
     "digest": "sha256:50d72ee69d964e9ef95be2d4af5c39853e6ce1667ec729b2e3ea51c469eb9137",
     "layer_digest": "sha256:10f12f682718f4d8ec8623cd606d92ed3bb1e78378f33ed4703e581c198d4d2d",
-    "size": 15893
+    "size": 15893,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/constants",
+      "git_ref": "refs/heads/main",
+      "log_index": 3115077932
+    }
   },
   "created": "2026-10-06T19:19:59.940562901Z",
   "annotations": {

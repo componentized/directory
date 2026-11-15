@@ -9,7 +9,15 @@
     "tag": "0.2.12",
     "digest": "sha256:5e5258f95a6ba5d50d9954ac72dcfcdcc3c13de93f67367d5f1406ba000a8eb2",
     "layer_digest": "sha256:27a883ca86f062bf8010a86e0d56a2bc0238125d065f6a4b41a0c3a9d8de66f3",
-    "size": 4063
+    "size": 4063,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/WebAssembly/WASI/.github/workflows/publish-proposal.yml@refs/tags/v0.2.12",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "WebAssembly/WASI",
+      "git_ref": "refs/tags/v0.2.12",
+      "log_index": 1704074223
+    }
   },
   "created": "2026-06-02T14:07:45.694461842Z",
   "annotations": {

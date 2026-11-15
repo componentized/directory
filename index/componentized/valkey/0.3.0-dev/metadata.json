@@ -9,7 +9,15 @@
     "tag": "0.3.0-dev",
     "digest": "sha256:75a598da32e7d5e53556220ec9fcb9c1522bd9c8c3378c13e2753eb048472694",
     "layer_digest": "sha256:b0112726573b842edf66d648068d459ae98dc1a5b297d14680d200b20f7fb37b",
-    "size": 268360
+    "size": 268360,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/valkey",
+      "git_ref": "refs/heads/main",
+      "log_index": 3861808985
+    }
   },
   "created": "2026-11-13T20:25:27.688051547Z",
   "annotations": {

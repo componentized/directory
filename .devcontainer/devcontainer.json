@@ -21,6 +21,7 @@
 			"type": "volume"
 		}
 	],
+	"onCreateCommand": ".devcontainer/init.sh",
 	"postStartCommand": "cargo run --locked -- build --out _site && npx --yes live-server@1.2.2 _site --host=0.0.0.0 --port=80 --no-browser",
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {

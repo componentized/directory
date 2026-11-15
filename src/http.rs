@@ -42,6 +42,15 @@ pub struct Manifest {
     pub layers: Vec<Descriptor>,
     #[serde(default)]
     pub annotations: std::collections::BTreeMap<String, String>,
+    /// An index's manifests.
+    #[serde(default)]
+    pub manifests: Vec<Descriptor>,
+    /// What an artifact is, e.g. `application/vnd.dev.sigstore.bundle.v0.3+json`.
+    #[serde(default)]
+    pub artifact_type: Option<String>,
+    /// The manifest an artifact refers to, e.g. the image a signature signs.
+    #[serde(default)]
+    pub subject: Option<Descriptor>,
 }
 
 #[derive(Debug, Deserialize, Clone)]
@@ -50,6 +59,8 @@ pub struct Descriptor {
     pub media_type: String,
     pub digest: String,
     pub size: u64,
+    #[serde(default)]
+    pub annotations: std::collections::BTreeMap<String, String>,
 }
 
 /// The wasm OCI config, `application/vnd.wasm.config.v0+json`.
@@ -152,6 +163,36 @@ impl Oci {
                 None => return Ok(Some(tags)),
             }
         }
+    }
+
+    /// Fetches a manifest by tag or digest, as [`Oci::manifest`], `None` when there's none.
+    pub fn find_manifest(
+        &self,
+        registry: &str,
+        repository: &str,
+        reference: &str,
+    ) -> Result<Option<(String, Manifest)>> {
+        let url = format!("https://{registry}/v2/{repository}/manifests/{reference}");
+        let response = self.get(
+            registry,
+            repository,
+            &url,
+            "application/vnd.oci.image.manifest.v1+json, application/vnd.oci.image.index.v1+json",
+        )?;
+        if response.status() == StatusCode::NOT_FOUND {
+            return Ok(None);
+        }
+        if !response.status().is_success() {
+            bail!(
+                "fetching manifest {registry}/{repository}:{reference}: {}",
+                response.status()
+            );
+        }
+        let bytes = response.bytes()?;
+        let digest = sha256(&bytes);
+        let manifest = serde_json::from_slice(&bytes)
+            .with_context(|| format!("parsing manifest {registry}/{repository}:{reference}"))?;
+        Ok(Some((digest, manifest)))
     }
 
     /// Fetches a manifest by tag or digest, returning its digest along with it.

@@ -9,7 +9,15 @@
     "tag": "0.2.0-rc.1",
     "digest": "sha256:827319be1002c2dc52f2a601e77d54e4705305dde84734c965421e6e56a9b9c2",
     "layer_digest": "sha256:4f4969ab60f39ca84830fe654e51e2bf852097eafb79626f616cd2fba11fdd54",
-    "size": 22053
+    "size": 22053,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/WebAssembly/wasi-otel/.github/workflows/publish-release.yml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "WebAssembly/wasi-otel",
+      "git_ref": "refs/heads/main",
+      "log_index": 870686540
+    }
   },
   "created": "2026-01-29T18:45:35.829440283Z",
   "annotations": {
