@@ -1,0 +1,57 @@
+{
+  "package": "componentized:filesystem-tracing",
+  "version": "0.3.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem/tracing",
+    "tag": "0.3.0-dev",
+    "digest": "sha256:ce3a61652c6f2f32af85a928cb785cf36d98c74d0e81a45dd9c8020bf3943d35",
+    "layer_digest": "sha256:53251791c5d1dad0e4ea10bab0353a5b90b829643c6f0a6cfa9941ae7b0a173d",
+    "size": 269936
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem/tracing",
+    "tag": "0.3.0-dev_debug",
+    "digest": "sha256:85f79f5bf22107570fc23275d26a907578e1565ffdde545c8b8586a96bf0c3a5",
+    "layer_digest": "sha256:4c9758116961e606b2e3658198c1ba0a83bae7034ccd6e5bec2fe6714cb5023e",
+    "size": 2557354
+  },
+  "created": "2026-10-17T17:58:27.291386995Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Virtualizes the wasi:filesystem interfaces logging all method calls at the TRACE level and 'filesystem' component.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "a8bbdd4cc46ebd2115a932261e00ac1044a41703",
+    "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
+    "org.opencontainers.image.title": "componentized:filesystem-tracing",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/a8bbdd4cc46ebd2115a932261e00ac1044a41703/components/tracing",
+    "org.opencontainers.image.version": "0.3.0-dev"
+  },
+  "imports": [
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:clocks/system-clock@0.3.0",
+    "wasi:filesystem/types@0.3.0",
+    "wasi:filesystem/preopens@0.3.0"
+  ],
+  "exports": [
+    "wasi:filesystem/types@0.3.0",
+    "wasi:filesystem/preopens@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "indexed_at": "2026-11-15T14:26:41Z"
+}

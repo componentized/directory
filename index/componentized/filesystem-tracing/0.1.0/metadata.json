@@ -1,0 +1,55 @@
+{
+  "package": "componentized:filesystem-tracing",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem/tracing",
+    "tag": "0.1.0",
+    "digest": "sha256:15aa656903fc4ab34d72c03ce24307abecd0c8409460276b80af88b91fdf297a",
+    "layer_digest": "sha256:1512a1bb8f128b9c38600130362a280159bb85c51518d121b97130c8a923bd21",
+    "size": 94700
+  },
+  "created": "2025-04-23T01:10:58.602312152Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Virtualizes the wasi:filesystem interfaces logging all method calls at the TRACE level and 'filesystem' component.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "83af8b2d8c3adfc09a3ffc56bff7ac542987383a+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
+    "org.opencontainers.image.title": "tracing",
+    "org.opencontainers.image.version": "v0.1.0"
+  },
+  "imports": [
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:io/error@0.2.3",
+    "wasi:io/streams@0.2.3",
+    "wasi:clocks/wall-clock@0.2.3",
+    "wasi:filesystem/types@0.2.3",
+    "wasi:filesystem/preopens@0.2.3"
+  ],
+  "exports": [
+    "wasi:filesystem/types@0.2.3",
+    "wasi:filesystem/preopens@0.2.3"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:clocks",
+      "version": "0.2.3"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.2.3"
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.3"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "release": "https://github.com/componentized/filesystem/releases/tag/v0.1.0",
+  "indexed_at": "2026-11-15T14:26:40Z"
+}

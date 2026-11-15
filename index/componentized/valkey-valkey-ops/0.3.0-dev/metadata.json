@@ -1,0 +1,60 @@
+{
+  "package": "componentized:valkey-valkey-ops",
+  "version": "0.3.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/valkey-ops",
+    "tag": "0.3.0-dev",
+    "digest": "sha256:6a0cf9e8a2a3601de357a110da8e52509520305d9d5087aa6b601c9f548be5d4",
+    "layer_digest": "sha256:23d5849ffad307654522ff25eac6c422c81b400214782db7d55eeb61806c18c9",
+    "size": 278704
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/valkey-ops",
+    "tag": "0.3.0-dev_debug",
+    "digest": "sha256:e6fe8a57c82c4382d1563b7585ab03caee573a9cf260e2c696e16ab3811d2a3c",
+    "layer_digest": "sha256:d1cfd837677df0133134107907198949e523288fcd75b96c3da79c4f1ccd81c5",
+    "size": 658118
+  },
+  "created": "2026-10-02T03:02:32.351730562Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Client library for interacting with a Valkey server, and RESP messages.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b1f95fdbd7ce689e49e559ca9dec95f20e4ffd7f+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
+    "org.opencontainers.image.title": "valkey-ops",
+    "org.opencontainers.image.version": "0.3.0-dev"
+  },
+  "imports": [
+    "wasi:io/error@0.2.6",
+    "wasi:sockets/network@0.2.6",
+    "wasi:sockets/instance-network@0.2.6",
+    "wasi:io/poll@0.2.6",
+    "wasi:io/streams@0.2.6",
+    "wasi:sockets/tcp@0.2.6",
+    "wasi:sockets/tcp-create-socket@0.2.6",
+    "wasi:sockets/ip-name-lookup@0.2.6"
+  ],
+  "exports": [
+    "componentized:valkey/resp@0.3.0-dev",
+    "componentized:valkey/store@0.3.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:valkey",
+      "version": "0.3.0-dev"
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.6"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.2.6"
+    }
+  ],
+  "indexed_at": "2026-11-15T14:26:55Z"
+}

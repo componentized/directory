@@ -1,0 +1,53 @@
+{
+  "package": "componentized:valkey-valkey-ops",
+  "version": "0.1.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/valkey-ops",
+    "tag": "0.1.1",
+    "digest": "sha256:7cb5b020bf49e68c2748f0999207648160f98212baefab376cbd8446bfe67ee7",
+    "layer_digest": "sha256:6064965053656087561cb45016f31093fa31dd6a8e780389b64ca7d1ffb9706f",
+    "size": 285188
+  },
+  "created": "2025-04-25T22:06:21.815358704Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Client library for interacting with a Valkey server, and RESP messages.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "2ee4563c6d4030e4d2a662e36da6282305c10d89+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
+    "org.opencontainers.image.title": "valkey-ops",
+    "org.opencontainers.image.version": "v0.1.1"
+  },
+  "imports": [
+    "wasi:sockets/network@0.2.3",
+    "wasi:sockets/instance-network@0.2.3",
+    "wasi:io/poll@0.2.3",
+    "wasi:io/error@0.2.3",
+    "wasi:io/streams@0.2.3",
+    "wasi:sockets/tcp@0.2.3",
+    "wasi:sockets/tcp-create-socket@0.2.3",
+    "wasi:sockets/ip-name-lookup@0.2.3"
+  ],
+  "exports": [
+    "componentized:valkey/resp",
+    "componentized:valkey/store"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:valkey",
+      "version": null
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.3"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.2.3"
+    }
+  ],
+  "release": "https://github.com/componentized/valkey/releases/tag/v0.1.1",
+  "indexed_at": "2026-11-15T14:26:55Z"
+}

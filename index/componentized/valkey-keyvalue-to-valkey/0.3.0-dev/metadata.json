@@ -1,0 +1,56 @@
+{
+  "package": "componentized:valkey-keyvalue-to-valkey",
+  "version": "0.3.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/keyvalue-to-valkey",
+    "tag": "0.3.0-dev",
+    "digest": "sha256:5f20616a8751d3913d9eeac3b658fe9b41f2339887d42475c430060adc22665f",
+    "layer_digest": "sha256:b5fb40300687ce7a94bbaee3d3a91c2bbeebf8a5918b781e9a936d485051434f",
+    "size": 76371
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/keyvalue-to-valkey",
+    "tag": "0.3.0-dev_debug",
+    "digest": "sha256:04c376f0f2c002e7ca5da84232402eb62bc59a5f49b823ce4465a195364f113f",
+    "layer_digest": "sha256:ff03b7cbe7f20f563e8a02d6d8272d6689054a9a11acb7c582106d08087d0333",
+    "size": 195905
+  },
+  "created": "2026-10-02T03:02:55.205196Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Adapter to back wasi:keyvalue with the componentized:valkey client.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b1f95fdbd7ce689e49e559ca9dec95f20e4ffd7f+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
+    "org.opencontainers.image.title": "keyvalue-to-valkey",
+    "org.opencontainers.image.version": "0.3.0-dev"
+  },
+  "imports": [
+    "componentized:valkey/resp@0.3.0-dev",
+    "componentized:valkey/store@0.3.0-dev",
+    "wasi:config/store@0.2.0-rc.1"
+  ],
+  "exports": [
+    "wasi:keyvalue/store@0.2.0-draft2",
+    "wasi:keyvalue/atomics@0.2.0-draft2",
+    "wasi:keyvalue/batch@0.2.0-draft2"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:valkey",
+      "version": "0.3.0-dev"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:keyvalue",
+      "version": "0.2.0-draft2"
+    }
+  ],
+  "indexed_at": "2026-11-15T14:26:54Z"
+}

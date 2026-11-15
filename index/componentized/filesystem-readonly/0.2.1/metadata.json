@@ -1,0 +1,50 @@
+{
+  "package": "componentized:filesystem-readonly",
+  "version": "0.2.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem/readonly",
+    "tag": "0.2.1",
+    "digest": "sha256:3f6af728e61719192cd3efb95b764f8d5a18ad3f73734f4da73389a2ec1dcf0a",
+    "layer_digest": "sha256:8cad24dfc2236cacf93d8ea21910545c05f00efd5c35c7f7f44e493e608c3ae3",
+    "size": 61275
+  },
+  "created": "2025-12-12T19:12:39.681175141Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Virtualizes the wasi:filesystem interfaces making the exported file system read-only.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "de290cf8d6bc57d065b6bf9ad1f6fbbcb08146ef+dirty",
+    "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
+    "org.opencontainers.image.title": "readonly",
+    "org.opencontainers.image.version": "v0.2.1"
+  },
+  "imports": [
+    "wasi:io/error@0.2.6",
+    "wasi:io/streams@0.2.6",
+    "wasi:clocks/wall-clock@0.2.6",
+    "wasi:filesystem/types@0.2.6",
+    "wasi:filesystem/preopens@0.2.6"
+  ],
+  "exports": [
+    "wasi:filesystem/types@0.2.6",
+    "wasi:filesystem/preopens@0.2.6"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:clocks",
+      "version": "0.2.6"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.2.6"
+    },
+    {
+      "package": "wasi:io",
+      "version": "0.2.6"
+    }
+  ],
+  "release": "https://github.com/componentized/filesystem/releases/tag/v0.2.1",
+  "indexed_at": "2026-11-15T14:26:39Z"
+}
