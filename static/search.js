@@ -32,15 +32,23 @@
           const li = document.createElement("li");
           const a = document.createElement("a");
           a.href = pkg.url;
+          // its kind by its icon, as a card shows it, and said
+          const svg = "http://www.w3.org/2000/svg";
+          const icon = document.createElementNS(svg, "svg");
+          icon.setAttribute("class", `kind-icon kind-${pkg.kind}`);
+          icon.setAttribute("aria-hidden", "true");
+          const use = document.createElementNS(svg, "use");
+          use.setAttribute("href", `#kind-${pkg.kind}`);
+          icon.append(use);
+          const kind = document.createElement("span");
+          kind.className = "visually-hidden";
+          kind.textContent = `${pkg.kind} `;
           const code = document.createElement("code");
           code.textContent = pkg.package;
-          const kind = document.createElement("span");
-          kind.className = `badge ${pkg.kind}`;
-          kind.textContent = pkg.kind;
           const desc = document.createElement("span");
           desc.className = "dim";
           desc.textContent = pkg.description;
-          a.append(code, " ", kind, desc);
+          a.append(icon, kind, code, desc);
           li.append(a);
           return li;
         }),

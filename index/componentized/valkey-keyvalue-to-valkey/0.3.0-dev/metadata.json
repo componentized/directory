@@ -9,7 +9,15 @@
     "tag": "0.3.0-dev",
     "digest": "sha256:5f20616a8751d3913d9eeac3b658fe9b41f2339887d42475c430060adc22665f",
     "layer_digest": "sha256:b5fb40300687ce7a94bbaee3d3a91c2bbeebf8a5918b781e9a936d485051434f",
-    "size": 76371
+    "size": 76371,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/valkey",
+      "git_ref": "refs/heads/main",
+      "log_index": 3046666445
+    }
   },
   "debug": {
     "registry": "ghcr.io",
@@ -17,7 +25,15 @@
     "tag": "0.3.0-dev_debug",
     "digest": "sha256:04c376f0f2c002e7ca5da84232402eb62bc59a5f49b823ce4465a195364f113f",
     "layer_digest": "sha256:ff03b7cbe7f20f563e8a02d6d8272d6689054a9a11acb7c582106d08087d0333",
-    "size": 195905
+    "size": 195905,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/valkey",
+      "git_ref": "refs/heads/main",
+      "log_index": 3046670388
+    }
   },
   "created": "2026-10-02T03:02:55.205196Z",
   "annotations": {

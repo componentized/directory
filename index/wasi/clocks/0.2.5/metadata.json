@@ -9,7 +9,15 @@
     "tag": "0.2.5",
     "digest": "sha256:02eadca29a987b0daa594e2b6cb1a02f800bae2b8eb5e5600b0f9e1416b9b6b5",
     "layer_digest": "sha256:1436dd97c83811ad83197cd50efc854e4085983418e081a99496a4b379c08937",
-    "size": 6821
+    "size": 6821,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/WebAssembly/wasi-clocks/.github/workflows/publish.yml@refs/tags/v0.2.5",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "WebAssembly/wasi-clocks",
+      "git_ref": "refs/tags/v0.2.5",
+      "log_index": 192054977
+    }
   },
   "created": "2025-04-03T18:02:38.354845665Z",
   "annotations": {

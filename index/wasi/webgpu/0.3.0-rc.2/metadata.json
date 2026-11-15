@@ -9,7 +9,15 @@
     "tag": "0.3.0-rc.2",
     "digest": "sha256:28ebeea229658a8524b71ebd13d06ee77bf74950d6e285a0367a3bc066a07aa1",
     "layer_digest": "sha256:9ba613b2be1cc74135f496e684f3b2bdd373507302c56ddae8a16398f3c70866",
-    "size": 55334
+    "size": 55334,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/WebAssembly/wasi-webgpu/.github/workflows/publish-release.yml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "WebAssembly/wasi-webgpu",
+      "git_ref": "refs/heads/main",
+      "log_index": 2047791504
+    }
   },
   "created": "2026-07-02T15:02:48.989211386Z",
   "annotations": {

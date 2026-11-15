@@ -9,7 +9,15 @@
     "tag": "0.2.6",
     "digest": "sha256:418a53205b4499daffa7937d9869d867b04b6579c66217e53de37fee595aac7a",
     "layer_digest": "sha256:26a636620af0485dfcfc9a0563a0606564eedcf3fcabda031ab4d4ec0e505ff1",
-    "size": 52387
+    "size": 52387,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/WebAssembly/wasi-http/.github/workflows/publish.yml@refs/tags/v0.2.6",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "WebAssembly/wasi-http",
+      "git_ref": "refs/tags/v0.2.6",
+      "log_index": 236562536
+    }
   },
   "created": "2025-06-12T21:52:44.977050225Z",
   "annotations": {

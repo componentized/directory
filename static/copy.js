@@ -1,4 +1,4 @@
-// Copy buttons for the values worth pasting elsewhere: the pull commands, image references and
+// Copy buttons for the values worth pasting elsewhere: image references, pinned to their digests,
 // digests, and WIT. Each `[data-copy]` element gets a button that copies its text, or the value of
 // its `data-copy` attribute when it has one. A block, e.g. a `<pre>`, has its button in its upper
 // right corner, outside its scrolling; an inline value has its button after it. Without this

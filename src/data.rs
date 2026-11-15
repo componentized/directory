@@ -50,6 +50,11 @@ pub struct OciRef {
     pub layer_digest: String,
     /// The size of the wasm layer in bytes.
     pub size: u64,
+    /// The image's cosign signature, checked once, when a scan first sees the image. `None` until
+    /// it's checked, e.g. by a scan without cosign. A debug build is an image of its own, with its
+    /// own signature.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub signature: Option<Signature>,
 }
 
 impl OciRef {
@@ -57,8 +62,13 @@ impl OciRef {
         format!("{}/{}:{}", self.registry, self.repository, self.tag)
     }
 
+    /// The reference by its tag and its digest, e.g. `ghcr.io/webassembly/wasi/http:0.2.6@sha256:…`:
+    /// pulled by the digest, the tag naming what it is.
     pub fn pinned(&self) -> String {
-        format!("{}/{}@{}", self.registry, self.repository, self.digest)
+        format!(
+            "{}/{}:{}@{}",
+            self.registry, self.repository, self.tag, self.digest
+        )
     }
 }
 
@@ -88,6 +98,40 @@ pub struct Part {
     /// a component's bindings nest, which is no component it was composed from.
     #[serde(default, skip_serializing_if = "std::ops::Not::not")]
     pub code: bool,
+}
+
+/// An image's cosign signature, as a scan found it the first time it saw the image.
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[serde(tag = "status", rename_all = "lowercase")]
+pub enum Signature {
+    /// It has no cosign signature.
+    Unsigned,
+    /// `cosign verify` verified it: its certificate is from Sigstore's certificate authority, and
+    /// its signature is in Sigstore's transparency log.
+    Verified(Signer),
+    /// It has a signature that didn't verify.
+    Failed {
+        /// Why, as cosign says.
+        reason: String,
+    },
+}
+
+/// Who signed an image: the identity its keyless signing certificate was issued to.
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+pub struct Signer {
+    /// e.g. a GitHub Actions workflow,
+    /// `https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/heads/main`.
+    pub identity: String,
+    /// Who vouched for the identity, e.g. `https://token.actions.githubusercontent.com`.
+    pub issuer: String,
+    /// The repository the workflow ran in, and the ref it ran on, e.g. `refs/tags/v0.2.4`.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub repository: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub git_ref: Option<String>,
+    /// Its entry in the transparency log, Rekor.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub log_index: Option<u64>,
 }
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]

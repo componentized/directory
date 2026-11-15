@@ -9,7 +9,15 @@
     "tag": "0.2.5",
     "digest": "sha256:3da46c1244c00aebe1c8784f900eb3cf55d19f3bd28ce5303858f888854e3ef4",
     "layer_digest": "sha256:49307a042ab7a1e9df73b279fcdf795f1eca489e8b1f41c730f05f2cb57e5789",
-    "size": 4052
+    "size": 4052,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/WebAssembly/wasi-random/.github/workflows/publish.yml@refs/tags/v0.2.5",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "WebAssembly/wasi-random",
+      "git_ref": "refs/tags/v0.2.5",
+      "log_index": 192053830
+    }
   },
   "created": "2025-04-03T18:00:54.181352656Z",
   "annotations": {

@@ -37,9 +37,16 @@ pub fn run(options: &Options) -> Result<()> {
     let client = http::client()?;
     let oci = Oci::new(client.clone());
     let github = GitHub::new(client.clone(), options.github_token.clone());
+    // signatures are checked with cosign, the first time an image is seen; without it, they're
+    // left for a scan that has it
+    let cosign = crate::signature::available();
+    if !cosign {
+        eprintln!("note: cosign isn't installed, so no signatures are checked");
+    }
     let mut scanner = Scanner {
         options,
         oci,
+        cosign,
         client,
         locations: HashMap::new(),
         added: Vec::new(),
@@ -86,6 +93,7 @@ pub fn run(options: &Options) -> Result<()> {
     // a partial scan, e.g. of a repository that just published, leaves them to the next full scan
     if options.only.is_empty() {
         scanner.backfill_parts()?;
+        scanner.backfill_signatures()?;
     }
     trim_nested(&options.root)?;
     refresh_items(&options.root)?;
@@ -382,6 +390,8 @@ fn discover(
 struct Scanner<'a> {
     options: &'a Options,
     oci: Oci,
+    /// Whether `cosign` can be run, to check signatures.
+    cosign: bool,
     client: reqwest::blocking::Client,
     locations: HashMap<String, std::result::Result<OciLocation, String>>,
     added: Vec<String>,
@@ -392,6 +402,60 @@ impl Scanner<'_> {
     fn fail(&mut self, what: String, err: anyhow::Error) {
         eprintln!("warning: {what}: {err:#}");
         self.failed.push((what, err));
+    }
+
+    /// Checks the signature of an image the scan sees for the first time, `None` when it can't be
+    /// checked, e.g. without cosign, so a later scan checks it.
+    fn signature(&mut self, oci: &OciRef) -> Option<data::Signature> {
+        if !self.cosign {
+            return None;
+        }
+        match crate::signature::check(&self.oci, &oci.registry, &oci.repository, &oci.digest) {
+            Ok(signature) => {
+                if let data::Signature::Failed { reason } = &signature {
+                    eprintln!(
+                        "warning: {}: the signature didn't verify: {reason}",
+                        oci.pinned()
+                    );
+                }
+                Some(signature)
+            }
+            Err(err) => {
+                self.fail(format!("the signature of {}", oci.pinned()), err);
+                None
+            }
+        }
+    }
+
+    /// Checks the signature of each indexed image that hasn't been checked, a version's or its
+    /// debug build's, e.g. one indexed before scans checked them, or by a scan without cosign.
+    fn backfill_signatures(&mut self) -> Result<()> {
+        if !self.cosign {
+            return Ok(());
+        }
+        let stored = data::load(&self.options.root)?;
+        let mut checked = 0;
+        for stored in stored {
+            let mut metadata = stored.metadata.clone();
+            let mut changed = false;
+            for image in std::iter::once(&mut metadata.oci).chain(metadata.debug.as_mut()) {
+                if image.signature.is_some() {
+                    continue;
+                }
+                if let Some(signature) = self.signature(image) {
+                    image.signature = Some(signature);
+                    changed = true;
+                    checked += 1;
+                }
+            }
+            if changed {
+                data::write(&self.options.root, &metadata, &stored.wit)?;
+            }
+        }
+        if checked > 0 {
+            eprintln!("checked the signatures of {checked} indexed images");
+        }
+        Ok(())
     }
 
     /// Reads the nested components of each indexed component that hasn't recorded them, one
@@ -621,7 +685,7 @@ impl Scanner<'_> {
         refresh: bool,
     ) -> Result<()> {
         let registry = &location.registry;
-        let (oci, manifest) = self.fetch(registry, repository, tag)?;
+        let (mut oci, manifest) = self.fetch(registry, repository, tag)?;
         let wasm = self
             .oci
             .blob(registry, repository, &oci.layer_digest)
@@ -657,9 +721,15 @@ impl Scanner<'_> {
                 .and_then(|config| config.created),
             _ => None,
         };
+        // a new image, or a dev build's new build: its signature is checked once, now, and its
+        // debug build's, an image of its own
+        oci.signature = self.signature(&oci);
         let debug = match debug_tag {
             Some(debug_tag) => match self.fetch(registry, repository, debug_tag) {
-                Ok((debug, _)) => Some(debug),
+                Ok((mut debug, _)) => {
+                    debug.signature = self.signature(&debug);
+                    Some(debug)
+                }
                 Err(err) => {
                     eprintln!("warning: {registry}/{repository}:{debug_tag}: {err:#}");
                     None
@@ -724,6 +794,7 @@ impl Scanner<'_> {
                 digest,
                 layer_digest: layer.digest,
                 size: layer.size,
+                signature: None,
             },
             manifest,
         ))

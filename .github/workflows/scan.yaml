@@ -41,6 +41,10 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - uses: actions-rust-lang/setup-rust-toolchain@v2
+      # the scan verifies each new image's cosign signature against Sigstore's transparency log
+      - uses: sigstore/cosign-installer@v4
+        with:
+          cosign-release: v3.1.4
       - name: Scan
         id: scan
         # without pipefail, the step would take tee's status and pass when the scan fails

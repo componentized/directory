@@ -16,6 +16,10 @@ pub struct Api {
     pub package: String,
     pub version: String,
     pub kind: Kind,
+    /// Its description, and when it was published, e.g. `2026-11-13`, for a tooltip.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub summary: String,
+    pub date: String,
     pub interfaces: BTreeMap<String, Interface>,
     pub worlds: BTreeMap<String, World>,
     /// A component's imports and exports.
@@ -34,6 +38,9 @@ pub struct Interface {
     /// The feature its `@unstable(feature = ..)` gate names, e.g. `clocks-timezone`.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub unstable: Option<String>,
+    /// The first paragraph of its docs, as text, for a tooltip.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub summary: String,
     /// Its types, its functions, e.g. `get-value`, and its resources' functions, e.g.
     /// `canvas.plot`, by name. An interface's types and functions share its names.
     pub items: BTreeMap<String, Item>,
@@ -73,13 +80,23 @@ pub struct Item {
     pub origin: Option<Origin>,
 }
 
-/// The type a `use` refers to.
+/// The type a `use` or an alias refers to, as it's defined where it comes from.
 #[derive(Serialize)]
 pub struct Origin {
     /// Its definition, highlighted, e.g. `type duration = u64`.
     pub def_html: String,
     /// The interface that defines it, e.g. `wasi:clocks/types@0.3.0`.
     pub from: String,
+    /// Its kind, e.g. `resource`, which its icon shows.
+    pub kind: &'static str,
+    /// Its name and its members, highlighted, e.g. a record's fields, which a tooltip lists one
+    /// per line.
+    pub name: String,
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub members_html: Vec<String>,
+    /// The first paragraph of its docs, as text, for a tooltip.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub summary: String,
 }
 
 /// The first paragraph of rendered docs, as text.

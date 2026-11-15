@@ -9,7 +9,15 @@
     "tag": "0.1.0",
     "digest": "sha256:4275471fbed078793427d03e49c95c02c78db18c75eadb1eddc21b46c4199157",
     "layer_digest": "sha256:7ae56b23c43dca504fc114fcb03d5b7fc2a9750d7b7da54e11aa5d58c9f1bcdb",
-    "size": 91242
+    "size": 91242,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/component/.github/workflows/ci.yaml@refs/tags/v0.1.0",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/component",
+      "git_ref": "refs/tags/v0.1.0",
+      "log_index": 3150263003
+    }
   },
   "debug": {
     "registry": "ghcr.io",
@@ -17,7 +25,15 @@
     "tag": "0.1.0_debug",
     "digest": "sha256:c74209b2e288169767c3e46efb447a1b1b829d37781a3f7ec8625a375048a58e",
     "layer_digest": "sha256:15c04115b9b51970b3b319df45447dce47f6ebce920e1e28b41c4f6cf8f6fbd5",
-    "size": 283268
+    "size": 283268,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/component/.github/workflows/ci.yaml@refs/tags/v0.1.0",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/component",
+      "git_ref": "refs/tags/v0.1.0",
+      "log_index": 3150263154
+    }
   },
   "created": "2026-10-08T16:02:47.706024865Z",
   "annotations": {

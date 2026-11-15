@@ -6,12 +6,14 @@
 
 {#- a world's imports or exports, each with the icon of its kind, an interface or a function #}
 {% macro world_items(items, empty="None") %}
-{% if items %}<ul class="links world-items">{% for l in items %}<li title="{{ l.kind }}">{{ kind_icon(l.kind) }}{{ link(l) }}</li>{% endfor %}</ul>{% else %}<p class="dim">{{ empty }}</p>{% endif %}
+{#- the kind is said rather than a title, whose browser tooltip would cover a link's own #}
+{% if items %}<ul class="links world-items">{% for l in items %}<li>{{ kind_icon(l.kind) }}<span class="visually-hidden">{{ l.kind }} </span>{{ link(l) }}</li>{% endfor %}</ul>{% else %}<p class="dim">{{ empty }}</p>{% endif %}
 {% endmacro %}
 
 {#- `package@version` links, each with its package's icon, e.g. a version's dependencies #}
 {% macro packages(items, empty="None") %}
-{% if items %}<ul class="links packages">{% for l in items %}<li title="{{ l.kind }}">{{ kind_icon(l.kind) }}{{ link(l) }}</li>{% endfor %}</ul>{% else %}<p class="dim">{{ empty }}</p>{% endif %}
+{#- the kind is said rather than a title, whose browser tooltip would cover a link's own #}
+{% if items %}<ul class="links packages">{% for l in items %}<li>{{ kind_icon(l.kind) }}<span class="visually-hidden">{{ l.kind }} </span>{{ link(l) }}</li>{% endfor %}</ul>{% else %}<p class="dim">{{ empty }}</p>{% endif %}
 {% endmacro %}
 
 {#- packages and their versions, e.g. a version's dependents. Each package opens a menu of its
@@ -91,7 +93,6 @@
 {#- an icon for a detail beside it, `date`, `commit` or `notes`, in the detail's color #}
 {% macro meta_icon(name) %}<svg class="meta-icon" aria-hidden="true" focusable="false"><use href="#meta-{{ name }}"/></svg>{% endmacro %}
 
-{% macro kind(k) %}<span class="badge {{ k }}">{{ k }}</span>{% endmacro %}
 
 {#- `short` labels a card by its name alone, on a page that already names its namespace #}
 {#- `meta=false` leaves out the version, version count and date, e.g. for a repository's packages
@@ -158,12 +159,11 @@
 <nav class="crumbs" aria-label="Breadcrumbs">{{ pivot(pkg.namespace, pkg.namespaces, "namespace") }} : {{ pivot(pkg.name, pkg.packages, "package") }} @ {{ version_pivot(pkg.version, iface.version_lines if iface else pkg.version_lines, "crumb") }}{% if iface %} / {{ pivot(iface.name, iface.siblings, "interface") }}{% endif %}</nav>
 <div class="title-row">
   {% if iface %}
-  <h1>{{ kind_icon("interface") }}<code>{{ iface.id }}</code></h1>
-  {{ kind("interface") }}
+  {#- its kind by its icon, and said #}
+  <h1>{{ kind_icon("interface") }}<span class="visually-hidden">interface </span><code>{{ iface.id }}</code></h1>
   {{ stability(iface.stability) }}
   {% else %}
-  <h1>{{ kind_icon(pkg.kind) }}<code>{{ pkg.package }}</code></h1>
-  {{ kind(pkg.kind) }}
+  <h1>{{ kind_icon(pkg.kind) }}<span class="visually-hidden">{{ pkg.kind }} </span><code>{{ pkg.package }}</code></h1>
   {% endif %}
   {% if pkg.dev %}<span class="badge pre" title="A development build of the upcoming release">dev</span>{% elif not pkg.stable %}<span class="badge pre">pre-release</span>{% endif %}
 </div>

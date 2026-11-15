@@ -9,7 +9,15 @@
     "tag": "0.2.7",
     "digest": "sha256:e8e592a194ba4320c82108a02573728b0f0bb1709ba9cfb0b31bcf0f1a5cc002",
     "layer_digest": "sha256:52a50afc422c0784b48104c8fd6486cf1a6691cb15f202a71acf27cb5e2dc767",
-    "size": 31480
+    "size": 31480,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/WebAssembly/wasi-filesystem/.github/workflows/publish.yml@refs/tags/v0.2.7",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "WebAssembly/wasi-filesystem",
+      "git_ref": "refs/tags/v0.2.7",
+      "log_index": 385816798
+    }
   },
   "created": "2025-08-12T17:55:50.911135814Z",
   "annotations": {

@@ -9,7 +9,15 @@
     "tag": "0.2.5",
     "digest": "sha256:b60f46e9304f8bf5d04727149672a7d37b483d0d0de029ffd2ce09f921d140c6",
     "layer_digest": "sha256:0b33589850afe19991dc4f7a528988983fc0004fc2de3cfb7779467286103f84",
-    "size": 59705
+    "size": 59705,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/WebAssembly/wasi-sockets/.github/workflows/publish.yml@refs/tags/v0.2.5",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "WebAssembly/wasi-sockets",
+      "git_ref": "refs/tags/v0.2.5",
+      "log_index": 192058518
+    }
   },
   "created": "2025-04-03T18:08:25.118303961Z",
   "annotations": {
