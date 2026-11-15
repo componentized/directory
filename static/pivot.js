@@ -83,21 +83,42 @@
     });
 
     // a version switch shows the section's panels for the chosen version, in place of following
-    // the link to that version's page
+    // the link to that version's page. The version chosen is kept in the url, by the section's
+    // id, e.g. `?componentized/valkey=0.2.2`, so a refresh or a shared link shows it again; the
+    // version it shows at first, its latest, is left out.
     if (pivot.hasAttribute("data-pivot-switch")) {
       const section = pivot.closest("section") ?? document;
       const label = pivot.querySelector("[data-pivot-label]");
-      menu.addEventListener("click", (e) => {
-        const link = e.target.closest("a[data-version]");
-        if (!link || e.metaKey || e.ctrlKey || e.shiftKey || e.button > 0) return;
-        e.preventDefault();
+      const initial = menu.querySelector("a[data-version][aria-current]")?.dataset.version;
+      const choose = (link) => {
         const version = link.dataset.version;
         for (const panel of section.querySelectorAll("[data-version-panel]")) {
           panel.hidden = panel.dataset.versionPanel !== version;
         }
         for (const a of menu.querySelectorAll("a[data-version]")) a.removeAttribute("aria-current");
         link.setAttribute("aria-current", "true");
+        // an older version folded in its line is shown, as the current one is
+        link.closest("li").hidden = false;
         label.textContent = version;
+      };
+      const remember = (version) => {
+        if (!section.id) return;
+        const params = new URLSearchParams(location.search);
+        if (version === initial) params.delete(section.id);
+        else params.set(section.id, version);
+        // the section ids' slashes kept as they are, e.g. `componentized/valkey`, to read well
+        const query = params.toString().replace(/%2F/gi, "/");
+        history.replaceState(history.state, "", `${location.pathname}${query ? `?${query}` : ""}${location.hash}`);
+      };
+      const asked = section.id && new URLSearchParams(location.search).get(section.id);
+      const link = asked && [...menu.querySelectorAll("a[data-version]")].find((a) => a.dataset.version === asked);
+      if (link) choose(link);
+      menu.addEventListener("click", (e) => {
+        const link = e.target.closest("a[data-version]");
+        if (!link || e.metaKey || e.ctrlKey || e.shiftKey || e.button > 0) return;
+        e.preventDefault();
+        choose(link);
+        remember(link.dataset.version);
         close(pivot, true);
       });
     }

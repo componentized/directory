@@ -31,7 +31,7 @@
 <div class="compare-row">
   <nav class="crumbs" aria-label="Breadcrumbs">{{ pivot(pkg.namespace, pkg.namespaces, "namespace") }} : {{ pivot(pkg.name, pkg.packages, "package") }} / <span>compare</span></nav>
   {#- how many changes of each kind, each linking to its section of the comparison #}
-  <p class="compare-counts" data-compare-counts hidden></p>
+  <p class="compare-counts dots" data-compare-counts hidden></p>
 </div>
 <div class="compare-row title-row">
   <h1>{{ kind_icon(pkg.kind) }}<code>{{ pkg.package }}</code></h1>

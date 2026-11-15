@@ -418,13 +418,14 @@
       const { breaking, cautions, notes } = diff(old, now);
       // how many of each, in the pinned head, each linking to its section
       const plural = (n, one, many) => `${n} ${n === 1 ? one : many}`;
+      // each in a span of its own, so the dot between them, `.dots`, is outside its link
       const count = (id, kind, n, label) =>
-        `<a class="compare-count compare-count-${kind}" href="#${id}" title="${esc(label)}" aria-label="${esc(label)}"><svg class="meta-icon" aria-hidden="true" focusable="false"><use href="#meta-${kind}"/></svg>${n}</a>`;
+        `<span><a class="compare-count compare-count-${kind}" href="#${id}" title="${esc(label)}" aria-label="${esc(label)}"><svg class="meta-icon" aria-hidden="true" focusable="false"><use href="#meta-${kind}"/></svg>${n}</a></span>`;
       counts.innerHTML = [
         count("compare-breaking", "stop", breaking.length, plural(breaking.length, "breaking change", "breaking changes")),
         count("compare-cautions", "caution", cautions.length, plural(cautions.length, "caution", "cautions")),
         count("compare-other", "info", notes.length, plural(notes.length, "other change", "other changes")),
-      ].join('<span class="dim" aria-hidden="true">·</span>');
+      ].join("");
       counts.hidden = false;
       result.innerHTML = `
         ${section("compare-breaking", "Breaking changes", breaking, "Nothing removed or changed: a component using the earlier version works with this one.")}

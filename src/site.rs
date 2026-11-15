@@ -95,6 +95,20 @@ impl Entry {
         (!key.is_empty()).then(|| (key.to_lowercase(), web.to_string()))
     }
 
+    /// Whether two entries are of one build: built from the same commit, or, when either doesn't
+    /// record its commit, on the same day.
+    fn same_build(&self, other: &Entry) -> bool {
+        let revision = |e: &Entry| {
+            e.meta
+                .annotation("revision")
+                .map(|r| r.trim_end_matches("+dirty").to_string())
+        };
+        match (revision(self), revision(other)) {
+            (Some(a), Some(b)) => a == b,
+            _ => self.date() == other.date(),
+        }
+    }
+
     fn date(&self) -> String {
         self.meta
             .created
@@ -152,6 +166,10 @@ struct Repo {
     web: String,
     /// The entries of each version, newest version first.
     versions: Vec<(String, Vec<usize>)>,
+    /// The entries left over from an earlier build of a dev version, e.g. a component the
+    /// repository has since dropped, which kept its last `0.3.0-dev` build when the others were
+    /// built again. They're left out of the version, as the repository's other packages.
+    left_over: Vec<usize>,
 }
 
 impl Repo {
@@ -861,6 +879,7 @@ impl Site {
                 key,
                 web,
                 versions: Vec::new(),
+                left_over: Vec::new(),
             });
             match repo
                 .versions
@@ -876,6 +895,28 @@ impl Site {
         for repo in repos.values_mut() {
             repo.versions
                 .sort_by(|(a, _), (b, _)| version::cmp_desc(a, b));
+            // a dev version is built again and again, and its build is its newest: the entries
+            // built from the same commit, or, for entries that don't record theirs, on the same
+            // day. The others are left over from an earlier build.
+            for (version, members) in &mut repo.versions {
+                if version::release_of(version).is_none() {
+                    continue;
+                }
+                let created = |i: usize| {
+                    let meta = &entries[i].meta;
+                    meta.created
+                        .clone()
+                        .unwrap_or_else(|| meta.indexed_at.clone())
+                };
+                let Some(newest) = members.iter().copied().max_by_key(|i| created(*i)) else {
+                    continue;
+                };
+                let (built, left_over): (Vec<usize>, Vec<usize>) = members
+                    .iter()
+                    .partition(|i| entries[**i].same_build(&entries[newest]));
+                *members = built;
+                repo.left_over.extend(left_over);
+            }
             for (_, members) in &mut repo.versions {
                 // the interface packages, then the components, by name
                 members.sort_by(|a, b| {
@@ -1166,6 +1207,7 @@ impl Site {
                                     .versions
                                     .iter()
                                     .flat_map(|(_, members)| members)
+                                    .chain(&repo.left_over)
                                     .filter(|m| self.entries[**m].namespace() == namespace)
                                     .map(|m| self.entries[*m].meta.package.as_str())
                                     .collect();
@@ -1205,11 +1247,36 @@ impl Site {
                                             .filter_map(|p| self.compatible(&self.packages[*p], version))
                                             .map(|i| {
                                                 let other = &self.entries[*i];
+                                                // its lowest and highest releases, with their
+                                                // dates, newest first; pre-releases, e.g. a dev
+                                                // build, are left out, unless it has only those
+                                                let versions = &self.packages[&other.meta.package];
+                                                let pick = |keep: &dyn Fn(usize) -> bool| -> Vec<usize> {
+                                                    versions.iter().copied().filter(|v| keep(*v)).collect()
+                                                };
+                                                let mut listed = pick(&|v| self.entries[v].stable());
+                                                if listed.is_empty() {
+                                                    listed = pick(&|v| self.listed(v));
+                                                }
+                                                let at = |v: Option<&usize>| {
+                                                    v.map(|v| {
+                                                        let entry = &self.entries[*v];
+                                                        ctx! {
+                                                            version => entry.meta.version,
+                                                            date => entry.date(),
+                                                        }
+                                                    })
+                                                };
+                                                // it links to the highest version it shows
+                                                let linked = listed.first().map_or(other, |v| &self.entries[*v]);
                                                 ctx! {
                                                     name => other.name(),
-                                                    version => other.meta.version,
-                                                    url => other.url(),
+                                                    version => linked.meta.version,
+                                                    url => linked.url(),
                                                     kind => other.meta.kind,
+                                                    lowest => at(listed.last()),
+                                                    highest => at(listed.first()),
+                                                    versions => listed.len(),
                                                 }
                                             })
                                             .collect();
@@ -1371,7 +1438,9 @@ impl Site {
             .collect()
     }
 
-    /// The other packages the repository of a version released with it, at the same version.
+    /// The other packages the repository of a version released with it, at the same version. One
+    /// left over from an earlier build of a dev version was released with the others of that
+    /// build, rather than with the version's newest.
     fn released_with(&self, index: usize) -> Vec<Pivot> {
         let entry = &self.entries[index];
         let Some(repo) = self.repo_of(index) else {
@@ -1380,7 +1449,19 @@ impl Site {
         repo.versions
             .iter()
             .find(|(version, _)| *version == entry.meta.version)
-            .map(|(_, members)| {
+            .map(|(version, members)| {
+                let members: Vec<usize> = if repo.left_over.contains(&index) {
+                    repo.left_over
+                        .iter()
+                        .copied()
+                        .filter(|i| {
+                            let other = &self.entries[*i];
+                            other.meta.version == *version && other.same_build(entry)
+                        })
+                        .collect()
+                } else {
+                    members.clone()
+                };
                 let mut others: Vec<usize> =
                     members.iter().copied().filter(|i| *i != index).collect();
                 // the interface packages, then the components, by name
@@ -2497,6 +2578,66 @@ mod tests {
         )
         .unwrap();
         std::fs::remove_dir_all(&root).unwrap();
+    }
+
+    #[test]
+    fn leaves_out_an_earlier_build_of_a_dev_version() {
+        // a repository's packages at `0.3.0-dev`: two built again from a new commit, one left
+        // over from an earlier build, and one without a commit, built on the newest's day
+        let entry = |name: &str, created: &str, revision: Option<&str>| {
+            let mut meta = metadata(
+                &format!("a:{name}"),
+                "0.3.0-dev",
+                Kind::Interface,
+                Origin::Release,
+            );
+            meta.created = Some(created.to_string());
+            meta.annotations.insert(
+                "org.opencontainers.image.source".to_string(),
+                "https://github.com/a/repo".to_string(),
+            );
+            if let Some(revision) = revision {
+                meta.annotations.insert(
+                    "org.opencontainers.image.revision".to_string(),
+                    revision.to_string(),
+                );
+            }
+            let mut resolve = Resolve::new();
+            let pkg = resolve
+                .push_str("package.wit", &format!("package a:{name}@0.3.0-dev;\n"))
+                .unwrap();
+            Entry {
+                meta,
+                nested: false,
+                resolve,
+                pkg,
+            }
+        };
+        let site = Site::new(vec![
+            entry("x", "2026-11-13T10:00:00Z", Some("new")),
+            entry("y", "2026-11-13T10:01:00Z", Some("new+dirty")),
+            entry("old", "2026-10-02T09:00:00Z", Some("old")),
+            entry("old-too", "2026-10-02T09:00:00Z", Some("old")),
+            entry("z", "2026-11-13T12:00:00Z", None),
+        ]);
+        let repo = &site.repos["a/repo"];
+        let package = |i: &usize| site.entries[*i].meta.package.as_str();
+        let (version, members) = &repo.versions[0];
+        assert_eq!(version, "0.3.0-dev");
+        assert_eq!(
+            members.iter().map(package).collect::<Vec<_>>(),
+            ["a:x", "a:y", "a:z"]
+        );
+        assert_eq!(
+            repo.left_over.iter().map(package).collect::<Vec<_>>(),
+            ["a:old", "a:old-too"]
+        );
+        // each was released with the others of its own build
+        let with = |i: usize| -> Vec<String> {
+            site.released_with(i).into_iter().map(|p| p.label).collect()
+        };
+        assert_eq!(with(0), ["a:y", "a:z"]);
+        assert_eq!(with(2), ["a:old-too"]);
     }
 
     #[test]

@@ -11,11 +11,10 @@
   {% for g in groups %}<li><a href="#{{ g.key or 'other' }}">{% if g.key %}{{ kind_icon("repo") }}<code>{{ g.name }}</code>{% else %}Other{% endif %}</a> <span class="dim">{{ listing_of(g) }}</span></li>{% endfor %}
 </ol>
 {% endblock %}
-{#- the counts of a listing's packages by kind, each by its kind's icon #}
-{% macro counts(l) %}<span class="dim">
-  {%- if l.interfaces %} <span class="count" title="{{ l.interfaces }} interface{% if l.interfaces != 1 %}s{% endif %}">{{ kind_icon("interface") }}{{ l.interfaces }}<span class="visually-hidden"> interface{% if l.interfaces != 1 %}s{% endif %}</span></span>{% endif %}
-  {%- if l.interfaces and l.components %} · {% endif %}
-  {%- if l.components %} <span class="count" title="{{ l.components }} component{% if l.components != 1 %}s{% endif %}">{{ kind_icon("component") }}{{ l.components }}<span class="visually-hidden"> component{% if l.components != 1 %}s{% endif %}</span></span>{% endif %}</span>{% endmacro %}
+{#- the counts of a listing's packages by kind, each by its kind's icon, dots between them #}
+{% macro counts(l) %}<span class="dim dots">
+  {%- if l.interfaces %}<span class="count" title="{{ l.interfaces }} interface{% if l.interfaces != 1 %}s{% endif %}">{{ kind_icon("interface") }}{{ l.interfaces }}<span class="visually-hidden"> interface{% if l.interfaces != 1 %}s{% endif %}</span></span>{% endif %}
+  {%- if l.components %}<span class="count" title="{{ l.components }} component{% if l.components != 1 %}s{% endif %}">{{ kind_icon("component") }}{{ l.components }}<span class="visually-hidden"> component{% if l.components != 1 %}s{% endif %}</span></span>{% endif %}</span>{% endmacro %}
 {#- fold a long listing after its first two rows, but never hide just one or two cards #}
 {% macro cards(l) %}
   {% set shown = 6 if l.cards|length > 8 else l.cards|length %}
@@ -41,17 +40,28 @@
     <h2>{{ kind_icon("repo") }}<code title="{{ g.key }}">{{ g.name }}</code></h2>
     {{ version_pivot(sel, g.version_lines, g.key, switch=true) }}
     {% for v in g.versions %}<span class="group-version" data-version-panel="{{ v.version }}"{% if v.version != sel %} hidden{% endif %}>{{ counts(v.listing) }}</span>{% endfor %}
-    {#- the version's date, commit and release notes, at the end of the heading #}
-    {% for v in g.versions %}<span class="group-version group-details" data-version-panel="{{ v.version }}"{% if v.version != sel %} hidden{% endif %}>
+    {#- the version's release notes, date and commit, at the end of the heading, dots between
+        those it has #}
+    {% for v in g.versions %}<span class="group-version group-details dots" data-version-panel="{{ v.version }}"{% if v.version != sel %} hidden{% endif %}>
+      {%- if v.release %}<a href="{{ v.release.url }}" title="The GitHub release of {{ v.version }}, {{ v.release.tag }}">{{ meta_icon("notes") }}release notes</a>{% endif %}
       {%- if v.date %}<span class="dim" title="Published">{{ meta_icon("date") }}<span class="visually-hidden">published </span><time datetime="{{ v.date }}">{{ v.date }}</time></span>{% endif %}
-      {%- if v.revision %}{% if v.date %} <span class="dim">·</span> {% endif %}{% if v.commit %}<a href="{{ v.commit }}" title="The commit {{ v.version }} was built from">{{ meta_icon("commit") }}<span class="visually-hidden">commit </span><code>{{ v.revision }}</code></a>{% else %}<span title="The commit {{ v.version }} was built from">{{ meta_icon("commit") }}<code>{{ v.revision }}</code></span>{% endif %}{% endif %}
-      {%- if v.release %}{% if v.date or v.revision %} <span class="dim">·</span> {% endif %}<a href="{{ v.release.url }}" title="The GitHub release of {{ v.version }}, {{ v.release.tag }}">{{ meta_icon("notes") }}release notes</a>{% endif %}</span>{% endfor %}
+      {%- if v.revision %}{% if v.commit %}<a href="{{ v.commit }}" title="The commit {{ v.version }} was built from">{{ meta_icon("commit") }}<span class="visually-hidden">commit </span><code>{{ v.revision }}</code></a>{% else %}<span title="The commit {{ v.version }} was built from">{{ meta_icon("commit") }}<code>{{ v.revision }}</code></span>{% endif %}{% endif %}
+    </span>{% endfor %}
   </div>
   {% for v in g.versions %}<div data-version-panel="{{ v.version }}"{% if v.version != sel %} hidden{% endif %}>{{ cards(v.listing) }}
-    {#- the repository's packages it didn't release at this version, at their own latest #}
+    {#- the repository's packages it didn't release at this version, in a menu, each with the
+        range of its releases, pre-releases left out unless it has only those, linking to the highest #}
     {%- if v.others %}
-    <p class="group-others"><span class="dim">Released at other versions:</span>
-      {%- for o in v.others %} <a href="{{ o.url }}">{{ kind_icon(o.kind) }}<code>{{ o.name }}</code> <span class="dim">{{ o.version }}</span></a>{% endfor %}</p>
+    <details class="pivot group-others" data-pivot data-pivot-what="package">
+      <summary title="The repository's packages it didn't release at {{ v.version }}">Released at other versions <span class="count-chip">{{ v.others|length }}</span><svg class="pivot-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 6.5 3.5 3.5 3.5-3.5"/></svg></summary>
+      <ul class="pivot-menu" aria-label="Packages released at other versions">
+        {%- for o in v.others %}
+        <li><a href="{{ o.url }}" title="{{ o.name }} {{ o.version }}"><code>{{ kind_icon(o.kind) }}<span class="visually-hidden">{{ o.kind }} </span>{{ o.name }}</code><span class="others-range">
+          {%- if o.lowest and o.highest and o.lowest.version != o.highest.version %}<span class="visually-hidden">versions </span><span class="others-at"><code>{{ o.lowest.version }}</code><time class="dim" datetime="{{ o.lowest.date }}">{{ o.lowest.date }}</time></span><span class="dim" aria-hidden="true">→</span><span class="visually-hidden"> to </span><span class="others-at"><code>{{ o.highest.version }}</code><time class="dim" datetime="{{ o.highest.date }}">{{ o.highest.date }}</time></span>
+          {%- elif o.highest %}<span class="visually-hidden">version </span><span class="others-at"><code>{{ o.highest.version }}</code><time class="dim" datetime="{{ o.highest.date }}">{{ o.highest.date }}</time></span>{% endif %}</span></a></li>
+        {%- endfor %}
+      </ul>
+    </details>
     {%- endif %}</div>{% endfor %}
   {% else %}
   <div class="group-head">
