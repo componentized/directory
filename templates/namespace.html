@@ -15,15 +15,16 @@
 {% macro counts(l) %}<span class="dim dots">
   {%- if l.interfaces %}<span class="count" title="{{ l.interfaces }} interface{% if l.interfaces != 1 %}s{% endif %}">{{ kind_icon("interface") }}{{ l.interfaces }}<span class="visually-hidden"> interface{% if l.interfaces != 1 %}s{% endif %}</span></span>{% endif %}
   {%- if l.components %}<span class="count" title="{{ l.components }} component{% if l.components != 1 %}s{% endif %}">{{ kind_icon("component") }}{{ l.components }}<span class="visually-hidden"> component{% if l.components != 1 %}s{% endif %}</span></span>{% endif %}</span>{% endmacro %}
-{#- fold a long listing after its first two rows, but never hide just one or two cards #}
-{% macro cards(l) %}
+{#- fold a long listing after its first two rows, but never hide just one or two cards. `meta` is
+    as `card`'s #}
+{% macro cards(l, meta=true) %}
   {% set shown = 6 if l.cards|length > 8 else l.cards|length %}
-  <div class="cards">{% for c in l.cards[:shown] %}{{ card(c, short=true) }}{% endfor %}</div>
+  <div class="cards">{% for c in l.cards[:shown] %}{{ card(c, short=true, meta=meta) }}{% endfor %}</div>
   {% if l.cards|length > shown %}
   {% set folded = l.cards|length - shown %}
   <details class="fold">
     <summary><span class="when-closed">Show {{ folded }} more</span><span class="when-open">Show fewer</span></summary>
-    <div class="cards">{% for c in l.cards[shown:] %}{{ card(c, short=true) }}{% endfor %}</div>
+    <div class="cards">{% for c in l.cards[shown:] %}{{ card(c, short=true, meta=meta) }}{% endfor %}</div>
   </details>
   {% endif %}
 {% endmacro %}
@@ -48,7 +49,7 @@
       {%- if v.revision %}{% if v.commit %}<a href="{{ v.commit }}" title="The commit {{ v.version }} was built from">{{ meta_icon("commit") }}<span class="visually-hidden">commit </span><code>{{ v.revision }}</code></a>{% else %}<span title="The commit {{ v.version }} was built from">{{ meta_icon("commit") }}<code>{{ v.revision }}</code></span>{% endif %}{% endif %}
     </span>{% endfor %}
   </div>
-  {% for v in g.versions %}<div data-version-panel="{{ v.version }}"{% if v.version != sel %} hidden{% endif %}>{{ cards(v.listing) }}
+  {% for v in g.versions %}<div data-version-panel="{{ v.version }}"{% if v.version != sel %} hidden{% endif %}>{{ cards(v.listing, meta=false) }}
     {#- the repository's packages it didn't release at this version, in a menu, each with the
         range of its releases, pre-releases left out unless it has only those, linking to the highest #}
     {%- if v.others %}

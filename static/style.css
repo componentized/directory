@@ -119,8 +119,10 @@ footer.site .footer-legal { grid-column: 1 / -1; max-width: none; margin: 8px 0 
   background: var(--panel); border: 1px solid var(--line); border-radius: 10px; min-width: 0;
 }
 .card:hover { border-color: var(--accent); text-decoration: none; }
-.card-head { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
-.card .pkg { font-weight: 600; overflow-wrap: anywhere; }
+/* the icon and the name on one row: a long name wraps beside its icon, at its hyphens, and within
+   a word only when one is wider than the card */
+.card-head { display: flex; gap: 6px; align-items: flex-start; }
+.card .pkg { min-width: 0; font-weight: 600; overflow-wrap: break-word; }
 .card p { margin: 0; color: var(--dim); font-size: 0.9rem; flex: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .card .meta { display: flex; align-items: baseline; gap: 12px; color: var(--dim); font-size: 0.8rem; font-variant-numeric: tabular-nums; }
 
@@ -589,7 +591,11 @@ main.wrap.has-toc { max-width: 1440px; display: grid; grid-template-columns: 220
 .kind-icon.kind-repo { color: var(--accent); }
 .kind-icon.kind-namespace { color: var(--n); }
 .namespaces a .kind-icon { width: 14px; height: 14px; margin-right: 4px; vertical-align: -2px; }
-.card-head > .kind-icon { width: 15px; height: 15px; margin-right: 0; vertical-align: -2px; }
+.card-head > .kind-icon {
+  flex: none; width: 15px; height: 15px; margin-right: 0;
+  /* centered on the name's first line */
+  margin-top: 0.15em; margin-top: calc((1lh - 15px) / 2);
+}
 /* a heading's icon grows with its text */
 h1 > .kind-icon, h2 > .kind-icon, h3 > .kind-icon { width: 0.95em; height: 0.95em; vertical-align: -0.1em; margin-right: 0.35em; }
 .kind-icon.kind-variant circle, .kind-icon.kind-enum circle { fill: currentColor; stroke: none; }
