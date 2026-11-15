@@ -55,5 +55,52 @@
       "version": "0.3.0"
     }
   ],
+  "parts": [
+    {
+      "digest": "sha256:94006045fe673a3d3da85bd04780b58188e98f092622247651a5ad0d6828ce34",
+      "size": 3943,
+      "code": true
+    },
+    {
+      "digest": "sha256:c56c6d786a9741342e1b875db4f6e14736f5cbae2d15719b132da923330eea23",
+      "size": 26808,
+      "code": true
+    },
+    {
+      "digest": "sha256:09f1e1ae0e2c2383dc4d88e94eb8ec44cf64c06dea1c78cbc5c8ca6ae970072c",
+      "size": 67007,
+      "code": true
+    },
+    {
+      "digest": "sha256:764ac8216010d05b5c4a2f0e2398cbce4403492b0363383bdd9d848ad17d3357",
+      "size": 41695,
+      "code": true
+    },
+    {
+      "digest": "sha256:fadc5cbe2210fd551cfeb75266cbfd06f340fa8308f3354e6f6aa63cafc6ee4f",
+      "size": 29765,
+      "code": true
+    },
+    {
+      "digest": "sha256:27461fb246b9b6aeefb9d0d342092fd22213f18786ea76fa6e286a277e7e22e4",
+      "size": 122600,
+      "code": true
+    },
+    {
+      "digest": "sha256:38ef841bfdcc41b39fa104fc0e1a9c13c5ff1bf3d620c9fb6b1c263d07268c2b",
+      "size": 30749,
+      "code": true
+    },
+    {
+      "digest": "sha256:c64e7afdca25e5efd92fb821992c3c223951d6f2f69112ddd9ebdb7200823e41",
+      "size": 33350,
+      "code": true
+    },
+    {
+      "digest": "sha256:f33361778cce609f45952601fa23bb80830e66cc57f96b8ea795ccb881c74555",
+      "size": 60915,
+      "code": true
+    }
+  ],
   "indexed_at": "2026-11-13T20:30:11Z"
 }

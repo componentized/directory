@@ -40,5 +40,47 @@
     }
   ],
   "release": "https://github.com/componentized/constants/releases/tag/v0.1.0",
+  "parts": [
+    {
+      "digest": "sha256:c80ce95f050e8cf85bc7f24929907aaff8d7ebf2092e394bb4b475dd5546fa18",
+      "size": 137
+    },
+    {
+      "digest": "sha256:2de84d1ade3618d780329f2cf95d18058712f3283adcc876266cf7931ac7b120",
+      "size": 137
+    },
+    {
+      "digest": "sha256:46ce72bfec7c0903329cceeb7ccbeeedd552da06698f46c1a8bd642e6ae9fd42",
+      "size": 117
+    },
+    {
+      "digest": "sha256:7eb37242323709d1d853f21cc29167dd5c10d9a56fb71980ceea593e2f11719d",
+      "size": 137
+    },
+    {
+      "digest": "sha256:d7f3a6b810db531f77d19a240ed8a24f9ae9a4a40f136f7ba9f3b22b8b9617a0",
+      "size": 137
+    },
+    {
+      "digest": "sha256:b8c2eb0fefe728d8e5ed726b9779e3fff58a52a34d0457901fa4d6f53a687987",
+      "size": 137
+    },
+    {
+      "digest": "sha256:9a48935462a687939e306a9509d496c169793ba2b357a22fddfbdac0c7f9d06c",
+      "size": 137
+    },
+    {
+      "digest": "sha256:116f3689fb0e6f555f035968a1f5c68034b6fdb09f2bb7f120ed2ccae969bdef",
+      "size": 137
+    },
+    {
+      "digest": "sha256:a9aa83cf77d630dc2bdece6f44ddab0e178689912158246cc92f8729a2e8ee48",
+      "size": 611
+    },
+    {
+      "digest": "sha256:91faa5a7c78faa5c811af09b4c855eb9232a31e44f022043f176efa907d579de",
+      "size": 611
+    }
+  ],
   "indexed_at": "2026-11-11T23:44:31Z"
 }

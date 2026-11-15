@@ -56,5 +56,15 @@
       "version": "0.2.6"
     }
   ],
+  "parts": [
+    {
+      "digest": "sha256:115a9e97ada9117ede058d416281b2895f78021ce12c18691688c39fa85cb852",
+      "size": 652
+    },
+    {
+      "digest": "sha256:bcb6534fb23b559cb8d428f0d9522fdf68f2cefa1361a3f24bb589ada480a4f5",
+      "size": 5073
+    }
+  ],
   "indexed_at": "2026-11-15T14:26:55Z"
 }

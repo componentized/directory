@@ -493,6 +493,11 @@ a.version-row:hover .version { text-decoration: underline; }
   color: var(--dim); font-weight: 400; text-decoration: none;
 }
 .released-with .kind-icon, .packages .kind-icon { width: 14px; height: 14px; margin-right: 6px; vertical-align: -2px; }
+/* as a card's head: the icon and the name on one row, a long name wrapping beside its icon, at its
+   hyphens, and within a word only when one is wider than the list */
+.released-with li { display: flex; align-items: flex-start; overflow-wrap: break-word; }
+.released-with li > .kind-icon { flex: none; margin-top: 0.2em; margin-top: calc((1lh - 14px) / 2); }
+.released-with li > a { min-width: 0; }
 
 .fold { margin-top: 12px; }
 .fold > summary {

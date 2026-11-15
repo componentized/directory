@@ -52,5 +52,12 @@
     }
   ],
   "release": "https://github.com/componentized/logging/releases/tag/v0.3.1",
+  "parts": [
+    {
+      "digest": "sha256:1f3b78ead135b52840070cb4190f35a13a7c751ac479dda00e4f17cecffdf67f",
+      "size": 89962,
+      "code": true
+    }
+  ],
   "indexed_at": "2026-11-11T23:43:36Z"
 }

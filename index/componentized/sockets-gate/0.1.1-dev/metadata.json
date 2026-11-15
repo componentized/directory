@@ -58,5 +58,17 @@
       "version": "0.3.0"
     }
   ],
+  "parts": [
+    {
+      "digest": "sha256:a45509756a1b7fcb476ad1dad046db1187e27f21b835ebaab055da29e1cb9b47",
+      "size": 77019,
+      "code": true
+    },
+    {
+      "digest": "sha256:9d134e7d9484ef44f261c521f263ef7a4068c3b1ce631547518ef5b7ac326522",
+      "size": 233217,
+      "code": true
+    }
+  ],
   "indexed_at": "2026-11-13T12:55:09Z"
 }

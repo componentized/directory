@@ -49,5 +49,15 @@
     }
   ],
   "release": "https://github.com/componentized/valkey/releases/tag/v0.1.0",
+  "parts": [
+    {
+      "digest": "sha256:115a9e97ada9117ede058d416281b2895f78021ce12c18691688c39fa85cb852",
+      "size": 652
+    },
+    {
+      "digest": "sha256:9d6a56def2805f117c55dd5e99fc34d4fdeaeaeaa9a7c099c190169f5123bed3",
+      "size": 5086
+    }
+  ],
   "indexed_at": "2026-11-15T14:26:54Z"
 }

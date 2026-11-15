@@ -158,6 +158,11 @@ struct Site {
     /// The repositories the versions are built from, e.g. `componentized/logging`. A repository
     /// releases its interface package and its components together, with the same version.
     repos: BTreeMap<String, Repo>,
+    /// The components each composed component nests whole, as the versions with their bytes,
+    /// and how many it nests that no version has, e.g. one generated as it was composed.
+    composed_of: Vec<(Vec<usize>, usize)>,
+    /// The composed components that nest each version, the reverse of `composed_of`.
+    used_in: HashMap<usize, Vec<Link>>,
 }
 
 struct Repo {
@@ -927,6 +932,57 @@ impl Site {
             }
         }
 
+        // a component nested whole in another is the version whose wasm layer has its bytes, or
+        // whose debug build's does. Versions can share their bytes, e.g. a release and the dev
+        // build it was cut from: a listed release is preferred, then the highest version.
+        let mut by_layer: HashMap<&str, Vec<usize>> = HashMap::new();
+        for (index, entry) in entries.iter().enumerate() {
+            let meta = &entry.meta;
+            for oci in std::iter::once(&meta.oci).chain(&meta.debug) {
+                by_layer.entry(&oci.layer_digest).or_default().push(index);
+            }
+        }
+        let part_of = |digest: &str| -> Option<usize> {
+            by_layer.get(digest)?.iter().copied().min_by(|a, b| {
+                let rank = |i: usize| (superseded_by[i].is_some(), !entries[i].stable());
+                rank(*a).cmp(&rank(*b)).then_with(|| {
+                    version::cmp_desc(&entries[*a].meta.version, &entries[*b].meta.version)
+                })
+            })
+        };
+        // only the parts with code of their own: a component's bindings nest a wrapper of types
+        let composed_of: Vec<(Vec<usize>, usize)> = entries
+            .iter()
+            .map(|entry| {
+                let parts: Vec<_> = entry
+                    .meta
+                    .parts
+                    .iter()
+                    .flatten()
+                    .filter(|p| p.code)
+                    .collect();
+                let found: Vec<usize> = parts.iter().filter_map(|p| part_of(&p.digest)).collect();
+                let missing = parts.len() - found.len();
+                (found, missing)
+            })
+            .collect();
+        let mut used_in: HashMap<usize, Vec<Link>> = HashMap::new();
+        for (index, (found, _)) in composed_of.iter().enumerate() {
+            if superseded_by[index].is_some() {
+                continue;
+            }
+            for part in found {
+                used_in.entry(*part).or_default().push(Link {
+                    label: entries[index].id(),
+                    url: Some(entries[index].url()),
+                });
+            }
+        }
+        for links in used_in.values_mut() {
+            links.sort();
+            links.dedup();
+        }
+
         Self {
             entries,
             packages,
@@ -936,6 +992,8 @@ impl Site {
             dependents,
             superseded_by,
             repos,
+            composed_of,
+            used_in,
         }
     }
 
@@ -1636,6 +1694,15 @@ impl Site {
             // `wasi:io`, each listed as it is
             dependencies => self.listed_packages(dependencies),
             dependents => self.grouped(dependents),
+            // the components it's composed from, and those composed from it
+            composed_of => self.listed_packages(
+                self.composed_of[index].0.iter().map(|i| Link {
+                    label: self.entries[*i].id(),
+                    url: Some(self.entries[*i].url()),
+                }).collect()
+            ),
+            composed_unknown => self.composed_of[index].1,
+            used_in => self.grouped(self.used_in.get(&index).cloned().unwrap_or_default()),
             wit => self.package_wit(index)?.0,
             nested_wit => self.package_wit(index)?.1,
         })
@@ -2348,6 +2415,7 @@ mod tests {
             exports: Vec::new(),
             dependencies: Vec::new(),
             release: None,
+            parts: None,
             indexed_at: "2026-11-11T00:00:00Z".to_string(),
         }
     }

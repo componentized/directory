@@ -31,5 +31,11 @@
     }
   ],
   "release": "https://github.com/componentized/constants/releases/tag/v0.2.0",
+  "parts": [
+    {
+      "digest": "sha256:42263d0342748967d3d54b3e535352e50980d1813a8972c6b0dbf5f13fd4a688",
+      "size": 194
+    }
+  ],
   "indexed_at": "2026-11-11T23:44:30Z"
 }

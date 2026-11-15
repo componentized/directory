@@ -55,5 +55,22 @@
       "version": "0.3.0"
     }
   ],
+  "parts": [
+    {
+      "digest": "sha256:33279943c152ae79efd7e1893825c1e9e26c09b90cf3357d972812b67c5fe3a3",
+      "size": 124144,
+      "code": true
+    },
+    {
+      "digest": "sha256:166f6b4a3aa6f814afe22460bda24040a497ccd6e4418e2592c5eb059f1e70ee",
+      "size": 126164,
+      "code": true
+    },
+    {
+      "digest": "sha256:af031e076e19edca2b1d6800ffcc8c857ce24c0d414bad7e7dd77228d4cf8047",
+      "size": 44990,
+      "code": true
+    }
+  ],
   "indexed_at": "2026-11-13T12:55:12Z"
 }

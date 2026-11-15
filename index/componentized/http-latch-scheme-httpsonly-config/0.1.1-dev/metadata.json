@@ -38,5 +38,17 @@
       "version": "0.2.0-rc.1"
     }
   ],
+  "parts": [
+    {
+      "digest": "sha256:8f2bd6e9a8cb3e4f31857185620f2eb8aaa5dbb151db8ddb09dadcd59d78036a",
+      "size": 963,
+      "code": true
+    },
+    {
+      "digest": "sha256:ebe174edb9d33d8f9eb5811f34f3e0235ce9955ca3e6521575fc51e404835dc9",
+      "size": 4996,
+      "code": true
+    }
+  ],
   "indexed_at": "2026-11-12T00:12:38Z"
 }
