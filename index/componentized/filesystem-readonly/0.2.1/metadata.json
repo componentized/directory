@@ -46,5 +46,15 @@
     }
   ],
   "release": "https://github.com/componentized/filesystem/releases/tag/v0.2.1",
+  "parts": [
+    {
+      "digest": "sha256:cef0913bb1c73910a657e3e2be8604fc7f11f7e0fb5805f896db5a3e22f8a329",
+      "size": 7108
+    },
+    {
+      "digest": "sha256:409068d01909b8e1b071cc44f5757deff5dfa19c38e87ba57a5eb7fd2cf89f00",
+      "size": 172
+    }
+  ],
   "indexed_at": "2026-11-15T14:26:39Z"
 }

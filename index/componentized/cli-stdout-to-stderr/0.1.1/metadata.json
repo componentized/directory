@@ -38,5 +38,11 @@
     }
   ],
   "release": "https://github.com/componentized/cli/releases/tag/v0.1.1",
+  "parts": [
+    {
+      "digest": "sha256:b6e6ef0f56bfd0cfc133d1d638fa657c5f0a89cdeab865bc139e6723abd56bb0",
+      "size": 159
+    }
+  ],
   "indexed_at": "2026-11-11T23:44:16Z"
 }

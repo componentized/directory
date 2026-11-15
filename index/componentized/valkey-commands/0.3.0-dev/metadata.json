@@ -42,5 +42,11 @@
       "version": "0.3.0-dev"
     }
   ],
+  "parts": [
+    {
+      "digest": "sha256:66c48f9fce36aadba511c842e349820cc70d536f17688ea9629765cf7efb7329",
+      "size": 57648
+    }
+  ],
   "indexed_at": "2026-11-13T20:30:06Z"
 }

@@ -83,6 +83,10 @@ pub fn run(options: &Options) -> Result<()> {
         }
     }
     scanner.dependencies()?;
+    // a partial scan, e.g. of a repository that just published, leaves them to the next full scan
+    if options.only.is_empty() {
+        scanner.backfill_parts()?;
+    }
     trim_nested(&options.root)?;
     refresh_items(&options.root)?;
     if let Err(err) = refresh_releases(&options.root, &github, &options.sources) {
@@ -390,6 +394,38 @@ impl Scanner<'_> {
         self.failed.push((what, err));
     }
 
+    /// Reads the nested components of each indexed component that hasn't recorded them, one
+    /// indexed before scans did, from its wasm layer, fetched again.
+    fn backfill_parts(&mut self) -> Result<()> {
+        let stored = data::load(&self.options.root)?;
+        let mut backfilled = 0;
+        for stored in stored {
+            let metadata = &stored.metadata;
+            if metadata.kind != data::Kind::Component || metadata.parts.is_some() {
+                continue;
+            }
+            let oci = &metadata.oci;
+            let parts = self
+                .oci
+                .blob(&oci.registry, &oci.repository, &oci.layer_digest)
+                .context("fetching the wasm layer")
+                .and_then(|wasm| decode::parts(&wasm));
+            match parts {
+                Ok(parts) => {
+                    let mut metadata = metadata.clone();
+                    metadata.parts = Some(parts);
+                    data::write(&self.options.root, &metadata, &stored.wit)?;
+                    backfilled += 1;
+                }
+                Err(err) => self.fail(oci.reference(), err),
+            }
+        }
+        if backfilled > 0 {
+            eprintln!("read the nested components of {backfilled} indexed versions");
+        }
+        Ok(())
+    }
+
     /// Indexes the new stable releases of a package of the org, e.g. `logging` or `logging/levels`.
     fn scan_package(&mut self, package: &str) -> Result<()> {
         let org = &self.options.org;
@@ -645,6 +681,10 @@ impl Scanner<'_> {
             exports: decoded.exports,
             dependencies: decoded.dependencies,
             release: None,
+            parts: match decoded.kind {
+                data::Kind::Component => Some(decode::parts(&wasm)?),
+                data::Kind::Interface => None,
+            },
             indexed_at: chrono::Utc::now().to_rfc3339_opts(chrono::SecondsFormat::Secs, true),
         };
         let dir = data::write(&self.options.root, &metadata, &decoded.wit)?;

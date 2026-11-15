@@ -74,5 +74,17 @@
       "version": "0.2.3"
     }
   ],
+  "parts": [
+    {
+      "digest": "sha256:e0f5725331ee9ffe0afe579c92b7a604b6f598bdb0c0b3183b30ffb8ca3db9ee",
+      "size": 365042,
+      "code": true
+    },
+    {
+      "digest": "sha256:92d534112d9840ae87a62e889b3a3c74696684971a618e34fe4a99e9e0813953",
+      "size": 159852,
+      "code": true
+    }
+  ],
   "indexed_at": "2026-11-11T23:44:59Z"
 }

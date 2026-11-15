@@ -64,5 +64,27 @@
     }
   ],
   "release": "https://github.com/componentized/component/releases/tag/v0.1.0",
+  "parts": [
+    {
+      "digest": "sha256:7ae56b23c43dca504fc114fcb03d5b7fc2a9750d7b7da54e11aa5d58c9f1bcdb",
+      "size": 91242,
+      "code": true
+    },
+    {
+      "digest": "sha256:c0f985973b75482b3cb249ec1b8b75afa61f9bbb5af1778097850c057448a2b4",
+      "size": 71727,
+      "code": true
+    },
+    {
+      "digest": "sha256:4e9a7a27c3825bb1ce6e9ba74b8d2bfdfe415327d0f3a66b7cf3c55b30a282a7",
+      "size": 116437,
+      "code": true
+    },
+    {
+      "digest": "sha256:d89c11eff103db9038622adb713edbab38e1caf2cac1d3022cb94b2aff7484d2",
+      "size": 68057,
+      "code": true
+    }
+  ],
   "indexed_at": "2026-11-11T23:44:19Z"
 }

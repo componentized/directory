@@ -10,13 +10,17 @@
     <ol>{% for i in interfaces %}<li><a href="#interface-{{ i.name }}" title="interface {{ i.name }}">{{ kind_icon("interface") }}<code>{{ i.name }}</code></a></li>{% endfor %}</ol></li>{% endif %}
   {% if pkg.kind == "interface" and worlds %}<li><a href="#worlds">Worlds</a>
     <ol>{% for w in worlds %}<li><a href="#world-{{ w.name }}" title="world {{ w.name }}">{{ kind_icon("world") }}<code>{{ w.name }}</code></a></li>{% endfor %}</ol></li>{% endif %}
+  {% if composed_of or composed_unknown %}<li><a href="#composed-of">Composed of</a></li>{% endif %}
   <li><a href="#wit">WIT</a></li>
   <li class="toc-aside"><a href="#about">About</a></li>
   {% if not synthetic %}<li class="toc-aside"><a href="#pull">Pull</a></li>{% endif %}
   {% if debug %}<li class="toc-aside"><a href="#debug">Debug</a></li>{% endif %}
   {% if pkg.released_with %}<li class="toc-aside"><a href="#released-with">Released with</a></li>{% endif %}
+  {% if used_in %}<li class="toc-aside"><a href="#used-in">Used in</a></li>{% endif %}
+  {%- if pkg.kind == "interface" %}
   <li class="toc-aside"><a href="#dependencies">Dependencies</a></li>
   <li class="toc-aside"><a href="#dependents">Dependents</a></li>
+  {%- endif %}
   <li class="toc-aside"><a href="#versions">Versions</a></li>
 </ol>
 {% endblock %}
@@ -27,11 +31,10 @@
     {% if docs %}<section class="docs" id="overview">{{ docs|safe }}</section>{% endif %}
 
     {% if pkg.kind == "component" %}
-    <section id="imports">
-      <h2>Imports</h2>
-      {{ world_items(imports, "This component imports nothing.") }}
-      <h2 id="exports">Exports</h2>
-      {{ world_items(exports, "This component exports nothing.") }}
+    {#- side by side, as a world's, one above the other on a narrow screen #}
+    <section class="two" id="imports">
+      <div><h2>Imports</h2>{{ world_items(imports, "This component imports nothing.") }}</div>
+      <div><h2 id="exports">Exports</h2>{{ world_items(exports, "This component exports nothing.") }}</div>
     </section>
     {% endif %}
 
@@ -57,6 +60,17 @@
         </div>
       </div>
       {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if composed_of or composed_unknown %}
+    {#- the components nested whole in it, it was composed from, each the version with its bytes #}
+    <section id="composed-of">
+      <h2>Composed of</h2>
+      {{ packages(composed_of, empty="") }}
+      {%- if composed_unknown %}
+      <p class="dim">{% if composed_of %}and {% endif %}{{ composed_unknown }} other component{% if composed_unknown != 1 %}s{% endif %} not in the directory</p>
+      {%- endif %}
     </section>
     {% endif %}
 
@@ -118,6 +132,16 @@
       <ul class="links released-with">{% for r in pkg.released_with %}<li title="{{ r.kind }}">{{ kind_icon(r.kind) }}<a href="{{ r.url }}"><code>{{ r.label }}</code></a></li>{% endfor %}</ul>
     </section>
     {% endif %}
+    {% if used_in %}
+    {#- the components composed from it, that nest it whole #}
+    <section id="used-in">
+      <h3>Used in</h3>
+      {{ grouped(used_in) }}
+    </section>
+    {% endif %}
+    {#- a package's dependencies and dependents are WIT packages: a component's imports and exports
+        show what it uses, and nothing depends on a component but one composed from it, `used_in` #}
+    {% if pkg.kind == "interface" %}
     <section id="dependencies">
       <h3>Dependencies</h3>
       {{ packages(dependencies) }}
@@ -126,6 +150,7 @@
       <h3>Dependents</h3>
       {{ grouped(dependents) }}
     </section>
+    {% endif %}
     <section id="versions">
       <h3>Versions{% if pkg.compare %} <a class="more" href="{{ pkg.compare }}">compare</a>{% endif %}</h3>
       {#- each version's whole row is its link, the version on one end and its date on the other #}

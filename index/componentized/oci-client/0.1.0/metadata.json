@@ -52,5 +52,17 @@
     }
   ],
   "release": "https://github.com/componentized/oci/releases/tag/v0.1.0",
+  "parts": [
+    {
+      "digest": "sha256:dc7410137fc2bebf7c1a200c40f6012447aed8a34df790323e024e0042f96ece",
+      "size": 5977,
+      "code": true
+    },
+    {
+      "digest": "sha256:3e71b5ecdc0c5160e3f386ecfb9b9002104876e7ba193669300fc334b173b65b",
+      "size": 703880,
+      "code": true
+    }
+  ],
   "indexed_at": "2026-11-11T23:44:47Z"
 }

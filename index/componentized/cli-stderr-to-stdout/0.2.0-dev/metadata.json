@@ -42,5 +42,11 @@
       "version": "0.3.0"
     }
   ],
+  "parts": [
+    {
+      "digest": "sha256:9581a59cbb2d5e0e5cbc4ad8b03235a904767b79dc0aa1c9495f598825a9df41",
+      "size": 232
+    }
+  ],
   "indexed_at": "2026-11-12T00:11:49Z"
 }

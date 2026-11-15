@@ -141,9 +141,67 @@ fn dependencies(resolve: &Resolve, pkg: PackageId) -> Vec<Dependency> {
     deps
 }
 
+/// The components nested whole in a component, those it may have been composed from, each by the
+/// digest of its bytes. A nested component's own nested components are its parts, not these.
+pub fn parts(wasm: &[u8]) -> Result<Vec<crate::data::Part>> {
+    use wasmparser::{Parser, Payload};
+    let mut parts: Vec<crate::data::Part> = Vec::new();
+    // how deep the parser is: 1 within the component, 2 within a part, and so on
+    let mut depth = 0;
+    for payload in Parser::new(0).parse_all(wasm) {
+        match payload.context("reading the component's nested components")? {
+            Payload::Version { .. } => depth += 1,
+            Payload::End(_) => depth -= 1,
+            Payload::ComponentSection {
+                unchecked_range, ..
+            } if depth == 1 => {
+                let range =
+                    usize::try_from(unchecked_range.start)?..usize::try_from(unchecked_range.end)?;
+                let bytes = wasm.get(range).context("a nested component out of range")?;
+                parts.push(crate::data::Part {
+                    digest: crate::http::sha256(bytes),
+                    size: bytes.len() as u64,
+                    code: false,
+                });
+            }
+            // a core module within a part, at any depth, is code of its own
+            Payload::ModuleSection { .. } if depth >= 2 => {
+                if let Some(part) = parts.last_mut() {
+                    part.code = true;
+                }
+            }
+            _ => {}
+        }
+    }
+    Ok(parts)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn reads_the_parts_of_a_composed_component() {
+        use wasm_encoder::{Component, Module, ModuleSection, NestedComponentSection};
+        // a part with code, a core module, and a wrapper of types alone, with none
+        let mut code = Component::new();
+        code.section(&ModuleSection(&Module::new()));
+        let wrapper = Component::new();
+        let mut composed = Component::new();
+        composed.section(&NestedComponentSection(&code));
+        composed.section(&NestedComponentSection(&wrapper));
+        let (code, wrapper, composed) = (code.finish(), wrapper.finish(), composed.finish());
+
+        let parts = parts(&composed).unwrap();
+        assert_eq!(parts.len(), 2);
+        assert_eq!(parts[0].digest, crate::http::sha256(&code));
+        assert_eq!(parts[0].size, code.len() as u64);
+        assert!(parts[0].code);
+        assert_eq!(parts[1].digest, crate::http::sha256(&wrapper));
+        assert!(!parts[1].code);
+        // a component nests no others
+        assert!(super::parts(&wrapper).unwrap().is_empty());
+    }
 
     const WIT: &str = r#"
 package componentized:example@0.1.0;

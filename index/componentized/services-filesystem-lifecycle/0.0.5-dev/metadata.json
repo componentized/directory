@@ -80,5 +80,11 @@
       "version": "0.2.12"
     }
   ],
+  "parts": [
+    {
+      "digest": "sha256:62083ba53ff5f7790bc1a0edd0e0cf4087d1c7aaac6ff2bf1c3dc2da0e7bd999",
+      "size": 1218
+    }
+  ],
   "indexed_at": "2026-11-14T23:52:25Z"
 }

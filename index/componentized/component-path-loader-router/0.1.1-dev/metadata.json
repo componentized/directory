@@ -44,5 +44,11 @@
       "version": "0.1.1-dev"
     }
   ],
+  "parts": [
+    {
+      "digest": "sha256:9f101cc8608fd91600734ff64ebf6802dec2d92ef17e691cbd053aa0755860aa",
+      "size": 325
+    }
+  ],
   "indexed_at": "2026-11-13T18:35:46Z"
 }

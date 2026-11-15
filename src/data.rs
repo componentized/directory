@@ -77,6 +77,19 @@ impl Dependency {
     }
 }
 
+/// A component nested whole in a component, e.g. one of those it was composed from, which is the
+/// version of the index whose wasm layer has its digest.
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+pub struct Part {
+    /// The digest of its bytes, as a wasm layer's, e.g. `sha256:…`.
+    pub digest: String,
+    pub size: u64,
+    /// Whether it has code of its own, a core module, rather than only types, e.g. the wrapper
+    /// a component's bindings nest, which is no component it was composed from.
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub code: bool,
+}
+
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct Metadata {
     /// The package id, e.g. `componentized:logging` or `componentized:logging-levels`.
@@ -105,6 +118,10 @@ pub struct Metadata {
     /// it's found, as a release can be published after its packages.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub release: Option<String>,
+    /// A component's nested components, in order. `None` until a scan reads them, which for a
+    /// version indexed before it did means fetching its wasm layer again.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub parts: Option<Vec<Part>>,
     pub indexed_at: String,
 }
 

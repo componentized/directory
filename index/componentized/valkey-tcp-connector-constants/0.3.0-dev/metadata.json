@@ -38,5 +38,11 @@
       "version": "0.3.0-dev"
     }
   ],
+  "parts": [
+    {
+      "digest": "sha256:ba0e749c782697b7609bb7c0c0ba08ff8e272cbf3ab67a60a809993b6dbada12",
+      "size": 515
+    }
+  ],
   "indexed_at": "2026-11-13T20:30:10Z"
 }

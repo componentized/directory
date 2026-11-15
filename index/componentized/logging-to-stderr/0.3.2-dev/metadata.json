@@ -51,5 +51,12 @@
       "version": "0.1.0-draft"
     }
   ],
+  "parts": [
+    {
+      "digest": "sha256:9c018b546994bbaa5d7e95cd2c729d0ac70bb83a7ed6ef119831303327309204",
+      "size": 90277,
+      "code": true
+    }
+  ],
   "indexed_at": "2026-11-13T18:36:06Z"
 }

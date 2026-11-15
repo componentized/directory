@@ -59,5 +59,17 @@
     }
   ],
   "release": "https://github.com/componentized/sockets/releases/tag/v0.1.0",
+  "parts": [
+    {
+      "digest": "sha256:8fbeb93c651f7e71347a3363cb2206060c95b600771b4b4d835559e4f49249e1",
+      "size": 74359,
+      "code": true
+    },
+    {
+      "digest": "sha256:26d7f9203d71141ac77f215a17e7f10571187a99465ec7292a8c1791e62abcba",
+      "size": 225271,
+      "code": true
+    }
+  ],
   "indexed_at": "2026-11-11T23:45:03Z"
 }

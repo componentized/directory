@@ -54,5 +54,17 @@
       "version": "0.1.0-draft"
     }
   ],
+  "parts": [
+    {
+      "digest": "sha256:e28167977850939be29c4611ecb3938293613ef4de1a68081c5d446ddaf40fff",
+      "size": 82619,
+      "code": true
+    },
+    {
+      "digest": "sha256:75f07fc39fda3aed2dc8e9603e0a0be781b5fd17f85fe2822a4490014653f5db",
+      "size": 82772,
+      "code": true
+    }
+  ],
   "indexed_at": "2026-11-12T00:12:22Z"
 }

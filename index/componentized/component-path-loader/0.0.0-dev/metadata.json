@@ -63,5 +63,27 @@
       "version": "0.3.0"
     }
   ],
+  "parts": [
+    {
+      "digest": "sha256:580ffe2395cb5aaa262ec479253f217cb5374e3b6da10d97f322eb3205c319f2",
+      "size": 91326,
+      "code": true
+    },
+    {
+      "digest": "sha256:b49687e7b028e4f8e8904c9c8b40334f6eb7d4e638f996dab07ad4ee3fecf6e7",
+      "size": 71811,
+      "code": true
+    },
+    {
+      "digest": "sha256:1b743cb40ac6fd72af0baaff8ecd5d31c341064bfd626e0baaaadcb7ac0ca099",
+      "size": 116521,
+      "code": true
+    },
+    {
+      "digest": "sha256:d962a146dd89a5c913bb962508459218b15d72b63fc690e31fd60d8179495697",
+      "size": 68153,
+      "code": true
+    }
+  ],
   "indexed_at": "2026-11-12T00:11:54Z"
 }
