@@ -46,7 +46,12 @@ pub fn run(options: &Options) -> Result<()> {
         failed: Vec::new(),
     };
 
-    let mut packages = discover(&github, &options.org, &options.only)?;
+    let mut packages = discover(
+        &github,
+        &options.org,
+        &options.only,
+        options.version.as_deref(),
+    )?;
     packages.extend(options.packages.iter().cloned());
     packages.retain(|package| {
         options.only.is_empty()
@@ -285,7 +290,17 @@ fn trim_nested(root: &std::path::Path) -> Result<()> {
 /// but it only accepts a personal access token (classic), not a workflow's or an app's token.
 /// Given `only`, just those repositories are looked up, rather than listing every repository of the
 /// org, e.g. for a scan a repository requests once it publishes.
-fn discover(github: &GitHub, org: &str, only: &[String]) -> Result<BTreeSet<String>> {
+///
+/// A repository's components are those of its default branch, and those of each of its release
+/// tags, e.g. `v0.2.1`, as a component renamed or removed since keeps the releases it published,
+/// e.g. `filesystem/readonly`, which became `filesystem/latch-readonly`. Given `version`, only its
+/// tag is, if it has one: a dev build is published from the default branch.
+fn discover(
+    github: &GitHub,
+    org: &str,
+    only: &[String],
+    version: Option<&str>,
+) -> Result<BTreeSet<String>> {
     #[derive(Deserialize)]
     struct Repo {
         name: String,
@@ -295,6 +310,10 @@ fn discover(github: &GitHub, org: &str, only: &[String]) -> Result<BTreeSet<Stri
         fork: bool,
         #[serde(default)]
         private: bool,
+    }
+    #[derive(Deserialize)]
+    struct GitTag {
+        name: String,
     }
     #[derive(Deserialize)]
     struct Content {
@@ -325,14 +344,31 @@ fn discover(github: &GitHub, org: &str, only: &[String]) -> Result<BTreeSet<Stri
         .filter(|r| !r.archived && !r.fork && !r.private)
     {
         found.insert(repo.name.clone());
-        let contents =
-            github.list::<Content>(&format!("/repos/{org}/{}/contents/components", repo.name))?;
-        for content in contents.unwrap_or_default() {
-            let internal = ["dep-", "internal-", "test-"]
-                .iter()
-                .any(|prefix| content.name.starts_with(prefix));
-            if content.kind == "dir" && !internal {
-                found.insert(format!("{}/{}", repo.name, content.name));
+        // the default branch, then each release tag, by its version, `v0.2.1` or else `0.2.1`
+        let tags = github
+            .list::<GitTag>(&format!("/repos/{org}/{}/tags", repo.name))?
+            .unwrap_or_default();
+        let refs = std::iter::once(None).chain(
+            tags.into_iter()
+                .filter(|tag| {
+                    let tagged = version::stable(tag.name.strip_prefix('v').unwrap_or(&tag.name));
+                    tagged.is_some_and(|tagged| version.is_none_or(|v| tagged.to_string() == v))
+                })
+                .map(|tag| Some(tag.name)),
+        );
+        for at in refs {
+            let query = at.map(|tag| format!("?ref={tag}")).unwrap_or_default();
+            let contents = github.list::<Content>(&format!(
+                "/repos/{org}/{}/contents/components{query}",
+                repo.name
+            ))?;
+            for content in contents.unwrap_or_default() {
+                let internal = ["dep-", "internal-", "test-"]
+                    .iter()
+                    .any(|prefix| content.name.starts_with(prefix));
+                if content.kind == "dir" && !internal {
+                    found.insert(format!("{}/{}", repo.name, content.name));
+                }
             }
         }
     }
