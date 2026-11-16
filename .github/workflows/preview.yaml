@@ -90,8 +90,8 @@ jobs:
             --commit-hash=${{ github.event.workflow_run.head_sha }}
             --commit-dirty=true
 
-      # the PR may have closed as its preview deployed, after the Preview cleanup workflow looked
-      # for its deployments, which would leave this one behind
+      # the PR may have closed as its preview deployed: no comment then, which would say the preview
+      # is up, and the Preview cleanup workflow deletes it in its next run
       - name: Check the PR is still open
         id: open
         if: steps.pr.outputs.number
@@ -104,24 +104,8 @@ jobs:
           if [[ "$state" == "open" ]]; then
             echo "open=true" >> "$GITHUB_OUTPUT"
           else
-            echo "::notice::PR #$PR closed as its preview deployed, deleting its preview"
+            echo "::notice::PR #$PR closed as its preview deployed, the Preview cleanup workflow deletes it"
           fi
-      # the script from the default branch, never the PR's, apart from the site deployed
-      - uses: actions/checkout@v7
-        if: steps.pr.outputs.number && steps.open.outputs.open != 'true'
-        with:
-          ref: ${{ github.event.repository.default_branch }}
-          sparse-checkout: .github/scripts
-          persist-credentials: false
-          path: .directory
-      - name: Delete the closed PR's preview
-        if: steps.pr.outputs.number && steps.open.outputs.open != 'true'
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          PROJECT: ${{ vars.CLOUDFLARE_PAGES_PROJECT }}
-          BRANCH: pr-${{ steps.pr.outputs.number }}
-        run: .directory/.github/scripts/delete-previews.sh "$BRANCH"
 
       - name: Create custodian app token
         id: app-token

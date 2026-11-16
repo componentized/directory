@@ -5,27 +5,46 @@
 # yet: each pass deletes what it can, and the next tries again what's left, until none is or the
 # passes run out. It fails only then, naming the deployments it couldn't delete.
 #
+#   delete-previews.sh <branch>   deletes the branch's preview deployments
+#   delete-previews.sh --branches lists the branches with preview deployments, one a line
+#
 # Needs CLOUDFLARE_API_TOKEN, ACCOUNT_ID and PROJECT in the environment. PASSES and WAIT, in
 # seconds, tune the retries.
 
 set -euo pipefail
+# a failure to list within `$(...)` stops the script too, rather than passing for none listed
+shopt -s inherit_errexit
 
-branch="${1:?usage: $0 <branch>}"
+branch="${1:?usage: $0 <branch> | --branches}"
 passes="${PASSES:-10}"
 wait="${WAIT:-30}"
 api="https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/pages/projects/$PROJECT/deployments"
 auth="Authorization: Bearer $CLOUDFLARE_API_TOKEN"
 
-# the branch's deployments, every page collected first, as deleting while paging would shift them
-list() {
+# each preview deployment, its id and its branch, every page collected first, as deleting while
+# paging would shift them
+deployments() {
   local page=1 resp
   while :; do
     resp="$(curl -fsS -H "$auth" "$api?env=preview&page=$page&per_page=25")"
-    jq -r --arg branch "$branch" \
-      '.result[] | select(.deployment_trigger.metadata.branch == $branch) | .id' <<< "$resp"
+    jq -r '.result[] | "\(.id) \(.deployment_trigger.metadata.branch // "")"' <<< "$resp"
     [[ "$(jq '.result | length' <<< "$resp")" -lt 25 ]] && break
     page=$((page + 1))
   done
+}
+
+if [[ "$branch" == "--branches" ]]; then
+  listing="$(deployments)"
+  [[ -n "$listing" ]] && awk 'NF == 2 { print $2 }' <<< "$listing" | sort -u
+  exit 0
+fi
+
+# the branch's deployments
+list() {
+  local listing
+  listing="$(deployments)"
+  [[ -z "$listing" ]] && return 0
+  awk -v branch="$branch" '$2 == branch { print $1 }' <<< "$listing"
 }
 
 deleted=0
