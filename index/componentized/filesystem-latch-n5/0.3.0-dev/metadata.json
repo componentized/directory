@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/latch-n5",
     "tag": "0.3.0-dev",
-    "digest": "sha256:43e831800ae339c3f5a73904a71ca3c85ce2d8ebe0b760bfd3b238e5353e0509",
+    "digest": "sha256:34c6543abfed21e770aa01899a8642c6a7145dea42c1628d4ed5942dfd295b16",
     "layer_digest": "sha256:ff7e67597f321eaab6028e6f3d86116010a9222efbf7db46afb73ba9e0f643b4",
     "size": 83625,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/filesystem",
       "git_ref": "refs/heads/main",
-      "log_index": 3864293924
+      "log_index": 3929991431
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/latch-n5",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:63c2be60c1cbcd7f2c97f09d6022dfd8964e804b12d7fecb1507cadc4718d983",
+    "digest": "sha256:33a07874174b45c805795d0163ff8584d4420fa97444d39f9289b8fdf6bb4c2a",
     "layer_digest": "sha256:1b3b86999e6fd0abed4aa250511efe560d4b3e19d56421b8e2121bfefba627f6",
     "size": 781145,
     "signature": {
@@ -32,18 +32,18 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/filesystem",
       "git_ref": "refs/heads/main",
-      "log_index": 3864295192
+      "log_index": 3929994536
     }
   },
-  "created": "2026-11-13T23:01:44.621913385Z",
+  "created": "2026-11-16T16:31:29.122736915Z",
   "annotations": {
     "org.opencontainers.image.description": "Filesystem latch that aggregates five other filesystem latches.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "adac5bfdf6ae0d2a8556e4a837b995b27642444d",
+    "org.opencontainers.image.revision": "ba652f6c2a21442ad80608793e070fdb848884d1",
     "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
     "org.opencontainers.image.title": "componentized:filesystem-latch-n5",
-    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/adac5bfdf6ae0d2a8556e4a837b995b27642444d/components/latch-n5",
-    "org.opencontainers.image.version": "0.3.0-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/ba652f6c2a21442ad80608793e070fdb848884d1/components/latch-n5",
+    "org.opencontainers.image.version": "v0.3.0-dev"
   },
   "imports": [
     "wasi:clocks/system-clock@0.3.0",
@@ -77,5 +77,5 @@
       "size": 6009
     }
   ],
-  "indexed_at": "2026-11-14T00:23:00Z"
+  "indexed_at": "2026-11-16T16:34:04Z"
 }

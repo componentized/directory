@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/latch-readonly",
     "tag": "0.3.0-dev",
-    "digest": "sha256:68cb220fee313f92ff0b7c38579b19828a1533a814cee803f52547cee1cfde3a",
+    "digest": "sha256:6c1e66aba3fd07e390473401da823742d6be3fa4a41e31015aeeb8b8f69a2c93",
     "layer_digest": "sha256:140538084aee7a70dd9949613d0bbf37158c7dca89d93b06cde8ed2d579587e9",
     "size": 90097,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/filesystem",
       "git_ref": "refs/heads/main",
-      "log_index": 3864299460
+      "log_index": 3930002498
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/latch-readonly",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:4e383ea5c49f77d7b97cb7bffdaa96e89bf54ff7a67b122e15189f99512492ff",
+    "digest": "sha256:d3df9376f276190f3c85fea90c537135b380a5ca2a14640b6ecc75d2cab89f58",
     "layer_digest": "sha256:630860fa952b74360ef388cb8f6c28c00fd878e8b1216507d10a4509590d0e0b",
     "size": 986107,
     "signature": {
@@ -32,18 +32,18 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/filesystem",
       "git_ref": "refs/heads/main",
-      "log_index": 3864300726
+      "log_index": 3930005054
     }
   },
-  "created": "2026-11-13T23:02:19.242831591Z",
+  "created": "2026-11-16T16:32:06.800100941Z",
   "annotations": {
     "org.opencontainers.image.description": "Filesystem latch that denies operations which would mutate the filesystem.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "adac5bfdf6ae0d2a8556e4a837b995b27642444d",
+    "org.opencontainers.image.revision": "ba652f6c2a21442ad80608793e070fdb848884d1",
     "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
     "org.opencontainers.image.title": "componentized:filesystem-latch-readonly",
-    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/adac5bfdf6ae0d2a8556e4a837b995b27642444d/components/latch-readonly",
-    "org.opencontainers.image.version": "0.3.0-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/ba652f6c2a21442ad80608793e070fdb848884d1/components/latch-readonly",
+    "org.opencontainers.image.version": "v0.3.0-dev"
   },
   "imports": [
     "wasi:logging/logging@0.1.0-draft",
@@ -119,5 +119,5 @@
       }
     ]
   },
-  "indexed_at": "2026-11-14T00:23:02Z"
+  "indexed_at": "2026-11-16T16:34:07Z"
 }

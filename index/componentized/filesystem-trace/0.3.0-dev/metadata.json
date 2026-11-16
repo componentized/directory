@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/trace",
     "tag": "0.3.0-dev",
-    "digest": "sha256:64fd3ff6edc7de3773b08b81c8cfef42b69c5322857cef86a3d778f87b42162e",
+    "digest": "sha256:5485d3e22a90213dd3b602c1588292bc354104c11e9ba1e135ff3139d993cd4d",
     "layer_digest": "sha256:17eb048b891d67c510d613232aa75d17af0c1db954c58f3c242bf608f6b0c611",
     "size": 296272,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/filesystem",
       "git_ref": "refs/heads/main",
-      "log_index": 3864302799
+      "log_index": 3930010052
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/trace",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:e73444218e2a417cb3705d30889cad991da8aa7118c7fa6bf5178fcb91ad17e0",
+    "digest": "sha256:4c04bff558a7af5afe69831b287fc6d2c47238d897d024afc79131a2e0e1cd55",
     "layer_digest": "sha256:167edad453b33f0affe6ecc8d95d354fbeb61c77e86dcdeb0c9c77cc14d00bd5",
     "size": 2867534,
     "signature": {
@@ -32,18 +32,18 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/filesystem",
       "git_ref": "refs/heads/main",
-      "log_index": 3864303572
+      "log_index": 3930012507
     }
   },
-  "created": "2026-11-13T23:02:45.557136405Z",
+  "created": "2026-11-16T16:32:36.482064173Z",
   "annotations": {
     "org.opencontainers.image.description": "Virtualizes the wasi:filesystem interfaces logging all method calls at the TRACE level and 'filesystem' component.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "adac5bfdf6ae0d2a8556e4a837b995b27642444d",
+    "org.opencontainers.image.revision": "ba652f6c2a21442ad80608793e070fdb848884d1",
     "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
     "org.opencontainers.image.title": "componentized:filesystem-trace",
-    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/adac5bfdf6ae0d2a8556e4a837b995b27642444d/components/trace",
-    "org.opencontainers.image.version": "0.3.0-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/ba652f6c2a21442ad80608793e070fdb848884d1/components/trace",
+    "org.opencontainers.image.version": "v0.3.0-dev"
   },
   "imports": [
     "wasi:logging/logging@0.1.0-draft",
@@ -79,5 +79,5 @@
       "size": 172
     }
   ],
-  "indexed_at": "2026-11-14T00:23:04Z"
+  "indexed_at": "2026-11-16T16:34:11Z"
 }
