@@ -1,0 +1,6 @@
+{
+    "preferredProtocol": "oci",
+    "oci": {
+        "registry": "ghcr.io"
+    }
+}
