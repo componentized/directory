@@ -332,12 +332,26 @@ pre.wit-diff { padding: 8px 0; line-height: 1.5; font-size: 0.85rem; }
 .diff-add { background: var(--component-soft); }
 
 .layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 32px; align-items: start; }
-aside { position: sticky; top: calc(var(--site-header) + var(--page-head) + 16px); font-size: 0.9rem; }
+/* the side pane stays in view beside the content, scrolling on its own when it's taller than the
+   window, as the page contents do, rather than once the content has scrolled to its end. Its
+   menus, e.g. a group's versions, hang 4px out from its lists, inside its padding, and fit its
+   width, which its scrolling clips to. */
+aside {
+  position: sticky; top: calc(var(--site-header) + var(--page-head) + 16px);
+  max-height: calc(100vh - var(--site-header) - var(--page-head) - 32px);
+  overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin;
+  margin-inline: -4px; padding-inline: 4px;
+  /* its scrollbar beside its content, in a gutter of its padding, out into the page's own, rather
+     than over it, as an overlay scrollbar, e.g. Safari's, would be */
+  margin-right: -14px; padding-right: 14px;
+  font-size: 0.9rem;
+}
+aside .pivot-menu { min-width: min(240px, calc(100% + 8px)); max-width: calc(100% + 8px); }
 aside section { border-bottom: 1px solid var(--line); padding-bottom: 12px; }
 aside h3 { margin-top: 1.2em; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--dim); }
 @media (max-width: 860px) {
   .layout { grid-template-columns: minmax(0, 1fr); }
-  aside { position: static; }
+  aside { position: static; max-height: none; overflow: visible; }
 }
 
 .facts { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 12px; margin: 8px 0 0; }
@@ -654,7 +668,7 @@ main.wrap.has-toc { max-width: 1440px; display: grid; grid-template-columns: 220
 /* beside a contents column, the right column of a page stacks under its content sooner */
 @media (max-width: 1240px) {
   .has-toc .layout { grid-template-columns: minmax(0, 1fr); }
-  .has-toc aside { position: static; }
+  .has-toc aside { position: static; max-height: none; overflow: visible; }
 }
 
 /* a narrow screen folds the contents into a panel above the page */

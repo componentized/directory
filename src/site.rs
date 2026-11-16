@@ -468,6 +468,7 @@ pub fn build(
             head => fingerprint(include_str!("../static/head.js")),
             copy => fingerprint(include_str!("../static/copy.js")),
             tip => fingerprint(include_str!("../static/tip.js")),
+            pane => fingerprint(include_str!("../static/pane.js")),
             compare => fingerprint(include_str!("../static/compare.js")),
             wiring => fingerprint(include_str!("../static/wiring.js")),
         },
@@ -490,6 +491,7 @@ pub fn build(
     write_file(out, "head.js", include_str!("../static/head.js"))?;
     write_file(out, "copy.js", include_str!("../static/copy.js"))?;
     write_file(out, "tip.js", include_str!("../static/tip.js"))?;
+    write_file(out, "pane.js", include_str!("../static/pane.js"))?;
     write_file(out, "compare.js", include_str!("../static/compare.js"))?;
     write_file(out, "wiring.js", include_str!("../static/wiring.js"))?;
     // tells wasm-pkg tools where the namespaces' packages are published
