@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/constants/types",
     "tag": "0.2.1-dev",
-    "digest": "sha256:a7788fea19254d290d741cbf6ae4f436c965807903bd515b668a8ab2f36068e6",
+    "digest": "sha256:ef942d526bb4951362c880ff37ab183b0e8fb0ccf77ee27a0fd4d32460d348ef",
     "layer_digest": "sha256:663552f31e356af14eead1a20b9b6f8a7b1a3bd34364d82168b3ad497e6b2c07",
     "size": 15583,
     "signature": {
@@ -16,18 +16,18 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/constants",
       "git_ref": "refs/heads/main",
-      "log_index": 3853276595
+      "log_index": 3930063580
     }
   },
-  "created": "2026-11-13T12:00:30.721085096Z",
+  "created": "2026-11-16T16:36:19.640096465Z",
   "annotations": {
     "org.opencontainers.image.description": "Limits of each numeric type.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "e0daeaf05e53b897056db3728187a0bc86dec268",
+    "org.opencontainers.image.revision": "c0c388497d74df4e96ee5a312a94e430700d0e11",
     "org.opencontainers.image.source": "https://github.com/componentized/constants.git",
     "org.opencontainers.image.title": "componentized:constants-types",
-    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/e0daeaf05e53b897056db3728187a0bc86dec268/components/types",
-    "org.opencontainers.image.version": "0.2.1-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/c0c388497d74df4e96ee5a312a94e430700d0e11/components/types",
+    "org.opencontainers.image.version": "v0.2.1-dev"
   },
   "exports": [
     "componentized:constants/u8@0.2.1-dev",
@@ -89,5 +89,5 @@
       "size": 611
     }
   ],
-  "indexed_at": "2026-11-13T12:54:49Z"
+  "indexed_at": "2026-11-16T16:53:54Z"
 }

@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/constants/factory",
     "tag": "0.2.1-dev",
-    "digest": "sha256:cb027ec50d46f03f6c14f13a93ab479b25cf97fcdac038378e7af132323a89ce",
+    "digest": "sha256:fc59fef3cc2adfea5846d2c7b0b8dd40ae23b25d472ffb89f933c0d78b6266af",
     "layer_digest": "sha256:146c49ef3da6c9b369121a0c8e5ce23bad196ad7528b969113e79b59c33df4b5",
     "size": 2200508,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/constants",
       "git_ref": "refs/heads/main",
-      "log_index": 3853266590
+      "log_index": 3930048449
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/constants/factory",
     "tag": "0.2.1-dev_debug",
-    "digest": "sha256:d01239cdcb16078e28c8c6e70dfd45fb0da1c90cf80c726f6067aba1c05ba830",
+    "digest": "sha256:7a1462e7e9d130acb4da8e4cd9e787b7afae39129baa74ff1a0c9b7fd7050b07",
     "layer_digest": "sha256:05d1a82f7ba04db987c6ca5b3314bb409aa944947a629fd8dc1a7338208b825b",
     "size": 45620888,
     "signature": {
@@ -32,18 +32,18 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/constants",
       "git_ref": "refs/heads/main",
-      "log_index": 3853267877
+      "log_index": 3930053626
     }
   },
-  "created": "2026-11-13T11:59:38.602463018Z",
+  "created": "2026-11-16T16:35:29.775585958Z",
   "annotations": {
     "org.opencontainers.image.description": "Create components whose exported functions return constant values, from a WIT world with values in its doc comments.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "e0daeaf05e53b897056db3728187a0bc86dec268",
+    "org.opencontainers.image.revision": "c0c388497d74df4e96ee5a312a94e430700d0e11",
     "org.opencontainers.image.source": "https://github.com/componentized/constants.git",
     "org.opencontainers.image.title": "componentized:constants-factory",
-    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/e0daeaf05e53b897056db3728187a0bc86dec268/components/factory",
-    "org.opencontainers.image.version": "0.2.1-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/c0c388497d74df4e96ee5a312a94e430700d0e11/components/factory",
+    "org.opencontainers.image.version": "v0.2.1-dev"
   },
   "imports": [
     "componentized:component/types@0.1.0",
@@ -68,5 +68,5 @@
       "size": 3277
     }
   ],
-  "indexed_at": "2026-11-13T12:54:46Z"
+  "indexed_at": "2026-11-16T16:53:51Z"
 }

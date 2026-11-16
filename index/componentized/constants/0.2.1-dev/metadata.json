@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/constants",
     "tag": "0.2.1-dev",
-    "digest": "sha256:28f15149c80073bd2b44244f2ee1189e04d15ac6bcfe01c09183cf1a39184a0c",
+    "digest": "sha256:1bafe6fd39c371d02e6ecf9460396688a3d9c4c10de5e49b2549ce96e7569383",
     "layer_digest": "sha256:4ec6513bef9c4892ac219d5a99978375079baa1c64d97849b801e2c45e7421c6",
     "size": 19092,
     "signature": {
@@ -16,18 +16,18 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/constants",
       "git_ref": "refs/heads/main",
-      "log_index": 3853260375
+      "log_index": 3930035211
     }
   },
-  "created": "2026-11-13T11:59:01.986188304Z",
+  "created": "2026-11-16T16:34:47.959980661Z",
   "annotations": {
     "org.opencontainers.image.description": "Create custom wasm components that export constant values.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "e0daeaf05e53b897056db3728187a0bc86dec268",
+    "org.opencontainers.image.revision": "c0c388497d74df4e96ee5a312a94e430700d0e11",
     "org.opencontainers.image.source": "https://github.com/componentized/constants.git",
     "org.opencontainers.image.title": "componentized:constants",
-    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/e0daeaf05e53b897056db3728187a0bc86dec268",
-    "org.opencontainers.image.version": "0.2.1-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/c0c388497d74df4e96ee5a312a94e430700d0e11",
+    "org.opencontainers.image.version": "v0.2.1-dev"
   },
   "dependencies": [
     {
@@ -39,5 +39,5 @@
       "version": "0.2.0-rc.1"
     }
   ],
-  "indexed_at": "2026-11-13T12:54:43Z"
+  "indexed_at": "2026-11-16T16:53:45Z"
 }
