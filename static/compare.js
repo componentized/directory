@@ -200,7 +200,8 @@
       const entry = {
         dependency: true,
         change: !was ? "added" : !is ? "removed" : "upgraded",
-        kind: "interface",
+        // a package depended on, by its icon apart from an interface
+        kind: "package",
         label: !was ? is : !is ? was : `${was} → ${versionOf(is)}`,
       };
       const step = was && is ? release(versionOf(was), versionOf(is)) : null;

@@ -13,7 +13,7 @@
 {% endblock %}
 {#- the counts of a listing's packages by kind, each by its kind's icon, dots between them #}
 {% macro counts(l) %}<span class="dim dots">
-  {%- if l.interfaces %}<span class="count" title="{{ l.interfaces }} interface{% if l.interfaces != 1 %}s{% endif %}">{{ kind_icon("interface") }}{{ l.interfaces }}<span class="visually-hidden"> interface{% if l.interfaces != 1 %}s{% endif %}</span></span>{% endif %}
+  {%- if l.interfaces %}<span class="count" title="{{ l.interfaces }} interface package{% if l.interfaces != 1 %}s{% endif %}">{{ kind_icon("package") }}{{ l.interfaces }}<span class="visually-hidden"> interface package{% if l.interfaces != 1 %}s{% endif %}</span></span>{% endif %}
   {%- if l.components %}<span class="count" title="{{ l.components }} component{% if l.components != 1 %}s{% endif %}">{{ kind_icon("component") }}{{ l.components }}<span class="visually-hidden"> component{% if l.components != 1 %}s{% endif %}</span></span>{% endif %}</span>{% endmacro %}
 {#- fold a long listing after its first two rows, but never hide just one or two cards. `meta` is
     as `card`'s #}

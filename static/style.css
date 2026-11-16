@@ -698,7 +698,7 @@ main.wrap.has-toc { max-width: 1440px; display: grid; grid-template-columns: 220
 .kind-icon.kind-use { color: var(--k); }
 .kind-icon.kind-func { color: var(--f); }
 .kind-icon.kind-world { color: var(--component); }
-.kind-icon.kind-interface { color: var(--interface); }
+.kind-icon.kind-interface, .kind-icon.kind-package { color: var(--interface); }
 .kind-icon.kind-component { color: var(--component); }
 .kind-icon.kind-repo { color: var(--accent); }
 .kind-icon.kind-namespace { color: var(--n); }

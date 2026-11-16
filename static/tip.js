@@ -108,7 +108,7 @@
           v.components && count(v.components, "component"),
         ]
       : [count(Object.keys(v.interfaces ?? {}).length, "interface"), count(Object.keys(v.worlds ?? {}).length, "world")];
-    return `<div class="wit-tip-head">${icon(v.components ? "composition" : v.kind)}<div class="wit-tip-body"><code class="wit-tip-def">${esc(`${v.package}@${v.version}`)}</code><span class="wit-tip-from">${[...has, v.date].filter(Boolean).map(esc).join(" · ")}</span></div></div>
+    return `<div class="wit-tip-head">${icon(v.components ? "composition" : v.kind === "interface" ? "package" : v.kind)}<div class="wit-tip-body"><code class="wit-tip-def">${esc(`${v.package}@${v.version}`)}</code><span class="wit-tip-from">${[...has, v.date].filter(Boolean).map(esc).join(" · ")}</span></div></div>
       ${v.summary ? `<p class="wit-tip-docs">${esc(v.summary)}</p>` : ""}`;
   };
   // an interface's tooltip: its id, how many types and functions it has, its gates, and its docs

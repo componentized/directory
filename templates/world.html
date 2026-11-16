@@ -34,7 +34,7 @@
   <aside>
     <section id="package">
       <h3>Package</h3>
-      <p><a href="{{ pkg.url }}" data-tip><code>{{ pkg.id }}</code></a></p>
+      <ul class="links packages"><li>{{ kind_icon(pkg.icon) }}<span class="visually-hidden">{{ pkg.icon }} </span><a href="{{ pkg.url }}" data-tip><code>{{ pkg.id }}</code></a></li></ul>
     </section>
     {#- the components that import nothing it doesn't, and export everything it does #}
     <section id="implemented-by">
