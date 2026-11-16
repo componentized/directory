@@ -1302,37 +1302,125 @@ impl Site {
     }
 
     fn home(&self) -> minijinja::Value {
-        let cards = self.cards();
-        let mut recent: Vec<usize> = (0..self.entries.len())
-            // dev builds are not releases
-            .filter(|i| {
-                self.entries[*i].meta.origin == Origin::Release && self.entries[*i].stable()
-            })
-            .collect();
-        recent.sort_by(|a, b| {
-            let (a, b) = (&self.entries[*a], &self.entries[*b]);
-            b.meta
-                .created
-                .cmp(&a.meta.created)
-                .then_with(|| a.meta.package.cmp(&b.meta.package))
-        });
-        let recent: Vec<_> = recent.into_iter().take(10).map(|i| self.card(i)).collect();
-        let components: Vec<_> = cards.iter().filter(|c| c.kind == Kind::Component).collect();
-        let interfaces: Vec<_> = cards.iter().filter(|c| c.kind == Kind::Interface).collect();
+        let recent = self.recent_releases(8, false);
+        let builds = self.recent_releases(8, true);
         ctx! {
             recent,
-            components,
-            interfaces,
-            namespaces => self.namespace_counts(),
-            repos => self.repo_cards(),
-            stats => ctx! {
-                repos => self.repos.len(),
-                packages => self.packages.len(),
-                components => components.len(),
-                interfaces => interfaces.len(),
-                versions => (0..self.entries.len()).filter(|i| self.listed(*i)).count(),
-            },
+            builds,
+            capabilities => self.capabilities(),
+            namespaces => self.namespace_counts().into_iter().map(|(ns, _)| ns).collect::<Vec<_>>(),
+            // the repositories that release components, rather than only interfaces, e.g. WASI's
+            collections => self
+                .repo_cards()
+                .into_iter()
+                .filter(|repo| repo.components > 0)
+                .collect::<Vec<_>>(),
         }
+    }
+
+    /// The newest releases of the repositories, pre-releases among them, e.g. a WASI release
+    /// candidate, or, for `dev`, their newest dev builds instead, those not yet superseded by
+    /// their release. A release is dated by its first package published, a dev build, built
+    /// again and again, by its latest.
+    fn recent_releases(&self, count: usize, dev: bool) -> Vec<minijinja::Value> {
+        let mut releases: Vec<(String, &Repo, &str, &[usize])> = self
+            .repos
+            .values()
+            .flat_map(|repo| {
+                repo.versions
+                    .iter()
+                    .filter(move |(version, _)| {
+                        version::dev(version).is_some() == dev && !repo.superseded(version)
+                    })
+                    .filter_map(move |(version, members)| {
+                        let dates = members.iter().map(|i| self.entries[*i].date());
+                        let date = if dev { dates.max() } else { dates.min() }?;
+                        Some((date, repo, version.as_str(), members.as_slice()))
+                    })
+            })
+            .filter(|(_, _, _, members)| {
+                members
+                    .iter()
+                    .all(|i| self.entries[*i].meta.origin != Origin::Synthetic)
+            })
+            .collect();
+        releases.sort_by(|a, b| b.0.cmp(&a.0).then_with(|| a.1.key.cmp(&b.1.key)));
+        releases
+            .into_iter()
+            .take(count)
+            .map(|(date, repo, version, members)| {
+                let lead = &self.entries[members[0]];
+                let interfaces: Vec<&str> = members
+                    .iter()
+                    .map(|i| &self.entries[*i])
+                    .filter(|e| e.meta.kind == Kind::Interface)
+                    .map(|e| e.meta.package.as_str())
+                    .collect();
+                ctx! {
+                    key => repo.key,
+                    version,
+                    date,
+                    url => lead.url(),
+                    stable => version::stable(version).is_some(),
+                    dev,
+                    // a collection's, by its interface package, else the packages it releases,
+                    // e.g. WASI's
+                    summary => if interfaces.len() > 1 {
+                        interfaces.join(", ")
+                    } else {
+                        lead.description()
+                    },
+                }
+            })
+            .collect()
+    }
+
+    /// The WASI packages that components implement, each with the components that export one of
+    /// its interfaces, at their latest versions: what can stand in for `wasi:http`, say, in a
+    /// composition. The packages most implemented first.
+    fn capabilities(&self) -> Vec<minijinja::Value> {
+        let mut providers: BTreeMap<&str, Vec<usize>> = BTreeMap::new();
+        for indexes in self.packages.values() {
+            let Some(&index) = self.latest(indexes) else {
+                continue;
+            };
+            let entry = &self.entries[index];
+            if entry.meta.kind != Kind::Component {
+                continue;
+            }
+            let exported: std::collections::BTreeSet<&str> = entry
+                .meta
+                .exports
+                .iter()
+                .filter_map(|item| decode::interface_of(item)?.split_once('/'))
+                .map(|(package, _)| package)
+                .filter(|package| data::split_id(package).is_some_and(|(ns, _)| ns == "wasi"))
+                .collect();
+            for package in exported {
+                providers.entry(package).or_default().push(index);
+            }
+        }
+        let mut capabilities: Vec<_> = providers
+            .into_iter()
+            .filter_map(|(package, members)| {
+                let &latest = self.latest(self.packages.get(package)?)?;
+                Some((package, latest, members))
+            })
+            .collect();
+        capabilities
+            .sort_by_key(|(package, _, members)| (std::cmp::Reverse(members.len()), *package));
+        capabilities
+            .into_iter()
+            .map(|(package, latest, members)| {
+                let interface = &self.entries[latest];
+                ctx! {
+                    package,
+                    url => interface.url(),
+                    description => interface.description(),
+                    providers => members.iter().map(|i| self.card(*i)).collect::<Vec<_>>(),
+                }
+            })
+            .collect()
     }
 
     fn namespace_counts(&self) -> Vec<(String, usize)> {

@@ -1,36 +1,62 @@
 {% extends "base.html" %}
-{% from "macros.html" import card, repo_card, kind_icon %}
+{% from "macros.html" import repo_card, kind_icon %}
+{#- a release of a repository, or a dev build of its next, a line each #}
+{% macro recent_list(items) %}
+<ol class="recent">
+  {% for r in items %}<li><a href="{{ r.url }}">{{ kind_icon("repo") }}<span class="visually-hidden">repository </span><code>{{ r.key }}</code><span class="recent-version">v{{ r.version }}</span>{% if r.dev %}<span class="badge pre">dev</span>{% elif not r.stable %}<span class="badge pre">pre-release</span>{% endif %}<span class="recent-desc">{{ r.summary }}</span><time datetime="{{ r.date }}">{{ r.date }}</time></a></li>{% endfor %}
+</ol>
+{% endmacro %}
+
 {% block main %}
 <section class="hero">
-  <h1>Componentized Directory</h1>
-  <p>Wasm components and the WIT interfaces they use, as published to <code>ghcr.io/componentized</code>.</p>
-  <dl class="stats">
-    <div><dt>Repositories</dt><dd>{{ stats.repos }}</dd></div>
-    <div><dt>Packages</dt><dd>{{ stats.packages }}</dd></div>
-    <div><dt>Components</dt><dd>{{ stats.components }}</dd></div>
-    <div><dt>Interfaces</dt><dd>{{ stats.interfaces }}</dd></div>
-    <div><dt>Versions</dt><dd>{{ stats.versions }}</dd></div>
-  </dl>
-  <p class="namespaces">{% for ns, count in namespaces %}<a href="/{{ ns }}/">{{ kind_icon("namespace") }}<code>{{ ns }}</code> <span class="dim">{{ count }}</span></a>{% endfor %}</p>
+  <h1>Wasm components that compose</h1>
+  <p>Small components that gate, trace, virtualize and adapt WASI interfaces, published to <code>ghcr.io/componentized</code>, with the WIT of every interface they use.</p>
+  <form class="search hero-search" action="/all/" role="search">
+    <input type="search" name="q" placeholder="Search for a component or interface, e.g. http, readonly, valkey" aria-label="Search packages" autocomplete="off" data-search>
+  </form>
+  <p class="browse">Browse <a href="/all/?kind=component">components</a>, <a href="/all/?kind=interface">interfaces</a>, or a namespace:
+    <span class="browse-ns">{% for ns in namespaces %}<a href="/{{ ns }}/">{{ kind_icon("namespace") }}<code>{{ ns }}</code></a>{% endfor %}</span></p>
 </section>
 
+{% if capabilities %}
 <section>
-  <h2>Recent releases</h2>
-  <div class="cards">{% for c in recent %}{{ card(c) }}{% endfor %}</div>
+  <h2>Start from a common interface</h2>
+  <p class="section-lede">Each of these components exports a WASI interface, so it can stand in for the host's: compose it in front of your component to restrict, observe or reshape what it reaches.</p>
+  <div class="caps">
+    {% for cap in capabilities %}
+    <div class="cap">
+      <a class="cap-head" href="{{ cap.url }}">{{ kind_icon("interface") }}<span class="visually-hidden">interface </span><code>{{ cap.package }}</code></a>
+      {% if cap.description %}<p>{{ cap.description }}</p>{% endif %}
+      <ul class="chips" aria-label="Components that export {{ cap.package }}">
+        {% for c in cap.providers[:6] %}<li><a href="{{ c.url }}" title="{{ c.package }}{% if c.description %}: {{ c.description }}{% endif %}">{{ kind_icon(c.icon) }}<code>{{ c.name }}</code></a></li>{% endfor %}
+        {% if cap.providers|length > 6 %}<li><a class="chips-more" href="{{ cap.url }}">and {{ cap.providers|length - 6 }} more</a></li>{% endif %}
+      </ul>
+    </div>
+    {% endfor %}
+  </div>
 </section>
+{% endif %}
 
+{% if collections %}
 <section>
-  <h2>Repositories</h2>
-  <div class="cards">{% for r in repos %}{{ repo_card(r) }}{% endfor %}</div>
+  <h2>Collections</h2>
+  <p class="section-lede">Each repository releases an interface package and the components built on it, together, at one version.</p>
+  <div class="cards">{% for r in collections %}{{ repo_card(r) }}{% endfor %}</div>
 </section>
+{% endif %}
 
+{% if recent %}
 <section>
-  <h2>Interfaces <a class="more" href="/all/?kind=interface">all</a></h2>
-  <div class="cards">{% for c in interfaces %}{{ card(c) }}{% endfor %}</div>
+  <h2>Recent releases <a class="more" href="/all/">all packages</a></h2>
+  {{ recent_list(recent) }}
 </section>
+{% endif %}
 
+{% if builds %}
 <section>
-  <h2>Components <a class="more" href="/all/?kind=component">all</a></h2>
-  <div class="cards">{% for c in components %}{{ card(c) }}{% endfor %}</div>
+  <h2>Recent builds</h2>
+  <p class="section-lede">Dev builds of each repository's next version, listed until that version is released.</p>
+  {{ recent_list(builds) }}
 </section>
+{% endif %}
 {% endblock %}

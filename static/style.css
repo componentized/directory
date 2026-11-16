@@ -70,6 +70,9 @@ header.site .wrap { display: flex; align-items: center; gap: 16px; min-height: 5
 .brand .mark svg { height: 30px; width: auto; display: block; }
 header nav { display: flex; gap: 16px; margin-left: auto; }
 header nav a { color: var(--dim); }
+header nav .github { display: flex; padding: 4px; border-radius: 6px; }
+header nav .github:hover { color: var(--text); }
+header nav .github svg { width: 20px; height: 20px; display: block; }
 .search { position: relative; flex: 1 1 260px; max-width: 460px; }
 .search input, .filters input, .filters select {
   width: 100%; font: inherit; color: inherit; background: var(--bg);
@@ -103,15 +106,42 @@ footer.site .footer-legal { grid-column: 1 / -1; max-width: none; margin: 8px 0 
   footer.site .footer-about { grid-column: 1 / -1; }
 }
 
-.hero { padding: 24px 0 8px; }
-.hero h1 { font-size: 2rem; margin-bottom: 0.2em; }
-.hero p { color: var(--dim); max-width: 60ch; }
-.stats { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0; }
-.stats div { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 16px; min-width: 120px; }
-.stats dt { color: var(--dim); font-size: 0.8rem; }
-.stats dd { margin: 0; font-size: 1.5rem; font-weight: 650; font-variant-numeric: tabular-nums; }
-.namespaces { display: flex; gap: 10px; flex-wrap: wrap; }
-.namespaces a { border: 1px solid var(--line); border-radius: 999px; padding: 2px 12px; background: var(--panel); }
+.hero { padding: 40px 0 16px; }
+.hero h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); letter-spacing: -0.02em; margin-bottom: 0.25em; }
+.hero p { color: var(--dim); max-width: 80ch; font-size: 1.05rem; }
+/* the home page's own search, larger than the header's, its matches dropping under it */
+.hero-search { max-width: 640px; margin: 24px 0 12px; }
+.hero-search input { font-size: 1.05rem; padding: 11px 14px; border-radius: 10px; background: var(--panel); }
+.hero .browse { font-size: 0.9rem; }
+/* a namespace's link keeps its icon with its name, a line wrapping between namespaces */
+.hero .browse-ns a { white-space: nowrap; }
+.hero .browse-ns a + a { margin-left: 10px; }
+.hero .browse a .kind-icon, .chips .kind-icon { width: 14px; height: 14px; margin-right: 4px; vertical-align: -2px; }
+.section-lede { color: var(--dim); max-width: 70ch; margin-top: -0.4em; }
+
+/* a WASI package, and the components that stand in for it */
+.caps { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px; }
+.cap { display: flex; flex-direction: column; gap: 8px; padding: 14px 16px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; min-width: 0; }
+.cap-head { font-weight: 600; font-size: 1.05rem; color: var(--text); }
+.cap-head .kind-icon { width: 16px; height: 16px; margin-right: 6px; vertical-align: -2px; }
+.cap > p { margin: 0; color: var(--dim); font-size: 0.9rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: auto 0 0; padding: 4px 0 0; list-style: none; }
+.chips a { display: inline-block; font-size: 0.85rem; padding: 2px 9px; border: 1px solid var(--line); border-radius: 999px; background: var(--bg); color: var(--text); }
+.chips a:hover { border-color: var(--accent); text-decoration: none; }
+.chips .chips-more { color: var(--dim); border-style: dashed; }
+
+/* the latest releases, a line each */
+.recent { list-style: none; margin: 0; padding: 0; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+.recent li + li { border-top: 1px solid var(--line); }
+.recent a { display: flex; align-items: baseline; gap: 10px; padding: 9px 14px; color: var(--text); min-width: 0; }
+.recent a:hover { background: var(--accent-soft); text-decoration: none; }
+.recent li:first-child a { border-radius: 10px 10px 0 0; }
+.recent li:last-child a { border-radius: 0 0 10px 10px; }
+.recent .kind-icon { flex: none; width: 14px; height: 14px; align-self: center; }
+.recent code { font-weight: 600; flex: none; }
+.recent-version, .recent time { color: var(--dim); font-size: 0.85rem; font-variant-numeric: tabular-nums; flex: none; }
+.recent-desc { color: var(--dim); font-size: 0.85rem; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+@media (max-width: 640px) { .recent-desc { display: none; } .recent time { margin-left: auto; } }
 .more { font-size: 0.8rem; font-weight: 400; margin-left: 8px; }
 
 .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
@@ -614,7 +644,6 @@ main.wrap.has-toc { max-width: 1440px; display: grid; grid-template-columns: 220
 .kind-icon.kind-component { color: var(--component); }
 .kind-icon.kind-repo { color: var(--accent); }
 .kind-icon.kind-namespace { color: var(--n); }
-.namespaces a .kind-icon { width: 14px; height: 14px; margin-right: 4px; vertical-align: -2px; }
 .card-head > .kind-icon {
   flex: none; width: 15px; height: 15px; margin-right: 0;
   /* centered on the name's first line */

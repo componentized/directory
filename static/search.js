@@ -1,7 +1,8 @@
 // Search: a dropdown of matches in the header, and the filters of the all packages page.
 (() => {
   const params = new URLSearchParams(location.search);
-  const input = document.querySelector("[data-search]");
+  // the header's, and the home page's own
+  const inputs = [...document.querySelectorAll("[data-search]")];
   let index;
   const load = () => (index ??= fetch("/search.json").then((r) => r.json()));
 
@@ -12,7 +13,7 @@
     return terms.reduce((s, t) => s + (id === t ? 8 : id.includes(t) ? 4 : 1), 0);
   };
 
-  if (input) {
+  for (const input of inputs) {
     const list = document.createElement("ul");
     list.className = "suggest";
     list.hidden = true;
@@ -73,13 +74,14 @@
       if (e.key === "ArrowUp") (e.preventDefault(), (i <= 0 ? input : links[i - 1]).focus());
       if (e.key === "Escape") (list.hidden = true, input.focus());
     });
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "/" && !/^(INPUT|SELECT|TEXTAREA)$/.test(document.activeElement?.tagName)) {
-        e.preventDefault();
-        input.focus();
-      }
-    });
   }
+  // `/` focuses the page's own search, else the header's
+  document.addEventListener("keydown", (e) => {
+    if (inputs.length && e.key === "/" && !/^(INPUT|SELECT|TEXTAREA)$/.test(document.activeElement?.tagName)) {
+      e.preventDefault();
+      inputs.at(-1).focus();
+    }
+  });
 
   const filters = document.querySelector("[data-filters]");
   if (filters) {
