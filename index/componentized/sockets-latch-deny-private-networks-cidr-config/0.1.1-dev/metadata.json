@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-deny-private-networks-cidr-config",
     "tag": "0.1.1-dev",
-    "digest": "sha256:138aab1f1ab331afc4050ac1400c4d28660cdc1e0a96c9d011b6c3f688eb14c8",
+    "digest": "sha256:2ca98e41a859d0158e9eaa7208ea3d8b0abeff350644790185177fd5d92b7c16",
     "layer_digest": "sha256:f4d2542be6d7b3cfca32c16eeef276ebc358510c9390d24d5b093b9eb4d03351",
     "size": 7437,
     "signature": {
@@ -16,7 +16,7 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 3853264918
+      "log_index": 3930037090
     }
   },
   "debug": {
@@ -35,15 +35,15 @@
       "log_index": 3321102190
     }
   },
-  "created": "2026-11-13T11:59:31.712397912Z",
+  "created": "2026-11-16T16:34:56.334543770Z",
   "annotations": {
     "org.opencontainers.image.description": "Static config for `latch-cidr-egress` that denies originating outbound traffic to addresses that are not globally reachable, like private networks, loopback, link local and cloud metadata endpoints.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "5448e5aa36904b8f6e87387eafd2e1ef1d4ae239",
+    "org.opencontainers.image.revision": "6b34f1c1d9d6ad733d05e15983c4366d5e705287",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-latch-deny-private-networks-cidr-config",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/5448e5aa36904b8f6e87387eafd2e1ef1d4ae239/components/latch-deny-private-networks-cidr-config",
-    "org.opencontainers.image.version": "0.1.1-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/6b34f1c1d9d6ad733d05e15983c4366d5e705287/components/latch-deny-private-networks-cidr-config",
+    "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "exports": [
     "wasi:config/store@0.2.0-rc.1"
@@ -90,5 +90,5 @@
       }
     ]
   },
-  "indexed_at": "2026-11-13T12:55:25Z"
+  "indexed_at": "2026-11-16T16:41:52Z"
 }

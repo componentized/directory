@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-deny-ip-name-lookup-config",
     "tag": "0.1.1-dev",
-    "digest": "sha256:1ad203f00fce48cabac54056bd1e319a2d5cd87f0365655218c117b408e7e339",
+    "digest": "sha256:40ffcf07fdec0ce14b3aa9cc79ff2609636e4cae8ee22340b80ea094c3f73b4d",
     "layer_digest": "sha256:cf314ee84acf8a29df9860849680e39b0a644e762904a20334b7bf4adebdad99",
     "size": 6188,
     "signature": {
@@ -16,7 +16,7 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 3853257879
+      "log_index": 3930024729
     }
   },
   "debug": {
@@ -35,15 +35,15 @@
       "log_index": 3321088415
     }
   },
-  "created": "2026-11-13T11:58:47.956867263Z",
+  "created": "2026-11-16T16:34:04.884030351Z",
   "annotations": {
     "org.opencontainers.image.description": "Internal config for latch-deny-ip-name-lookup.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "5448e5aa36904b8f6e87387eafd2e1ef1d4ae239",
+    "org.opencontainers.image.revision": "6b34f1c1d9d6ad733d05e15983c4366d5e705287",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-latch-deny-ip-name-lookup-config",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/5448e5aa36904b8f6e87387eafd2e1ef1d4ae239/components/latch-deny-ip-name-lookup-config",
-    "org.opencontainers.image.version": "0.1.1-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/6b34f1c1d9d6ad733d05e15983c4366d5e705287/components/latch-deny-ip-name-lookup-config",
+    "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "exports": [
     "wasi:config/store@0.2.0-rc.1"
@@ -90,5 +90,5 @@
       }
     ]
   },
-  "indexed_at": "2026-11-13T12:55:23Z"
+  "indexed_at": "2026-11-16T16:41:44Z"
 }
