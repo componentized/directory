@@ -473,6 +473,8 @@ world service {
   import client;
   import wasi:clocks/monotonic-clock@0.3.0;
   import wasi:clocks/system-clock@0.3.0;
+  @unstable(feature = clocks-timezone)
+  import wasi:clocks/timezone@0.3.0;
   import wasi:random/random@0.3.0;
   import wasi:random/insecure@0.3.0;
   import wasi:random/insecure-seed@0.3.0;
@@ -497,6 +499,8 @@ world middleware {
   import client;
   import wasi:clocks/monotonic-clock@0.3.0;
   import wasi:clocks/system-clock@0.3.0;
+  @unstable(feature = clocks-timezone)
+  import wasi:clocks/timezone@0.3.0;
   import wasi:random/random@0.3.0;
   import wasi:random/insecure@0.3.0;
   import wasi:random/insecure-seed@0.3.0;

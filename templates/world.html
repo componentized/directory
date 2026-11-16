@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% from "macros.html" import header, world_items, grouped, kind_icon %}
+{% block description %}{{ iface.id }}{% endblock %}
+{% set toc = true %}
+{% block toc %}
+<ol>
+  {% if iface.docs %}<li><a href="#overview">Overview</a></li>{% endif %}
+  <li><a href="#imports">Imports</a></li>
+  <li><a href="#exports">Exports</a></li>
+  <li><a href="#wit">WIT</a></li>
+  <li class="toc-aside"><a href="#package">Package</a></li>
+  <li class="toc-aside"><a href="#implemented-by">Implemented by</a></li>
+  <li class="toc-aside"><a href="#includes">Includes</a></li>
+  <li class="toc-aside"><a href="#included-by">Included by</a></li>
+</ol>
+{% endblock %}
+{% block main %}
+{{ header(pkg, iface) }}
+<div class="layout">
+  <div class="content">
+    {% if iface.docs %}<section class="docs" id="overview">{{ iface.docs|safe }}</section>{% endif %}
+
+    {#- side by side, as a component's, one above the other on a narrow screen #}
+    <section class="two" id="imports">
+      <div><h2>Imports</h2>{{ world_items(iface.imports, "This world imports nothing.", 3) }}</div>
+      <div><h2 id="exports">Exports</h2>{{ world_items(iface.exports, "This world exports nothing.", 3) }}</div>
+    </section>
+
+    <section id="wit">
+      <h2>WIT</h2>
+      <pre class="wit" data-copy data-copy-label="Copy the WIT"><code>{{ iface.wit|safe }}</code></pre>
+    </section>
+  </div>
+  <aside>
+    <section id="package">
+      <h3>Package</h3>
+      <p><a href="{{ pkg.url }}" data-tip><code>{{ pkg.id }}</code></a></p>
+    </section>
+    {#- the components that import nothing it doesn't, and export everything it does #}
+    <section id="implemented-by">
+      <h3>Implemented by</h3>
+      {{ grouped(implemented_by, "None" if iface.exports else "Nothing: it exports nothing, to be included in other worlds") }}
+    </section>
+    {#- by the items they import and export, interfaces by their ids, and inline interfaces,
+        functions and types by their names and structures: those it includes are a subset of its
+        own, those that include it a superset #}
+    <section id="includes">
+      <h3>Includes</h3>
+      {{ grouped(includes) }}
+    </section>
+    <section id="included-by">
+      <h3>Included by</h3>
+      {{ grouped(included_by) }}
+    </section>
+  </aside>
+</div>
+{% endblock %}

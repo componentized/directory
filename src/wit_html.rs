@@ -28,6 +28,19 @@ pub struct Html {
     path: Option<(usize, String)>,
     /// The url of the interface of the `use` being printed, which the types it uses link into.
     use_url: Option<String>,
+    /// For a whole package, the links of each of its worlds, by the world's name, which replace
+    /// `links` as the printer reaches each world: the url of each type it defines or uses.
+    world_links: HashMap<String, HashMap<String, String>>,
+    /// Each world printed, by its name, with its HTML from its docs to its closing brace, so a
+    /// world's page can show it alone.
+    worlds: Vec<(String, String)>,
+    /// The world being printed: its name, where its HTML starts, and the indent of its braces.
+    world: Option<(String, usize, usize)>,
+    /// Where the docs of the item about to be declared start, e.g. a world's.
+    item_start: Option<usize>,
+    /// Where the line being printed starts, and whether it's a line of docs.
+    line_start: usize,
+    doc_line: bool,
 }
 
 impl Html {
@@ -120,6 +133,15 @@ impl Output for Html {
         self.indent_if_needed();
         self.output.push('}');
         self.newline();
+        // the end of a world's braces ends the world
+        if let Some((name, start, indent)) = self.world.take() {
+            if indent == self.indent {
+                let html = self.output[start..].to_string();
+                self.worlds.push((name, html));
+            } else {
+                self.world = Some((name, start, indent));
+            }
+        }
     }
 
     fn newline(&mut self) {
@@ -127,6 +149,12 @@ impl Output for Html {
         self.use_url = None;
         self.output.push('\n');
         self.needs_indent = true;
+        // the docs of the next item are the lines of docs right before it
+        if !self.doc_line {
+            self.item_start = None;
+        }
+        self.doc_line = false;
+        self.line_start = self.output.len();
     }
 
     fn keyword(&mut self, src: &str) {
@@ -197,7 +225,12 @@ impl Output for Html {
                 }
                 self.links.clear();
             }
-            TypeKind::WorldDeclaration => self.links.clear(),
+            TypeKind::WorldDeclaration => {
+                let name = src.trim_start_matches('%');
+                self.links = self.world_links.get(name).cloned().unwrap_or_default();
+                let start = self.item_start.take().unwrap_or(self.line_start);
+                self.world = Some((name.to_string(), start, self.indent));
+            }
             // a single interface keeps the links it was given
             TypeKind::InterfaceDeclaration if !self.scopes.is_empty() || self.packages > 0 => {
                 if let Some((url, links)) = self.scopes.get(src.trim_start_matches('%')).cloned() {
@@ -247,6 +280,10 @@ impl Output for Html {
 
     fn doc(&mut self, doc: &str) {
         self.finish_path();
+        if self.item_start.is_none() {
+            self.item_start = Some(self.line_start);
+        }
+        self.doc_line = true;
         self.indent_if_needed();
         let doc = if doc.is_empty() {
             "///".to_string()
@@ -285,6 +322,33 @@ pub fn package_linked(
     printer.print(resolve, pkg, &nested)?;
     printer.output.finish_path();
     Ok(printer.output.output)
+}
+
+/// A world of a package, `world name { ... }` with its docs, as [`package_linked`] prints it, each
+/// type it defines or uses linked to the url in `links`. `None` for a world the package doesn't
+/// have.
+pub fn world(
+    resolve: &Resolve,
+    pkg: PackageId,
+    name: &str,
+    links: HashMap<String, String>,
+    scopes: HashMap<String, (String, HashMap<String, String>)>,
+    interfaces: HashMap<String, String>,
+) -> Result<Option<String>> {
+    let mut printer = WitPrinter::new(Html {
+        scopes,
+        interfaces,
+        world_links: HashMap::from([(name.to_string(), links)]),
+        ..Html::default()
+    });
+    printer.print(resolve, pkg, &[])?;
+    printer.output.finish_path();
+    Ok(printer
+        .output
+        .worlds
+        .into_iter()
+        .find(|(world, _)| world == name)
+        .map(|(_, html)| html))
 }
 
 /// A single interface, `interface name { ... }`, with each type it names linked to the url

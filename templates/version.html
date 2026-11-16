@@ -36,6 +36,7 @@
   {% if debug %}<li class="toc-aside"><a href="#debug">Debug</a></li>{% endif %}
   {% if pkg.released_with %}<li class="toc-aside"><a href="#released-with">Released with</a></li>{% endif %}
   {% if used_in %}<li class="toc-aside"><a href="#composed-by">Composed by</a></li>{% endif %}
+  {% if pkg.kind == "component" %}<li class="toc-aside"><a href="#compatible-worlds">Compatible worlds</a></li>{% endif %}
   {%- if pkg.kind == "interface" %}
   <li class="toc-aside"><a href="#dependencies">Dependencies</a></li>
   <li class="toc-aside"><a href="#dependents">Dependents</a></li>
@@ -66,19 +67,12 @@
     </section>
     {% endif %}
 
-    {% if pkg.kind == "interface" and worlds %}
+    {% if worlds %}
     <section id="worlds">
       <h2>Worlds</h2>
-      {% for w in worlds %}
-      <div class="world" id="world-{{ w.name }}">
-        <h3>{{ kind_icon("world") }}<code>{{ w.name }}</code></h3>
-        {% if w.docs %}<div class="docs">{{ w.docs|safe }}</div>{% endif %}
-        <div class="two">
-          <div><h4>Imports</h4>{{ world_items(w.imports) }}</div>
-          <div><h4>Exports</h4>{{ world_items(w.exports) }}</div>
-        </div>
-      </div>
-      {% endfor %}
+      <ul class="items">
+        {% for w in worlds %}<li id="world-{{ w.name }}">{{ kind_icon("world") }}<a href="{{ w.url }}"><code>{{ w.name }}</code></a> {{ stability(w.stability) }}{% if w.summary %}<span class="dim"> — {{ w.summary }}</span>{% endif %}</li>{% endfor %}
+      </ul>
     </section>
     {% endif %}
 
@@ -191,6 +185,13 @@
     <section id="composed-by">
       <h3>Composed by</h3>
       {{ grouped(used_in) }}
+    </section>
+    {% endif %}
+    {% if pkg.kind == "component" %}
+    {#- the worlds it implements: it imports nothing a world doesn't, and exports everything it does #}
+    <section id="compatible-worlds">
+      <h3>Compatible worlds</h3>
+      {{ grouped(compatible_worlds) }}
     </section>
     {% endif %}
     {#- a package's dependencies and dependents are WIT packages: a component's imports and exports

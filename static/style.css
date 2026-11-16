@@ -158,7 +158,8 @@ footer.site .footer-legal { grid-column: 1 / -1; max-width: none; margin: 8px 0 
 .card .meta { display: flex; align-items: baseline; gap: 12px; color: var(--dim); font-size: 0.8rem; font-variant-numeric: tabular-nums; }
 
 .badge { font-size: 0.7rem; font-weight: 600; padding: 1px 7px; border-radius: 999px; text-transform: lowercase; white-space: nowrap; }
-.badge.pre { color: var(--dim); border: 1px solid var(--line); }
+/* a pre-release, in the color of a caution, as the compare view counts them */
+.badge.pre { color: var(--interface); background: var(--interface-soft); border: 1px solid transparent; }
 
 .filters { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 16px; }
 .filters input { flex: 1 1 220px; width: auto; }
@@ -175,6 +176,13 @@ footer.site .footer-legal { grid-column: 1 / -1; max-width: none; margin: 8px 0 
 .crumbs { font-family: var(--mono); font-size: 0.85rem; color: var(--dim); }
 .title-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .title-row h1 { margin: 0.3em 0; overflow-wrap: anywhere; }
+/* a page's title copies its id, e.g. `wasi:cli/command@0.2.6`, with a button at the end of its
+   row, after its gates and badges, that shows while the row's hovered, or the button's focused
+   or has just copied; always on a screen without hover */
+.title-row > .copy { opacity: 0; transition: opacity 0.15s; }
+.title-row:hover > .copy, .title-row > .copy:focus-visible, .title-row > .copy.copied { opacity: 1; }
+@media (hover: none) { .title-row > .copy { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .title-row > .copy { transition: none; } }
 
 /* a breadcrumb that switches to another namespace, package, version or interface */
 .crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; }

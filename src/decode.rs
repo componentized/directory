@@ -88,6 +88,240 @@ pub fn gated_world_items<'a>(
         .collect()
 }
 
+/// The shape of each item a world imports or exports, to tell whether one world's items are among
+/// another's: an interface by its id, e.g. `wasi:io/streams@0.2.6`, or by the name it's under and
+/// its id, e.g. `latch0: componentized:http/latch@0.1.0`; an interface defined inline, a function
+/// or a type, by its name and its structure, e.g. `log: func(message: string)`. Items of two worlds
+/// are alike only when their shapes are identical.
+pub fn world_shapes(resolve: &Resolve, items: &IndexMap<WorldKey, WorldItem>) -> Vec<String> {
+    items
+        .iter()
+        .map(|(key, item)| world_item_shape(resolve, key, item))
+        .collect()
+}
+
+fn world_item_shape(resolve: &Resolve, key: &WorldKey, item: &WorldItem) -> String {
+    match (key, item) {
+        (WorldKey::Interface(_), _) => resolve.name_world_key(key),
+        (WorldKey::Name(name), WorldItem::Interface { id, .. }) => match resolve.id_of(*id) {
+            Some(aliased) => format!("{name}: {aliased}"),
+            None => format!(
+                "{name}: interface {{ {} }}",
+                interface_members(resolve, *id).join("; ")
+            ),
+        },
+        (WorldKey::Name(_), WorldItem::Function(func)) => func_shape(resolve, func),
+        (WorldKey::Name(name), WorldItem::Type { id, .. }) => type_def_shape(resolve, name, *id),
+    }
+}
+
+/// Each item a world imports or exports with anything to call, by its key, with the shapes of
+/// what's in it, for a component's compatibility with a world to compare item by item: an
+/// interface by its id, e.g. `wasi:cli/run@0.2.6`, or by its name, e.g. `latch0:
+/// componentized:http/latch@0.1.0` or `inline: interface`, with each of its types and functions,
+/// and a function or a type, e.g. `log: func`, with its own shape. An interface of types alone,
+/// with no functions, nor any of a resource, has nothing to call, and is left out.
+pub fn world_members(
+    resolve: &Resolve,
+    items: &IndexMap<WorldKey, WorldItem>,
+) -> Vec<(String, Vec<String>)> {
+    items
+        .iter()
+        .filter_map(|(key, item)| match (key, item) {
+            (_, WorldItem::Interface { id, .. })
+                if resolve.interfaces[*id].functions.is_empty() =>
+            {
+                None
+            }
+            (WorldKey::Interface(_), WorldItem::Interface { id, .. }) => {
+                Some((resolve.name_world_key(key), interface_members(resolve, *id)))
+            }
+            (WorldKey::Name(name), WorldItem::Interface { id, .. }) => Some((
+                match resolve.id_of(*id) {
+                    Some(aliased) => format!("{name}: {aliased}"),
+                    None => format!("{name}: interface"),
+                },
+                interface_members(resolve, *id),
+            )),
+            (_, WorldItem::Function(func)) => Some((
+                format!("{}: func", func.name),
+                vec![func_shape(resolve, func)],
+            )),
+            (WorldKey::Name(name), WorldItem::Type { id, .. }) => Some((
+                format!("{name}: type"),
+                vec![type_def_shape(resolve, name, *id)],
+            )),
+            (WorldKey::Interface(_), _) => None,
+        })
+        .collect()
+}
+
+/// The shapes of an interface's types and functions, a resource's among them, sorted.
+fn interface_members(resolve: &Resolve, id: wit_parser::InterfaceId) -> Vec<String> {
+    let iface = &resolve.interfaces[id];
+    let mut members: Vec<String> = iface
+        .types
+        .iter()
+        .map(|(t, ty)| type_def_shape(resolve, t, *ty))
+        .chain(iface.functions.values().map(|f| func_shape(resolve, f)))
+        .collect();
+    members.sort();
+    members
+}
+
+/// A function's shape: its name, which for a resource's names the resource, e.g.
+/// `[method]session.end`, its modifiers, and the shapes of its params and result.
+fn func_shape(resolve: &Resolve, func: &wit_parser::Function) -> String {
+    let params: Vec<String> = func
+        .params
+        .iter()
+        .map(|p| format!("{}: {}", p.name, type_shape(resolve, &p.ty)))
+        .collect();
+    let modifiers: String = crate::wit_html::modifiers(&func.kind)
+        .iter()
+        .map(|m| format!("{m} "))
+        .collect();
+    let result = func
+        .result
+        .as_ref()
+        .map(|ty| format!(" -> {}", type_shape(resolve, ty)))
+        .unwrap_or_default();
+    format!(
+        "{}: {modifiers}func({}){result}",
+        func.name,
+        params.join(", ")
+    )
+}
+
+/// A named type's shape where it's defined, a world or an inline interface: its name and the
+/// structure it names, e.g. `type compass = wasi:x/shapes@0.1.0#direction`.
+fn type_def_shape(resolve: &Resolve, name: &str, id: wit_parser::TypeId) -> String {
+    match &resolve.types[id].kind {
+        // a resource is its name, its functions the scope's
+        wit_parser::TypeDefKind::Resource => format!("resource {name}"),
+        kind => format!("type {name} = {}", kind_shape(resolve, kind)),
+    }
+}
+
+/// A type's shape: a type an interface with an id defines is that interface's, e.g.
+/// `wasi:io/streams@0.2.6#input-stream`, wherever it's used from; a resource of a world or an
+/// inline interface is its name; anything else is its structure.
+fn type_shape(resolve: &Resolve, ty: &wit_parser::Type) -> String {
+    use wit_parser::Type;
+    let id = match ty {
+        Type::Id(id) => *id,
+        Type::Bool => return "bool".into(),
+        Type::U8 => return "u8".into(),
+        Type::U16 => return "u16".into(),
+        Type::U32 => return "u32".into(),
+        Type::U64 => return "u64".into(),
+        Type::S8 => return "s8".into(),
+        Type::S16 => return "s16".into(),
+        Type::S32 => return "s32".into(),
+        Type::S64 => return "s64".into(),
+        Type::F32 => return "f32".into(),
+        Type::F64 => return "f64".into(),
+        Type::Char => return "char".into(),
+        Type::String => return "string".into(),
+        Type::ErrorContext => return "error-context".into(),
+    };
+    // through aliases and uses, to the type they name
+    let id = origin(resolve, id);
+    let def = &resolve.types[id];
+    if let Some(name) = &def.name {
+        if let wit_parser::TypeOwner::Interface(owner) = def.owner
+            && let Some(owner) = resolve.id_of(owner)
+        {
+            return format!("{owner}#{name}");
+        }
+        if matches!(def.kind, wit_parser::TypeDefKind::Resource) {
+            return format!("resource {name}");
+        }
+    }
+    kind_shape(resolve, &def.kind)
+}
+
+fn kind_shape(resolve: &Resolve, kind: &wit_parser::TypeDefKind) -> String {
+    use wit_parser::{Handle, TypeDefKind};
+    let ty = |ty: &wit_parser::Type| type_shape(resolve, ty);
+    let opt = |ty: &Option<wit_parser::Type>| {
+        ty.as_ref()
+            .map(|t| type_shape(resolve, t))
+            .unwrap_or_else(|| "_".into())
+    };
+    match kind {
+        TypeDefKind::Record(r) => format!(
+            "record {{ {} }}",
+            r.fields
+                .iter()
+                .map(|f| format!("{}: {}", f.name, ty(&f.ty)))
+                .collect::<Vec<_>>()
+                .join(", ")
+        ),
+        TypeDefKind::Resource => "resource".into(),
+        TypeDefKind::Handle(Handle::Own(id)) => format!("own<{}>", ty(&wit_parser::Type::Id(*id))),
+        TypeDefKind::Handle(Handle::Borrow(id)) => {
+            format!("borrow<{}>", ty(&wit_parser::Type::Id(*id)))
+        }
+        TypeDefKind::Flags(f) => format!(
+            "flags {{ {} }}",
+            f.flags
+                .iter()
+                .map(|f| f.name.as_str())
+                .collect::<Vec<_>>()
+                .join(", ")
+        ),
+        TypeDefKind::Tuple(t) => format!(
+            "tuple<{}>",
+            t.types.iter().map(ty).collect::<Vec<_>>().join(", ")
+        ),
+        TypeDefKind::Variant(v) => format!(
+            "variant {{ {} }}",
+            v.cases
+                .iter()
+                .map(|c| match &c.ty {
+                    Some(t) => format!("{}({})", c.name, ty(t)),
+                    None => c.name.clone(),
+                })
+                .collect::<Vec<_>>()
+                .join(", ")
+        ),
+        TypeDefKind::Enum(e) => format!(
+            "enum {{ {} }}",
+            e.cases
+                .iter()
+                .map(|c| c.name.as_str())
+                .collect::<Vec<_>>()
+                .join(", ")
+        ),
+        TypeDefKind::Option(t) => format!("option<{}>", ty(t)),
+        TypeDefKind::Result(r) => format!("result<{}, {}>", opt(&r.ok), opt(&r.err)),
+        TypeDefKind::List(t) => format!("list<{}>", ty(t)),
+        TypeDefKind::Map(k, v) => format!("map<{}, {}>", ty(k), ty(v)),
+        TypeDefKind::FixedLengthList(t, n) => format!("list<{}, {n}>", ty(t)),
+        TypeDefKind::Future(t) => format!("future<{}>", opt(t)),
+        TypeDefKind::Stream(t) => format!("stream<{}>", opt(t)),
+        TypeDefKind::Type(t) => ty(t),
+        TypeDefKind::Unknown => "unknown".into(),
+    }
+}
+
+/// The type an alias or a use names, through any others, e.g. the `point` of `wasi:x/shapes` for
+/// `use shapes.{point}`.
+fn origin(resolve: &Resolve, mut id: wit_parser::TypeId) -> wit_parser::TypeId {
+    for _ in 0..64 {
+        match resolve.types[id].kind {
+            wit_parser::TypeDefKind::Type(wit_parser::Type::Id(next))
+                if resolve.types[next].name.is_some() =>
+            {
+                id = next
+            }
+            _ => break,
+        }
+    }
+    id
+}
+
 /// The interface an item from [`world_items`] imports or exports, e.g.
 /// `componentized:http/latch@0.1.0` for `latch0: componentized:http/latch@0.1.0`. `None` for an
 /// inline interface or a function.
@@ -358,6 +592,65 @@ pub fn wiring(wasm: &[u8]) -> Result<crate::data::Wiring> {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn shapes_world_items_by_their_structure() {
+        let mut resolve = Resolve::default();
+        let pkg = resolve
+            .push_str(
+                "shapes.wit",
+                "package example:shapes@0.1.0;\n\ninterface types {\n  record point { x: f64 }\n}\n\nworld all {\n  import types;\n  import named: types;\n  import inline: interface {\n    use types.{point};\n    f: func(at: point) -> u32;\n  }\n  import log: func(message: string);\n  record pair { a: u8, b: u8 }\n  resource session {\n    end: func();\n  }\n  export run: func(s: borrow<session>) -> result<_, string>;\n}\n\nworld same {\n  import inline: interface {\n    use types.{point};\n    f: func(at: point) -> u32;\n  }\n  import log: func(message: string);\n  record pair { a: u8, b: u8 }\n}\n\nworld renamed {\n  import log: func(msg: string);\n}\n\nworld retyped {\n  import inline: interface {\n    f: func(at: u32) -> u32;\n  }\n  record pair { a: u8, b: u16 }\n}\n",
+            )
+            .unwrap();
+        let shapes = |name: &str| {
+            let world = &resolve.worlds[resolve.packages[pkg].worlds[name]];
+            let imports: std::collections::BTreeSet<_> =
+                world_shapes(&resolve, &world.imports).into_iter().collect();
+            let exports: std::collections::BTreeSet<_> =
+                world_shapes(&resolve, &world.exports).into_iter().collect();
+            (imports, exports)
+        };
+        let (all, all_exports) = shapes("all");
+        // an interface by its id, or by its name and its id, apart
+        assert!(all.contains("example:shapes/types@0.1.0"));
+        assert!(all.contains("named: example:shapes/types@0.1.0"));
+        // a type an interface defines is that interface's, wherever it's used from, an inline
+        // interface's members sorted, the types it uses among them
+        assert!(all.contains(
+            "inline: interface { f: func(at: example:shapes/types@0.1.0#point) -> u32; type point = example:shapes/types@0.1.0#point }"
+        ));
+        assert!(all.contains("type pair = record { a: u8, b: u8 }"));
+        // a world's resource by its name, its functions the world's
+        assert!(all.contains("resource session"));
+        assert!(all.contains("[method]session.end: func(self: borrow<resource session>)"));
+        assert!(
+            all_exports.contains("run: func(s: borrow<resource session>) -> result<_, string>")
+        );
+        // an interface of types alone has nothing to call, and is left out of the members; the
+        // other items are in, each with what's in it
+        let world = &resolve.worlds[resolve.packages[pkg].worlds["all"]];
+        let members: std::collections::BTreeMap<_, _> = world_members(&resolve, &world.imports)
+            .into_iter()
+            .collect();
+        assert_eq!(
+            members.keys().collect::<Vec<_>>(),
+            [
+                "[method]session.end: func",
+                "inline: interface",
+                "log: func",
+                "pair: type",
+                "session: type"
+            ]
+        );
+        assert_eq!(members["log: func"], ["log: func(message: string)"]);
+        // items structurally identical are alike, whichever world defines them
+        assert!(shapes("same").0.is_subset(&all));
+        // a param renamed, or a type changed, isn't
+        assert!(!shapes("renamed").0.is_subset(&all));
+        for shape in shapes("retyped").0 {
+            assert!(!all.contains(&shape), "{shape}");
+        }
+    }
 
     #[test]
     fn reads_the_parts_of_a_composed_component() {

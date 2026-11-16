@@ -223,16 +223,19 @@
     interface's id holds the package's name and version #}
 {% macro header(pkg, iface=none) %}
 <div class="page-head" data-page-head>
-<nav class="crumbs" aria-label="Breadcrumbs">{{ pivot(pkg.namespace, pkg.namespaces, "namespace") }} : {{ pivot(pkg.name, pkg.packages, "package") }} @ {{ version_pivot(pkg.version, iface.version_lines if iface else pkg.version_lines, "crumb") }}{% if iface %} / {{ pivot(iface.name, iface.siblings, "interface") }}{% endif %}</nav>
+<nav class="crumbs" aria-label="Breadcrumbs">{{ pivot(pkg.namespace, pkg.namespaces, "namespace") }} : {{ pivot(pkg.name, pkg.packages, "package") }} @ {{ version_pivot(pkg.version, iface.version_lines if iface else pkg.version_lines, "crumb") }}{% if iface %} / {{ pivot(iface.name, iface.siblings, iface.pivot or "interface") }}{% endif %}</nav>
 <div class="title-row">
   {% if iface %}
   {#- its kind by its icon, and said #}
-  <h1>{{ kind_icon("interface") }}<span class="visually-hidden">interface </span><code>{{ iface.id }}</code></h1>
+  {%- set kind = iface.kind or "interface" %}
+  <h1>{{ kind_icon(kind) }}<span class="visually-hidden">{{ kind }} </span><code data-copy data-copy-at=".title-row" data-copy-label="Copy the {{ kind }}'s id">{{ iface.id }}</code></h1>
   {{ stability(iface.stability) }}
   {% else %}
-  <h1>{{ kind_icon(pkg.icon) }}<span class="visually-hidden">{{ pkg.icon }} </span><code>{{ pkg.package }}</code></h1>
+  {#- the version on view, as an interface's or a world's id names it #}
+  <h1>{{ kind_icon(pkg.icon) }}<span class="visually-hidden">{{ pkg.icon }} </span><code data-copy data-copy-at=".title-row" data-copy-label="Copy the package's id">{{ pkg.package }}@{{ pkg.version }}</code></h1>
   {% endif %}
-  {% if pkg.dev %}<span class="badge pre" title="A development build of the upcoming release">dev</span>{% elif not pkg.stable %}<span class="badge pre">pre-release</span>{% endif %}
+  {#- any version with a pre-release component, a dev build among them #}
+  {% if pkg.prerelease %}<span class="badge pre"{% if pkg.dev %} title="A development build of the upcoming release"{% endif %}>pre-release</span>{% endif %}
 </div>
 </div>
 {% if pkg.superseded_by %}<p class="notice">This development build was superseded by the release of <a href="{{ pkg.superseded_by.url }}">{{ pkg.superseded_by.version }}</a>.</p>{% endif %}
