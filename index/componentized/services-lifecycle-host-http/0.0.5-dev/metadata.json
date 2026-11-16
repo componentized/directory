@@ -7,42 +7,42 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/lifecycle-host-http",
     "tag": "0.0.5-dev",
-    "digest": "sha256:f361b94405ffe3fd41776163c8a57d9fe59603c3ee9fb9a6e36a6815fae7e799",
-    "layer_digest": "sha256:61749fdffc06e72b2039348fbdaf488f3894f3969d3e9239e2e81d83e50c9407",
-    "size": 92167,
+    "digest": "sha256:0efee6a64e0e795f88d44388762483de4acbc71ae1dbef34a1e36b7f9d09fc70",
+    "layer_digest": "sha256:292ed07959ba2d7043f1a6570565675cc1969c4881bda79e413b376fcdf7a753",
+    "size": 92450,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 3889395674
+      "log_index": 3931641632
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/services/lifecycle-host-http",
     "tag": "0.0.5-dev_debug",
-    "digest": "sha256:e10395746a42857d861aff9d435ca918a7cbad014017e2059423d40c80083755",
-    "layer_digest": "sha256:179d04e531bc9fd7cbc39c0111c8e0abe17e65c2197708f268778a38518b526f",
-    "size": 226645,
+    "digest": "sha256:4c1ad4770f9e5a1a6000d2414a838fd56787cf78125546a297a33f04c6d75e45",
+    "layer_digest": "sha256:245ef829eb0addd2587e2c9bd25c631bcc7f6846961804df359353513dd0e72e",
+    "size": 227581,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 3889399334
+      "log_index": 3931644847
     }
   },
-  "created": "2026-11-14T23:49:31.239446565Z",
+  "created": "2026-11-16T18:08:57.488157198Z",
   "annotations": {
     "org.opencontainers.image.description": "Exposes a `componentized:services/lifecycle` over http, exporting `wasi:http/incoming-handler`.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "af98b1dec5990c07c2bb4a6db491526ab8d45bb6",
+    "org.opencontainers.image.revision": "cc2727d7157b6483a9e8e564289ad06615b9b11b",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-lifecycle-host-http",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/af98b1dec5990c07c2bb4a6db491526ab8d45bb6/components/lifecycle-host-http",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/cc2727d7157b6483a9e8e564289ad06615b9b11b/components/lifecycle-host-http",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
@@ -80,5 +80,5 @@
       "size": 306
     }
   ],
-  "indexed_at": "2026-11-14T23:52:26Z"
+  "indexed_at": "2026-11-16T18:12:38Z"
 }

@@ -7,42 +7,42 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/valkey-credential-admin",
     "tag": "0.0.5-dev",
-    "digest": "sha256:025836d2b0ad5469c4d99765b550979ddb7540d178bd8b14916d8521f22bb77e",
-    "layer_digest": "sha256:c199c8cd0a5eea2e8d54869cb0460a8de4932c4031ebdbecefbf2ddb090905c4",
-    "size": 412719,
+    "digest": "sha256:c68edbb33663896fb6b23518ff920634fb503a7ca4439daaebbe5421fd3ef0e3",
+    "layer_digest": "sha256:557e31422972124df2e1b966d63db5672b6780048847c00e43f6982e953269f6",
+    "size": 412793,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 3889402296
+      "log_index": 3931648861
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/services/valkey-credential-admin",
     "tag": "0.0.5-dev_debug",
-    "digest": "sha256:cee17902643d63a3da6bf1efb018b9ff02b4562aaa80f53ffc659b9727e2ace9",
-    "layer_digest": "sha256:468cc0b7d58efc17870b61131975b16419c05451ade248233e22b274fe791ea0",
-    "size": 518104,
+    "digest": "sha256:cba45a9cf367832d0326b6a252a9db163d294aec122168a333ac71ae3ec69865",
+    "layer_digest": "sha256:f059bed9bf08eae4792e0e5895837f2f800b4b155dd09c7af330a4bf19ef69e9",
+    "size": 518109,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 3889404386
+      "log_index": 3931651226
     }
   },
-  "created": "2026-11-14T23:49:54.255350173Z",
+  "created": "2026-11-16T18:09:18.033671855Z",
   "annotations": {
     "org.opencontainers.image.description": "Implements `componentized:services/credential-admin`, publishing and destroying the credentials of service bindings in a Valkey server.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "af98b1dec5990c07c2bb4a6db491526ab8d45bb6",
+    "org.opencontainers.image.revision": "cc2727d7157b6483a9e8e564289ad06615b9b11b",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-valkey-credential-admin",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/af98b1dec5990c07c2bb4a6db491526ab8d45bb6/components/valkey-credential-admin",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/cc2727d7157b6483a9e8e564289ad06615b9b11b/components/valkey-credential-admin",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
@@ -85,8 +85,8 @@
       "code": true
     },
     {
-      "digest": "sha256:f48cc84d6a2b05c577854770fdd7fa67ac9282be0afd4e58addaebf30cab1950",
-      "size": 47595,
+      "digest": "sha256:2dfa56df62b9c2e3975dde8c16ed241efc085bd82570f366fab9cc9a48a8da0a",
+      "size": 47669,
       "code": true
     }
   ],
@@ -160,5 +160,5 @@
       }
     ]
   },
-  "indexed_at": "2026-11-14T23:52:26Z"
+  "indexed_at": "2026-11-16T18:12:43Z"
 }

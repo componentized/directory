@@ -7,42 +7,42 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/valkey-credential-store",
     "tag": "0.0.5-dev",
-    "digest": "sha256:3d5062bf056ed9aa0ceb8804b38f624cb0afb5835e9742013d1e7a95e295dcef",
-    "layer_digest": "sha256:46c8d9f64bec4defd977a8165167e07a1cc026411a82e68c3df7e60c3322a116",
-    "size": 492331,
+    "digest": "sha256:c21aca5c09894507fd975ddefe157597818cbe151fca8e14f3ab306f6f59024f",
+    "layer_digest": "sha256:2b6e5c72573b4ebff341b2b8d6b39bcb053d6d015ba8b8e433baae926fe11ce9",
+    "size": 493167,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 3889406018
+      "log_index": 3931653637
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/services/valkey-credential-store",
     "tag": "0.0.5-dev_debug",
-    "digest": "sha256:f3c21a095c022671428c05ad815da08cffba6484a67e414c8628be71461079f2",
-    "layer_digest": "sha256:99157ccf9bde746dc7de979061f38829d363a176faaad9c8df1de606ad6dd6cd",
-    "size": 673583,
+    "digest": "sha256:a9fd0ff4b7963d6b731a60de427db2f19bacf63e73aa68eef261b5eab375208f",
+    "layer_digest": "sha256:5a0be6466cdc11cd406593c2ab9eca8edcbe53c5a5addc9f3cf34cb90f89f486",
+    "size": 675581,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 3889408048
+      "log_index": 3931656130
     }
   },
-  "created": "2026-11-14T23:50:14.943448182Z",
+  "created": "2026-11-16T18:09:39.806530466Z",
   "annotations": {
     "org.opencontainers.image.description": "Implements `componentized:services/credential-store`, fetching the credentials of service bindings from a Valkey server.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "af98b1dec5990c07c2bb4a6db491526ab8d45bb6",
+    "org.opencontainers.image.revision": "cc2727d7157b6483a9e8e564289ad06615b9b11b",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-valkey-credential-store",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/af98b1dec5990c07c2bb4a6db491526ab8d45bb6/components/valkey-credential-store",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/cc2727d7157b6483a9e8e564289ad06615b9b11b/components/valkey-credential-store",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
@@ -85,8 +85,8 @@
       "code": true
     },
     {
-      "digest": "sha256:086a382e3a9e60ec3d140f63400cdee21da5dccc9d0ab3def2424ca71c0e04de",
-      "size": 127207,
+      "digest": "sha256:69d2f58e9d0a28b59b06f61e56ed826fa5e4b1edf2b8423ad20bca74f4ac3e3b",
+      "size": 128043,
       "code": true
     }
   ],
@@ -160,5 +160,5 @@
       }
     ]
   },
-  "indexed_at": "2026-11-14T23:52:27Z"
+  "indexed_at": "2026-11-16T18:12:47Z"
 }
