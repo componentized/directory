@@ -2,6 +2,9 @@ package wasi:sockets@0.2.6;
 
 @since(version = 0.2.0)
 interface network {
+  @unstable(feature = network-error-code)
+  use wasi:io/error@0.2.6.{error};
+
   /// An opaque resource that represents access to (a subset of) the network.
   /// This enables context-based security for networking.
   /// There is no need for this to map 1:1 to a physical network interface.
@@ -128,6 +131,19 @@ interface network {
     ipv4(ipv4-socket-address),
     ipv6(ipv6-socket-address),
   }
+
+  /// Attempts to extract a network-related `error-code` from the stream
+  /// `error` provided.
+  ///
+  /// Stream operations which return `stream-error::last-operation-failed`
+  /// have a payload with more information about the operation that failed.
+  /// This payload can be passed through to this function to see if there's
+  /// network-related information about the error to return.
+  ///
+  /// Note that this function is fallible because not all stream-related
+  /// errors are network-related errors.
+  @unstable(feature = network-error-code)
+  network-error-code: func(err: borrow<error>) -> option<error-code>;
 }
 
 /// This interface provides a value-export of the default network handle..

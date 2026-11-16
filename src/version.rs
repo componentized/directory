@@ -44,6 +44,12 @@ pub fn prerelease(tag: &str) -> Option<Version> {
         .then_some(version)
 }
 
+/// Whether a version has a pre-release component, any of them: a development build, e.g.
+/// `0.3.2-dev`, as well as e.g. `0.2.0-draft` or `0.3.0-rc-2025-08-15`.
+pub fn is_prerelease(tag: &str) -> bool {
+    Version::parse(tag).is_ok_and(|version| !version.pre.is_empty())
+}
+
 /// The release a development version leads up to, e.g. `0.3.2` for `0.3.2-dev`.
 pub fn release_of(dev_version: &str) -> Option<String> {
     let version = dev(dev_version)?;

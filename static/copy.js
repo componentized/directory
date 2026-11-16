@@ -1,8 +1,9 @@
 // Copy buttons for the values worth pasting elsewhere: image references, pinned to their digests,
 // digests, and WIT. Each `[data-copy]` element gets a button that copies its text, or the value of
 // its `data-copy` attribute when it has one. A block, e.g. a `<pre>`, has its button in its upper
-// right corner, outside its scrolling; an inline value has its button after it. Without this
-// script the values are still there to select.
+// right corner, outside its scrolling; an inline value has its button after it, or at the end of
+// the element its `data-copy-at` selects around it. Without this script the values are still
+// there to select.
 (() => {
   const targets = [...document.querySelectorAll("[data-copy]")];
   if (!targets.length) return;
@@ -57,7 +58,11 @@
       }, 1500);
     });
 
-    if (getComputedStyle(target).display === "block" && target.tagName === "PRE") {
+    // a value whose button goes at the end of what holds it, e.g. a page's title, after its badges
+    const at = target.dataset.copyAt && target.closest(target.dataset.copyAt);
+    if (at) {
+      at.append(button);
+    } else if (getComputedStyle(target).display === "block" && target.tagName === "PRE") {
       const wrap = document.createElement("div");
       wrap.className = "copy-wrap";
       target.replaceWith(wrap);

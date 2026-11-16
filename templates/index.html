@@ -3,7 +3,7 @@
 {#- a release of a repository, or a dev build of its next, a line each #}
 {% macro recent_list(items) %}
 <ol class="recent">
-  {% for r in items %}<li><a href="{{ r.url }}">{{ kind_icon("repo") }}<span class="visually-hidden">repository </span><code>{{ r.key }}</code><span class="recent-version">v{{ r.version }}</span>{% if r.dev %}<span class="badge pre">dev</span>{% elif not r.stable %}<span class="badge pre">pre-release</span>{% endif %}<span class="recent-desc">{{ r.summary }}</span><time datetime="{{ r.date }}">{{ r.date }}</time></a></li>{% endfor %}
+  {% for r in items %}<li><a href="{{ r.url }}">{{ kind_icon("repo") }}<span class="visually-hidden">repository </span><code>{{ r.key }}</code><span class="recent-version">v{{ r.version }}</span>{% if r.prerelease %}<span class="badge pre">pre-release</span>{% endif %}<span class="recent-desc">{{ r.summary }}</span><time datetime="{{ r.date }}">{{ r.date }}</time></a></li>{% endfor %}
 </ol>
 {% endmacro %}
 

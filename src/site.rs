@@ -156,6 +156,26 @@ impl Entry {
             })
             .collect()
     }
+
+    /// The worlds of an interface package, each with its id, e.g. `wasi:http/proxy@0.2.6`, which
+    /// have pages of their own. A component's package holds the world it targets, which its page
+    /// shows.
+    fn worlds(&self) -> Vec<(&str, wit_parser::WorldId, String)> {
+        if self.meta.kind != Kind::Interface {
+            return Vec::new();
+        }
+        self.resolve.packages[self.pkg]
+            .worlds
+            .iter()
+            .map(|(name, id)| {
+                (
+                    name.as_str(),
+                    *id,
+                    format!("{}/{name}@{}", self.meta.package, self.meta.version),
+                )
+            })
+            .collect()
+    }
 }
 
 #[derive(Serialize, Clone, Debug, PartialEq, Eq, PartialOrd, Ord)]
@@ -240,6 +260,135 @@ struct Site {
     composed_of: Vec<Vec<Option<usize>>>,
     /// The composed components that nest each version, the reverse of `composed_of`.
     used_in: HashMap<usize, Vec<Link>>,
+    /// The worlds of the listed interface packages, by the items each imports and exports, for a
+    /// world's page to list the worlds it includes and those that include it.
+    worlds: Vec<WorldShapes>,
+    /// The listed components by the shapes of what they import and export, for a world's page to
+    /// list those that implement it.
+    components: Vec<WorldShapes>,
+}
+
+/// A world by the shapes of the items it imports and exports, see [`decode::world_shapes`]: its
+/// interfaces, by their ids, and its inline interfaces, functions and types, by their names and
+/// structures.
+struct WorldShapes {
+    /// The world's entry, and its name in the entry's package.
+    index: usize,
+    name: String,
+    link: Link,
+    imports: BTreeSet<String>,
+    exports: BTreeSet<String>,
+    /// What it imports and exports with anything to call, by item, see [`decode::world_members`],
+    /// for its compatibility with a component, or a world's.
+    called_imports: Members,
+    called_exports: Members,
+}
+
+/// Items by their keys on the tracks of the versions they name, see [`tracked`], e.g.
+/// `wasi:cli/run@0.2.x`, each with the shapes of what's in it, on their tracks too.
+type Members = BTreeMap<String, BTreeSet<String>>;
+
+/// The versions a version is compatible with by semver, as a runtime matches an import to what
+/// provides it, e.g. `0.2.x` for `0.2.6`, whose patches add to it, or `1.x` for `1.4.0`, whose
+/// minors do. A pre-release, e.g. `0.3.0-rc-2025-08-15`, a `0.0.x` version, whose patches each
+/// break, or a version that isn't semver, is a track of its own, matched exactly.
+fn track(version: &str) -> Option<(String, semver::Version)> {
+    let v = semver::Version::parse(version).ok()?;
+    if !v.pre.is_empty() || !v.build.is_empty() {
+        return None;
+    }
+    match (v.major, v.minor) {
+        (0, 0) => None,
+        (0, minor) => Some((format!("0.{minor}.x"), v)),
+        (major, _) => Some((format!("{major}.x"), v)),
+    }
+}
+
+/// A shape on the tracks of the versions it names, see [`track`]:
+/// `log: func(s: wasi:io/streams@0.2.x#output-stream)` for
+/// `log: func(s: wasi:io/streams@0.2.6#output-stream)`. A version matched exactly stays as it is.
+fn tracked(shape: &str) -> String {
+    let mut out = String::with_capacity(shape.len());
+    let mut rest = shape;
+    while let Some(at) = rest.find('@') {
+        out.push_str(&rest[..=at]);
+        rest = &rest[at + 1..];
+        let end = rest
+            .find(|c: char| !(c.is_ascii_alphanumeric() || matches!(c, '.' | '-' | '+')))
+            .unwrap_or(rest.len());
+        let version = &rest[..end];
+        match track(version) {
+            Some((line, _)) => out.push_str(&line),
+            None => out.push_str(version),
+        }
+        rest = &rest[end..];
+    }
+    out.push_str(rest);
+    out
+}
+
+/// Whether `items` has each item `wanted` has, with all that's in it.
+fn members_among(wanted: &Members, items: &Members) -> bool {
+    wanted.iter().all(|(key, members)| {
+        items
+            .get(key)
+            .is_some_and(|theirs| members.is_subset(theirs))
+    })
+}
+
+impl WorldShapes {
+    fn new(
+        index: usize,
+        name: String,
+        link: Link,
+        resolve: &Resolve,
+        world: &wit_parser::World,
+    ) -> Self {
+        let shapes = |items| {
+            let shapes = decode::world_shapes(resolve, items).into_iter().collect();
+            let mut called = Members::new();
+            for (key, members) in decode::world_members(resolve, items) {
+                called
+                    .entry(tracked(&key))
+                    .or_default()
+                    .extend(members.iter().map(|m| tracked(m)));
+            }
+            (shapes, called)
+        };
+        let (imports, called_imports) = shapes(&world.imports);
+        let (exports, called_exports) = shapes(&world.exports);
+        Self {
+            index,
+            name,
+            link,
+            imports,
+            exports,
+            called_imports,
+            called_exports,
+        }
+    }
+
+    /// Whether a component of these imports and exports implements `world`, item by item, by
+    /// what's in them, counting only what has anything to call: each interface it imports is one
+    /// the world imports on the same track, see [`track`], with every type and function of it in
+    /// the world's, identically; each the world exports is one it exports on the same track, with
+    /// every type and function of the world's in its own. Their versions on a track otherwise
+    /// don't matter, e.g. a component built against `wasi:cli/run@0.2.6` implements a world of
+    /// `wasi:cli/run@0.2.7` when the interface didn't change. A world that exports nothing to
+    /// call, to be included rather than targeted, e.g. `wasi:cli/imports`, has no implementations.
+    fn implements(&self, world: &WorldShapes) -> bool {
+        !world.called_exports.is_empty()
+            && members_among(&self.called_imports, &world.called_imports)
+            && members_among(&world.called_exports, &self.called_exports)
+    }
+
+    /// Whether it imports and exports every item `other` does, each of an identical shape, and
+    /// `other` has any.
+    fn includes(&self, other: &WorldShapes) -> bool {
+        !(other.imports.is_empty() && other.exports.is_empty())
+            && other.imports.is_subset(&self.imports)
+            && other.exports.is_subset(&self.exports)
+    }
 }
 
 struct Repo {
@@ -463,6 +612,16 @@ fn render_packages(site: &Site, env: &Environment, out: &Path) -> Result<()> {
                         .render(site.interface(index, name, id)?)?,
                 )?;
             }
+            // a world's name is of the package's namespace, as an interface's is, so its page
+            // sits beside theirs
+            for (name, id, wid) in entry.worlds() {
+                write_file(
+                    out,
+                    &format!("{}{name}/index.html", entry.url()),
+                    &env.get_template("world.html")?
+                        .render(site.world(index, name, id, &wid)?)?,
+                )?;
+            }
             write_file(
                 out,
                 &format!("{}api.json", entry.url()),
@@ -538,6 +697,7 @@ fn environment() -> Result<Environment<'static>> {
         ("logo.svg", include_str!("../static/logo.svg")),
         ("macros.html", include_str!("../templates/macros.html")),
         ("index.html", include_str!("../templates/index.html")),
+        ("world.html", include_str!("../templates/world.html")),
         ("all.html", include_str!("../templates/all.html")),
         (
             "namespace.html",
@@ -769,14 +929,6 @@ struct RepoCard {
     /// Why its latest version's packages are indexed: the org's releases, else a tracked package's,
     /// else what a release depends on.
     origin: Origin,
-}
-
-#[derive(Serialize)]
-struct WorldView {
-    name: String,
-    docs: String,
-    imports: Vec<WorldItemView>,
-    exports: Vec<WorldItemView>,
 }
 
 /// An item a world imports or exports: an interface, by its id or defined inline, a function, or
@@ -1047,7 +1199,7 @@ impl Site {
                                 "{}/{world_name}@{}",
                                 entry.meta.package, entry.meta.version
                             ),
-                            url: Some(format!("{}#world-{world_name}", entry.url())),
+                            url: Some(format!("{}{world_name}/", entry.url())),
                         };
                         for (items, index) in [
                             (&world.imports, &mut imported_by),
@@ -1183,6 +1335,48 @@ impl Site {
             links.dedup();
         }
 
+        // a component's imports and exports, its world's, as its binary has them
+        let components = entries
+            .iter()
+            .enumerate()
+            .filter(|(index, entry)| {
+                superseded_by[*index].is_none() && entry.meta.kind == Kind::Component
+            })
+            .filter_map(|(index, entry)| {
+                let world = entry.resolve.select_world(&[entry.pkg], None).ok()?;
+                let world = &entry.resolve.worlds[world];
+                Some(WorldShapes::new(
+                    index,
+                    world.name.clone(),
+                    Link {
+                        label: entry.id(),
+                        url: Some(entry.url()),
+                    },
+                    &entry.resolve,
+                    world,
+                ))
+            })
+            .collect();
+        let worlds = entries
+            .iter()
+            .enumerate()
+            .filter(|(index, _)| superseded_by[*index].is_none())
+            .flat_map(|(index, entry)| {
+                entry.worlds().into_iter().map(move |(name, id, wid)| {
+                    WorldShapes::new(
+                        index,
+                        name.to_string(),
+                        Link {
+                            label: wid,
+                            url: Some(format!("{}{name}/", entry.url())),
+                        },
+                        &entry.resolve,
+                        &entry.resolve.worlds[id],
+                    )
+                })
+            })
+            .collect();
+
         Self {
             entries,
             packages,
@@ -1194,7 +1388,85 @@ impl Site {
             repos,
             composed_of,
             used_in,
+            worlds,
+            components,
         }
+    }
+
+    /// The listed components that implement a world, see [`WorldShapes::implements`], each by
+    /// its package, with its versions.
+    fn implementations(&self, index: usize, name: &str) -> Vec<VersionGroup> {
+        let Some(world) = self
+            .worlds
+            .iter()
+            .find(|w| w.index == index && w.name == name)
+        else {
+            return Vec::new();
+        };
+        self.grouped(
+            self.components
+                .iter()
+                .filter(|component| component.implements(world))
+                .map(|component| component.link.clone())
+                .collect(),
+        )
+    }
+
+    /// The listed worlds a component implements, see [`WorldShapes::implements`], each by its
+    /// package, with its versions. A component that isn't listed, e.g. a superseded dev build, is
+    /// matched as one that is.
+    fn compatible_worlds(&self, index: usize) -> Vec<VersionGroup> {
+        let entry = &self.entries[index];
+        if entry.meta.kind != Kind::Component {
+            return Vec::new();
+        }
+        let Ok(world) = entry.resolve.select_world(&[entry.pkg], None) else {
+            return Vec::new();
+        };
+        let world = &entry.resolve.worlds[world];
+        let component = WorldShapes::new(
+            index,
+            world.name.clone(),
+            Link {
+                label: entry.id(),
+                url: Some(entry.url()),
+            },
+            &entry.resolve,
+            world,
+        );
+        self.grouped(
+            self.worlds
+                .iter()
+                .filter(|world| component.implements(world))
+                .map(|world| world.link.clone())
+                .collect(),
+        )
+    }
+
+    /// The other worlds a world includes, a subset of the items it imports and exports, and those
+    /// that include it, a superset, each by its package, with its versions.
+    fn world_relations(&self, index: usize, name: &str) -> (Vec<VersionGroup>, Vec<VersionGroup>) {
+        let Some(world) = self
+            .worlds
+            .iter()
+            .find(|w| w.index == index && w.name == name)
+        else {
+            return Default::default();
+        };
+        let others = || {
+            self.worlds
+                .iter()
+                .filter(|other| !(other.index == index && other.name == name))
+        };
+        let includes = others()
+            .filter(|other| world.includes(other))
+            .map(|other| other.link.clone())
+            .collect();
+        let included_by = others()
+            .filter(|other| other.includes(world))
+            .map(|other| other.link.clone())
+            .collect();
+        (self.grouped(includes), self.grouped(included_by))
     }
 
     fn repo_of(&self, index: usize) -> Option<&Repo> {
@@ -1545,8 +1817,7 @@ impl Site {
                     version,
                     date,
                     url => lead.url(),
-                    stable => version::stable(version).is_some(),
-                    dev,
+                    prerelease => version::is_prerelease(version),
                     // a collection's, by its interface package, else the packages it releases,
                     // e.g. WASI's
                     summary => if interfaces.len() > 1 {
@@ -2133,6 +2404,7 @@ impl Site {
             origin => meta.origin,
             stable => entry.stable(),
             dev => version::dev(&meta.version).is_some(),
+            prerelease => version::is_prerelease(&meta.version),
             superseded_by => self.superseded_by[index].map(|i| ctx! {
                 version => self.entries[i].meta.version,
                 url => self.entries[i].url(),
@@ -2168,18 +2440,23 @@ impl Site {
         let resolve = &entry.resolve;
         let package = &resolve.packages[entry.pkg];
 
-        let mut worlds = Vec::new();
-        for (name, id) in &package.worlds {
-            let world = &resolve.worlds[*id];
-            // under the world's h3, and its imports' and exports' h4s
-            let (imports, exports) = self.world_items(index, *id, &format!("world-{name}-"), 5);
-            worlds.push(WorldView {
-                name: name.clone(),
-                docs: docs(&world.docs, 3),
-                imports,
-                exports,
-            });
-        }
+        // each world, listed as an interface is, linked to its page
+        let worlds: Vec<_> = entry
+            .worlds()
+            .into_iter()
+            .map(|(name, id, wid)| InterfaceSummary {
+                name: name.to_string(),
+                summary: resolve.worlds[id]
+                    .docs
+                    .contents
+                    .as_deref()
+                    .map(summary)
+                    .unwrap_or_default(),
+                url: format!("{}{name}/", entry.url()),
+                id: wid,
+                stability: stability(&resolve.worlds[id].stability),
+            })
+            .collect();
         let interfaces: Vec<_> = entry
             .interfaces()
             .into_iter()
@@ -2248,6 +2525,8 @@ impl Site {
             interfaces,
             imports,
             exports,
+            // the worlds a component implements, its imports among theirs, its exports theirs
+            compatible_worlds => self.compatible_worlds(index),
             // a version depends on one version of a package, or now and then on two, e.g. of
             // `wasi:io`, each listed as it is
             dependencies => self.listed_packages(dependencies),
@@ -3020,17 +3299,9 @@ impl Site {
                 id => iid,
                 // the other interfaces of the version, and this interface in each other version,
                 // or that version's page when it doesn't have the interface
-                siblings => entry
-                    .interfaces()
-                    .into_iter()
-                    .map(|(other, _, _)| Pivot {
-                        label: other.to_string(),
-                        url: format!("{}{other}/", entry.url()),
-                        current: other == name,
-                        note: None,
-                        kind: Some("interface"),
-                    })
-                    .collect::<Vec<_>>(),
+                kind => "interface",
+                siblings => self.item_pivots(index, name),
+                pivot => self.item_pivot_label(index),
                 version_lines => release_lines(
                     &versions.iter().map(|v| minijinja::Value::from(minijinja::value::Serde(v))).collect::<Vec<_>>(),
                 ),
@@ -3053,6 +3324,135 @@ impl Site {
             },
             imported_by => self.grouped(self.imported_by.get(&iid).cloned().unwrap_or_default()),
             exported_by => self.grouped(self.exported_by.get(&iid).cloned().unwrap_or_default()),
+        })
+    }
+
+    /// The interfaces and worlds of a version, for its breadcrumb to switch between their pages,
+    /// with `current` marked. Their names are of one namespace, the package's.
+    fn item_pivots(&self, index: usize, current: &str) -> Vec<Pivot> {
+        let entry = &self.entries[index];
+        let interfaces = entry
+            .interfaces()
+            .into_iter()
+            .map(|(name, _, _)| (name, "interface"));
+        let worlds = entry
+            .worlds()
+            .into_iter()
+            .map(|(name, _, _)| (name, "world"));
+        interfaces
+            .chain(worlds)
+            .map(|(name, kind)| Pivot {
+                label: name.to_string(),
+                url: format!("{}{name}/", entry.url()),
+                current: name == current,
+                note: None,
+                kind: Some(kind),
+            })
+            .collect()
+    }
+
+    /// What a version's breadcrumb switches between: its interfaces, its worlds, or both.
+    fn item_pivot_label(&self, index: usize) -> &'static str {
+        let entry = &self.entries[index];
+        match (entry.interfaces().is_empty(), entry.worlds().is_empty()) {
+            (false, true) => "interface",
+            (true, false) => "world",
+            _ => "interface or world",
+        }
+    }
+
+    /// The page of a world of an interface package: what it imports and exports, each folded to
+    /// its line, and its WIT.
+    fn world(
+        &self,
+        index: usize,
+        name: &str,
+        id: wit_parser::WorldId,
+        wid: &str,
+    ) -> Result<minijinja::Value> {
+        let entry = &self.entries[index];
+        let resolve = &entry.resolve;
+        let world = &resolve.worlds[id];
+        // under the page's Imports and Exports h2s, each item's id its own, e.g. `type-session`
+        let (imports, exports) = self.world_items(index, id, "", 3);
+        let (includes, included_by) = self.world_relations(index, name);
+        let implemented_by = self.implementations(index, name);
+
+        // the world in each version, or that version's page when it doesn't have the world
+        let versions: Vec<VersionLink> = self
+            .versions(index)
+            .into_iter()
+            .map(|mut version| {
+                let has = self.packages[&entry.meta.package].iter().any(|i| {
+                    self.entries[*i].meta.version == version.version
+                        && self.entries[*i].worlds().iter().any(|(n, _, _)| *n == name)
+                });
+                if has {
+                    version.url = format!("{}{name}/", version.url);
+                }
+                version
+            })
+            .collect();
+
+        // its WIT, each type it defines or uses linked to its entry on the page, as the package's
+        // WIT links its interfaces
+        let links = world
+            .imports
+            .iter()
+            .chain(world.exports.iter())
+            .filter_map(|(key, item)| match (key, item) {
+                (WorldKey::Name(t), WorldItem::Type { .. }) => {
+                    Some((t.clone(), format!("#type-{t}")))
+                }
+                _ => None,
+            })
+            .collect();
+        let scopes = entry
+            .interfaces()
+            .into_iter()
+            .map(|(other, iface, _)| {
+                let url = format!("{}{other}/", entry.url());
+                let types = resolve.interfaces[iface]
+                    .types
+                    .keys()
+                    .map(|t| (t.clone(), format!("{url}#type-{t}")))
+                    .collect();
+                (other.to_string(), (url, types))
+            })
+            .collect();
+        let wit = wit_html::world(
+            resolve,
+            entry.pkg,
+            name,
+            links,
+            scopes,
+            self.foreign_interface_urls(index),
+        )?
+        .unwrap_or_default();
+
+        Ok(ctx! {
+            title => wid,
+            canonical => format!("{}{name}/", entry.url()),
+            pkg => self.header(index),
+            iface => ctx! {
+                name,
+                id => wid,
+                kind => "world",
+                siblings => self.item_pivots(index, name),
+                pivot => self.item_pivot_label(index),
+                version_lines => release_lines(
+                    &versions.iter().map(|v| minijinja::Value::from(minijinja::value::Serde(v))).collect::<Vec<_>>(),
+                ),
+                versions,
+                docs => docs(&world.docs, 2),
+                stability => stability(&world.stability),
+                imports,
+                exports,
+                wit,
+            },
+            includes,
+            included_by,
+            implemented_by,
         })
     }
 }
@@ -3120,11 +3520,184 @@ mod tests {
     }
 
     #[test]
+    fn matches_interfaces_by_their_contents_on_a_track() {
+        // the track of a version, its patches compatible before 1.0, its minors after
+        assert_eq!(track("0.2.6").map(|(t, _)| t).as_deref(), Some("0.2.x"));
+        assert_eq!(track("1.4.0").map(|(t, _)| t).as_deref(), Some("1.x"));
+        // a pre-release, a 0.0.x version or one that isn't semver is matched exactly
+        assert_eq!(track("0.3.0-rc-2025-08-15"), None);
+        assert_eq!(track("0.0.3"), None);
+        assert_eq!(track("draft"), None);
+        // each version a shape names is on its track, a type it names apart from its version
+        assert_eq!(
+            tracked("log: func(s: wasi:io/streams@0.2.6#output-stream, e: wasi:x/y@0.3.0-rc-1#e)"),
+            "log: func(s: wasi:io/streams@0.2.x#output-stream, e: wasi:x/y@0.3.0-rc-1#e)"
+        );
+
+        // items, each an interface with what's in it
+        type Items<'a> = &'a [(&'a str, &'a [&'a str])];
+        let shapes = |imports: Items, exports: Items| {
+            let members = |items: Items| -> Members {
+                items
+                    .iter()
+                    .map(|(key, members)| {
+                        (tracked(key), members.iter().map(|m| tracked(m)).collect())
+                    })
+                    .collect()
+            };
+            WorldShapes {
+                index: 0,
+                name: String::new(),
+                link: Link {
+                    label: String::new(),
+                    url: None,
+                },
+                imports: BTreeSet::new(),
+                exports: BTreeSet::new(),
+                called_imports: members(imports),
+                called_exports: members(exports),
+            }
+        };
+        let read = "read: func() -> u8";
+        let write = "write: func(b: u8)";
+        let run = "run: func() -> result";
+        let world = shapes(
+            &[("wasi:io/streams@0.2.3", &[read, write])],
+            &[("wasi:cli/run@0.2.3", &[run])],
+        );
+        // on the track, its version older or newer, with what's in it
+        assert!(
+            shapes(
+                &[("wasi:io/streams@0.2.6", &[read])],
+                &[("wasi:cli/run@0.2.0", &[run])]
+            )
+            .implements(&world)
+        );
+        assert!(
+            shapes(
+                &[("wasi:io/streams@0.2.0", &[read, write])],
+                &[("wasi:cli/run@0.2.6", &[run, "more: func()"])]
+            )
+            .implements(&world)
+        );
+        assert!(
+            !shapes(
+                &[("wasi:io/streams@0.2.6", &[read, "flush: func()"])],
+                &[("wasi:cli/run@0.2.3", &[run])]
+            )
+            .implements(&world),
+            "imports a function the world's interface hasn't"
+        );
+        assert!(
+            !shapes(
+                &[("wasi:io/streams@0.2.3", &[read])],
+                &[("wasi:cli/run@0.2.3", &["run: func()"])]
+            )
+            .implements(&world),
+            "exports a function changed"
+        );
+        assert!(
+            !shapes(
+                &[("wasi:io/streams@0.3.0", &[read])],
+                &[("wasi:cli/run@0.2.3", &[run])]
+            )
+            .implements(&world),
+            "another track"
+        );
+        // pre-releases match exactly
+        let rc = shapes(&[], &[("wasi:cli/run@0.3.0-rc-2025-08-15", &[run])]);
+        assert!(shapes(&[], &[("wasi:cli/run@0.3.0-rc-2025-08-15", &[run])]).implements(&rc));
+        assert!(!shapes(&[], &[("wasi:cli/run@0.3.0-rc-2025-09-16", &[run])]).implements(&rc));
+    }
+
+    #[test]
+    fn lists_the_components_that_implement_a_world() {
+        let root =
+            std::env::temp_dir().join(format!("directory-implements-test-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&root);
+        let api = "package example:api@0.1.0;\n\ninterface greet {\n  hello: func();\n}\n\ninterface extra {\n  more: func();\n}\n\ninterface runner {\n  run: func();\n}\n\ninterface defs {\n  record pair { a: u8 }\n}\n\nworld host {\n  import greet;\n  export runner;\n}\n\nworld bare {\n  import greet;\n}\n";
+        data::write(
+            &root,
+            &metadata("example:api", "0.1.0", Kind::Interface, Origin::Release),
+            api,
+        )
+        .unwrap();
+        // a component imports what it needs of the world, and exports all the world does
+        let component = |name: &str, imports: &[&str], exports: &[&str]| {
+            let mut meta = metadata(name, "0.1.0", Kind::Component, Origin::Release);
+            let id = |i: &&str| format!("example:api/{i}@0.1.0");
+            meta.imports = imports.iter().map(id).collect();
+            meta.exports = exports.iter().map(id).collect();
+            meta.dependencies = vec![Dependency {
+                package: "example:api".to_string(),
+                version: Some("0.1.0".to_string()),
+            }];
+            let items: String = imports
+                .iter()
+                .map(|i| format!("  import {};\n", id(i)))
+                .chain(exports.iter().map(|e| format!("  export {};\n", id(e))))
+                .collect();
+            let world = format!("package root:component;\n\nworld root {{\n{items}}}\n");
+            data::write(&root, &meta, &world).unwrap();
+        };
+        component("example:fits", &["greet"], &["runner", "extra"]);
+        component("example:needy", &["greet", "extra"], &["runner"]);
+        component("example:idle", &["greet"], &[]);
+        // an interface of types alone, nothing to call, isn't counted
+        component("example:typed", &["greet", "defs"], &["runner", "defs"]);
+        let out = root.join("_site");
+        build(
+            &root,
+            &root.join("no-samples"),
+            &out,
+            "https://example.com",
+            &Default::default(),
+        )
+        .unwrap();
+        let read = |path: &str| {
+            std::fs::read_to_string(out.join(path))
+                .unwrap()
+                .replace("&#x2f;", "/")
+        };
+        let aside = |page: &str, id: &str| {
+            let from = page.find(&format!(r#"id="{id}""#)).unwrap();
+            page[from..from + page[from..].find("</section>").unwrap()].to_string()
+        };
+
+        let host = aside(&read("example/api/0.1.0/host/index.html"), "implemented-by");
+        assert!(host.contains("example:fits"), "imports less, exports more");
+        assert!(
+            !host.contains("example:needy"),
+            "imports what the world doesn't"
+        );
+        assert!(
+            !host.contains("example:idle"),
+            "doesn't export what the world does"
+        );
+        assert!(
+            host.contains("example:typed"),
+            "imports types alone the world doesn't"
+        );
+        // a world that exports nothing is included, not implemented
+        let bare = aside(&read("example/api/0.1.0/bare/index.html"), "implemented-by");
+        assert!(bare.contains("it exports nothing"));
+        assert!(!bare.contains("example:idle"));
+
+        // a component's page lists the worlds it implements
+        let fits = aside(&read("example/fits/0.1.0/index.html"), "compatible-worlds");
+        assert!(fits.contains("example:api/host"));
+        assert!(!fits.contains("example:api/bare"));
+        let needy = aside(&read("example/needy/0.1.0/index.html"), "compatible-worlds");
+        assert!(needy.contains(r#"<p class="dim">None</p>"#));
+        std::fs::remove_dir_all(&root).unwrap();
+    }
+
+    #[test]
     fn renders_what_a_world_defines() {
         let root =
             std::env::temp_dir().join(format!("directory-world-test-{}", std::process::id()));
         let _ = std::fs::remove_dir_all(&root);
-        let wit = "package example:worlds@0.1.0;\n\ninterface shapes {\n  /// A point.\n  record point { x: f64, y: f64 }\n}\n\nworld app {\n  /// Pings.\n  import pinger: interface {\n    use shapes.{point};\n    ping: func(at: point) -> bool;\n  }\n  use shapes.{point};\n  /// A session.\n  resource session {\n    constructor();\n    at: func() -> point;\n  }\n  /// Logs.\n  import log: func(message: string);\n  export run: func(session: borrow<session>);\n}\n";
+        let wit = "package example:worlds@0.1.0;\n\ninterface shapes {\n  /// A point.\n  record point { x: f64, y: f64 }\n}\n\ninterface tools {}\n\nworld app {\n  /// Pings.\n  import pinger: interface {\n    use shapes.{point};\n    ping: func(at: point) -> bool;\n  }\n  import shapes;\n  import tools;\n  use shapes.{point};\n  /// A session.\n  resource session {\n    constructor();\n    at: func() -> point;\n  }\n  /// Logs.\n  import log: func(message: string);\n  export run: func(session: borrow<session>);\n}\n\nworld shaped {\n  import shapes;\n}\n\nworld empty {}\n";
         data::write(
             &root,
             &metadata("example:worlds", "0.1.0", Kind::Interface, Origin::Release),
@@ -3140,40 +3713,52 @@ mod tests {
             &Default::default(),
         )
         .unwrap();
-        let page = std::fs::read_to_string(out.join("example/worlds/0.1.0/index.html"))
+        let page = std::fs::read_to_string(out.join("example/worlds/0.1.0/app/index.html"))
             .unwrap()
             .replace("&#x2f;", "/");
 
         // an inline interface, with its docs, and its own types and functions
-        assert!(page.contains(r#"id="world-app-pinger""#));
+        assert!(page.contains(r#"id="pinger""#));
         assert!(page.contains("Pings."));
-        assert!(page.contains(r#"id="world-app-pinger-type-point""#));
-        assert!(page.contains(r#"id="world-app-pinger-func-ping""#));
+        assert!(page.contains(r#"id="pinger-type-point""#));
+        assert!(page.contains(r#"id="pinger-func-ping""#));
         // its function links the type it uses to the type's definition within it
-        assert!(page.contains(r##"href="#world-app-pinger-type-point""##));
+        assert!(page.contains(r##"href="#pinger-type-point""##));
         // the world's own types, a resource with its functions
-        assert!(page.contains(r#"id="world-app-type-point""#));
-        assert!(page.contains(r#"id="world-app-type-session""#));
+        assert!(page.contains(r#"id="type-point""#));
+        assert!(page.contains(r#"id="type-session""#));
         assert!(page.contains("A session."));
-        assert!(page.contains(r#"id="world-app-type-session.constructor""#));
-        assert!(page.contains(r#"id="world-app-type-session.at""#));
+        assert!(page.contains(r#"id="type-session.constructor""#));
+        assert!(page.contains(r#"id="type-session.at""#));
         assert!(
             !page.contains("[constructor]"),
             "a resource's functions aren't listed as the world's"
         );
         // its functions, with their docs, an export linking the world's type
-        assert!(page.contains(r#"id="world-app-func-log""#));
+        assert!(page.contains(r#"id="func-log""#));
         assert!(page.contains("Logs."));
-        assert!(page.contains(r#"id="world-app-func-run""#));
-        assert!(page.contains(r##"href="#world-app-type-session""##));
-        // each folds its details under its line, to scan them first, and one without any doesn't
-        assert!(page.contains(r#"<details class="item world-fold" id="world-app-func-log">"#));
+        assert!(page.contains(r#"id="func-run""#));
+        assert!(page.contains(r##"href="#type-session""##));
+        // the worlds it includes, a subset of its interfaces, and those that include it
+        let aside = |page: &str, id: &str| {
+            let from = page.find(&format!(r#"id="{id}""#)).unwrap();
+            page[from..from + page[from..].find("</section>").unwrap()].to_string()
+        };
+        assert!(aside(&page, "includes").contains("example:worlds/shaped"));
         assert!(
-            page.contains(
-                r#"<details class="item world-inline world-fold" id="world-app-pinger">"#
-            )
+            !aside(&page, "includes").contains("example:worlds/empty"),
+            "names no interface"
         );
-        assert!(page.contains(r#"<div class="item" id="world-app-func-run">"#));
+        assert!(aside(&page, "included-by").contains(r#"<p class="dim">None</p>"#));
+        let shaped = std::fs::read_to_string(out.join("example/worlds/0.1.0/shaped/index.html"))
+            .unwrap()
+            .replace("&#x2f;", "/");
+        assert!(aside(&shaped, "included-by").contains("example:worlds/app"));
+        assert!(aside(&shaped, "includes").contains(r#"<p class="dim">None</p>"#));
+        // each folds its details under its line, to scan them first, and one without any doesn't
+        assert!(page.contains(r#"<details class="item world-fold" id="func-log">"#));
+        assert!(page.contains(r#"<details class="item world-inline world-fold" id="pinger">"#));
+        assert!(page.contains(r#"<div class="item" id="func-run">"#));
         std::fs::remove_dir_all(&root).unwrap();
     }
 
@@ -3264,18 +3849,42 @@ mod tests {
             "the cases of the used enum"
         );
         assert!(consumer.contains(r#"<p class="from">from"#));
-        // a world's imports and exports show the icon of their kind
-        let package = read("wasi/logging/0.1.0-draft/index.html");
-        assert!(package.contains(r##"<li><svg class="kind-icon kind-interface""##));
-        // a function with its signature, at its own id
-        assert!(package.contains(r#"id="world-app-func-run""#));
+        // a package lists its worlds, each linked to its page, as it lists its interfaces
+        let package = read("wasi/logging/0.1.0-draft/index.html").replace("&#x2f;", "/");
+        // titled by its version, as its interfaces and worlds are, the title copied by a button
+        assert!(package.contains(">wasi:logging@0.1.0-draft</code></h1>"));
         assert!(package.contains(
+            r#"<code data-copy data-copy-at=".title-row" data-copy-label="Copy the package's id">"#
+        ));
+        assert!(package.contains(r##"<use href="#kind-world"/>"##));
+        assert!(
+            package.contains(r#"<a href="/wasi/logging/0.1.0-draft/app/"><code>app</code></a>"#)
+        );
+        // a world's page: its imports and exports show the icon of their kind
+        let world = read("wasi/logging/0.1.0-draft/app/index.html").replace("&#x2f;", "/");
+        assert!(world.contains(">wasi:logging/app@0.1.0-draft</code></h1>"));
+        assert!(world.contains(r##"<li><svg class="kind-icon kind-interface""##));
+        // a function with its signature, at its own id
+        assert!(world.contains(r#"id="func-run""#));
+        assert!(world.contains(
             r#"<code class="sig"><span class="f">run</span>: <span class="k">func</span>()</code>"#
         ));
         // with no title, whose browser tooltip would cover the link's own
-        assert!(package.contains(r#"<span class="visually-hidden">interface </span>"#));
-        assert!(!package.contains(r#"<li title="#));
-        assert!(package.contains(r##"<use href="#kind-world"/>"##));
+        assert!(world.contains(r#"<span class="visually-hidden">interface </span>"#));
+        assert!(!world.contains(r#"<li title="#));
+        // the world's WIT alone, its docs to its closing brace
+        assert!(world.contains(r#"<span class="k">world</span> <span class="i">app</span>"#));
+        assert!(
+            !world.contains(r#"<span class="k">interface</span> <span class="i">consumer</span>"#)
+        );
+        // its breadcrumb switches between the package's interfaces and worlds
+        assert!(world.contains(r#"title="Switch interface or world""#));
+        // an interface's importers link a world to its page
+        assert!(
+            iface
+                .replace("&#x2f;", "/")
+                .contains(r#"href="/wasi/logging/0.1.0-draft/app/""#)
+        );
         // a `use` links its interface to its page, and each type it uses to its definition there
         let used = consumer.replace("&#x2f;", "/");
         assert!(
@@ -3335,7 +3944,10 @@ mod tests {
             version.contains("0.2.0-dev"),
             "the upcoming dev build is listed"
         );
-        assert!(read("example/to-stdout/0.2.0-dev/index.html").contains(">dev<"));
+        // any version with a pre-release component is marked a pre-release, a dev build among them
+        assert!(read("example/to-stdout/0.2.0-dev/index.html").contains(">pre-release<"));
+        assert!(read("wasi/logging/0.1.0-draft/index.html").contains(">pre-release<"));
+        assert!(!read("example/to-stdout/0.1.0/index.html").contains(">pre-release<"));
 
         // a repository is listed in its namespace's section, and each package links the
         // others it released with it, at the same version

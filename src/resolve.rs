@@ -5,7 +5,7 @@
 //! parts a component uses. A version with a dependency the index does not hold keeps the foreign
 //! packages nested in its WIT, so it still resolves on its own.
 
-use crate::data::Stored;
+use crate::data::{Kind, Stored};
 use anyhow::{Context, Result, anyhow};
 use std::collections::{HashMap, HashSet};
 use wit_component::WitPrinter;
@@ -48,8 +48,13 @@ impl<'a> Loader<'a> {
             self.push(&mut resolve, &mut pushed, index, &mut Vec::new())
                 .with_context(|| format!("resolving {}", path.display()))?
         };
-        as_written(&mut resolve, pkg, &stored.wit)
-            .with_context(|| format!("reading the worlds of {}", path.display()))?;
+        // a component's world is what its binary imports and exports; an interface package's
+        // worlds are as they're consumed, with the interfaces their interfaces use, and those
+        // they include
+        if stored.metadata.kind == Kind::Component {
+            as_written(&mut resolve, pkg, &stored.wit)
+                .with_context(|| format!("reading the world of {}", path.display()))?;
+        }
         Ok((resolve, pkg))
     }
 
@@ -89,11 +94,11 @@ impl<'a> Loader<'a> {
     }
 }
 
-/// Removes the interfaces that resolving adds to the worlds of a package, leaving the worlds as
-/// written. Resolving a world imports each interface the interfaces it imports or exports use,
+/// Removes the interfaces that resolving adds to a component's world, leaving it as its binary
+/// has it. Resolving a world imports each interface the interfaces it imports or exports use,
 /// e.g. a world importing `wasi:clocks/system-clock@0.3.0` also imports `wasi:clocks/types@0.3.0`.
 /// Those interfaces come from the full packages in the index, while a component imports only
-/// those the parts it uses need.
+/// those the parts it uses need, which its decoded WIT already lists.
 fn as_written(resolve: &mut Resolve, pkg: PackageId, wit: &str) -> Result<()> {
     let group =
         UnresolvedPackageGroup::parse("written.wit", wit).map_err(|(_, err)| anyhow!("{err}"))?;
