@@ -16,6 +16,10 @@ pub struct Api {
     pub package: String,
     pub version: String,
     pub kind: Kind,
+    /// How many components a composition nests, those it was composed from, which its icon shows,
+    /// badged, and its tooltip counts. None for any other.
+    #[serde(skip_serializing_if = "is_zero")]
+    pub components: usize,
     /// Its description, and when it was published, e.g. `2026-11-13`, for a tooltip.
     #[serde(skip_serializing_if = "String::is_empty")]
     pub summary: String,
@@ -195,6 +199,10 @@ pub fn unversioned(src: &str) -> String {
         }
     }
     out
+}
+
+fn is_zero(n: &usize) -> bool {
+    *n == 0
 }
 
 #[cfg(test)]

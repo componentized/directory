@@ -126,5 +126,189 @@
       "code": true
     }
   ],
+  "wiring": {
+    "instances": [
+      {
+        "part": 0,
+        "args": [
+          {
+            "name": "wasi:cli/stderr@0.3.0",
+            "import": "wasi:cli/stderr@0.3.0"
+          },
+          {
+            "name": "wasi:cli/types@0.3.0",
+            "import": "wasi:cli/types@0.3.0"
+          },
+          {
+            "name": "wasi:clocks/system-clock@0.3.0",
+            "import": "wasi:clocks/system-clock@0.3.0"
+          }
+        ]
+      },
+      {
+        "part": 1,
+        "args": [
+          {
+            "name": "wasi:logging/logging@0.1.0-draft",
+            "instance": 0,
+            "export": "wasi:logging/logging@0.1.0-draft"
+          },
+          {
+            "name": "wasi:config/store@0.2.0-rc.1",
+            "import": "wasi:config/store@0.2.0-rc.1"
+          },
+          {
+            "name": "wasi:sockets/types@0.3.0",
+            "import": "wasi:sockets/types@0.3.0"
+          }
+        ]
+      },
+      {
+        "part": 2,
+        "args": [
+          {
+            "name": "wasi:logging/logging@0.1.0-draft",
+            "instance": 0,
+            "export": "wasi:logging/logging@0.1.0-draft"
+          },
+          {
+            "name": "componentized:sockets/latch@0.1.0",
+            "instance": 1,
+            "export": "componentized:sockets/latch@0.1.0"
+          },
+          {
+            "name": "wasi:clocks/types@0.3.0",
+            "import": "wasi:clocks/types@0.3.0"
+          },
+          {
+            "name": "wasi:sockets/types@0.3.0",
+            "import": "wasi:sockets/types@0.3.0"
+          },
+          {
+            "name": "wasi:sockets/ip-name-lookup@0.3.0",
+            "import": "wasi:sockets/ip-name-lookup@0.3.0"
+          }
+        ]
+      },
+      {
+        "part": 3,
+        "args": [
+          {
+            "name": "componentized:valkey/types@0.3.0-dev",
+            "import": "componentized:valkey/types@0.3.0-dev"
+          },
+          {
+            "name": "wasi:clocks/monotonic-clock@0.3.0",
+            "import": "wasi:clocks/monotonic-clock@0.3.0"
+          },
+          {
+            "name": "wasi:clocks/types@0.3.0",
+            "import": "wasi:clocks/types@0.3.0"
+          }
+        ]
+      },
+      {
+        "part": 4,
+        "args": [
+          {
+            "name": "componentized:valkey/connection@0.3.0-dev",
+            "instance": 3,
+            "export": "componentized:valkey/connection@0.3.0-dev"
+          },
+          {
+            "name": "componentized:valkey/types@0.3.0-dev",
+            "import": "componentized:valkey/types@0.3.0-dev"
+          },
+          {
+            "name": "wasi:sockets/ip-name-lookup@0.3.0",
+            "instance": 2,
+            "export": "wasi:sockets/ip-name-lookup@0.3.0"
+          },
+          {
+            "name": "wasi:sockets/types@0.3.0",
+            "instance": 2,
+            "export": "wasi:sockets/types@0.3.0"
+          }
+        ]
+      },
+      {
+        "part": 5
+      },
+      {
+        "part": 6,
+        "args": [
+          {
+            "name": "componentized:valkey/tcp@0.3.0-dev",
+            "instance": 4,
+            "export": "componentized:valkey/tcp@0.3.0-dev"
+          },
+          {
+            "name": "componentized:valkey/connection@0.3.0-dev",
+            "instance": 3,
+            "export": "componentized:valkey/connection@0.3.0-dev"
+          },
+          {
+            "name": "componentized:valkey/types@0.3.0-dev",
+            "import": "componentized:valkey/types@0.3.0-dev"
+          },
+          {
+            "name": "componentized:valkey/tcp-connector-constants@0.3.0-dev",
+            "instance": 5,
+            "export": "componentized:valkey/tcp-connector-constants@0.3.0-dev"
+          },
+          {
+            "name": "wasi:config/store@0.2.0-rc.1",
+            "import": "wasi:config/store@0.2.0-rc.1"
+          }
+        ]
+      },
+      {
+        "part": 7,
+        "args": [
+          {
+            "name": "wasi:cli/stderr@0.3.0",
+            "import": "wasi:cli/stderr@0.3.0"
+          },
+          {
+            "name": "wasi:cli/stdout@0.3.0",
+            "import": "wasi:cli/stdout@0.3.0"
+          },
+          {
+            "name": "wasi:cli/stdin@0.3.0",
+            "import": "wasi:cli/stdin@0.3.0"
+          },
+          {
+            "name": "wasi:cli/types@0.3.0",
+            "import": "wasi:cli/types@0.3.0"
+          },
+          {
+            "name": "wasi:cli/environment@0.3.0",
+            "import": "wasi:cli/environment@0.3.0"
+          },
+          {
+            "name": "componentized:valkey/connector@0.3.0-dev",
+            "instance": 6,
+            "export": "componentized:valkey/connector@0.3.0-dev"
+          },
+          {
+            "name": "componentized:valkey/connection@0.3.0-dev",
+            "instance": 3,
+            "export": "componentized:valkey/connection@0.3.0-dev"
+          },
+          {
+            "name": "componentized:valkey/types@0.3.0-dev",
+            "import": "componentized:valkey/types@0.3.0-dev"
+          }
+        ]
+      }
+    ],
+    "exports": [
+      {
+        "name": "wasi:cli/run@0.3.0",
+        "instance": 7,
+        "export": "wasi:cli/run@0.3.0"
+      }
+    ]
+  },
   "indexed_at": "2026-11-13T20:30:05Z"
 }

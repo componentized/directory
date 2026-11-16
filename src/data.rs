@@ -100,6 +100,55 @@ pub struct Part {
     pub code: bool,
 }
 
+/// How a composition's parts are wired together: each instance of a part, made with what
+/// satisfies its imports, and what each of the composition's own exports is.
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
+pub struct Wiring {
+    /// In the order they're made, each from an earlier one's exports or the composition's imports.
+    pub instances: Vec<Instance>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub exports: Vec<Plug>,
+}
+
+/// An instance of one of a composition's parts.
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+pub struct Instance {
+    /// Its part, by its index in [`Metadata::parts`].
+    pub part: usize,
+    /// What satisfies each of its imports that's an instance or a function, by the import's name,
+    /// e.g. `wasi:config/store@0.2.0-rc.1` or `latch0`. An import satisfied in some other way, e.g.
+    /// by a function the composition defines, is left out.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub args: Vec<Plug>,
+}
+
+/// An import of an instance, or an export of the composition, and the item that plugs into it.
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+pub struct Plug {
+    pub name: String,
+    #[serde(flatten)]
+    pub source: Source,
+}
+
+/// An item within a composition: one of its imports, or an instance of one of its parts, or an
+/// export of either, e.g. the `wasi:config/store@0.2.0-rc.1` export of instance 1.
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+pub struct Source {
+    #[serde(flatten)]
+    pub owner: Owner,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub export: Option<String>,
+}
+
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[serde(rename_all = "lowercase")]
+pub enum Owner {
+    /// An import of the composition, by its name, which the host provides.
+    Import(String),
+    /// An instance, by its index in [`Wiring::instances`].
+    Instance(usize),
+}
+
 /// An image's cosign signature, as a scan found it the first time it saw the image.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(tag = "status", rename_all = "lowercase")]
@@ -166,6 +215,10 @@ pub struct Metadata {
     /// version indexed before it did means fetching its wasm layer again.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub parts: Option<Vec<Part>>,
+    /// How a composition's parts are wired together, for a component with parts that have code of
+    /// their own. `None` for any other, and until a scan reads it.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub wiring: Option<Wiring>,
     pub indexed_at: String,
 }
 

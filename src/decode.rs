@@ -176,6 +176,185 @@ pub fn parts(wasm: &[u8]) -> Result<Vec<crate::data::Part>> {
     Ok(parts)
 }
 
+/// A component's parts, and for a composition, one with parts that have code of their own, how
+/// they're wired together.
+pub fn composition(wasm: &[u8]) -> Result<(Vec<crate::data::Part>, Option<crate::data::Wiring>)> {
+    let parts = parts(wasm)?;
+    let wiring = match parts.iter().any(|p| p.code) {
+        true => Some(wiring(wasm)?),
+        false => None,
+    };
+    Ok((parts, wiring))
+}
+
+/// How a composition's parts, those of [`parts`], are wired together: what each instance of a part
+/// is made with, and what the composition exports, followed through the aliases between them.
+pub fn wiring(wasm: &[u8]) -> Result<crate::data::Wiring> {
+    use crate::data::{Instance, Owner, Plug, Source, Wiring};
+    use wasmparser::{
+        CanonicalFunction, ComponentAlias, ComponentExternalKind, ComponentInstance,
+        ComponentOuterAliasKind, ComponentTypeRef, Parser, Payload,
+    };
+    let mut wiring = Wiring::default();
+    // the composition's index spaces that wiring goes through: each component, by its part, each
+    // instance and each function, by the item it is. `None` for anything else, e.g. a function the
+    // composition lifts itself.
+    let mut components: Vec<Option<usize>> = Vec::new();
+    let mut instances: Vec<Option<Source>> = Vec::new();
+    let mut funcs: Vec<Option<Source>> = Vec::new();
+    let mut parts = 0;
+    // an export of an item, which is only followed one level: an export of an export is `None`
+    let export_of = |item: Option<&Option<Source>>, name: &str| match item {
+        Some(Some(Source {
+            owner,
+            export: None,
+        })) => Some(Source {
+            owner: owner.clone(),
+            export: Some(name.to_string()),
+        }),
+        _ => None,
+    };
+    let mut depth = 0;
+    for payload in Parser::new(0).parse_all(wasm) {
+        let payload = payload.context("reading how the component's parts are wired")?;
+        match payload {
+            Payload::Version { .. } => {
+                depth += 1;
+                continue;
+            }
+            Payload::End(_) => {
+                depth -= 1;
+                continue;
+            }
+            _ if depth != 1 => continue,
+            _ => {}
+        }
+        match payload {
+            Payload::ComponentSection { .. } => {
+                components.push(Some(parts));
+                parts += 1;
+            }
+            Payload::ComponentImportSection(reader) => {
+                for import in reader {
+                    let import = import?;
+                    let item = Some(Source {
+                        owner: Owner::Import(import.name.full_name().into_owned()),
+                        export: None,
+                    });
+                    match import.ty {
+                        ComponentTypeRef::Instance(_) => instances.push(item),
+                        ComponentTypeRef::Func(_) => funcs.push(item),
+                        ComponentTypeRef::Component(_) => components.push(None),
+                        _ => {}
+                    }
+                }
+            }
+            Payload::ComponentAliasSection(reader) => {
+                for alias in reader {
+                    match alias? {
+                        ComponentAlias::InstanceExport {
+                            kind,
+                            instance_index,
+                            name,
+                        } => {
+                            let item = export_of(instances.get(instance_index as usize), name);
+                            match kind {
+                                ComponentExternalKind::Instance => instances.push(item),
+                                ComponentExternalKind::Func => funcs.push(item),
+                                ComponentExternalKind::Component => components.push(None),
+                                _ => {}
+                            }
+                        }
+                        ComponentAlias::Outer {
+                            kind: ComponentOuterAliasKind::Component,
+                            ..
+                        } => components.push(None),
+                        _ => {}
+                    }
+                }
+            }
+            Payload::ComponentCanonicalSection(reader) => {
+                for canonical in reader {
+                    if let CanonicalFunction::Lift { .. } = canonical? {
+                        funcs.push(None);
+                    }
+                }
+            }
+            Payload::ComponentInstanceSection(reader) => {
+                for instance in reader {
+                    let item = match instance? {
+                        ComponentInstance::Instantiate {
+                            component_index,
+                            args,
+                        } => match components.get(component_index as usize) {
+                            Some(Some(part)) => {
+                                let args = args
+                                    .iter()
+                                    .filter_map(|arg| {
+                                        let item = match arg.kind {
+                                            ComponentExternalKind::Instance => {
+                                                instances.get(arg.index as usize)
+                                            }
+                                            ComponentExternalKind::Func => {
+                                                funcs.get(arg.index as usize)
+                                            }
+                                            _ => None,
+                                        };
+                                        Some(Plug {
+                                            name: arg.name.to_string(),
+                                            source: item?.clone()?,
+                                        })
+                                    })
+                                    .collect();
+                                wiring.instances.push(Instance { part: *part, args });
+                                Some(Source {
+                                    owner: Owner::Instance(wiring.instances.len() - 1),
+                                    export: None,
+                                })
+                            }
+                            _ => None,
+                        },
+                        ComponentInstance::FromExports(_) => None,
+                    };
+                    instances.push(item);
+                }
+            }
+            // an export is an item of its own too, the item it exports
+            Payload::ComponentExportSection(reader) => {
+                for export in reader {
+                    let export = export?;
+                    let index = export.index as usize;
+                    let item = match export.kind {
+                        ComponentExternalKind::Instance => {
+                            let item = instances.get(index).cloned().flatten();
+                            instances.push(item.clone());
+                            item
+                        }
+                        ComponentExternalKind::Func => {
+                            let item = funcs.get(index).cloned().flatten();
+                            funcs.push(item.clone());
+                            item
+                        }
+                        ComponentExternalKind::Component => {
+                            components.push(components.get(index).copied().flatten());
+                            None
+                        }
+                        _ => None,
+                    };
+                    if let Some(source) = item {
+                        wiring.exports.push(Plug {
+                            name: export.name.full_name().into_owned(),
+                            source,
+                        });
+                    }
+                }
+            }
+            _ => {}
+        }
+    }
+    Ok(wiring)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -201,6 +380,97 @@ mod tests {
         assert!(!parts[1].code);
         // a component nests no others
         assert!(super::parts(&wrapper).unwrap().is_empty());
+    }
+
+    #[test]
+    fn follows_the_wiring_of_a_composition() {
+        use crate::data::{Instance, Owner, Plug, Source, Wiring};
+        use wasm_encoder::{
+            Alias, Component, ComponentAliasSection, ComponentExportKind, ComponentExportSection,
+            ComponentImportSection, ComponentInstanceSection, ComponentTypeRef,
+            ComponentTypeSection, InstanceType, Module, ModuleSection, NestedComponentSection,
+        };
+        let mut part = Component::new();
+        part.section(&ModuleSection(&Module::new()));
+        let mut composed = Component::new();
+        let mut types = ComponentTypeSection::new();
+        types.instance(&InstanceType::new());
+        composed.section(&types);
+        // instance 0, the host's
+        let mut imports = ComponentImportSection::new();
+        imports.import("host:a/b", ComponentTypeRef::Instance(0));
+        composed.section(&imports);
+        composed.section(&NestedComponentSection(&part));
+        composed.section(&NestedComponentSection(&part));
+        // instance 1, of the first part, and 2, its export `x`
+        let mut instances = ComponentInstanceSection::new();
+        instances.instantiate(0, Vec::<(&str, ComponentExportKind, u32)>::new());
+        composed.section(&instances);
+        let mut aliases = ComponentAliasSection::new();
+        aliases.alias(Alias::InstanceExport {
+            instance: 1,
+            kind: ComponentExportKind::Instance,
+            name: "x",
+        });
+        composed.section(&aliases);
+        // instance 3, of the second part, with `x` and the host's, and 4, its export `y`
+        let mut instances = ComponentInstanceSection::new();
+        instances.instantiate(
+            1,
+            [
+                ("x", ComponentExportKind::Instance, 2),
+                ("host:a/b", ComponentExportKind::Instance, 0),
+            ],
+        );
+        composed.section(&instances);
+        let mut aliases = ComponentAliasSection::new();
+        aliases.alias(Alias::InstanceExport {
+            instance: 3,
+            kind: ComponentExportKind::Instance,
+            name: "y",
+        });
+        composed.section(&aliases);
+        let mut exports = ComponentExportSection::new();
+        exports.export("y", ComponentExportKind::Instance, 4, None);
+        composed.section(&exports);
+
+        let export = |instance, name: &str| Source {
+            owner: Owner::Instance(instance),
+            export: Some(name.to_string()),
+        };
+        let plug = |name: &str, source| Plug {
+            name: name.to_string(),
+            source,
+        };
+        let (parts, wiring) = composition(&composed.finish()).unwrap();
+        assert_eq!(parts.len(), 2);
+        assert_eq!(
+            wiring.unwrap(),
+            Wiring {
+                instances: vec![
+                    Instance {
+                        part: 0,
+                        args: vec![]
+                    },
+                    Instance {
+                        part: 1,
+                        args: vec![
+                            plug("x", export(0, "x")),
+                            plug(
+                                "host:a/b",
+                                Source {
+                                    owner: Owner::Import("host:a/b".to_string()),
+                                    export: None,
+                                }
+                            ),
+                        ],
+                    },
+                ],
+                exports: vec![plug("y", export(1, "y"))],
+            }
+        );
+        // a component of types alone has no wiring to follow
+        assert_eq!(composition(&Component::new().finish()).unwrap().1, None);
     }
 
     const WIT: &str = r#"
