@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey",
     "tag": "0.3.0-dev",
-    "digest": "sha256:75a598da32e7d5e53556220ec9fcb9c1522bd9c8c3378c13e2753eb048472694",
+    "digest": "sha256:88d181eb1ec1177aaaee985efcdcd0c8eeb80aeb9a6d111f517de3d5b8dbbf47",
     "layer_digest": "sha256:b0112726573b842edf66d648068d459ae98dc1a5b297d14680d200b20f7fb37b",
     "size": 268360,
     "signature": {
@@ -16,18 +16,18 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/valkey",
       "git_ref": "refs/heads/main",
-      "log_index": 3861808985
+      "log_index": 3929918608
     }
   },
-  "created": "2026-11-13T20:25:27.688051547Z",
+  "created": "2026-11-16T16:26:58.024513713Z",
   "annotations": {
     "org.opencontainers.image.description": "A WASM component client for Valkey (and Redis).",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "61fe3d670aeafe976f50323920cf573b51b9f989",
+    "org.opencontainers.image.revision": "b6114d8c32c5364ebe9dd31177119b6ec5b8a305",
     "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
     "org.opencontainers.image.title": "componentized:valkey",
-    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/61fe3d670aeafe976f50323920cf573b51b9f989",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/b6114d8c32c5364ebe9dd31177119b6ec5b8a305",
     "org.opencontainers.image.version": "v0.3.0-dev"
   },
-  "indexed_at": "2026-11-13T20:30:03Z"
+  "indexed_at": "2026-11-16T16:31:47Z"
 }
