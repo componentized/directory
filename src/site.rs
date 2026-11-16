@@ -554,6 +554,9 @@ fn environment() -> Result<Environment<'static>> {
 /// of a type under its `<h3>`. Their headings are moved to fit under it: the docs' top level
 /// becomes `under + 1`, the levels below it follow, and none goes deeper than `<h6>`. The WASI
 /// docs, e.g., start a function's "Typical errors" with an `<h1>`.
+///
+/// Relative links and images are stripped, leaving their text: they're relative to wherever the
+/// docs were written, e.g. a repository's README, which isn't here.
 fn markdown(src: &str, under: usize) -> String {
     use pulldown_cmark::{Event, HeadingLevel, Tag, TagEnd};
     let events: Vec<_> = pulldown_cmark::Parser::new(src).collect();
@@ -568,24 +571,46 @@ fn markdown(src: &str, under: usize) -> String {
         let top = top.unwrap_or(level as usize);
         HeadingLevel::try_from((level as usize - top + under + 1).min(6)).unwrap_or(level)
     };
-    let events = events.into_iter().map(|event| match event {
+    // whether each link or image open is stripped, to strip its end too
+    let mut stripped = Vec::new();
+    let events = events.into_iter().filter_map(|event| match event {
         Event::Start(Tag::Heading {
             level,
             id,
             classes,
             attrs,
-        }) => Event::Start(Tag::Heading {
+        }) => Some(Event::Start(Tag::Heading {
             level: fit(level),
             id,
             classes,
             attrs,
-        }),
-        Event::End(TagEnd::Heading(level)) => Event::End(TagEnd::Heading(fit(level))),
-        event => event,
+        })),
+        Event::End(TagEnd::Heading(level)) => Some(Event::End(TagEnd::Heading(fit(level)))),
+        Event::Start(Tag::Link { ref dest_url, .. } | Tag::Image { ref dest_url, .. }) => {
+            let strip = !absolute_url(dest_url);
+            stripped.push(strip);
+            (!strip).then_some(event)
+        }
+        Event::End(TagEnd::Link | TagEnd::Image) => {
+            (!stripped.pop().unwrap_or(false)).then_some(event)
+        }
+        event => Some(event),
     });
     let mut html = String::new();
     pulldown_cmark::html::push_html(&mut html, events);
     html
+}
+
+/// Whether a link goes somewhere on its own, with a scheme, e.g. `https:` or `mailto:`, or from
+/// the root of a host, e.g. `//example.com`, rather than relative to where it was written.
+fn absolute_url(url: &str) -> bool {
+    url.starts_with("//")
+        || url.split_once(':').is_some_and(|(scheme, _)| {
+            scheme.starts_with(|c: char| c.is_ascii_alphabetic())
+                && scheme
+                    .chars()
+                    .all(|c| c.is_ascii_alphanumeric() || matches!(c, '+' | '-' | '.'))
+        })
 }
 
 /// Renders docs that sit under a heading of the page at level `under`, see [`markdown`].
@@ -1277,7 +1302,6 @@ impl Site {
     }
 
     fn home(&self) -> minijinja::Value {
-        let cards = self.cards();
         let mut recent: Vec<usize> = (0..self.entries.len())
             // dev builds are not releases
             .filter(|i| {
@@ -1291,23 +1315,60 @@ impl Site {
                 .cmp(&a.meta.created)
                 .then_with(|| a.meta.package.cmp(&b.meta.package))
         });
-        let recent: Vec<_> = recent.into_iter().take(10).map(|i| self.card(i)).collect();
-        let components: Vec<_> = cards.iter().filter(|c| c.kind == Kind::Component).collect();
-        let interfaces: Vec<_> = cards.iter().filter(|c| c.kind == Kind::Interface).collect();
+        let recent: Vec<_> = recent.into_iter().take(6).map(|i| self.card(i)).collect();
         ctx! {
             recent,
-            components,
-            interfaces,
-            namespaces => self.namespace_counts(),
+            capabilities => self.capabilities(),
+            namespaces => self.namespace_counts().into_iter().map(|(ns, _)| ns).collect::<Vec<_>>(),
             repos => self.repo_cards(),
-            stats => ctx! {
-                repos => self.repos.len(),
-                packages => self.packages.len(),
-                components => components.len(),
-                interfaces => interfaces.len(),
-                versions => (0..self.entries.len()).filter(|i| self.listed(*i)).count(),
-            },
         }
+    }
+
+    /// The WASI packages that components implement, each with the components that export one of
+    /// its interfaces, at their latest versions: what can stand in for `wasi:http`, say, in a
+    /// composition. The packages most implemented first.
+    fn capabilities(&self) -> Vec<minijinja::Value> {
+        let mut providers: BTreeMap<&str, Vec<usize>> = BTreeMap::new();
+        for indexes in self.packages.values() {
+            let Some(&index) = self.latest(indexes) else {
+                continue;
+            };
+            let entry = &self.entries[index];
+            if entry.meta.kind != Kind::Component {
+                continue;
+            }
+            let exported: std::collections::BTreeSet<&str> = entry
+                .meta
+                .exports
+                .iter()
+                .filter_map(|item| decode::interface_of(item)?.split_once('/'))
+                .map(|(package, _)| package)
+                .filter(|package| data::split_id(package).is_some_and(|(ns, _)| ns == "wasi"))
+                .collect();
+            for package in exported {
+                providers.entry(package).or_default().push(index);
+            }
+        }
+        let mut capabilities: Vec<_> = providers
+            .into_iter()
+            .filter_map(|(package, members)| {
+                let &latest = self.latest(self.packages.get(package)?)?;
+                Some((package, latest, members))
+            })
+            .collect();
+        capabilities.sort_by_key(|(package, _, members)| (std::cmp::Reverse(members.len()), *package));
+        capabilities
+            .into_iter()
+            .map(|(package, latest, members)| {
+                let interface = &self.entries[latest];
+                ctx! {
+                    package,
+                    url => interface.url(),
+                    description => interface.description(),
+                    providers => members.iter().map(|i| self.card(*i)).collect::<Vec<_>>(),
+                }
+            })
+            .collect()
     }
 
     fn namespace_counts(&self) -> Vec<(String, usize)> {
@@ -1831,6 +1892,8 @@ impl Site {
             url => entry.url(),
             package_url => entry.package_url(),
             description => entry.description(),
+            // the description, as markdown, for the lede under the page's `<h1>`
+            description_html => markdown(&entry.description(), 1),
             origin => meta.origin,
             stable => entry.stable(),
             dev => version::dev(&meta.version).is_some(),
@@ -3264,6 +3327,31 @@ mod tests {
             "<h5>A</h5>\n<h6>B</h6>\n<h6>C</h6>\n"
         );
         assert_eq!(markdown("No headings.", 3), "<p>No headings.</p>\n");
+    }
+
+    #[test]
+    fn strips_relative_links_from_docs() {
+        // relative links and images leave their text
+        assert_eq!(
+            markdown(
+                "See [the guide](docs/guide.md), [above](#usage) and ![a logo](logo.png).",
+                1
+            ),
+            "<p>See the guide, above and a logo.</p>\n"
+        );
+        // absolute ones stay
+        assert_eq!(
+            markdown(
+                "[Site](https://example.com), [mail](mailto:a@example.com), [host](//example.com)",
+                1
+            ),
+            "<p><a href=\"https://example.com\">Site</a>, <a href=\"mailto:a@example.com\">mail</a>, <a href=\"//example.com\">host</a></p>\n"
+        );
+        // and so do autolinks
+        assert_eq!(
+            markdown("<https://example.com>", 1),
+            "<p><a href=\"https://example.com\">https://example.com</a></p>\n"
+        );
     }
 
     #[test]
