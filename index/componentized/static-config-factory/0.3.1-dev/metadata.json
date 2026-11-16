@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/static-config/factory",
     "tag": "0.3.1-dev",
-    "digest": "sha256:d1fe296e226301f4d8220e6fc35fd60b87773250bd7de463e453f16ad5b602ab",
+    "digest": "sha256:ed1e3ec6265f37487d9e9b134eabe75ed7f921fae2ee09e3afb7e5578b859a2c",
     "layer_digest": "sha256:d91812ecab4095017b687e33ed0b77871dca7f701241ecf1f67ea1f280e69481",
     "size": 1969913,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/static-config",
       "git_ref": "refs/heads/main",
-      "log_index": 3853246455
+      "log_index": 3929897298
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/static-config/factory",
     "tag": "0.3.1-dev_debug",
-    "digest": "sha256:9be6bb1645a8ecc405c2e5eed76295733931b1f21e50957260a0a0cf8b16645d",
+    "digest": "sha256:4868f1f52584ef272337281bbfddc8bda471d82d140c1274b02889dded7d5499",
     "layer_digest": "sha256:d1ae955f8004a6714d62f5be58f08fc871c2424958a78e3242000f62ef039818",
     "size": 39049490,
     "signature": {
@@ -32,18 +32,18 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/static-config",
       "git_ref": "refs/heads/main",
-      "log_index": 3853249117
+      "log_index": 3929900816
     }
   },
-  "created": "2026-11-13T11:58:03.492884779Z",
+  "created": "2026-11-16T16:25:55.450656612Z",
   "annotations": {
     "org.opencontainers.image.description": "Create wasi:config components with static values, from key value pairs.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "7c239f88d7ba8c22be6fe3db1ec7e2bc8742b0e1",
+    "org.opencontainers.image.revision": "4f87116dadc0caaca69d7df7ced667aea500868f",
     "org.opencontainers.image.source": "https://github.com/componentized/static-config.git",
     "org.opencontainers.image.title": "componentized:static-config-factory",
-    "org.opencontainers.image.url": "https://github.com/componentized/static-config/tree/7c239f88d7ba8c22be6fe3db1ec7e2bc8742b0e1/components/factory",
-    "org.opencontainers.image.version": "0.3.1-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/static-config/tree/4f87116dadc0caaca69d7df7ced667aea500868f/components/factory",
+    "org.opencontainers.image.version": "v0.3.1-dev"
   },
   "imports": [
     "componentized:component/types@0.1.0"
@@ -67,5 +67,5 @@
       "size": 351
     }
   ],
-  "indexed_at": "2026-11-13T12:55:38Z"
+  "indexed_at": "2026-11-16T16:27:08Z"
 }
