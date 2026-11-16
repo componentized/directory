@@ -21,34 +21,22 @@ jobs:
     # the custodian app marks the preview comment as removed
     permissions: {}
     steps:
+      # the script from the default branch, never the PR's
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          sparse-checkout: .github/scripts
+          persist-credentials: false
+      # a deployment still publishing, e.g. of a PR merged as its preview deploys, is tried again
+      # until it's done; a preview that starts deploying after this deletes itself, as the Preview
+      # workflow checks again that its PR is open once it's deployed
       - name: Delete the PR's deployments
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           PROJECT: ${{ vars.CLOUDFLARE_PAGES_PROJECT }}
           BRANCH: pr-${{ github.event.number }}
-        run: |
-          api="https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/pages/projects/$PROJECT/deployments"
-          auth="Authorization: Bearer $CLOUDFLARE_API_TOKEN"
-
-          # collect every page first, deleting while paging would shift the pages
-          ids=()
-          page=1
-          while :; do
-            resp="$(curl -fsS -H "$auth" "$api?env=preview&page=$page&per_page=25")"
-            mapfile -t found < <(jq -r --arg branch "$BRANCH" \
-              '.result[] | select(.deployment_trigger.metadata.branch == $branch) | .id' <<< "$resp")
-            ids+=("${found[@]}")
-            [[ "$(jq '.result | length' <<< "$resp")" -lt 25 ]] && break
-            page=$((page + 1))
-          done
-
-          for id in "${ids[@]}"; do
-            # force, so the deployment behind the branch alias goes too
-            curl -fsS -X DELETE -H "$auth" "$api/$id?force=true" > /dev/null
-            echo "Deleted $id"
-          done
-          echo "Deleted ${#ids[@]} deployments of $BRANCH"
+        run: .github/scripts/delete-previews.sh "$BRANCH"
 
       - name: Create custodian app token
         id: app-token
