@@ -39,7 +39,12 @@ jobs:
       # the index is committed by the custodian app, this job's token only reads
       contents: read
     steps:
+      # the branch as it is when the run starts, rather than the commit it was when the run was
+      # queued: a run waiting in the queue starts after the one ahead of it pushed its commit, which
+      # this run's scan then builds on, and its own commit fast forwards from
       - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.ref }}
       - uses: actions-rust-lang/setup-rust-toolchain@v2
       # the scan verifies each new image's cosign signature against Sigstore's transparency log
       - uses: sigstore/cosign-installer@v4.1.3
