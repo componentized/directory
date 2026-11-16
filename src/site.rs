@@ -72,7 +72,8 @@ impl Entry {
     /// badged.
     fn icon_kind(&self) -> &'static str {
         match self.meta.kind {
-            Kind::Interface => "interface",
+            // a package of interfaces, apart from an interface of its
+            Kind::Interface => "package",
             Kind::Component if self.composed() => "composition",
             Kind::Component => "component",
         }
@@ -2174,7 +2175,7 @@ impl Site {
         self.packages
             .get(package)
             .and_then(|indexes| indexes.first())
-            .map_or("interface", |i| self.entries[*i].icon_kind())
+            .map_or("package", |i| self.entries[*i].icon_kind())
     }
 
     /// `package@version` links, each with the kind of its package, by label.
@@ -3855,6 +3856,9 @@ mod tests {
         let package = read("wasi/logging/0.1.0-draft/index.html").replace("&#x2f;", "/");
         // titled by its version, as its interfaces and worlds are, the title copied by a button
         assert!(package.contains(">wasi:logging@0.1.0-draft</code></h1>"));
+        // a package of interfaces by its own icon, apart from an interface's
+        assert!(package.contains(r##"<h1><svg class="kind-icon kind-package""##));
+        assert!(iface.contains(r##"<h1><svg class="kind-icon kind-interface""##));
         assert!(package.contains(
             r#"<code data-copy data-copy-at=".title-row" data-copy-label="Copy the package's id">"#
         ));

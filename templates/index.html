@@ -25,7 +25,7 @@
   <div class="caps">
     {% for cap in capabilities %}
     <div class="cap">
-      <a class="cap-head" href="{{ cap.url }}">{{ kind_icon("interface") }}<span class="visually-hidden">interface </span><code>{{ cap.package }}</code></a>
+      <a class="cap-head" href="{{ cap.url }}">{{ kind_icon("package") }}<span class="visually-hidden">package </span><code>{{ cap.package }}</code></a>
       {% if cap.description %}<p>{{ cap.description }}</p>{% endif %}
       <ul class="chips" aria-label="Components that export {{ cap.package }}">
         {% for c in cap.providers[:6] %}<li><a href="{{ c.url }}" title="{{ c.package }}{% if c.description %}: {{ c.description }}{% endif %}">{{ kind_icon(c.icon) }}<code>{{ c.name }}</code></a></li>{% endfor %}
