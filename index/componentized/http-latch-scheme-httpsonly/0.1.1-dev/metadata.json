@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/http/latch-scheme-httpsonly",
     "tag": "0.1.1-dev",
-    "digest": "sha256:ea7541452c1bcfe7391a61f771d1720bf061df3d85acb9f90be725fa6fde940b",
+    "digest": "sha256:11883317953ad341a0a55438cf27aa5284428ae4d811f5c673ba2fe03c7f868a",
     "layer_digest": "sha256:000aa02e18fdc58d567895d556a6e9d7e542620d5022e69a132e794b6328c579",
     "size": 52096,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 3768674428
+      "log_index": 3929997200
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/http/latch-scheme-httpsonly",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:a8a1c165207a0cb476f0fd77d8f92f21a4166cfeec5e3e81ae36bdc63a232ff1",
+    "digest": "sha256:b617650ff170267d4a3ba44d2d425398f5c3fb61f4d2e66da25e84e69f5e1fab",
     "layer_digest": "sha256:ac9d47e153f30353627bdbf1c1808a4d054201e6f28f97b5b284e53923df98d9",
     "size": 175206,
     "signature": {
@@ -32,18 +32,18 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 3768675396
+      "log_index": 3930000152
     }
   },
-  "created": "2026-11-09T19:20:07.750567091Z",
+  "created": "2026-11-16T16:31:48.471159955Z",
   "annotations": {
     "org.opencontainers.image.description": "HTTP latch that denies every request scheme except HTTPS.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "ca50fd6e7d0aba1b8694520c9c32b1d097e8dfe4",
+    "org.opencontainers.image.revision": "16d56070812c453b5806f2a75ee3f239ba51258e",
     "org.opencontainers.image.source": "https://github.com/componentized/http.git",
     "org.opencontainers.image.title": "componentized:http-latch-scheme-httpsonly",
-    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/ca50fd6e7d0aba1b8694520c9c32b1d097e8dfe4/components/latch-scheme-httpsonly",
-    "org.opencontainers.image.version": "0.1.1-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/16d56070812c453b5806f2a75ee3f239ba51258e/components/latch-scheme-httpsonly",
+    "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
     "wasi:logging/logging@0.1.0-draft",
@@ -110,5 +110,5 @@
       }
     ]
   },
-  "indexed_at": "2026-11-12T00:12:37Z"
+  "indexed_at": "2026-11-16T16:36:42Z"
 }
