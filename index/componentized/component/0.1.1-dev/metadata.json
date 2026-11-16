@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/component",
     "tag": "0.1.1-dev",
-    "digest": "sha256:9523dfc676f886e9e081a514e00d2711e378848c7f20570abcedd7d92c5e0d3f",
+    "digest": "sha256:2e51b532c1f3e1cb5bec689f514497ea49466531468d26a8b3d2571a98229fd1",
     "layer_digest": "sha256:dc6829a83e22b231a719ada662e3729a3a105fbf151e165e40b1fa5e1d49e0d8",
     "size": 19939,
     "signature": {
@@ -16,18 +16,18 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/component",
       "git_ref": "refs/heads/main",
-      "log_index": 3855894782
+      "log_index": 3929896060
     }
   },
-  "created": "2026-11-13T14:28:32.651550527Z",
+  "created": "2026-11-16T16:25:51.312917003Z",
   "annotations": {
     "org.opencontainers.image.description": "WASM components for creating and interacting with WASM components.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "c3180589a667d6b4d49f3fa85e612fc7f3b95006",
+    "org.opencontainers.image.revision": "ca0ed54a64bc9c331b4ac6ce59437764d5c69b08",
     "org.opencontainers.image.source": "https://github.com/componentized/component.git",
     "org.opencontainers.image.title": "componentized:component",
-    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/c3180589a667d6b4d49f3fa85e612fc7f3b95006",
-    "org.opencontainers.image.version": "0.1.1-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/ca0ed54a64bc9c331b4ac6ce59437764d5c69b08",
+    "org.opencontainers.image.version": "v0.1.1-dev"
   },
-  "indexed_at": "2026-11-13T18:35:42Z"
+  "indexed_at": "2026-11-16T16:29:44Z"
 }

@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/component/filesystem-loader",
     "tag": "0.1.1-dev",
-    "digest": "sha256:4e210696483e3a975e19492e64a7ec4451b830cf722f92928fe1ec2249abc6ba",
+    "digest": "sha256:ac9b59482da399672bdd195e22f16d5189f40ce83dcfa4e5c6ea667a346f60e8",
     "layer_digest": "sha256:80ff59962218c13acb2772a0e914ede2c6e82d9551cd69995a57bd8c93bf0d1d",
     "size": 91807,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/component",
       "git_ref": "refs/heads/main",
-      "log_index": 3855899271
+      "log_index": 3929899594
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/component/filesystem-loader",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:662d3c1653b696ed0731d0dc1eef4dceff7a1cf8354bcee084e26535258d039d",
+    "digest": "sha256:20beb6e02948de40cebba59a012cba1ea833269f852330174f7a6273fed0019f",
     "layer_digest": "sha256:df2096b264c4fd3112d5528307f72a2434d609670f5e8f2bd2ed401f6a93b537",
     "size": 1029488,
     "signature": {
@@ -32,18 +32,18 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/component",
       "git_ref": "refs/heads/main",
-      "log_index": 3855900879
+      "log_index": 3929903543
     }
   },
-  "created": "2026-11-13T14:28:59.633952490Z",
+  "created": "2026-11-16T16:26:01.871981715Z",
   "annotations": {
     "org.opencontainers.image.description": "Loads a component from a filesystem path.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "c3180589a667d6b4d49f3fa85e612fc7f3b95006",
+    "org.opencontainers.image.revision": "ca0ed54a64bc9c331b4ac6ce59437764d5c69b08",
     "org.opencontainers.image.source": "https://github.com/componentized/component.git",
     "org.opencontainers.image.title": "componentized:component-filesystem-loader",
-    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/c3180589a667d6b4d49f3fa85e612fc7f3b95006/components/filesystem-loader",
-    "org.opencontainers.image.version": "0.1.1-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/ca0ed54a64bc9c331b4ac6ce59437764d5c69b08/components/filesystem-loader",
+    "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
     "wasi:filesystem/types@0.3.0",
@@ -69,5 +69,5 @@
       "size": 325
     }
   ],
-  "indexed_at": "2026-11-13T18:35:43Z"
+  "indexed_at": "2026-11-16T16:29:48Z"
 }
