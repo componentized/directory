@@ -1,0 +1,71 @@
+{
+  "package": "componentized:secrets-from-config",
+  "version": "0.1.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/secrets/from-config",
+    "tag": "0.1.0-dev",
+    "digest": "sha256:62911d350b1aa625529ec6e0443ed098818c54e9f75ef698e7064f74f57d9477",
+    "layer_digest": "sha256:5bec3a6d80adf80cb482bae8aa3b06dd293b45be710c679ae180911d632fc056",
+    "size": 49653,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/secrets/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/secrets",
+      "git_ref": "refs/heads/main",
+      "log_index": 3934837910
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/secrets/from-config",
+    "tag": "0.1.0-dev_debug",
+    "digest": "sha256:a7bd523c5577b36c0960f7ea7941301b39f101abd5e4020b3e7f3db21e17bc5f",
+    "layer_digest": "sha256:8d301862bd65659fe5a65478efce98ca908a19bbd1d2223eb33aae925a17780b",
+    "size": 146773,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/secrets/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/secrets",
+      "git_ref": "refs/heads/main",
+      "log_index": 3934839777
+    }
+  },
+  "created": "2026-11-16T21:05:05.224373618Z",
+  "annotations": {
+    "org.opencontainers.image.description": "`componentized:secrets`, backed by `wasi:config`, for hosts without secrets, e.g. wasmtime. Each secret is the config value of the same key, a missing key is not found.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "47ad3160c1ba9b5e1c0682fe2dd502b5b803c77d",
+    "org.opencontainers.image.source": "https://github.com/componentized/secrets.git",
+    "org.opencontainers.image.title": "componentized:secrets-from-config",
+    "org.opencontainers.image.url": "https://github.com/componentized/secrets/tree/47ad3160c1ba9b5e1c0682fe2dd502b5b803c77d/components/from-config",
+    "org.opencontainers.image.version": "v0.1.0-dev"
+  },
+  "imports": [
+    "wasi:config/store@0.2.0-rc.1"
+  ],
+  "exports": [
+    "componentized:secrets/store@0.1.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:secrets",
+      "version": "0.1.0-dev"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:f3fdd5914afbdfef8caf77e0beda026bd972efbca7ba8a85dbbd1a3e4cae5c9f",
+      "size": 273
+    }
+  ],
+  "indexed_at": "2026-11-16T21:06:44Z"
+}
