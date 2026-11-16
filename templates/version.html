@@ -52,8 +52,8 @@
     {% if pkg.kind == "component" %}
     {#- side by side, as a world's, one above the other on a narrow screen #}
     <section class="two" id="imports">
-      <div><h2>Imports</h2>{{ world_items(imports, "This component imports nothing.") }}</div>
-      <div><h2 id="exports">Exports</h2>{{ world_items(exports, "This component exports nothing.") }}</div>
+      <div><h2>Imports</h2>{{ world_items(imports, "This component imports nothing.", 3) }}</div>
+      <div><h2 id="exports">Exports</h2>{{ world_items(exports, "This component exports nothing.", 3) }}</div>
     </section>
     {% endif %}
 

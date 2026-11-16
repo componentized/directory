@@ -547,6 +547,42 @@ a.version-row:hover .version { text-decoration: underline; }
 ul.world-items li { display: flex; align-items: flex-start; overflow-wrap: break-word; }
 .world-items li > .kind-icon { flex: none; margin-top: 0.15em; margin-top: calc((1lh - 16px) / 2); }
 .world-items li > :is(a, code) { min-width: 0; }
+/* an interface a world names, beside its icon, wrapping there: the name it's under, the link to
+   it, its gates, and the docs of its import folded under them */
+.world-items li > .world-item { flex: 1; min-width: 0; }
+.world-ref .world-name { white-space: pre; }
+.world-ref > .gates { margin-left: 8px; }
+.world-item > .fold-body > .docs { margin: 2px 0 4px; color: var(--dim); font-size: 0.9rem; }
+/* what a world defines itself, a row each like the interfaces it names above them: headed at
+   the list's size whatever their level, not as the h4 that labels a section, e.g. a world's
+   imports, when an inline interface's items are h4s */
+.world-own .item { padding: 3px 0; border-bottom: 0; }
+.world-own :is(.item, .item > summary) > .head { font-size: inherit; font-weight: inherit; line-height: inherit; margin: 0; overflow-wrap: anywhere; text-transform: none; letter-spacing: normal; color: var(--text); }
+/* a long signature or name wraps beside its icon, not under it: indented by the icon's width and
+   gap, its first line outdented by as much for the icon */
+.world-own .head > .head-main { padding-left: 22px; text-indent: -22px; }
+.world-own .head > .head-main > * { text-indent: 0; }
+.world-own .head > .head-main > .kind-icon-badged { margin-right: 6px; }
+/* its docs, and a type's members, under its name, as the docs of an import are */
+.world-own :is(.item, .fold-body) > :is(.docs, .from, .members) { margin: 2px 0 4px 22px; }
+.world-own :is(.item, .fold-body) > .docs { font-size: 0.9rem; }
+.world-own :is(.item, .fold-body) > .from { font-size: 0.85rem; }
+:is(.world-own, .world-item) .fold-body > .docs > :first-child { margin-top: 0; }
+:is(.world-own, .world-item) .fold-body > .docs > :last-child { margin-bottom: 0; }
+.world-own ul.members li { padding: 2px 0 2px 10px; margin: 2px 0; font-size: 0.9rem; }
+/* an item with details folds them under its line, opened by it, with a chevron at its end; one
+   without keeps the chevron's room, so their gates line up */
+.world-fold > summary { display: flex; align-items: flex-start; gap: 6px; cursor: pointer; list-style: none; }
+.world-fold > summary::-webkit-details-marker { display: none; }
+.world-fold > summary > :first-child { flex: 1; min-width: 0; }
+.world-fold > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+.fold-chevron { flex: none; width: 14px; height: 14px; margin-top: calc((1lh - 14px) / 2); color: var(--dim); transition: transform 0.15s; }
+.world-fold > summary:hover > .fold-chevron { color: var(--text); }
+.world-fold[open] > summary > .fold-chevron { transform: rotate(180deg); }
+.world-own div.item > .head, div.world-item { padding-right: 20px; }
+@media (prefers-reduced-motion: reduce) { .fold-chevron { transition: none; } }
+/* an inline interface's own types and functions, set in under it */
+.world-inline-items { margin: 2px 0 2px 22px; padding-left: 10px; border-left: 2px solid var(--line); }
 
 .fold { margin-top: 12px; }
 .fold > summary {

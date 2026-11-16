@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "macros.html" import header, links, grouped, stability, kind_icon, func_icon %}
+{% from "macros.html" import header, links, grouped, stability, kind_icon, func_icon, type_item, func_item %}
 {% block description %}{{ iface.id }}{% endblock %}
 {% set toc = true %}
 {% block toc %}
@@ -27,22 +27,7 @@
     {% if iface.types %}
     <section id="types">
       <h2>Types</h2>
-      {% for t in iface.types %}
-      <div class="item" id="type-{{ t.name }}">
-        <h3 class="head"><span class="head-main">{{ kind_icon(t.kind, t.used_kind) }}<span class="k">{{ t.kind }}{% if t.used_kind %} {{ t.used_kind }}{% endif %}</span> <code>{{ t.name }}</code></span>{{ stability(t.stability) }}</h3>
-        {% if t.from %}<p class="from">from {% if t.from.url %}<a href="{{ t.from.url }}"><code>{{ t.from.label }}</code></a>{% else %}<code>{{ t.from.label }}</code>{% endif %}</p>{% endif %}
-        {% if t.docs %}<div class="docs">{{ t.docs|safe }}</div>{% endif %}
-        {% if t.members %}
-        <ul class="members">
-          {% for m in t.members %}<li>{% if m.name %}<code class="c">{{ m.name }}</code>{% if m.ty %}: {% endif %}{% endif %}{% if m.ty %}<code>{{ m.ty|safe }}</code>{% endif %}{% if m.docs %}<div class="docs">{{ m.docs|safe }}</div>{% endif %}</li>{% endfor %}
-        </ul>
-        {% endif %}
-        {% if t.functions %}
-        <ul class="members">
-          {% for f in t.functions %}<li id="type-{{ t.name }}.{{ f.name }}"><div class="head"><span class="head-main">{{ func_icon(f.modifiers) }}<code class="sig">{{ f.ty|safe }}</code></span>{{ stability(f.stability) }}</div>{% if f.docs %}<div class="docs">{{ f.docs|safe }}</div>{% endif %}</li>{% endfor %}
-        </ul>
-        {% endif %}
-      </div>
+      {% for t in iface.types %}{{ type_item(t, "type-" ~ t.name) }}
       {% endfor %}
     </section>
     {% endif %}
@@ -50,11 +35,7 @@
     {% if iface.functions %}
     <section id="functions">
       <h2>Functions</h2>
-      {% for f in iface.functions %}
-      <div class="item" id="func-{{ f.name }}">
-        <h3 class="head"><span class="head-main">{{ func_icon(f.modifiers) }}<code class="sig">{{ f.ty|safe }}</code></span>{{ stability(f.stability) }}</h3>
-        {% if f.docs %}<div class="docs">{{ f.docs|safe }}</div>{% endif %}
-      </div>
+      {% for f in iface.functions %}{{ func_item(f, "func-" ~ f.name) }}
       {% endfor %}
     </section>
     {% endif %}

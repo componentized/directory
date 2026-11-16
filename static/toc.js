@@ -98,3 +98,25 @@
   addEventListener("resize", spy, { passive: true });
   spy();
 })();
+
+// Following a link to an item folded away, e.g. a world's type a signature links, or a resource's
+// function in it, opens the folds around it and brings it into view.
+(() => {
+  const reveal = () => {
+    let id;
+    try {
+      id = decodeURIComponent(location.hash.slice(1));
+    } catch {
+      return;
+    }
+    const target = id && document.getElementById(id);
+    if (!target) return;
+    let folded = false;
+    for (let fold = target.parentElement?.closest("details"); fold; fold = fold.parentElement?.closest("details")) {
+      if (!fold.open) (fold.open = true), (folded = true);
+    }
+    if (folded) target.scrollIntoView();
+  };
+  addEventListener("hashchange", reveal);
+  reveal();
+})();
