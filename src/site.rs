@@ -10,7 +10,7 @@ use crate::wit_html;
 use anyhow::{Context, Result, bail};
 use minijinja::Environment;
 use serde::Serialize;
-use std::collections::{BTreeMap, HashMap};
+use std::collections::{BTreeMap, BTreeSet, HashMap};
 use std::path::Path;
 use wit_parser::{
     FunctionKind, InterfaceId, PackageId, Resolve, TypeDefKind, TypeOwner, WorldItem, WorldKey,
@@ -54,6 +54,28 @@ impl Entry {
             self.name(),
             self.meta.version
         )
+    }
+
+    /// Whether it's a composition: a component that nests components with code of their own, those
+    /// it was composed from.
+    fn composed(&self) -> bool {
+        self.components() > 0
+    }
+
+    /// How many components it nests with code of their own, those it was composed from: its
+    /// wrappers of types alone aren't any.
+    fn components(&self) -> usize {
+        self.meta.parts.iter().flatten().filter(|p| p.code).count()
+    }
+
+    /// The kind its icon shows: `interface`, `component`, or `composition`, a component's icon
+    /// badged.
+    fn icon_kind(&self) -> &'static str {
+        match self.meta.kind {
+            Kind::Interface => "interface",
+            Kind::Component if self.composed() => "composition",
+            Kind::Component => "component",
+        }
     }
 
     fn package_url(&self) -> String {
@@ -142,6 +164,60 @@ struct Link {
     url: Option<String>,
 }
 
+/// Whether a name is an interface's id, e.g. `wasi:config/store@0.2.0-rc.1`, rather than a plain
+/// name an import or export is given, e.g. `latch0`.
+fn is_interface_id(name: &str) -> bool {
+    name.contains(':') && name.contains('/')
+}
+
+/// The label of each interface id, as brief as tells it apart from the others: its name, e.g.
+/// `store`, then with its package, `config/store`, then with its namespace, `wasi:config/store`,
+/// then in full, with its version, `wasi:config/store@0.2.0-rc.1`.
+fn interface_labels<'a>(ids: impl IntoIterator<Item = &'a str>) -> HashMap<String, String> {
+    let ids: BTreeSet<&str> = ids.into_iter().collect();
+    let label = |id: &str, level: usize| -> String {
+        let (path, _) = id.split_once('@').unwrap_or((id, ""));
+        let (_, package_path) = path.split_once(':').unwrap_or(("", path));
+        let (_, name) = package_path.split_once('/').unwrap_or(("", package_path));
+        [name, package_path, path, id][level].to_string()
+    };
+    ids.iter()
+        .map(|id| {
+            let level = (0..3)
+                .find(|level| {
+                    let own = label(id, *level);
+                    ids.iter()
+                        .all(|other| other == id || label(other, *level) != own)
+                })
+                .unwrap_or(3);
+            (id.to_string(), label(id, level))
+        })
+        .collect()
+}
+
+/// What plugs into a part's imports, in the order its world declares them, e.g. `latch0` to
+/// `latch4`, rather than the order the composition happens to pass them in, which is kept for one
+/// with no page to say, or an import its world doesn't name.
+fn in_import_order<'a>(part: Option<&Entry>, args: &'a [data::Plug]) -> Vec<&'a data::Plug> {
+    let declared: Vec<&str> = part
+        .map(|e| {
+            e.meta
+                .imports
+                .iter()
+                .map(|i| i.split_once(": ").map_or(i.as_str(), |(name, _)| name))
+                .collect()
+        })
+        .unwrap_or_default();
+    let mut args: Vec<&data::Plug> = args.iter().collect();
+    args.sort_by_key(|plug| {
+        declared
+            .iter()
+            .position(|name| *name == plug.name)
+            .unwrap_or(declared.len())
+    });
+    args
+}
+
 struct Site {
     entries: Vec<Entry>,
     /// The entries of each package, newest version first.
@@ -158,9 +234,10 @@ struct Site {
     /// The repositories the versions are built from, e.g. `componentized/logging`. A repository
     /// releases its interface package and its components together, with the same version.
     repos: BTreeMap<String, Repo>,
-    /// The components each composed component nests whole, as the versions with their bytes,
-    /// and how many it nests that no version has, e.g. one generated as it was composed.
-    composed_of: Vec<(Vec<usize>, usize)>,
+    /// The components each composed component nests whole, those of its `parts`, each as the
+    /// version with its bytes, if one has them: one generated as it was composed has none. A part
+    /// without code of its own, the wrapper a component's bindings nest, is `None` too.
+    composed_of: Vec<Vec<Option<usize>>>,
     /// The composed components that nest each version, the reverse of `composed_of`.
     used_in: HashMap<usize, Vec<Link>>,
 }
@@ -243,6 +320,7 @@ pub fn build(
             copy => fingerprint(include_str!("../static/copy.js")),
             tip => fingerprint(include_str!("../static/tip.js")),
             compare => fingerprint(include_str!("../static/compare.js")),
+            wiring => fingerprint(include_str!("../static/wiring.js")),
         },
     );
 
@@ -264,6 +342,7 @@ pub fn build(
     write_file(out, "copy.js", include_str!("../static/copy.js"))?;
     write_file(out, "tip.js", include_str!("../static/tip.js"))?;
     write_file(out, "compare.js", include_str!("../static/compare.js"))?;
+    write_file(out, "wiring.js", include_str!("../static/wiring.js"))?;
     write_file(out, "search.json", &serde_json::to_string(&site.search())?)?;
     write_file(
         out,
@@ -636,6 +715,8 @@ struct Card {
     name: String,
     version: String,
     kind: Kind,
+    /// The kind its icon shows, e.g. `composition` for a component composed of others.
+    icon: &'static str,
     description: String,
     url: String,
     date: String,
@@ -1006,27 +1087,24 @@ impl Site {
             })
         };
         // only the parts with code of their own: a component's bindings nest a wrapper of types
-        let composed_of: Vec<(Vec<usize>, usize)> = entries
+        let composed_of: Vec<Vec<Option<usize>>> = entries
             .iter()
             .map(|entry| {
-                let parts: Vec<_> = entry
+                entry
                     .meta
                     .parts
                     .iter()
                     .flatten()
-                    .filter(|p| p.code)
-                    .collect();
-                let found: Vec<usize> = parts.iter().filter_map(|p| part_of(&p.digest)).collect();
-                let missing = parts.len() - found.len();
-                (found, missing)
+                    .map(|p| p.code.then(|| part_of(&p.digest)).flatten())
+                    .collect()
             })
             .collect();
         let mut used_in: HashMap<usize, Vec<Link>> = HashMap::new();
-        for (index, (found, _)) in composed_of.iter().enumerate() {
+        for (index, found) in composed_of.iter().enumerate() {
             if superseded_by[index].is_some() {
                 continue;
             }
-            for part in found {
+            for part in found.iter().flatten() {
                 used_in.entry(*part).or_default().push(Link {
                     label: entries[index].id(),
                     url: Some(entries[index].url()),
@@ -1173,6 +1251,7 @@ impl Site {
             name: entry.name().to_string(),
             version: entry.meta.version.clone(),
             kind: entry.meta.kind,
+            icon: entry.icon_kind(),
             description: entry.description(),
             url: entry.url(),
             date: entry.date(),
@@ -1386,7 +1465,7 @@ impl Site {
                                                     name => other.name(),
                                                     version => linked.meta.version,
                                                     url => linked.url(),
-                                                    kind => other.meta.kind,
+                                                    kind => other.icon_kind(),
                                                     lowest => at(listed.last()),
                                                     highest => at(listed.first()),
                                                     versions => listed.len(),
@@ -1499,10 +1578,7 @@ impl Site {
                     url: latest.package_url(),
                     current: *package == entry.meta.package,
                     note: None,
-                    kind: Some(match latest.meta.kind {
-                        Kind::Interface => "interface",
-                        Kind::Component => "component",
-                    }),
+                    kind: Some(latest.icon_kind()),
                 })
             })
             .collect()
@@ -1520,20 +1596,15 @@ impl Site {
     }
 
     /// The kind of a package, or of a world labeled by its path, e.g. `wasi:http/proxy`, for its
-    /// icon. A package that isn't indexed is a dependency, a WIT package.
+    /// icon, its newest version's. A package that isn't indexed is a dependency, a WIT package.
     fn kind_of(&self, package: &str) -> &'static str {
         if package.contains('/') {
             return "world";
         }
-        match self
-            .packages
+        self.packages
             .get(package)
             .and_then(|indexes| indexes.first())
-            .map(|i| self.entries[*i].meta.kind)
-        {
-            Some(Kind::Component) => "component",
-            _ => "interface",
-        }
+            .map_or("interface", |i| self.entries[*i].icon_kind())
     }
 
     /// `package@version` links, each with the kind of its package, by label.
@@ -1549,6 +1620,132 @@ impl Site {
                 ctx! { kind => self.kind_of(package), label => link.label, url => link.url }
             })
             .collect()
+    }
+
+    /// How many of the components a composed component nests, with code of their own, no version
+    /// has, e.g. one generated as it was composed.
+    fn composed_unknown(&self, index: usize) -> usize {
+        let parts = self.entries[index].meta.parts.iter().flatten();
+        parts
+            .zip(&self.composed_of[index])
+            .filter(|(part, found)| part.code && found.is_none())
+            .count()
+    }
+
+    /// A composition's wiring as its diagram draws it, a block diagram from left to right: the
+    /// composition's imports, its parts, each with a port for each of its imports and for each of
+    /// its exports something plugs into, and its exports. Each port is linked to the page of its
+    /// interface, when it has one, whose tooltip says what it is.
+    fn wiring_diagram(&self, index: usize) -> Option<serde_json::Value> {
+        use data::Owner;
+        use serde_json::json;
+        let meta = &self.entries[index].meta;
+        let wiring = meta.wiring.as_ref()?;
+        let parts = meta.parts.as_deref().unwrap_or_default();
+        let found = &self.composed_of[index];
+        let shown: Vec<usize> = (0..wiring.instances.len())
+            .filter(|i| parts.get(wiring.instances[*i].part).is_some_and(|p| p.code))
+            .collect();
+        let node = |instance: usize| shown.iter().position(|i| *i == instance);
+        // a port by the interface it is: its page, and a short label, e.g. `config/store` for
+        // `wasi:config/store@0.2.0-rc.1`, or the name it's plugged in by, e.g. `latch0`
+        // each interface the diagram has a port for, labeled as briefly as tells it apart from the
+        // others, e.g. `store`, or `config/store` beside `keyvalue/store`
+        let ids = wiring
+            .instances
+            .iter()
+            .flat_map(|i| &i.args)
+            .chain(&wiring.exports)
+            .flat_map(|plug| {
+                let import = match &plug.source.owner {
+                    Owner::Import(import) => Some(import.as_str()),
+                    Owner::Instance(_) => None,
+                };
+                [
+                    Some(plug.name.as_str()),
+                    import,
+                    plug.source.export.as_deref(),
+                ]
+            })
+            .flatten()
+            .filter(|i| is_interface_id(i));
+        let labels = interface_labels(ids);
+        let port = |name: &str, interface: Option<&str>| {
+            let interface = interface.filter(|i| is_interface_id(i));
+            json!({
+                "name": name,
+                "label": labels.get(name).cloned().unwrap_or_else(|| name.to_string()),
+                "interface": interface,
+                "url": interface.and_then(|i| self.interface_urls.get(i)),
+            })
+        };
+        // where a plug comes from: one of the composition's imports, or a part's export
+        let source = |plug: &data::Plug| -> Option<(serde_json::Value, Option<String>)> {
+            let source = &plug.source;
+            match &source.owner {
+                Owner::Import(import) => Some((json!({ "import": import }), Some(import.clone()))),
+                Owner::Instance(instance) => {
+                    let export = source.export.clone()?;
+                    Some((
+                        json!({ "part": node(*instance)?, "port": export }),
+                        Some(export),
+                    ))
+                }
+            }
+        };
+        let mut imports: Vec<String> = Vec::new();
+        let mut outputs: Vec<Vec<String>> = vec![Vec::new(); shown.len()];
+        let mut uses = |plug: &data::Plug| match &plug.source.owner {
+            Owner::Import(import) if !imports.contains(import) => imports.push(import.clone()),
+            Owner::Instance(instance) => {
+                if let (Some(n), Some(export)) = (node(*instance), &plug.source.export)
+                    && !outputs[n].contains(export)
+                {
+                    outputs[n].push(export.clone());
+                }
+            }
+            _ => {}
+        };
+        for i in &shown {
+            wiring.instances[*i].args.iter().for_each(&mut uses);
+        }
+        wiring.exports.iter().for_each(&mut uses);
+        let inputs = |plugs: Vec<&data::Plug>| -> Vec<serde_json::Value> {
+            plugs
+                .into_iter()
+                .filter_map(|plug| {
+                    let (from, interface) = source(plug)?;
+                    let mut port = port(&plug.name, interface.as_deref());
+                    port["from"] = from;
+                    Some(port)
+                })
+                .collect()
+        };
+        let parts: Vec<_> = shown
+            .iter()
+            .zip(&outputs)
+            .map(|(i, outputs)| {
+                let entry = wiring
+                    .instances
+                    .get(*i)
+                    .and_then(|instance| found.get(instance.part).copied().flatten())
+                    .map(|e| &self.entries[e]);
+                json!({
+                    "name": entry.map(|e| e.name()),
+                    "label": entry.map(|e| e.id()),
+                    "url": entry.map(|e| e.url()),
+                    "kind": entry.map_or("component", |e| e.icon_kind()),
+                    "inputs": inputs(in_import_order(entry, &wiring.instances[*i].args)),
+                    "outputs": outputs.iter().map(|o| port(o, Some(o))).collect::<Vec<_>>(),
+                })
+            })
+            .collect();
+        Some(json!({
+            "name": meta.package,
+            "imports": imports.iter().map(|i| port(i, Some(i))).collect::<Vec<_>>(),
+            "parts": parts,
+            "exports": inputs(wiring.exports.iter().collect()),
+        }))
     }
 
     /// The other packages the repository of a version released with it, at the same version. One
@@ -1587,15 +1784,19 @@ impl Site {
                     .into_iter()
                     .map(|i| {
                         let other = &self.entries[i];
+                        // its name alone, e.g. `logging-levels`: a repository's packages share
+                        // its namespace, which the page's own package already says
+                        let label = if other.namespace() == entry.namespace() {
+                            other.name().to_string()
+                        } else {
+                            other.meta.package.clone()
+                        };
                         Pivot {
-                            label: other.meta.package.clone(),
+                            label,
                             url: other.url(),
                             current: false,
                             note: None,
-                            kind: Some(match other.meta.kind {
-                                Kind::Interface => "interface",
-                                Kind::Component => "component",
-                            }),
+                            kind: Some(other.icon_kind()),
                         }
                     })
                     .collect()
@@ -1626,6 +1827,7 @@ impl Site {
             name => entry.name(),
             version => meta.version,
             kind => meta.kind,
+            icon => entry.icon_kind(),
             url => entry.url(),
             package_url => entry.package_url(),
             description => entry.description(),
@@ -1751,12 +1953,14 @@ impl Site {
             dependents => self.grouped(dependents),
             // the components it's composed from, and those composed from it
             composed_of => self.listed_packages(
-                self.composed_of[index].0.iter().map(|i| Link {
+                self.composed_of[index].iter().flatten().map(|i| Link {
                     label: self.entries[*i].id(),
                     url: Some(self.entries[*i].url()),
                 }).collect()
             ),
-            composed_unknown => self.composed_of[index].1,
+            composed_unknown => self.composed_unknown(index),
+            // how its parts are wired together, for its diagram
+            wiring => self.wiring_diagram(index),
             used_in => self.grouped(self.used_in.get(&index).cloned().unwrap_or_default()),
             wit => self.package_wit(index)?.0,
             nested_wit => self.package_wit(index)?.1,
@@ -2067,6 +2271,7 @@ impl Site {
             package: entry.meta.package.clone(),
             version: entry.meta.version.clone(),
             kind: entry.meta.kind,
+            components: entry.components(),
             summary: entry.description(),
             date: entry.date(),
             interfaces,
@@ -2197,6 +2402,7 @@ impl Site {
                 namespace => entry.namespace(),
                 name => entry.name(),
                 kind => entry.meta.kind,
+                icon => entry.icon_kind(),
                 package_url => entry.package_url(),
                 namespaces => self.namespace_pivots(entry.namespace()),
                 // switching package stays on the comparison, for a package with versions to
@@ -2542,8 +2748,38 @@ mod tests {
             dependencies: Vec::new(),
             release: None,
             parts: None,
+            wiring: None,
             indexed_at: "2026-11-11T00:00:00Z".to_string(),
         }
+    }
+
+    #[test]
+    fn labels_interfaces_as_briefly_as_tells_them_apart() {
+        let labels = interface_labels([
+            "wasi:config/store@0.2.0-rc.1",
+            "wasi:keyvalue/store@0.2.0-draft2",
+            "componentized:keyvalue/store@0.1.0",
+            "wasi:logging/logging@0.1.0-draft",
+            "wasi:sockets/types@0.3.0",
+            "wasi:sockets/types@0.2.0",
+            "componentized:sockets/latch@0.1.0",
+        ]);
+        let label = |id: &str| labels[id].as_str();
+        assert_eq!(label("wasi:config/store@0.2.0-rc.1"), "config/store");
+        assert_eq!(
+            label("wasi:keyvalue/store@0.2.0-draft2"),
+            "wasi:keyvalue/store"
+        );
+        assert_eq!(
+            label("componentized:keyvalue/store@0.1.0"),
+            "componentized:keyvalue/store"
+        );
+        assert_eq!(label("wasi:logging/logging@0.1.0-draft"), "logging");
+        assert_eq!(
+            label("wasi:sockets/types@0.3.0"),
+            "wasi:sockets/types@0.3.0"
+        );
+        assert_eq!(label("componentized:sockets/latch@0.1.0"), "latch");
     }
 
     #[test]
@@ -2831,8 +3067,9 @@ mod tests {
         let with = |i: usize| -> Vec<String> {
             site.released_with(i).into_iter().map(|p| p.label).collect()
         };
-        assert_eq!(with(0), ["a:y", "a:z"]);
-        assert_eq!(with(2), ["a:old-too"]);
+        // by their names alone, as they share the namespace
+        assert_eq!(with(0), ["y", "z"]);
+        assert_eq!(with(2), ["old-too"]);
     }
 
     #[test]

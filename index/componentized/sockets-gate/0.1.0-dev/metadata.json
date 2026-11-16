@@ -86,5 +86,63 @@
       "code": true
     }
   ],
+  "wiring": {
+    "instances": [
+      {
+        "part": 0,
+        "args": [
+          {
+            "name": "wasi:sockets/types@0.3.0",
+            "import": "wasi:sockets/types@0.3.0"
+          },
+          {
+            "name": "componentized:sockets/latch@0.1.0-dev",
+            "import": "componentized:sockets/latch@0.1.0-dev"
+          },
+          {
+            "name": "wasi:logging/logging@0.1.0-draft",
+            "import": "wasi:logging/logging@0.1.0-draft"
+          },
+          {
+            "name": "wasi:sockets/ip-name-lookup@0.3.0",
+            "import": "wasi:sockets/ip-name-lookup@0.3.0"
+          }
+        ]
+      },
+      {
+        "part": 1,
+        "args": [
+          {
+            "name": "wasi:clocks/types@0.3.0",
+            "import": "wasi:clocks/types@0.3.0"
+          },
+          {
+            "name": "wasi:sockets/types@0.3.0",
+            "import": "wasi:sockets/types@0.3.0"
+          },
+          {
+            "name": "componentized:sockets/latch@0.1.0-dev",
+            "import": "componentized:sockets/latch@0.1.0-dev"
+          },
+          {
+            "name": "wasi:logging/logging@0.1.0-draft",
+            "import": "wasi:logging/logging@0.1.0-draft"
+          }
+        ]
+      }
+    ],
+    "exports": [
+      {
+        "name": "wasi:sockets/ip-name-lookup@0.3.0",
+        "instance": 0,
+        "export": "wasi:sockets/ip-name-lookup@0.3.0"
+      },
+      {
+        "name": "wasi:sockets/types@0.3.0",
+        "instance": 1,
+        "export": "wasi:sockets/types@0.3.0"
+      }
+    ]
+  },
   "indexed_at": "2026-11-12T00:12:59Z"
 }

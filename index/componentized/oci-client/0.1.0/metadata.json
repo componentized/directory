@@ -80,5 +80,42 @@
       "code": true
     }
   ],
+  "wiring": {
+    "instances": [
+      {
+        "part": 0
+      },
+      {
+        "part": 1,
+        "args": [
+          {
+            "name": "componentized:oci/media-types@0.1.0",
+            "instance": 0,
+            "export": "componentized:oci/media-types@0.1.0"
+          },
+          {
+            "name": "componentized:http/client@0.1.0",
+            "import": "componentized:http/client@0.1.0"
+          },
+          {
+            "name": "wasi:clocks/system-clock@0.3.0",
+            "import": "wasi:clocks/system-clock@0.3.0"
+          }
+        ]
+      }
+    ],
+    "exports": [
+      {
+        "name": "componentized:oci/client@0.1.0",
+        "instance": 1,
+        "export": "componentized:oci/client@0.1.0"
+      },
+      {
+        "name": "componentized:oci/media-types@0.1.0",
+        "instance": 0,
+        "export": "componentized:oci/media-types@0.1.0"
+      }
+    ]
+  },
   "indexed_at": "2026-11-11T23:44:47Z"
 }

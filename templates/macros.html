@@ -75,6 +75,9 @@
 {% macro kind_icon(kind, used_kind=none) %}
 {%- if kind == "use" and used_kind -%}
 <span class="kind-icon-used" aria-hidden="true"><svg class="kind-icon kind-{{ used_kind }}" focusable="false"><use href="#kind-{{ used_kind }}"/></svg><svg class="kind-badge" viewBox="0 0 16 16" focusable="false"><use href="#kind-used"/></svg></span>
+{%- elif kind == "composition" -%}
+{#- a composition, a component nested within a component: a component's icon, badged with another #}
+<span class="kind-icon-used" aria-hidden="true"><svg class="kind-icon kind-component" focusable="false"><use href="#kind-component"/></svg><svg class="kind-badge kind-badge-component" viewBox="0 0 16 16" focusable="false"><use class="kind-badge-halo" href="#kind-component"/><use href="#kind-component"/></svg></span>
 {%- else -%}
 <svg class="kind-icon kind-{{ kind }}" aria-hidden="true" focusable="false"><use href="#kind-{{ kind }}"/></svg>
 {%- endif -%}
@@ -100,7 +103,7 @@
 {% macro card(c, short=false, meta=true) %}
 <a class="card" href="{{ c.url }}" data-kind="{{ c.kind }}" data-namespace="{{ c.namespace }}" data-text="{{ c.package|lower }} {{ c.description|lower }}">
   {#- its kind by its icon, as a repository's card shows its own #}
-  <div class="card-head">{{ kind_icon(c.kind) }}<span class="visually-hidden">{{ c.kind }} </span><code class="pkg" title="{% if short %}{{ c.package }}, {% endif %}{{ c.kind }}">{% if short %}{{ c.name }}{% else %}{{ c.package }}{% endif %}</code></div>
+  <div class="card-head">{{ kind_icon(c.icon) }}<span class="visually-hidden">{{ c.icon }} </span><code class="pkg" title="{% if short %}{{ c.package }}, {% endif %}{{ c.kind }}">{% if short %}{{ c.name }}{% else %}{{ c.package }}{% endif %}</code></div>
   <p>{{ c.description or "No description." }}</p>
   {%- if meta %}
   <div class="meta"><span>v{{ c.version }}</span><span>{{ c.versions }} version{% if c.versions != 1 %}s{% endif %}</span><time datetime="{{ c.date }}">{{ c.date }}</time></div>
@@ -163,7 +166,7 @@
   <h1>{{ kind_icon("interface") }}<span class="visually-hidden">interface </span><code>{{ iface.id }}</code></h1>
   {{ stability(iface.stability) }}
   {% else %}
-  <h1>{{ kind_icon(pkg.kind) }}<span class="visually-hidden">{{ pkg.kind }} </span><code>{{ pkg.package }}</code></h1>
+  <h1>{{ kind_icon(pkg.icon) }}<span class="visually-hidden">{{ pkg.icon }} </span><code>{{ pkg.package }}</code></h1>
   {% endif %}
   {% if pkg.dev %}<span class="badge pre" title="A development build of the upcoming release">dev</span>{% elif not pkg.stable %}<span class="badge pre">pre-release</span>{% endif %}
 </div>

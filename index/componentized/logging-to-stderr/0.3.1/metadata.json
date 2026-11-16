@@ -75,5 +75,33 @@
       "code": true
     }
   ],
+  "wiring": {
+    "instances": [
+      {
+        "part": 0,
+        "args": [
+          {
+            "name": "wasi:cli/stdout@0.3.0",
+            "import": "wasi:cli/stderr@0.3.0"
+          },
+          {
+            "name": "wasi:cli/types@0.3.0",
+            "import": "wasi:cli/types@0.3.0"
+          },
+          {
+            "name": "wasi:clocks/system-clock@0.3.0",
+            "import": "wasi:clocks/system-clock@0.3.0"
+          }
+        ]
+      }
+    ],
+    "exports": [
+      {
+        "name": "wasi:logging/logging@0.1.0-draft",
+        "instance": 0,
+        "export": "wasi:logging/logging@0.1.0-draft"
+      }
+    ]
+  },
   "indexed_at": "2026-11-11T23:43:36Z"
 }

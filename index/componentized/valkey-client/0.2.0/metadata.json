@@ -76,5 +76,92 @@
       "code": true
     }
   ],
+  "wiring": {
+    "instances": [
+      {
+        "part": 0,
+        "args": [
+          {
+            "name": "wasi:sockets/network@0.2.3",
+            "import": "wasi:sockets/network@0.2.3"
+          },
+          {
+            "name": "wasi:sockets/instance-network@0.2.3",
+            "import": "wasi:sockets/instance-network@0.2.3"
+          },
+          {
+            "name": "wasi:io/poll@0.2.3",
+            "import": "wasi:io/poll@0.2.3"
+          },
+          {
+            "name": "wasi:io/error@0.2.3",
+            "import": "wasi:io/error@0.2.3"
+          },
+          {
+            "name": "wasi:io/streams@0.2.3",
+            "import": "wasi:io/streams@0.2.3"
+          },
+          {
+            "name": "wasi:sockets/tcp@0.2.3",
+            "import": "wasi:sockets/tcp@0.2.3"
+          },
+          {
+            "name": "wasi:sockets/tcp-create-socket@0.2.3",
+            "import": "wasi:sockets/tcp-create-socket@0.2.3"
+          },
+          {
+            "name": "wasi:sockets/ip-name-lookup@0.2.3",
+            "import": "wasi:sockets/ip-name-lookup@0.2.3"
+          }
+        ]
+      },
+      {
+        "part": 1,
+        "args": [
+          {
+            "name": "componentized:valkey/resp",
+            "instance": 0,
+            "export": "componentized:valkey/resp"
+          },
+          {
+            "name": "componentized:valkey/store",
+            "instance": 0,
+            "export": "componentized:valkey/store"
+          },
+          {
+            "name": "wasi:config/store@0.2.0-rc.1",
+            "import": "wasi:config/store@0.2.0-rc.1"
+          }
+        ]
+      }
+    ],
+    "exports": [
+      {
+        "name": "componentized:valkey/resp",
+        "instance": 0,
+        "export": "componentized:valkey/resp"
+      },
+      {
+        "name": "componentized:valkey/store",
+        "instance": 0,
+        "export": "componentized:valkey/store"
+      },
+      {
+        "name": "wasi:keyvalue/store@0.2.0-draft2",
+        "instance": 1,
+        "export": "wasi:keyvalue/store@0.2.0-draft2"
+      },
+      {
+        "name": "wasi:keyvalue/atomics@0.2.0-draft2",
+        "instance": 1,
+        "export": "wasi:keyvalue/atomics@0.2.0-draft2"
+      },
+      {
+        "name": "wasi:keyvalue/batch@0.2.0-draft2",
+        "instance": 1,
+        "export": "wasi:keyvalue/batch@0.2.0-draft2"
+      }
+    ]
+  },
   "indexed_at": "2026-11-11T23:45:25Z"
 }

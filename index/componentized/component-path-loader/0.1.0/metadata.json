@@ -102,5 +102,91 @@
       "code": true
     }
   ],
+  "wiring": {
+    "instances": [
+      {
+        "part": 0,
+        "args": [
+          {
+            "name": "wasi:filesystem/types@0.3.0",
+            "import": "wasi:filesystem/types@0.3.0"
+          },
+          {
+            "name": "wasi:filesystem/preopens@0.3.0",
+            "import": "wasi:filesystem/preopens@0.3.0"
+          },
+          {
+            "name": "componentized:component/types@0.1.0",
+            "import": "componentized:component/types@0.1.0"
+          }
+        ]
+      },
+      {
+        "part": 1,
+        "args": [
+          {
+            "name": "componentized:http/client@0.1.0",
+            "import": "componentized:http/client@0.1.0"
+          },
+          {
+            "name": "componentized:component/types@0.1.0",
+            "import": "componentized:component/types@0.1.0"
+          }
+        ]
+      },
+      {
+        "part": 2,
+        "args": [
+          {
+            "name": "wasi:clocks/system-clock@0.3.0",
+            "import": "wasi:clocks/system-clock@0.3.0"
+          },
+          {
+            "name": "componentized:oci/client@0.1.0",
+            "import": "componentized:oci/client@0.1.0"
+          },
+          {
+            "name": "componentized:oci/media-types@0.1.0",
+            "import": "componentized:oci/media-types@0.1.0"
+          },
+          {
+            "name": "componentized:component/types@0.1.0",
+            "import": "componentized:component/types@0.1.0"
+          }
+        ]
+      },
+      {
+        "part": 3,
+        "args": [
+          {
+            "name": "oci-loader",
+            "instance": 2,
+            "export": "componentized:component/path-loader@0.1.0"
+          },
+          {
+            "name": "http-loader",
+            "instance": 1,
+            "export": "componentized:component/path-loader@0.1.0"
+          },
+          {
+            "name": "filesystem-loader",
+            "instance": 0,
+            "export": "componentized:component/path-loader@0.1.0"
+          },
+          {
+            "name": "componentized:component/types@0.1.0",
+            "import": "componentized:component/types@0.1.0"
+          }
+        ]
+      }
+    ],
+    "exports": [
+      {
+        "name": "componentized:component/path-loader@0.1.0",
+        "instance": 3,
+        "export": "componentized:component/path-loader@0.1.0"
+      }
+    ]
+  },
   "indexed_at": "2026-11-11T23:44:19Z"
 }

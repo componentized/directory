@@ -118,5 +118,144 @@
       "code": true
     }
   ],
+  "wiring": {
+    "instances": [
+      {
+        "part": 0
+      },
+      {
+        "part": 1,
+        "args": [
+          {
+            "name": "componentized:valkey/tcp-connector-constants@0.3.0-dev",
+            "instance": 0,
+            "export": "componentized:valkey/tcp-connector-constants@0.3.0-dev"
+          },
+          {
+            "name": "wasi:config/store@0.2.0-rc.1",
+            "import": "wasi:config/store@0.2.0-rc.1"
+          }
+        ]
+      },
+      {
+        "part": 2,
+        "args": [
+          {
+            "name": "wasi:config/store@0.2.0-rc.1",
+            "instance": 1,
+            "export": "wasi:config/store@0.2.0-rc.1"
+          },
+          {
+            "name": "wasi:logging/logging@0.1.0-draft",
+            "import": "wasi:logging/logging@0.1.0-draft"
+          },
+          {
+            "name": "wasi:sockets/types@0.3.0",
+            "import": "wasi:sockets/types@0.3.0"
+          }
+        ]
+      },
+      {
+        "part": 3,
+        "args": [
+          {
+            "name": "wasi:sockets/types@0.3.0",
+            "import": "wasi:sockets/types@0.3.0"
+          }
+        ]
+      },
+      {
+        "part": 4,
+        "args": [
+          {
+            "name": "componentized:valkey/tcp-connector-constants@0.3.0-dev",
+            "instance": 0,
+            "export": "componentized:valkey/tcp-connector-constants@0.3.0-dev"
+          },
+          {
+            "name": "wasi:config/store@0.2.0-rc.1",
+            "import": "wasi:config/store@0.2.0-rc.1"
+          }
+        ]
+      },
+      {
+        "part": 5,
+        "args": [
+          {
+            "name": "wasi:config/store@0.2.0-rc.1",
+            "instance": 4,
+            "export": "wasi:config/store@0.2.0-rc.1"
+          },
+          {
+            "name": "wasi:logging/logging@0.1.0-draft",
+            "import": "wasi:logging/logging@0.1.0-draft"
+          },
+          {
+            "name": "wasi:sockets/types@0.3.0",
+            "import": "wasi:sockets/types@0.3.0"
+          }
+        ]
+      },
+      {
+        "part": 6,
+        "args": [
+          {
+            "name": "wasi:sockets/types@0.3.0",
+            "import": "wasi:sockets/types@0.3.0"
+          }
+        ]
+      },
+      {
+        "part": 7,
+        "args": [
+          {
+            "name": "wasi:sockets/types@0.3.0",
+            "import": "wasi:sockets/types@0.3.0"
+          }
+        ]
+      },
+      {
+        "part": 8,
+        "args": [
+          {
+            "name": "latch4",
+            "instance": 5,
+            "export": "componentized:sockets/latch@0.1.0"
+          },
+          {
+            "name": "latch3",
+            "instance": 2,
+            "export": "componentized:sockets/latch@0.1.0"
+          },
+          {
+            "name": "latch2",
+            "instance": 3,
+            "export": "componentized:sockets/latch@0.1.0"
+          },
+          {
+            "name": "latch1",
+            "instance": 7,
+            "export": "componentized:sockets/latch@0.1.0"
+          },
+          {
+            "name": "latch0",
+            "instance": 6,
+            "export": "componentized:sockets/latch@0.1.0"
+          },
+          {
+            "name": "wasi:sockets/types@0.3.0",
+            "import": "wasi:sockets/types@0.3.0"
+          }
+        ]
+      }
+    ],
+    "exports": [
+      {
+        "name": "componentized:sockets/latch@0.1.0",
+        "instance": 8,
+        "export": "componentized:sockets/latch@0.1.0"
+      }
+    ]
+  },
   "indexed_at": "2026-11-13T20:30:11Z"
 }

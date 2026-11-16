@@ -82,5 +82,63 @@
       "code": true
     }
   ],
+  "wiring": {
+    "instances": [
+      {
+        "part": 0,
+        "args": [
+          {
+            "name": "wasi:http/types@0.3.0",
+            "import": "wasi:http/types@0.3.0"
+          },
+          {
+            "name": "componentized:http/latch@0.1.0-dev",
+            "import": "componentized:http/latch@0.1.0-dev"
+          },
+          {
+            "name": "wasi:logging/logging@0.1.0-draft",
+            "import": "wasi:logging/logging@0.1.0-draft"
+          },
+          {
+            "name": "wasi:http/client@0.3.0",
+            "import": "wasi:http/client@0.3.0"
+          }
+        ]
+      },
+      {
+        "part": 1,
+        "args": [
+          {
+            "name": "wasi:http/types@0.3.0",
+            "import": "wasi:http/types@0.3.0"
+          },
+          {
+            "name": "componentized:http/latch@0.1.0-dev",
+            "import": "componentized:http/latch@0.1.0-dev"
+          },
+          {
+            "name": "wasi:logging/logging@0.1.0-draft",
+            "import": "wasi:logging/logging@0.1.0-draft"
+          },
+          {
+            "name": "wasi:http/handler@0.3.0",
+            "import": "wasi:http/handler@0.3.0"
+          }
+        ]
+      }
+    ],
+    "exports": [
+      {
+        "name": "wasi:http/client@0.3.0",
+        "instance": 0,
+        "export": "wasi:http/client@0.3.0"
+      },
+      {
+        "name": "wasi:http/handler@0.3.0",
+        "instance": 1,
+        "export": "wasi:http/handler@0.3.0"
+      }
+    ]
+  },
   "indexed_at": "2026-11-12T00:12:22Z"
 }

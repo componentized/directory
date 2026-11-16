@@ -11,8 +11,13 @@
 // It also draws the icons of items as their pages do, for the compare page to share.
 (() => {
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
-  const icon = (kind) =>
+  const plainIcon = (kind) =>
     `<svg class="kind-icon kind-${esc(kind)}" aria-hidden="true" focusable="false"><use href="#kind-${esc(kind)}"/></svg>`;
+  // a composition, a component nested within a component, is a component's icon badged with another
+  const icon = (kind) =>
+    kind === "composition"
+      ? `<span class="kind-icon-used" aria-hidden="true">${plainIcon("component")}<svg class="kind-badge kind-badge-component" viewBox="0 0 16 16" focusable="false"><use class="kind-badge-halo" href="#kind-component"/><use href="#kind-component"/></svg></span>`
+      : plainIcon(kind);
   // an item's icon: a used type by the kind it uses, badged as used, and a function badged with
   // its modifiers, `static`, `async`, `get`, `set` or `constructor`
   const itemIcon = (kind, item) => {
@@ -96,9 +101,14 @@
   const versionTip = ({ version: v }) => {
     const count = (n, what) => `${n} ${what}${n === 1 ? "" : "s"}`;
     const has = v.kind === "component"
-      ? [count(v.imports?.length ?? 0, "import"), count(v.exports?.length ?? 0, "export")]
+      ? [
+          count(v.imports?.length ?? 0, "import"),
+          count(v.exports?.length ?? 0, "export"),
+          // a composition, how many components it's composed of
+          v.components && count(v.components, "component"),
+        ]
       : [count(Object.keys(v.interfaces ?? {}).length, "interface"), count(Object.keys(v.worlds ?? {}).length, "world")];
-    return `<div class="wit-tip-head">${icon(v.kind)}<div class="wit-tip-body"><code class="wit-tip-def">${esc(`${v.package}@${v.version}`)}</code><span class="wit-tip-from">${[...has, v.date].filter(Boolean).map(esc).join(" · ")}</span></div></div>
+    return `<div class="wit-tip-head">${icon(v.components ? "composition" : v.kind)}<div class="wit-tip-body"><code class="wit-tip-def">${esc(`${v.package}@${v.version}`)}</code><span class="wit-tip-from">${[...has, v.date].filter(Boolean).map(esc).join(" · ")}</span></div></div>
       ${v.summary ? `<p class="wit-tip-docs">${esc(v.summary)}</p>` : ""}`;
   };
   // an interface's tooltip: its id, how many types and functions it has, its gates, and its docs
@@ -140,6 +150,8 @@
       ${origin ? definition(icon(origin.kind ?? item.used_kind), listed(origin.kind, origin.name, origin.members_html) ?? origin.def_html, origin.from, " wit-tip-origin") : ""}
       ${originDocs ? `<p class="wit-tip-docs">${esc(originDocs)}</p>` : ""}`);
   };
+  // for a view that moves its links from under a tooltip, e.g. a diagram as it pans
+  window.directory.hideTip = hide;
   // shows a tooltip for a link, beside it
   const place = (link, html) => {
     tip.innerHTML = html;

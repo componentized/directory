@@ -111,5 +111,144 @@
       "code": true
     }
   ],
+  "wiring": {
+    "instances": [
+      {
+        "part": 0,
+        "args": [
+          {
+            "name": "wasi:io/error@0.2.6",
+            "import": "wasi:io/error@0.2.12"
+          },
+          {
+            "name": "wasi:sockets/network@0.2.6",
+            "import": "wasi:sockets/network@0.2.6"
+          },
+          {
+            "name": "wasi:sockets/instance-network@0.2.6",
+            "import": "wasi:sockets/instance-network@0.2.6"
+          },
+          {
+            "name": "wasi:io/poll@0.2.6",
+            "import": "wasi:io/poll@0.2.12"
+          },
+          {
+            "name": "wasi:io/streams@0.2.6",
+            "import": "wasi:io/streams@0.2.12"
+          },
+          {
+            "name": "wasi:sockets/tcp@0.2.6",
+            "import": "wasi:sockets/tcp@0.2.6"
+          },
+          {
+            "name": "wasi:sockets/tcp-create-socket@0.2.6",
+            "import": "wasi:sockets/tcp-create-socket@0.2.6"
+          },
+          {
+            "name": "wasi:sockets/ip-name-lookup@0.2.6",
+            "import": "wasi:sockets/ip-name-lookup@0.2.6"
+          },
+          {
+            "name": "wasi:config/store@0.2.0-rc.1",
+            "import": "wasi:config/store@0.2.0-rc.1"
+          }
+        ]
+      },
+      {
+        "part": 1,
+        "args": [
+          {
+            "name": "componentized:valkey/store",
+            "instance": 0,
+            "export": "componentized:valkey/store"
+          },
+          {
+            "name": "componentized:valkey/resp",
+            "instance": 0,
+            "export": "componentized:valkey/resp"
+          },
+          {
+            "name": "componentized:services/types@0.0.5-dev",
+            "import": "componentized:services/types@0.0.5-dev"
+          },
+          {
+            "name": "componentized:services/credential-admin@0.0.5-dev",
+            "import": "componentized:services/credential-admin@0.0.5-dev"
+          },
+          {
+            "name": "wasi:config/store@0.2.0-rc.1",
+            "import": "wasi:config/store@0.2.0-rc.1"
+          },
+          {
+            "name": "wasi:io/poll@0.2.12",
+            "import": "wasi:io/poll@0.2.12"
+          },
+          {
+            "name": "wasi:clocks/monotonic-clock@0.2.12",
+            "import": "wasi:clocks/monotonic-clock@0.2.12"
+          },
+          {
+            "name": "wasi:clocks/wall-clock@0.2.12",
+            "import": "wasi:clocks/wall-clock@0.2.12"
+          },
+          {
+            "name": "wasi:io/error@0.2.12",
+            "import": "wasi:io/error@0.2.12"
+          },
+          {
+            "name": "wasi:io/streams@0.2.12",
+            "import": "wasi:io/streams@0.2.12"
+          },
+          {
+            "name": "wasi:cli/stdout@0.2.12",
+            "import": "wasi:cli/stdout@0.2.12"
+          },
+          {
+            "name": "wasi:cli/stderr@0.2.12",
+            "import": "wasi:cli/stderr@0.2.12"
+          },
+          {
+            "name": "wasi:cli/stdin@0.2.12",
+            "import": "wasi:cli/stdin@0.2.12"
+          },
+          {
+            "name": "wasi:cli/environment@0.2.12",
+            "import": "wasi:cli/environment@0.2.12"
+          },
+          {
+            "name": "wasi:cli/exit@0.2.12",
+            "import": "wasi:cli/exit@0.2.12"
+          },
+          {
+            "name": "wasi:cli/terminal-input@0.2.12",
+            "import": "wasi:cli/terminal-input@0.2.12"
+          },
+          {
+            "name": "wasi:cli/terminal-output@0.2.12",
+            "import": "wasi:cli/terminal-output@0.2.12"
+          },
+          {
+            "name": "wasi:cli/terminal-stdin@0.2.12",
+            "import": "wasi:cli/terminal-stdin@0.2.12"
+          },
+          {
+            "name": "wasi:cli/terminal-stdout@0.2.12",
+            "import": "wasi:cli/terminal-stdout@0.2.12"
+          },
+          {
+            "name": "wasi:cli/terminal-stderr@0.2.12",
+            "import": "wasi:cli/terminal-stderr@0.2.12"
+          }
+        ]
+      }
+    ],
+    "exports": [
+      {
+        "name": "componentized:services/lifecycle@0.0.5-dev",
+        "instance": 1,
+        "export": "componentized:services/lifecycle@0.0.5-dev"
+      }
+    ]
+  },
   "indexed_at": "2026-11-14T23:52:27Z"
 }

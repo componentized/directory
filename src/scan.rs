@@ -458,26 +458,33 @@ impl Scanner<'_> {
         Ok(())
     }
 
-    /// Reads the nested components of each indexed component that hasn't recorded them, one
-    /// indexed before scans did, from its wasm layer, fetched again.
+    /// Reads the nested components of each indexed component that hasn't recorded them, and how a
+    /// composition's are wired together, for one indexed before scans did, from its wasm layer,
+    /// fetched again.
     fn backfill_parts(&mut self) -> Result<()> {
         let stored = data::load(&self.options.root)?;
         let mut backfilled = 0;
         for stored in stored {
             let metadata = &stored.metadata;
-            if metadata.kind != data::Kind::Component || metadata.parts.is_some() {
+            let composed = |parts: &[data::Part]| parts.iter().any(|p| p.code);
+            let read = match &metadata.parts {
+                None => true,
+                Some(parts) => composed(parts) && metadata.wiring.is_none(),
+            };
+            if metadata.kind != data::Kind::Component || !read {
                 continue;
             }
             let oci = &metadata.oci;
-            let parts = self
+            let composition = self
                 .oci
                 .blob(&oci.registry, &oci.repository, &oci.layer_digest)
                 .context("fetching the wasm layer")
-                .and_then(|wasm| decode::parts(&wasm));
-            match parts {
-                Ok(parts) => {
+                .and_then(|wasm| decode::composition(&wasm));
+            match composition {
+                Ok((parts, wiring)) => {
                     let mut metadata = metadata.clone();
                     metadata.parts = Some(parts);
+                    metadata.wiring = wiring;
                     data::write(&self.options.root, &metadata, &stored.wit)?;
                     backfilled += 1;
                 }
@@ -738,6 +745,13 @@ impl Scanner<'_> {
             None => None,
         };
 
+        let (parts, wiring) = match decoded.kind {
+            data::Kind::Component => {
+                let (parts, wiring) = decode::composition(&wasm)?;
+                (Some(parts), wiring)
+            }
+            data::Kind::Interface => (None, None),
+        };
         let metadata = Metadata {
             package,
             version,
@@ -751,10 +765,8 @@ impl Scanner<'_> {
             exports: decoded.exports,
             dependencies: decoded.dependencies,
             release: None,
-            parts: match decoded.kind {
-                data::Kind::Component => Some(decode::parts(&wasm)?),
-                data::Kind::Interface => None,
-            },
+            parts,
+            wiring,
             indexed_at: chrono::Utc::now().to_rfc3339_opts(chrono::SecondsFormat::Secs, true),
         };
         let dir = data::write(&self.options.root, &metadata, &decoded.wit)?;

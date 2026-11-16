@@ -78,5 +78,37 @@
       "code": true
     }
   ],
+  "wiring": {
+    "instances": [
+      {
+        "part": 0
+      },
+      {
+        "part": 1,
+        "args": [
+          {
+            "name": "wasi:config/store@0.2.0-rc.1",
+            "instance": 0,
+            "export": "wasi:config/store@0.2.0-rc.1"
+          },
+          {
+            "name": "wasi:logging/logging@0.1.0-draft",
+            "import": "wasi:logging/logging@0.1.0-draft"
+          },
+          {
+            "name": "wasi:http/types@0.3.0",
+            "import": "wasi:http/types@0.3.0"
+          }
+        ]
+      }
+    ],
+    "exports": [
+      {
+        "name": "componentized:http/latch@0.1.1-dev",
+        "instance": 1,
+        "export": "componentized:http/latch@0.1.1-dev"
+      }
+    ]
+  },
   "indexed_at": "2026-11-12T00:12:37Z"
 }

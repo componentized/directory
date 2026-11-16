@@ -29,13 +29,13 @@
     <ol>{% for i in interfaces %}<li><a href="#interface-{{ i.name }}" title="interface {{ i.name }}">{{ kind_icon("interface") }}<code>{{ i.name }}</code></a></li>{% endfor %}</ol></li>{% endif %}
   {% if pkg.kind == "interface" and worlds %}<li><a href="#worlds">Worlds</a>
     <ol>{% for w in worlds %}<li><a href="#world-{{ w.name }}" title="world {{ w.name }}">{{ kind_icon("world") }}<code>{{ w.name }}</code></a></li>{% endfor %}</ol></li>{% endif %}
-  {% if composed_of or composed_unknown %}<li><a href="#composed-of">Composed of</a></li>{% endif %}
+  {% if composed_of or composed_unknown %}<li><a href="#composition">Composition</a></li>{% endif %}
   <li><a href="#wit">WIT</a></li>
   <li class="toc-aside"><a href="#about">About</a></li>
   {% if not synthetic %}<li class="toc-aside"><a href="#pull">Pull</a></li>{% endif %}
   {% if debug %}<li class="toc-aside"><a href="#debug">Debug</a></li>{% endif %}
   {% if pkg.released_with %}<li class="toc-aside"><a href="#released-with">Released with</a></li>{% endif %}
-  {% if used_in %}<li class="toc-aside"><a href="#used-in">Used in</a></li>{% endif %}
+  {% if used_in %}<li class="toc-aside"><a href="#composed-by">Composed by</a></li>{% endif %}
   {%- if pkg.kind == "interface" %}
   <li class="toc-aside"><a href="#dependencies">Dependencies</a></li>
   <li class="toc-aside"><a href="#dependents">Dependents</a></li>
@@ -84,10 +84,47 @@
 
     {% if composed_of or composed_unknown %}
     {#- the components nested whole in it, it was composed from, each the version with its bytes #}
-    <section id="composed-of">
-      <h2>Composed of</h2>
+    <section id="composition">
+      <h2>Composition</h2>
+      {%- if wiring %}
+      {#- drawn by wiring.js, from left to right: the composition's imports, its parts, its exports #}
+      <figure class="wiring-diagram" data-wiring hidden>
+        <div class="wiring-tools" role="toolbar" aria-label="Diagram">
+          {#- the controls wrap onto further lines as they need, the hint keeps the top-right corner #}
+          <div class="wiring-controls">
+            <span class="wiring-segments" role="group" aria-label="Zoom">
+              <button type="button" data-wiring-zoom="in" title="Zoom in" aria-label="Zoom in"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></button>
+              <button type="button" data-wiring-zoom="out" title="Zoom out" aria-label="Zoom out"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10"/></svg></button>
+            </span>
+            <button type="button" data-wiring-zoom="fit" title="Fit to view" aria-label="Fit to view"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4"/></svg></button>
+            <button type="button" data-wiring-expand aria-pressed="false" title="Expand" aria-label="Expand"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 2H14v4.5M14 2 9 7M6.5 14H2V9.5M2 14l5-5"/></svg></button>
+            {#- a part focused on, from its button in the diagram, and what's shown with it #}
+            <span class="wiring-focus" data-wiring-focus hidden>
+              <button type="button" data-wiring-clear title="Clear the focus" aria-label="Clear the focus"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg></button>
+              {#- upstream is to the left, where what a part takes from is drawn, downstream to the right, and
+                  both between them #}
+              <span class="wiring-segments" role="group" aria-label="Show the parts">
+                <button type="button" data-wiring-direction="up" aria-pressed="false" title="Upstream: what it takes from" aria-label="Upstream"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="12" cy="8" r="2"/><path d="M9 8H2M5 5 2 8l3 3"/></svg></button>
+                <button type="button" data-wiring-direction="both" aria-pressed="true" title="Both: upstream and downstream" aria-label="Both"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="2"/><path d="M4.5 5 1.5 8l3 3M11.5 5l3 3-3 3"/></svg></button>
+                <button type="button" data-wiring-direction="down" aria-pressed="false" title="Downstream: what takes from it" aria-label="Downstream"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="4" cy="8" r="2"/><path d="M7 8h7M11 5l3 3-3 3"/></svg></button>
+              </span>
+              <span class="wiring-focus-label">Focused on <code data-wiring-focus-name></code></span>
+            </span>
+          </div>
+          <span class="wiring-hint dim" data-wiring-hint>Drag to pan · Ctrl + scroll to zoom</span>
+        </div>
+        <div class="wiring-viewport" data-wiring-viewport tabindex="0" aria-label="The wiring of {{ pkg.id }}, as a diagram">
+          <div class="wiring-stage" data-wiring-stage></div>
+        </div>
+      </figure>
+      <script type="application/json" id="wiring-data">{{ wiring|tojson }}</script>
+      <script src="/wiring.js?v={{ assets.wiring }}" defer></script>
+      {#- without scripts, the parts alone #}
+      <noscript><p class="notice">Drawing the wiring needs JavaScript. The parts it's composed of are:</p>{{ packages(composed_of, empty="") }}</noscript>
+      {%- else %}
       {{ packages(composed_of, empty="") }}
-      {%- if composed_unknown %}
+      {%- endif %}
+      {%- if composed_unknown and not wiring %}
       <p class="dim">{% if composed_of %}and {% endif %}{{ composed_unknown }} other component{% if composed_unknown != 1 %}s{% endif %} not in the directory</p>
       {%- endif %}
     </section>
@@ -151,8 +188,8 @@
     {% endif %}
     {% if used_in %}
     {#- the components composed from it, that nest it whole #}
-    <section id="used-in">
-      <h3>Used in</h3>
+    <section id="composed-by">
+      <h3>Composed by</h3>
       {{ grouped(used_in) }}
     </section>
     {% endif %}
