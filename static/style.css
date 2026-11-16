@@ -180,6 +180,7 @@ footer.site .footer-legal { grid-column: 1 / -1; max-width: none; margin: 8px 0 
 .pivot-filter input:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
 .pivot-empty { padding: 5px 8px; color: var(--dim); }
 .lede { font-size: 1.05rem; color: var(--dim); max-width: 70ch; margin-top: 0; }
+.lede > :first-child { margin-top: 0; }
 .notice { background: var(--interface-soft); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; max-width: 70ch; }
 .notice.synthetic { margin-top: 16px; }
 
