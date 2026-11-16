@@ -1356,7 +1356,8 @@ impl Site {
                 Some((package, latest, members))
             })
             .collect();
-        capabilities.sort_by_key(|(package, _, members)| (std::cmp::Reverse(members.len()), *package));
+        capabilities
+            .sort_by_key(|(package, _, members)| (std::cmp::Reverse(members.len()), *package));
         capabilities
             .into_iter()
             .map(|(package, latest, members)| {
