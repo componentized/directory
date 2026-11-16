@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/config/remap",
     "tag": "0.2.2-dev",
-    "digest": "sha256:5d1cae17beca064ffc4d0e4b06f7e469e6fb2116d282fce353d932fac671b53f",
+    "digest": "sha256:b488b1addeeee2d2f13d1a4ce354dd4509578e861b159e16b38991bf5d443572",
     "layer_digest": "sha256:885166c183df4a5d980a9600248e22b32812ae817d2fa798cbe10a77bbd063fd",
     "size": 37345,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/config",
       "git_ref": "refs/heads/main",
-      "log_index": 3855898310
+      "log_index": 3929910954
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/config/remap",
     "tag": "0.2.2-dev_debug",
-    "digest": "sha256:ec0fd86346076cc4812bfcb3543f18cc59a4a6ba4a95c8aeb2eabb633c57cea4",
+    "digest": "sha256:e6283651da6387ef92dcbec998685e0a8339330c0a7f733c2f99e28d367ac265",
     "layer_digest": "sha256:3cfa0de6d6a0f3c3ff5e58b447f2bf31b4747f418cb7e3cfe31e0039e4700793",
     "size": 125769,
     "signature": {
@@ -32,18 +32,18 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/config",
       "git_ref": "refs/heads/main",
-      "log_index": 3855899652
+      "log_index": 3929914534
     }
   },
-  "created": "2026-11-13T14:28:51.781851492Z",
+  "created": "2026-11-16T16:26:33.082209194Z",
   "annotations": {
     "org.opencontainers.image.description": "Maps the keys in a wasi:config/store based on the content of a 'mapping' import which mimics wasi:config/store.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "1f7ed971a43aac35676f6b705f84f0ca7ef313da",
+    "org.opencontainers.image.revision": "f39df6819211465fe984986b5e6c709b7d38a6de",
     "org.opencontainers.image.source": "https://github.com/componentized/config.git",
     "org.opencontainers.image.title": "componentized:config-remap",
-    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/1f7ed971a43aac35676f6b705f84f0ca7ef313da/components/remap",
-    "org.opencontainers.image.version": "0.2.2-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/f39df6819211465fe984986b5e6c709b7d38a6de/components/remap",
+    "org.opencontainers.image.version": "v0.2.2-dev"
   },
   "imports": [
     "wasi:config/store@0.2.0-rc.1",
@@ -64,5 +64,5 @@
       "size": 244
     }
   ],
-  "indexed_at": "2026-11-13T18:35:51Z"
+  "indexed_at": "2026-11-16T16:28:21Z"
 }

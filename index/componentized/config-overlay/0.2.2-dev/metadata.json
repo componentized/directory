@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/config/overlay",
     "tag": "0.2.2-dev",
-    "digest": "sha256:646c5c43d7b09cdf1324ce7cd49038bfe4d74960249c3a88655b2016de27bcba",
+    "digest": "sha256:a75781db77c411ae89e1728741bb2926eda2013c5536922a914c7320a106232b",
     "layer_digest": "sha256:5d49cd31a65ec8d303f80c573205b7314235d71640017356bab3552a891204d9",
     "size": 34778,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/config",
       "git_ref": "refs/heads/main",
-      "log_index": 3855891766
+      "log_index": 3929904039
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/config/overlay",
     "tag": "0.2.2-dev_debug",
-    "digest": "sha256:4186d7db9e0706ed58b96d45eb3cbf4253882547b9279754b446bb38cfe48bc3",
+    "digest": "sha256:2f43f3dbd6117c26917f40163bf7c1f2610f67146c99ccf5b42d33008f0f92f3",
     "layer_digest": "sha256:8b3e80c04e000c153265b484efd958d687688c2960c3ba97605e31f1be3aece4",
     "size": 121320,
     "signature": {
@@ -32,18 +32,18 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/config",
       "git_ref": "refs/heads/main",
-      "log_index": 3855895304
+      "log_index": 3929906947
     }
   },
-  "created": "2026-11-13T14:28:21.940023302Z",
+  "created": "2026-11-16T16:26:13.811288189Z",
   "annotations": {
     "org.opencontainers.image.description": "Combines value from two wasi:config/stores into a single store. The 'store' import is the base set of values, while the 'overlay' import, a mirror of the store interface, contributes additional values overriding in the case of a conflict.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "1f7ed971a43aac35676f6b705f84f0ca7ef313da",
+    "org.opencontainers.image.revision": "f39df6819211465fe984986b5e6c709b7d38a6de",
     "org.opencontainers.image.source": "https://github.com/componentized/config.git",
     "org.opencontainers.image.title": "componentized:config-overlay",
-    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/1f7ed971a43aac35676f6b705f84f0ca7ef313da/components/overlay",
-    "org.opencontainers.image.version": "0.2.2-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/f39df6819211465fe984986b5e6c709b7d38a6de/components/overlay",
+    "org.opencontainers.image.version": "v0.2.2-dev"
   },
   "imports": [
     "wasi:config/store@0.2.0-rc.1",
@@ -64,5 +64,5 @@
       "size": 244
     }
   ],
-  "indexed_at": "2026-11-13T18:35:51Z"
+  "indexed_at": "2026-11-16T16:28:19Z"
 }

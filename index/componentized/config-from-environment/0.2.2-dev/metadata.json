@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/config/from-environment",
     "tag": "0.2.2-dev",
-    "digest": "sha256:1a05e840308300d04b955f7cddd527b7531e1e1c5e48399b62085cadead83a6a",
+    "digest": "sha256:a43f734ff439a5628dc5086a9501bc37b8eb95ef0963adcd8891a373225f3f0c",
     "layer_digest": "sha256:b4db86da685fc344820e095b7931c8d1e5a4505144f9862e25e96ae97f7bbd08",
     "size": 26158,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/config",
       "git_ref": "refs/heads/main",
-      "log_index": 3855888324
+      "log_index": 3929897214
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/config/from-environment",
     "tag": "0.2.2-dev_debug",
-    "digest": "sha256:7ca2dc175b52380aee92257b08d250dc8641a7a222e47b72a1e0d76c0dca72d1",
+    "digest": "sha256:f987a5503369577c05bed1a440a2946a3e8d57d0f093b195003b296f37c69c11",
     "layer_digest": "sha256:2cb508ca787853c952fcc038115e387013e6ab0e391c75679f1f21165de0492a",
     "size": 71061,
     "signature": {
@@ -32,18 +32,18 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/config",
       "git_ref": "refs/heads/main",
-      "log_index": 3855889683
+      "log_index": 3929900137
     }
   },
-  "created": "2026-11-13T14:28:03.167398601Z",
+  "created": "2026-11-16T16:25:54.535989661Z",
   "annotations": {
     "org.opencontainers.image.description": "Exposes the content of wasi:cli/environment variables as wasi:config/store.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "1f7ed971a43aac35676f6b705f84f0ca7ef313da",
+    "org.opencontainers.image.revision": "f39df6819211465fe984986b5e6c709b7d38a6de",
     "org.opencontainers.image.source": "https://github.com/componentized/config.git",
     "org.opencontainers.image.title": "componentized:config-from-environment",
-    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/1f7ed971a43aac35676f6b705f84f0ca7ef313da/components/from-environment",
-    "org.opencontainers.image.version": "0.2.2-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/f39df6819211465fe984986b5e6c709b7d38a6de/components/from-environment",
+    "org.opencontainers.image.version": "v0.2.2-dev"
   },
   "imports": [
     "wasi:cli/environment@0.2.6"
@@ -67,5 +67,5 @@
       "size": 244
     }
   ],
-  "indexed_at": "2026-11-13T18:35:50Z"
+  "indexed_at": "2026-11-16T16:28:16Z"
 }

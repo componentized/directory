@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/config/empty",
     "tag": "0.2.2-dev",
-    "digest": "sha256:b64636e4da73b5b3924b57e8318b8a235f993f7f25307090f4ead13d37b37885",
+    "digest": "sha256:284b2135794e830c55c9d7a569adf92dee17798618a36808ef945ab9a185d019",
     "layer_digest": "sha256:cd1327a2d53ad26cc6b56cd983b049bce22e92f31a1f22c2adbbe343aff399ee",
     "size": 22636,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/config",
       "git_ref": "refs/heads/main",
-      "log_index": 3855884088
+      "log_index": 3929890504
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/config/empty",
     "tag": "0.2.2-dev_debug",
-    "digest": "sha256:dae8292de9728c004fc9fba4d34aa88cfb4f08ec4f0ad0a215e559a644763750",
+    "digest": "sha256:dc3c3e09e40fe55c28e6fb2793a60a6d1ebca6bbc364723721ce9e5d994a0ab6",
     "layer_digest": "sha256:1d510906f65a617ca4c2a4b24d8ef2cd4b2c00c19321f273a831f412e7e74978",
     "size": 62010,
     "signature": {
@@ -32,18 +32,18 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/config",
       "git_ref": "refs/heads/main",
-      "log_index": 3855886655
+      "log_index": 3929893434
     }
   },
-  "created": "2026-11-13T14:27:19.824371202Z",
+  "created": "2026-11-16T16:25:36.759121876Z",
   "annotations": {
     "org.opencontainers.image.description": "Exposes an empty wasi:config/store which returns neither errors, nor values.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "1f7ed971a43aac35676f6b705f84f0ca7ef313da",
+    "org.opencontainers.image.revision": "f39df6819211465fe984986b5e6c709b7d38a6de",
     "org.opencontainers.image.source": "https://github.com/componentized/config.git",
     "org.opencontainers.image.title": "componentized:config-empty",
-    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/1f7ed971a43aac35676f6b705f84f0ca7ef313da/components/empty",
-    "org.opencontainers.image.version": "0.2.2-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/f39df6819211465fe984986b5e6c709b7d38a6de/components/empty",
+    "org.opencontainers.image.version": "v0.2.2-dev"
   },
   "exports": [
     "wasi:config/store@0.2.0-rc.1"
@@ -60,5 +60,5 @@
       "size": 244
     }
   ],
-  "indexed_at": "2026-11-13T18:35:49Z"
+  "indexed_at": "2026-11-16T16:28:14Z"
 }
