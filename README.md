@@ -1,6 +1,6 @@
 # Componentized Directory <!-- omit in toc -->
 
-A directory of the Wasm components and WIT interfaces published by the Componentized project to [`ghcr.io/componentized`](https://github.com/orgs/componentized/packages). Every package, version, world, interface, type and function is browsable, along with what imports, exports and depends on it. It is served at [directory.componentized.dev](https://directory.componentized.dev).
+A directory of Wasm components and WIT interfaces published by the Componentized project to [`ghcr.io/componentized`](https://github.com/orgs/componentized/packages). Every package, version, world, interface, type and function is browsable, along with what imports, exports and depends on it. It is served at [directory.componentized.dev](https://directory.componentized.dev).
 
 - [How it works](#how-it-works)
 - [The index](#the-index)
