@@ -343,6 +343,12 @@ pub fn build(
     write_file(out, "tip.js", include_str!("../static/tip.js"))?;
     write_file(out, "compare.js", include_str!("../static/compare.js"))?;
     write_file(out, "wiring.js", include_str!("../static/wiring.js"))?;
+    // tells wasm-pkg tools where the namespaces' packages are published
+    write_file(
+        out,
+        ".well-known/wasm-pkg/registry.json",
+        include_str!("../static/.well-known/wasm-pkg/registry.json"),
+    )?;
     write_file(out, "search.json", &serde_json::to_string(&site.search())?)?;
     write_file(
         out,
@@ -2955,6 +2961,12 @@ mod tests {
         )
         .unwrap();
         let read = |path: &str| std::fs::read_to_string(out.join(path)).unwrap();
+
+        // the static directory's hidden files are published too
+        assert_eq!(
+            read(".well-known/wasm-pkg/registry.json"),
+            include_str!("../static/.well-known/wasm-pkg/registry.json")
+        );
 
         let iface = read("wasi/logging/0.1.0-draft/logging/index.html");
         assert!(
