@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/logging/to-stdout",
     "tag": "0.3.2-dev",
-    "digest": "sha256:5ca93bea16c1231d78298207b18df9f0e44197c9441c0ecfcacb9211085bc70a",
+    "digest": "sha256:3480898f122e996ea2b7df9e68c95a35a2e5ef843fe5f5da2be1843a9b99a593",
     "layer_digest": "sha256:9c018b546994bbaa5d7e95cd2c729d0ac70bb83a7ed6ef119831303327309204",
     "size": 90277,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/logging",
       "git_ref": "refs/heads/main",
-      "log_index": 3855888517
+      "log_index": 3930178923
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/logging/to-stdout",
     "tag": "0.3.2-dev_debug",
-    "digest": "sha256:48f03f43310893e6c6108fe7f57212643320da1b3ed9ac9dffda6e416351cd35",
+    "digest": "sha256:fd123272c776df25cd9ecbe286025b3ffcb203f700ce1a40e70074bbe61bbae6",
     "layer_digest": "sha256:e1331ebde24d173d6195ec8ee1fc81fe5051d87db25db5059f198c49a28e5d0b",
     "size": 339087,
     "signature": {
@@ -32,18 +32,18 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/logging",
       "git_ref": "refs/heads/main",
-      "log_index": 3855890307
+      "log_index": 3930183305
     }
   },
-  "created": "2026-11-13T14:28:04.636528172Z",
+  "created": "2026-11-16T16:42:19.348715822Z",
   "annotations": {
     "org.opencontainers.image.description": "Implements wasi:logging/logging@0.1.0-draft writing log statements to stdout via wasi:cli/stdout@0.2.3. Timestamps for each log statement are generated from wasi:clocks/wall-clock@0.2.3.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "7d8682201c04eed5e31c8d0a6369010ba660f7be",
+    "org.opencontainers.image.revision": "e6ff29a3c99d55a0829eeba526385d775ef826ab",
     "org.opencontainers.image.source": "https://github.com/componentized/logging.git",
     "org.opencontainers.image.title": "componentized:logging-to-stdout",
-    "org.opencontainers.image.url": "https://github.com/componentized/logging/tree/7d8682201c04eed5e31c8d0a6369010ba660f7be/components/to-stdout",
-    "org.opencontainers.image.version": "0.3.2-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/logging/tree/e6ff29a3c99d55a0829eeba526385d775ef826ab/components/to-stdout",
+    "org.opencontainers.image.version": "v0.3.2-dev"
   },
   "imports": [
     "wasi:cli/types@0.3.0",
@@ -73,5 +73,5 @@
       "size": 229
     }
   ],
-  "indexed_at": "2026-11-13T18:36:07Z"
+  "indexed_at": "2026-11-16T16:43:30Z"
 }
