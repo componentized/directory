@@ -775,16 +775,39 @@ struct RepoCard {
 struct WorldView {
     name: String,
     docs: String,
-    imports: Vec<WorldItemLink>,
-    exports: Vec<WorldItemLink>,
+    imports: Vec<WorldItemView>,
+    exports: Vec<WorldItemView>,
 }
 
-/// An item a world imports or exports, with the kind its icon shows: `interface` or `func`.
-#[derive(Serialize)]
-struct WorldItemLink {
-    #[serde(flatten)]
-    link: Link,
+/// An item a world imports or exports: an interface, by its id or defined inline, a function, or
+/// a type the world defines or uses.
+#[derive(Serialize, Default)]
+struct WorldItemView {
+    /// The kind its icon shows: `interface`, `func` or `type`.
     kind: &'static str,
+    /// Its id on the page, e.g. `world-app-func-run`.
+    id: String,
+    /// The name an interface is under, e.g. `latch0` for `latch0:
+    /// componentized:http/latch@0.1.0`, apart from the link to the interface.
+    name: Option<String>,
+    /// An interface's id, or the name of an inline interface, a function or a type.
+    label: String,
+    /// The page of an interface it names.
+    url: Option<String>,
+    /// The docs of its `import` or `export`.
+    docs: String,
+    stability: Option<StabilityView>,
+    func: Option<Member>,
+    #[serde(rename = "type")]
+    ty: Option<TypeView>,
+    /// The types and functions of an interface defined inline.
+    inline: Option<InlineView>,
+}
+
+#[derive(Serialize)]
+struct InlineView {
+    types: Vec<TypeView>,
+    functions: Vec<Member>,
 }
 
 #[derive(Serialize)]
@@ -859,6 +882,19 @@ fn stability(stability: &wit_parser::Stability) -> Option<StabilityView> {
             deprecated: deprecated.as_ref().map(ToString::to_string),
         }),
     }
+}
+
+/// What [`Site::scope_items`] lists: the types and functions an interface defines, or a world.
+struct Scope<'a> {
+    owner: TypeOwner,
+    types: Vec<(&'a str, wit_parser::TypeId)>,
+    /// Its functions, a resource's among them, which are listed with the resource.
+    functions: Vec<&'a wit_parser::Function>,
+    /// The prefix of the ids of its items on the page, e.g. `world-app-` for a world's, so
+    /// `world-app-type-session`, and none for an interface on its own page.
+    anchor: String,
+    /// The heading level its items are under, for the headings of their docs.
+    under: usize,
 }
 
 #[derive(Serialize)]
@@ -1245,15 +1281,157 @@ impl Site {
         }
     }
 
-    fn world_item_link(&self, item: &str) -> WorldItemLink {
-        WorldItemLink {
-            link: self.interface_link(item),
+    /// An item a component imports or exports, by its name alone, e.g. `log: func`, for a
+    /// component whose world isn't resolved.
+    fn world_item_link(&self, item: &str) -> WorldItemView {
+        let link = self.interface_link(item);
+        // a named interface's name, apart from its id, e.g. `latch0` of `latch0:
+        // componentized:http/latch@0.1.0`
+        let (name, label) = match (decode::interface_of(item), item.split_once(": ")) {
+            (Some(id), Some((name, _))) => (Some(name.to_string()), id.to_string()),
+            _ => (None, link.label),
+        };
+        WorldItemView {
             kind: if item.ends_with(": func") {
                 "func"
             } else {
                 "interface"
             },
+            name,
+            label,
+            url: link.url,
+            ..Default::default()
         }
+    }
+
+    /// The imports and exports of a world, in the order it declares them: each interface it
+    /// names, each interface it defines inline with its types and functions, each function with
+    /// its signature, and each type, a resource with its functions. Their ids start with
+    /// `anchor`, and their docs are under headings of level `under`.
+    fn world_items(
+        &self,
+        index: usize,
+        world: wit_parser::WorldId,
+        anchor: &str,
+        under: usize,
+    ) -> (Vec<WorldItemView>, Vec<WorldItemView>) {
+        let resolve = &self.entries[index].resolve;
+        let side = |items: &wit_parser::IndexMap<WorldKey, WorldItem>| -> Vec<WorldItemView> {
+            let (types, functions) = self.scope_items(
+                index,
+                &Scope {
+                    owner: TypeOwner::World(world),
+                    types: items
+                        .iter()
+                        .filter_map(|(key, item)| match (key, item) {
+                            (WorldKey::Name(name), WorldItem::Type { id, .. }) => {
+                                Some((name.as_str(), *id))
+                            }
+                            _ => None,
+                        })
+                        .collect(),
+                    functions: items
+                        .values()
+                        .filter_map(|item| match item {
+                            WorldItem::Function(func) => Some(func),
+                            _ => None,
+                        })
+                        .collect(),
+                    anchor: anchor.to_string(),
+                    under,
+                },
+            );
+            // in the order the scope lists them
+            let (mut types, mut functions) = (types.into_iter(), functions.into_iter());
+            items
+                .iter()
+                .filter_map(|(key, item)| match item {
+                    WorldItem::Type { .. } => {
+                        let ty = types.next()?;
+                        Some(WorldItemView {
+                            kind: "type",
+                            id: format!("{anchor}type-{}", ty.name),
+                            label: ty.name.clone(),
+                            ty: Some(ty),
+                            ..Default::default()
+                        })
+                    }
+                    // listed with its resource
+                    WorldItem::Function(func) if func.kind.resource().is_some() => None,
+                    WorldItem::Function(func) => Some(WorldItemView {
+                        kind: "func",
+                        id: format!("{anchor}func-{}", func.name),
+                        label: func.name.clone(),
+                        func: Some(functions.next()?),
+                        ..Default::default()
+                    }),
+                    WorldItem::Interface {
+                        id,
+                        stability: gate,
+                        docs: import_docs,
+                        ..
+                    } => {
+                        let name = match key {
+                            WorldKey::Name(name) => Some(name.as_str()),
+                            WorldKey::Interface(_) => None,
+                        };
+                        let item_docs = docs(import_docs, under);
+                        match (resolve.id_of(*id), name) {
+                            // defined inline, `import name: interface { .. }`
+                            (None, Some(name)) => {
+                                let iface = &resolve.interfaces[*id];
+                                let item_id = format!("{anchor}{name}");
+                                let (types, functions) = self.scope_items(
+                                    index,
+                                    &Scope {
+                                        owner: TypeOwner::Interface(*id),
+                                        types: iface
+                                            .types
+                                            .iter()
+                                            .map(|(n, t)| (n.as_str(), *t))
+                                            .collect(),
+                                        functions: iface.functions.values().collect(),
+                                        anchor: format!("{item_id}-"),
+                                        under: (under + 1).min(6),
+                                    },
+                                );
+                                Some(WorldItemView {
+                                    kind: "interface",
+                                    id: item_id,
+                                    label: name.to_string(),
+                                    docs: match item_docs {
+                                        local if !local.is_empty() => local,
+                                        _ => docs(&iface.docs, under),
+                                    },
+                                    stability: stability(gate),
+                                    inline: Some(InlineView { types, functions }),
+                                    ..Default::default()
+                                })
+                            }
+                            _ => {
+                                let link = self.interface_link(
+                                    &resolve
+                                        .id_of(*id)
+                                        .unwrap_or_else(|| resolve.name_world_key(key)),
+                                );
+                                Some(WorldItemView {
+                                    kind: "interface",
+                                    // under a name of its own, `import name: path`
+                                    name: name.map(str::to_string),
+                                    label: link.label,
+                                    url: link.url,
+                                    docs: item_docs,
+                                    stability: stability(gate),
+                                    ..Default::default()
+                                })
+                            }
+                        }
+                    }
+                })
+                .collect()
+        };
+        let world = &resolve.worlds[world];
+        (side(&world.imports), side(&world.exports))
     }
 
     fn package_link(&self, package: &str, version: Option<&str>) -> Link {
@@ -1990,20 +2168,16 @@ impl Site {
         let resolve = &entry.resolve;
         let package = &resolve.packages[entry.pkg];
 
-        let world_items = |items: &wit_parser::IndexMap<WorldKey, WorldItem>| -> Result<Vec<_>> {
-            Ok(decode::world_items(resolve, items)
-                .iter()
-                .map(|item| self.world_item_link(item))
-                .collect())
-        };
         let mut worlds = Vec::new();
         for (name, id) in &package.worlds {
             let world = &resolve.worlds[*id];
+            // under the world's h3, and its imports' and exports' h4s
+            let (imports, exports) = self.world_items(index, *id, &format!("world-{name}-"), 5);
             worlds.push(WorldView {
                 name: name.clone(),
                 docs: docs(&world.docs, 3),
-                imports: world_items(&world.imports)?,
-                exports: world_items(&world.exports)?,
+                imports,
+                exports,
             });
         }
         let interfaces: Vec<_> = entry
@@ -2022,16 +2196,22 @@ impl Site {
                 stability: stability(&resolve.interfaces[id].stability),
             })
             .collect();
-        let imports: Vec<_> = meta
-            .imports
-            .iter()
-            .map(|i| self.world_item_link(i))
-            .collect();
-        let exports: Vec<_> = meta
-            .exports
-            .iter()
-            .map(|i| self.world_item_link(i))
-            .collect();
+        // a component's imports and exports, from its world, under their h2s, else by their names
+        let (imports, exports) = match resolve.select_world(&[entry.pkg], None) {
+            Ok(world) if meta.kind == Kind::Component => {
+                self.world_items(index, world, "world-", 3)
+            }
+            _ => (
+                meta.imports
+                    .iter()
+                    .map(|i| self.world_item_link(i))
+                    .collect(),
+                meta.exports
+                    .iter()
+                    .map(|i| self.world_item_link(i))
+                    .collect(),
+            ),
+        };
         let dependencies: Vec<_> = meta
             .dependencies
             .iter()
@@ -2547,30 +2727,51 @@ impl Site {
 
     /// The types and functions of an interface, as its page shows them and its API lists them.
     fn interface_items(&self, index: usize, id: InterfaceId) -> (Vec<TypeView>, Vec<Member>) {
+        let iface = &self.entries[index].resolve.interfaces[id];
+        self.scope_items(
+            index,
+            &Scope {
+                owner: TypeOwner::Interface(id),
+                types: iface.types.iter().map(|(n, t)| (n.as_str(), *t)).collect(),
+                functions: iface.functions.values().collect(),
+                anchor: String::new(),
+                under: 3,
+            },
+        )
+    }
+
+    /// The types and functions of a scope, an interface or a world, as a page shows them: its
+    /// types, each resource's with its functions, and its freestanding functions, in the order
+    /// they're defined.
+    fn scope_items(&self, index: usize, scope: &Scope) -> (Vec<TypeView>, Vec<Member>) {
         let entry = &self.entries[index];
         let resolve = &entry.resolve;
-        let iface = &resolve.interfaces[id];
+        let under = scope.under;
 
-        // a named type links to its definition: on this page for this interface's types, on the
+        // a named type links to its definition: on this page for the scope's own types, on the
         // page of the interface that defines it for a type used from another interface
         let link = |type_id: wit_parser::TypeId| -> Option<String> {
             let def = &resolve.types[type_id];
             let name = def.name.as_ref()?;
+            if def.owner == scope.owner {
+                return Some(format!("#{}type-{name}", scope.anchor));
+            }
             let TypeOwner::Interface(owner) = def.owner else {
                 return None;
             };
-            if owner == id {
-                return Some(format!("#type-{name}"));
-            }
             let url = self.interface_urls.get(&resolve.id_of(owner)?)?;
             Some(format!("{url}#type-{name}"))
         };
 
         // a function, a freestanding one or one of a resource
         let func_member = |func: &wit_parser::Function| {
-            // a freestanding function's docs are under its h3, a resource's function is a member
-            // under the resource's h3
-            let under = if func.kind.resource().is_some() { 4 } else { 3 };
+            // a freestanding function's docs are under its heading, a resource's function is a
+            // member under the resource's
+            let under = if func.kind.resource().is_some() {
+                under + 1
+            } else {
+                under
+            };
             let role = match func.kind {
                 FunctionKind::Constructor(_) => Some("constructor"),
                 FunctionKind::Static(_) | FunctionKind::AsyncStatic(_) => Some("static"),
@@ -2590,23 +2791,37 @@ impl Site {
                 modifiers: wit_html::modifiers(&func.kind),
             }
         };
-        // the functions of a resource, from the interface that defines it
+        // the functions of a resource, from the interface or world that defines it
         let resource_functions = |resource: wit_parser::TypeId| -> Vec<Member> {
-            let TypeOwner::Interface(owner) = resolve.types[resource].owner else {
-                return Vec::new();
+            let functions: Vec<&wit_parser::Function> = match resolve.types[resource].owner {
+                TypeOwner::Interface(owner) => {
+                    resolve.interfaces[owner].functions.values().collect()
+                }
+                TypeOwner::World(owner) => {
+                    let world = &resolve.worlds[owner];
+                    world
+                        .imports
+                        .values()
+                        .chain(world.exports.values())
+                        .filter_map(|item| match item {
+                            WorldItem::Function(func) => Some(func),
+                            _ => None,
+                        })
+                        .collect()
+                }
+                TypeOwner::None => Vec::new(),
             };
-            resolve.interfaces[owner]
-                .functions
-                .values()
+            functions
+                .into_iter()
                 .filter(|func| func.kind.resource() == Some(resource))
                 .map(func_member)
                 .collect()
         };
-        let functions: Vec<Member> = iface
+        let functions: Vec<Member> = scope
             .functions
-            .values()
+            .iter()
             .filter(|func| func.kind.resource().is_none())
-            .map(func_member)
+            .map(|func| func_member(func))
             .collect();
 
         // the kind of a type and its members: fields, cases, flags, or the type it aliases
@@ -2616,8 +2831,8 @@ impl Site {
                 ty: ty
                     .map(|ty| wit_html::type_ref(resolve, ty, &link))
                     .unwrap_or_default(),
-                // under the member of a type under its h3
-                docs: docs(d, 4),
+                // under the member of a type under its heading
+                docs: docs(d, under + 1),
                 stability: None,
                 role: None,
                 modifiers: Vec::new(),
@@ -2688,13 +2903,14 @@ impl Site {
             }
         };
         let mut types = Vec::new();
-        for (type_name, type_id) in &iface.types {
+        for &(type_name, type_id) in &scope.types {
+            let type_id = &type_id;
             let def = &resolve.types[*type_id];
             // a type used from another interface, `use wasi:io/streams.{input-stream}`, shows the
             // details of the type it uses, from the interface that defines it
             let used = match def.kind {
                 TypeDefKind::Type(wit_parser::Type::Id(other))
-                    if resolve.types[other].owner != TypeOwner::Interface(id) =>
+                    if resolve.types[other].owner != scope.owner =>
                 {
                     Some(origin_of(resolve, other))
                 }
@@ -2706,13 +2922,13 @@ impl Site {
                     let (used_kind, members) = details(origin);
                     let from = from_of(origin, type_name);
                     TypeView {
-                        name: type_name.clone(),
+                        name: type_name.to_string(),
                         kind: "use",
                         used_kind: Some(used_kind),
                         // the docs of the use, or else those of the type it uses
-                        docs: match docs(&def.docs, 3) {
+                        docs: match docs(&def.docs, under) {
                             local if !local.is_empty() => local,
-                            _ => docs(&origin_def.docs, 3),
+                            _ => docs(&origin_def.docs, under),
                         },
                         stability: stability(&def.stability),
                         members,
@@ -2723,7 +2939,7 @@ impl Site {
                         },
                         from,
                         aliased: None,
-                        origin_docs: docs(&origin_def.docs, 3),
+                        origin_docs: docs(&origin_def.docs, under),
                     }
                 }
                 None => {
@@ -2739,7 +2955,7 @@ impl Site {
                         _ => None,
                     };
                     let origin_docs = aliased
-                        .map(|origin| docs(&resolve.types[origin].docs, 3))
+                        .map(|origin| docs(&resolve.types[origin].docs, under))
                         .unwrap_or_default();
                     let aliased = aliased.map(|origin| {
                         let (kind, members) = details(origin);
@@ -2752,10 +2968,10 @@ impl Site {
                         }
                     });
                     TypeView {
-                        name: type_name.clone(),
+                        name: type_name.to_string(),
                         kind,
                         used_kind: None,
-                        docs: docs(&def.docs, 3),
+                        docs: docs(&def.docs, under),
                         stability: stability(&def.stability),
                         members,
                         functions: resource_functions(*type_id),
@@ -2904,6 +3120,64 @@ mod tests {
     }
 
     #[test]
+    fn renders_what_a_world_defines() {
+        let root =
+            std::env::temp_dir().join(format!("directory-world-test-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&root);
+        let wit = "package example:worlds@0.1.0;\n\ninterface shapes {\n  /// A point.\n  record point { x: f64, y: f64 }\n}\n\nworld app {\n  /// Pings.\n  import pinger: interface {\n    use shapes.{point};\n    ping: func(at: point) -> bool;\n  }\n  use shapes.{point};\n  /// A session.\n  resource session {\n    constructor();\n    at: func() -> point;\n  }\n  /// Logs.\n  import log: func(message: string);\n  export run: func(session: borrow<session>);\n}\n";
+        data::write(
+            &root,
+            &metadata("example:worlds", "0.1.0", Kind::Interface, Origin::Release),
+            wit,
+        )
+        .unwrap();
+        let out = root.join("_site");
+        build(
+            &root,
+            &root.join("no-samples"),
+            &out,
+            "https://example.com",
+            &Default::default(),
+        )
+        .unwrap();
+        let page = std::fs::read_to_string(out.join("example/worlds/0.1.0/index.html"))
+            .unwrap()
+            .replace("&#x2f;", "/");
+
+        // an inline interface, with its docs, and its own types and functions
+        assert!(page.contains(r#"id="world-app-pinger""#));
+        assert!(page.contains("Pings."));
+        assert!(page.contains(r#"id="world-app-pinger-type-point""#));
+        assert!(page.contains(r#"id="world-app-pinger-func-ping""#));
+        // its function links the type it uses to the type's definition within it
+        assert!(page.contains(r##"href="#world-app-pinger-type-point""##));
+        // the world's own types, a resource with its functions
+        assert!(page.contains(r#"id="world-app-type-point""#));
+        assert!(page.contains(r#"id="world-app-type-session""#));
+        assert!(page.contains("A session."));
+        assert!(page.contains(r#"id="world-app-type-session.constructor""#));
+        assert!(page.contains(r#"id="world-app-type-session.at""#));
+        assert!(
+            !page.contains("[constructor]"),
+            "a resource's functions aren't listed as the world's"
+        );
+        // its functions, with their docs, an export linking the world's type
+        assert!(page.contains(r#"id="world-app-func-log""#));
+        assert!(page.contains("Logs."));
+        assert!(page.contains(r#"id="world-app-func-run""#));
+        assert!(page.contains(r##"href="#world-app-type-session""##));
+        // each folds its details under its line, to scan them first, and one without any doesn't
+        assert!(page.contains(r#"<details class="item world-fold" id="world-app-func-log">"#));
+        assert!(
+            page.contains(
+                r#"<details class="item world-inline world-fold" id="world-app-pinger">"#
+            )
+        );
+        assert!(page.contains(r#"<div class="item" id="world-app-func-run">"#));
+        std::fs::remove_dir_all(&root).unwrap();
+    }
+
+    #[test]
     fn renders_cross_links() {
         let root = std::env::temp_dir().join(format!("directory-site-test-{}", std::process::id()));
         let _ = std::fs::remove_dir_all(&root);
@@ -2993,7 +3267,11 @@ mod tests {
         // a world's imports and exports show the icon of their kind
         let package = read("wasi/logging/0.1.0-draft/index.html");
         assert!(package.contains(r##"<li><svg class="kind-icon kind-interface""##));
-        assert!(package.contains(r##"<li><svg class="kind-icon kind-func""##));
+        // a function with its signature, at its own id
+        assert!(package.contains(r#"id="world-app-func-run""#));
+        assert!(package.contains(
+            r#"<code class="sig"><span class="f">run</span>: <span class="k">func</span>()</code>"#
+        ));
         // with no title, whose browser tooltip would cover the link's own
         assert!(package.contains(r#"<span class="visually-hidden">interface </span>"#));
         assert!(!package.contains(r#"<li title="#));
@@ -3313,7 +3591,7 @@ mod tests {
             "the samples link each other"
         );
         assert!(
-            page.contains(r#"<span class="visually-hidden">func </span>"#),
+            page.contains(r#"id="world-func-run""#),
             "the exports come from the WIT"
         );
         assert!(read("sink/types/0.1.0/shapes/index.html").contains("Synthetic sample."));

@@ -5,9 +5,73 @@
 {% endmacro %}
 
 {#- a world's imports or exports, each with the icon of its kind, an interface or a function #}
-{% macro world_items(items, empty="None") %}
+{#- an item: its heading line, and what's under it, `body`. `fold`ed, its body is closed under its
+    heading until it's opened, for a list to scan, e.g. a world's imports. #}
+{% macro fold_item(id, head, body, fold=false, class="item") %}
+{%- if fold and body|trim %}<details class="{{ class }} world-fold"{% if id %} id="{{ id }}"{% endif %}><summary>{{ head|safe }}<svg class="fold-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 6.5 3.5 3.5 3.5-3.5"/></svg></summary><div class="fold-body">{{ body|safe }}</div></details>
+{%- else %}<div class="{{ class }}"{% if id %} id="{{ id }}"{% endif %}>{{ head|safe }}{{ body|safe }}</div>{% endif %}
+{%- endmacro %}
+
+{#- a function, as an interface or a world defines it, under a heading of level `h` #}
+{% macro func_item(f, id, h=3, fold=false) %}
+{%- set head %}<h{{ h }} class="head"><span class="head-main">{{ func_icon(f.modifiers) }}<code class="sig">{{ f.ty|safe }}</code></span>{{ stability(f.stability) }}</h{{ h }}>{% endset %}
+{%- set body %}{% if f.docs %}<div class="docs">{{ f.docs|safe }}</div>{% endif %}{% endset %}
+{{ fold_item(id, head, body, fold) }}
+{%- endmacro %}
+
+{#- a type, as an interface or a world defines or uses it, under a heading of level `h`: its
+    members, and a resource's functions, each at `id.name` #}
+{% macro type_item(t, id, h=3, fold=false) %}
+{%- set head %}<h{{ h }} class="head"><span class="head-main">{{ kind_icon(t.kind, t.used_kind) }}<span class="k">{{ t.kind }}{% if t.used_kind %} {{ t.used_kind }}{% endif %}</span> <code>{{ t.name }}</code></span>{{ stability(t.stability) }}</h{{ h }}>{% endset %}
+{%- set body %}
+  {%- if t.from %}<p class="from">from {% if t.from.url %}<a href="{{ t.from.url }}"><code>{{ t.from.label }}</code></a>{% else %}<code>{{ t.from.label }}</code>{% endif %}</p>{% endif %}
+  {%- if t.docs %}<div class="docs">{{ t.docs|safe }}</div>{% endif %}
+  {%- if t.members %}
+  <ul class="members">
+    {% for m in t.members %}<li>{% if m.name %}<code class="c">{{ m.name }}</code>{% if m.ty %}: {% endif %}{% endif %}{% if m.ty %}<code>{{ m.ty|safe }}</code>{% endif %}{% if m.docs %}<div class="docs">{{ m.docs|safe }}</div>{% endif %}</li>{% endfor %}
+  </ul>
+  {%- endif %}
+  {%- if t.functions %}
+  <ul class="members">
+    {% for f in t.functions %}<li id="{{ id }}.{{ f.name }}"><div class="head"><span class="head-main">{{ func_icon(f.modifiers) }}<code class="sig">{{ f.ty|safe }}</code></span>{{ stability(f.stability) }}</div>{% if f.docs %}<div class="docs">{{ f.docs|safe }}</div>{% endif %}</li>{% endfor %}
+  </ul>
+  {%- endif %}
+{%- endset %}
+{{ fold_item(id, head, body, fold) }}
+{%- endmacro %}
+
+{#- what a world imports or exports: the interfaces it names, a link each, then what it defines
+    itself, in the order it declares them: functions, types, and interfaces defined inline with
+    their own types and functions, each under a heading of level `h`. Each folds its details, its
+    docs, members and an inline interface's items, under its line, to scan them first. #}
+{% macro world_items(items, empty="None", h=5) %}
+{% if items %}
+{%- set refs = items|selectattr("kind", "eq", "interface")|rejectattr("inline")|list %}
 {#- the kind is said rather than a title, whose browser tooltip would cover a link's own #}
-{% if items %}<ul class="links world-items">{% for l in items %}<li>{{ kind_icon(l.kind) }}<span class="visually-hidden">{{ l.kind }} </span>{{ link(l) }}</li>{% endfor %}</ul>{% else %}<p class="dim">{{ empty }}</p>{% endif %}
+{% if refs %}<ul class="links world-items">{% for l in refs %}<li>{{ kind_icon(l.kind) }}
+  {%- set head %}<span class="world-ref"><span class="visually-hidden">{{ l.kind }} </span>{% if l.name %}<span class="world-name"><code>{{ l.name }}</code>: </span>{% endif %}{{ link(l) }}{{ stability(l.stability) }}</span>{% endset %}
+  {%- set body %}{% if l.docs %}<div class="docs">{{ l.docs|safe }}</div>{% endif %}{% endset %}
+  {{- fold_item(l.id, head, body, true, "world-item") }}</li>{% endfor %}</ul>{% endif %}
+{% if items|length > refs|length %}<div class="world-own">
+{%- for l in items if not (l.kind == "interface" and not l.inline) %}
+{%- if l.inline %}
+  {%- set inner = [h + 1, 6]|min %}
+  {%- set head %}<h{{ h }} class="head"><span class="head-main">{{ kind_icon("interface") }}<span class="k">interface</span> <code>{{ l.label }}</code></span>{{ stability(l.stability) }}</h{{ h }}>{% endset %}
+  {%- set body %}
+    {%- if l.docs %}<div class="docs">{{ l.docs|safe }}</div>{% endif %}
+    {%- if l.inline.types or l.inline.functions %}<div class="world-inline-items">
+      {%- for t in l.inline.types %}{{ type_item(t, l.id ~ "-type-" ~ t.name, inner, true) }}{% endfor %}
+      {%- for f in l.inline.functions %}{{ func_item(f, l.id ~ "-func-" ~ f.name, inner, true) }}{% endfor %}
+    </div>{% endif %}
+  {%- endset %}
+  {{- fold_item(l.id, head, body, true, "item world-inline") }}
+{%- elif l.type %}{{ type_item(l.type, l.id, h, true) }}
+{%- elif l.func %}{{ func_item(l.func, l.id, h, true) }}
+{%- else %}<p>{{ kind_icon(l.kind) }}<span class="visually-hidden">{{ l.kind }} </span>{{ link(l) }}</p>
+{%- endif %}
+{%- endfor %}
+</div>{% endif %}
+{% else %}<p class="dim">{{ empty }}</p>{% endif %}
 {% endmacro %}
 
 {#- `package@version` links, each with its package's icon, e.g. a version's dependencies #}
