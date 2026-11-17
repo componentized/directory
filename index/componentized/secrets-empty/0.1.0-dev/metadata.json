@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/secrets/empty",
     "tag": "0.1.0-dev",
-    "digest": "sha256:900adff05bc4bac6f569dd779a55cf4e071edc3e4be0ba6bdfad197cff3b6102",
+    "digest": "sha256:8878e561a60dad0c3fa2863b58f9736f42238e4a6a9b706f537cc5b0da7e0b4d",
     "layer_digest": "sha256:16bd50f775a72fb4747c22a08d332cf96d5acbefdf22885ca4f2ab42390e29ac",
     "size": 47023,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/secrets",
       "git_ref": "refs/heads/main",
-      "log_index": 3951009931
+      "log_index": 3951207467
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/secrets/empty",
     "tag": "0.1.0-dev_debug",
-    "digest": "sha256:e9ac4c10da5f93f4153ba49e87f5b20208826e851c1432d8157cdd227872aaba",
+    "digest": "sha256:7e146cc8745af9b3da5322614f8dcd615e2956333bc2a8de97eada8a7e816894",
     "layer_digest": "sha256:6331c019081a336f959779fbd2fc38455e76296c1d39be999af3e6e34ef34e12",
     "size": 146843,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/secrets",
       "git_ref": "refs/heads/main",
-      "log_index": 3951013592
+      "log_index": 3951210515
     }
   },
-  "created": "2026-11-17T18:19:36.305914846Z",
+  "created": "2026-11-17T18:31:46.802391181Z",
   "annotations": {
     "org.opencontainers.image.description": "`componentized:secrets`, that returns `not-found` for all keys.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "53b8c5142a02da1937da8f56f0aa7838f45b7a24",
+    "org.opencontainers.image.revision": "3cbd7a66cb0aac7b532a20461ab79a6ed59efafd",
     "org.opencontainers.image.source": "https://github.com/componentized/secrets.git",
     "org.opencontainers.image.title": "componentized:secrets-empty",
-    "org.opencontainers.image.url": "https://github.com/componentized/secrets/tree/53b8c5142a02da1937da8f56f0aa7838f45b7a24/components/empty",
+    "org.opencontainers.image.url": "https://github.com/componentized/secrets/tree/3cbd7a66cb0aac7b532a20461ab79a6ed59efafd/components/empty",
     "org.opencontainers.image.version": "v0.1.0-dev"
   },
   "exports": [
@@ -60,5 +60,5 @@
       "size": 368
     }
   ],
-  "indexed_at": "2026-11-17T18:21:21Z"
+  "indexed_at": "2026-11-17T18:33:41Z"
 }
