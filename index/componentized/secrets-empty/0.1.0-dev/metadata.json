@@ -7,42 +7,42 @@
     "registry": "ghcr.io",
     "repository": "componentized/secrets/empty",
     "tag": "0.1.0-dev",
-    "digest": "sha256:138d3bc5161c375f763d003a92721d1b05f27bb1f608166691526fb4c1d9b8da",
-    "layer_digest": "sha256:e6d0ead08f4b20b66a0f44af389634db42c3787ed8e84d3baef2133cb4d94b3a",
-    "size": 46654,
+    "digest": "sha256:da4f67bdf4dce1cbab7d8e0ce762a570f69141f39e1dff842abf7ee01405d980",
+    "layer_digest": "sha256:16bd50f775a72fb4747c22a08d332cf96d5acbefdf22885ca4f2ab42390e29ac",
+    "size": 47023,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/secrets/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/secrets",
       "git_ref": "refs/heads/main",
-      "log_index": 3940818511
+      "log_index": 3948772890
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/secrets/empty",
     "tag": "0.1.0-dev_debug",
-    "digest": "sha256:ac885a550135e7b9d66a3ce5fab67927fa47beb97462da5c73b8fa36a98fd9cd",
-    "layer_digest": "sha256:c971927a620789d338954f5df07528c006d0557c254ca202c7cbb576e1454e74",
-    "size": 144265,
+    "digest": "sha256:c63be286c301a666b2a157c1f35d0b3781880f66cc520ed89f78d2664bc40d1f",
+    "layer_digest": "sha256:6331c019081a336f959779fbd2fc38455e76296c1d39be999af3e6e34ef34e12",
+    "size": 146843,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/secrets/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/secrets",
       "git_ref": "refs/heads/main",
-      "log_index": 3940821059
+      "log_index": 3948775471
     }
   },
-  "created": "2026-11-17T03:15:05.266130568Z",
+  "created": "2026-11-17T16:07:19.474915822Z",
   "annotations": {
     "org.opencontainers.image.description": "`componentized:secrets`, that returns `not-found` for all keys.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "e579029761ae6073b019d36f65a9b2d860e793d6",
+    "org.opencontainers.image.revision": "cd4f59cd6dc2dda25374e4c4262602bbccf3ba8c",
     "org.opencontainers.image.source": "https://github.com/componentized/secrets.git",
     "org.opencontainers.image.title": "componentized:secrets-empty",
-    "org.opencontainers.image.url": "https://github.com/componentized/secrets/tree/e579029761ae6073b019d36f65a9b2d860e793d6/components/empty",
+    "org.opencontainers.image.url": "https://github.com/componentized/secrets/tree/cd4f59cd6dc2dda25374e4c4262602bbccf3ba8c/components/empty",
     "org.opencontainers.image.version": "v0.1.0-dev"
   },
   "exports": [
@@ -56,9 +56,9 @@
   ],
   "parts": [
     {
-      "digest": "sha256:4c18bffed1be5283e92a7543b29f3fde6c1d40e769940d7b98d1c22b3f8e0a86",
+      "digest": "sha256:120dc5b81cd97711de7bbbead2d782911343773ccd02c1f1e5b72eeccd4b8e00",
       "size": 368
     }
   ],
-  "indexed_at": "2026-11-17T03:16:38Z"
+  "indexed_at": "2026-11-17T16:09:21Z"
 }
