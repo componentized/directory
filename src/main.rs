@@ -6,6 +6,7 @@ mod config;
 mod data;
 mod decode;
 mod http;
+mod icons;
 mod resolve;
 mod scan;
 mod signature;
@@ -64,7 +65,7 @@ enum Command {
         #[arg(long, default_value = "_site")]
         out: PathBuf,
         /// The URL the site is served from, for canonical links
-        #[arg(long, default_value = "https://directory.componentized.dev")]
+        #[arg(long, default_value = "https://componentized.dev")]
         base_url: String,
         /// Synthetic packages, laid out like the index, whose pages are rendered but not listed,
         /// counted or linked from the index's pages

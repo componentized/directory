@@ -1,10 +1,11 @@
 # Componentized Directory <!-- omit in toc -->
 
-A directory of Wasm components and WIT interfaces published by the Componentized project to [`ghcr.io/componentized`](https://github.com/orgs/componentized/packages). Every package, version, world, interface, type and function is browsable, along with what imports, exports and depends on it. It is served at [directory.componentized.dev](https://directory.componentized.dev).
+A directory of Wasm components and WIT interfaces published by the Componentized project to [`ghcr.io/componentized`](https://github.com/orgs/componentized/packages). Every package, version, world, interface, type and function is browsable, along with what imports, exports and depends on it. It is served at [componentized.dev](https://componentized.dev).
 
 - [How it works](#how-it-works)
 - [The index](#the-index)
 - [Commands](#commands)
+- [Icons](#icons)
 - [Workflows](#workflows)
 - [Setup](#setup)
 - [License](#license)
@@ -78,12 +79,26 @@ python3 -m http.server -d _site
 
 ## Samples
 
-[`samples/`](samples) holds synthetic packages, laid out like the index, that exercise every WIT feature and keyword so the site's rendering of each can be checked: the `kitchen-sink` namespace, at [`/kitchen-sink/`](https://directory.componentized.dev/kitchen-sink/). They aren't published to any registry.
+[`samples/`](samples) holds synthetic packages, laid out like the index, that exercise every WIT feature and keyword so the site's rendering of each can be checked: the `kitchen-sink` namespace, at [`/kitchen-sink/`](https://componentized.dev/kitchen-sink/). They aren't published to any registry.
 
 - Their `metadata.json` has `"origin": "synthetic"`. A component's imports and exports are derived from its WIT at build time, so its metadata needn't list them.
 - `directory build` renders their pages apart from the index's: no page of the index lists, counts, searches or links them, while their own pages link each other. Each page notes it's a synthetic sample, is kept out of search engines and has no pull commands.
 - A sample must be synthetic and keep to a namespace the index doesn't hold, and the index can't hold a synthetic version; the build fails otherwise.
 - `scan` never reads them. `--samples` builds from another directory.
+
+## Icons
+
+`directory build` also publishes the icons the site shows for each kind of package and item as SVG files, for a page elsewhere that links to the directory, at `/_icons/{variant}/{name}.svg`, e.g. [`/_icons/neutral/component.svg`](https://componentized.dev/_icons/neutral/component.svg). [`/_icons/`](https://componentized.dev/_icons/) lists them all. The directory's `_` can't begin a WIT namespace, whose identifiers are kebab-case, so it never collides with a namespace's page, `/{namespace}/`.
+
+```html
+<a href="https://componentized.dev/componentized/logging/"><img src="https://componentized.dev/_icons/neutral/package.svg" width="26" height="26" style="margin: -5px" alt=""> componentized:logging</a>
+```
+
+- `light` and `dark` are in the colors of the site's light and dark themes.
+- `neutral` is for a page whose theme isn't known. Each color is its light and dark colors mixed to the one with the most contrast against both white and black, 4.58:1.
+- Every file is 26×26: the icon's 16×16 in the middle, and a 5px margin all round for the badges that hang past its corners, e.g. `use-record`'s or `func-static-get`'s, as they do on the site. An icon is in the same place and at the same size with or without badges, so a list of them lines up. A margin of `-5px` lays one out in the space of a 16×16 icon, its badges overlapping what's around it. A badge's halo is cut out of the icon under it rather than painted in a background color, so every variant sits on any background.
+
+They're drawn from the sprite every page inlines, `kind_sprite` in [`templates/macros.html`](templates/macros.html), by [`src/icons.rs`](src/icons.rs), so a change to an icon changes its files too. A test checks the `light` and `dark` colors against [`static/style.css`](static/style.css).
 
 ## Workflows
 
@@ -119,8 +134,8 @@ Scans queue, one at a time, but only one waits: a newer request replaces it. A r
 
 ## Setup
 
-- Settings → Pages: set the source to **GitHub Actions**, and the custom domain to `directory.componentized.dev`.
-- DNS: a `CNAME` record from `directory.componentized.dev` to `componentized.github.io`.
+- Settings → Pages: set the source to **GitHub Actions**, and the custom domain to `componentized.dev`.
+- DNS: `A` and `AAAA` records for `componentized.dev` to GitHub Pages' addresses, `185.199.108.153` to `185.199.111.153` and `2606:50c0:8000::153` to `2606:50c0:8003::153`, and a `CNAME` record from `www.componentized.dev` to `componentized.github.io`.
 - Settings → Actions → General: allow workflows to have read and write permissions, so the scan can push to `main`. If `main` is protected, let `github-actions[bot]` bypass the protection.
 
 ## License

@@ -501,6 +501,19 @@ pub fn build(
         ".well-known/wasm-pkg/registry.json",
         include_str!("../static/.well-known/wasm-pkg/registry.json"),
     )?;
+    // the icons as files of their own, for pages elsewhere that link to the directory
+    let (icon_files, icons) = crate::icons::files(include_str!("../templates/macros.html"))?;
+    for (path, svg) in &icon_files {
+        write_file(out, &format!("_icons/{path}"), svg)?;
+    }
+    write_file(
+        out,
+        "_icons/index.html",
+        &env.get_template("icons.html")?.render(ctx! {
+            icons => icons,
+            variants => crate::icons::variants(),
+        })?,
+    )?;
     write_file(out, "search.json", &serde_json::to_string(&site.search())?)?;
     write_file(
         out,
@@ -712,6 +725,7 @@ fn environment() -> Result<Environment<'static>> {
             include_str!("../templates/interface.html"),
         ),
         ("404.html", include_str!("../templates/404.html")),
+        ("icons.html", include_str!("../templates/icons.html")),
         ("compare.html", include_str!("../templates/compare.html")),
     ] {
         env.add_template(name, source)?;
