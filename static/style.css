@@ -912,3 +912,18 @@ span.kind-icon-used > svg.kind-icon { display: block; margin: 0; }
 .kind-badge-component > use { fill: none; stroke: var(--component); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 .kind-badge-component > .kind-badge-halo { stroke: inherit; stroke-width: 5; }
 .pivot-menu a[aria-current] .kind-badge-component > use:not(.kind-badge-halo) { stroke: currentColor; }
+
+/* the icons page: each icon in each variant, on the backgrounds it's meant for */
+.icons-intro, .icons-variants { max-width: 70ch; }
+.icons-example { max-width: 100%; overflow-x: auto; padding: 8px 12px; background: var(--code-bg); border-radius: 8px; font-size: 0.85rem; }
+.icons-scroll { max-width: 100%; overflow-x: auto; }
+.icons-table { border-collapse: collapse; margin: 16px 0; }
+.icons-table th, .icons-table td { padding: 6px 12px; border-bottom: 1px solid var(--line); text-align: left; }
+.icons-table thead th { font-size: 0.85rem; color: var(--dim); font-weight: 600; }
+.icons-table tbody th { font-weight: 400; }
+.icons-label { display: block; font-size: 0.85rem; color: var(--dim); }
+.icons-table .swatch { text-align: center; }
+.icons-table .swatch img { display: block; margin: 0 auto; }
+.icons-table .swatch a { display: inline-block; padding: 6px; border-radius: 6px; }
+.swatch-light a { background: #ffffff; box-shadow: inset 0 0 0 1px #e4e4e0; }
+.swatch-dark a { background: #131416; box-shadow: inset 0 0 0 1px #2c2f33; }

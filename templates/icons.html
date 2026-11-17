@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% set title = "Icons" %}
+{% block description %}The directory's icons, as SVG files to link to the directory with.{% endblock %}
+{% block main %}
+<h1>Icons</h1>
+<p class="icons-intro">The icons the directory shows for each kind of package and item, as SVG files, for a page elsewhere that links to the directory. Each is at <code>{{ base_url }}/_icons/{variant}/{name}.svg</code>:</p>
+<ul class="icons-variants">
+  <li><code>light</code> and <code>dark</code>, in the colors of the directory's light and dark themes</li>
+  <li><code>neutral</code>, for a page whose theme isn't known: of at least 4.5:1 contrast against both white and black</li>
+</ul>
+<p class="icons-intro">A badge's halo is cut out of the icon under it, so every variant sits on any background. Every file is 26 by 26: the icon's 16 by 16 in the middle, and a 5px margin all round for the badges that hang past its corners. An icon is in the same place and at the same size with or without badges, so a list of them lines up. A margin of <code>-5px</code> lays one out in the space of a 16 by 16 icon.</p>
+<pre class="icons-example"><code>&lt;a href="{{ base_url }}/componentized/logging/"&gt;&lt;img src="{{ base_url }}/_icons/neutral/package.svg" width="26" height="26" style="margin: -5px" alt=""&gt; componentized:logging&lt;/a&gt;</code></pre>
+<div class="icons-scroll">
+<table class="icons-table">
+  <thead><tr><th scope="col">Icon</th><th scope="col">light</th><th scope="col">dark</th><th scope="col" colspan="2">neutral</th></tr></thead>
+  <tbody>
+  {% for icon in icons %}
+    <tr id="{{ icon.name }}">
+      <th scope="row"><code>{{ icon.name }}</code><span class="icons-label">{{ icon.label }}</span></th>
+      <td class="swatch swatch-light"><a href="/_icons/light/{{ icon.name }}.svg"><img src="/_icons/light/{{ icon.name }}.svg" width="52" height="52" alt="{{ icon.label }}, light" loading="lazy"></a></td>
+      <td class="swatch swatch-dark"><a href="/_icons/dark/{{ icon.name }}.svg"><img src="/_icons/dark/{{ icon.name }}.svg" width="52" height="52" alt="{{ icon.label }}, dark" loading="lazy"></a></td>
+      <td class="swatch swatch-light"><a href="/_icons/neutral/{{ icon.name }}.svg"><img src="/_icons/neutral/{{ icon.name }}.svg" width="52" height="52" alt="{{ icon.label }}, neutral, on light" loading="lazy"></a></td>
+      <td class="swatch swatch-dark"><a href="/_icons/neutral/{{ icon.name }}.svg"><img src="/_icons/neutral/{{ icon.name }}.svg" width="52" height="52" alt="{{ icon.label }}, neutral, on dark" loading="lazy"></a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}
