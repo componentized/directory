@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/as-keyvalue",
     "tag": "0.3.0-dev",
-    "digest": "sha256:7578194086d9ba1ae9b6fa8eed299069ffa4f79848c2035c991ea069dbd05e71",
+    "digest": "sha256:4f62bcd084d2499b7acc25cfe3844df5659d9b3e76252b7525cde75399125206",
     "layer_digest": "sha256:0291ffaf6fc462afe4352f37314f0ef8f0b16717c6b54fc6d6a09b54e7880ce6",
     "size": 153171,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/valkey",
       "git_ref": "refs/heads/main",
-      "log_index": 3929921711
+      "log_index": 3947639372
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/valkey/as-keyvalue",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:ef720d8aeeb3ae2d6ed3f2a8d5ae3dc6c76af63ba0d60b000a9e2d85e0725208",
+    "digest": "sha256:2e8e1dd112c0ebec388a70e7e9de8bc4b17b795234ed7b2bb5228196c0158175",
     "layer_digest": "sha256:bea211340d9549ee66bc5d28c486f51ad53fe5fb883aded09b8085dac1ec0112",
     "size": 1620920,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/valkey",
       "git_ref": "refs/heads/main",
-      "log_index": 3929924605
+      "log_index": 3947644173
     }
   },
-  "created": "2026-11-16T16:27:07.555317733Z",
+  "created": "2026-11-17T14:58:40.034435562Z",
   "annotations": {
     "org.opencontainers.image.description": "Adapter to back `wasmcloud:keyvalue` with the `componentized:valkey` client.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "b6114d8c32c5364ebe9dd31177119b6ec5b8a305",
+    "org.opencontainers.image.revision": "d8f96c739d2c7607311ff33ee543e13405946f5d",
     "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
     "org.opencontainers.image.title": "componentized:valkey-as-keyvalue",
-    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/b6114d8c32c5364ebe9dd31177119b6ec5b8a305/components/as-keyvalue",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/d8f96c739d2c7607311ff33ee543e13405946f5d/components/as-keyvalue",
     "org.opencontainers.image.version": "v0.3.0-dev"
   },
   "imports": [
@@ -90,5 +90,5 @@
       "size": 599
     }
   ],
-  "indexed_at": "2026-11-16T16:31:49Z"
+  "indexed_at": "2026-11-17T15:04:38Z"
 }
