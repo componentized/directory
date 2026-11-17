@@ -1,0 +1,67 @@
+{
+  "package": "componentized:secrets-latch-defer-all",
+  "version": "0.1.1-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/secrets/latch-defer-all",
+    "tag": "0.1.1-dev",
+    "digest": "sha256:3e95aee2ba269f86c89a5016423ce0f16ed3588214067acc578b7be250d3d395",
+    "layer_digest": "sha256:ec156dfcf2a33b946096da197bd5f04840bf63d4c38437ca7b3421ccc457649d",
+    "size": 24144,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/secrets/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/secrets",
+      "git_ref": "refs/heads/main",
+      "log_index": 3956025347
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/secrets/latch-defer-all",
+    "tag": "0.1.1-dev_debug",
+    "digest": "sha256:dbefb08a89d36bbf5b32c6a828effc4f19dd6ddd57c43aaaadec9f677c0bc992",
+    "layer_digest": "sha256:09eece76f626f3c0ce8552c2027c691f0117ec25d1d39835a3250649ccbbd46e",
+    "size": 60156,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/secrets/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/secrets",
+      "git_ref": "refs/heads/main",
+      "log_index": 3956027561
+    }
+  },
+  "created": "2026-11-17T23:37:03.367909058Z",
+  "annotations": {
+    "org.opencontainers.image.description": "`componentized:secrets` latch that defers every operation, allowing all secrets.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "5a261b2494936a6ff38b58f393c8421d48ee6c62",
+    "org.opencontainers.image.source": "https://github.com/componentized/secrets.git",
+    "org.opencontainers.image.title": "componentized:secrets-latch-defer-all",
+    "org.opencontainers.image.url": "https://github.com/componentized/secrets/tree/5a261b2494936a6ff38b58f393c8421d48ee6c62/components/latch-defer-all",
+    "org.opencontainers.image.version": "v0.1.1-dev"
+  },
+  "imports": [
+    "componentized:secrets/store@0.1.1-dev"
+  ],
+  "exports": [
+    "componentized:secrets/latch@0.1.1-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:secrets",
+      "version": "0.1.1-dev"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:9660901cbd7b8016c92b7ccc7c0eb813a9d0d929809513facc40e15a6eaf9981",
+      "size": 900
+    }
+  ],
+  "indexed_at": "2026-11-17T23:41:00Z"
+}

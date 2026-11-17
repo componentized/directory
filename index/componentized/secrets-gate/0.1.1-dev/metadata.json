@@ -1,0 +1,73 @@
+{
+  "package": "componentized:secrets-gate",
+  "version": "0.1.1-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/secrets/gate",
+    "tag": "0.1.1-dev",
+    "digest": "sha256:f86c973b04689e60a6ec3e886df94bb2367d473eb220322af8e088dc87919cc2",
+    "layer_digest": "sha256:2d19122f3a29e8d2d6261887c2b4f6dd64b181a7c4a8c4e24e56bb47bcc6928b",
+    "size": 62705,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/secrets/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/secrets",
+      "git_ref": "refs/heads/main",
+      "log_index": 3956021675
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/secrets/gate",
+    "tag": "0.1.1-dev_debug",
+    "digest": "sha256:bdd7b1e93b4037812ae771803483a52490e8fe0ce31709dfd394f915b5d9287d",
+    "layer_digest": "sha256:1e11daab77c983bda8b4299acb636a157d1342d2f002f843e976341647cd804e",
+    "size": 198915,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/secrets/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/secrets",
+      "git_ref": "refs/heads/main",
+      "log_index": 3956023163
+    }
+  },
+  "created": "2026-11-17T23:36:19.465844445Z",
+  "annotations": {
+    "org.opencontainers.image.description": "`componentized:secrets` gate, access control for the secrets of a store.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "5a261b2494936a6ff38b58f393c8421d48ee6c62",
+    "org.opencontainers.image.source": "https://github.com/componentized/secrets.git",
+    "org.opencontainers.image.title": "componentized:secrets-gate",
+    "org.opencontainers.image.url": "https://github.com/componentized/secrets/tree/5a261b2494936a6ff38b58f393c8421d48ee6c62/components/gate",
+    "org.opencontainers.image.version": "v0.1.1-dev"
+  },
+  "imports": [
+    "componentized:secrets/store@0.1.1-dev",
+    "componentized:secrets/latch@0.1.1-dev",
+    "wasi:logging/logging@0.1.0-draft"
+  ],
+  "exports": [
+    "componentized:secrets/store@0.1.1-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:secrets",
+      "version": "0.1.1-dev"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:120dc5b81cd97711de7bbbead2d782911343773ccd02c1f1e5b72eeccd4b8e00",
+      "size": 368
+    }
+  ],
+  "indexed_at": "2026-11-17T23:40:57Z"
+}
