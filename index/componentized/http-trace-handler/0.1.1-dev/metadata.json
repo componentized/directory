@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/http/trace-handler",
     "tag": "0.1.1-dev",
-    "digest": "sha256:e987cd629f7c30ba49e16e46de9548283d136123df3ece8bdb0294d71a7d2600",
+    "digest": "sha256:d2ff85b8bc14a92a97376b5c69a3deb41a6c8692244b6b15346c1f594c0adc08",
     "layer_digest": "sha256:682cb606372afcf8141396f7fa6d4126535bb886b3a47f838e54e35a1b3103e4",
     "size": 186410,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 3930023595
+      "log_index": 3947494896
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/http/trace-handler",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:a0b5c362047445d72f1a6a1855c23eac10fe47b49fa9197af920c6bfe2709a09",
+    "digest": "sha256:ddb70d5252b1a0736cfa40c2f5ff922475dc6c8e46a209b7a6c5c86b7ec5188a",
     "layer_digest": "sha256:4b73f5a9a54acb255c34f2927622300d9636fc48700baaead0f1ddbf0d159130",
     "size": 715970,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 3930025056
+      "log_index": 3947498790
     }
   },
-  "created": "2026-11-16T16:33:55.241689020Z",
+  "created": "2026-11-17T14:52:02.367276872Z",
   "annotations": {
     "org.opencontainers.image.description": "Virtualizes the wasi:http/types and wasi:http/handler interfaces logging all method calls at the TRACE level and 'componentized-trace' component.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "16d56070812c453b5806f2a75ee3f239ba51258e",
+    "org.opencontainers.image.revision": "2420ee838be85d05ed80dbc12e813c3569c92f1e",
     "org.opencontainers.image.source": "https://github.com/componentized/http.git",
     "org.opencontainers.image.title": "componentized:http-trace-handler",
-    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/16d56070812c453b5806f2a75ee3f239ba51258e/components/trace-handler",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/2420ee838be85d05ed80dbc12e813c3569c92f1e/components/trace-handler",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -79,5 +79,5 @@
       "size": 1551
     }
   ],
-  "indexed_at": "2026-11-16T16:37:05Z"
+  "indexed_at": "2026-11-17T14:54:39Z"
 }

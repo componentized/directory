@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/http/latch-scheme",
     "tag": "0.1.1-dev",
-    "digest": "sha256:03dfeabcea947c3d24eab1db832acf16bb502b41171068ccf299b3537ddc85df",
+    "digest": "sha256:3326c30e5bc594cb2f6391ec1075f03bff77e3b5b63f383458ee2dbdec818cf0",
     "layer_digest": "sha256:24194b7775aef1d889d9c608032697dcaba8a8c9830c0324f5923cbd4af86d03",
     "size": 44128,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 3929991301
+      "log_index": 3947452633
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/http/latch-scheme",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:4d140dade87f237bc0e4fe52fe99ae3931c2f4bda70083b3f8bba08cf08debfa",
+    "digest": "sha256:ac15b411ac7c583b735327a10ddf85ea28ac659081afb1d1cae323dec9b571a1",
     "layer_digest": "sha256:929d6908b5ec4514e8928704fab163c585fd1e61719cf23193898fa94d250d22",
     "size": 167238,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 3929994685
+      "log_index": 3947456172
     }
   },
-  "created": "2026-11-16T16:31:27.756882393Z",
+  "created": "2026-11-17T14:49:49.046785655Z",
   "annotations": {
     "org.opencontainers.image.description": "HTTP latch that decides each request by its scheme.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "16d56070812c453b5806f2a75ee3f239ba51258e",
+    "org.opencontainers.image.revision": "2420ee838be85d05ed80dbc12e813c3569c92f1e",
     "org.opencontainers.image.source": "https://github.com/componentized/http.git",
     "org.opencontainers.image.title": "componentized:http-latch-scheme",
-    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/16d56070812c453b5806f2a75ee3f239ba51258e/components/latch-scheme",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/2420ee838be85d05ed80dbc12e813c3569c92f1e/components/latch-scheme",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -77,5 +77,5 @@
       "size": 2362
     }
   ],
-  "indexed_at": "2026-11-16T16:36:39Z"
+  "indexed_at": "2026-11-17T14:54:22Z"
 }

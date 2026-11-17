@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/http/gate",
     "tag": "0.1.1-dev",
-    "digest": "sha256:939eb018d92005db431afa3a6761aa3400bff4bf26aca4cbe3f7890f4691c521",
+    "digest": "sha256:d3b2c7315054ca0c7677694dff08043d2826bee8f059fba7a0b5a34fb9cf55de",
     "layer_digest": "sha256:29007dfe4aff00b2b1b5b60a22a54c99247e9cddb8bc7069fc77b3991945bd68",
     "size": 159682,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 3929898438
+      "log_index": 3947364155
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/http/gate",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:2508180f067dcd3459a65a3c1c216d117a423f017444c4ae13e1855e7ca62c73",
+    "digest": "sha256:53ab6a53923faf2790c66cfce6e638f471cd7a6037a3185727049544417980ce",
     "layer_digest": "sha256:d071e21d791b827a66640e0a72cbf399316c047bdb28e119506051e84f28fa02",
     "size": 569520,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 3929901952
+      "log_index": 3947366878
     }
   },
-  "created": "2026-11-16T16:25:58.129688801Z",
+  "created": "2026-11-17T14:44:46.480430828Z",
   "annotations": {
     "org.opencontainers.image.description": "HTTP gate access control for both requests sent and handled.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "16d56070812c453b5806f2a75ee3f239ba51258e",
+    "org.opencontainers.image.revision": "2420ee838be85d05ed80dbc12e813c3569c92f1e",
     "org.opencontainers.image.source": "https://github.com/componentized/http.git",
     "org.opencontainers.image.title": "componentized:http-gate",
-    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/16d56070812c453b5806f2a75ee3f239ba51258e/components/gate",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/2420ee838be85d05ed80dbc12e813c3569c92f1e/components/gate",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -140,5 +140,5 @@
       }
     ]
   },
-  "indexed_at": "2026-11-16T16:35:44Z"
+  "indexed_at": "2026-11-17T14:53:51Z"
 }

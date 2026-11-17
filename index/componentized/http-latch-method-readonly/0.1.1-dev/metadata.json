@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/http/latch-method-readonly",
     "tag": "0.1.1-dev",
-    "digest": "sha256:97f998699e7750d18dc61f27031bbd10ee523174c05e3b942c8251c133aa7603",
+    "digest": "sha256:b8f0285fa03c0abab28ee1718b0228dd1a2586a5e4cf567b84e4736643243e99",
     "layer_digest": "sha256:1b8c38d03d144f27f1c9bd05e90c6d684de0538af818246c4a51c243affeb768",
     "size": 52819,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 3929957746
+      "log_index": 3947422603
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/http/latch-method-readonly",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:28a0c7c52ec62d944d6624f0c6e7e88597dc286f751789198d39921835118f23",
+    "digest": "sha256:19803eb617216cd1e2124a9db188e2d38bbd96fa23ced61327decb9598df0384",
     "layer_digest": "sha256:e7cffce6fded7d424a032eaf6b8bfc8c3c1dc41eabda1c9b8baed7587c47ddae",
     "size": 175270,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 3929960326
+      "log_index": 3947424796
     }
   },
-  "created": "2026-11-16T16:29:32.188985378Z",
+  "created": "2026-11-17T14:48:01.089768676Z",
   "annotations": {
     "org.opencontainers.image.description": "HTTP latch that denies every request method except GET, HEAD, QUERY and OPTIONS.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "16d56070812c453b5806f2a75ee3f239ba51258e",
+    "org.opencontainers.image.revision": "2420ee838be85d05ed80dbc12e813c3569c92f1e",
     "org.opencontainers.image.source": "https://github.com/componentized/http.git",
     "org.opencontainers.image.title": "componentized:http-latch-method-readonly",
-    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/16d56070812c453b5806f2a75ee3f239ba51258e/components/latch-method-readonly",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/2420ee838be85d05ed80dbc12e813c3569c92f1e/components/latch-method-readonly",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -110,5 +110,5 @@
       }
     ]
   },
-  "indexed_at": "2026-11-16T16:36:19Z"
+  "indexed_at": "2026-11-17T14:54:11Z"
 }
