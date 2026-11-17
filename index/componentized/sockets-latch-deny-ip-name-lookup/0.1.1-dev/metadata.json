@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-deny-ip-name-lookup",
     "tag": "0.1.1-dev",
-    "digest": "sha256:b12fe0993793590ad3a87d8ea11b489bd7d83be7a9baa663ffc125eb7aff1c8f",
+    "digest": "sha256:8f84607c59ef9146ae7612826e5539b4f5c30b28d0fdde24bb38c224304de97e",
     "layer_digest": "sha256:ad0926fff65601cd638f6a28bffec0962eb65576c36f05633a741af78e1cccf0",
     "size": 74531,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 3930021996
+      "log_index": 3947892803
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-deny-ip-name-lookup",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:ac49d67e681b2ed0dbbde5a398b02194b648691f3fa6a365192e301bb9ebc66d",
+    "digest": "sha256:d8088bfc560c573878d4409c0b0a9aa8d550761cc4f003205e880ff2adc19966",
     "layer_digest": "sha256:a4a8e07db589e914d212b3ad90fde777e8628194892c411593f883c217ebe873",
     "size": 830516,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 3930023299
+      "log_index": 3947895553
     }
   },
-  "created": "2026-11-16T16:33:44.180088027Z",
+  "created": "2026-11-17T15:13:19.545189099Z",
   "annotations": {
     "org.opencontainers.image.description": "Sockets latch that implicitly denies all ip-name lookups.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "6b34f1c1d9d6ad733d05e15983c4366d5e705287",
+    "org.opencontainers.image.revision": "750aa485c5599af8cb3e1579d7b40cdb7b0eb1be",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-latch-deny-ip-name-lookup",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/6b34f1c1d9d6ad733d05e15983c4366d5e705287/components/latch-deny-ip-name-lookup",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/750aa485c5599af8cb3e1579d7b40cdb7b0eb1be/components/latch-deny-ip-name-lookup",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -110,5 +110,5 @@
       }
     ]
   },
-  "indexed_at": "2026-11-16T16:41:41Z"
+  "indexed_at": "2026-11-17T15:22:01Z"
 }

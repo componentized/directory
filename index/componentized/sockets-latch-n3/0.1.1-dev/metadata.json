@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-n3",
     "tag": "0.1.1-dev",
-    "digest": "sha256:5bacab3f53be62ef35de58b723e0c6dac356829cea22a5b54f9d5670df0a8f25",
+    "digest": "sha256:9399f680dd79cf3fc0a87a9ec56b5abbb6d20eb47b68b1e67c0b415bccb8f0c9",
     "layer_digest": "sha256:a4a78fee47b7f38ac917c43ed4c6c6fa7b77abe754a013891612bf26c2efca7e",
     "size": 50351,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 3930083058
+      "log_index": 3947940713
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-n3",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:3297042c027c792d89819c9fe4febf810931bfd2faa94f7c6186f9d84d86bd0a",
+    "digest": "sha256:a95b1159ade37307169071833ec3b3fda0fd9dd884df2276f05ae203b7f3dd8d",
     "layer_digest": "sha256:d181cd67194ad7d4422c592ca311669856283c0a97213e9fd89b7c27ceb4d4f0",
     "size": 475345,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 3930086795
+      "log_index": 3947944104
     }
   },
-  "created": "2026-11-16T16:37:28.150229872Z",
+  "created": "2026-11-17T15:16:51.910256054Z",
   "annotations": {
     "org.opencontainers.image.description": "Sockets latch that aggregates three other sockets latches.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "6b34f1c1d9d6ad733d05e15983c4366d5e705287",
+    "org.opencontainers.image.revision": "750aa485c5599af8cb3e1579d7b40cdb7b0eb1be",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-latch-n3",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/6b34f1c1d9d6ad733d05e15983c4366d5e705287/components/latch-n3",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/750aa485c5599af8cb3e1579d7b40cdb7b0eb1be/components/latch-n3",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -70,5 +70,5 @@
       "size": 3445
     }
   ],
-  "indexed_at": "2026-11-16T16:42:11Z"
+  "indexed_at": "2026-11-17T15:22:54Z"
 }

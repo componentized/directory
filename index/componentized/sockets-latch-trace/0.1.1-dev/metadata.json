@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-trace",
     "tag": "0.1.1-dev",
-    "digest": "sha256:b5c2839dd1967f4e3ea027804ab0a364d20115b066ff1d9ac1790af324ce1295",
+    "digest": "sha256:4b5da4ea825d11237518cf0c63c1bc18059ab429533c94dcbf47228192465472",
     "layer_digest": "sha256:d24a61bad6577a75640c2d43d25e76665580fd894b404e2ba01c1460e1594b48",
     "size": 59550,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 3930106762
+      "log_index": 3947959031
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-trace",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:4617577c5abeec8f1bbdae60221de1f017d5f45789c743ac83f90cb265ece240",
+    "digest": "sha256:fce2cfe20b131d6e732cc0492ef78c17166771277e48127698f5c4efae88b903",
     "layer_digest": "sha256:58e65d8e8c74a7a8538155217b7670754026370ee9d378179a1cec9ff0195901",
     "size": 437975,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 3930110046
+      "log_index": 3947963151
     }
   },
-  "created": "2026-11-16T16:38:37.350742622Z",
+  "created": "2026-11-17T15:17:58.556946624Z",
   "annotations": {
     "org.opencontainers.image.description": "Sockets latch that wraps another latch, logging each decision it makes without changing it.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "6b34f1c1d9d6ad733d05e15983c4366d5e705287",
+    "org.opencontainers.image.revision": "750aa485c5599af8cb3e1579d7b40cdb7b0eb1be",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-latch-trace",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/6b34f1c1d9d6ad733d05e15983c4366d5e705287/components/latch-trace",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/750aa485c5599af8cb3e1579d7b40cdb7b0eb1be/components/latch-trace",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -73,5 +73,5 @@
       "size": 3445
     }
   ],
-  "indexed_at": "2026-11-16T16:42:20Z"
+  "indexed_at": "2026-11-17T15:23:09Z"
 }

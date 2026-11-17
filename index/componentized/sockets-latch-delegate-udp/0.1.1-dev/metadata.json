@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-delegate-udp",
     "tag": "0.1.1-dev",
-    "digest": "sha256:d87097595edc39d045fba548dcb02b52cf044d962eccf3badd210b6da762aa31",
+    "digest": "sha256:c42842e40ab76377a7ba909baa3b8329bb77cfb6cc787abf4f5af9f06e415326",
     "layer_digest": "sha256:67f27208f2969b87d98dce057e5ea3b189623db83cee8ea40bc6ede5eec05c17",
     "size": 38349,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 3930000744
+      "log_index": 3947865998
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-delegate-udp",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:aea440aac8b0e31e17f2c60ecc2e98d707246fd5e4fd82e721eff0cd4e481364",
+    "digest": "sha256:2f1c6f9704e8368534133d89e1a9bb78f27caaf356615434fa27d027c70e11e9",
     "layer_digest": "sha256:59e33786385467ff012fbf96496b78629e850752af2be1a8ee065541391f90a8",
     "size": 356842,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 3930003656
+      "log_index": 3947868076
     }
   },
-  "created": "2026-11-16T16:32:01.168526158Z",
+  "created": "2026-11-17T15:11:29.457504600Z",
   "annotations": {
     "org.opencontainers.image.description": "Sockets latch that wraps another latch, delegating only udp socket operations to it. Tcp socket and ip-name-lookup operations are deferred without consulting the wrapped latch, it neither authorizes nor observes them.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "6b34f1c1d9d6ad733d05e15983c4366d5e705287",
+    "org.opencontainers.image.revision": "750aa485c5599af8cb3e1579d7b40cdb7b0eb1be",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-latch-delegate-udp",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/6b34f1c1d9d6ad733d05e15983c4366d5e705287/components/latch-delegate-udp",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/750aa485c5599af8cb3e1579d7b40cdb7b0eb1be/components/latch-delegate-udp",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -68,5 +68,5 @@
       "size": 3445
     }
   ],
-  "indexed_at": "2026-11-16T16:41:27Z"
+  "indexed_at": "2026-11-17T15:21:37Z"
 }

@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-deny-connect",
     "tag": "0.1.1-dev",
-    "digest": "sha256:fd148dd94bed9533b8b4f842d3ae6427c0f02b2fb47b9c899e32e68b12e48ce4",
+    "digest": "sha256:209e018c986660867d51f81cf3fc88a338d4977044a6b65d8dc5b320cfed3656",
     "layer_digest": "sha256:bcc84efc2025aaed2e7b098dab2ade54118ccca775c21ccccf45d151e6766e6e",
     "size": 33508,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 3930015886
+      "log_index": 3947883755
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-deny-connect",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:925985e11be5ef4780febb2acc548f0c7adc3d26831894be31e46dd58d9257c4",
+    "digest": "sha256:d2e4ce6fa697bd3dd4abb8ddbe412f816d1d7a2c8f79868f6a75f0c9faf22b01",
     "layer_digest": "sha256:49edf077acb735a090eced80ccabccb6e86a4eec1fc6f71796a33a8be9f33b65",
     "size": 306776,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 3930017745
+      "log_index": 3947886265
     }
   },
-  "created": "2026-11-16T16:33:02.917459707Z",
+  "created": "2026-11-17T15:12:36.132275377Z",
   "annotations": {
     "org.opencontainers.image.description": "Sockets latch that implicitly denies all outbound connections.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "6b34f1c1d9d6ad733d05e15983c4366d5e705287",
+    "org.opencontainers.image.revision": "750aa485c5599af8cb3e1579d7b40cdb7b0eb1be",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-latch-deny-connect",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/6b34f1c1d9d6ad733d05e15983c4366d5e705287/components/latch-deny-connect",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/750aa485c5599af8cb3e1579d7b40cdb7b0eb1be/components/latch-deny-connect",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -67,5 +67,5 @@
       "size": 3445
     }
   ],
-  "indexed_at": "2026-11-16T16:41:35Z"
+  "indexed_at": "2026-11-17T15:21:51Z"
 }
