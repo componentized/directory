@@ -7,48 +7,49 @@
     "registry": "ghcr.io",
     "repository": "componentized/secrets/from-config",
     "tag": "0.1.1-dev",
-    "digest": "sha256:10130c2c8ebaa6d0192c047b63714ea6c2b715e84efb745e831d135188dd907f",
-    "layer_digest": "sha256:72631625bccdffca9cd16dccc8160025c4713879f95e69a3827d5481e6f3caa5",
-    "size": 60154,
+    "digest": "sha256:ce7c2a87b0bad8574320a228616e3865c215722d0129885e60b1326e76353123",
+    "layer_digest": "sha256:e555cb451abaa4b5c6b77fb91f146908e258b0019cbbc04840790fe16aa3a8bb",
+    "size": 60662,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/secrets/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/secrets",
       "git_ref": "refs/heads/main",
-      "log_index": 3956020558
+      "log_index": 3958328573
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/secrets/from-config",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:2f9ed31b6c7928ef557d03f023fd2000048e071c35954cceb9d23685472b5dd0",
-    "layer_digest": "sha256:4d73f1c5b495ce6dca90ae72a831a51d6f7b2c4648f7c60b2d278a267320b21c",
-    "size": 204679,
+    "digest": "sha256:089b352544b15f283a0e12400e21dd06c0f32eceb14c76daf14d43faf56fe5e4",
+    "layer_digest": "sha256:73aeda11cbba582a211a0686401b1c0e31bf66d3ac2d315e487ef0db0c4f3bfe",
+    "size": 205258,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/secrets/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/secrets",
       "git_ref": "refs/heads/main",
-      "log_index": 3956021020
+      "log_index": 3958333745
     }
   },
-  "created": "2026-11-17T23:36:03.572933828Z",
+  "created": "2026-11-18T01:51:37.216454826Z",
   "annotations": {
     "org.opencontainers.image.description": "`componentized:secrets`, backed by `wasi:config`, for hosts without secrets, e.g. wasmtime. Each secret is the config value of the same key, a missing key is not found. The config values are read once, when the store is initialized.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "5a261b2494936a6ff38b58f393c8421d48ee6c62",
+    "org.opencontainers.image.revision": "f07c6c93290b51981637bfb571d3e546cf254fbd",
     "org.opencontainers.image.source": "https://github.com/componentized/secrets.git",
     "org.opencontainers.image.title": "componentized:secrets-from-config",
-    "org.opencontainers.image.url": "https://github.com/componentized/secrets/tree/5a261b2494936a6ff38b58f393c8421d48ee6c62/components/from-config",
+    "org.opencontainers.image.url": "https://github.com/componentized/secrets/tree/f07c6c93290b51981637bfb571d3e546cf254fbd/components/from-config",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
     "wasi:config/store@0.2.0-rc.1"
   ],
   "exports": [
+    "componentized:secrets/types@0.1.1-dev",
     "componentized:secrets/store@0.1.1-dev"
   ],
   "dependencies": [
@@ -63,9 +64,13 @@
   ],
   "parts": [
     {
-      "digest": "sha256:120dc5b81cd97711de7bbbead2d782911343773ccd02c1f1e5b72eeccd4b8e00",
-      "size": 368
+      "digest": "sha256:1769ed6303fff5416aaffb0f58d95f6e98e951b61b315c827b279f4724c63dda",
+      "size": 112
+    },
+    {
+      "digest": "sha256:dc5c3ae9a9d02647d2dd97d365ac1e3ebffa3f96176e9674f1ea7f68bd71b499",
+      "size": 345
     }
   ],
-  "indexed_at": "2026-11-17T23:40:53Z"
+  "indexed_at": "2026-11-18T01:56:47Z"
 }
