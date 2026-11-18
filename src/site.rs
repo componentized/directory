@@ -2316,6 +2316,8 @@ impl Site {
                     .and_then(|instance| found.get(instance.part).copied().flatten())
                     .map(|e| &self.entries[e]);
                 json!({
+                    // the name the composition gives the instance, e.g. `stderr`, when it gives one
+                    "instance": wiring.instances[*i].name,
                     "name": entry.map(|e| e.name()),
                     "label": entry.map(|e| e.id()),
                     "url": entry.map(|e| e.url()),

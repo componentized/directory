@@ -78,6 +78,7 @@
     "instances": [
       {
         "part": 0,
+        "name": "to-stdout",
         "args": [
           {
             "name": "wasi:cli/stdout@0.3.0",

@@ -18,6 +18,8 @@
   const esc = window.directory?.esc ?? ((s) => String(s).replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`));
   const icon = window.directory?.icon ?? (() => "");
   const hideTip = () => window.directory?.hideTip?.();
+  // what a part is called: its component's name, and the name the composition gives its instance
+  const partName = (p) => `${p.name ?? "a component not in the directory"}${p.instance ? ` (${p.instance})` : ""}`;
 
   const viewport = figure.querySelector("[data-wiring-viewport]");
   const stage = figure.querySelector("[data-wiring-stage]");
@@ -154,11 +156,14 @@
     const part = (n) => {
       const p = data.parts[n];
       const [, version] = p.label?.split("@") ?? [];
-      const title = p.url
+      const component = p.url
         ? `<a href="${esc(p.url)}" data-tip draggable="false"><code>${esc(p.name)}</code></a>${version ? `<span class="wiring-version">@${esc(version)}</span>` : ""}`
         : `<span class="dim">Not in the directory</span>`;
+      // the component it's an instance of, and under it the name the composition gives the
+      // instance, e.g. `stderr`, when it gives one
+      const title = p.instance ? `${component}<code class="wiring-instance">${esc(p.instance)}</code>` : component;
       const focused = view.focus === n;
-      const name = p.name ?? "a component not in the directory";
+      const name = partName(p);
       return `<div class="wiring-node${focused ? " is-focus" : ""}" data-node="part:${n}">
         <div class="wiring-node-head">${icon(p.kind)}<span class="wiring-title">${title}</span>
           <button type="button" class="wiring-focus-button" data-wiring-focus-part="${n}" aria-pressed="${focused}" aria-label="${esc(focused ? `Stop focusing on ${name}` : `Focus on ${name}`)}"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5"/><circle cx="8" cy="8" r="1.5"/><path d="M8 1v2.5M8 12.5V15M1 8h2.5M12.5 8H15"/></svg></button>
@@ -399,7 +404,7 @@
     fit(!figure.classList.contains("wiring-expanded"));
     if (view.focus !== null) {
       const p = data.parts[view.focus];
-      bar.querySelector("[data-wiring-focus-name]").textContent = p.name ?? "a component not in the directory";
+      bar.querySelector("[data-wiring-focus-name]").textContent = partName(p);
     }
     bar.hidden = view.focus === null;
     for (const b of bar.querySelectorAll("[data-wiring-direction]")) b.setAttribute("aria-pressed", String(b.dataset.wiringDirection === view.direction));
