@@ -1,0 +1,48 @@
+{
+  "package": "componentized:valkey-as-keyvalue-constants",
+  "version": "0.3.0-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/as-keyvalue-constants",
+    "tag": "0.3.0-dev",
+    "digest": "sha256:0b4720fe08846c9cf1a1399bdf32bb50cea82763f23d91a576ace050ebf50b72",
+    "layer_digest": "sha256:3d9dacc4c1e1b1bbf9ea10b454f44024a28335f8d8e8c00f1713277d4faa9e90",
+    "size": 1412,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/valkey",
+      "git_ref": "refs/heads/main",
+      "log_index": 3959395130
+    }
+  },
+  "created": "2026-11-18T02:56:01.181205014Z",
+  "annotations": {
+    "org.opencontainers.image.description": "The keys of the `as-keyvalue` secrets and their defaults, as constants.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "02922acb13fc7632506a5d3a1ee2141fbbd3ee21",
+    "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
+    "org.opencontainers.image.title": "componentized:valkey-as-keyvalue-constants",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/02922acb13fc7632506a5d3a1ee2141fbbd3ee21/components/as-keyvalue-constants",
+    "org.opencontainers.image.version": "v0.3.0-dev"
+  },
+  "exports": [
+    "componentized:valkey/as-keyvalue-constants@0.3.0-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:valkey",
+      "version": "0.3.0-dev"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:6345ca37d79c4d2cfb3cacb89419119d248ff906a45f20c670e458a196112671",
+      "size": 138
+    }
+  ],
+  "indexed_at": "2026-11-18T03:02:01Z"
+}

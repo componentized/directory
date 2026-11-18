@@ -1,7 +1,8 @@
 package root:component;
 
 world root {
-  import wasi:config/store@0.2.0-rc.1;
+  import componentized:secrets/types@0.1.1-dev;
+  import componentized:secrets/store@0.1.1-dev;
   import wasi:logging/logging@0.1.0-draft;
   import wasi:sockets/types@0.3.0;
 

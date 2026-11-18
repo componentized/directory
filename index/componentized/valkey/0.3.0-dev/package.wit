@@ -1,7 +1,25 @@
 package componentized:valkey@0.3.0-dev;
 
-/// The keys of the `tcp-connector`'s wasi:config, and their defaults, for the components that derive
-/// their config from it. The values are provided by the `tcp-connector-constants` component.
+/// The keys of the `as-keyvalue`'s componentized:secrets, and their defaults. The values are
+/// provided by the `as-keyvalue-constants` component.
+@since(version = 0.3.0-dev)
+interface as-keyvalue-constants {
+  /// The key of the prefix of the hash for each bucket, e.g. `app:` stores the bucket `users` in
+  /// the hash `app:users`.
+  ///
+  /// @value "key-prefix"
+  @since(version = 0.3.0-dev)
+  key-prefix-key: func() -> string;
+
+  /// The prefix of the hash for each bucket without one, the hash is named for the bucket.
+  ///
+  /// @value ""
+  @since(version = 0.3.0-dev)
+  key-prefix-default: func() -> string;
+}
+
+/// The keys of the `tcp-connector`'s componentized:secrets, and their defaults, for the components that
+/// derive their config from it. The values are provided by the `tcp-connector-constants` component.
 @since(version = 0.3.0-dev)
 interface tcp-connector-constants {
   /// The key of the server's hostname or IP address.
@@ -4826,6 +4844,7 @@ interface tcp {
 }
 
 world imports {
+  import as-keyvalue-constants;
   import types;
   import connection;
   import commands;

@@ -7,51 +7,53 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/client",
     "tag": "0.3.0-dev",
-    "digest": "sha256:92a70b47f92f1868f8f4a954936e69827ca4bff2693e633ef839944cbde40bd2",
-    "layer_digest": "sha256:73966227e07f6e9f0c7713bfadb302815cccd9937b7032422acd9c0f9d51abeb",
-    "size": 2616233,
+    "digest": "sha256:17435dedce940f22524aa4f5980dadb56c3cfb70dd67c9914099b09115dc04d1",
+    "layer_digest": "sha256:783c63704d5d93a8839209f0df8ceeb8c459bc30bf6981d7c8e1dadece3e2dcd",
+    "size": 2741388,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/valkey",
       "git_ref": "refs/heads/main",
-      "log_index": 3947658431
+      "log_index": 3959412711
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/valkey/client",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:11abe8057ad49c5ba20484738852d8c35d701fb84c6e86989aafcc11f1bf02b7",
-    "layer_digest": "sha256:f1c2dbbc064fe675527351fdfe711aca431b53c46bb6e0c68066608957a3a896",
-    "size": 30461559,
+    "digest": "sha256:968d9eafda34cd2b7f0edf84f1165f87dee1501db59b10c2d624cf18a0daaa97",
+    "layer_digest": "sha256:4b3fd75b153ac1eecb20436e2d82bbbdbe9a7e649771109034fe8577b58c4c31",
+    "size": 30921849,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/valkey",
       "git_ref": "refs/heads/main",
-      "log_index": 3947665122
+      "log_index": 3959417086
     }
   },
-  "created": "2026-11-17T14:59:27.280141351Z",
+  "created": "2026-11-18T02:57:01.080562579Z",
   "annotations": {
     "org.opencontainers.image.description": "Client for interacting with a Valkey server, as `componentized:valkey` and `wasmcloud:keyvalue`.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "d8f96c739d2c7607311ff33ee543e13405946f5d",
+    "org.opencontainers.image.revision": "02922acb13fc7632506a5d3a1ee2141fbbd3ee21",
     "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
     "org.opencontainers.image.title": "componentized:valkey-client",
-    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/d8f96c739d2c7607311ff33ee543e13405946f5d/components/client",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/02922acb13fc7632506a5d3a1ee2141fbbd3ee21/components/client",
     "org.opencontainers.image.version": "v0.3.0-dev"
   },
   "imports": [
     "wasi:clocks/types@0.3.0",
     "wasi:clocks/monotonic-clock@0.3.0",
-    "componentized:valkey/types@0.3.0-dev",
     "wasi:sockets/types@0.3.0",
     "wasi:sockets/ip-name-lookup@0.3.0",
-    "wasi:config/store@0.2.0-rc.1"
+    "wasi:logging/logging@0.1.0-draft",
+    "componentized:valkey/types@0.3.0-dev",
+    "componentized:secrets/types@0.1.1-dev",
+    "componentized:secrets/store@0.1.1-dev"
   ],
   "exports": [
     "componentized:valkey/connection@0.3.0-dev",
@@ -65,6 +67,10 @@
   ],
   "dependencies": [
     {
+      "package": "componentized:secrets",
+      "version": "0.1.1-dev"
+    },
+    {
       "package": "componentized:valkey",
       "version": "0.3.0-dev"
     },
@@ -73,8 +79,8 @@
       "version": "0.3.0"
     },
     {
-      "package": "wasi:config",
-      "version": "0.2.0-rc.1"
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
     },
     {
       "package": "wasi:sockets",
@@ -107,13 +113,33 @@
       "code": true
     },
     {
-      "digest": "sha256:e3469a2a688032f966c9f9db33852dd1bad30fa72089ef9e81fa536f80fc2cd4",
-      "size": 65523,
+      "digest": "sha256:b0813ea3902938a33f892814fec42e409306ffabd9d41e54ee7f8bdd0c157147",
+      "size": 73514,
       "code": true
     },
     {
-      "digest": "sha256:0291ffaf6fc462afe4352f37314f0ef8f0b16717c6b54fc6d6a09b54e7880ce6",
-      "size": 153171,
+      "digest": "sha256:3d9dacc4c1e1b1bbf9ea10b454f44024a28335f8d8e8c00f1713277d4faa9e90",
+      "size": 1412,
+      "code": true
+    },
+    {
+      "digest": "sha256:027f4fc2a0bd857f71c7ece6a6bdb61cc92f3523d35385a4002955fd7ffc1847",
+      "size": 6218,
+      "code": true
+    },
+    {
+      "digest": "sha256:2e787af04565f1273062365ed7d9bcd4643a0d65192a92168d7c29011c5f3c42",
+      "size": 36979,
+      "code": true
+    },
+    {
+      "digest": "sha256:2d19122f3a29e8d2d6261887c2b4f6dd64b181a7c4a8c4e24e56bb47bcc6928b",
+      "size": 62705,
+      "code": true
+    },
+    {
+      "digest": "sha256:6a970ac37b9259073cbd196d44d7d36c341428194d03610829b7147a2625e7a5",
+      "size": 159821,
       "code": true
     }
   ],
@@ -123,16 +149,16 @@
         "part": 0,
         "args": [
           {
-            "name": "wasi:clocks/types@0.3.0",
-            "import": "wasi:clocks/types@0.3.0"
+            "name": "componentized:valkey/types@0.3.0-dev",
+            "import": "componentized:valkey/types@0.3.0-dev"
           },
           {
             "name": "wasi:clocks/monotonic-clock@0.3.0",
             "import": "wasi:clocks/monotonic-clock@0.3.0"
           },
           {
-            "name": "componentized:valkey/types@0.3.0-dev",
-            "import": "componentized:valkey/types@0.3.0-dev"
+            "name": "wasi:clocks/types@0.3.0",
+            "import": "wasi:clocks/types@0.3.0"
           }
         ]
       },
@@ -145,16 +171,16 @@
             "export": "componentized:valkey/connection@0.3.0-dev"
           },
           {
-            "name": "wasi:sockets/types@0.3.0",
-            "import": "wasi:sockets/types@0.3.0"
+            "name": "componentized:valkey/types@0.3.0-dev",
+            "import": "componentized:valkey/types@0.3.0-dev"
           },
           {
             "name": "wasi:sockets/ip-name-lookup@0.3.0",
             "import": "wasi:sockets/ip-name-lookup@0.3.0"
           },
           {
-            "name": "componentized:valkey/types@0.3.0-dev",
-            "import": "componentized:valkey/types@0.3.0-dev"
+            "name": "wasi:sockets/types@0.3.0",
+            "import": "wasi:sockets/types@0.3.0"
           }
         ]
       },
@@ -189,22 +215,68 @@
             "export": "componentized:valkey/connection@0.3.0-dev"
           },
           {
+            "name": "componentized:valkey/types@0.3.0-dev",
+            "import": "componentized:valkey/types@0.3.0-dev"
+          },
+          {
             "name": "componentized:valkey/tcp-connector-constants@0.3.0-dev",
             "instance": 3,
             "export": "componentized:valkey/tcp-connector-constants@0.3.0-dev"
           },
           {
-            "name": "wasi:config/store@0.2.0-rc.1",
-            "import": "wasi:config/store@0.2.0-rc.1"
+            "name": "componentized:secrets/store@0.1.1-dev",
+            "import": "componentized:secrets/store@0.1.1-dev"
           },
           {
-            "name": "componentized:valkey/types@0.3.0-dev",
-            "import": "componentized:valkey/types@0.3.0-dev"
+            "name": "componentized:secrets/types@0.1.1-dev",
+            "import": "componentized:secrets/types@0.1.1-dev"
           }
         ]
       },
       {
-        "part": 5,
+        "part": 5
+      },
+      {
+        "part": 6
+      },
+      {
+        "part": 7,
+        "args": [
+          {
+            "name": "wasi:logging/logging@0.1.0-draft",
+            "import": "wasi:logging/logging@0.1.0-draft"
+          },
+          {
+            "name": "wasi:config/store@0.2.0-rc.1",
+            "instance": 6,
+            "export": "wasi:config/store@0.2.0-rc.1"
+          },
+          {
+            "name": "componentized:secrets/types@0.1.1-dev",
+            "import": "componentized:secrets/types@0.1.1-dev"
+          }
+        ]
+      },
+      {
+        "part": 8,
+        "args": [
+          {
+            "name": "wasi:logging/logging@0.1.0-draft",
+            "import": "wasi:logging/logging@0.1.0-draft"
+          },
+          {
+            "name": "componentized:secrets/latch@0.1.1-dev",
+            "instance": 7,
+            "export": "componentized:secrets/latch@0.1.1-dev"
+          },
+          {
+            "name": "componentized:secrets/store@0.1.1-dev",
+            "import": "componentized:secrets/store@0.1.1-dev"
+          }
+        ]
+      },
+      {
+        "part": 9,
         "args": [
           {
             "name": "componentized:valkey/commands@0.3.0-dev",
@@ -226,8 +298,18 @@
             "import": "componentized:valkey/types@0.3.0-dev"
           },
           {
-            "name": "wasi:config/store@0.2.0-rc.1",
-            "import": "wasi:config/store@0.2.0-rc.1"
+            "name": "componentized:valkey/as-keyvalue-constants@0.3.0-dev",
+            "instance": 5,
+            "export": "componentized:valkey/as-keyvalue-constants@0.3.0-dev"
+          },
+          {
+            "name": "componentized:secrets/store@0.1.1-dev",
+            "instance": 8,
+            "export": "componentized:secrets/store@0.1.1-dev"
+          },
+          {
+            "name": "componentized:secrets/types@0.1.1-dev",
+            "import": "componentized:secrets/types@0.1.1-dev"
           }
         ]
       }
@@ -255,25 +337,25 @@
       },
       {
         "name": "wasmcloud:keyvalue/types@0.2.0",
-        "instance": 5,
+        "instance": 9,
         "export": "wasmcloud:keyvalue/types@0.2.0"
       },
       {
         "name": "wasmcloud:keyvalue/store@0.2.0",
-        "instance": 5,
+        "instance": 9,
         "export": "wasmcloud:keyvalue/store@0.2.0"
       },
       {
         "name": "wasmcloud:keyvalue/atomics@0.2.0",
-        "instance": 5,
+        "instance": 9,
         "export": "wasmcloud:keyvalue/atomics@0.2.0"
       },
       {
         "name": "wasmcloud:keyvalue/batch@0.2.0",
-        "instance": 5,
+        "instance": 9,
         "export": "wasmcloud:keyvalue/batch@0.2.0"
       }
     ]
   },
-  "indexed_at": "2026-11-17T15:04:44Z"
+  "indexed_at": "2026-11-18T03:02:09Z"
 }

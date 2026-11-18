@@ -7,46 +7,47 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/tcp-connector-latch",
     "tag": "0.3.0-dev",
-    "digest": "sha256:a80d749c8837e4340dbe7a6ebb931308c43229720822c8d0efa465105a0352ea",
-    "layer_digest": "sha256:5e7787acf3fdd2c9dedddebb6d6f56865a45f94df390a01a2a36060662c92b8c",
-    "size": 418982,
+    "digest": "sha256:4dcf0ff961f9cc2231a03d229c1cf65ed9ae72df639355c0faf7d2ea2d77c79a",
+    "layer_digest": "sha256:f48659f111f3e51c96aeb5b344b25a8985a2a0fbf66ba398cd60f1fb14ff14f8",
+    "size": 423401,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/valkey",
       "git_ref": "refs/heads/main",
-      "log_index": 3947746543
+      "log_index": 3959479006
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/valkey/tcp-connector-latch",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:7555a65e79790a06a351b1cde5f9058c85deb5a426bd5ddba29538f3568b0fb5",
-    "layer_digest": "sha256:9efb6eabf22fb689f852a8c2d74e9b41a9b9a64773aee0725c7e6869da7c91db",
-    "size": 4573800,
+    "digest": "sha256:e778224b358cff0f364adf9730163b625cf69bc25848bcd9603a160da66279d7",
+    "layer_digest": "sha256:470eaefb3ccf681921eada55f8fe8960fe277bba8f9a6dd5d90bc340dc1925bb",
+    "size": 4603125,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/valkey",
       "git_ref": "refs/heads/main",
-      "log_index": 3947752034
+      "log_index": 3959482680
     }
   },
-  "created": "2026-11-17T15:03:10.558551807Z",
+  "created": "2026-11-18T03:00:36.690758906Z",
   "annotations": {
-    "org.opencontainers.image.description": "A `componentized:sockets` latch limiting network access to the Valkey server in the `tcp-connector` config, denying every other socket.",
+    "org.opencontainers.image.description": "A `componentized:sockets` latch limiting network access to the Valkey server in the `tcp-connector` secrets, denying every other socket.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "d8f96c739d2c7607311ff33ee543e13405946f5d",
+    "org.opencontainers.image.revision": "02922acb13fc7632506a5d3a1ee2141fbbd3ee21",
     "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
     "org.opencontainers.image.title": "componentized:valkey-tcp-connector-latch",
-    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/d8f96c739d2c7607311ff33ee543e13405946f5d/components/tcp-connector-latch",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/02922acb13fc7632506a5d3a1ee2141fbbd3ee21/components/tcp-connector-latch",
     "org.opencontainers.image.version": "v0.3.0-dev"
   },
   "imports": [
-    "wasi:config/store@0.2.0-rc.1",
+    "componentized:secrets/types@0.1.1-dev",
+    "componentized:secrets/store@0.1.1-dev",
     "wasi:logging/logging@0.1.0-draft",
     "wasi:sockets/types@0.3.0"
   ],
@@ -55,12 +56,12 @@
   ],
   "dependencies": [
     {
-      "package": "componentized:sockets",
-      "version": "0.1.0"
+      "package": "componentized:secrets",
+      "version": "0.1.1-dev"
     },
     {
-      "package": "wasi:config",
-      "version": "0.2.0-rc.1"
+      "package": "componentized:sockets",
+      "version": "0.1.0"
     },
     {
       "package": "wasi:logging",
@@ -78,8 +79,8 @@
       "code": true
     },
     {
-      "digest": "sha256:c56c6d786a9741342e1b875db4f6e14736f5cbae2d15719b132da923330eea23",
-      "size": 26808,
+      "digest": "sha256:fd00698e9422db1521435a664e55db7aa86d2b1595866e7a34036b487f11e37b",
+      "size": 29817,
       "code": true
     },
     {
@@ -93,8 +94,8 @@
       "code": true
     },
     {
-      "digest": "sha256:fadc5cbe2210fd551cfeb75266cbfd06f340fa8308f3354e6f6aa63cafc6ee4f",
-      "size": 29765,
+      "digest": "sha256:423ab6b916ddd6d241b2de084cef0e0cceee313c7a4a5bb83e17419cd6c7e28a",
+      "size": 30889,
       "code": true
     },
     {
@@ -132,8 +133,12 @@
             "export": "componentized:valkey/tcp-connector-constants@0.3.0-dev"
           },
           {
-            "name": "wasi:config/store@0.2.0-rc.1",
-            "import": "wasi:config/store@0.2.0-rc.1"
+            "name": "componentized:secrets/types@0.1.1-dev",
+            "import": "componentized:secrets/types@0.1.1-dev"
+          },
+          {
+            "name": "componentized:secrets/store@0.1.1-dev",
+            "import": "componentized:secrets/store@0.1.1-dev"
           }
         ]
       },
@@ -173,8 +178,12 @@
             "export": "componentized:valkey/tcp-connector-constants@0.3.0-dev"
           },
           {
-            "name": "wasi:config/store@0.2.0-rc.1",
-            "import": "wasi:config/store@0.2.0-rc.1"
+            "name": "componentized:secrets/types@0.1.1-dev",
+            "import": "componentized:secrets/types@0.1.1-dev"
+          },
+          {
+            "name": "componentized:secrets/store@0.1.1-dev",
+            "import": "componentized:secrets/store@0.1.1-dev"
           }
         ]
       },
@@ -257,5 +266,5 @@
       }
     ]
   },
-  "indexed_at": "2026-11-17T15:05:10Z"
+  "indexed_at": "2026-11-18T03:02:35Z"
 }
