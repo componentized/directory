@@ -92,6 +92,7 @@
     "instances": [
       {
         "part": 0,
+        "name": "egress",
         "args": [
           {
             "name": "wasi:logging/logging@0.1.0-draft",
@@ -109,6 +110,7 @@
       },
       {
         "part": 1,
+        "name": "ingress",
         "args": [
           {
             "name": "wasi:logging/logging@0.1.0-draft",

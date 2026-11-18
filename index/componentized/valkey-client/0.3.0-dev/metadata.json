@@ -147,6 +147,7 @@
     "instances": [
       {
         "part": 0,
+        "name": "connection",
         "args": [
           {
             "name": "componentized:valkey/types@0.3.0-dev",
@@ -164,6 +165,7 @@
       },
       {
         "part": 1,
+        "name": "tcp",
         "args": [
           {
             "name": "componentized:valkey/connection@0.3.0-dev",
@@ -186,6 +188,7 @@
       },
       {
         "part": 2,
+        "name": "commands",
         "args": [
           {
             "name": "componentized:valkey/connection@0.3.0-dev",
@@ -199,10 +202,12 @@
         ]
       },
       {
-        "part": 3
+        "part": 3,
+        "name": "tcp-connector-constants"
       },
       {
         "part": 4,
+        "name": "connector",
         "args": [
           {
             "name": "componentized:valkey/tcp@0.3.0-dev",
@@ -234,13 +239,16 @@
         ]
       },
       {
-        "part": 5
+        "part": 5,
+        "name": "as-keyvalue-constants"
       },
       {
-        "part": 6
+        "part": 6,
+        "name": "as-keyvalue-latch-key-config"
       },
       {
         "part": 7,
+        "name": "as-keyvalue-latch",
         "args": [
           {
             "name": "wasi:logging/logging@0.1.0-draft",
@@ -259,6 +267,7 @@
       },
       {
         "part": 8,
+        "name": "as-keyvalue-gate",
         "args": [
           {
             "name": "wasi:logging/logging@0.1.0-draft",
@@ -277,6 +286,7 @@
       },
       {
         "part": 9,
+        "name": "keyvalue",
         "args": [
           {
             "name": "componentized:valkey/commands@0.3.0-dev",

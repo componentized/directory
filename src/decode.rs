@@ -426,10 +426,14 @@ pub fn composition(wasm: &[u8]) -> Result<(Vec<crate::data::Part>, Option<crate:
 pub fn wiring(wasm: &[u8]) -> Result<crate::data::Wiring> {
     use crate::data::{Instance, Owner, Plug, Source, Wiring};
     use wasmparser::{
-        CanonicalFunction, ComponentAlias, ComponentExternalKind, ComponentInstance,
-        ComponentOuterAliasKind, ComponentTypeRef, Parser, Payload,
+        CanonicalFunction, ComponentAlias, ComponentExternalKind, ComponentInstance, ComponentName,
+        ComponentOuterAliasKind, ComponentTypeRef, KnownCustom, Parser, Payload,
     };
     let mut wiring = Wiring::default();
+    // the instance of a part that each index of the composition's instance index space made, by
+    // its index in `wiring.instances`, which the `component-name` section names by the former
+    let mut made: std::collections::HashMap<u32, usize> = Default::default();
+    let mut names: std::collections::HashMap<u32, String> = Default::default();
     // the composition's index spaces that wiring goes through: each component, by its part, each
     // instance and each function, by the item it is. `None` for anything else, e.g. a function the
     // composition lifts itself.
@@ -540,7 +544,12 @@ pub fn wiring(wasm: &[u8]) -> Result<crate::data::Wiring> {
                                         })
                                     })
                                     .collect();
-                                wiring.instances.push(Instance { part: *part, args });
+                                made.insert(instances.len() as u32, wiring.instances.len());
+                                wiring.instances.push(Instance {
+                                    part: *part,
+                                    name: None,
+                                    args,
+                                });
                                 Some(Source {
                                     owner: Owner::Instance(wiring.instances.len() - 1),
                                     export: None,
@@ -583,7 +592,25 @@ pub fn wiring(wasm: &[u8]) -> Result<crate::data::Wiring> {
                     }
                 }
             }
+            Payload::CustomSection(reader) => {
+                if let KnownCustom::ComponentName(reader) = reader.as_known() {
+                    for subsection in reader {
+                        // a name section that doesn't read is only missing names
+                        let Ok(ComponentName::Instances(map)) = subsection else {
+                            continue;
+                        };
+                        for naming in map.into_iter().flatten() {
+                            names.insert(naming.index, naming.name.to_string());
+                        }
+                    }
+                }
+            }
             _ => {}
+        }
+    }
+    for (index, name) in names {
+        if let Some(instance) = made.get(&index) {
+            wiring.instances[*instance].name = Some(name);
         }
     }
     Ok(wiring)
@@ -726,6 +753,15 @@ mod tests {
         let mut exports = ComponentExportSection::new();
         exports.export("y", ComponentExportKind::Instance, 4, None);
         composed.section(&exports);
+        // the second part's instance is named, as a tool like wac names them; so are the host's
+        // import and an alias, which aren't instances of parts
+        let mut named = wasm_encoder::NameMap::new();
+        named.append(0, "host");
+        named.append(2, "x");
+        named.append(3, "second");
+        let mut names = wasm_encoder::ComponentNameSection::new();
+        names.instances(&named);
+        composed.section(&names);
 
         let export = |instance, name: &str| Source {
             owner: Owner::Instance(instance),
@@ -743,10 +779,12 @@ mod tests {
                 instances: vec![
                     Instance {
                         part: 0,
+                        name: None,
                         args: vec![]
                     },
                     Instance {
                         part: 1,
+                        name: Some("second".to_string()),
                         args: vec![
                             plug("x", export(0, "x")),
                             plug(

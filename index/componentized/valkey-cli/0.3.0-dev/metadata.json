@@ -140,6 +140,7 @@
     "instances": [
       {
         "part": 0,
+        "name": "logging",
         "args": [
           {
             "name": "wasi:cli/stderr@0.3.0",
@@ -157,6 +158,7 @@
       },
       {
         "part": 1,
+        "name": "secrets",
         "args": [
           {
             "name": "wasi:config/store@0.2.0-rc.1",
@@ -166,6 +168,7 @@
       },
       {
         "part": 2,
+        "name": "latch",
         "args": [
           {
             "name": "wasi:logging/logging@0.1.0-draft",
@@ -189,6 +192,7 @@
       },
       {
         "part": 3,
+        "name": "gate",
         "args": [
           {
             "name": "wasi:logging/logging@0.1.0-draft",
@@ -216,6 +220,7 @@
       },
       {
         "part": 4,
+        "name": "connection",
         "args": [
           {
             "name": "componentized:valkey/types@0.3.0-dev",
@@ -233,6 +238,7 @@
       },
       {
         "part": 5,
+        "name": "tcp",
         "args": [
           {
             "name": "componentized:valkey/connection@0.3.0-dev",
@@ -256,10 +262,12 @@
         ]
       },
       {
-        "part": 6
+        "part": 6,
+        "name": "tcp-connector-constants"
       },
       {
         "part": 7,
+        "name": "connector",
         "args": [
           {
             "name": "componentized:valkey/tcp@0.3.0-dev",
@@ -294,6 +302,7 @@
       },
       {
         "part": 8,
+        "name": "cli",
         "args": [
           {
             "name": "wasi:cli/stderr@0.3.0",

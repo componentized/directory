@@ -122,10 +122,12 @@
   "wiring": {
     "instances": [
       {
-        "part": 0
+        "part": 0,
+        "name": "tcp-connector-constants"
       },
       {
         "part": 1,
+        "name": "lookup-config",
         "args": [
           {
             "name": "componentized:valkey/tcp-connector-constants@0.3.0-dev",
@@ -144,6 +146,7 @@
       },
       {
         "part": 2,
+        "name": "lookup-glob",
         "args": [
           {
             "name": "wasi:config/store@0.2.0-rc.1",
@@ -162,6 +165,7 @@
       },
       {
         "part": 3,
+        "name": "connect",
         "args": [
           {
             "name": "wasi:sockets/types@0.3.0",
@@ -171,6 +175,7 @@
       },
       {
         "part": 4,
+        "name": "egress-config",
         "args": [
           {
             "name": "componentized:valkey/tcp-connector-constants@0.3.0-dev",
@@ -189,6 +194,7 @@
       },
       {
         "part": 5,
+        "name": "cidr-egress",
         "args": [
           {
             "name": "wasi:config/store@0.2.0-rc.1",
@@ -207,6 +213,7 @@
       },
       {
         "part": 6,
+        "name": "udp",
         "args": [
           {
             "name": "wasi:sockets/types@0.3.0",
@@ -216,6 +223,7 @@
       },
       {
         "part": 7,
+        "name": "bind",
         "args": [
           {
             "name": "wasi:sockets/types@0.3.0",
@@ -225,6 +233,7 @@
       },
       {
         "part": 8,
+        "name": "latch",
         "args": [
           {
             "name": "latch4",

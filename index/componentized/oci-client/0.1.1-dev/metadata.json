@@ -82,10 +82,12 @@
   "wiring": {
     "instances": [
       {
-        "part": 0
+        "part": 0,
+        "name": "media-types"
       },
       {
         "part": 1,
+        "name": "client",
         "args": [
           {
             "name": "componentized:oci/media-types@0.1.1-dev",

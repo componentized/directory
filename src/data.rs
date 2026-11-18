@@ -115,6 +115,10 @@ pub struct Wiring {
 pub struct Instance {
     /// Its part, by its index in [`Metadata::parts`].
     pub part: usize,
+    /// The name the composition gives it, in its `component-name` section, e.g. `stderr`, when it
+    /// gives one: a tool that composes components, e.g. wac, names the instances it makes.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
     /// What satisfies each of its imports that's an instance or a function, by the import's name,
     /// e.g. `wasi:config/store@0.2.0-rc.1` or `latch0`. An import satisfied in some other way, e.g.
     /// by a function the composition defines, is left out.

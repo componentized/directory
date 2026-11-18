@@ -828,6 +828,8 @@ code.sig { white-space: pre-wrap; display: inline-block; vertical-align: top; ma
 .wiring-title { min-width: 0; max-width: 260px; }
 .wiring-title code { font-weight: 600; font-size: 1em; }
 .wiring-version { color: var(--dim); font-family: var(--mono); font-size: 0.9em; }
+/* a named instance's name, under the component it's an instance of */
+.wiring-title code.wiring-instance { display: block; font-weight: 400; font-size: 0.85em; color: var(--dim); }
 .wiring-node-ports { display: flex; justify-content: space-between; gap: 16px; padding: 6px 0; }
 .wiring-ports { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
 .wiring-ports-in { align-items: flex-start; }
