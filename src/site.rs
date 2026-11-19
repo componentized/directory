@@ -18,6 +18,10 @@ use wit_parser::{
 
 const MARKER: &str = ".directory-site";
 
+/// The namespaces the home page offers to browse, below its search: the project's own and WASI's.
+/// Every other namespace still has its page, reached from its packages' pages.
+const HOME_NAMESPACES: [&str; 2] = ["componentized", "wasi"];
+
 /// Like `minijinja::context!`, serializing each value.
 macro_rules! ctx {
     ($($key:ident $(=> $value:expr)?),* $(,)?) => {{
@@ -1891,7 +1895,14 @@ impl Site {
             recent,
             builds,
             capabilities => self.capabilities(),
-            namespaces => self.namespace_counts().into_iter().map(|(ns, _)| ns).collect::<Vec<_>>(),
+            // the namespaces it's for, rather than every one a dependency brings, e.g. `wasmcloud`
+            namespaces => {
+                let indexed: Vec<_> = self.namespace_counts().into_iter().map(|(ns, _)| ns).collect();
+                HOME_NAMESPACES
+                    .iter()
+                    .filter(|ns| indexed.iter().any(|i| i == *ns))
+                    .collect::<Vec<_>>()
+            },
             // the repositories that release components, rather than only interfaces, e.g. WASI's
             collections => self
                 .repo_cards()
