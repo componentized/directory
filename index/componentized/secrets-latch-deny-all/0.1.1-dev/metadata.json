@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/secrets/latch-deny-all",
     "tag": "0.1.1-dev",
-    "digest": "sha256:543995baea119cc459b08b799f073f1879c0696da29ea3a02ae4084710146844",
+    "digest": "sha256:0794c3d06b93c38a72b8d2ef02ac4fded481e16fcf0599749e5ad3a8b55d9f7f",
     "layer_digest": "sha256:5e8ae15627252125f9e77480539e0dca62f15eda9de29571e4be55934eeb8718",
     "size": 24153,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/secrets",
       "git_ref": "refs/heads/main",
-      "log_index": 3958360628
+      "log_index": 3984119025
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/secrets/latch-deny-all",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:36d67cd5d1c0e66d2ba854cd0a5dad909fe708f469c482bd701a3a7269a2756f",
+    "digest": "sha256:00f7e10e4ee6f73eb08df9fe9966c0a17281193b195091c6b459a950d7ddcce6",
     "layer_digest": "sha256:539ca64404455734e27b1e47258bb97024312905097e29bde0a1fde5347cd807",
     "size": 60080,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/secrets",
       "git_ref": "refs/heads/main",
-      "log_index": 3958364531
+      "log_index": 3984126501
     }
   },
-  "created": "2026-11-18T01:53:08.653284196Z",
+  "created": "2026-11-19T02:18:35.112971731Z",
   "annotations": {
     "org.opencontainers.image.description": "`componentized:secrets` latch that denies every operation with `not-found`, allowing no secrets.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "f07c6c93290b51981637bfb571d3e546cf254fbd",
+    "org.opencontainers.image.revision": "f523b44e21246cd679afcd3097cfc40be1a95670",
     "org.opencontainers.image.source": "https://github.com/componentized/secrets.git",
     "org.opencontainers.image.title": "componentized:secrets-latch-deny-all",
-    "org.opencontainers.image.url": "https://github.com/componentized/secrets/tree/f07c6c93290b51981637bfb571d3e546cf254fbd/components/latch-deny-all",
+    "org.opencontainers.image.url": "https://github.com/componentized/secrets/tree/f523b44e21246cd679afcd3097cfc40be1a95670/components/latch-deny-all",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -63,5 +63,5 @@
       "size": 900
     }
   ],
-  "indexed_at": "2026-11-18T01:56:58Z"
+  "indexed_at": "2026-11-19T02:24:34Z"
 }

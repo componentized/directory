@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/secrets/latch-n5",
     "tag": "0.1.1-dev",
-    "digest": "sha256:18aa524f60c37104c4bb9eb1ad2df4888aeb0bc37f1ba022f5a2eb637ca6b7f0",
+    "digest": "sha256:b64cd1179ebb9d9c30c5d96fde04e7a1510d3002ba73492a6bf6f1c8a2b2c4b8",
     "layer_digest": "sha256:788dc4216bfd1a7576fce39475e29859c4d949f96b0109700d165ac3d94db935",
     "size": 36179,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/secrets",
       "git_ref": "refs/heads/main",
-      "log_index": 3958405918
+      "log_index": 3984195729
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/secrets/latch-n5",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:01365b66657e630c34a1bc67d6d2b54a062f1b8ad7d7fc6f791e7ede50932a13",
+    "digest": "sha256:49db45d09ffde90b12696fad712d52c0619f0f1b53a83b508881790e7cf5616b",
     "layer_digest": "sha256:e851cd879ced87e506c281df287f62e267918ea626c326f8ca38b0a2b19538c3",
     "size": 97847,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/secrets",
       "git_ref": "refs/heads/main",
-      "log_index": 3958409424
+      "log_index": 3984201282
     }
   },
-  "created": "2026-11-18T01:55:20.601226681Z",
+  "created": "2026-11-19T02:22:25.841164811Z",
   "annotations": {
     "org.opencontainers.image.description": "`componentized:secrets` latch that aggregates 5 latches, any latch can deny an operation.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "f07c6c93290b51981637bfb571d3e546cf254fbd",
+    "org.opencontainers.image.revision": "f523b44e21246cd679afcd3097cfc40be1a95670",
     "org.opencontainers.image.source": "https://github.com/componentized/secrets.git",
     "org.opencontainers.image.title": "componentized:secrets-latch-n5",
-    "org.opencontainers.image.url": "https://github.com/componentized/secrets/tree/f07c6c93290b51981637bfb571d3e546cf254fbd/components/latch-n5",
+    "org.opencontainers.image.url": "https://github.com/componentized/secrets/tree/f523b44e21246cd679afcd3097cfc40be1a95670/components/latch-n5",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -68,5 +68,5 @@
       "size": 900
     }
   ],
-  "indexed_at": "2026-11-18T01:57:22Z"
+  "indexed_at": "2026-11-19T02:25:01Z"
 }
