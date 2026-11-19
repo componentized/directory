@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/valkey-credential-admin",
     "tag": "0.0.5-dev",
-    "digest": "sha256:c68edbb33663896fb6b23518ff920634fb503a7ca4439daaebbe5421fd3ef0e3",
+    "digest": "sha256:c8e15ceb0eb568bb95b23d8e9454e4f7094819e7fc774dfe783907bd6ad7c639",
     "layer_digest": "sha256:557e31422972124df2e1b966d63db5672b6780048847c00e43f6982e953269f6",
     "size": 412793,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 3931648861
+      "log_index": 4000246417
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/services/valkey-credential-admin",
     "tag": "0.0.5-dev_debug",
-    "digest": "sha256:cba45a9cf367832d0326b6a252a9db163d294aec122168a333ac71ae3ec69865",
+    "digest": "sha256:68faf133de1034520768feb15b3c8c275f8cdef1b51a94e9382781103df2e584",
     "layer_digest": "sha256:f059bed9bf08eae4792e0e5895837f2f800b4b155dd09c7af330a4bf19ef69e9",
     "size": 518109,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 3931651226
+      "log_index": 4000252538
     }
   },
-  "created": "2026-11-16T18:09:18.033671855Z",
+  "created": "2026-11-19T16:04:23.007680628Z",
   "annotations": {
     "org.opencontainers.image.description": "Implements `componentized:services/credential-admin`, publishing and destroying the credentials of service bindings in a Valkey server.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "cc2727d7157b6483a9e8e564289ad06615b9b11b",
+    "org.opencontainers.image.revision": "82e2beb92f41ff1edb84e1094781e7e773299db4",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-valkey-credential-admin",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/cc2727d7157b6483a9e8e564289ad06615b9b11b/components/valkey-credential-admin",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/82e2beb92f41ff1edb84e1094781e7e773299db4/components/valkey-credential-admin",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
@@ -161,7 +161,12 @@
     ]
   },
   "sbom": {
-    "status": "missing"
+    "status": "verified",
+    "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/services",
+    "git_ref": "refs/heads/main",
+    "log_index": 4000248680
   },
-  "indexed_at": "2026-11-16T18:12:43Z"
+  "indexed_at": "2026-11-19T16:09:55Z"
 }

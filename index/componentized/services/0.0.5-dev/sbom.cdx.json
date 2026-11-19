@@ -1,0 +1,193 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "wit:wasi:clocks@0.2.6",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "569984cc45d3f5a362a3b2897aabbaa3cc4184a6113bfcbbf03c1bd7fc20338c"
+        }
+      ],
+      "name": "wasi:clocks",
+      "properties": [
+        {
+          "name": "wkg:registry",
+          "value": "wasi.dev"
+        }
+      ],
+      "type": "library",
+      "version": "0.2.6"
+    },
+    {
+      "bom-ref": "wit:wasi:config@0.2.0-rc.1",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "1b7f1b0fd07bb4cede16c6a6ec8852815dfb924639a78735fc7bdffdc164485d"
+        }
+      ],
+      "name": "wasi:config",
+      "properties": [
+        {
+          "name": "wkg:registry",
+          "value": "wasi.dev"
+        }
+      ],
+      "type": "library",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "bom-ref": "wit:wasi:filesystem@0.2.6",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "7b735005e020ee3d727d995c05849c59bbf084b51a054013c0f0796c571e1ab0"
+        }
+      ],
+      "name": "wasi:filesystem",
+      "properties": [
+        {
+          "name": "wkg:registry",
+          "value": "wasi.dev"
+        }
+      ],
+      "type": "library",
+      "version": "0.2.6"
+    },
+    {
+      "bom-ref": "wit:wasi:logging@0.1.0-draft",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "09621a45b12b0a9cddc798517f778aac0e5ae4bd234077b3d70758d6cf625580"
+        }
+      ],
+      "name": "wasi:logging",
+      "properties": [
+        {
+          "name": "wkg:registry",
+          "value": "wasi.dev"
+        }
+      ],
+      "type": "library",
+      "version": "0.1.0-draft"
+    },
+    {
+      "bom-ref": "wit:wasi:random@0.2.6",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "14ea24097cbe19ae2c79c6ffead72f70c4aed65bb68ef40ed8eca6e08383dc1b"
+        }
+      ],
+      "name": "wasi:random",
+      "properties": [
+        {
+          "name": "wkg:registry",
+          "value": "wasi.dev"
+        }
+      ],
+      "type": "library",
+      "version": "0.2.6"
+    },
+    {
+      "bom-ref": "wit:wasi:sockets@0.2.6",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "f3e112b5a7926758b82cfc884b5febfce8b924cda766dbdc1f4f60893f59b301"
+        }
+      ],
+      "name": "wasi:sockets",
+      "properties": [
+        {
+          "name": "wkg:registry",
+          "value": "wasi.dev"
+        }
+      ],
+      "type": "library",
+      "version": "0.2.6"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "wit:wasi:clocks@0.2.6",
+        "wit:wasi:config@0.2.0-rc.1",
+        "wit:wasi:filesystem@0.2.6",
+        "wit:wasi:logging@0.1.0-draft",
+        "wit:wasi:random@0.2.6",
+        "wit:wasi:sockets@0.2.6"
+      ],
+      "ref": "component:componentized:services"
+    },
+    {
+      "dependsOn": [],
+      "ref": "wit:wasi:clocks@0.2.6"
+    },
+    {
+      "dependsOn": [],
+      "ref": "wit:wasi:config@0.2.0-rc.1"
+    },
+    {
+      "dependsOn": [],
+      "ref": "wit:wasi:filesystem@0.2.6"
+    },
+    {
+      "dependsOn": [],
+      "ref": "wit:wasi:logging@0.1.0-draft"
+    },
+    {
+      "dependsOn": [],
+      "ref": "wit:wasi:random@0.2.6"
+    },
+    {
+      "dependsOn": [],
+      "ref": "wit:wasi:sockets@0.2.6"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "component:componentized:services",
+      "description": "A WASM component services lifecycle.",
+      "externalReferences": [
+        {
+          "comment": "revision 82e2beb92f41ff1edb84e1094781e7e773299db4",
+          "type": "vcs",
+          "url": "https://github.com/componentized/services.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/componentized/services/tree/82e2beb92f41ff1edb84e1094781e7e773299db4"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "709dfa22144446c9b2f614e3ca0ea71fa479dd4e4805c7b6d00acfe31b382dcb"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "componentized:services",
+      "purl": "pkg:oci/services@sha256%3A9276c6302bab5bb8f245c95880555ab6d3de8fd3f483eb04afae48adbf712a09?repository_url=ghcr.io/componentized/services&tag=0.0.5-dev",
+      "type": "library",
+      "version": "0.0.5-dev"
+    },
+    "timestamp": "2026-11-19T15:54:32Z",
+    "tools": {
+      "components": [
+        {
+          "name": "wkg",
+          "type": "application"
+        }
+      ]
+    }
+  },
+  "specVersion": "1.6",
+  "version": 1
+}

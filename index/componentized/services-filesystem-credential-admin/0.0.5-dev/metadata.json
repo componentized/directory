@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/filesystem-credential-admin",
     "tag": "0.0.5-dev",
-    "digest": "sha256:438029c13cd6c6f7795483e38294a52ac17aa18a2e13e8ff13fbb54762e3aa6a",
+    "digest": "sha256:6e885e791833e4eb91fbd5995fd9901f73f13742938bb76eb1b25f64f9d638b9",
     "layer_digest": "sha256:25d182b8eb9c6e313a386b7de1576bf856664b7ecc81d142ee4566787dff4149",
     "size": 145169,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 3931615537
+      "log_index": 4000133271
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/services/filesystem-credential-admin",
     "tag": "0.0.5-dev_debug",
-    "digest": "sha256:13d7ca57be6d8c22e0fdcda60ad7ff2c0439afef7e43b13fafe0ca701140737b",
+    "digest": "sha256:27119147c276daa6cb017f52b5717619b798923b7c5ee7f7a192e48a72386b9f",
     "layer_digest": "sha256:8981fef6ff943860cf68c662202404d7491b155743bcd644765b091ffea4e3dd",
     "size": 259051,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 3931616504
+      "log_index": 4000141528
     }
   },
-  "created": "2026-11-16T18:06:53.452404390Z",
+  "created": "2026-11-19T15:58:44.237800480Z",
   "annotations": {
     "org.opencontainers.image.description": "Implements `componentized:services/credential-admin`, publishing and destroying the credentials of service bindings as files in `wasi:filesystem`, under the directory of the `path` key in `wasi:config`, `services` by default.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "cc2727d7157b6483a9e8e564289ad06615b9b11b",
+    "org.opencontainers.image.revision": "82e2beb92f41ff1edb84e1094781e7e773299db4",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-filesystem-credential-admin",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/cc2727d7157b6483a9e8e564289ad06615b9b11b/components/filesystem-credential-admin",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/82e2beb92f41ff1edb84e1094781e7e773299db4/components/filesystem-credential-admin",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
@@ -107,7 +107,12 @@
     }
   ],
   "sbom": {
-    "status": "missing"
+    "status": "verified",
+    "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/services",
+    "git_ref": "refs/heads/main",
+    "log_index": 4000136585
   },
-  "indexed_at": "2026-11-16T18:12:11Z"
+  "indexed_at": "2026-11-19T16:09:19Z"
 }

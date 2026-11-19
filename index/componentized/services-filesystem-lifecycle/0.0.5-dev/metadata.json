@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/filesystem-lifecycle",
     "tag": "0.0.5-dev",
-    "digest": "sha256:2eba24ef9de18e27ad872278476e9bd9d4d84db50d7821961e1b9e6bca4fce12",
+    "digest": "sha256:4859161285fbae6e3b6af8a32842730aa8f656439fac46050b9db35fe9dde23d",
     "layer_digest": "sha256:0dbcba8cf7c25f4ce228f3d7d1983e8fd511e3f30360ea6bfe861839c78a3c7d",
     "size": 191528,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 3931620311
+      "log_index": 4000181646
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/services/filesystem-lifecycle",
     "tag": "0.0.5-dev_debug",
-    "digest": "sha256:a3a0fa6e4a2aaaf7b2bea37e155ec44958649ebbb636da0d7bb2334c7acf21bd",
+    "digest": "sha256:f1a2993a7334a7dbebd8e44777117a9144fe61fb1a5716547943e8b09ea93a03",
     "layer_digest": "sha256:6fd0a6e8d27c7ff7def4528490643cd20d7566121efadd0839323f50b4e1517b",
     "size": 385874,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 3931623594
+      "log_index": 4000189182
     }
   },
-  "created": "2026-11-16T18:07:34.455801752Z",
+  "created": "2026-11-19T16:01:00.605704364Z",
   "annotations": {
     "org.opencontainers.image.description": "Implements `componentized:services/service-lifecycle` for `filesystem` services, each service instance a directory in `wasi:filesystem`, under the directory of the `path` key in `wasi:config`, `services` by default.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "cc2727d7157b6483a9e8e564289ad06615b9b11b",
+    "org.opencontainers.image.revision": "82e2beb92f41ff1edb84e1094781e7e773299db4",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-filesystem-lifecycle",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/cc2727d7157b6483a9e8e564289ad06615b9b11b/components/filesystem-lifecycle",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/82e2beb92f41ff1edb84e1094781e7e773299db4/components/filesystem-lifecycle",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
@@ -103,7 +103,12 @@
     }
   ],
   "sbom": {
-    "status": "missing"
+    "status": "verified",
+    "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/services",
+    "git_ref": "refs/heads/main",
+    "log_index": 4000184024
   },
-  "indexed_at": "2026-11-16T18:12:20Z"
+  "indexed_at": "2026-11-19T16:09:25Z"
 }

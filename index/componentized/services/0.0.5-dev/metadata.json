@@ -7,8 +7,8 @@
     "registry": "ghcr.io",
     "repository": "componentized/services",
     "tag": "0.0.5-dev",
-    "digest": "sha256:1c2c227da15906e9863409d6def8be3d93de2c0bacf3a6a20e7f79968feab442",
-    "layer_digest": "sha256:2e9e4a89b25b5eb6a09d677822875f3a956dc50fc9eaf7c11099dd2926c4b243",
+    "digest": "sha256:9276c6302bab5bb8f245c95880555ab6d3de8fd3f483eb04afae48adbf712a09",
+    "layer_digest": "sha256:709dfa22144446c9b2f614e3ca0ea71fa479dd4e4805c7b6d00acfe31b382dcb",
     "size": 17374,
     "signature": {
       "status": "verified",
@@ -16,17 +16,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 3931614606
+      "log_index": 4000104933
     }
   },
-  "created": "2026-11-16T18:06:19.757340535Z",
+  "created": "2026-11-19T15:57:30.557522668Z",
   "annotations": {
     "org.opencontainers.image.description": "A WASM component services lifecycle.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "cc2727d7157b6483a9e8e564289ad06615b9b11b",
+    "org.opencontainers.image.revision": "82e2beb92f41ff1edb84e1094781e7e773299db4",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/cc2727d7157b6483a9e8e564289ad06615b9b11b",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/82e2beb92f41ff1edb84e1094781e7e773299db4",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "dependencies": [
@@ -60,7 +60,12 @@
     }
   ],
   "sbom": {
-    "status": "missing"
+    "status": "verified",
+    "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/services",
+    "git_ref": "refs/heads/main",
+    "log_index": 4000107597
   },
-  "indexed_at": "2026-11-16T18:12:03Z"
+  "indexed_at": "2026-11-19T16:09:13Z"
 }

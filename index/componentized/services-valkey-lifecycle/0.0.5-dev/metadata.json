@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/valkey-lifecycle",
     "tag": "0.0.5-dev",
-    "digest": "sha256:69a0183a2e90e4b7d45fd8039513a9ac0f0b9653767580a4cf91be84b31e6c68",
+    "digest": "sha256:1103272503782ca8f02cfa6f746a8109f9931687df6ff80972804fc5800ce8fd",
     "layer_digest": "sha256:8cb1899b03a9e144261c72a8a6ddaf2fe4c0db2d23f77ed84510566b2f6fefe4",
     "size": 526777,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 3931658670
+      "log_index": 4000279180
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/services/valkey-lifecycle",
     "tag": "0.0.5-dev_debug",
-    "digest": "sha256:959fedc810e40edf4439fe9516a59c4fd711b510745883fca0fc88e7b1fa6e9e",
+    "digest": "sha256:7a4dee56602963c311a052807dd29bfa033ea1d54a90b0d771554f3eb6869166",
     "layer_digest": "sha256:64859dccb89aff7135e3c54618d7fd0ed7637fff9fb2d3ff061ba6e54d69bf85",
     "size": 746827,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 3931661173
+      "log_index": 4000281661
     }
   },
-  "created": "2026-11-16T18:10:00.497030216Z",
+  "created": "2026-11-19T16:06:38.550650198Z",
   "annotations": {
     "org.opencontainers.image.description": "Implements `componentized:services/service-lifecycle` for `valkey` services on a Valkey server, at the `hostname` and `port` keys in `wasi:config`, `127.0.0.1:6379` by default.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "cc2727d7157b6483a9e8e564289ad06615b9b11b",
+    "org.opencontainers.image.revision": "82e2beb92f41ff1edb84e1094781e7e773299db4",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-valkey-lifecycle",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/cc2727d7157b6483a9e8e564289ad06615b9b11b/components/valkey-lifecycle",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/82e2beb92f41ff1edb84e1094781e7e773299db4/components/valkey-lifecycle",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
@@ -251,7 +251,12 @@
     ]
   },
   "sbom": {
-    "status": "missing"
+    "status": "verified",
+    "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/services",
+    "git_ref": "refs/heads/main",
+    "log_index": 4000280111
   },
-  "indexed_at": "2026-11-16T18:12:51Z"
+  "indexed_at": "2026-11-19T16:10:01Z"
 }
