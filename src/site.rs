@@ -191,52 +191,63 @@ fn is_interface_id(name: &str) -> bool {
     name.contains(':') && name.contains('/')
 }
 
-/// The label of each interface id, as brief as tells it apart from the others: its name, e.g.
-/// `store`, then with its package, `config/store`, then with its namespace, `wasi:config/store`,
-/// then in full, with its version, `wasi:config/store@0.2.0-rc.1`.
+/// The label of each interface id, its package and name, e.g. `config/store`, with its namespace
+/// only when another id has the same package and name in another namespace, e.g.
+/// `wasi:keyvalue/store` beside `componentized:keyvalue/store`, and its version only when another
+/// id differs from it in version alone, e.g. `sockets/types@0.3.0` beside `sockets/types@0.2.0`.
 fn interface_labels<'a>(ids: impl IntoIterator<Item = &'a str>) -> HashMap<String, String> {
-    let ids: BTreeSet<&str> = ids.into_iter().collect();
-    let label = |id: &str, level: usize| -> String {
-        let (path, _) = id.split_once('@').unwrap_or((id, ""));
-        let (_, package_path) = path.split_once(':').unwrap_or(("", path));
-        let (_, name) = package_path.split_once('/').unwrap_or(("", package_path));
-        [name, package_path, path, id][level].to_string()
+    // an id's namespace, its package and name, and its version, e.g. `wasi`, `config/store` and
+    // `0.2.0-rc.1`
+    let parts = |id: &'a str| -> (&'a str, &'a str, Option<&'a str>) {
+        let (path, version) = match id.split_once('@') {
+            Some((path, version)) => (path, Some(version)),
+            None => (id, None),
+        };
+        let (namespace, package_path) = path.split_once(':').unwrap_or(("", path));
+        (namespace, package_path, version)
     };
+    let ids: BTreeSet<&str> = ids.into_iter().collect();
     ids.iter()
         .map(|id| {
-            let level = (0..3)
-                .find(|level| {
-                    let own = label(id, *level);
-                    ids.iter()
-                        .all(|other| other == id || label(other, *level) != own)
-                })
-                .unwrap_or(3);
-            (id.to_string(), label(id, level))
+            let (namespace, package_path, version) = parts(id);
+            let others = || {
+                ids.iter()
+                    .filter(|other| *other != id)
+                    .map(|other| parts(other))
+            };
+            let with_namespace = others().any(|(ns, pp, _)| pp == package_path && ns != namespace);
+            let with_version = others().any(|(ns, pp, _)| pp == package_path && ns == namespace);
+            let mut label = package_path.to_string();
+            if with_namespace {
+                label = format!("{namespace}:{label}");
+            }
+            if let Some(version) = version.filter(|_| with_version) {
+                label = format!("{label}@{version}");
+            }
+            (id.to_string(), label)
         })
         .collect()
 }
 
-/// What plugs into a part's imports, in the order its world declares them, e.g. `latch0` to
-/// `latch4`, rather than the order the composition happens to pass them in, which is kept for one
-/// with no page to say, or an import its world doesn't name.
-fn in_import_order<'a>(part: Option<&Entry>, args: &'a [data::Plug]) -> Vec<&'a data::Plug> {
-    let declared: Vec<&str> = part
-        .map(|e| {
-            e.meta
-                .imports
-                .iter()
-                .map(|i| i.split_once(": ").map_or(i.as_str(), |(name, _)| name))
-                .collect()
-        })
-        .unwrap_or_default();
-    let mut args: Vec<&data::Plug> = args.iter().collect();
-    args.sort_by_key(|plug| {
-        declared
-            .iter()
-            .position(|name| *name == plug.name)
-            .unwrap_or(declared.len())
-    });
-    args
+/// Where a plug of a composition's wiring is listed, in [`decode::ItemOrder`]: by the interface it
+/// is, when its name is the interface's id, e.g. `wasi:config/store@0.2.0-rc.1`, else by the
+/// interface plugged into it and its name, e.g. `latch0` of `componentized:http/latch@0.1.0`.
+fn plug_order(plug: &data::Plug) -> decode::ItemOrder {
+    if is_interface_id(&plug.name) {
+        return decode::ItemOrder::of(Some(&plug.name), None);
+    }
+    let interface = match &plug.source.owner {
+        data::Owner::Import(import) if plug.source.export.is_none() => Some(import.as_str()),
+        _ => plug.source.export.as_deref(),
+    };
+    decode::ItemOrder::of(interface.filter(|i| is_interface_id(i)), Some(&plug.name))
+}
+
+/// Plugs of a composition's wiring, in [`plug_order`].
+fn sorted_plugs<'a>(plugs: impl IntoIterator<Item = &'a data::Plug>) -> Vec<&'a data::Plug> {
+    let mut plugs: Vec<&data::Plug> = plugs.into_iter().collect();
+    plugs.sort_by_cached_key(|plug| plug_order(plug));
+    plugs
 }
 
 struct Site {
@@ -1593,10 +1604,11 @@ impl Site {
         }
     }
 
-    /// The imports and exports of a world, in the order it declares them: each interface it
-    /// names, each interface it defines inline with its types and functions, each function with
-    /// its signature, and each type, a resource with its functions. Their ids start with
-    /// `anchor`, and their docs are under headings of level `under`.
+    /// The imports and exports of a world: each interface it names, each interface it defines
+    /// inline with its types and functions, each function with its signature, and each type, a
+    /// resource with its functions. Their ids start with `anchor`, and their docs are under
+    /// headings of level `under`. A world of a WIT package lists them in the order it declares
+    /// them; a component's, whose order means nothing, in [`decode::ItemOrder`].
     fn world_items(
         &self,
         index: usize,
@@ -1605,7 +1617,22 @@ impl Site {
         under: usize,
     ) -> (Vec<WorldItemView>, Vec<WorldItemView>) {
         let resolve = &self.entries[index].resolve;
+        let component = self.entries[index].meta.kind == Kind::Component;
         let side = |items: &wit_parser::IndexMap<WorldKey, WorldItem>| -> Vec<WorldItemView> {
+            let mut items: Vec<(&WorldKey, &WorldItem)> = items.iter().collect();
+            if component {
+                items.sort_by_cached_key(|(key, item)| {
+                    let name = match key {
+                        WorldKey::Name(name) => Some(name.as_str()),
+                        WorldKey::Interface(_) => None,
+                    };
+                    let id = match item {
+                        WorldItem::Interface { id, .. } => resolve.id_of(*id),
+                        _ => None,
+                    };
+                    decode::ItemOrder::of(id.as_deref(), name)
+                });
+            }
             let (types, functions) = self.scope_items(
                 index,
                 &Scope {
@@ -1620,8 +1647,8 @@ impl Site {
                         })
                         .collect(),
                     functions: items
-                        .values()
-                        .filter_map(|item| match item {
+                        .iter()
+                        .filter_map(|(_, item)| match item {
                             WorldItem::Function(func) => Some(func),
                             _ => None,
                         })
@@ -1634,6 +1661,7 @@ impl Site {
             let (mut types, mut functions) = (types.into_iter(), functions.into_iter());
             items
                 .iter()
+                .copied()
                 .filter_map(|(key, item)| match item {
                     WorldItem::Type { .. } => {
                         let ty = types.next()?;
@@ -2234,8 +2262,8 @@ impl Site {
         let node = |instance: usize| shown.iter().position(|i| *i == instance);
         // a port by the interface it is: its page, and a short label, e.g. `config/store` for
         // `wasi:config/store@0.2.0-rc.1`, or the name it's plugged in by, e.g. `latch0`
-        // each interface the diagram has a port for, labeled as briefly as tells it apart from the
-        // others, e.g. `store`, or `config/store` beside `keyvalue/store`
+        // each interface the diagram has a port for, labeled by its package and name, with its
+        // namespace or version only where they tell it apart from another, see `interface_labels`
         let ids = wiring
             .instances
             .iter()
@@ -2295,6 +2323,11 @@ impl Site {
             wiring.instances[*i].args.iter().for_each(&mut uses);
         }
         wiring.exports.iter().for_each(&mut uses);
+        // the composition's imports, and each part's exports, by the interfaces they are
+        imports.sort_by_cached_key(|i| decode::ItemOrder::of_item(i));
+        for outputs in &mut outputs {
+            outputs.sort_by_cached_key(|o| decode::ItemOrder::of_item(o));
+        }
         let inputs = |plugs: Vec<&data::Plug>| -> Vec<serde_json::Value> {
             plugs
                 .into_iter()
@@ -2322,7 +2355,7 @@ impl Site {
                     "label": entry.map(|e| e.id()),
                     "url": entry.map(|e| e.url()),
                     "kind": entry.map_or("component", |e| e.icon_kind()),
-                    "inputs": inputs(in_import_order(entry, &wiring.instances[*i].args)),
+                    "inputs": inputs(sorted_plugs(&wiring.instances[*i].args)),
                     "outputs": outputs.iter().map(|o| port(o, Some(o))).collect::<Vec<_>>(),
                 })
             })
@@ -2331,7 +2364,7 @@ impl Site {
             "name": meta.package,
             "imports": imports.iter().map(|i| port(i, Some(i))).collect::<Vec<_>>(),
             "parts": parts,
-            "exports": inputs(wiring.exports.iter().collect()),
+            "exports": inputs(sorted_plugs(&wiring.exports)),
         }))
     }
 
@@ -3510,7 +3543,7 @@ mod tests {
     }
 
     #[test]
-    fn labels_interfaces_as_briefly_as_tells_them_apart() {
+    fn labels_interfaces_by_package_and_name() {
         let labels = interface_labels([
             "wasi:config/store@0.2.0-rc.1",
             "wasi:keyvalue/store@0.2.0-draft2",
@@ -3530,12 +3563,12 @@ mod tests {
             label("componentized:keyvalue/store@0.1.0"),
             "componentized:keyvalue/store"
         );
-        assert_eq!(label("wasi:logging/logging@0.1.0-draft"), "logging");
-        assert_eq!(
-            label("wasi:sockets/types@0.3.0"),
-            "wasi:sockets/types@0.3.0"
-        );
-        assert_eq!(label("componentized:sockets/latch@0.1.0"), "latch");
+        // always its package, never its name alone
+        assert_eq!(label("wasi:logging/logging@0.1.0-draft"), "logging/logging");
+        assert_eq!(label("componentized:sockets/latch@0.1.0"), "sockets/latch");
+        // a version beside another, without the namespace they share
+        assert_eq!(label("wasi:sockets/types@0.3.0"), "sockets/types@0.3.0");
+        assert_eq!(label("wasi:sockets/types@0.2.0"), "sockets/types@0.2.0");
     }
 
     #[test]

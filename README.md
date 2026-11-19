@@ -52,7 +52,7 @@ A component's `imports` and `exports` in `metadata.json` name each item the way 
 - an inline interface, `scope: interface`
 - a function, `run: func`
 
-A named item counts as importing or exporting the interface it aliases. Each scan re-derives these lists from the stored WIT, so metadata written by an older scan is brought up to date without fetching anything.
+A component's imports and exports have no order that means anything, and the tools that make components don't let it be chosen, so they're sorted, in the metadata, on the component's page and in a composition's diagram: first the interfaces with ids, by namespace, package and interface name, semantic version, and then the name of a named import, e.g. `latch0`; then the rest, inline interfaces, functions and types, by name. A world of a WIT package keeps the order it declares. A named item counts as importing or exporting the interface it aliases. Each scan re-derives these lists from the stored WIT, so metadata written by an older scan is brought up to date without fetching anything.
 
 A release that is already indexed is never fetched again. To re-index a version, delete its directory.
 

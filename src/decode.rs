@@ -41,12 +41,86 @@ pub fn decode(wasm: &[u8]) -> Result<Decoded> {
                 kind: Kind::Component,
                 wit: print(&resolve, pkg)?,
                 package: None,
-                imports: world_items(&resolve, &w.imports),
-                exports: world_items(&resolve, &w.exports),
+                imports: sorted_items(world_items(&resolve, &w.imports)),
+                exports: sorted_items(world_items(&resolve, &w.exports)),
                 dependencies: dependencies(&resolve, pkg),
             })
         }
     }
+}
+
+/// Where an item a component imports or exports is listed among the others. Their order means
+/// nothing, and the tools that make components don't let it be chosen, so they're listed in an
+/// order of their own: the interfaces with ids, by namespace, package and interface name, version
+/// and then the name of a named import, e.g. `latch0` and `latch1` of
+/// `componentized:http/latch@0.1.0`; then the rest, inline interfaces, functions and types, by name.
+#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
+pub enum ItemOrder {
+    Interface {
+        namespace: String,
+        package: String,
+        interface: String,
+        /// `None` for an unversioned package, which comes first
+        version: Option<VersionOrder>,
+        name: Option<String>,
+    },
+    Other {
+        name: String,
+    },
+}
+
+/// A version, by semver precedence, or by its text when it isn't semver.
+#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
+pub enum VersionOrder {
+    Semver(semver::Version),
+    Text(String),
+}
+
+impl ItemOrder {
+    /// An item by the interface it is, its id, e.g. `wasi:http/types@0.2.0`, if it has one, and
+    /// the name it's under, if it has one, e.g. `latch0`.
+    pub fn of(id: Option<&str>, name: Option<&str>) -> Self {
+        let parsed = id.and_then(|id| {
+            let (namespace, rest) = id.split_once(':')?;
+            let (path, version) = match rest.split_once('@') {
+                Some((path, version)) => (path, Some(version)),
+                None => (rest, None),
+            };
+            let (package, interface) = path.split_once('/')?;
+            Some((namespace, package, interface, version))
+        });
+        match parsed {
+            Some((namespace, package, interface, version)) => ItemOrder::Interface {
+                namespace: namespace.to_string(),
+                package: package.to_string(),
+                interface: interface.to_string(),
+                version: version.map(|v| match semver::Version::parse(v) {
+                    Ok(v) => VersionOrder::Semver(v),
+                    Err(_) => VersionOrder::Text(v.to_string()),
+                }),
+                name: name.map(str::to_string),
+            },
+            None => ItemOrder::Other {
+                name: name.or(id).unwrap_or_default().to_string(),
+            },
+        }
+    }
+
+    /// An item as [`world_items`] describes it, e.g. `wasi:logging/logging@0.1.0-draft`,
+    /// `latch0: componentized:http/latch@0.1.0`, `scope: interface` or `run: func`.
+    pub fn of_item(item: &str) -> Self {
+        match item.split_once(": ") {
+            Some((name, rest)) if rest.contains(':') => Self::of(Some(rest), Some(name)),
+            Some((name, _)) => Self::of(None, Some(name)),
+            None => Self::of(Some(item), None),
+        }
+    }
+}
+
+/// Items as [`world_items`] describes them, in [`ItemOrder`].
+pub fn sorted_items(mut items: Vec<String>) -> Vec<String> {
+    items.sort_by_cached_key(|item| ItemOrder::of_item(item));
+    items
 }
 
 /// Describes what a world imports or exports:
@@ -340,8 +414,8 @@ pub fn component_items(resolve: &Resolve, pkg: PackageId) -> Result<(Vec<String>
         .context("selecting the component's world")?;
     let world = &resolve.worlds[world];
     Ok((
-        world_items(resolve, &world.imports),
-        world_items(resolve, &world.exports),
+        sorted_items(world_items(resolve, &world.imports)),
+        sorted_items(world_items(resolve, &world.exports)),
     ))
 }
 
@@ -621,6 +695,47 @@ mod tests {
     use super::*;
 
     #[test]
+    fn sorts_items_deterministically() {
+        let items = [
+            "run: func",
+            "wasi:http/types@0.3.0-rc-2025-09-16",
+            "latch1: componentized:http/latch@0.1.0",
+            "wasi:http/types@0.2.10",
+            "scope: interface",
+            "componentized:logging/levels@0.3.1",
+            "wasi:http/handler@0.2.10",
+            "wasi:http/types@0.2.2",
+            "latch0: componentized:http/latch@0.1.0",
+            "example:unversioned/api",
+            "componentized:http/latch@0.1.0",
+            "example:unversioned/api@0.1.0",
+            "log: func",
+        ];
+        assert_eq!(
+            sorted_items(items.iter().map(|i| i.to_string()).collect()),
+            [
+                // the interface itself, then the names it's imported under
+                "componentized:http/latch@0.1.0",
+                "latch0: componentized:http/latch@0.1.0",
+                "latch1: componentized:http/latch@0.1.0",
+                "componentized:logging/levels@0.3.1",
+                // unversioned first
+                "example:unversioned/api",
+                "example:unversioned/api@0.1.0",
+                "wasi:http/handler@0.2.10",
+                // by semver, not text: 0.2.2 before 0.2.10, a pre-release before its release
+                "wasi:http/types@0.2.2",
+                "wasi:http/types@0.2.10",
+                "wasi:http/types@0.3.0-rc-2025-09-16",
+                // then everything else by name
+                "log: func",
+                "run: func",
+                "scope: interface",
+            ]
+        );
+    }
+
+    #[test]
     fn shapes_world_items_by_their_structure() {
         let mut resolve = Resolve::default();
         let pkg = resolve
@@ -876,15 +991,15 @@ package componentized:http@0.1.0 {
             imports,
             ["latch0: componentized:http/latch@0.1.0", "scope: interface"]
         );
-        // wit-parser lists a world's functions ahead of its interfaces
-        assert_eq!(exports, ["run: func", "componentized:http/latch@0.1.0"]);
+        // wit-parser lists a world's functions ahead of its interfaces, they're sorted after them
+        assert_eq!(exports, ["componentized:http/latch@0.1.0", "run: func"]);
         assert_eq!(
             imports.iter().map(|i| interface_of(i)).collect::<Vec<_>>(),
             [Some("componentized:http/latch@0.1.0"), None]
         );
         assert_eq!(
             exports.iter().map(|i| interface_of(i)).collect::<Vec<_>>(),
-            [None, Some("componentized:http/latch@0.1.0")]
+            [Some("componentized:http/latch@0.1.0"), None]
         );
     }
 
@@ -923,7 +1038,7 @@ package componentized:http@0.1.0 {
         assert_eq!(decoded.imports, ["wasi:logging/logging@0.1.0-draft"]);
         assert_eq!(
             decoded.exports,
-            ["run: func", "wasi:logging/logging@0.1.0-draft"]
+            ["wasi:logging/logging@0.1.0-draft", "run: func"]
         );
         let mut again = Resolve::default();
         again.push_str("world.wit", &decoded.wit).unwrap();
