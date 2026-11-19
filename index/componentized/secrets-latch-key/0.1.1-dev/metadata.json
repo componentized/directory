@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/secrets/latch-key",
     "tag": "0.1.1-dev",
-    "digest": "sha256:b69ab59e5b239fd73788deb2570500791c612a4e97d585c8038c1b6f4bf14723",
+    "digest": "sha256:0e9b8f6535491f0e8a7e6a20d75155983bb31c77a376b85c79f4dfcd9d27fcdc",
     "layer_digest": "sha256:2e787af04565f1273062365ed7d9bcd4643a0d65192a92168d7c29011c5f3c42",
     "size": 36979,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/secrets",
       "git_ref": "refs/heads/main",
-      "log_index": 3984133586
+      "log_index": 3984276265
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/secrets/latch-key",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:206c080ffdc3e57118726bfac54f7fcd76b69257db2693fa5e12e9123679a4a1",
+    "digest": "sha256:7b2957c0d9c00904e100aa288cb0541cd09e6bbe3cb15f372dd388adb99fa5cb",
     "layer_digest": "sha256:589237ce14214f98e005254711fe1de279231996e842417a7f2f785aca530df3",
     "size": 123407,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/secrets",
       "git_ref": "refs/heads/main",
-      "log_index": 3984140360
+      "log_index": 3984283421
     }
   },
-  "created": "2026-11-19T02:19:21.466222845Z",
+  "created": "2026-11-19T02:26:17.707520161Z",
   "annotations": {
     "org.opencontainers.image.description": "`componentized:secrets` latch that decides each secret by its key.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "f523b44e21246cd679afcd3097cfc40be1a95670",
+    "org.opencontainers.image.revision": "e4841be0383f58656a603e2cef1b8726dda73765",
     "org.opencontainers.image.source": "https://github.com/componentized/secrets.git",
     "org.opencontainers.image.title": "componentized:secrets-latch-key",
-    "org.opencontainers.image.url": "https://github.com/componentized/secrets/tree/f523b44e21246cd679afcd3097cfc40be1a95670/components/latch-key",
+    "org.opencontainers.image.url": "https://github.com/componentized/secrets/tree/e4841be0383f58656a603e2cef1b8726dda73765/components/latch-key",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -73,5 +73,5 @@
       "size": 900
     }
   ],
-  "indexed_at": "2026-11-19T02:24:39Z"
+  "indexed_at": "2026-11-19T02:30:45Z"
 }
