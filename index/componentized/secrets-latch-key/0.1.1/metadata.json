@@ -1,0 +1,77 @@
+{
+  "package": "componentized:secrets-latch-key",
+  "version": "0.1.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/secrets/latch-key",
+    "tag": "0.1.1",
+    "digest": "sha256:c1b3b20c2871c01774c5bac36f8e4d0383afde89db573a5d72171e92f5931e7c",
+    "layer_digest": "sha256:b7402c2d2e79b4a3875c943ad4f9548c5d0960ceae1add7d283b174a88384d83",
+    "size": 36874,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/secrets/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/secrets",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 3985370152
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/secrets/latch-key",
+    "tag": "0.1.1_debug",
+    "digest": "sha256:d6b99387b42ba733e0f864f384abcb55e0c401b235393f2c84976dcc944f9cba",
+    "layer_digest": "sha256:fbaa418c5c6cc63990e7ccd028f69ff61e59e8940713541e54449a6267a0c051",
+    "size": 123302,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/secrets/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/secrets",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 3985377016
+    }
+  },
+  "created": "2026-11-19T03:21:34.112200644Z",
+  "annotations": {
+    "org.opencontainers.image.description": "`componentized:secrets` latch that decides each secret by its key.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "6c609a4ae05f2fac9e41f674232a3d8e30ca7777",
+    "org.opencontainers.image.source": "https://github.com/componentized/secrets.git",
+    "org.opencontainers.image.title": "componentized:secrets-latch-key",
+    "org.opencontainers.image.url": "https://github.com/componentized/secrets/tree/6c609a4ae05f2fac9e41f674232a3d8e30ca7777/components/latch-key",
+    "org.opencontainers.image.version": "v0.1.1"
+  },
+  "imports": [
+    "componentized:secrets/types@0.1.1",
+    "wasi:config/store@0.2.0-rc.1",
+    "wasi:logging/logging@0.1.0-draft"
+  ],
+  "exports": [
+    "componentized:secrets/latch@0.1.1"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:secrets",
+      "version": "0.1.1"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:9660901cbd7b8016c92b7ccc7c0eb813a9d0d929809513facc40e15a6eaf9981",
+      "size": 900
+    }
+  ],
+  "indexed_at": "2026-11-19T03:26:36Z"
+}

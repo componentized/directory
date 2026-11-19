@@ -1,0 +1,69 @@
+{
+  "package": "componentized:secrets-empty",
+  "version": "0.1.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/secrets/empty",
+    "tag": "0.1.1",
+    "digest": "sha256:0481ef3fa8f89c641d3aa39077625815fe164f5e28732943876b28cc09ebb5f0",
+    "layer_digest": "sha256:42a1dfe24172ee6fbe8cdbaee446a744f9c2ea3b45e9dfc116a479ca1d993971",
+    "size": 47388,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/secrets/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/secrets",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 3985319728
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/secrets/empty",
+    "tag": "0.1.1_debug",
+    "digest": "sha256:4c50e5e2fc7b48ddd3d2c747649e1704e5695fd8a0d58397ce60bc8091b68dbd",
+    "layer_digest": "sha256:bbfd1135a1ebe6e44c700315aa9ff6d18381fd223c9f5d909917df5f16c56c3c",
+    "size": 147208,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/secrets/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/secrets",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 3985323229
+    }
+  },
+  "created": "2026-11-19T03:18:41.753969893Z",
+  "annotations": {
+    "org.opencontainers.image.description": "`componentized:secrets`, that returns `not-found` for all keys.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "6c609a4ae05f2fac9e41f674232a3d8e30ca7777",
+    "org.opencontainers.image.source": "https://github.com/componentized/secrets.git",
+    "org.opencontainers.image.title": "componentized:secrets-empty",
+    "org.opencontainers.image.url": "https://github.com/componentized/secrets/tree/6c609a4ae05f2fac9e41f674232a3d8e30ca7777/components/empty",
+    "org.opencontainers.image.version": "v0.1.1"
+  },
+  "exports": [
+    "componentized:secrets/types@0.1.1",
+    "componentized:secrets/store@0.1.1"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:secrets",
+      "version": "0.1.1"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:1769ed6303fff5416aaffb0f58d95f6e98e951b61b315c827b279f4724c63dda",
+      "size": 112
+    },
+    {
+      "digest": "sha256:dc5c3ae9a9d02647d2dd97d365ac1e3ebffa3f96176e9674f1ea7f68bd71b499",
+      "size": 345
+    }
+  ],
+  "indexed_at": "2026-11-19T03:26:16Z"
+}

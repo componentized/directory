@@ -1,0 +1,70 @@
+{
+  "package": "componentized:secrets-latch-n3",
+  "version": "0.1.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/secrets/latch-n3",
+    "tag": "0.1.1",
+    "digest": "sha256:1f34b15982f9511702da587e441a34c72ae88299e0fb9916e6cdea07890e7bba",
+    "layer_digest": "sha256:6ecec083786228154fb8b99840cde745b048941d22782dc92b75dd95c46769ae",
+    "size": 32195,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/secrets/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/secrets",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 3985397097
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/secrets/latch-n3",
+    "tag": "0.1.1_debug",
+    "digest": "sha256:33f5beb88061c503325258c115e69981b53254bc1fef91231bb87a3dafd0abb5",
+    "layer_digest": "sha256:bf65d43bc04fc6d64b86e4edc9df81d40c68ae663994a55c3dbf7bed1e17186e",
+    "size": 85128,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/secrets/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/secrets",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 3985404711
+    }
+  },
+  "created": "2026-11-19T03:22:55.680401250Z",
+  "annotations": {
+    "org.opencontainers.image.description": "`componentized:secrets` latch that aggregates 3 latches, any latch can deny an operation.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "6c609a4ae05f2fac9e41f674232a3d8e30ca7777",
+    "org.opencontainers.image.source": "https://github.com/componentized/secrets.git",
+    "org.opencontainers.image.title": "componentized:secrets-latch-n3",
+    "org.opencontainers.image.url": "https://github.com/componentized/secrets/tree/6c609a4ae05f2fac9e41f674232a3d8e30ca7777/components/latch-n3",
+    "org.opencontainers.image.version": "v0.1.1"
+  },
+  "imports": [
+    "componentized:secrets/types@0.1.1",
+    "latch0: componentized:secrets/latch@0.1.1",
+    "latch1: componentized:secrets/latch@0.1.1",
+    "latch2: componentized:secrets/latch@0.1.1"
+  ],
+  "exports": [
+    "componentized:secrets/latch@0.1.1"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:secrets",
+      "version": "0.1.1"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:9660901cbd7b8016c92b7ccc7c0eb813a9d0d929809513facc40e15a6eaf9981",
+      "size": 900
+    }
+  ],
+  "indexed_at": "2026-11-19T03:26:44Z"
+}

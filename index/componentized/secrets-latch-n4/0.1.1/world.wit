@@ -1,0 +1,11 @@
+package root:component;
+
+world root {
+  import componentized:secrets/types@0.1.1;
+  import latch0: componentized:secrets/latch@0.1.1;
+  import latch1: componentized:secrets/latch@0.1.1;
+  import latch2: componentized:secrets/latch@0.1.1;
+  import latch3: componentized:secrets/latch@0.1.1;
+
+  export componentized:secrets/latch@0.1.1;
+}

@@ -1,0 +1,9 @@
+package root:component;
+
+world root {
+  import componentized:secrets/types@0.1.1;
+  import wasi:config/store@0.2.0-rc.1;
+  import wasi:logging/logging@0.1.0-draft;
+
+  export componentized:secrets/latch@0.1.1;
+}
