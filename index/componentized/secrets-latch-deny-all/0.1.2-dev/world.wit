@@ -1,0 +1,7 @@
+package root:component;
+
+world root {
+  import componentized:secrets/types@0.1.2-dev;
+
+  export componentized:secrets/latch@0.1.2-dev;
+}
