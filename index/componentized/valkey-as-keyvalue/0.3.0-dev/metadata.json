@@ -46,19 +46,19 @@
     "org.opencontainers.image.version": "v0.3.0-dev"
   },
   "imports": [
-    "componentized:secrets/types@0.1.1",
     "componentized:secrets/store@0.1.1",
+    "componentized:secrets/types@0.1.1",
     "componentized:valkey/as-keyvalue-constants@0.3.0-dev",
-    "componentized:valkey/types@0.3.0-dev",
+    "componentized:valkey/commands@0.3.0-dev",
     "componentized:valkey/connection@0.3.0-dev",
     "componentized:valkey/connector@0.3.0-dev",
-    "componentized:valkey/commands@0.3.0-dev"
+    "componentized:valkey/types@0.3.0-dev"
   ],
   "exports": [
-    "wasmcloud:keyvalue/types@0.2.0",
-    "wasmcloud:keyvalue/store@0.2.0",
     "wasmcloud:keyvalue/atomics@0.2.0",
-    "wasmcloud:keyvalue/batch@0.2.0"
+    "wasmcloud:keyvalue/batch@0.2.0",
+    "wasmcloud:keyvalue/store@0.2.0",
+    "wasmcloud:keyvalue/types@0.2.0"
   ],
   "dependencies": [
     {

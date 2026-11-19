@@ -46,12 +46,12 @@
     "org.opencontainers.image.version": "v0.3.0-dev"
   },
   "imports": [
-    "componentized:secrets/types@0.1.1",
     "componentized:secrets/store@0.1.1",
-    "componentized:valkey/tcp-connector-constants@0.3.0-dev",
-    "componentized:valkey/types@0.3.0-dev",
+    "componentized:secrets/types@0.1.1",
     "componentized:valkey/connection@0.3.0-dev",
-    "componentized:valkey/tcp@0.3.0-dev"
+    "componentized:valkey/tcp@0.3.0-dev",
+    "componentized:valkey/tcp-connector-constants@0.3.0-dev",
+    "componentized:valkey/types@0.3.0-dev"
   ],
   "exports": [
     "componentized:valkey/connector@0.3.0-dev"

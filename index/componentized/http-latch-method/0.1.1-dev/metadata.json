@@ -47,8 +47,8 @@
   },
   "imports": [
     "wasi:config/store@0.2.0-rc.1",
-    "wasi:logging/logging@0.1.0-draft",
-    "wasi:http/types@0.3.0"
+    "wasi:http/types@0.3.0",
+    "wasi:logging/logging@0.1.0-draft"
   ],
   "exports": [
     "componentized:http/latch@0.1.1-dev"

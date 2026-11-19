@@ -23,11 +23,11 @@
     "org.opencontainers.image.version": "v0.0.4"
   },
   "imports": [
-    "wasi:io/poll@0.2.6",
-    "wasi:http/types@0.2.6",
-    "wasi:http/outgoing-handler@0.2.6",
+    "componentized:services/types",
     "wasi:config/store@0.2.0-rc.1",
-    "componentized:services/types"
+    "wasi:http/outgoing-handler@0.2.6",
+    "wasi:http/types@0.2.6",
+    "wasi:io/poll@0.2.6"
   ],
   "exports": [
     "componentized:services/credential-admin"

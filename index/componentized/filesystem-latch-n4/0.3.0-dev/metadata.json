@@ -46,12 +46,12 @@
     "org.opencontainers.image.version": "v0.3.0-dev"
   },
   "imports": [
-    "wasi:clocks/system-clock@0.3.0",
-    "wasi:filesystem/types@0.3.0",
     "latch0: componentized:filesystem/latch@0.3.0-dev",
     "latch1: componentized:filesystem/latch@0.3.0-dev",
     "latch2: componentized:filesystem/latch@0.3.0-dev",
-    "latch3: componentized:filesystem/latch@0.3.0-dev"
+    "latch3: componentized:filesystem/latch@0.3.0-dev",
+    "wasi:clocks/system-clock@0.3.0",
+    "wasi:filesystem/types@0.3.0"
   ],
   "exports": [
     "componentized:filesystem/latch@0.3.0-dev"

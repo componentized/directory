@@ -46,10 +46,10 @@
     "org.opencontainers.image.version": "v0.3.0-dev"
   },
   "imports": [
-    "wasi:sockets/types@0.3.0",
-    "wasi:sockets/ip-name-lookup@0.3.0",
+    "componentized:valkey/connection@0.3.0-dev",
     "componentized:valkey/types@0.3.0-dev",
-    "componentized:valkey/connection@0.3.0-dev"
+    "wasi:sockets/ip-name-lookup@0.3.0",
+    "wasi:sockets/types@0.3.0"
   ],
   "exports": [
     "componentized:valkey/tcp@0.3.0-dev"

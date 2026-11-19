@@ -24,15 +24,15 @@
     "org.opencontainers.image.version": "v0.1.0"
   },
   "imports": [
-    "wasi:io/error@0.2.3",
-    "wasi:io/streams@0.2.3",
     "wasi:clocks/wall-clock@0.2.3",
+    "wasi:filesystem/preopens@0.2.3",
     "wasi:filesystem/types@0.2.3",
-    "wasi:filesystem/preopens@0.2.3"
+    "wasi:io/error@0.2.3",
+    "wasi:io/streams@0.2.3"
   ],
   "exports": [
-    "wasi:filesystem/types@0.2.3",
-    "wasi:filesystem/preopens@0.2.3"
+    "wasi:filesystem/preopens@0.2.3",
+    "wasi:filesystem/types@0.2.3"
   ],
   "dependencies": [
     {

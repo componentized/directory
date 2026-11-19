@@ -46,14 +46,14 @@
     "org.opencontainers.image.version": "v0.1.1"
   },
   "imports": [
-    "componentized:secrets/types@0.1.1",
     "componentized:secrets/latch@0.1.1",
-    "wasi:logging/logging@0.1.0-draft",
-    "componentized:secrets/store@0.1.1"
+    "componentized:secrets/store@0.1.1",
+    "componentized:secrets/types@0.1.1",
+    "wasi:logging/logging@0.1.0-draft"
   ],
   "exports": [
-    "componentized:secrets/types@0.1.1",
-    "componentized:secrets/store@0.1.1"
+    "componentized:secrets/store@0.1.1",
+    "componentized:secrets/types@0.1.1"
   ],
   "dependencies": [
     {

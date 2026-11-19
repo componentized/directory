@@ -46,8 +46,8 @@
     "org.opencontainers.image.version": "v0.1.1"
   },
   "exports": [
-    "componentized:secrets/types@0.1.1",
-    "componentized:secrets/store@0.1.1"
+    "componentized:secrets/store@0.1.1",
+    "componentized:secrets/types@0.1.1"
   ],
   "dependencies": [
     {

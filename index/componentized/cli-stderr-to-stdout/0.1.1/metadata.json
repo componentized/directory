@@ -24,8 +24,8 @@
     "org.opencontainers.image.version": "v0.1.1"
   },
   "imports": [
-    "wasi:io/streams@0.2.6",
-    "wasi:cli/stdout@0.2.6"
+    "wasi:cli/stdout@0.2.6",
+    "wasi:io/streams@0.2.6"
   ],
   "exports": [
     "wasi:cli/stderr@0.2.6"

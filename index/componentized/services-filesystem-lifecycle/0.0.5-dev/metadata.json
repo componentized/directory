@@ -46,26 +46,26 @@
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
-    "componentized:services/types@0.0.5-dev",
     "componentized:services/credential-admin@0.0.5-dev",
-    "wasi:config/store@0.2.0-rc.1",
-    "wasi:io/poll@0.2.12",
-    "wasi:clocks/monotonic-clock@0.2.12",
-    "wasi:clocks/wall-clock@0.2.12",
-    "wasi:io/error@0.2.12",
-    "wasi:io/streams@0.2.12",
-    "wasi:cli/stdout@0.2.12",
-    "wasi:cli/stderr@0.2.12",
-    "wasi:cli/stdin@0.2.12",
+    "componentized:services/types@0.0.5-dev",
     "wasi:cli/environment@0.2.12",
     "wasi:cli/exit@0.2.12",
+    "wasi:cli/stderr@0.2.12",
+    "wasi:cli/stdin@0.2.12",
+    "wasi:cli/stdout@0.2.12",
     "wasi:cli/terminal-input@0.2.12",
     "wasi:cli/terminal-output@0.2.12",
+    "wasi:cli/terminal-stderr@0.2.12",
     "wasi:cli/terminal-stdin@0.2.12",
     "wasi:cli/terminal-stdout@0.2.12",
-    "wasi:cli/terminal-stderr@0.2.12",
+    "wasi:clocks/monotonic-clock@0.2.12",
+    "wasi:clocks/wall-clock@0.2.12",
+    "wasi:config/store@0.2.0-rc.1",
+    "wasi:filesystem/preopens@0.2.12",
     "wasi:filesystem/types@0.2.12",
-    "wasi:filesystem/preopens@0.2.12"
+    "wasi:io/error@0.2.12",
+    "wasi:io/poll@0.2.12",
+    "wasi:io/streams@0.2.12"
   ],
   "exports": [
     "componentized:services/lifecycle@0.0.5-dev"

@@ -46,12 +46,12 @@
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
-    "componentized:secrets/types@0.1.1-dev",
     "latch0: componentized:secrets/latch@0.1.1-dev",
     "latch1: componentized:secrets/latch@0.1.1-dev",
     "latch2: componentized:secrets/latch@0.1.1-dev",
     "latch3: componentized:secrets/latch@0.1.1-dev",
-    "latch4: componentized:secrets/latch@0.1.1-dev"
+    "latch4: componentized:secrets/latch@0.1.1-dev",
+    "componentized:secrets/types@0.1.1-dev"
   ],
   "exports": [
     "componentized:secrets/latch@0.1.1-dev"

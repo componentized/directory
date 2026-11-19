@@ -46,15 +46,15 @@
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
-    "wasi:clocks/types@0.3.0",
-    "wasi:sockets/types@0.3.0",
     "componentized:sockets/latch@0.1.1-dev",
+    "wasi:clocks/types@0.3.0",
     "wasi:logging/logging@0.1.0-draft",
-    "wasi:sockets/ip-name-lookup@0.3.0"
+    "wasi:sockets/ip-name-lookup@0.3.0",
+    "wasi:sockets/types@0.3.0"
   ],
   "exports": [
-    "wasi:sockets/types@0.3.0",
-    "wasi:sockets/ip-name-lookup@0.3.0"
+    "wasi:sockets/ip-name-lookup@0.3.0",
+    "wasi:sockets/types@0.3.0"
   ],
   "dependencies": [
     {

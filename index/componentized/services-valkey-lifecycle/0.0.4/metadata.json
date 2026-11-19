@@ -23,21 +23,21 @@
     "org.opencontainers.image.version": "v0.0.4"
   },
   "imports": [
-    "componentized:services/types",
     "componentized:services/credential-admin",
-    "wasi:clocks/wall-clock@0.2.6",
-    "wasi:config/store@0.2.0-rc.1",
-    "wasi:io/error@0.2.6",
-    "wasi:io/streams@0.2.6",
+    "componentized:services/types",
     "wasi:cli/environment@0.2.6",
     "wasi:cli/exit@0.2.6",
     "wasi:cli/stderr@0.2.6",
-    "wasi:sockets/network@0.2.6",
-    "wasi:sockets/instance-network@0.2.6",
+    "wasi:clocks/wall-clock@0.2.6",
+    "wasi:config/store@0.2.0-rc.1",
+    "wasi:io/error@0.2.6",
     "wasi:io/poll@0.2.6",
+    "wasi:io/streams@0.2.6",
+    "wasi:sockets/instance-network@0.2.6",
+    "wasi:sockets/ip-name-lookup@0.2.6",
+    "wasi:sockets/network@0.2.6",
     "wasi:sockets/tcp@0.2.6",
-    "wasi:sockets/tcp-create-socket@0.2.6",
-    "wasi:sockets/ip-name-lookup@0.2.6"
+    "wasi:sockets/tcp-create-socket@0.2.6"
   ],
   "exports": [
     "componentized:services/lifecycle"

@@ -46,8 +46,8 @@
     "org.opencontainers.image.version": "0.1.0-dev"
   },
   "imports": [
-    "wasi:http/types@0.3.0",
-    "componentized:http/latch@0.1.0-dev"
+    "componentized:http/latch@0.1.0-dev",
+    "wasi:http/types@0.3.0"
   ],
   "exports": [
     "componentized:http/latch@0.1.0-dev"

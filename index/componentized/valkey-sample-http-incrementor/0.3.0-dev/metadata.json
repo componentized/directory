@@ -46,10 +46,10 @@
     "org.opencontainers.image.version": "v0.3.0-dev"
   },
   "imports": [
-    "wasmcloud:keyvalue/types@0.2.0",
-    "wasmcloud:keyvalue/store@0.2.0",
+    "wasi:http/types@0.3.0",
     "wasmcloud:keyvalue/atomics@0.2.0",
-    "wasi:http/types@0.3.0"
+    "wasmcloud:keyvalue/store@0.2.0",
+    "wasmcloud:keyvalue/types@0.2.0"
   ],
   "exports": [
     "wasi:http/handler@0.3.0"

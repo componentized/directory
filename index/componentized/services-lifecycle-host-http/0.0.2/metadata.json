@@ -23,11 +23,11 @@
     "org.opencontainers.image.version": "v0.0.2"
   },
   "imports": [
-    "componentized:services/types",
     "componentized:services/lifecycle",
+    "componentized:services/types",
+    "wasi:http/types@0.2.3",
     "wasi:io/error@0.2.3",
     "wasi:io/streams@0.2.3",
-    "wasi:http/types@0.2.3",
     "wasi:logging/logging@0.1.0-draft"
   ],
   "exports": [

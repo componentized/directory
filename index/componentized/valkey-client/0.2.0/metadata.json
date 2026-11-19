@@ -24,22 +24,22 @@
     "org.opencontainers.image.version": "v0.2.0"
   },
   "imports": [
-    "wasi:sockets/network@0.2.3",
-    "wasi:sockets/instance-network@0.2.3",
-    "wasi:io/poll@0.2.3",
+    "wasi:config/store@0.2.0-rc.1",
     "wasi:io/error@0.2.3",
+    "wasi:io/poll@0.2.3",
     "wasi:io/streams@0.2.3",
-    "wasi:sockets/tcp@0.2.3",
-    "wasi:sockets/tcp-create-socket@0.2.3",
+    "wasi:sockets/instance-network@0.2.3",
     "wasi:sockets/ip-name-lookup@0.2.3",
-    "wasi:config/store@0.2.0-rc.1"
+    "wasi:sockets/network@0.2.3",
+    "wasi:sockets/tcp@0.2.3",
+    "wasi:sockets/tcp-create-socket@0.2.3"
   ],
   "exports": [
     "componentized:valkey/resp",
     "componentized:valkey/store",
-    "wasi:keyvalue/store@0.2.0-draft2",
     "wasi:keyvalue/atomics@0.2.0-draft2",
-    "wasi:keyvalue/batch@0.2.0-draft2"
+    "wasi:keyvalue/batch@0.2.0-draft2",
+    "wasi:keyvalue/store@0.2.0-draft2"
   ],
   "dependencies": [
     {

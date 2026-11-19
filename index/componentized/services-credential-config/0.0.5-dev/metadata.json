@@ -46,8 +46,8 @@
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
-    "componentized:services/types@0.0.5-dev",
     "componentized:services/credential-store@0.0.5-dev",
+    "componentized:services/types@0.0.5-dev",
     "wasi:config/store@0.2.0-rc.1"
   ],
   "exports": [

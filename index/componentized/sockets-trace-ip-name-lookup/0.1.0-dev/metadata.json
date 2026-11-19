@@ -47,8 +47,8 @@
   },
   "imports": [
     "wasi:logging/logging@0.1.0-draft",
-    "wasi:sockets/types@0.3.0",
-    "wasi:sockets/ip-name-lookup@0.3.0"
+    "wasi:sockets/ip-name-lookup@0.3.0",
+    "wasi:sockets/types@0.3.0"
   ],
   "exports": [
     "wasi:sockets/ip-name-lookup@0.3.0"

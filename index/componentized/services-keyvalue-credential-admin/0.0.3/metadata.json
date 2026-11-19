@@ -23,9 +23,9 @@
     "org.opencontainers.image.version": "v0.0.3"
   },
   "imports": [
+    "componentized:services/types",
     "wasi:config/store@0.2.0-draft",
-    "wasi:keyvalue/store@0.2.0-draft2",
-    "componentized:services/types"
+    "wasi:keyvalue/store@0.2.0-draft2"
   ],
   "exports": [
     "componentized:services/credential-admin"

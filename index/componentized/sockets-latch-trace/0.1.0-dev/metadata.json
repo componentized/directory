@@ -46,9 +46,9 @@
     "org.opencontainers.image.version": "0.1.0-dev"
   },
   "imports": [
+    "componentized:sockets/latch@0.1.0-dev",
     "wasi:logging/logging@0.1.0-draft",
-    "wasi:sockets/types@0.3.0",
-    "componentized:sockets/latch@0.1.0-dev"
+    "wasi:sockets/types@0.3.0"
   ],
   "exports": [
     "componentized:sockets/latch@0.1.0-dev"

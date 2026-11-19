@@ -25,13 +25,13 @@
   },
   "imports": [
     "wasi:io/error@0.2.6",
-    "wasi:sockets/network@0.2.6",
-    "wasi:sockets/instance-network@0.2.6",
     "wasi:io/poll@0.2.6",
     "wasi:io/streams@0.2.6",
+    "wasi:sockets/instance-network@0.2.6",
+    "wasi:sockets/ip-name-lookup@0.2.6",
+    "wasi:sockets/network@0.2.6",
     "wasi:sockets/tcp@0.2.6",
-    "wasi:sockets/tcp-create-socket@0.2.6",
-    "wasi:sockets/ip-name-lookup@0.2.6"
+    "wasi:sockets/tcp-create-socket@0.2.6"
   ],
   "exports": [
     "componentized:valkey/resp",

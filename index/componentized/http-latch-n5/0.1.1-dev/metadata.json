@@ -46,12 +46,12 @@
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
-    "wasi:http/types@0.3.0",
     "latch0: componentized:http/latch@0.1.1-dev",
     "latch1: componentized:http/latch@0.1.1-dev",
     "latch2: componentized:http/latch@0.1.1-dev",
     "latch3: componentized:http/latch@0.1.1-dev",
-    "latch4: componentized:http/latch@0.1.1-dev"
+    "latch4: componentized:http/latch@0.1.1-dev",
+    "wasi:http/types@0.3.0"
   ],
   "exports": [
     "componentized:http/latch@0.1.1-dev"

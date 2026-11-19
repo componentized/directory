@@ -30,16 +30,16 @@
     "org.opencontainers.image.version": "0.1.0-dev"
   },
   "exports": [
-    "componentized:constants/u8@0.1.0-dev",
-    "componentized:constants/u16@0.1.0-dev",
-    "componentized:constants/u32@0.1.0-dev",
-    "componentized:constants/u64@0.1.0-dev",
-    "componentized:constants/s8@0.1.0-dev",
+    "componentized:constants/f32@0.1.0-dev",
+    "componentized:constants/f64@0.1.0-dev",
     "componentized:constants/s16@0.1.0-dev",
     "componentized:constants/s32@0.1.0-dev",
     "componentized:constants/s64@0.1.0-dev",
-    "componentized:constants/f32@0.1.0-dev",
-    "componentized:constants/f64@0.1.0-dev"
+    "componentized:constants/s8@0.1.0-dev",
+    "componentized:constants/u16@0.1.0-dev",
+    "componentized:constants/u32@0.1.0-dev",
+    "componentized:constants/u64@0.1.0-dev",
+    "componentized:constants/u8@0.1.0-dev"
   ],
   "dependencies": [
     {

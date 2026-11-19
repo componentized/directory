@@ -29,9 +29,9 @@
     "wasi:config/store@0.2.0-rc.1"
   ],
   "exports": [
-    "wasi:keyvalue/store@0.2.0-draft2",
     "wasi:keyvalue/atomics@0.2.0-draft2",
-    "wasi:keyvalue/batch@0.2.0-draft2"
+    "wasi:keyvalue/batch@0.2.0-draft2",
+    "wasi:keyvalue/store@0.2.0-draft2"
   ],
   "dependencies": [
     {

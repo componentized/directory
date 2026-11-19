@@ -46,8 +46,8 @@
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
-    "wasi:logging/logging@0.1.0-draft",
     "wasi:clocks/types@0.3.0",
+    "wasi:logging/logging@0.1.0-draft",
     "wasi:sockets/types@0.3.0"
   ],
   "exports": [

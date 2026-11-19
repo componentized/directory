@@ -46,8 +46,8 @@
     "org.opencontainers.image.version": "v0.3.0-dev"
   },
   "imports": [
-    "componentized:secrets/types@0.1.1",
     "componentized:secrets/store@0.1.1",
+    "componentized:secrets/types@0.1.1",
     "wasi:logging/logging@0.1.0-draft",
     "wasi:sockets/types@0.3.0"
   ],

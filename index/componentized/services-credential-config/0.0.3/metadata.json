@@ -23,8 +23,8 @@
     "org.opencontainers.image.version": "v0.0.3"
   },
   "imports": [
-    "componentized:services/types",
     "componentized:services/credential-store",
+    "componentized:services/types",
     "wasi:config/store@0.2.0-draft"
   ],
   "exports": [

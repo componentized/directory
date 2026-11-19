@@ -46,8 +46,8 @@
     "org.opencontainers.image.version": "0.3.1-dev"
   },
   "imports": [
-    "wasi:cli/types@0.3.0",
     "wasi:cli/stdout@0.3.0",
+    "wasi:cli/types@0.3.0",
     "wasi:clocks/system-clock@0.3.0"
   ],
   "exports": [

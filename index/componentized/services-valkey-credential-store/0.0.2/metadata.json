@@ -25,14 +25,14 @@
   "imports": [
     "componentized:services/types",
     "wasi:config/store@0.2.0-draft",
-    "wasi:sockets/network@0.2.3",
-    "wasi:sockets/instance-network@0.2.3",
-    "wasi:io/poll@0.2.3",
     "wasi:io/error@0.2.3",
+    "wasi:io/poll@0.2.3",
     "wasi:io/streams@0.2.3",
+    "wasi:sockets/instance-network@0.2.3",
+    "wasi:sockets/ip-name-lookup@0.2.3",
+    "wasi:sockets/network@0.2.3",
     "wasi:sockets/tcp@0.2.3",
-    "wasi:sockets/tcp-create-socket@0.2.3",
-    "wasi:sockets/ip-name-lookup@0.2.3"
+    "wasi:sockets/tcp-create-socket@0.2.3"
   ],
   "exports": [
     "componentized:services/credential-store"

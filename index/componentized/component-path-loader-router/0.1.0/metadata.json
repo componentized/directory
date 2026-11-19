@@ -46,10 +46,10 @@
     "org.opencontainers.image.version": "v0.1.0"
   },
   "imports": [
-    "componentized:component/types@0.1.0",
     "filesystem-loader: componentized:component/path-loader@0.1.0",
     "http-loader: componentized:component/path-loader@0.1.0",
-    "oci-loader: componentized:component/path-loader@0.1.0"
+    "oci-loader: componentized:component/path-loader@0.1.0",
+    "componentized:component/types@0.1.0"
   ],
   "exports": [
     "componentized:component/path-loader@0.1.0"

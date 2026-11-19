@@ -23,13 +23,13 @@
     "org.opencontainers.image.version": "v0.0.1"
   },
   "imports": [
-    "componentized:services/types",
     "componentized:services/lifecycle",
-    "wasi:logging/logging@0.1.0-draft",
+    "componentized:services/types",
     "wasi:cli/environment@0.2.3",
+    "wasi:cli/stdout@0.2.3",
     "wasi:io/error@0.2.3",
     "wasi:io/streams@0.2.3",
-    "wasi:cli/stdout@0.2.3"
+    "wasi:logging/logging@0.1.0-draft"
   ],
   "exports": [
     "wasi:cli/run@0.2.3"

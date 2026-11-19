@@ -44,8 +44,8 @@
     "wasi:config/store@0.2.0-rc.1"
   ],
   "exports": [
-    "componentized:secrets/types@0.1.1-dev",
-    "componentized:secrets/store@0.1.1-dev"
+    "componentized:secrets/store@0.1.1-dev",
+    "componentized:secrets/types@0.1.1-dev"
   ],
   "dependencies": [
     {

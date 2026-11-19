@@ -24,14 +24,14 @@
     "org.opencontainers.image.version": "v0.1.1"
   },
   "imports": [
-    "wasi:sockets/network@0.2.3",
-    "wasi:sockets/instance-network@0.2.3",
-    "wasi:io/poll@0.2.3",
     "wasi:io/error@0.2.3",
+    "wasi:io/poll@0.2.3",
     "wasi:io/streams@0.2.3",
+    "wasi:sockets/instance-network@0.2.3",
+    "wasi:sockets/ip-name-lookup@0.2.3",
+    "wasi:sockets/network@0.2.3",
     "wasi:sockets/tcp@0.2.3",
-    "wasi:sockets/tcp-create-socket@0.2.3",
-    "wasi:sockets/ip-name-lookup@0.2.3"
+    "wasi:sockets/tcp-create-socket@0.2.3"
   ],
   "exports": [
     "componentized:valkey/resp",

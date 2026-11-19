@@ -46,8 +46,8 @@
     "org.opencontainers.image.version": "v0.1.0"
   },
   "imports": [
-    "componentized:http/client@0.1.0",
-    "componentized:component/types@0.1.0"
+    "componentized:component/types@0.1.0",
+    "componentized:http/client@0.1.0"
   ],
   "exports": [
     "componentized:component/path-loader@0.1.0"
