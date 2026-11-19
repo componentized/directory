@@ -7,6 +7,7 @@ mod data;
 mod decode;
 mod http;
 mod icons;
+mod license;
 mod resolve;
 mod scan;
 mod signature;

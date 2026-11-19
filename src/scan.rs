@@ -94,6 +94,7 @@ pub fn run(options: &Options) -> Result<()> {
     if options.only.is_empty() {
         scanner.backfill_parts()?;
         scanner.backfill_signatures()?;
+        scanner.backfill_sboms()?;
     }
     trim_nested(&options.root)?;
     refresh_items(&options.root)?;
@@ -427,6 +428,57 @@ impl Scanner<'_> {
         }
     }
 
+    /// Checks the CycloneDX attestation of an image the scan sees for the first time, its SBOM,
+    /// and gives the SBOM when it verifies. `None` when it can't be checked, e.g. without cosign,
+    /// so a later scan checks it.
+    fn sbom(&mut self, oci: &OciRef) -> (Option<data::Sbom>, Option<serde_json::Value>) {
+        if !self.cosign {
+            return (None, None);
+        }
+        match crate::signature::sbom(&self.oci, &oci.registry, &oci.repository, &oci.digest) {
+            Ok((sbom, document)) => {
+                if let data::Sbom::Failed { reason } = &sbom {
+                    eprintln!(
+                        "warning: {}: the SBOM attestation didn't verify: {reason}",
+                        oci.pinned()
+                    );
+                }
+                (Some(sbom), document)
+            }
+            Err(err) => {
+                self.fail(format!("the SBOM of {}", oci.pinned()), err);
+                (None, None)
+            }
+        }
+    }
+
+    /// Checks the SBOM attestation of each indexed version whose image hasn't been checked for
+    /// one, e.g. one indexed before scans checked them, or by a scan without cosign.
+    fn backfill_sboms(&mut self) -> Result<()> {
+        if !self.cosign {
+            return Ok(());
+        }
+        let stored = data::load(&self.options.root)?;
+        let (mut checked, mut found) = (0, 0);
+        for stored in stored {
+            if stored.metadata.sbom.is_some() {
+                continue;
+            }
+            let (sbom, document) = self.sbom(&stored.metadata.oci);
+            let Some(sbom) = sbom else { continue };
+            found += usize::from(document.is_some());
+            let mut metadata = stored.metadata.clone();
+            metadata.sbom = Some(sbom);
+            let dir = data::write(&self.options.root, &metadata, &stored.wit)?;
+            data::write_sbom(&dir, document.as_ref())?;
+            checked += 1;
+        }
+        if checked > 0 {
+            eprintln!("checked {checked} indexed versions for an SBOM, {found} have one");
+        }
+        Ok(())
+    }
+
     /// Checks the signature of each indexed image that hasn't been checked, a version's or its
     /// debug build's, e.g. one indexed before scans checked them, or by a scan without cosign.
     fn backfill_signatures(&mut self) -> Result<()> {
@@ -731,6 +783,8 @@ impl Scanner<'_> {
         // a new image, or a dev build's new build: its signature is checked once, now, and its
         // debug build's, an image of its own
         oci.signature = self.signature(&oci);
+        // and its SBOM, attested of the image, the version's own rather than its debug build's
+        let (sbom, sbom_document) = self.sbom(&oci);
         let debug = match debug_tag {
             Some(debug_tag) => match self.fetch(registry, repository, debug_tag) {
                 Ok((mut debug, _)) => {
@@ -767,9 +821,11 @@ impl Scanner<'_> {
             release: None,
             parts,
             wiring,
+            sbom,
             indexed_at: chrono::Utc::now().to_rfc3339_opts(chrono::SecondsFormat::Secs, true),
         };
         let dir = data::write(&self.options.root, &metadata, &decoded.wit)?;
+        data::write_sbom(&dir, sbom_document.as_ref())?;
         let dir = dir.strip_prefix(&self.options.root).unwrap_or(&dir);
         eprintln!("indexed {registry}/{repository}:{tag} -> {}", dir.display());
         self.added

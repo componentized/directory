@@ -19,5 +19,8 @@
     "org.opencontainers.image.source": "https://github.com/webassembly/wasi"
   },
   "release": "https://github.com/WebAssembly/WASI/releases/tag/v0.2.0",
+  "sbom": {
+    "status": "missing"
+  },
   "indexed_at": "2026-11-13T17:28:59Z"
 }

@@ -37,5 +37,8 @@
       "version": "0.2.0"
     }
   ],
+  "sbom": {
+    "status": "missing"
+  },
   "indexed_at": "2026-11-13T18:14:55Z"
 }

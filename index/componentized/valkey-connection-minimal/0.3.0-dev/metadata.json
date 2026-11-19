@@ -69,5 +69,13 @@
       "size": 3524
     }
   ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/valkey",
+    "git_ref": "refs/heads/main",
+    "log_index": 3985986218
+  },
   "indexed_at": "2026-11-19T03:58:09Z"
 }

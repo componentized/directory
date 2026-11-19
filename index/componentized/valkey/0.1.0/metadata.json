@@ -24,5 +24,8 @@
     "org.opencontainers.image.version": "v0.1.0"
   },
   "release": "https://github.com/componentized/valkey/releases/tag/v0.1.0",
+  "sbom": {
+    "status": "missing"
+  },
   "indexed_at": "2026-11-11T23:45:20Z"
 }

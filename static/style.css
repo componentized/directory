@@ -929,3 +929,35 @@ span.kind-icon-used > svg.kind-icon { display: block; margin: 0; }
 .icons-table .swatch a { display: inline-block; padding: 6px; border-radius: 6px; }
 .swatch-light a { background: #ffffff; box-shadow: inset 0 0 0 1px #e4e4e0; }
 .swatch-dark a { background: #131416; box-shadow: inset 0 0 0 1px #2c2f33; }
+
+/* a version's SBOM: who attested it and what made it, then what it lists */
+.sbom-facts { max-width: 70ch; }
+.sbom-tools { list-style: none; margin: 0; padding: 0; }
+.sbom-tools li + li { margin-top: 2px; }
+.sbom-components li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 6px; }
+.sbom-license { color: var(--dim); font-size: 0.85rem; }
+.sbom-fold { margin: 16px 0; }
+.sbom-fold > summary { cursor: pointer; display: flex; align-items: center; gap: 6px; list-style: none; }
+.sbom-fold > summary::-webkit-details-marker { display: none; }
+/* a chevron that turns down when the fold is open, as the signature's does */
+.sbom-chevron { flex: none; width: 16px; height: 16px; color: var(--dim); transform: rotate(-90deg); transition: transform 0.15s; }
+.sbom-fold > summary:hover .sbom-chevron { color: var(--text); }
+.sbom-fold[open] > summary .sbom-chevron { transform: none; }
+.sbom-fold > summary h3 { display: inline; margin: 0; font-size: 1rem; }
+.sbom-scroll { max-width: 100%; overflow-x: auto; }
+.sbom-table { border-collapse: collapse; margin-top: 8px; font-size: 0.9rem; }
+.sbom-table th, .sbom-table td { padding: 4px 12px 4px 0; border-bottom: 1px solid var(--line); text-align: left; vertical-align: baseline; }
+.sbom-table thead th { color: var(--dim); font-weight: 600; font-size: 0.85rem; }
+.sbom-table .build-only code { color: var(--dim); }
+.sbom-table .badge { color: var(--dim); background: var(--code-bg); }
+
+/* a license expression: each license linked to the SPDX license list, its operators apart */
+.license-expr .license { text-decoration: none; }
+.license-expr .license:hover { text-decoration: underline; }
+.license-op { color: var(--dim); font-size: 0.85em; }
+.license.copyleft, .copyleft-note { color: var(--interface); }
+.sbom-licenses td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.license-flags { white-space: nowrap; }
+.sbom-table td:nth-child(2) code { white-space: nowrap; }
+.license-flags .badge { margin-right: 4px; text-transform: none; }
+.sbom-table .badge.copyleft { color: var(--interface); background: var(--interface-soft); }

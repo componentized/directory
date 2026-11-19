@@ -16,7 +16,7 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/valkey",
       "git_ref": "refs/heads/main",
-      "log_index": 3985910500
+      "log_index": 3985908179
     }
   },
   "created": "2026-11-19T03:49:23.549153986Z",
@@ -28,6 +28,14 @@
     "org.opencontainers.image.title": "componentized:valkey",
     "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/7eabee91877835e7e083e38625fee0d2dfc08d18",
     "org.opencontainers.image.version": "v0.3.0-dev"
+  },
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/valkey",
+    "git_ref": "refs/heads/main",
+    "log_index": 3985910500
   },
   "indexed_at": "2026-11-19T03:57:45Z"
 }

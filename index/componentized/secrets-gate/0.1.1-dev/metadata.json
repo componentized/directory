@@ -16,7 +16,7 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/secrets",
       "git_ref": "refs/heads/main",
-      "log_index": 3984236002
+      "log_index": 3984234392
     }
   },
   "debug": {
@@ -75,5 +75,13 @@
       "size": 345
     }
   ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/secrets/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/secrets",
+    "git_ref": "refs/heads/main",
+    "log_index": 3984236002
+  },
   "indexed_at": "2026-11-19T02:30:38Z"
 }

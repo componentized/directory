@@ -16,7 +16,7 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/valkey",
       "git_ref": "refs/heads/main",
-      "log_index": 3986049851
+      "log_index": 3986045990
     }
   },
   "debug": {
@@ -274,6 +274,14 @@
         "export": "componentized:sockets/latch@0.1.0"
       }
     ]
+  },
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/valkey",
+    "git_ref": "refs/heads/main",
+    "log_index": 3986049851
   },
   "indexed_at": "2026-11-19T03:58:25Z"
 }

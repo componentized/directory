@@ -15,6 +15,7 @@ minijinja = { version = "3", features = ["serde", "json"] }
 pulldown-cmark = { version = "0.13", default-features = false, features = ["html"] }
 reqwest = { version = "0.13", features = ["blocking", "json", "query"] }
 semver = { version = "1", features = ["serde"] }
+spdx = "0.13"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 sha2 = "0.11"

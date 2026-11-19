@@ -34,6 +34,8 @@ struct Entry {
     meta: Metadata,
     /// Whether the stored WIT nests the foreign packages it uses, because one is not indexed.
     nested: bool,
+    /// Its verified SBOM, the CycloneDX document kept beside its metadata, if it has one.
+    sbom: Option<serde_json::Value>,
     resolve: Resolve,
     pkg: PackageId,
 }
@@ -270,6 +272,9 @@ struct Site {
     /// version with its bytes, if one has them: one generated as it was composed has none. A part
     /// without code of its own, the wrapper a component's bindings nest, is `None` too.
     composed_of: Vec<Vec<Option<usize>>>,
+    /// The version whose wasm layer has the bytes of each digest, e.g. `sha256:…`, as a component
+    /// nested in another is found, for the components an SBOM lists by their hashes.
+    by_layer: HashMap<String, usize>,
     /// The composed components that nest each version, the reverse of `composed_of`.
     used_in: HashMap<usize, Vec<Link>>,
     /// The worlds of the listed interface packages, by the items each imports and exports, for a
@@ -572,6 +577,7 @@ fn entries(stored: &[data::Stored]) -> Result<Vec<Entry>> {
         entries.push(Entry {
             meta: stored.metadata.clone(),
             nested: resolve::has_nested(&stored.wit),
+            sbom: data::read_sbom(&stored.dir),
             resolve,
             pkg,
         });
@@ -654,6 +660,12 @@ fn render_packages(site: &Site, env: &Environment, out: &Path) -> Result<()> {
                 &format!("{}api.json", entry.url()),
                 serde_json::to_string(&site.api(index))?,
             )?;
+            // its verified SBOM, as it was attested, to download
+            if let Some(sbom) = &entry.sbom {
+                let mut json = serde_json::to_string_pretty(sbom)?;
+                json.push('\n');
+                write_file(out, &format!("{}{}", entry.url(), data::SBOM_FILE), json)?;
+            }
         }
         // a package's versions are compared on one page, in the browser, from their APIs
         if let Some(ctx) = site.compare(indexes) {
@@ -1108,6 +1120,71 @@ struct Aliased {
 
 /// An image's signature as its page shows it: for a GitHub Actions workflow, the workflow's file
 /// at the ref it ran on, and the signature's entry in the transparency log.
+/// A CycloneDX component's licenses, as one expression, e.g. `MIT OR Apache-2.0`: each by its SPDX
+/// expression, id or name, several joined by `AND`.
+fn sbom_licenses(component: &serde_json::Value) -> Option<String> {
+    let licenses: Vec<String> = component["licenses"]
+        .as_array()?
+        .iter()
+        .filter_map(|l| {
+            l["expression"]
+                .as_str()
+                .or_else(|| l["license"]["id"].as_str())
+                .or_else(|| l["license"]["name"].as_str())
+                .map(str::to_string)
+        })
+        .collect();
+    match licenses.len() {
+        0 => None,
+        1 => licenses.into_iter().next(),
+        _ => Some(
+            licenses
+                .iter()
+                .map(|l| {
+                    if l.contains(' ') {
+                        format!("({l})")
+                    } else {
+                        l.clone()
+                    }
+                })
+                .collect::<Vec<_>>()
+                .join(" AND "),
+        ),
+    }
+}
+
+/// Every component a CycloneDX document lists, those nested in others too, in order.
+fn sbom_components(document: &serde_json::Value) -> Vec<&serde_json::Value> {
+    fn walk<'a>(list: &'a serde_json::Value, out: &mut Vec<&'a serde_json::Value>) {
+        for component in list.as_array().into_iter().flatten() {
+            out.push(component);
+            walk(&component["components"], out);
+        }
+    }
+    let mut out = Vec::new();
+    walk(&document["components"], &mut out);
+    out
+}
+
+/// The tools a CycloneDX document says made it, each by its name and version, if it has one:
+/// `metadata.tools.components` as CycloneDX 1.5 on lists them, or `metadata.tools` as a list, as
+/// before.
+fn sbom_tools(document: &serde_json::Value) -> Vec<minijinja::Value> {
+    let tools = &document["metadata"]["tools"];
+    tools["components"]
+        .as_array()
+        .or_else(|| tools.as_array())
+        .into_iter()
+        .flatten()
+        .filter_map(|tool| {
+            Some(ctx! {
+                name => tool["name"].as_str()?,
+                version => tool["version"].as_str(),
+            })
+        })
+        .collect()
+}
+
 fn signature_view(signature: &data::Signature) -> minijinja::Value {
     match signature {
         data::Signature::Unsigned => ctx! { status => "unsigned" },
@@ -1333,6 +1410,10 @@ impl Site {
                 })
             })
         };
+        let by_layer_found: HashMap<String, usize> = by_layer
+            .keys()
+            .filter_map(|digest| Some((digest.to_string(), part_of(digest)?)))
+            .collect();
         // only the parts with code of their own: a component's bindings nest a wrapper of types
         let composed_of: Vec<Vec<Option<usize>>> = entries
             .iter()
@@ -1415,6 +1496,7 @@ impl Site {
             superseded_by,
             repos,
             composed_of,
+            by_layer: by_layer_found,
             used_in,
             worlds,
             components,
@@ -2245,6 +2327,141 @@ impl Site {
             .count()
     }
 
+    /// A version's SBOM as its page shows it: who attested it, the tools that made it, and what
+    /// it lists, grouped: the components, each linked to the version with its bytes, if one has
+    /// them; the Rust crates, each marked when it's only used to build; and anything else.
+    /// `None` for a version whose image has no SBOM, or hasn't been checked for one.
+    fn sbom(&self, index: usize) -> Option<minijinja::Value> {
+        let entry = &self.entries[index];
+        let attestation = match entry.meta.sbom.as_ref()? {
+            data::Sbom::Missing => return None,
+            data::Sbom::Failed { reason } => {
+                return Some(ctx! { status => "failed", reason => reason.clone() });
+            }
+            data::Sbom::Verified(signer) => {
+                signature_view(&data::Signature::Verified(signer.clone()))
+            }
+        };
+        let document = entry.sbom.as_ref()?;
+        let purl_type = |c: &serde_json::Value| -> Option<String> {
+            let purl = c["purl"].as_str()?.strip_prefix("pkg:")?;
+            Some(purl.split(['/', '@', '?']).next()?.to_string())
+        };
+        // what the version itself depends on, by the dependency graph's refs: a component composed
+        // into it is one, whether or not it was published
+        let root = document["metadata"]["component"]["bom-ref"].as_str();
+        let direct: BTreeSet<&str> = document["dependencies"]
+            .as_array()
+            .into_iter()
+            .flatten()
+            .filter(|d| root.is_some() && d["ref"].as_str() == root)
+            .flat_map(|d| d["dependsOn"].as_array().into_iter().flatten())
+            .filter_map(|r| r.as_str())
+            .collect();
+        let (mut components, mut crates, mut others) = (Vec::new(), Vec::new(), Vec::new());
+        let mut licenses: BTreeMap<String, (crate::license::Named, usize)> = BTreeMap::new();
+        for c in sbom_components(document) {
+            let name = c["name"].as_str().unwrap_or_default().to_string();
+            let version = c["version"].as_str().map(str::to_string);
+            let license = sbom_licenses(c);
+            // each license it names counted once in the SBOM's licenses
+            for named in license
+                .as_deref()
+                .map(crate::license::named)
+                .unwrap_or_default()
+            {
+                let counted = licenses.entry(named.id.clone()).or_insert((named, 0));
+                counted.1 += 1;
+            }
+            let license_html = license.as_deref().map(crate::license::html);
+            // a component, the version of the directory with its bytes, by the hash of its wasm
+            let found = c["hashes"]
+                .as_array()
+                .into_iter()
+                .flatten()
+                .filter(|h| h["alg"].as_str() == Some("SHA-256"))
+                .find_map(|h| {
+                    self.by_layer
+                        .get(&format!("sha256:{}", h["content"].as_str()?))
+                })
+                .map(|i| &self.entries[*i]);
+            let kind = purl_type(c);
+            let composed = c["bom-ref"].as_str().is_some_and(|r| direct.contains(r))
+                && kind.as_deref() != Some("cargo");
+            if found.is_some() || composed || kind.as_deref() == Some("oci") {
+                components.push(ctx! {
+                    name,
+                    version,
+                    license,
+                    license_html,
+                    label => found.map(|e| e.id()),
+                    url => found.map(|e| e.url()),
+                    icon => found.map_or("component", |e| e.icon_kind()),
+                });
+            } else if kind.as_deref() == Some("cargo") {
+                // one from a path of its own, e.g. in the workspace, rather than crates.io
+                let local = c["purl"]
+                    .as_str()
+                    .is_some_and(|p| p.contains("download_url=file"));
+                crates.push(ctx! {
+                    name,
+                    version,
+                    license,
+                    license_html,
+                    local,
+                    // cargo-cyclonedx marks a crate that isn't in what's built, e.g. a proc macro
+                    // or a build script's, as excluded
+                    build_only => c["scope"].as_str() == Some("excluded"),
+                });
+            } else {
+                others.push(ctx! { name, version, license, license_html, kind });
+            }
+        }
+        // what's built into it first, then what's only used to build it, each by name
+        let build_only = |c: &minijinja::Value| c.get_attr("build_only").is_ok_and(|b| b.is_true());
+        let crate_name = |c: &minijinja::Value| {
+            c.get_attr("name")
+                .map(|n| n.to_string())
+                .unwrap_or_default()
+        };
+        crates.sort_by_cached_key(|c| (build_only(c), crate_name(c)));
+        let linked = crates
+            .iter()
+            .filter(|c| !c.get_attr("build_only").is_ok_and(|b| b.is_true()))
+            .count();
+        Some(ctx! {
+            status => "verified",
+            attestation,
+            // its own license, and every license what it lists names, the most named first
+            license => sbom_licenses(&document["metadata"]["component"]).map(|l| crate::license::html(&l)),
+            licenses => {
+                let mut licenses: Vec<_> = licenses.into_values().collect();
+                licenses.sort_by(|(a, an), (b, bn)| (a.exception, std::cmp::Reverse(*an), &a.id).cmp(&(b.exception, std::cmp::Reverse(*bn), &b.id)));
+                licenses
+                    .into_iter()
+                    .map(|(named, count)| ctx! { title => named.title(), named, count })
+                    .collect::<Vec<_>>()
+            },
+            created => document["metadata"]["timestamp"].as_str().map(|t| match chrono::DateTime::parse_from_rfc3339(t) {
+                Ok(t) => ctx! {
+                    datetime => t.to_rfc3339_opts(chrono::SecondsFormat::Secs, true),
+                    text => t.with_timezone(&chrono::Utc).format("%Y-%m-%d %H:%M UTC").to_string(),
+                },
+                Err(_) => ctx! { datetime => t, text => t },
+            }),
+            tools => sbom_tools(document),
+            format => format!(
+                "CycloneDX {}",
+                document["specVersion"].as_str().unwrap_or_default()
+            ),
+            url => format!("{}{}", entry.url(), data::SBOM_FILE),
+            components,
+            linked,
+            crates,
+            others,
+        })
+    }
+
     /// A composition's wiring as its diagram draws it, a block diagram from left to right: the
     /// composition's imports, its parts, each with a port for each of its imports and for each of
     /// its exports something plugs into, and its exports. Each port is linked to the page of its
@@ -2462,7 +2679,8 @@ impl Site {
                 url => self.entries[i].url(),
             }),
             date => entry.date(),
-            license => meta.annotation("licenses"),
+            // its license expression, each license linked to the SPDX license list
+            license => meta.annotation("licenses").map(crate::license::html),
             source,
             commit,
             repository => self.repo_of(index).map(|repo| ctx! {
@@ -2566,6 +2784,7 @@ impl Site {
             pkg => self.header(index),
             // the overview sits beside the page's h2 sections, as one of its own
             docs => docs(&package.docs, 2),
+            sbom => self.sbom(index),
             oci => ctx! {
                 reference => meta.oci.reference(),
                 digest => meta.oci.digest,
@@ -3538,6 +3757,7 @@ mod tests {
             release: None,
             parts: None,
             wiring: None,
+            sbom: None,
             indexed_at: "2026-11-11T00:00:00Z".to_string(),
         }
     }
@@ -4112,6 +4332,7 @@ mod tests {
             Entry {
                 meta,
                 nested: false,
+                sbom: None,
                 resolve,
                 pkg,
             }

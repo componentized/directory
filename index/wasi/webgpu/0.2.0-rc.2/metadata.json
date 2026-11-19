@@ -27,5 +27,8 @@
     "org.opencontainers.image.url": "https://github.com/WebAssembly/wasi-webgpu",
     "org.opencontainers.image.version": "0.2.0-rc.2"
   },
+  "sbom": {
+    "status": "missing"
+  },
   "indexed_at": "2026-11-13T18:14:55Z"
 }

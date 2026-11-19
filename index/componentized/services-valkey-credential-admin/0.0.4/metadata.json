@@ -138,5 +138,8 @@
       }
     ]
   },
+  "sbom": {
+    "status": "missing"
+  },
   "indexed_at": "2026-11-14T23:03:13Z"
 }

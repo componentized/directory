@@ -22,5 +22,8 @@
     "org.opencontainers.image.url": "https://wasi.dev",
     "org.opencontainers.image.version": "0.2.0-rc.1"
   },
+  "sbom": {
+    "status": "missing"
+  },
   "indexed_at": "2026-11-11T23:43:40Z"
 }

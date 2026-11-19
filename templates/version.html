@@ -4,11 +4,11 @@
 {% set toc = true %}
 {#- an image's cosign signature, verified the first time the image was seen: who signed it, and
     its entry in the transparency log. A version's image and its debug build's are each signed. #}
-{% macro signature(sig) %}{% if sig %}<dt>Signature</dt><dd>
+{% macro signature(sig, term="Signature", who="Who signed it", entry="The signature's entry in Sigstore's transparency log, Rekor") %}{% if sig %}<dt>{{ term }}</dt><dd>
   {%- if sig.status == "verified" %}
   {#- verified, and who signed it and its log entry behind a fold #}
   <details class="sig-fold">
-    <summary title="Who signed it"><span class="signed">verified</span><svg class="pivot-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 6.5 3.5 3.5 3.5-3.5"/></svg></summary>
+    <summary title="{{ who }}"><span class="signed">verified</span><svg class="pivot-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 6.5 3.5 3.5 3.5-3.5"/></svg></summary>
     <dl class="facts sig-facts">
       {%- if sig.workflow %}<dt>Workflow</dt><dd><a href="{{ sig.workflow.url }}"><code>{{ sig.workflow.name }}</code></a></dd>{% endif %}
       {#- a workflow names who signed it; any other identity is shown as its certificate has it #}
@@ -16,7 +16,7 @@
       <dt>Issuer</dt><dd><code>{{ sig.issuer }}</code></dd>
       <dt>Identity</dt><dd><code>{{ sig.identity }}</code></dd>
       {%- endif %}
-      {%- if sig.log_url %}<dt>Log</dt><dd><a href="{{ sig.log_url }}" title="The signature's entry in Sigstore's transparency log, Rekor">Rekor <code>#{{ sig.log_index }}</code></a></dd>{% endif %}
+      {%- if sig.log_url %}<dt>Log</dt><dd><a href="{{ sig.log_url }}" title="{{ entry }}">Rekor <code>#{{ sig.log_index }}</code></a></dd>{% endif %}
     </dl>
   </details>
   {%- elif sig.status == "failed" %}<span class="unverified" title="{{ sig.reason }}">didn't verify</span>
@@ -30,6 +30,7 @@
   {% if pkg.kind == "interface" and worlds %}<li><a href="#worlds">Worlds</a>
     <ol>{% for w in worlds %}<li><a href="#world-{{ w.name }}" title="world {{ w.name }}">{{ kind_icon("world") }}<code>{{ w.name }}</code></a></li>{% endfor %}</ol></li>{% endif %}
   {% if composed_of or composed_unknown %}<li><a href="#composition">Composition</a></li>{% endif %}
+  {% if sbom %}<li><a href="#sbom">SBOM</a></li>{% endif %}
   <li><a href="#wit">WIT</a></li>
   <li class="toc-aside"><a href="#about">About</a></li>
   {% if not synthetic %}<li class="toc-aside"><a href="#pull">Pull</a></li>{% endif %}
@@ -124,6 +125,65 @@
     </section>
     {% endif %}
 
+    {% if sbom %}
+    {#- its software bill of materials, a CycloneDX attestation of its image, verified the first time
+        the image was seen #}
+    <section id="sbom">
+      <h2>SBOM</h2>
+      {% if sbom.status == "failed" %}
+      <p><span class="unverified" title="{{ sbom.reason }}">The SBOM attested of this image didn't verify.</span></p>
+      {% else %}
+      <dl class="facts sbom-facts">
+        {{ signature(sbom.attestation, "Attestation", "Who attested it", "The attestation's entry in Sigstore's transparency log, Rekor") }}
+        {% if sbom.license %}<dt>License</dt><dd class="license-expr">{{ sbom.license|safe }}</dd>{% endif %}
+        {% if sbom.created %}<dt>Generated</dt><dd><time datetime="{{ sbom.created.datetime }}">{{ sbom.created.text }}</time></dd>{% endif %}
+        {% if sbom.tools %}<dt>Tools</dt><dd><ul class="sbom-tools">{% for t in sbom.tools %}<li><code>{{ t.name }}</code>{% if t.version %} <span class="dim">{{ t.version }}</span>{% endif %}</li>{% endfor %}</ul></dd>{% endif %}
+        <dt>Document</dt><dd><a href="{{ sbom.url }}" download><code>sbom.cdx.json</code></a> <span class="dim">{{ sbom.format }}</span></dd>
+      </dl>
+      {% if sbom.components %}
+      <h3>Components</h3>
+      <ul class="links packages sbom-components">{% for c in sbom.components %}<li>{{ kind_icon(c.icon) }}
+        {%- if c.url %}<a href="{{ c.url }}" data-tip><code>{{ c.label }}</code></a>
+        {%- else %}<code>{{ c.name }}{% if c.version %}@{{ c.version }}{% endif %}</code> <span class="dim">not published</span>{% endif %}
+        {%- if c.license_html %} <span class="sbom-license license-expr">{{ c.license_html|safe }}</span>{% endif %}</li>{% endfor %}</ul>
+      {% endif %}
+      {% if sbom.licenses %}
+      {#- every license the components and crates it lists name, each with what the SPDX license list
+          says of it, and how many name it #}
+      {%- set copyleft = sbom.licenses|selectattr("named.copyleft")|list %}
+      <details class="sbom-fold">
+        <summary><svg class="pivot-chevron sbom-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 6.5 3.5 3.5 3.5-3.5"/></svg><h3>Licenses</h3> <span class="dim">{{ sbom.licenses|length }}{% if copyleft %}, <span class="copyleft-note">{{ copyleft|length }} copyleft</span>{% endif %}</span></summary>
+        <div class="sbom-scroll"><table class="sbom-table sbom-licenses">
+          <thead><tr><th scope="col">License</th><th scope="col">Name</th><th scope="col"></th><th scope="col" title="How many of what the SBOM lists name it">Named by</th></tr></thead>
+          <tbody>{% for l in sbom.licenses %}<tr><td>{% if l.named.url %}<a class="license{% if l.named.copyleft %} copyleft{% endif %}" href="{{ l.named.url }}" title="{{ l.title }}"><code>{{ l.named.id }}</code></a>{% else %}<code title="{{ l.title }}">{{ l.named.id }}</code>{% endif %}</td>
+            <td>{{ l.named.name or "" }}</td>
+            <td class="license-flags">{% if l.named.exception %}<span class="badge">exception</span>{% endif %}{% if l.named.copyleft %}<span class="badge copyleft">copyleft</span>{% endif %}{% if l.named.osi %}<span class="badge" title="Approved by the Open Source Initiative">OSI</span>{% endif %}{% if l.named.fsf %}<span class="badge" title="Free/libre, by the Free Software Foundation">FSF</span>{% endif %}{% if l.named.deprecated %}<span class="badge" title="A deprecated SPDX identifier">deprecated</span>{% endif %}{% if not l.named.url %}<span class="badge" title="{{ l.title }}">unlisted</span>{% endif %}</td>
+            <td class="num">{{ l.count }}</td></tr>{% endfor %}</tbody>
+        </table></div>
+      </details>
+      {% endif %}
+      {% if sbom.crates %}
+      <details class="sbom-fold">
+        <summary><svg class="pivot-chevron sbom-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 6.5 3.5 3.5 3.5-3.5"/></svg><h3>Rust crates</h3> <span class="dim">{{ sbom.crates|length }}, {{ sbom.linked }} built into it</span></summary>
+        <div class="sbom-scroll"><table class="sbom-table">
+          <thead><tr><th scope="col">Crate</th><th scope="col">Version</th><th scope="col">License</th></tr></thead>
+          <tbody>{% for c in sbom.crates %}<tr{% if c.build_only %} class="build-only"{% endif %}><td>{% if c.local %}<code title="A crate of its own source, not from crates.io">{{ c.name }}</code>{% else %}<a href="https://crates.io/crates/{{ c.name }}/{{ c.version }}"><code>{{ c.name }}</code></a>{% endif %}{% if c.build_only %} <span class="badge" title="Used to build it, e.g. a macro or a build script, rather than built into it">build</span>{% endif %}</td><td><code>{{ c.version }}</code></td><td class="license-expr">{{ (c.license_html or "")|safe }}</td></tr>{% endfor %}</tbody>
+        </table></div>
+      </details>
+      {% endif %}
+      {% if sbom.others %}
+      <details class="sbom-fold">
+        <summary><svg class="pivot-chevron sbom-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 6.5 3.5 3.5 3.5-3.5"/></svg><h3>Other</h3> <span class="dim">{{ sbom.others|length }}</span></summary>
+        <div class="sbom-scroll"><table class="sbom-table">
+          <thead><tr><th scope="col">Name</th><th scope="col">Version</th><th scope="col">License</th></tr></thead>
+          <tbody>{% for c in sbom.others %}<tr><td><code>{{ c.name }}</code>{% if c.kind %} <span class="dim">{{ c.kind }}</span>{% endif %}</td><td>{% if c.version %}<code>{{ c.version }}</code>{% endif %}</td><td class="license-expr">{{ (c.license_html or "")|safe }}</td></tr>{% endfor %}</tbody>
+        </table></div>
+      </details>
+      {% endif %}
+      {% endif %}
+    </section>
+    {% endif %}
+
     <section id="wit">
       <h2>WIT</h2>
       <pre class="wit" data-copy data-copy-label="Copy the WIT"><code>{{ wit|safe }}</code></pre>
@@ -143,7 +203,7 @@
       <h3>About</h3>
       <dl class="facts">
         <dt>Published</dt><dd><time datetime="{{ pkg.date }}">{{ pkg.date }}</time></dd>
-        {% if pkg.license %}<dt>License</dt><dd>{{ pkg.license }}</dd>{% endif %}
+        {% if pkg.license %}<dt>License</dt><dd class="license-expr">{{ pkg.license|safe }}</dd>{% endif %}
         {% if pkg.repository %}<dt>Repository</dt><dd><a href="{{ pkg.repository.url }}">{{ pkg.repository.key }}</a></dd>{% endif %}
         {#- the repository's section of its namespace links its source #}
         {% if pkg.source and not pkg.repository %}<dt>Source</dt><dd><a href="{{ pkg.source }}">{{ pkg.source|replace("https://github.com/", "") }}</a></dd>{% endif %}
