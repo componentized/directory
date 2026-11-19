@@ -7,47 +7,47 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/tcp-connector",
     "tag": "0.3.0-dev",
-    "digest": "sha256:1ff9cdbdec94a35debd64ce24dc627498700b52f76a238aacc034d7885c3b577",
-    "layer_digest": "sha256:b0813ea3902938a33f892814fec42e409306ffabd9d41e54ee7f8bdd0c157147",
-    "size": 73514,
+    "digest": "sha256:e8811e68ec65e29323a601a66d043c0f1bf0cc0e325e24683f91d07b739e783c",
+    "layer_digest": "sha256:e155eaf185eb719773e005fb504af02663323fe1249cd0cea6204ad6ba10688e",
+    "size": 73442,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/valkey",
       "git_ref": "refs/heads/main",
-      "log_index": 3985251651
+      "log_index": 3986024367
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/valkey/tcp-connector",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:62f731883d3de22e40b5b334230171daa4b83723cece72c6df30e65ceb00cdcc",
-    "layer_digest": "sha256:ed66e6ed33e5f24f37517821dd72c66ffabfda2b1e83a5cb839cb44224e6c2df",
-    "size": 920080,
+    "digest": "sha256:7e2912c1ee52d8f7bdf4d1fd075ec443f0bdac1343e5753c876231733dcca16c",
+    "layer_digest": "sha256:8a37a30de9f62577f37b03edf1c8e2144f266944459b2dc2b36f263bf4faf778",
+    "size": 920008,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/valkey",
       "git_ref": "refs/heads/main",
-      "log_index": 3985258109
+      "log_index": 3986032433
     }
   },
-  "created": "2026-11-19T03:12:42.753407257Z",
+  "created": "2026-11-19T03:54:58.401370901Z",
   "annotations": {
-    "org.opencontainers.image.description": "A connector for connections over TCP, to the server configured with `componentized:secrets@0.1.0`, every key is a secret, a secret that is not found is unset.",
+    "org.opencontainers.image.description": "A connector for connections over TCP, to the server configured with `componentized:secrets@0.1.1`, every key is a secret, a secret that is not found is unset.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "d81471e8fff28dc4b568133be8f821489a06df6c",
+    "org.opencontainers.image.revision": "7eabee91877835e7e083e38625fee0d2dfc08d18",
     "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
     "org.opencontainers.image.title": "componentized:valkey-tcp-connector",
-    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/d81471e8fff28dc4b568133be8f821489a06df6c/components/tcp-connector",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/7eabee91877835e7e083e38625fee0d2dfc08d18/components/tcp-connector",
     "org.opencontainers.image.version": "v0.3.0-dev"
   },
   "imports": [
-    "componentized:secrets/types@0.1.1-dev",
-    "componentized:secrets/store@0.1.1-dev",
+    "componentized:secrets/types@0.1.1",
+    "componentized:secrets/store@0.1.1",
     "componentized:valkey/tcp-connector-constants@0.3.0-dev",
     "componentized:valkey/types@0.3.0-dev",
     "componentized:valkey/connection@0.3.0-dev",
@@ -59,7 +59,7 @@
   "dependencies": [
     {
       "package": "componentized:secrets",
-      "version": "0.1.1-dev"
+      "version": "0.1.1"
     },
     {
       "package": "componentized:valkey",
@@ -72,5 +72,5 @@
       "size": 407
     }
   ],
-  "indexed_at": "2026-11-19T03:17:33Z"
+  "indexed_at": "2026-11-19T03:58:19Z"
 }

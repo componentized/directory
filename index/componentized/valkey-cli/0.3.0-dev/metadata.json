@@ -7,48 +7,48 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/cli",
     "tag": "0.3.0-dev",
-    "digest": "sha256:3f44433ff695b9a0846d2112b970fb33112010cb305481d82ebf7010ee64634e",
-    "layer_digest": "sha256:b7e40bf5bbedcb08df4cb992682f664db932b2bfd9ac891ddf753e1381a23ebe",
-    "size": 1832072,
+    "digest": "sha256:0d3010691c97c55ac358c4fa8e3238400af4416035a9a832f0c04f9b13505e7e",
+    "layer_digest": "sha256:7eb13dce41c93567dcc4f960705c75e517772375f98b98ccff7b6e8abc376466",
+    "size": 1831707,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/valkey",
       "git_ref": "refs/heads/main",
-      "log_index": 3985128153
+      "log_index": 3985933209
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/valkey/cli",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:6a0aa39c170353bf26dcc5b86bdf23faa19b8393f131c7bc7d576c5cca16f5ec",
-    "layer_digest": "sha256:3afaa729c156e42a5f571a03ac809ad6a6b7e7ee776ae81ee1f2d6d2671b010b",
-    "size": 19219280,
+    "digest": "sha256:5f3350d36bffc47faa70e36115422c2b378b63932eb93bc8c612bc1eb7ed8f8f",
+    "layer_digest": "sha256:0776cbcca51b8aad1d9ef174ffd71122da23497bfe440668252057730012296d",
+    "size": 19218919,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/valkey",
       "git_ref": "refs/heads/main",
-      "log_index": 3985130861
+      "log_index": 3985939569
     }
   },
-  "created": "2026-11-19T03:06:20.894866623Z",
+  "created": "2026-11-19T03:50:48.226028276Z",
   "annotations": {
     "org.opencontainers.image.description": "A command line client for Valkey, sending its arguments as a command and printing the reply.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "d81471e8fff28dc4b568133be8f821489a06df6c",
+    "org.opencontainers.image.revision": "7eabee91877835e7e083e38625fee0d2dfc08d18",
     "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
     "org.opencontainers.image.title": "componentized:valkey-cli",
-    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/d81471e8fff28dc4b568133be8f821489a06df6c/components/cli",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/7eabee91877835e7e083e38625fee0d2dfc08d18/components/cli",
     "org.opencontainers.image.version": "v0.3.0-dev"
   },
   "imports": [
     "wasi:clocks/types@0.3.0",
     "wasi:clocks/system-clock@0.3.0",
-    "componentized:secrets/types@0.1.1-dev",
+    "componentized:secrets/types@0.1.1",
     "wasi:sockets/types@0.3.0",
     "wasi:sockets/ip-name-lookup@0.3.0",
     "wasi:clocks/monotonic-clock@0.3.0",
@@ -66,7 +66,7 @@
   "dependencies": [
     {
       "package": "componentized:secrets",
-      "version": "0.1.1-dev"
+      "version": "0.1.1"
     },
     {
       "package": "componentized:valkey",
@@ -96,13 +96,13 @@
       "code": true
     },
     {
-      "digest": "sha256:e555cb451abaa4b5c6b77fb91f146908e258b0019cbbc04840790fe16aa3a8bb",
-      "size": 60662,
+      "digest": "sha256:74f6ee074fd2ebb51227b05888aa731c22b7abbf1bb1795d63153d09e56251e8",
+      "size": 60533,
       "code": true
     },
     {
-      "digest": "sha256:f48659f111f3e51c96aeb5b344b25a8985a2a0fbf66ba398cd60f1fb14ff14f8",
-      "size": 423401,
+      "digest": "sha256:f3337b1a2cf90e57e767fb40f355d3c8c52c6df34a3dc625e62020c919db45b9",
+      "size": 423265,
       "code": true
     },
     {
@@ -126,8 +126,8 @@
       "code": true
     },
     {
-      "digest": "sha256:b0813ea3902938a33f892814fec42e409306ffabd9d41e54ee7f8bdd0c157147",
-      "size": 73514,
+      "digest": "sha256:e155eaf185eb719773e005fb504af02663323fe1249cd0cea6204ad6ba10688e",
+      "size": 73442,
       "code": true
     },
     {
@@ -176,13 +176,13 @@
             "export": "wasi:logging/logging@0.1.0-draft"
           },
           {
-            "name": "componentized:secrets/store@0.1.1-dev",
+            "name": "componentized:secrets/store@0.1.1",
             "instance": 1,
-            "export": "componentized:secrets/store@0.1.1-dev"
+            "export": "componentized:secrets/store@0.1.1"
           },
           {
-            "name": "componentized:secrets/types@0.1.1-dev",
-            "import": "componentized:secrets/types@0.1.1-dev"
+            "name": "componentized:secrets/types@0.1.1",
+            "import": "componentized:secrets/types@0.1.1"
           },
           {
             "name": "wasi:sockets/types@0.3.0",
@@ -289,14 +289,14 @@
             "export": "componentized:valkey/tcp-connector-constants@0.3.0-dev"
           },
           {
-            "name": "componentized:secrets/store@0.1.1-dev",
+            "name": "componentized:secrets/store@0.1.1",
             "instance": 1,
-            "export": "componentized:secrets/store@0.1.1-dev"
+            "export": "componentized:secrets/store@0.1.1"
           },
           {
-            "name": "componentized:secrets/types@0.1.1-dev",
+            "name": "componentized:secrets/types@0.1.1",
             "instance": 1,
-            "export": "componentized:secrets/types@0.1.1-dev"
+            "export": "componentized:secrets/types@0.1.1"
           }
         ]
       },
@@ -349,5 +349,5 @@
       }
     ]
   },
-  "indexed_at": "2026-11-19T03:16:56Z"
+  "indexed_at": "2026-11-19T03:57:55Z"
 }

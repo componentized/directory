@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/tcp-connector-constants",
     "tag": "0.3.0-dev",
-    "digest": "sha256:4d1ab87edefb5a0446d5a23080ae553fcaff63039d65c22e43f052f46a20e573",
+    "digest": "sha256:a6d227b1c2077d41af997b3d172b6c1e5c354f30a6925a55ba6099df37f9285f",
     "layer_digest": "sha256:94006045fe673a3d3da85bd04780b58188e98f092622247651a5ad0d6828ce34",
     "size": 3943,
     "signature": {
@@ -16,7 +16,7 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/valkey",
       "git_ref": "refs/heads/main",
-      "log_index": 3985261486
+      "log_index": 3986036783
     }
   },
   "debug": {
@@ -35,14 +35,14 @@
       "log_index": 3321023994
     }
   },
-  "created": "2026-11-19T03:14:40.719574139Z",
+  "created": "2026-11-19T03:55:50.481920169Z",
   "annotations": {
     "org.opencontainers.image.description": "The keys of the `tcp-connector` config and their defaults, as constants.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "d81471e8fff28dc4b568133be8f821489a06df6c",
+    "org.opencontainers.image.revision": "7eabee91877835e7e083e38625fee0d2dfc08d18",
     "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
     "org.opencontainers.image.title": "componentized:valkey-tcp-connector-constants",
-    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/d81471e8fff28dc4b568133be8f821489a06df6c/components/tcp-connector-constants",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/7eabee91877835e7e083e38625fee0d2dfc08d18/components/tcp-connector-constants",
     "org.opencontainers.image.version": "v0.3.0-dev"
   },
   "exports": [
@@ -60,5 +60,5 @@
       "size": 515
     }
   ],
-  "indexed_at": "2026-11-19T03:17:38Z"
+  "indexed_at": "2026-11-19T03:58:22Z"
 }
