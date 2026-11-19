@@ -21,5 +21,8 @@
       "version": "0.2.1"
     }
   ],
+  "sbom": {
+    "status": "missing"
+  },
   "indexed_at": "2026-11-13T17:29:09Z"
 }

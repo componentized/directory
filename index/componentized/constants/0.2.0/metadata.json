@@ -40,5 +40,8 @@
     }
   ],
   "release": "https://github.com/componentized/constants/releases/tag/v0.2.0",
+  "sbom": {
+    "status": "missing"
+  },
   "indexed_at": "2026-11-11T23:44:26Z"
 }

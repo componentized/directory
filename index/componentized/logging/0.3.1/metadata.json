@@ -36,5 +36,8 @@
     }
   ],
   "release": "https://github.com/componentized/logging/releases/tag/v0.3.1",
+  "sbom": {
+    "status": "missing"
+  },
   "indexed_at": "2026-11-11T23:43:34Z"
 }

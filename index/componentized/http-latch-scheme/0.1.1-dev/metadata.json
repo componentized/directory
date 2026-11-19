@@ -77,5 +77,8 @@
       "size": 2362
     }
   ],
+  "sbom": {
+    "status": "missing"
+  },
   "indexed_at": "2026-11-17T14:54:22Z"
 }

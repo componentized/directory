@@ -223,7 +223,51 @@ pub struct Metadata {
     /// their own. `None` for any other, and until a scan reads it.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub wiring: Option<Wiring>,
+    /// The image's software bill of materials, a CycloneDX attestation, checked once, when a scan
+    /// first sees the image. `None` until it's checked, e.g. by a scan without cosign. A verified
+    /// one is kept beside the metadata, in [`SBOM_FILE`].
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub sbom: Option<Sbom>,
     pub indexed_at: String,
+}
+
+/// The file a version's verified SBOM is kept in, beside its metadata: the CycloneDX document the
+/// attestation attests.
+pub const SBOM_FILE: &str = "sbom.cdx.json";
+
+/// An image's CycloneDX attestation, as a scan found it the first time it saw the image.
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[serde(tag = "status", rename_all = "lowercase")]
+pub enum Sbom {
+    /// It has no CycloneDX attestation.
+    Missing,
+    /// `cosign verify-attestation` verified it, as it verifies a signature: who attested it.
+    Verified(Signer),
+    /// It has an attestation that didn't verify.
+    Failed {
+        /// Why, as cosign says.
+        reason: String,
+    },
+}
+
+/// Keeps a version's verified SBOM beside its metadata, or removes one it no longer has, e.g. a
+/// dev build rebuilt without one.
+pub fn write_sbom(dir: &Path, sbom: Option<&serde_json::Value>) -> Result<()> {
+    let path = dir.join(SBOM_FILE);
+    match sbom {
+        Some(sbom) => {
+            let mut json = serde_json::to_string_pretty(sbom)?;
+            json.push('\n');
+            std::fs::write(&path, json).with_context(|| format!("writing {}", path.display()))
+        }
+        None if path.exists() => Ok(std::fs::remove_file(&path)?),
+        None => Ok(()),
+    }
+}
+
+/// The verified SBOM kept beside a version's metadata, if it has one.
+pub fn read_sbom(dir: &Path) -> Option<serde_json::Value> {
+    serde_json::from_str(&std::fs::read_to_string(dir.join(SBOM_FILE)).ok()?).ok()
 }
 
 impl Metadata {

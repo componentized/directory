@@ -38,5 +38,8 @@
     }
   ],
   "release": "https://github.com/WebAssembly/WASI/releases/tag/v0.2.6",
+  "sbom": {
+    "status": "missing"
+  },
   "indexed_at": "2026-11-16T14:07:41Z"
 }

@@ -29,5 +29,8 @@
     "org.opencontainers.image.url": "https://github.com/componentized/component/tree/9baf4aee475565a3ab3e361f17d2cc294ca7aa80",
     "org.opencontainers.image.version": "0.0.0-dev"
   },
+  "sbom": {
+    "status": "missing"
+  },
   "indexed_at": "2026-11-11T23:45:28Z"
 }
