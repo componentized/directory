@@ -1,0 +1,131 @@
+{
+  "package": "componentized:filesystem-latch-readonly",
+  "version": "0.3.1-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem/latch-readonly",
+    "tag": "0.3.1-dev",
+    "digest": "sha256:07e97d1bbe6f0b88a03966db6514ffcce9ac98818e3843c8c38d8e1d823801a4",
+    "layer_digest": "sha256:a41b3c1aae00049bd0d1de604d5ac2e68446d8a4eb2076315c0b080058d35287",
+    "size": 90097,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/filesystem",
+      "git_ref": "refs/heads/main",
+      "log_index": 4017257901
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem/latch-readonly",
+    "tag": "0.3.1-dev_debug",
+    "digest": "sha256:0c645a4ce51816defe60bc968b9359116c92a04b43bb3b27e9d3cff31457dbdc",
+    "layer_digest": "sha256:f6b996fb529cce46b920fd7b95bb804aa726b9611ab6107da1f06b173b2a946f",
+    "size": 986107,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/filesystem",
+      "git_ref": "refs/heads/main",
+      "log_index": 4017270233
+    }
+  },
+  "created": "2026-11-20T04:32:50.583354091Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Filesystem latch that denies operations which would mutate the filesystem.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "e22f7dea040f77224a515c98144e0a66d8ffb716",
+    "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
+    "org.opencontainers.image.title": "componentized:filesystem-latch-readonly",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/e22f7dea040f77224a515c98144e0a66d8ffb716/components/latch-readonly",
+    "org.opencontainers.image.version": "v0.3.1-dev"
+  },
+  "imports": [
+    "wasi:clocks/system-clock@0.3.0",
+    "wasi:filesystem/types@0.3.0",
+    "wasi:logging/logging@0.1.0-draft"
+  ],
+  "exports": [
+    "componentized:filesystem/latch@0.3.1-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:filesystem",
+      "version": "0.3.1-dev"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:054c6a4d0f8ca68df9fa980f1e801e932abf366ba8e110f2c7783c3c1a0fc9f9",
+      "size": 6187,
+      "code": true
+    },
+    {
+      "digest": "sha256:d55a2e484bd9af1a4c0675982914207da59410610b3118df77c1fd7ff9e1d886",
+      "size": 82265,
+      "code": true
+    }
+  ],
+  "wiring": {
+    "instances": [
+      {
+        "part": 0
+      },
+      {
+        "part": 1,
+        "args": [
+          {
+            "name": "wasi:config/store@0.2.0-rc.1",
+            "instance": 0,
+            "export": "wasi:config/store@0.2.0-rc.1"
+          },
+          {
+            "name": "wasi:logging/logging@0.1.0-draft",
+            "import": "wasi:logging/logging@0.1.0-draft"
+          },
+          {
+            "name": "wasi:clocks/system-clock@0.3.0",
+            "import": "wasi:clocks/system-clock@0.3.0"
+          },
+          {
+            "name": "wasi:filesystem/types@0.3.0",
+            "import": "wasi:filesystem/types@0.3.0"
+          }
+        ]
+      }
+    ],
+    "exports": [
+      {
+        "name": "componentized:filesystem/latch@0.3.1-dev",
+        "instance": 1,
+        "export": "componentized:filesystem/latch@0.3.1-dev"
+      }
+    ]
+  },
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/filesystem",
+    "git_ref": "refs/heads/main",
+    "log_index": 4017263542
+  },
+  "indexed_at": "2026-11-20T04:39:36Z"
+}

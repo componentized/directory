@@ -1,0 +1,68 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "pkg:cargo/componentized-static-config-cli@0.3.0",
+      "name": "componentized-static-config-cli",
+      "purl": "pkg:cargo/componentized-static-config-cli@0.3.0",
+      "type": "library",
+      "version": "0.3.0"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "pkg:cargo/componentized-static-config-cli@0.3.0"
+      ],
+      "ref": "component:componentized:filesystem-latch-readonly-config"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:cargo/componentized-static-config-cli@0.3.0"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "component:componentized:filesystem-latch-readonly-config",
+      "description": "Config for `latch-path-glob` that makes every path readonly.",
+      "externalReferences": [
+        {
+          "comment": "revision e22f7dea040f77224a515c98144e0a66d8ffb716",
+          "type": "vcs",
+          "url": "https://github.com/componentized/filesystem.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/componentized/filesystem/tree/e22f7dea040f77224a515c98144e0a66d8ffb716/components/latch-readonly-config"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "054c6a4d0f8ca68df9fa980f1e801e932abf366ba8e110f2c7783c3c1a0fc9f9"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "componentized:filesystem-latch-readonly-config",
+      "purl": "pkg:oci/latch-readonly-config@sha256%3A3ab933aa0b3fc8a4695086116b9204112cb591041a8309c58f5e524c4c5c30f0?repository_url=ghcr.io/componentized/filesystem/latch-readonly-config&tag=0.3.1-dev",
+      "type": "library",
+      "version": "0.3.1-dev"
+    },
+    "timestamp": "2026-11-20T04:13:55Z",
+    "tools": {
+      "components": [
+        {
+          "name": "componentized-static-config-cli",
+          "type": "application",
+          "version": "0.3.0"
+        }
+      ]
+    }
+  },
+  "specVersion": "1.6",
+  "version": 1
+}

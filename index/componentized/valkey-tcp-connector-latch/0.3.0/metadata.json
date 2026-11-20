@@ -72,6 +72,7 @@
       "version": "0.3.0"
     }
   ],
+  "release": "https://github.com/componentized/valkey/releases/tag/v0.3.0",
   "parts": [
     {
       "digest": "sha256:83e131fff5e329c1483379a8c3dc3d8ac2ffd64513ba5d7de4e14dbf7223022c",

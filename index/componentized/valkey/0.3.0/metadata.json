@@ -29,6 +29,7 @@
     "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/76c0a879a5da9f153b030b61f5818d735dad82f6",
     "org.opencontainers.image.version": "v0.3.0"
   },
+  "release": "https://github.com/componentized/valkey/releases/tag/v0.3.0",
   "sbom": {
     "status": "verified",
     "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/tags/v0.3.0",

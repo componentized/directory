@@ -1,0 +1,51 @@
+{
+  "package": "componentized:filesystem",
+  "version": "0.3.1-dev",
+  "kind": "interface",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem",
+    "tag": "0.3.1-dev",
+    "digest": "sha256:ec621dec531d6cc8bad73ba1f59b26a6fd308178e8cd9aa0da5472732ad8d488",
+    "layer_digest": "sha256:79ddf4101a01b15be0ca10cc664c471375e5ec807441ea6136a1e4acfd1ad10e",
+    "size": 20893,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/filesystem",
+      "git_ref": "refs/heads/main",
+      "log_index": 4016979021
+    }
+  },
+  "created": "2026-11-20T04:22:15.238708213Z",
+  "annotations": {
+    "org.opencontainers.image.description": "A collection of utility components that remix wasi:filesystem types and interfaces.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "e22f7dea040f77224a515c98144e0a66d8ffb716",
+    "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
+    "org.opencontainers.image.title": "componentized:filesystem",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/e22f7dea040f77224a515c98144e0a66d8ffb716",
+    "org.opencontainers.image.version": "v0.3.1-dev"
+  },
+  "dependencies": [
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.3.0"
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/filesystem",
+    "git_ref": "refs/heads/main",
+    "log_index": 4016983054
+  },
+  "indexed_at": "2026-11-20T04:38:04Z"
+}

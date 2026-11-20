@@ -1,0 +1,84 @@
+{
+  "package": "componentized:filesystem-latch-defer-all",
+  "version": "0.3.1-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem/latch-defer-all",
+    "tag": "0.3.1-dev",
+    "digest": "sha256:044cbce2a2ee6c860be789f0ebc47f0bf8a5a043edc92b28a7abeb7fdca3b120",
+    "layer_digest": "sha256:1953168d1a1e1f3daf0fe194e2610372dad4ed988572ef6f5953d13258afdc79",
+    "size": 41150,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/filesystem",
+      "git_ref": "refs/heads/main",
+      "log_index": 4017045288
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem/latch-defer-all",
+    "tag": "0.3.1-dev_debug",
+    "digest": "sha256:f0d7a4fbb1a8f84e7664b3cab72bd390212f493e3ee00c6f82c74b80a1e0d2dd",
+    "layer_digest": "sha256:d492239557cb6c232ca7dea8fdc5d27b7555cf65d0ce516c7c35168547e25da1",
+    "size": 426593,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/filesystem",
+      "git_ref": "refs/heads/main",
+      "log_index": 4017063553
+    }
+  },
+  "created": "2026-11-20T04:24:46.291614436Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Filesystem latch that implicitly defers all operations.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "e22f7dea040f77224a515c98144e0a66d8ffb716",
+    "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
+    "org.opencontainers.image.title": "componentized:filesystem-latch-defer-all",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/e22f7dea040f77224a515c98144e0a66d8ffb716/components/latch-defer-all",
+    "org.opencontainers.image.version": "v0.3.1-dev"
+  },
+  "imports": [
+    "wasi:clocks/system-clock@0.3.0",
+    "wasi:filesystem/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:filesystem/latch@0.3.1-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:filesystem",
+      "version": "0.3.1-dev"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:e8711e0b0e2e46415321f2e447388097ab9c5ce2fe2c7f039a4d96975e36fa55",
+      "size": 6009
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/filesystem",
+    "git_ref": "refs/heads/main",
+    "log_index": 4017056976
+  },
+  "indexed_at": "2026-11-20T04:38:27Z"
+}
