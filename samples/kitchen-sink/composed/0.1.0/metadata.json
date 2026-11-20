@@ -1,0 +1,62 @@
+{
+  "package": "kitchen-sink:composed",
+  "version": "0.1.0",
+  "kind": "component",
+  "origin": "synthetic",
+  "oci": {
+    "registry": "synthetic.invalid",
+    "repository": "kitchen-sink/composed",
+    "tag": "0.1.0",
+    "digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "layer_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "size": 0
+  },
+  "created": "2026-11-12T00:00:00Z",
+  "annotations": {
+    "org.opencontainers.image.description": "A composition of kitchen-sink:everything@0.1.0, to show a composed component's known vulnerabilities in its tooltip. Synthetic: not published to any registry."
+  },
+  "dependencies": [
+    {
+      "package": "kitchen-sink:types",
+      "version": "0.1.0"
+    },
+    {
+      "package": "kitchen-sink:extras",
+      "version": "0.1.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "size": 0,
+      "code": true
+    }
+  ],
+  "wiring": {
+    "instances": [
+      {
+        "part": 0,
+        "name": "everything",
+        "args": [
+          { "name": "kitchen-sink:types/primitives@0.1.0", "import": "kitchen-sink:types/primitives@0.1.0" },
+          { "name": "pictures", "import": "pictures" },
+          { "name": "inline", "import": "inline" },
+          { "name": "log", "import": "log" },
+          { "name": "sleep", "import": "sleep" }
+        ]
+      }
+    ],
+    "exports": [
+      { "name": "kitchen-sink:extras/greeter@0.1.0", "instance": 0, "export": "kitchen-sink:extras/greeter@0.1.0" },
+      { "name": "kitchen-sink:types/concurrency@0.1.0", "instance": 0, "export": "kitchen-sink:types/concurrency@0.1.0" },
+      { "name": "run", "instance": 0, "export": "run" },
+      { "name": "serve", "instance": 0, "export": "serve" }
+    ]
+  },
+  "indexed_at": "2026-11-12T00:00:00Z",
+  "sbom": {
+    "status": "verified",
+    "identity": "kitchen-sink@synthetic.invalid",
+    "issuer": "https://synthetic.invalid"
+  }
+}

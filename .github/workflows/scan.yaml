@@ -86,6 +86,12 @@ jobs:
           # untrusted, passed through the environment rather than into the script
           ONLY: ${{ github.event.client_payload.only || inputs.only }}
           VERSION: ${{ github.event.client_payload.version || inputs.version }}
+      # the known advisories of the packages the SBOMs list, from OSV.dev, checked after every scan
+      # so a version just indexed is checked too. `advisories.json` only changes when what's known
+      # does. An outage of OSV.dev leaves the advisories as they were, rather than failing the scan.
+      - name: Check advisories
+        continue-on-error: true
+        run: cargo run --release --locked -- advisories
       - name: Stage
         id: stage
         run: |
@@ -126,6 +132,9 @@ jobs:
               echo
               printf '%s\n' "${added}" | sed 's/^/- /'
             } > "${RUNNER_TEMP}/message.txt"
+          elif [ "$( git diff --cached --name-only )" = "index/advisories.json" ] ; then
+            # only what's known of the packages the SBOMs list changed, e.g. a new advisory
+            echo "Update the known advisories" > "${RUNNER_TEMP}/message.txt"
           else
             # no new versions, but those indexed changed, e.g. linked to their GitHub releases
             echo "Update the indexed versions" > "${RUNNER_TEMP}/message.txt"

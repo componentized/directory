@@ -1,0 +1,57 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-11-12T00:00:00Z",
+    "tools": {
+      "components": [
+        {
+          "type": "application",
+          "name": "wkg"
+        }
+      ]
+    },
+    "component": {
+      "bom-ref": "component:kitchen-sink:types",
+      "type": "library",
+      "name": "kitchen-sink:types",
+      "version": "0.1.0",
+      "description": "Synthetic: an SBOM made up to show how each part of one renders.",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ]
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "bom-ref": "pkg:cargo/example-unchecked@0.1.0",
+      "name": "example-unchecked",
+      "version": "0.1.0",
+      "purl": "pkg:cargo/example-unchecked@0.1.0?download_url=file://.",
+      "scope": "required",
+      "licenses": [
+        {
+          "expression": "MIT"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "component:kitchen-sink:types",
+      "dependsOn": [
+        "pkg:cargo/example-unchecked@0.1.0"
+      ]
+    }
+  ]
+}

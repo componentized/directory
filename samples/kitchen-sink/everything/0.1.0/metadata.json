@@ -8,7 +8,7 @@
     "repository": "kitchen-sink/everything",
     "tag": "0.1.0",
     "digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
-    "layer_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "layer_digest": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
     "size": 0
   },
   "created": "2026-11-12T00:00:00Z",
@@ -25,5 +25,10 @@
       "version": "0.1.0"
     }
   ],
-  "indexed_at": "2026-11-12T00:00:00Z"
+  "indexed_at": "2026-11-12T00:00:00Z",
+  "sbom": {
+    "status": "verified",
+    "identity": "kitchen-sink@synthetic.invalid",
+    "issuer": "https://synthetic.invalid"
+  }
 }

@@ -128,6 +128,13 @@
   <symbol id="meta-copy" viewBox="0 0 16 16"><rect x="5.2" y="5.2" width="8.6" height="8.6" rx="1.6"/><path d="M10.8 5.2V3.8c0-.9-.7-1.6-1.6-1.6H3.8c-.9 0-1.6.7-1.6 1.6v5.4c0 .9.7 1.6 1.6 1.6h1.4"/></symbol>
   <symbol id="meta-check" viewBox="0 0 16 16"><path d="m3 8.4 3.2 3.2L13 4.8"/></symbol>
   <symbol id="meta-stop" viewBox="0 0 16 16"><path d="M5.4 1.8h5.2l3.6 3.6v5.2l-3.6 3.6H5.4l-3.6-3.6V5.4z"/><path d="M5.6 8h4.8"/></symbol>
+  {#- a vulnerability's severity, each by a shape of its own as well as its color: critical an
+      octagon, high a triangle, moderate a diamond, low a circle, unrated a circle with a question #}
+  <symbol id="sev-critical" viewBox="0 0 16 16"><path class="sev-shape" d="M5.3 1h5.4L15 5.3v5.4L10.7 15H5.3L1 10.7V5.3z"/><path class="sev-mark" d="M8 4.4v4.4M8 11.4v.2"/></symbol>
+  <symbol id="sev-high" viewBox="0 0 16 16"><path class="sev-shape" d="M8 1.2 15.2 14H.8z"/><path class="sev-mark" d="M8 6v3.6M8 11.6v.2"/></symbol>
+  <symbol id="sev-moderate" viewBox="0 0 16 16"><path class="sev-shape" d="M8 .8 15.2 8 8 15.2.8 8z"/><path class="sev-mark" d="M8 4.8v3.8M8 10.8v.2"/></symbol>
+  <symbol id="sev-low" viewBox="0 0 16 16"><circle class="sev-shape" cx="8" cy="8" r="6.8"/><path class="sev-mark" d="M8 4.6v4M8 10.9v.2"/></symbol>
+  <symbol id="sev-unrated" viewBox="0 0 16 16"><circle class="sev-shape" cx="8" cy="8" r="6.8"/><path class="sev-mark" d="M6.2 6.2a1.9 1.9 0 1 1 2.6 1.8c-.5.2-.8.6-.8 1.1v.4M8 11.4v.2"/></symbol>
   <symbol id="meta-caution" viewBox="0 0 16 16"><path d="M8 2 14.6 13.6H1.4z"/><path d="M8 6.4v3.4M8 11.8v.1"/></symbol>
   <symbol id="meta-info" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.2"/><path d="M8 7.4v4M8 4.9v.1"/></symbol>
   <symbol id="meta-diff" viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5.6 4.4v4M3.6 6.4h4M8.4 11.2h4"/></symbol>
@@ -225,7 +232,12 @@
     interface's id holds the package's name and version #}
 {% macro header(pkg, iface=none) %}
 <div class="page-head" data-page-head>
+<div class="crumbs-row">
 <nav class="crumbs" aria-label="Breadcrumbs">{{ pivot(pkg.namespace, pkg.namespaces, "namespace") }} : {{ pivot(pkg.name, pkg.packages, "package") }} @ {{ version_pivot(pkg.version, iface.version_lines if iface else pkg.version_lines, "crumb") }}{% if iface %} / {{ pivot(iface.name, iface.siblings, iface.pivot or "interface") }}{% endif %}</nav>
+{#- its known vulnerabilities, by severity, linked to its advisories, at the end of the breadcrumbs' line #}
+{%- if pkg.vulnerabilities %}<a class="vuln-summary" href="{{ pkg.vulnerabilities.url }}" title="{{ pkg.vulnerabilities.label }}"><span class="visually-hidden">{{ pkg.vulnerabilities.label }}</span>
+  {%- for l in pkg.vulnerabilities.levels %}<span class="vuln-level sev-{{ l.severity }}" aria-hidden="true"><svg class="sev-icon" focusable="false"><use href="#sev-{{ l.severity }}"/></svg>{{ l.count }}</span>{% endfor %}</a>{% endif %}
+</div>
 <div class="title-row">
   {% if iface %}
   {#- its kind by its icon, and said #}

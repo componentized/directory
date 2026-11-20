@@ -319,6 +319,9 @@ ul.changes { list-style: none; margin: 0; padding: 0; }
 .wit-tip-docs { margin: 8px 0 0; color: var(--text); }
 /* the interface a definition is in, beneath it */
 .wit-tip-from { color: var(--dim); font-family: var(--mono); font-size: 0.85em; overflow-wrap: anywhere; }
+/* a version's known vulnerabilities, by severity, as in its header */
+.wit-tip-vulns { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 10px; font-family: var(--mono); font-size: 0.85em; font-weight: 600; font-variant-numeric: tabular-nums; }
+.wit-tip-vulns-label { color: var(--dim); font-weight: 400; }
 
 /* the WIT, line by line, with the lines around each change and the rest folded */
 .wit-options { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 8px; color: var(--dim); font-size: 0.85rem; }
@@ -934,7 +937,9 @@ span.kind-icon-used > svg.kind-icon { display: block; margin: 0; }
 .sbom-facts { max-width: 70ch; }
 .sbom-tools { list-style: none; margin: 0; padding: 0; }
 .sbom-tools li + li { margin-top: 2px; }
-.sbom-components li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 6px; }
+.sbom-components li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 8px; }
+/* its icon parted from its text by the row's gap alone, as an advisory's bullet is */
+.sbom-components li > .kind-icon, .sbom-components li > .kind-icon-used { margin-right: 0; }
 .sbom-license { color: var(--dim); font-size: 0.85rem; }
 .sbom-fold { margin: 16px 0; }
 .sbom-fold > summary { cursor: pointer; display: flex; align-items: center; gap: 6px; list-style: none; }
@@ -947,7 +952,7 @@ span.kind-icon-used > svg.kind-icon { display: block; margin: 0; }
 .sbom-scroll { max-width: 100%; overflow-x: auto; }
 .sbom-table { border-collapse: collapse; margin-top: 8px; font-size: 0.9rem; }
 .sbom-table th, .sbom-table td { padding: 4px 12px 4px 0; border-bottom: 1px solid var(--line); text-align: left; vertical-align: baseline; }
-.sbom-table thead th { color: var(--dim); font-weight: 600; font-size: 0.85rem; }
+.sbom-table thead th { color: var(--dim); font-weight: 600; font-size: 0.85rem; white-space: nowrap; }
 .sbom-table .build-only code { color: var(--dim); }
 .sbom-table .badge { color: var(--dim); background: var(--code-bg); }
 
@@ -958,6 +963,54 @@ span.kind-icon-used > svg.kind-icon { display: block; margin: 0; }
 .license.copyleft, .copyleft-note { color: var(--interface); }
 .sbom-licenses td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .license-flags { white-space: nowrap; }
-.sbom-table td:nth-child(2) code { white-space: nowrap; }
 .license-flags .badge { margin-right: 4px; text-transform: none; }
 .sbom-table .badge.copyleft { color: var(--interface); background: var(--interface-soft); }
+
+/* a version's known advisories, from OSV.dev */
+.advisories { list-style: none; padding: 0; margin: 0 0 16px; max-width: 80ch; }
+/* each a list item with its own bullet: its severity's icon, or the same room left empty, and its
+   text, all of it, beside rather than below it */
+.advisory { display: grid; grid-template-columns: 14px minmax(0, 1fr); column-gap: 8px; }
+/* the rule between them runs under their text, not their bullets, as in a list */
+.advisory-body { padding: 8px 0; border-bottom: 1px solid var(--line); }
+.advisory-bullet { display: flex; align-items: center; height: 1lh; margin-top: 8px; }
+.advisory-bullet .sev-icon { display: block; width: 14px; height: 14px; }
+.advisory-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; }
+.advisory-package { margin-left: auto; }
+.advisory-summary { margin: 4px 0 0; }
+.advisory.build-only .advisory-summary { color: var(--dim); }
+.badge.advisory-kind { color: var(--dim); background: var(--code-bg); text-transform: none; text-decoration: none; }
+.badge.advisory-kind.vulnerability { color: var(--deprecated); background: var(--deprecated-soft); }
+/* each severity in the color its icon in the header has */
+.badge.advisory-kind.severity-high { color: var(--b); background: color-mix(in srgb, var(--b) 14%, transparent); }
+.badge.advisory-kind.severity-moderate, .badge.advisory-kind.severity-medium { color: var(--interface); background: var(--interface-soft); }
+.badge.advisory-kind.severity-low { color: var(--t); background: color-mix(in srgb, var(--t) 14%, transparent); }
+.advisory-summary code { font-size: 0.9em; }
+
+/* a version's known vulnerabilities in its header, by severity: a shape and a color each */
+/* the breadcrumbs, and at the end of their line, the vulnerabilities, in the breadcrumbs' type */
+.crumbs-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 16px; }
+.vuln-summary { display: inline-flex; align-items: center; gap: 10px; margin-left: auto; text-decoration: none; font-family: var(--mono); font-size: 0.85rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.vuln-summary:hover .vuln-level { text-decoration: underline; }
+.vuln-level { display: inline-flex; align-items: center; gap: 4px; }
+.sev-icon { width: 13px; height: 13px; flex: none; }
+/* the symbol's own parts, as a <use> of it draws them, in its severity's color */
+.sev-shape { fill: currentColor; stroke: none; }
+.sev-mark { fill: none; stroke: var(--bg); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.sev-critical { color: var(--deprecated); }
+.sev-high { color: var(--b); }
+.sev-moderate { color: var(--interface); }
+.sev-low { color: var(--t); }
+.sev-unrated { color: var(--d); }
+.vuln-summary { color: var(--text); }
+
+/* an SBOM table's bullet column: an entry's most severe vulnerability's icon, or room left for one,
+   so its text lines up with the lists' above; the rule between rows runs under the text alone */
+.sbom-table .dep-bullet { width: 14px; min-width: 14px; padding: 4px 8px 4px 0; border-bottom: none; vertical-align: top; }
+/* an entry's name, with its chits, and its version, each kept to a line */
+.sbom-table .dep-name, .sbom-table .dep-version { white-space: nowrap; }
+.dep-bullet > a { display: flex; align-items: center; height: 1lh; }
+/* the room an icon takes, which an empty cell keeps all the same */
+.dep-slot { display: block; width: 14px; height: 1px; }
+.dep-bullet .sev-icon, .dep-sev .sev-icon { display: block; width: 14px; height: 14px; }
+.dep-sev { display: inline-flex; align-self: center; }

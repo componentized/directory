@@ -21,5 +21,9 @@
       "version": "0.1.0"
     }
   ],
-  "indexed_at": "2026-11-12T00:00:00Z"
+  "indexed_at": "2026-11-12T00:00:00Z",
+  "sbom": {
+    "status": "failed",
+    "reason": "synthetic: no matching attestations, as an example of one that didn't verify"
+  }
 }
