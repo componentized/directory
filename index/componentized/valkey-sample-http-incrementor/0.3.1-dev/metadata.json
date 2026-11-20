@@ -1,0 +1,82 @@
+{
+  "package": "componentized:valkey-sample-http-incrementor",
+  "version": "0.3.1-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/sample-http-incrementor",
+    "tag": "0.3.1-dev",
+    "digest": "sha256:58a6d52e9406e40f5f25a587c3525f7f47500d95970a1e34f0b17a8537611237",
+    "layer_digest": "sha256:d7648981b06d5d67636800cadc9932261055e8f6d935d520f4de77421f0da889",
+    "size": 118815,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/valkey",
+      "git_ref": "refs/heads/main",
+      "log_index": 4017479096
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/sample-http-incrementor",
+    "tag": "0.3.1-dev_debug",
+    "digest": "sha256:0eb0187fa7a94011637b980825566cc1e21cf8cf92e6af92ea6d6d51d6105a33",
+    "layer_digest": "sha256:7596da3cd229940a5fd81afe7a0a00ff30dc46cf49d7c5377eb50bceb24f0906",
+    "size": 1301699,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/valkey",
+      "git_ref": "refs/heads/main",
+      "log_index": 4017488396
+    }
+  },
+  "created": "2026-11-20T04:41:59.611782766Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Sample component that exposes `wasi:http` incrementing a counter based on the http path.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "fea48c1b0bc5d38d33434d3a92e86f0bfb332365",
+    "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
+    "org.opencontainers.image.title": "componentized:valkey-sample-http-incrementor",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/fea48c1b0bc5d38d33434d3a92e86f0bfb332365/components/sample-http-incrementor",
+    "org.opencontainers.image.version": "v0.3.1-dev"
+  },
+  "imports": [
+    "wasi:http/types@0.3.0",
+    "wasmcloud:keyvalue/atomics@0.2.0",
+    "wasmcloud:keyvalue/store@0.2.0",
+    "wasmcloud:keyvalue/types@0.2.0"
+  ],
+  "exports": [
+    "wasi:http/handler@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasmcloud:keyvalue",
+      "version": "0.2.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:474592e1e1383f457fcad936bebef7e01d7cc6503a4b00b0e782e74a5b081c54",
+      "size": 1551
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/valkey",
+    "git_ref": "refs/heads/main",
+    "log_index": 4017482463
+  },
+  "indexed_at": "2026-11-20T04:47:27Z"
+}

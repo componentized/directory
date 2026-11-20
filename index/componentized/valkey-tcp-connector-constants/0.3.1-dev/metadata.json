@@ -1,0 +1,56 @@
+{
+  "package": "componentized:valkey-tcp-connector-constants",
+  "version": "0.3.1-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/tcp-connector-constants",
+    "tag": "0.3.1-dev",
+    "digest": "sha256:d8e73c221e8f29e4de7412b7110cec59fb1a875a12c9c8087ca7dbc4b0ddd94c",
+    "layer_digest": "sha256:43dd0b8606e3486cc628b26c6c40e4efbdef8f11b6e6687e30b2873b483e7386",
+    "size": 3943,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/valkey",
+      "git_ref": "refs/heads/main",
+      "log_index": 4017521648
+    }
+  },
+  "created": "2026-11-20T04:43:47.529931128Z",
+  "annotations": {
+    "org.opencontainers.image.description": "The keys of the `tcp-connector` config and their defaults, as constants.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "fea48c1b0bc5d38d33434d3a92e86f0bfb332365",
+    "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
+    "org.opencontainers.image.title": "componentized:valkey-tcp-connector-constants",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/fea48c1b0bc5d38d33434d3a92e86f0bfb332365/components/tcp-connector-constants",
+    "org.opencontainers.image.version": "v0.3.1-dev"
+  },
+  "exports": [
+    "componentized:valkey/tcp-connector-constants@0.3.1-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:valkey",
+      "version": "0.3.1-dev"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:ba0e749c782697b7609bb7c0c0ba08ff8e272cbf3ab67a60a809993b6dbada12",
+      "size": 515
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/valkey",
+    "git_ref": "refs/heads/main",
+    "log_index": 4017523697
+  },
+  "indexed_at": "2026-11-20T04:47:42Z"
+}

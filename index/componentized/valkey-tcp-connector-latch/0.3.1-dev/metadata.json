@@ -1,0 +1,287 @@
+{
+  "package": "componentized:valkey-tcp-connector-latch",
+  "version": "0.3.1-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/tcp-connector-latch",
+    "tag": "0.3.1-dev",
+    "digest": "sha256:fe9f25a96be64d535fa1b879b8b1a76740f092462d36a6a24bba256b870e4a26",
+    "layer_digest": "sha256:97efbdc64675d0f489a97ba42ada280de97a6cbf8c03b8f77b5d3406abede06c",
+    "size": 423265,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/valkey",
+      "git_ref": "refs/heads/main",
+      "log_index": 4017528205
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/tcp-connector-latch",
+    "tag": "0.3.1-dev_debug",
+    "digest": "sha256:9e8c88a289c7550a886180fc343575cc4b784c54d7ff8de4f58a463385100008",
+    "layer_digest": "sha256:6629fa4eb8fb5d8bbecaec05ae072a0d921beca13eecd396edb8ecf156b35e8f",
+    "size": 4602989,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/valkey",
+      "git_ref": "refs/heads/main",
+      "log_index": 4017538384
+    }
+  },
+  "created": "2026-11-20T04:44:03.353690491Z",
+  "annotations": {
+    "org.opencontainers.image.description": "A `componentized:sockets` latch limiting network access to the Valkey server in the `tcp-connector` secrets, denying every other socket.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "fea48c1b0bc5d38d33434d3a92e86f0bfb332365",
+    "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
+    "org.opencontainers.image.title": "componentized:valkey-tcp-connector-latch",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/fea48c1b0bc5d38d33434d3a92e86f0bfb332365/components/tcp-connector-latch",
+    "org.opencontainers.image.version": "v0.3.1-dev"
+  },
+  "imports": [
+    "componentized:secrets/store@0.1.1",
+    "componentized:secrets/types@0.1.1",
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:secrets",
+      "version": "0.1.1"
+    },
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:43dd0b8606e3486cc628b26c6c40e4efbdef8f11b6e6687e30b2873b483e7386",
+      "size": 3943,
+      "code": true
+    },
+    {
+      "digest": "sha256:a9cf58c2f9a238a14db53a332524d93e699375b791ebc123ec98e121d800ff02",
+      "size": 29761,
+      "code": true
+    },
+    {
+      "digest": "sha256:09f1e1ae0e2c2383dc4d88e94eb8ec44cf64c06dea1c78cbc5c8ca6ae970072c",
+      "size": 67007,
+      "code": true
+    },
+    {
+      "digest": "sha256:764ac8216010d05b5c4a2f0e2398cbce4403492b0363383bdd9d848ad17d3357",
+      "size": 41695,
+      "code": true
+    },
+    {
+      "digest": "sha256:e778a6100a365bc134bdd1ac8faf3eeaadd195b899de2b5d569b6903a317aec2",
+      "size": 30833,
+      "code": true
+    },
+    {
+      "digest": "sha256:27461fb246b9b6aeefb9d0d342092fd22213f18786ea76fa6e286a277e7e22e4",
+      "size": 122600,
+      "code": true
+    },
+    {
+      "digest": "sha256:38ef841bfdcc41b39fa104fc0e1a9c13c5ff1bf3d620c9fb6b1c263d07268c2b",
+      "size": 30749,
+      "code": true
+    },
+    {
+      "digest": "sha256:c64e7afdca25e5efd92fb821992c3c223951d6f2f69112ddd9ebdb7200823e41",
+      "size": 33350,
+      "code": true
+    },
+    {
+      "digest": "sha256:f33361778cce609f45952601fa23bb80830e66cc57f96b8ea795ccb881c74555",
+      "size": 60915,
+      "code": true
+    }
+  ],
+  "wiring": {
+    "instances": [
+      {
+        "part": 0,
+        "name": "tcp-connector-constants"
+      },
+      {
+        "part": 1,
+        "name": "lookup-config",
+        "args": [
+          {
+            "name": "componentized:valkey/tcp-connector-constants@0.3.1-dev",
+            "instance": 0,
+            "export": "componentized:valkey/tcp-connector-constants@0.3.1-dev"
+          },
+          {
+            "name": "componentized:secrets/types@0.1.1",
+            "import": "componentized:secrets/types@0.1.1"
+          },
+          {
+            "name": "componentized:secrets/store@0.1.1",
+            "import": "componentized:secrets/store@0.1.1"
+          }
+        ]
+      },
+      {
+        "part": 2,
+        "name": "lookup-glob",
+        "args": [
+          {
+            "name": "wasi:config/store@0.2.0-rc.1",
+            "instance": 1,
+            "export": "wasi:config/store@0.2.0-rc.1"
+          },
+          {
+            "name": "wasi:logging/logging@0.1.0-draft",
+            "import": "wasi:logging/logging@0.1.0-draft"
+          },
+          {
+            "name": "wasi:sockets/types@0.3.0",
+            "import": "wasi:sockets/types@0.3.0"
+          }
+        ]
+      },
+      {
+        "part": 3,
+        "name": "connect",
+        "args": [
+          {
+            "name": "wasi:sockets/types@0.3.0",
+            "import": "wasi:sockets/types@0.3.0"
+          }
+        ]
+      },
+      {
+        "part": 4,
+        "name": "egress-config",
+        "args": [
+          {
+            "name": "componentized:valkey/tcp-connector-constants@0.3.1-dev",
+            "instance": 0,
+            "export": "componentized:valkey/tcp-connector-constants@0.3.1-dev"
+          },
+          {
+            "name": "componentized:secrets/types@0.1.1",
+            "import": "componentized:secrets/types@0.1.1"
+          },
+          {
+            "name": "componentized:secrets/store@0.1.1",
+            "import": "componentized:secrets/store@0.1.1"
+          }
+        ]
+      },
+      {
+        "part": 5,
+        "name": "cidr-egress",
+        "args": [
+          {
+            "name": "wasi:config/store@0.2.0-rc.1",
+            "instance": 4,
+            "export": "wasi:config/store@0.2.0-rc.1"
+          },
+          {
+            "name": "wasi:logging/logging@0.1.0-draft",
+            "import": "wasi:logging/logging@0.1.0-draft"
+          },
+          {
+            "name": "wasi:sockets/types@0.3.0",
+            "import": "wasi:sockets/types@0.3.0"
+          }
+        ]
+      },
+      {
+        "part": 6,
+        "name": "udp",
+        "args": [
+          {
+            "name": "wasi:sockets/types@0.3.0",
+            "import": "wasi:sockets/types@0.3.0"
+          }
+        ]
+      },
+      {
+        "part": 7,
+        "name": "bind",
+        "args": [
+          {
+            "name": "wasi:sockets/types@0.3.0",
+            "import": "wasi:sockets/types@0.3.0"
+          }
+        ]
+      },
+      {
+        "part": 8,
+        "name": "latch",
+        "args": [
+          {
+            "name": "latch4",
+            "instance": 5,
+            "export": "componentized:sockets/latch@0.1.0"
+          },
+          {
+            "name": "latch3",
+            "instance": 2,
+            "export": "componentized:sockets/latch@0.1.0"
+          },
+          {
+            "name": "latch2",
+            "instance": 3,
+            "export": "componentized:sockets/latch@0.1.0"
+          },
+          {
+            "name": "latch1",
+            "instance": 7,
+            "export": "componentized:sockets/latch@0.1.0"
+          },
+          {
+            "name": "latch0",
+            "instance": 6,
+            "export": "componentized:sockets/latch@0.1.0"
+          },
+          {
+            "name": "wasi:sockets/types@0.3.0",
+            "import": "wasi:sockets/types@0.3.0"
+          }
+        ]
+      }
+    ],
+    "exports": [
+      {
+        "name": "componentized:sockets/latch@0.1.0",
+        "instance": 8,
+        "export": "componentized:sockets/latch@0.1.0"
+      }
+    ]
+  },
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/valkey",
+    "git_ref": "refs/heads/main",
+    "log_index": 4017532578
+  },
+  "indexed_at": "2026-11-20T04:47:47Z"
+}

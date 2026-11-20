@@ -1,0 +1,53 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [],
+  "dependencies": [
+    {
+      "dependsOn": [],
+      "ref": "component:componentized:valkey"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "component:componentized:valkey",
+      "description": "A WASM component client for Valkey (and Redis).",
+      "externalReferences": [
+        {
+          "comment": "revision fea48c1b0bc5d38d33434d3a92e86f0bfb332365",
+          "type": "vcs",
+          "url": "https://github.com/componentized/valkey.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/componentized/valkey/tree/fea48c1b0bc5d38d33434d3a92e86f0bfb332365"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "dfa1281d80f398c96b9d5434d7bdaa1050a8547c2311c7966c3c5a643ed1593a"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "componentized:valkey",
+      "purl": "pkg:oci/valkey@sha256%3Ac821348d6a203f68088252b1db5bf06f06244d8dc2bf235372580da94cbbf328?repository_url=ghcr.io/componentized/valkey&tag=0.3.1-dev",
+      "type": "library",
+      "version": "0.3.1-dev"
+    },
+    "timestamp": "2026-11-20T04:23:56Z",
+    "tools": {
+      "components": [
+        {
+          "name": "wkg",
+          "type": "application"
+        }
+      ]
+    }
+  },
+  "specVersion": "1.6",
+  "version": 1
+}

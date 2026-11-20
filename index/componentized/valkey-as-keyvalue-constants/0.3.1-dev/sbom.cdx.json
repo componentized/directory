@@ -1,0 +1,68 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "pkg:cargo/componentized-constants-cli@0.2.0",
+      "name": "componentized-constants-cli",
+      "purl": "pkg:cargo/componentized-constants-cli@0.2.0",
+      "type": "library",
+      "version": "0.2.0"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "pkg:cargo/componentized-constants-cli@0.2.0"
+      ],
+      "ref": "component:componentized:valkey-as-keyvalue-constants"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:cargo/componentized-constants-cli@0.2.0"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "component:componentized:valkey-as-keyvalue-constants",
+      "description": "The keys of the `as-keyvalue` secrets and their defaults, as constants.",
+      "externalReferences": [
+        {
+          "comment": "revision fea48c1b0bc5d38d33434d3a92e86f0bfb332365",
+          "type": "vcs",
+          "url": "https://github.com/componentized/valkey.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/componentized/valkey/tree/fea48c1b0bc5d38d33434d3a92e86f0bfb332365/components/as-keyvalue-constants"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "86b8a05292135975f20a38fced65dc29ae3c24c9a6aa7059e6d75ddfe8e6bcd1"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "componentized:valkey-as-keyvalue-constants",
+      "purl": "pkg:oci/as-keyvalue-constants@sha256%3A85b4b35c63810b9fff2b3158a26130527a90d608a2bcc29c7d3e603fea28bc61?repository_url=ghcr.io/componentized/valkey/as-keyvalue-constants&tag=0.3.1-dev",
+      "type": "library",
+      "version": "0.3.1-dev"
+    },
+    "timestamp": "2026-11-20T04:23:56Z",
+    "tools": {
+      "components": [
+        {
+          "name": "componentized-constants-cli",
+          "type": "application",
+          "version": "0.2.0"
+        }
+      ]
+    }
+  },
+  "specVersion": "1.6",
+  "version": 1
+}

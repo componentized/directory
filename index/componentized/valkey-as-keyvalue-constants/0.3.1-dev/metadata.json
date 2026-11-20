@@ -1,0 +1,56 @@
+{
+  "package": "componentized:valkey-as-keyvalue-constants",
+  "version": "0.3.1-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/as-keyvalue-constants",
+    "tag": "0.3.1-dev",
+    "digest": "sha256:85b4b35c63810b9fff2b3158a26130527a90d608a2bcc29c7d3e603fea28bc61",
+    "layer_digest": "sha256:86b8a05292135975f20a38fced65dc29ae3c24c9a6aa7059e6d75ddfe8e6bcd1",
+    "size": 1412,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/valkey",
+      "git_ref": "refs/heads/main",
+      "log_index": 4017366164
+    }
+  },
+  "created": "2026-11-20T04:37:19.133964016Z",
+  "annotations": {
+    "org.opencontainers.image.description": "The keys of the `as-keyvalue` secrets and their defaults, as constants.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "fea48c1b0bc5d38d33434d3a92e86f0bfb332365",
+    "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
+    "org.opencontainers.image.title": "componentized:valkey-as-keyvalue-constants",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/fea48c1b0bc5d38d33434d3a92e86f0bfb332365/components/as-keyvalue-constants",
+    "org.opencontainers.image.version": "v0.3.1-dev"
+  },
+  "exports": [
+    "componentized:valkey/as-keyvalue-constants@0.3.1-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:valkey",
+      "version": "0.3.1-dev"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:6345ca37d79c4d2cfb3cacb89419119d248ff906a45f20c670e458a196112671",
+      "size": 138
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/valkey",
+    "git_ref": "refs/heads/main",
+    "log_index": 4017368632
+  },
+  "indexed_at": "2026-11-20T04:46:49Z"
+}
