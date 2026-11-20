@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/tcp-connector-latch",
     "tag": "0.3.0-dev",
-    "digest": "sha256:d60fa528663770f7df0d13fd8ee3041686e7638b5d4e7651532ff48f63834dd3",
+    "digest": "sha256:1a09f6e29b683b9dcf73018f4afe0c055fab2269ee0ba9fdf534c1c9a9f465b6",
     "layer_digest": "sha256:f3337b1a2cf90e57e767fb40f355d3c8c52c6df34a3dc625e62020c919db45b9",
     "size": 423265,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/valkey",
       "git_ref": "refs/heads/main",
-      "log_index": 4015909605
+      "log_index": 4015937702
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/valkey/tcp-connector-latch",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:0e45aaf5b6a508336cb065368eb7af80e933399e8a630cde19dda7ab5ee5464c",
+    "digest": "sha256:9d2df56aa7edefd3411202a426e4b4b244abc8beb2e34b0598566664239f930e",
     "layer_digest": "sha256:d648e8e8e078be914b59af34567559cb562836c4360cb62d6ed5c4aa6ac0cb8d",
     "size": 4602989,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/valkey",
       "git_ref": "refs/heads/main",
-      "log_index": 4015914921
+      "log_index": 4015946207
     }
   },
-  "created": "2026-11-20T03:33:18.742597706Z",
+  "created": "2026-11-20T03:34:26.253034685Z",
   "annotations": {
     "org.opencontainers.image.description": "A `componentized:sockets` latch limiting network access to the Valkey server in the `tcp-connector` secrets, denying every other socket.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "9fac0de28bc2183a07d369748b5673274cc2d0f8",
+    "org.opencontainers.image.revision": "96d2c274e3bba5cb7734492851f0fecea593e26e",
     "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
     "org.opencontainers.image.title": "componentized:valkey-tcp-connector-latch",
-    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/9fac0de28bc2183a07d369748b5673274cc2d0f8/components/tcp-connector-latch",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/96d2c274e3bba5cb7734492851f0fecea593e26e/components/tcp-connector-latch",
     "org.opencontainers.image.version": "v0.3.0-dev"
   },
   "imports": [
@@ -281,7 +281,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/valkey",
     "git_ref": "refs/heads/main",
-    "log_index": 4015911089
+    "log_index": 4015940175
   },
-  "indexed_at": "2026-11-20T03:33:55Z"
+  "indexed_at": "2026-11-20T03:42:12Z"
 }
