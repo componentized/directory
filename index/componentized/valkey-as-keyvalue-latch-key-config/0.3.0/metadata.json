@@ -1,0 +1,86 @@
+{
+  "package": "componentized:valkey-as-keyvalue-latch-key-config",
+  "version": "0.3.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/as-keyvalue-latch-key-config",
+    "tag": "0.3.0",
+    "digest": "sha256:700f5e6bc23ad0da3221a2a722c2b642951e33f0670b99dff230c9a3bd9dd079",
+    "layer_digest": "sha256:027f4fc2a0bd857f71c7ece6a6bdb61cc92f3523d35385a4002955fd7ffc1847",
+    "size": 6218,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/tags/v0.3.0",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/valkey",
+      "git_ref": "refs/tags/v0.3.0",
+      "log_index": 4017094387
+    }
+  },
+  "created": "2026-11-20T04:26:48.899914240Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Denies access to all secret keys except `key-prefix`.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "76c0a879a5da9f153b030b61f5818d735dad82f6",
+    "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
+    "org.opencontainers.image.title": "componentized:valkey-as-keyvalue-latch-key-config",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/76c0a879a5da9f153b030b61f5818d735dad82f6/components/as-keyvalue-latch-key-config",
+    "org.opencontainers.image.version": "v0.3.0"
+  },
+  "exports": [
+    "wasi:config/store@0.2.0-rc.1"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:99dcdb26d491019ff3239f30a891aa3558759829db465535b6b15fe6fd8530ce",
+      "size": 968,
+      "code": true
+    },
+    {
+      "digest": "sha256:ebe174edb9d33d8f9eb5811f34f3e0235ce9955ca3e6521575fc51e404835dc9",
+      "size": 4996,
+      "code": true
+    }
+  ],
+  "wiring": {
+    "instances": [
+      {
+        "part": 0
+      },
+      {
+        "part": 1,
+        "args": [
+          {
+            "name": "componentized:constants/config-values@0.1.1",
+            "instance": 0,
+            "export": "componentized:constants/config-values@0.1.1"
+          }
+        ]
+      }
+    ],
+    "exports": [
+      {
+        "name": "wasi:config/store@0.2.0-rc.1",
+        "instance": 1,
+        "export": "wasi:config/store@0.2.0-rc.1"
+      }
+    ]
+  },
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/tags/v0.3.0",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/valkey",
+    "git_ref": "refs/tags/v0.3.0",
+    "log_index": 4017097271
+  },
+  "indexed_at": "2026-11-20T04:35:49Z"
+}

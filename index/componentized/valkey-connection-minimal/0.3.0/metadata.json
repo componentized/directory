@@ -1,0 +1,81 @@
+{
+  "package": "componentized:valkey-connection-minimal",
+  "version": "0.3.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/connection-minimal",
+    "tag": "0.3.0",
+    "digest": "sha256:09e9434357c6e51c0fe2143f4c3761f03f1c956c08c49f5ee52a07b336ac1797",
+    "layer_digest": "sha256:13ef27c71ecb224fb6a64fb340b4b9ff9b3871f5b011350e27e781cf038d33ee",
+    "size": 331349,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/tags/v0.3.0",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/valkey",
+      "git_ref": "refs/tags/v0.3.0",
+      "log_index": 4017192002
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/connection-minimal",
+    "tag": "0.3.0_debug",
+    "digest": "sha256:e50fb06e83bdc0c90af2401e4b29395a72114c44008c4e8363a42d5141d7898e",
+    "layer_digest": "sha256:24196693339461489c10bb0b3f1e0d4c46eb499a2243c79a036690b2f0536302",
+    "size": 3937040,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/tags/v0.3.0",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/valkey",
+      "git_ref": "refs/tags/v0.3.0",
+      "log_index": 4017200990
+    }
+  },
+  "created": "2026-11-20T04:30:22.410634951Z",
+  "annotations": {
+    "org.opencontainers.image.description": "A connection component built without pub/sub, for a smaller component when subscriptions are not needed.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "76c0a879a5da9f153b030b61f5818d735dad82f6",
+    "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
+    "org.opencontainers.image.title": "componentized:valkey-connection-minimal",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/76c0a879a5da9f153b030b61f5818d735dad82f6/components/connection-minimal",
+    "org.opencontainers.image.version": "v0.3.0"
+  },
+  "imports": [
+    "componentized:valkey/types@0.3.0",
+    "wasi:clocks/monotonic-clock@0.3.0",
+    "wasi:clocks/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:valkey/connection@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:valkey",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:f86d39638b5b48d4b7228c21612d4bdf827224a02138d8eef20bdc19251e2698",
+      "size": 3524
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/tags/v0.3.0",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/valkey",
+    "git_ref": "refs/tags/v0.3.0",
+    "log_index": 4017195321
+  },
+  "indexed_at": "2026-11-20T04:36:15Z"
+}

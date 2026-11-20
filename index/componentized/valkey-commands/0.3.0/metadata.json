@@ -1,0 +1,76 @@
+{
+  "package": "componentized:valkey-commands",
+  "version": "0.3.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/commands",
+    "tag": "0.3.0",
+    "digest": "sha256:ea0781924ad54a1ac9d9ce7ced139c3054f4257c989b9383fe5f12dfce2df640",
+    "layer_digest": "sha256:8c5331aa4adb576e6bbdf997a3d119e8e2ff9ac12cb17a0b0756b2ac24d3df60",
+    "size": 1710077,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/tags/v0.3.0",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/valkey",
+      "git_ref": "refs/tags/v0.3.0",
+      "log_index": 4017149767
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/valkey/commands",
+    "tag": "0.3.0_debug",
+    "digest": "sha256:df95ac9e6b0ae0d8152d9336863451e3691c34c8dc347640c22826dcbf230b96",
+    "layer_digest": "sha256:e1a19120a24929dea27a9e3778aeaabd44b630dc9b7b346f619d0a98b4309e7c",
+    "size": 19879740,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/tags/v0.3.0",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/valkey",
+      "git_ref": "refs/tags/v0.3.0",
+      "log_index": 4017159704
+    }
+  },
+  "created": "2026-11-20T04:28:51.571950321Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Every implemented command interface, in one component.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "76c0a879a5da9f153b030b61f5818d735dad82f6",
+    "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
+    "org.opencontainers.image.title": "componentized:valkey-commands",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/76c0a879a5da9f153b030b61f5818d735dad82f6/components/commands",
+    "org.opencontainers.image.version": "v0.3.0"
+  },
+  "imports": [
+    "componentized:valkey/connection@0.3.0",
+    "componentized:valkey/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:valkey/commands@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:valkey",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:66c48f9fce36aadba511c842e349820cc70d536f17688ea9629765cf7efb7329",
+      "size": 57648
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/valkey/.github/workflows/ci.yaml@refs/tags/v0.3.0",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/valkey",
+    "git_ref": "refs/tags/v0.3.0",
+    "log_index": 4017153916
+  },
+  "indexed_at": "2026-11-20T04:36:05Z"
+}

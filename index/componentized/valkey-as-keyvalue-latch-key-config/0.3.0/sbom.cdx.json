@@ -1,0 +1,68 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "pkg:cargo/componentized-static-config-cli@0.3.0",
+      "name": "componentized-static-config-cli",
+      "purl": "pkg:cargo/componentized-static-config-cli@0.3.0",
+      "type": "library",
+      "version": "0.3.0"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "pkg:cargo/componentized-static-config-cli@0.3.0"
+      ],
+      "ref": "component:componentized:valkey-as-keyvalue-latch-key-config"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:cargo/componentized-static-config-cli@0.3.0"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "component:componentized:valkey-as-keyvalue-latch-key-config",
+      "description": "Denies access to all secret keys except `key-prefix`.",
+      "externalReferences": [
+        {
+          "comment": "revision 76c0a879a5da9f153b030b61f5818d735dad82f6",
+          "type": "vcs",
+          "url": "https://github.com/componentized/valkey.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/componentized/valkey/tree/76c0a879a5da9f153b030b61f5818d735dad82f6/components/as-keyvalue-latch-key-config"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "027f4fc2a0bd857f71c7ece6a6bdb61cc92f3523d35385a4002955fd7ffc1847"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "componentized:valkey-as-keyvalue-latch-key-config",
+      "purl": "pkg:oci/as-keyvalue-latch-key-config@sha256%3A700f5e6bc23ad0da3221a2a722c2b642951e33f0670b99dff230c9a3bd9dd079?repository_url=ghcr.io/componentized/valkey/as-keyvalue-latch-key-config&tag=0.3.0",
+      "type": "library",
+      "version": "0.3.0"
+    },
+    "timestamp": "2026-11-20T04:15:10Z",
+    "tools": {
+      "components": [
+        {
+          "name": "componentized-static-config-cli",
+          "type": "application",
+          "version": "0.3.0"
+        }
+      ]
+    }
+  },
+  "specVersion": "1.6",
+  "version": 1
+}

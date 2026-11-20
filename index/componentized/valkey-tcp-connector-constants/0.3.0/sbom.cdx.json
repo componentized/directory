@@ -1,0 +1,68 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "pkg:cargo/componentized-constants-cli@0.2.0",
+      "name": "componentized-constants-cli",
+      "purl": "pkg:cargo/componentized-constants-cli@0.2.0",
+      "type": "library",
+      "version": "0.2.0"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "pkg:cargo/componentized-constants-cli@0.2.0"
+      ],
+      "ref": "component:componentized:valkey-tcp-connector-constants"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:cargo/componentized-constants-cli@0.2.0"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "component:componentized:valkey-tcp-connector-constants",
+      "description": "The keys of the `tcp-connector` config and their defaults, as constants.",
+      "externalReferences": [
+        {
+          "comment": "revision 76c0a879a5da9f153b030b61f5818d735dad82f6",
+          "type": "vcs",
+          "url": "https://github.com/componentized/valkey.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/componentized/valkey/tree/76c0a879a5da9f153b030b61f5818d735dad82f6/components/tcp-connector-constants"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "83e131fff5e329c1483379a8c3dc3d8ac2ffd64513ba5d7de4e14dbf7223022c"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "componentized:valkey-tcp-connector-constants",
+      "purl": "pkg:oci/tcp-connector-constants@sha256%3A66c25750578d454abde572e58bf3daf0e03dec50d3fb48b495f96cb6d3d4bc75?repository_url=ghcr.io/componentized/valkey/tcp-connector-constants&tag=0.3.0",
+      "type": "library",
+      "version": "0.3.0"
+    },
+    "timestamp": "2026-11-20T04:15:10Z",
+    "tools": {
+      "components": [
+        {
+          "name": "componentized-constants-cli",
+          "type": "application",
+          "version": "0.2.0"
+        }
+      ]
+    }
+  },
+  "specVersion": "1.6",
+  "version": 1
+}

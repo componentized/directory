@@ -1,0 +1,5 @@
+package root:component;
+
+world root {
+  export componentized:valkey/as-keyvalue-constants@0.3.0;
+}
