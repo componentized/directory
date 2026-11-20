@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-delegate-tcp",
     "tag": "0.1.1-dev",
-    "digest": "sha256:1391cd970323df75d2e82b0c5b3e9e159d98debf2ceeb2fdb27f457fe6f78b7f",
+    "digest": "sha256:0ab5d4eef3fa0fb0adec5c9de2ee3d40b3afbdc75abbef8fca3e27da0703fe91",
     "layer_digest": "sha256:a49000385ca3c76ddf11b23dcc2880be2777a81703d327ab5c1a1468e8115f4e",
     "size": 37891,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 3947861032
+      "log_index": 4024238319
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-delegate-tcp",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:c1825931aa7a131e5a3971bf091210a4dc5c40b24e5923a4050146a16b4454a0",
+    "digest": "sha256:241c43e2cf4d6aaea84b3666939393615a035d00c81efc7f8fde17f5852f8b82",
     "layer_digest": "sha256:0a0723db6a7aebf191e80085fd0c14f88b82e779a34794e545d1c8167421f9cd",
     "size": 356286,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 3947863459
+      "log_index": 4024238579
     }
   },
-  "created": "2026-11-17T15:11:07.996396571Z",
+  "created": "2026-11-20T12:04:58.840573663Z",
   "annotations": {
     "org.opencontainers.image.description": "Sockets latch that wraps another latch, delegating only tcp socket operations to it. Udp socket and ip-name-lookup operations are deferred without consulting the wrapped latch, it neither authorizes nor observes them.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "750aa485c5599af8cb3e1579d7b40cdb7b0eb1be",
+    "org.opencontainers.image.revision": "a906b5014ae0b0e229107489d79303a7283a01b6",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-latch-delegate-tcp",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/750aa485c5599af8cb3e1579d7b40cdb7b0eb1be/components/latch-delegate-tcp",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/a906b5014ae0b0e229107489d79303a7283a01b6/components/latch-delegate-tcp",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -71,5 +71,5 @@
   "sbom": {
     "status": "missing"
   },
-  "indexed_at": "2026-11-17T15:21:32Z"
+  "indexed_at": "2026-11-20T12:12:05Z"
 }

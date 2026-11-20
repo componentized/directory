@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-cidr-bind",
     "tag": "0.1.1-dev",
-    "digest": "sha256:407820f6648be57b6f465d9892b6dc360c79a71ab94ee0f6d42aa8d4646720f7",
+    "digest": "sha256:dd5027041284ad9ee157e5992ce120f05bc7bf6fe6263f0eb032553f7978a3f1",
     "layer_digest": "sha256:921427ff69f06b9ae3ae14cfaadb03bddcc9d8b5809e4905b0234b0183a85bdb",
     "size": 98703,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 3947828241
+      "log_index": 4024236240
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-cidr-bind",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:75771cf6b190f34fb2d51d330bf740f7a56d35f068a049e74596913a8bb36e03",
+    "digest": "sha256:98d875d52139dde2e370efbacc0781de9ee256f892c3ba648c2c2a19a62d3b58",
     "layer_digest": "sha256:6517de1879d2548ac6b5e54def415520fbe7d4c35dd840d8d0e2a995a2ee7878",
     "size": 1137426,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 3947831246
+      "log_index": 4024236486
     }
   },
-  "created": "2026-11-17T15:09:30.140545977Z",
+  "created": "2026-11-20T12:03:35.216326263Z",
   "annotations": {
     "org.opencontainers.image.description": "Socket latch that uses CIDR ranges to grant or deny binding tcp/udp sockets to a local address and port.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "750aa485c5599af8cb3e1579d7b40cdb7b0eb1be",
+    "org.opencontainers.image.revision": "a906b5014ae0b0e229107489d79303a7283a01b6",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-latch-cidr-bind",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/750aa485c5599af8cb3e1579d7b40cdb7b0eb1be/components/latch-cidr-bind",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/a906b5014ae0b0e229107489d79303a7283a01b6/components/latch-cidr-bind",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -80,5 +80,5 @@
   "sbom": {
     "status": "missing"
   },
-  "indexed_at": "2026-11-17T15:21:13Z"
+  "indexed_at": "2026-11-20T12:11:48Z"
 }

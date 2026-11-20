@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/trace-types",
     "tag": "0.1.1-dev",
-    "digest": "sha256:9b7115f3c49ddf6221ff2bd1fe997b9105b3821932c8d9335fa96ded26c3370d",
+    "digest": "sha256:8826f03fdbcade84c29fd043ac3d30a1481d64bba659633caeb28d8defb70b8d",
     "layer_digest": "sha256:ac1014bb488b4b1a054d03f83c6e0ad98654080d488e14112f1b21e96cc0fea7",
     "size": 209370,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 3947974980
+      "log_index": 4024263461
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/trace-types",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:be6eb956d15db6d1d49f8b7c46a0e635f3eb3ff9e1065c258282c3ed71a87537",
+    "digest": "sha256:52aced364b0b738e21e1b2bb58cd48d084d803674948d3cf084d8893b2d31181",
     "layer_digest": "sha256:a5c3f934d7aa1f0e84d91fc9d210b9571490e0a2bb0742235156a97b51d010d7",
     "size": 1790170,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 3947978823
+      "log_index": 4024267064
     }
   },
-  "created": "2026-11-17T15:19:04.127116789Z",
+  "created": "2026-11-20T12:12:42.197556774Z",
   "annotations": {
     "org.opencontainers.image.description": "Trace wasi:sockets/types calls using a logger.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "750aa485c5599af8cb3e1579d7b40cdb7b0eb1be",
+    "org.opencontainers.image.revision": "a906b5014ae0b0e229107489d79303a7283a01b6",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-trace-types",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/750aa485c5599af8cb3e1579d7b40cdb7b0eb1be/components/trace-types",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/a906b5014ae0b0e229107489d79303a7283a01b6/components/trace-types",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -76,5 +76,5 @@
   "sbom": {
     "status": "missing"
   },
-  "indexed_at": "2026-11-17T15:23:23Z"
+  "indexed_at": "2026-11-20T12:13:41Z"
 }

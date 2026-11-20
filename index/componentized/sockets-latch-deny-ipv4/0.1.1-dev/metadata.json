@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-deny-ipv4",
     "tag": "0.1.1-dev",
-    "digest": "sha256:002f7ff6d89530b0f45ad946d3a36ccca5a9a6276b2f5f80286c4eda4ea4d586",
+    "digest": "sha256:55eafaed3c030ca2c784b0e9b6a6a108a0ef2b3eb6bf671b4eea265190ff4adb",
     "layer_digest": "sha256:3b197101a8ba257e2ee1f3f4c5e0885b84b3c291a99ca34399918141b1a7f177",
     "size": 63814,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 3947901763
+      "log_index": 4024242702
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-deny-ipv4",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:4e9704a4a84398f5b55b1f17366474969753114c7e8ebeb524a17b7a4f9a7964",
+    "digest": "sha256:ee95f01d20fbef746edee800075a40b1db14d6096a389ce3ebad78ded1d5c02c",
     "layer_digest": "sha256:265a2b9ca8e58878e0563ea280ed5998a3bdb4b91e1465cf1d30197f4aea3f35",
     "size": 487901,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 3947904185
+      "log_index": 4024242903
     }
   },
-  "created": "2026-11-17T15:13:51.192961484Z",
+  "created": "2026-11-20T12:07:34.711015219Z",
   "annotations": {
     "org.opencontainers.image.description": "Sockets latch that implicitly denies all IPv4 operations.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "750aa485c5599af8cb3e1579d7b40cdb7b0eb1be",
+    "org.opencontainers.image.revision": "a906b5014ae0b0e229107489d79303a7283a01b6",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-latch-deny-ipv4",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/750aa485c5599af8cb3e1579d7b40cdb7b0eb1be/components/latch-deny-ipv4",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/a906b5014ae0b0e229107489d79303a7283a01b6/components/latch-deny-ipv4",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -70,5 +70,5 @@
   "sbom": {
     "status": "missing"
   },
-  "indexed_at": "2026-11-17T15:22:11Z"
+  "indexed_at": "2026-11-20T12:12:38Z"
 }

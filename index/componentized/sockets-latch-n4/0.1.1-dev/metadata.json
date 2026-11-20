@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-n4",
     "tag": "0.1.1-dev",
-    "digest": "sha256:d73ece859d7662c49bc0207e831a078ba17698a10f4e5bc93b39385b39803a3f",
+    "digest": "sha256:b2a382e34c06381264ce6f5d5166565ff4eaee5e32e528567973cefdb0f95c4c",
     "layer_digest": "sha256:394763ffbe05c902b22d600f852d89c428b538f304ece5d9c2ceb550b8289bcd",
     "size": 55712,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 3947947952
+      "log_index": 4024248951
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-n4",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:eaa33c50b6171afd5bade831b3997c8f3ba273aab4168db3e5566fa01f6188d0",
+    "digest": "sha256:9796929e18a07a8549d12bc3a1280ccc51c3067b3fc55c1a0de607132fc568e7",
     "layer_digest": "sha256:f265b2472d2363a593bbfe2b99ac71439f1f9ebc4f64728f0bb54c7927696b83",
     "size": 512487,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 3947951074
+      "log_index": 4024249249
     }
   },
-  "created": "2026-11-17T15:17:15.296970251Z",
+  "created": "2026-11-20T12:10:55.602466542Z",
   "annotations": {
     "org.opencontainers.image.description": "Sockets latch that aggregates four other sockets latches.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "750aa485c5599af8cb3e1579d7b40cdb7b0eb1be",
+    "org.opencontainers.image.revision": "a906b5014ae0b0e229107489d79303a7283a01b6",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-latch-n4",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/750aa485c5599af8cb3e1579d7b40cdb7b0eb1be/components/latch-n4",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/a906b5014ae0b0e229107489d79303a7283a01b6/components/latch-n4",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -74,5 +74,5 @@
   "sbom": {
     "status": "missing"
   },
-  "indexed_at": "2026-11-17T15:22:59Z"
+  "indexed_at": "2026-11-20T12:13:20Z"
 }

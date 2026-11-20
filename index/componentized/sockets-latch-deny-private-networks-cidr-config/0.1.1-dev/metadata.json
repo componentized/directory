@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-deny-private-networks-cidr-config",
     "tag": "0.1.1-dev",
-    "digest": "sha256:2925a5271f1ff1e1f76c622c406f5b8dc956e175209fc17222ac3577ae66936b",
+    "digest": "sha256:c92c50feebe9ff1e8da9f72569e39f737ae2a9117d890cd4414884d839f34e0e",
     "layer_digest": "sha256:f4d2542be6d7b3cfca32c16eeef276ebc358510c9390d24d5b093b9eb4d03351",
     "size": 7437,
     "signature": {
@@ -16,7 +16,7 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 3947909285
+      "log_index": 4024243836
     }
   },
   "debug": {
@@ -35,14 +35,14 @@
       "log_index": 3321102190
     }
   },
-  "created": "2026-11-17T15:14:33.111465940Z",
+  "created": "2026-11-20T12:08:16.885258880Z",
   "annotations": {
     "org.opencontainers.image.description": "Static config for `latch-cidr-egress` that denies originating outbound traffic to addresses that are not globally reachable, like private networks, loopback, link local and cloud metadata endpoints.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "750aa485c5599af8cb3e1579d7b40cdb7b0eb1be",
+    "org.opencontainers.image.revision": "a906b5014ae0b0e229107489d79303a7283a01b6",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-latch-deny-private-networks-cidr-config",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/750aa485c5599af8cb3e1579d7b40cdb7b0eb1be/components/latch-deny-private-networks-cidr-config",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/a906b5014ae0b0e229107489d79303a7283a01b6/components/latch-deny-private-networks-cidr-config",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "exports": [
@@ -93,5 +93,5 @@
   "sbom": {
     "status": "missing"
   },
-  "indexed_at": "2026-11-17T15:22:21Z"
+  "indexed_at": "2026-11-20T12:12:47Z"
 }

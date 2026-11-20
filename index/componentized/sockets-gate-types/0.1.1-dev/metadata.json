@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/gate-types",
     "tag": "0.1.1-dev",
-    "digest": "sha256:89a13f275677038fbb39643279dee5f20157718458c6a315dd827846b0715fc5",
+    "digest": "sha256:ae865beefb04a52ab84f0533ac9c2196b00b6893e752528b98e65b82f6735337",
     "layer_digest": "sha256:9d134e7d9484ef44f261c521f263ef7a4068c3b1ce631547518ef5b7ac326522",
     "size": 233217,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 3947818432
+      "log_index": 4024234914
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/gate-types",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:1b81c106ccc17d8ba6fcdd6be6249f933b610a3017cdde48ad8c243fba001fb9",
+    "digest": "sha256:f6f4a45125bfb574593445a3267dee4408a21f4ca97c3b598c01592f061e4828",
     "layer_digest": "sha256:f11ed91abbf6c4310dc7b92732ad3fcc961b117e95a9ff4dd5faf69bd5dbca26",
     "size": 1994122,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 3947820772
+      "log_index": 4024235300
     }
   },
-  "created": "2026-11-17T15:08:46.445790497Z",
+  "created": "2026-11-20T12:02:51.437859651Z",
   "annotations": {
     "org.opencontainers.image.description": "Socket gate access control for tcp and udp sockets.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "750aa485c5599af8cb3e1579d7b40cdb7b0eb1be",
+    "org.opencontainers.image.revision": "a906b5014ae0b0e229107489d79303a7283a01b6",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-gate-types",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/750aa485c5599af8cb3e1579d7b40cdb7b0eb1be/components/gate-types",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/a906b5014ae0b0e229107489d79303a7283a01b6/components/gate-types",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -81,5 +81,5 @@
   "sbom": {
     "status": "missing"
   },
-  "indexed_at": "2026-11-17T15:21:03Z"
+  "indexed_at": "2026-11-20T12:11:39Z"
 }
