@@ -7,42 +7,42 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/keyvalue-credential-admin",
     "tag": "0.0.5-dev",
-    "digest": "sha256:707d06361206dcd5cf98e7b6c7b318174a161a71a04b9123301f80048ced9744",
-    "layer_digest": "sha256:cf811f4bfff592082a32f92cac07a6e1bed265aa85a0382bf8cbeb97617226e8",
-    "size": 95305,
+    "digest": "sha256:4fd920f35dd14cb3156f00da624f745361148fd485c3b85786d8ecf495ffc189",
+    "layer_digest": "sha256:ff7d2f21a57b6f88b822cef1bc5783a453bf511644721e8b514b624dabc8f32d",
+    "size": 94831,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4025076046
+      "log_index": 4029474111
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/services/keyvalue-credential-admin",
     "tag": "0.0.5-dev_debug",
-    "digest": "sha256:cba565fc231ed39952909286bfa3c808d512b7e8e6b2e1753dfda48340e5f17c",
-    "layer_digest": "sha256:241cdc7fdff233d5690b9e1e7958e9a7dc72a251a44969758e3a6dbe784e6b9c",
-    "size": 315999,
+    "digest": "sha256:bb3575b9ee87bdb029689b4972ade6918dd8edc6a49fe08c5497d912af2080f9",
+    "layer_digest": "sha256:e00fe0c50622996af77153d346d9e49406fde852acb62b3f9b0308b61f85966b",
+    "size": 318754,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4025084295
+      "log_index": 4029477055
     }
   },
-  "created": "2026-11-20T12:44:51.747042653Z",
+  "created": "2026-11-20T21:48:27.889112693Z",
   "annotations": {
     "org.opencontainers.image.description": "Implements `componentized:services/credential-admin`, publishing and destroying the credentials of service bindings in a `wasi:keyvalue` bucket, named by the `bucket` key in `wasi:config`, `bindings` by default.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "f5b0150e7210002d78d43d798a9e5c7a63dc1898",
+    "org.opencontainers.image.revision": "326d0d724546d595c51aacc3548803855469393e",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-keyvalue-credential-admin",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/f5b0150e7210002d78d43d798a9e5c7a63dc1898/components/keyvalue-credential-admin",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/326d0d724546d595c51aacc3548803855469393e/components/keyvalue-credential-admin",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
@@ -80,7 +80,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/services",
     "git_ref": "refs/heads/main",
-    "log_index": 4025079217
+    "log_index": 4029474812
   },
-  "indexed_at": "2026-11-20T12:54:11Z"
+  "indexed_at": "2026-11-20T21:52:47Z"
 }

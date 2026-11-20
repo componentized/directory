@@ -7,42 +7,42 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/webhook-credential-store",
     "tag": "0.0.5-dev",
-    "digest": "sha256:a8dd3a589a67045c4f1c2d6a088e6264b0a2805a926c8ec62842bd0eef7dbf9c",
-    "layer_digest": "sha256:ce6b24e38cb6c7f99e0081d13d29d7ed4b74a7eb10ed03b14bdf9f30dd74ad5e",
-    "size": 229891,
+    "digest": "sha256:3415a4ee4cefa3b1d51ef4ce512629dd494d5b7cab594c9b4bc1cf15686a8115",
+    "layer_digest": "sha256:a9ea1303dc33c8dffc926bfe54cb13a6198cee70f2e3b43651a4d894327a1dd4",
+    "size": 231391,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4025250722
+      "log_index": 4029493684
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/services/webhook-credential-store",
     "tag": "0.0.5-dev_debug",
-    "digest": "sha256:aaeddf84c26b9439510286062891e8362c8ce51f77a2c0d29ba2265718fa7947",
-    "layer_digest": "sha256:024714fc0289ac9ca984858da3fefb081553d4c011e8d209a1f1ee1c813426a8",
-    "size": 672116,
+    "digest": "sha256:765150bce16106f0354207390d02f86a8b48867851f687564da567b85e8e4b68",
+    "layer_digest": "sha256:8ec469612da8a747a9f07e5e5a2cf2e1e1f5be07a7f5d71ec2c63393f35f7b99",
+    "size": 676069,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4025265345
+      "log_index": 4029496426
     }
   },
-  "created": "2026-11-20T12:51:04.867808763Z",
+  "created": "2026-11-20T21:52:38.518775315Z",
   "annotations": {
     "org.opencontainers.image.description": "Implements `componentized:services/credential-store`, fetching the credentials of service bindings from a webhook over `wasi:http`, at the `scheme` and `host` keys in `wasi:config`.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "f5b0150e7210002d78d43d798a9e5c7a63dc1898",
+    "org.opencontainers.image.revision": "326d0d724546d595c51aacc3548803855469393e",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-webhook-credential-store",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/f5b0150e7210002d78d43d798a9e5c7a63dc1898/components/webhook-credential-store",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/326d0d724546d595c51aacc3548803855469393e/components/webhook-credential-store",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
@@ -80,7 +80,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/services",
     "git_ref": "refs/heads/main",
-    "log_index": 4025255522
+    "log_index": 4029494660
   },
-  "indexed_at": "2026-11-20T12:55:14Z"
+  "indexed_at": "2026-11-20T21:53:09Z"
 }

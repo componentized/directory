@@ -153,13 +153,13 @@
       "description": "A WASM component services lifecycle.",
       "externalReferences": [
         {
-          "comment": "revision f5b0150e7210002d78d43d798a9e5c7a63dc1898",
+          "comment": "revision 326d0d724546d595c51aacc3548803855469393e",
           "type": "vcs",
           "url": "https://github.com/componentized/services.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/services/tree/f5b0150e7210002d78d43d798a9e5c7a63dc1898"
+          "url": "https://github.com/componentized/services/tree/326d0d724546d595c51aacc3548803855469393e"
         }
       ],
       "hashes": [
@@ -174,11 +174,11 @@
         }
       ],
       "name": "componentized:services",
-      "purl": "pkg:oci/services@sha256%3Ad8da83c54a2378f635e5482a4750a809f2047650622a2c9df36a2b6314dad25c?repository_url=ghcr.io/componentized/services&tag=0.0.5-dev",
+      "purl": "pkg:oci/services@sha256%3Ac47337b39fab477d71ebe7b72a43b88a52c21f5c30e8aab2ecc1158486be36de?repository_url=ghcr.io/componentized/services&tag=0.0.5-dev",
       "type": "library",
       "version": "0.0.5-dev"
     },
-    "timestamp": "2026-11-20T12:33:31Z",
+    "timestamp": "2026-11-20T21:41:45Z",
     "tools": {
       "components": [
         {
