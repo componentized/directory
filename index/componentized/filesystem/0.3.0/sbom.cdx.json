@@ -1,0 +1,78 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "wit:wasi:filesystem@0.3.0",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "42921410cddcdce2e009fd65c9a763bfb3fb61e2c0a64ff71647cc4405470378"
+        }
+      ],
+      "name": "wasi:filesystem",
+      "properties": [
+        {
+          "name": "wkg:registry",
+          "value": "wasi.dev"
+        }
+      ],
+      "type": "library",
+      "version": "0.3.0"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "wit:wasi:filesystem@0.3.0"
+      ],
+      "ref": "component:componentized:filesystem"
+    },
+    {
+      "dependsOn": [],
+      "ref": "wit:wasi:filesystem@0.3.0"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "component:componentized:filesystem",
+      "description": "A collection of utility components that remix wasi:filesystem types and interfaces.",
+      "externalReferences": [
+        {
+          "comment": "revision 21f37eeb61609a485a9004ad96bfb19601f1b924",
+          "type": "vcs",
+          "url": "https://github.com/componentized/filesystem.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/componentized/filesystem/tree/21f37eeb61609a485a9004ad96bfb19601f1b924"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "09fda52ea9b88d7c5b7d2f0cbff9c169adfebe3a95fd368c4b0aa308b51a7012"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "componentized:filesystem",
+      "purl": "pkg:oci/filesystem@sha256%3Ac82f0dcce0e26b641996b56dd3a709a635774bc4aacaa6d0da34356b1e5f7393?repository_url=ghcr.io/componentized/filesystem&tag=0.3.0",
+      "type": "library",
+      "version": "0.3.0"
+    },
+    "timestamp": "2026-11-20T04:10:07Z",
+    "tools": {
+      "components": [
+        {
+          "name": "wkg",
+          "type": "application"
+        }
+      ]
+    }
+  },
+  "specVersion": "1.6",
+  "version": 1
+}

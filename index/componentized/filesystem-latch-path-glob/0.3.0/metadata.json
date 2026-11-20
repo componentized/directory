@@ -1,0 +1,95 @@
+{
+  "package": "componentized:filesystem-latch-path-glob",
+  "version": "0.3.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem/latch-path-glob",
+    "tag": "0.3.0",
+    "digest": "sha256:f5eea255b8c92da0a2d5b8f9a53e050107664e2b1b73c3a4df74eb8fc7193d8a",
+    "layer_digest": "sha256:f6601c7f69fc5e6d9a68dc302225ad194d17529187d8f69982dbe06457fbe54d",
+    "size": 82176,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/tags/v0.3.0",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/filesystem",
+      "git_ref": "refs/tags/v0.3.0",
+      "log_index": 4016913587
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem/latch-path-glob",
+    "tag": "0.3.0_debug",
+    "digest": "sha256:d8850f0409b24fbde810d644ab849cd021a23da96044a258b8debd4fb6c88a8d",
+    "layer_digest": "sha256:02806e4d0c39cc66418cb8ebff47ffbc2d88733a580397648a947916eb3771c0",
+    "size": 978178,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/tags/v0.3.0",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/filesystem",
+      "git_ref": "refs/tags/v0.3.0",
+      "log_index": 4016922699
+    }
+  },
+  "created": "2026-11-20T04:19:49.282998483Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Filesystem latch that uses glob patterns to defer or deny operations on a path.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "21f37eeb61609a485a9004ad96bfb19601f1b924",
+    "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
+    "org.opencontainers.image.title": "componentized:filesystem-latch-path-glob",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/21f37eeb61609a485a9004ad96bfb19601f1b924/components/latch-path-glob",
+    "org.opencontainers.image.version": "v0.3.0"
+  },
+  "imports": [
+    "wasi:clocks/system-clock@0.3.0",
+    "wasi:config/store@0.2.0-rc.1",
+    "wasi:filesystem/types@0.3.0",
+    "wasi:logging/logging@0.1.0-draft"
+  ],
+  "exports": [
+    "componentized:filesystem/latch@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:filesystem",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "release": "https://github.com/componentized/filesystem/releases/tag/v0.3.0",
+  "parts": [
+    {
+      "digest": "sha256:e8711e0b0e2e46415321f2e447388097ab9c5ce2fe2c7f039a4d96975e36fa55",
+      "size": 6009
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/tags/v0.3.0",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/filesystem",
+    "git_ref": "refs/tags/v0.3.0",
+    "log_index": 4016917505
+  },
+  "indexed_at": "2026-11-20T04:24:46Z"
+}

@@ -1,0 +1,100 @@
+{
+  "package": "componentized:filesystem-latch-deny-random",
+  "version": "0.3.0",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem/latch-deny-random",
+    "tag": "0.3.0",
+    "digest": "sha256:d2c193f629697b344e96e39d5c35eeb59511dbf96d3ec640a26fc99b4333cc8f",
+    "layer_digest": "sha256:db6a9298952c74eb4020d4a28b785597089fe2e2f68979cc96fa923597da03a7",
+    "size": 114438,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/tags/v0.3.0",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/filesystem",
+      "git_ref": "refs/tags/v0.3.0",
+      "log_index": 4016815173
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem/latch-deny-random",
+    "tag": "0.3.0_debug",
+    "digest": "sha256:d6953e23b12a7993212f663969bcd8952a9a3ce9961e4d16148f9308d30bd3ea",
+    "layer_digest": "sha256:35ce998f815f3dcfe27c4b6ffa2585b40b178a292bbba9c42e8ef2c98a8ba077",
+    "size": 996796,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/tags/v0.3.0",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/filesystem",
+      "git_ref": "refs/tags/v0.3.0",
+      "log_index": 4016818945
+    }
+  },
+  "created": "2026-11-20T04:15:54.683282524Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Filesystem latch that randomly denies operations, to prove a component is resilient to failures.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "21f37eeb61609a485a9004ad96bfb19601f1b924",
+    "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
+    "org.opencontainers.image.title": "componentized:filesystem-latch-deny-random",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/21f37eeb61609a485a9004ad96bfb19601f1b924/components/latch-deny-random",
+    "org.opencontainers.image.version": "v0.3.0"
+  },
+  "imports": [
+    "wasi:clocks/system-clock@0.3.0",
+    "wasi:config/store@0.2.0-rc.1",
+    "wasi:filesystem/types@0.3.0",
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:random/insecure@0.3.0"
+  ],
+  "exports": [
+    "componentized:filesystem/latch@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:filesystem",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:random",
+      "version": "0.3.0"
+    }
+  ],
+  "release": "https://github.com/componentized/filesystem/releases/tag/v0.3.0",
+  "parts": [
+    {
+      "digest": "sha256:e8711e0b0e2e46415321f2e447388097ab9c5ce2fe2c7f039a4d96975e36fa55",
+      "size": 6009
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/tags/v0.3.0",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/filesystem",
+    "git_ref": "refs/tags/v0.3.0",
+    "log_index": 4016816158
+  },
+  "indexed_at": "2026-11-20T04:24:04Z"
+}

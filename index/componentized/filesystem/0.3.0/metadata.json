@@ -1,0 +1,52 @@
+{
+  "package": "componentized:filesystem",
+  "version": "0.3.0",
+  "kind": "interface",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem",
+    "tag": "0.3.0",
+    "digest": "sha256:c82f0dcce0e26b641996b56dd3a709a635774bc4aacaa6d0da34356b1e5f7393",
+    "layer_digest": "sha256:09fda52ea9b88d7c5b7d2f0cbff9c169adfebe3a95fd368c4b0aa308b51a7012",
+    "size": 20877,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/tags/v0.3.0",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/filesystem",
+      "git_ref": "refs/tags/v0.3.0",
+      "log_index": 4016764807
+    }
+  },
+  "created": "2026-11-20T04:13:41.096894789Z",
+  "annotations": {
+    "org.opencontainers.image.description": "A collection of utility components that remix wasi:filesystem types and interfaces.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "21f37eeb61609a485a9004ad96bfb19601f1b924",
+    "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
+    "org.opencontainers.image.title": "componentized:filesystem",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/21f37eeb61609a485a9004ad96bfb19601f1b924",
+    "org.opencontainers.image.version": "v0.3.0"
+  },
+  "dependencies": [
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.3.0"
+    }
+  ],
+  "release": "https://github.com/componentized/filesystem/releases/tag/v0.3.0",
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/tags/v0.3.0",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/filesystem",
+    "git_ref": "refs/tags/v0.3.0",
+    "log_index": 4016767918
+  },
+  "indexed_at": "2026-11-20T04:23:28Z"
+}
