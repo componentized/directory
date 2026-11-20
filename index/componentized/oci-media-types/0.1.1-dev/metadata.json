@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/oci/media-types",
     "tag": "0.1.1-dev",
-    "digest": "sha256:efed8df85da83eab884d21e696fd9306995f3780a93163a29094408340ef4a9d",
+    "digest": "sha256:619f040aefb49920f343919c4a76aeccade026d092e119513873f9905a8b96de",
     "layer_digest": "sha256:939043e649b1cfb94f858c232062b4beedaf24e03d733bcc79c1420aae51dbcd",
     "size": 6133,
     "signature": {
@@ -16,17 +16,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/oci",
       "git_ref": "refs/heads/main",
-      "log_index": 4024783777
+      "log_index": 4024866444
     }
   },
-  "created": "2026-11-20T12:33:42.865695491Z",
+  "created": "2026-11-20T12:36:58.018900601Z",
   "annotations": {
     "org.opencontainers.image.description": "Common OCI related media types.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "76a28df9d00f97f7a023b0693ba93b9232a1769e",
+    "org.opencontainers.image.revision": "80c1e1efd18ac6943874885dcf7b41a1fd885537",
     "org.opencontainers.image.source": "https://github.com/componentized/oci.git",
     "org.opencontainers.image.title": "componentized:oci-media-types",
-    "org.opencontainers.image.url": "https://github.com/componentized/oci/tree/76a28df9d00f97f7a023b0693ba93b9232a1769e/components/media-types",
+    "org.opencontainers.image.url": "https://github.com/componentized/oci/tree/80c1e1efd18ac6943874885dcf7b41a1fd885537/components/media-types",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "exports": [
@@ -47,5 +47,5 @@
   "sbom": {
     "status": "missing"
   },
-  "indexed_at": "2026-11-20T12:34:51Z"
+  "indexed_at": "2026-11-20T12:38:24Z"
 }
