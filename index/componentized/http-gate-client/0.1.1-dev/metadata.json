@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/http/gate-client",
     "tag": "0.1.1-dev",
-    "digest": "sha256:0b26d260c1e9206c1608b463a5cb2f3b62f9206fa2289edab41573d5408f1f14",
+    "digest": "sha256:d823dc86af09ba328ac15b84b38b2df374941ae432876a92a1e7f9a186642193",
     "layer_digest": "sha256:03832aa5845792d7febed95cf413b7c3f7a32c2bbc7f2a13a059881f5fa6f8c0",
     "size": 78330,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 3947370151
+      "log_index": 4015710782
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/http/gate-client",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:33bf260919089087035b3d79a44a1365f4345b85b99042dd53283f7d43022403",
+    "digest": "sha256:b0abad6b3ff62e58664f701b8ffedb5fe7daaf29a978591a4623a0b1d2848f49",
     "layer_digest": "sha256:c532abee523d065e0afe7ad4a5db418d3901ba2648e8d341f12603ea5979e6b2",
     "size": 283045,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 3947373399
+      "log_index": 4015714949
     }
   },
-  "created": "2026-11-17T14:45:05.193574422Z",
+  "created": "2026-11-20T03:25:12.009603943Z",
   "annotations": {
     "org.opencontainers.image.description": "HTTP gate access control for requests sent with `wasi:http/client`.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "2420ee838be85d05ed80dbc12e813c3569c92f1e",
+    "org.opencontainers.image.revision": "870b2098f2a6f4d1b70aa4d7d9daeeb453c86346",
     "org.opencontainers.image.source": "https://github.com/componentized/http.git",
     "org.opencontainers.image.title": "componentized:http-gate-client",
-    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/2420ee838be85d05ed80dbc12e813c3569c92f1e/components/gate-client",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/870b2098f2a6f4d1b70aa4d7d9daeeb453c86346/components/gate-client",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -77,5 +77,5 @@
   "sbom": {
     "status": "missing"
   },
-  "indexed_at": "2026-11-17T14:53:52Z"
+  "indexed_at": "2026-11-20T03:30:09Z"
 }

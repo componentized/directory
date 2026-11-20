@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/connection-minimal",
     "tag": "0.3.0-dev",
-    "digest": "sha256:70002a73048fc1431a200d156f08df94064a769c30bef15c3adf0560d298dd45",
+    "digest": "sha256:b00633ade28f1eff883c7ecfd72ad229e7ec029624dd3642fd0fbb3e452b94de",
     "layer_digest": "sha256:036b8bfee8e8d85b9930ce367400ce6319895439ff7c49ef2ade3443ce3fda05",
     "size": 332026,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/valkey",
       "git_ref": "refs/heads/main",
-      "log_index": 3985983734
+      "log_index": 4015867041
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/valkey/connection-minimal",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:4572bb363c0f1df8cefc102b12393b7ee6ecb8ebc3ba5d23a6240059e1de3ffc",
+    "digest": "sha256:e9e084aa70cc45b3862b5b1116ffe195983c1eb662612fba7115f140d3a50a4e",
     "layer_digest": "sha256:3fd7487f2ee42a4d9e84fc48fd85914941e573c29ed028e65cb5023ea8b3f9f3",
     "size": 3937837,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/valkey",
       "git_ref": "refs/heads/main",
-      "log_index": 3985992551
+      "log_index": 4015875650
     }
   },
-  "created": "2026-11-19T03:53:17.235910471Z",
+  "created": "2026-11-20T03:31:19.758496634Z",
   "annotations": {
     "org.opencontainers.image.description": "A connection component built without pub/sub, for a smaller component when subscriptions are not needed.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "7eabee91877835e7e083e38625fee0d2dfc08d18",
+    "org.opencontainers.image.revision": "96d2c274e3bba5cb7734492851f0fecea593e26e",
     "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
     "org.opencontainers.image.title": "componentized:valkey-connection-minimal",
-    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/7eabee91877835e7e083e38625fee0d2dfc08d18/components/connection-minimal",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/96d2c274e3bba5cb7734492851f0fecea593e26e/components/connection-minimal",
     "org.opencontainers.image.version": "v0.3.0-dev"
   },
   "imports": [
@@ -75,7 +75,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/valkey",
     "git_ref": "refs/heads/main",
-    "log_index": 3985986218
+    "log_index": 4015870550
   },
-  "indexed_at": "2026-11-19T03:58:09Z"
+  "indexed_at": "2026-11-20T03:33:29Z"
 }

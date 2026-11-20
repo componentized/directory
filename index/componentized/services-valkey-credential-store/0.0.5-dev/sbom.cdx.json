@@ -1516,13 +1516,13 @@
       "description": "Implements `componentized:services/credential-store`, fetching the credentials of service bindings from a Valkey server.",
       "externalReferences": [
         {
-          "comment": "revision 82e2beb92f41ff1edb84e1094781e7e773299db4",
+          "comment": "revision c175e74819440b21c5578bd75697bd2de8f9045e",
           "type": "vcs",
           "url": "https://github.com/componentized/services.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/services/tree/82e2beb92f41ff1edb84e1094781e7e773299db4/components/valkey-credential-store"
+          "url": "https://github.com/componentized/services/tree/c175e74819440b21c5578bd75697bd2de8f9045e/components/valkey-credential-store"
         }
       ],
       "hashes": [
@@ -1537,11 +1537,11 @@
         }
       ],
       "name": "componentized:services-valkey-credential-store",
-      "purl": "pkg:oci/valkey-credential-store@sha256%3A4f1fa11366c70a33feb90de29b7e6efde5567dcd19d64ec3dacd7769193ff0b7?repository_url=ghcr.io/componentized/services/valkey-credential-store&tag=0.0.5-dev",
+      "purl": "pkg:oci/valkey-credential-store@sha256%3A499d10606eac8d4850ca6270b1479323e9cac915469adf4b53ffb8143c224d0a?repository_url=ghcr.io/componentized/services/valkey-credential-store&tag=0.0.5-dev",
       "type": "library",
       "version": "0.0.5-dev"
     },
-    "timestamp": "2026-11-19T15:54:32Z",
+    "timestamp": "2026-11-20T03:15:44Z",
     "tools": {
       "components": [
         {

@@ -1456,13 +1456,13 @@
       "description": "Implements `componentized:services/credential-store`, fetching the credentials of service bindings from a `wasi:keyvalue` bucket, named by the `bucket` key in `wasi:config`, `bindings` by default.",
       "externalReferences": [
         {
-          "comment": "revision 82e2beb92f41ff1edb84e1094781e7e773299db4",
+          "comment": "revision c175e74819440b21c5578bd75697bd2de8f9045e",
           "type": "vcs",
           "url": "https://github.com/componentized/services.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/services/tree/82e2beb92f41ff1edb84e1094781e7e773299db4/components/keyvalue-credential-store"
+          "url": "https://github.com/componentized/services/tree/c175e74819440b21c5578bd75697bd2de8f9045e/components/keyvalue-credential-store"
         }
       ],
       "hashes": [
@@ -1477,11 +1477,11 @@
         }
       ],
       "name": "componentized:services-keyvalue-credential-store",
-      "purl": "pkg:oci/keyvalue-credential-store@sha256%3A831d34e2ab622be25bf76f73f2a4a5fa2b7933aba4b72b47fecb3eda10194f99?repository_url=ghcr.io/componentized/services/keyvalue-credential-store&tag=0.0.5-dev",
+      "purl": "pkg:oci/keyvalue-credential-store@sha256%3A8f294f5ea71fe89df552028897a0fafb2769134969332e09736c9cc6cceadab8?repository_url=ghcr.io/componentized/services/keyvalue-credential-store&tag=0.0.5-dev",
       "type": "library",
       "version": "0.0.5-dev"
     },
-    "timestamp": "2026-11-19T15:54:32Z",
+    "timestamp": "2026-11-20T03:15:44Z",
     "tools": {
       "components": [
         {

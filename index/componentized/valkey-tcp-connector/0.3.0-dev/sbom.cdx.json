@@ -1821,13 +1821,13 @@
       "description": "A connector for connections over TCP, to the server configured with `componentized:secrets@0.1.1`, every key is a secret, a secret that is not found is unset.",
       "externalReferences": [
         {
-          "comment": "revision 7eabee91877835e7e083e38625fee0d2dfc08d18",
+          "comment": "revision 96d2c274e3bba5cb7734492851f0fecea593e26e",
           "type": "vcs",
           "url": "https://github.com/componentized/valkey.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/valkey/tree/7eabee91877835e7e083e38625fee0d2dfc08d18/components/tcp-connector"
+          "url": "https://github.com/componentized/valkey/tree/96d2c274e3bba5cb7734492851f0fecea593e26e/components/tcp-connector"
         }
       ],
       "hashes": [
@@ -1842,11 +1842,11 @@
         }
       ],
       "name": "componentized:valkey-tcp-connector",
-      "purl": "pkg:oci/tcp-connector@sha256%3Ae8811e68ec65e29323a601a66d043c0f1bf0cc0e325e24683f91d07b739e783c?repository_url=ghcr.io/componentized/valkey/tcp-connector&tag=0.3.0-dev",
+      "purl": "pkg:oci/tcp-connector@sha256%3A69a047b613503e8ed6236ace8810672a7554b719c612b080d19ebb902dc745c1?repository_url=ghcr.io/componentized/valkey/tcp-connector&tag=0.3.0-dev",
       "type": "library",
       "version": "0.3.0-dev"
     },
-    "timestamp": "2026-11-19T03:39:53Z",
+    "timestamp": "2026-11-20T03:17:12Z",
     "tools": {
       "components": [
         {

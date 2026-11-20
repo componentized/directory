@@ -1823,13 +1823,13 @@
       "description": "A connection component built without pub/sub, for a smaller component when subscriptions are not needed.",
       "externalReferences": [
         {
-          "comment": "revision 7eabee91877835e7e083e38625fee0d2dfc08d18",
+          "comment": "revision 96d2c274e3bba5cb7734492851f0fecea593e26e",
           "type": "vcs",
           "url": "https://github.com/componentized/valkey.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/valkey/tree/7eabee91877835e7e083e38625fee0d2dfc08d18/components/connection-minimal"
+          "url": "https://github.com/componentized/valkey/tree/96d2c274e3bba5cb7734492851f0fecea593e26e/components/connection-minimal"
         }
       ],
       "hashes": [
@@ -1844,11 +1844,11 @@
         }
       ],
       "name": "componentized:valkey-connection-minimal",
-      "purl": "pkg:oci/connection-minimal@sha256%3A70002a73048fc1431a200d156f08df94064a769c30bef15c3adf0560d298dd45?repository_url=ghcr.io/componentized/valkey/connection-minimal&tag=0.3.0-dev",
+      "purl": "pkg:oci/connection-minimal@sha256%3Ab00633ade28f1eff883c7ecfd72ad229e7ec029624dd3642fd0fbb3e452b94de?repository_url=ghcr.io/componentized/valkey/connection-minimal&tag=0.3.0-dev",
       "type": "library",
       "version": "0.3.0-dev"
     },
-    "timestamp": "2026-11-19T03:39:53Z",
+    "timestamp": "2026-11-20T03:17:12Z",
     "tools": {
       "components": [
         {

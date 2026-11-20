@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/chroot",
     "tag": "0.3.0-dev",
-    "digest": "sha256:3b18163e1c4743ac92c9d317caef837c6e32e0b3778a2201c55a9f5744337286",
+    "digest": "sha256:3ce7b1a58b881af0d52f826641b29f0325d2862b5042f2f47dd9ef5db16cb8f0",
     "layer_digest": "sha256:9eebbf3de75713c926def12b16fcfc9bf23f06073445d34755242cff8d8e58f0",
     "size": 331415,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/filesystem",
       "git_ref": "refs/heads/main",
-      "log_index": 3947348104
+      "log_index": 4015696464
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/chroot",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:aa8a4a9ce5238d2e1a0df5b7b981d3794cded4a501d7571892f3324c5d2d83af",
+    "digest": "sha256:e143fe9c17fe20c56009188c9c8ad6aac0229c717b54a7ac0048cf5c830e3417",
     "layer_digest": "sha256:958c0e1fca0758041c0bf05f9562bedebd907f23f1d63734735cf56d4ec9d6ad",
     "size": 3099719,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/filesystem",
       "git_ref": "refs/heads/main",
-      "log_index": 3947351361
+      "log_index": 4015703165
     }
   },
-  "created": "2026-11-17T14:43:58.097203086Z",
+  "created": "2026-11-20T03:24:37.940408458Z",
   "annotations": {
     "org.opencontainers.image.description": "Virtualizes the `wasi:filesystem` interfaces limiting all access to a specific directory defined by the 'path' key in a `wasi:config/store`, mimicking the GNU chroot command.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "2d74d14820c04cd655ff625691efad5226d62cdf",
+    "org.opencontainers.image.revision": "a7d7bbd89935b4066f4688928f6f7027ce038316",
     "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
     "org.opencontainers.image.title": "componentized:filesystem-chroot",
-    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/2d74d14820c04cd655ff625691efad5226d62cdf/components/chroot",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/a7d7bbd89935b4066f4688928f6f7027ce038316/components/chroot",
     "org.opencontainers.image.version": "v0.3.0-dev"
   },
   "imports": [
@@ -82,5 +82,5 @@
   "sbom": {
     "status": "missing"
   },
-  "indexed_at": "2026-11-17T14:49:25Z"
+  "indexed_at": "2026-11-20T03:28:54Z"
 }

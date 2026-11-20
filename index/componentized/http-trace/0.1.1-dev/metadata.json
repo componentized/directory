@@ -7,16 +7,11 @@
     "registry": "ghcr.io",
     "repository": "componentized/http/trace",
     "tag": "0.1.1-dev",
-    "digest": "sha256:44a2aaee5d4acdd1eb20b70b4531d6e3fc60535bc9ac70463bd1213c2b45fbbb",
+    "digest": "sha256:b4b1637fd587a3fccafd80296e84d363d86b79f602edc88769fe6409a7e1ad11",
     "layer_digest": "sha256:28d4ea39d01c458cdcdb8d7042cccd73f0b825806f0045c02091bf0f810a5e3f",
     "size": 191608,
     "signature": {
-      "status": "verified",
-      "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/heads/main",
-      "issuer": "https://token.actions.githubusercontent.com",
-      "repository": "componentized/http",
-      "git_ref": "refs/heads/main",
-      "log_index": 3947473703
+      "status": "unsigned"
     }
   },
   "debug": {
@@ -35,14 +30,14 @@
       "log_index": 3947476070
     }
   },
-  "created": "2026-11-17T14:51:04.171706168Z",
+  "created": "2026-11-20T03:31:02.794947415Z",
   "annotations": {
     "org.opencontainers.image.description": "Virtualizes the wasi:http/types, wasi:http/client and wasi:http/handler interfaces logging all method calls at the TRACE level and 'componentized-trace' component.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "2420ee838be85d05ed80dbc12e813c3569c92f1e",
+    "org.opencontainers.image.revision": "a6f5588fa2f971ea72d97cd6fea909c0b5cb4bba",
     "org.opencontainers.image.source": "https://github.com/componentized/http.git",
     "org.opencontainers.image.title": "componentized:http-trace",
-    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/2420ee838be85d05ed80dbc12e813c3569c92f1e/components/trace",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/a6f5588fa2f971ea72d97cd6fea909c0b5cb4bba/components/trace",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -88,5 +83,5 @@
   "sbom": {
     "status": "missing"
   },
-  "indexed_at": "2026-11-17T14:54:32Z"
+  "indexed_at": "2026-11-20T03:31:11Z"
 }

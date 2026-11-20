@@ -27,13 +27,13 @@
       "description": "Denies access to all secret keys except `key-prefix`.",
       "externalReferences": [
         {
-          "comment": "revision 7eabee91877835e7e083e38625fee0d2dfc08d18",
+          "comment": "revision 96d2c274e3bba5cb7734492851f0fecea593e26e",
           "type": "vcs",
           "url": "https://github.com/componentized/valkey.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/valkey/tree/7eabee91877835e7e083e38625fee0d2dfc08d18/components/as-keyvalue-latch-key-config"
+          "url": "https://github.com/componentized/valkey/tree/96d2c274e3bba5cb7734492851f0fecea593e26e/components/as-keyvalue-latch-key-config"
         }
       ],
       "hashes": [
@@ -48,11 +48,11 @@
         }
       ],
       "name": "componentized:valkey-as-keyvalue-latch-key-config",
-      "purl": "pkg:oci/as-keyvalue-latch-key-config@sha256%3Ad48874c91bccf583bcf6a98ee4c01c5a2bed58c7a986143608c2cdc408dcacea?repository_url=ghcr.io/componentized/valkey/as-keyvalue-latch-key-config&tag=0.3.0-dev",
+      "purl": "pkg:oci/as-keyvalue-latch-key-config@sha256%3A76085316bd69d97183307a787a4fd0f6ab8d754609164b34eff7beb6579372c3?repository_url=ghcr.io/componentized/valkey/as-keyvalue-latch-key-config&tag=0.3.0-dev",
       "type": "library",
       "version": "0.3.0-dev"
     },
-    "timestamp": "2026-11-19T03:39:53Z",
+    "timestamp": "2026-11-20T03:17:12Z",
     "tools": {
       "components": [
         {

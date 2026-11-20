@@ -1469,13 +1469,13 @@
       "description": "Implements `componentized:services/credential-admin`, publishing and destroying the credentials of service bindings as files in `wasi:filesystem`, under the directory of the `path` key in `wasi:config`, `services` by default.",
       "externalReferences": [
         {
-          "comment": "revision 82e2beb92f41ff1edb84e1094781e7e773299db4",
+          "comment": "revision c175e74819440b21c5578bd75697bd2de8f9045e",
           "type": "vcs",
           "url": "https://github.com/componentized/services.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/services/tree/82e2beb92f41ff1edb84e1094781e7e773299db4/components/filesystem-credential-admin"
+          "url": "https://github.com/componentized/services/tree/c175e74819440b21c5578bd75697bd2de8f9045e/components/filesystem-credential-admin"
         }
       ],
       "hashes": [
@@ -1490,11 +1490,11 @@
         }
       ],
       "name": "componentized:services-filesystem-credential-admin",
-      "purl": "pkg:oci/filesystem-credential-admin@sha256%3A6e885e791833e4eb91fbd5995fd9901f73f13742938bb76eb1b25f64f9d638b9?repository_url=ghcr.io/componentized/services/filesystem-credential-admin&tag=0.0.5-dev",
+      "purl": "pkg:oci/filesystem-credential-admin@sha256%3Af90fd603c7587f2af90efe32154365016c6f9d6bd7b58cfe2ab552600678c21b?repository_url=ghcr.io/componentized/services/filesystem-credential-admin&tag=0.0.5-dev",
       "type": "library",
       "version": "0.0.5-dev"
     },
-    "timestamp": "2026-11-19T15:54:32Z",
+    "timestamp": "2026-11-20T03:15:44Z",
     "tools": {
       "components": [
         {

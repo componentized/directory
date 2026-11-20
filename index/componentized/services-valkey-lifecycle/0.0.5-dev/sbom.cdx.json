@@ -1560,13 +1560,13 @@
       "description": "Implements `componentized:services/service-lifecycle` for `valkey` services on a Valkey server, at the `hostname` and `port` keys in `wasi:config`, `127.0.0.1:6379` by default.",
       "externalReferences": [
         {
-          "comment": "revision 82e2beb92f41ff1edb84e1094781e7e773299db4",
+          "comment": "revision c175e74819440b21c5578bd75697bd2de8f9045e",
           "type": "vcs",
           "url": "https://github.com/componentized/services.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/services/tree/82e2beb92f41ff1edb84e1094781e7e773299db4/components/valkey-lifecycle"
+          "url": "https://github.com/componentized/services/tree/c175e74819440b21c5578bd75697bd2de8f9045e/components/valkey-lifecycle"
         }
       ],
       "hashes": [
@@ -1581,11 +1581,11 @@
         }
       ],
       "name": "componentized:services-valkey-lifecycle",
-      "purl": "pkg:oci/valkey-lifecycle@sha256%3A1103272503782ca8f02cfa6f746a8109f9931687df6ff80972804fc5800ce8fd?repository_url=ghcr.io/componentized/services/valkey-lifecycle&tag=0.0.5-dev",
+      "purl": "pkg:oci/valkey-lifecycle@sha256%3A20e72634fea093b9ae3bc27ebbf4cd8b5f8a997fbe817c7912196b71d8f806fb?repository_url=ghcr.io/componentized/services/valkey-lifecycle&tag=0.0.5-dev",
       "type": "library",
       "version": "0.0.5-dev"
     },
-    "timestamp": "2026-11-19T15:54:32Z",
+    "timestamp": "2026-11-20T03:15:44Z",
     "tools": {
       "components": [
         {

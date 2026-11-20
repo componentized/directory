@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/tcp-connector-constants",
     "tag": "0.3.0-dev",
-    "digest": "sha256:a6d227b1c2077d41af997b3d172b6c1e5c354f30a6925a55ba6099df37f9285f",
+    "digest": "sha256:1e9808268853e20518a483e19f2d7d12f3f207e82ec297aadf0cbcba34af6eb5",
     "layer_digest": "sha256:94006045fe673a3d3da85bd04780b58188e98f092622247651a5ad0d6828ce34",
     "size": 3943,
     "signature": {
@@ -16,7 +16,7 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/valkey",
       "git_ref": "refs/heads/main",
-      "log_index": 3986036783
+      "log_index": 4015905602
     }
   },
   "debug": {
@@ -35,14 +35,14 @@
       "log_index": 3321023994
     }
   },
-  "created": "2026-11-19T03:55:50.481920169Z",
+  "created": "2026-11-20T03:33:05.211984263Z",
   "annotations": {
     "org.opencontainers.image.description": "The keys of the `tcp-connector` config and their defaults, as constants.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "7eabee91877835e7e083e38625fee0d2dfc08d18",
+    "org.opencontainers.image.revision": "9fac0de28bc2183a07d369748b5673274cc2d0f8",
     "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
     "org.opencontainers.image.title": "componentized:valkey-tcp-connector-constants",
-    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/7eabee91877835e7e083e38625fee0d2dfc08d18/components/tcp-connector-constants",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/9fac0de28bc2183a07d369748b5673274cc2d0f8/components/tcp-connector-constants",
     "org.opencontainers.image.version": "v0.3.0-dev"
   },
   "exports": [
@@ -66,7 +66,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/valkey",
     "git_ref": "refs/heads/main",
-    "log_index": 3986041337
+    "log_index": 4015907003
   },
-  "indexed_at": "2026-11-19T03:58:22Z"
+  "indexed_at": "2026-11-20T03:33:50Z"
 }

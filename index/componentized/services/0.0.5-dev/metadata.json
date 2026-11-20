@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/services",
     "tag": "0.0.5-dev",
-    "digest": "sha256:9276c6302bab5bb8f245c95880555ab6d3de8fd3f483eb04afae48adbf712a09",
+    "digest": "sha256:a29c07f072fed1d7968cb61b6d4e3b44feae26e57c786c0f3e201d27ed9d63fe",
     "layer_digest": "sha256:709dfa22144446c9b2f614e3ca0ea71fa479dd4e4805c7b6d00acfe31b382dcb",
     "size": 17374,
     "signature": {
@@ -16,17 +16,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4000104933
+      "log_index": 4015546525
     }
   },
-  "created": "2026-11-19T15:57:30.557522668Z",
+  "created": "2026-11-20T03:18:29.502750710Z",
   "annotations": {
     "org.opencontainers.image.description": "A WASM component services lifecycle.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "82e2beb92f41ff1edb84e1094781e7e773299db4",
+    "org.opencontainers.image.revision": "c175e74819440b21c5578bd75697bd2de8f9045e",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/82e2beb92f41ff1edb84e1094781e7e773299db4",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/c175e74819440b21c5578bd75697bd2de8f9045e",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "dependencies": [
@@ -65,7 +65,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/services",
     "git_ref": "refs/heads/main",
-    "log_index": 4000107597
+    "log_index": 4015549749
   },
-  "indexed_at": "2026-11-19T16:09:13Z"
+  "indexed_at": "2026-11-20T03:31:20Z"
 }

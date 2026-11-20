@@ -1821,13 +1821,13 @@
       "description": "Every implemented command interface, in one component.",
       "externalReferences": [
         {
-          "comment": "revision 7eabee91877835e7e083e38625fee0d2dfc08d18",
+          "comment": "revision 96d2c274e3bba5cb7734492851f0fecea593e26e",
           "type": "vcs",
           "url": "https://github.com/componentized/valkey.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/valkey/tree/7eabee91877835e7e083e38625fee0d2dfc08d18/components/commands"
+          "url": "https://github.com/componentized/valkey/tree/96d2c274e3bba5cb7734492851f0fecea593e26e/components/commands"
         }
       ],
       "hashes": [
@@ -1842,11 +1842,11 @@
         }
       ],
       "name": "componentized:valkey-commands",
-      "purl": "pkg:oci/commands@sha256%3A92f44f685cb2b7dfb5c93e5b21dcccf1ca142af1f7fe1370e5a3394600cf10b3?repository_url=ghcr.io/componentized/valkey/commands&tag=0.3.0-dev",
+      "purl": "pkg:oci/commands@sha256%3A03e08d56a8b15e0924b27d0643398179c74eef1f92d23f6aa122ec403e216b5d?repository_url=ghcr.io/componentized/valkey/commands&tag=0.3.0-dev",
       "type": "library",
       "version": "0.3.0-dev"
     },
-    "timestamp": "2026-11-19T03:39:53Z",
+    "timestamp": "2026-11-20T03:17:12Z",
     "tools": {
       "components": [
         {

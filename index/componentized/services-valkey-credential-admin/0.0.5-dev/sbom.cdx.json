@@ -1516,13 +1516,13 @@
       "description": "Implements `componentized:services/credential-admin`, publishing and destroying the credentials of service bindings in a Valkey server.",
       "externalReferences": [
         {
-          "comment": "revision 82e2beb92f41ff1edb84e1094781e7e773299db4",
+          "comment": "revision c175e74819440b21c5578bd75697bd2de8f9045e",
           "type": "vcs",
           "url": "https://github.com/componentized/services.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/services/tree/82e2beb92f41ff1edb84e1094781e7e773299db4/components/valkey-credential-admin"
+          "url": "https://github.com/componentized/services/tree/c175e74819440b21c5578bd75697bd2de8f9045e/components/valkey-credential-admin"
         }
       ],
       "hashes": [
@@ -1537,11 +1537,11 @@
         }
       ],
       "name": "componentized:services-valkey-credential-admin",
-      "purl": "pkg:oci/valkey-credential-admin@sha256%3Ac8e15ceb0eb568bb95b23d8e9454e4f7094819e7fc774dfe783907bd6ad7c639?repository_url=ghcr.io/componentized/services/valkey-credential-admin&tag=0.0.5-dev",
+      "purl": "pkg:oci/valkey-credential-admin@sha256%3Ac1ea6982bf4e7bdcf67a5b3d0e3c7b194a5e64ae0ded38d63c1aa44a5af00e90?repository_url=ghcr.io/componentized/services/valkey-credential-admin&tag=0.0.5-dev",
       "type": "library",
       "version": "0.0.5-dev"
     },
-    "timestamp": "2026-11-19T15:54:32Z",
+    "timestamp": "2026-11-20T03:15:44Z",
     "tools": {
       "components": [
         {

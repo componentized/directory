@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/trace",
     "tag": "0.3.0-dev",
-    "digest": "sha256:7636ccd8ed7e0f9617fc9d045db80d0d2e0ce08b238e1ad82246b8cb87556b14",
+    "digest": "sha256:e2dafc7ab58255fa64f5292ea10b51e1fdb28c59ef350dbe91b8c4b68d665077",
     "layer_digest": "sha256:17eb048b891d67c510d613232aa75d17af0c1db954c58f3c242bf608f6b0c611",
     "size": 296272,
     "signature": {
@@ -16,33 +16,28 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/filesystem",
       "git_ref": "refs/heads/main",
-      "log_index": 3947424154
+      "log_index": 4015826750
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/trace",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:b9ac2949597d181be791378d512afb223cb14fd48e5e5c8732f5c9d9377a93ce",
+    "digest": "sha256:d5221663f66c64a06ec6bbdb5e803cf5f3b0b4e6e8e044a6debae09167ed203e",
     "layer_digest": "sha256:167edad453b33f0affe6ecc8d95d354fbeb61c77e86dcdeb0c9c77cc14d00bd5",
     "size": 2867534,
     "signature": {
-      "status": "verified",
-      "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/heads/main",
-      "issuer": "https://token.actions.githubusercontent.com",
-      "repository": "componentized/filesystem",
-      "git_ref": "refs/heads/main",
-      "log_index": 3947426282
+      "status": "unsigned"
     }
   },
-  "created": "2026-11-17T14:48:07.991312617Z",
+  "created": "2026-11-20T03:29:39.843678575Z",
   "annotations": {
     "org.opencontainers.image.description": "Virtualizes the wasi:filesystem interfaces logging all method calls at the TRACE level and 'filesystem' component.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "2d74d14820c04cd655ff625691efad5226d62cdf",
+    "org.opencontainers.image.revision": "a7d7bbd89935b4066f4688928f6f7027ce038316",
     "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
     "org.opencontainers.image.title": "componentized:filesystem-trace",
-    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/2d74d14820c04cd655ff625691efad5226d62cdf/components/trace",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/a7d7bbd89935b4066f4688928f6f7027ce038316/components/trace",
     "org.opencontainers.image.version": "v0.3.0-dev"
   },
   "imports": [
@@ -82,5 +77,5 @@
   "sbom": {
     "status": "missing"
   },
-  "indexed_at": "2026-11-17T14:50:08Z"
+  "indexed_at": "2026-11-20T03:29:56Z"
 }

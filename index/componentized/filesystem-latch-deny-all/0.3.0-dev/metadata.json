@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/latch-deny-all",
     "tag": "0.3.0-dev",
-    "digest": "sha256:0403556ce56dee6e9c2d636dc4b6f22c1f714bf279be397c9c673b687b12be48",
+    "digest": "sha256:fbed7e65528a85502e720def7c9f5c54df3b384a749e3dcdf87df977ef296e5d",
     "layer_digest": "sha256:a6304c5d596e878c21569f10a7af43639b74d580cb5a65e1fb76ed3fca1ca891",
     "size": 41155,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/filesystem",
       "git_ref": "refs/heads/main",
-      "log_index": 3947368439
+      "log_index": 4015739928
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/latch-deny-all",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:7a9b33d7dff29240837a42ee22e10e9d31d7b52a11cc3c200178fbd12d365134",
+    "digest": "sha256:c29c356cf18731732b6f4718797337e77aa8079434dbb2c6679cd3975616abab",
     "layer_digest": "sha256:e3f1dce2bbb9672b77232eb961e14208e29f7734ea03ea5a7c2902db4cf78485",
     "size": 426455,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/filesystem",
       "git_ref": "refs/heads/main",
-      "log_index": 3947372121
+      "log_index": 4015748588
     }
   },
-  "created": "2026-11-17T14:45:00.074434560Z",
+  "created": "2026-11-20T03:26:23.448066823Z",
   "annotations": {
     "org.opencontainers.image.description": "Filesystem latch that implicitly denies all operations.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "2d74d14820c04cd655ff625691efad5226d62cdf",
+    "org.opencontainers.image.revision": "35eb8b6cbd3d0d60281daa3b4a598f3f6a8da828",
     "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
     "org.opencontainers.image.title": "componentized:filesystem-latch-deny-all",
-    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/2d74d14820c04cd655ff625691efad5226d62cdf/components/latch-deny-all",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/35eb8b6cbd3d0d60281daa3b4a598f3f6a8da828/components/latch-deny-all",
     "org.opencontainers.image.version": "v0.3.0-dev"
   },
   "imports": [
@@ -73,7 +73,12 @@
     }
   ],
   "sbom": {
-    "status": "missing"
+    "status": "verified",
+    "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/filesystem",
+    "git_ref": "refs/heads/main",
+    "log_index": 4015742970
   },
-  "indexed_at": "2026-11-17T14:49:35Z"
+  "indexed_at": "2026-11-20T03:29:13Z"
 }

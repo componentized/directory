@@ -1469,13 +1469,13 @@
       "description": "Implements `componentized:services/credential-store`, fetching the credentials of service bindings from files in `wasi:filesystem`, under the directory of the `path` key in `wasi:config`, `services` by default.",
       "externalReferences": [
         {
-          "comment": "revision 82e2beb92f41ff1edb84e1094781e7e773299db4",
+          "comment": "revision c175e74819440b21c5578bd75697bd2de8f9045e",
           "type": "vcs",
           "url": "https://github.com/componentized/services.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/services/tree/82e2beb92f41ff1edb84e1094781e7e773299db4/components/filesystem-credential-store"
+          "url": "https://github.com/componentized/services/tree/c175e74819440b21c5578bd75697bd2de8f9045e/components/filesystem-credential-store"
         }
       ],
       "hashes": [
@@ -1490,11 +1490,11 @@
         }
       ],
       "name": "componentized:services-filesystem-credential-store",
-      "purl": "pkg:oci/filesystem-credential-store@sha256%3A55aa4297b7f14a57c62de062f1d7c42aa3b260299ef395cce6bd2cf385f21195?repository_url=ghcr.io/componentized/services/filesystem-credential-store&tag=0.0.5-dev",
+      "purl": "pkg:oci/filesystem-credential-store@sha256%3A7ec73da1bbbf8cacf1da6fdbdec1faa320d665ab64b48dd2e6ab419ff6b45465?repository_url=ghcr.io/componentized/services/filesystem-credential-store&tag=0.0.5-dev",
       "type": "library",
       "version": "0.0.5-dev"
     },
-    "timestamp": "2026-11-19T15:54:32Z",
+    "timestamp": "2026-11-20T03:15:44Z",
     "tools": {
       "components": [
         {

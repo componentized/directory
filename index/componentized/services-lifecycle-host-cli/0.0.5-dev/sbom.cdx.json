@@ -1954,13 +1954,13 @@
       "description": "Exposes a `componentized:services/lifecycle` as a cli, exporting `wasi:cli/run`.",
       "externalReferences": [
         {
-          "comment": "revision 82e2beb92f41ff1edb84e1094781e7e773299db4",
+          "comment": "revision c175e74819440b21c5578bd75697bd2de8f9045e",
           "type": "vcs",
           "url": "https://github.com/componentized/services.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/services/tree/82e2beb92f41ff1edb84e1094781e7e773299db4/components/lifecycle-host-cli"
+          "url": "https://github.com/componentized/services/tree/c175e74819440b21c5578bd75697bd2de8f9045e/components/lifecycle-host-cli"
         }
       ],
       "hashes": [
@@ -1975,11 +1975,11 @@
         }
       ],
       "name": "componentized:services-lifecycle-host-cli",
-      "purl": "pkg:oci/lifecycle-host-cli@sha256%3A046df84ee8dfac7048d9b64696fd29cbbb22db3507adb73c964139bad633bd91?repository_url=ghcr.io/componentized/services/lifecycle-host-cli&tag=0.0.5-dev",
+      "purl": "pkg:oci/lifecycle-host-cli@sha256%3A55f8648d3cf4a48f4652f44076deffd3e8d659ca08e6de1bed0581e5008f41ee?repository_url=ghcr.io/componentized/services/lifecycle-host-cli&tag=0.0.5-dev",
       "type": "library",
       "version": "0.0.5-dev"
     },
-    "timestamp": "2026-11-19T15:54:32Z",
+    "timestamp": "2026-11-20T03:15:44Z",
     "tools": {
       "components": [
         {

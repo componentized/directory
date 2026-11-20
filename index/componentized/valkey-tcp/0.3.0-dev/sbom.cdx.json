@@ -1823,13 +1823,13 @@
       "description": "Connections to a Valkey server over `wasi:sockets` TCP.",
       "externalReferences": [
         {
-          "comment": "revision 7eabee91877835e7e083e38625fee0d2dfc08d18",
+          "comment": "revision 96d2c274e3bba5cb7734492851f0fecea593e26e",
           "type": "vcs",
           "url": "https://github.com/componentized/valkey.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/valkey/tree/7eabee91877835e7e083e38625fee0d2dfc08d18/components/tcp"
+          "url": "https://github.com/componentized/valkey/tree/96d2c274e3bba5cb7734492851f0fecea593e26e/components/tcp"
         }
       ],
       "hashes": [
@@ -1844,11 +1844,11 @@
         }
       ],
       "name": "componentized:valkey-tcp",
-      "purl": "pkg:oci/tcp@sha256%3Ac2f787925658b9a603ca16df23a94db942a45dc02cb632894dd641e6970acd34?repository_url=ghcr.io/componentized/valkey/tcp&tag=0.3.0-dev",
+      "purl": "pkg:oci/tcp@sha256%3A7e9ebddce39b61d27fbf398dc41847be03515ce2f715457636b45546dbeaed29?repository_url=ghcr.io/componentized/valkey/tcp&tag=0.3.0-dev",
       "type": "library",
       "version": "0.3.0-dev"
     },
-    "timestamp": "2026-11-19T03:39:53Z",
+    "timestamp": "2026-11-20T03:17:12Z",
     "tools": {
       "components": [
         {
