@@ -279,6 +279,8 @@ struct Site {
     /// The version whose wasm layer has the bytes of each digest, e.g. `sha256:…`, as a component
     /// nested in another is found, for the components an SBOM lists by their hashes.
     by_layer: HashMap<String, usize>,
+    /// The known advisories of the packages the SBOMs list, see [`crate::advisories`].
+    advisories: crate::advisories::Advisories,
     /// The composed components that nest each version, the reverse of `composed_of`.
     used_in: HashMap<usize, Vec<Link>>,
     /// The worlds of the listed interface packages, by the items each imports and exports, for a
@@ -459,7 +461,8 @@ pub fn build(
         );
     }
     let updated = last_indexed(stored.iter().map(|s| s.metadata.indexed_at.as_str()));
-    let site = Site::new(entries(&stored)?);
+    let mut site = Site::new(entries(&stored)?);
+    site.advisories = crate::advisories::Advisories::load(root)?;
     let samples = load_samples(samples, &site)?;
 
     prepare(out)?;
@@ -619,7 +622,10 @@ fn load_samples(dir: &Path, site: &Site) -> Result<Option<Site>> {
             entry.meta.exports = exports;
         }
     }
-    Ok(Some(Site::new(entries)))
+    let mut samples = Site::new(entries);
+    // their own made-up advisories, beside them, which the scan never reads
+    samples.advisories = crate::advisories::Advisories::load(dir)?;
+    Ok(Some(samples))
 }
 
 /// Renders the page of each namespace, package version and interface of a site.
@@ -1189,6 +1195,73 @@ fn sbom_tools(document: &serde_json::Value) -> Vec<minijinja::Value> {
         .collect()
 }
 
+/// An advisory's summary as HTML, escaped, its Markdown code spans as code, e.g. `` `openssl` ``.
+/// Unpaired backticks are left as they're written.
+fn summary_html(summary: &str) -> String {
+    use crate::wit_html::escape;
+    if !summary.matches('`').count().is_multiple_of(2) {
+        return escape(summary);
+    }
+    summary
+        .split('`')
+        .enumerate()
+        .map(|(i, part)| match i % 2 {
+            1 => format!("<code>{}</code>", escape(part)),
+            _ => escape(part),
+        })
+        .collect()
+}
+
+/// What an SBOM's entry shows of its advisories: the severity of its most severe vulnerability,
+/// for its icon, e.g. `high`, or `unrated` for one no database rates, with each of them said, and
+/// its informational advisories, e.g. unmaintained, which an icon of severity can't say.
+fn dep_advisories(
+    advisories: &[(&String, &crate::advisories::Advisory)],
+) -> (Option<&'static str>, String, Vec<minijinja::Value>) {
+    let rank = |a: &crate::advisories::Advisory| match a.severity.as_deref() {
+        Some("CRITICAL") => (0, "critical"),
+        Some("HIGH") => (1, "high"),
+        Some("MODERATE" | "MEDIUM") => (2, "moderate"),
+        Some("LOW") => (3, "low"),
+        _ => (4, "unrated"),
+    };
+    let vulnerabilities: Vec<_> = advisories
+        .iter()
+        .filter(|(_, a)| a.kind == "vulnerability")
+        .collect();
+    let worst = vulnerabilities
+        .iter()
+        .map(|(_, a)| rank(a))
+        .min()
+        .map(|(_, s)| s);
+    let title = vulnerabilities
+        .iter()
+        .map(|(id, a)| format!("{} {id}: {}", rank(a).1, a.summary))
+        .collect::<Vec<_>>()
+        .join("\n");
+    let notes = advisories
+        .iter()
+        .filter(|(_, a)| a.kind != "vulnerability")
+        .map(|(id, a)| advisory_view(id, a))
+        .collect();
+    (worst, title, notes)
+}
+
+/// An advisory as a page shows it, linked to its page on OSV.dev.
+fn advisory_view(id: &str, advisory: &crate::advisories::Advisory) -> minijinja::Value {
+    ctx! {
+        id,
+        url => format!("https://osv.dev/vulnerability/{id}"),
+        summary => advisory.summary.clone(),
+        summary_html => summary_html(&advisory.summary),
+        kind => advisory.kind.clone(),
+        informational => advisory.kind != "vulnerability",
+        severity => advisory.severity.as_deref().map(str::to_lowercase),
+        cve => advisory.aliases.iter().find(|a| a.starts_with("CVE-")).cloned(),
+        fixed => advisory.fixed.clone(),
+    }
+}
+
 fn signature_view(signature: &data::Signature) -> minijinja::Value {
     match signature {
         data::Signature::Unsigned => ctx! { status => "unsigned" },
@@ -1501,6 +1574,7 @@ impl Site {
             repos,
             composed_of,
             by_layer: by_layer_found,
+            advisories: Default::default(),
             used_in,
             worlds,
             components,
@@ -2371,9 +2445,50 @@ impl Site {
             .collect();
         let (mut components, mut crates, mut others) = (Vec::new(), Vec::new(), Vec::new());
         let mut licenses: BTreeMap<String, (crate::license::Named, usize)> = BTreeMap::new();
+        // each advisory of what it lists, and how many of the packages OSV.dev knows of are
+        // checked, so one not yet checked isn't said to have none
+        let mut findings: Vec<(bool, &crate::advisories::Advisory, minijinja::Value)> = Vec::new();
+        let (mut checkable, mut unchecked) = (0, 0);
         for c in sbom_components(document) {
             let name = c["name"].as_str().unwrap_or_default().to_string();
             let version = c["version"].as_str().map(str::to_string);
+            let key = c["purl"].as_str().and_then(crate::advisories::key);
+            if let Some(key) = &key {
+                checkable += 1;
+                unchecked += usize::from(!self.advisories.checked.contains(key));
+            }
+            let built_in = c["scope"].as_str() != Some("excluded");
+            let advisories: Vec<minijinja::Value> = key
+                .as_ref()
+                .and_then(|k| self.advisories.packages.get(k))
+                .into_iter()
+                .flatten()
+                .filter_map(|id| {
+                    let advisory = self.advisories.advisories.get(id)?;
+                    let view = advisory_view(id, advisory);
+                    findings.push((
+                        built_in,
+                        advisory,
+                        ctx! {
+                            package => name.clone(),
+                            version => version.clone(),
+                            built_in,
+                            advisory => view.clone(),
+                        },
+                    ));
+                    Some(view)
+                })
+                .collect();
+            // the most severe of its vulnerabilities, for its icon, and its informational
+            // advisories, e.g. unmaintained, which an icon of severity can't say
+            let own: Vec<(&String, &crate::advisories::Advisory)> = key
+                .as_ref()
+                .and_then(|k| self.advisories.packages.get(k))
+                .into_iter()
+                .flatten()
+                .filter_map(|id| Some((id, self.advisories.advisories.get(id)?)))
+                .collect();
+            let (worst, worst_title, notes) = dep_advisories(&own);
             let license = sbom_licenses(c);
             // each license it names counted once in the SBOM's licenses
             for named in license
@@ -2385,7 +2500,9 @@ impl Site {
                 counted.1 += 1;
             }
             let license_html = license.as_deref().map(crate::license::html);
-            // a component, the version of the directory with its bytes, by the hash of its wasm
+            let kind = purl_type(c);
+            // a component, the version of the directory with its bytes, by the hash of its wasm; a
+            // crate's hash is of its source, never a component's
             let found = c["hashes"]
                 .as_array()
                 .into_iter()
@@ -2395,16 +2512,26 @@ impl Site {
                     self.by_layer
                         .get(&format!("sha256:{}", h["content"].as_str()?))
                 })
+                .filter(|_| kind.as_deref() != Some("cargo"))
                 .map(|i| &self.entries[*i]);
-            let kind = purl_type(c);
+            // a component composed into it is one it depends on itself, with the hash of its wasm:
+            // the libraries of its toolchain, e.g. `rust-std` and `wasi-libc`, have none
+            let hashed = c["hashes"]
+                .as_array()
+                .is_some_and(|h| h.iter().any(|h| h["alg"].as_str() == Some("SHA-256")));
             let composed = c["bom-ref"].as_str().is_some_and(|r| direct.contains(r))
-                && kind.as_deref() != Some("cargo");
+                && kind.as_deref() != Some("cargo")
+                && hashed;
             if found.is_some() || composed || kind.as_deref() == Some("oci") {
                 components.push(ctx! {
                     name,
                     version,
                     license,
                     license_html,
+                    advisories,
+                    worst,
+                    worst_title,
+                    notes,
                     label => found.map(|e| e.id()),
                     url => found.map(|e| e.url()),
                     icon => found.map_or("component", |e| e.icon_kind()),
@@ -2419,13 +2546,17 @@ impl Site {
                     version,
                     license,
                     license_html,
+                    advisories,
+                    worst,
+                    worst_title,
+                    notes,
                     local,
                     // cargo-cyclonedx marks a crate that isn't in what's built, e.g. a proc macro
                     // or a build script's, as excluded
                     build_only => c["scope"].as_str() == Some("excluded"),
                 });
             } else {
-                others.push(ctx! { name, version, license, license_html, kind });
+                others.push(ctx! { name, version, license, license_html, kind, advisories, worst, worst_title, notes });
             }
         }
         // what's built into it first, then what's only used to build it, each by name
@@ -2466,6 +2597,21 @@ impl Site {
                 document["specVersion"].as_str().unwrap_or_default()
             ),
             url => format!("{}{}", entry.url(), data::SBOM_FILE),
+            // what's built into it first, its vulnerabilities before informational advisories, the
+            // most severe first
+            advisories => {
+                let rank = |s: Option<&str>| match s {
+                    Some("CRITICAL") => 0, Some("HIGH") => 1, Some("MODERATE" | "MEDIUM") => 2, Some("LOW") => 3, _ => 4,
+                };
+                findings.sort_by_key(|(built_in, a, f)| (!built_in, a.kind != "vulnerability", rank(a.severity.as_deref()), f.get_attr("package").map(|p| p.to_string()).unwrap_or_default()));
+                ctx! {
+                    checked => unchecked == 0,
+                    checkable,
+                    unchecked,
+                    built_in => findings.iter().filter(|(b, _, _)| *b).count(),
+                    findings => findings.into_iter().map(|(_, _, f)| f).collect::<Vec<_>>(),
+                }
+            },
             components,
             linked,
             crates,
@@ -2652,6 +2798,77 @@ impl Site {
             .unwrap_or_default()
     }
 
+    /// How many known vulnerabilities what's built into a version has, by severity, the most
+    /// severe first, those it has none of left out: of the packages its SBOM lists that aren't only
+    /// used to build it, and not counting informational advisories, e.g. a crate that's
+    /// unmaintained. Empty for one with none known.
+    fn vulnerability_levels(&self, index: usize) -> Vec<api::Level> {
+        let entry = &self.entries[index];
+        let Some(document) = entry.sbom.as_ref() else {
+            return Vec::new();
+        };
+        if !matches!(entry.meta.sbom, Some(data::Sbom::Verified(_))) {
+            return Vec::new();
+        }
+        // critical, high, moderate, low, and one no database rates
+        let mut counts = [0usize; 5];
+        for c in sbom_components(document) {
+            if c["scope"].as_str() == Some("excluded") {
+                continue;
+            }
+            let Some(key) = c["purl"].as_str().and_then(crate::advisories::key) else {
+                continue;
+            };
+            for id in self.advisories.packages.get(&key).into_iter().flatten() {
+                let Some(advisory) = self.advisories.advisories.get(id) else {
+                    continue;
+                };
+                if advisory.kind != "vulnerability" {
+                    continue;
+                }
+                counts[match advisory.severity.as_deref() {
+                    Some("CRITICAL") => 0,
+                    Some("HIGH") => 1,
+                    Some("MODERATE" | "MEDIUM") => 2,
+                    Some("LOW") => 3,
+                    _ => 4,
+                }] += 1;
+            }
+        }
+        ["critical", "high", "moderate", "low", "unrated"]
+            .into_iter()
+            .zip(counts)
+            .filter(|(_, count)| *count > 0)
+            .map(|(severity, count)| api::Level { severity, count })
+            .collect()
+    }
+
+    /// A version's known vulnerabilities, see [`Self::vulnerability_levels`], linked to its
+    /// advisories, for its header. `None` for one with none known.
+    fn vulnerability_summary(&self, index: usize) -> Option<minijinja::Value> {
+        let levels = self.vulnerability_levels(index);
+        if levels.is_empty() {
+            return None;
+        }
+        let total: usize = levels.iter().map(|l| l.count).sum();
+        let said: Vec<String> = levels
+            .iter()
+            .map(|l| format!("{} {}", l.count, l.severity))
+            .collect();
+        Some(ctx! {
+            levels => levels
+                .iter()
+                .map(|l| ctx! { severity => l.severity, count => l.count })
+                .collect::<Vec<_>>(),
+            url => format!("{}#advisories", self.entries[index].url()),
+            label => format!(
+                "{} known {} in what's built into it",
+                said.join(", "),
+                if total == 1 { "vulnerability" } else { "vulnerabilities" }
+            ),
+        })
+    }
+
     fn header(&self, index: usize) -> minijinja::Value {
         let entry = &self.entries[index];
         let meta = &entry.meta;
@@ -2685,6 +2902,7 @@ impl Site {
             stable => entry.stable(),
             dev => version::dev(&meta.version).is_some(),
             prerelease => version::is_prerelease(&meta.version),
+            vulnerabilities => self.vulnerability_summary(index),
             superseded_by => self.superseded_by[index].map(|i| ctx! {
                 version => self.entries[i].meta.version,
                 url => self.entries[i].url(),
@@ -3136,6 +3354,7 @@ impl Site {
             components: entry.components(),
             summary: entry.description(),
             date: entry.date(),
+            vulnerabilities: self.vulnerability_levels(index),
             interfaces,
             worlds,
             imports: refs(&entry.meta.imports),
@@ -3771,6 +3990,15 @@ mod tests {
             sbom: None,
             indexed_at: "2026-11-11T00:00:00Z".to_string(),
         }
+    }
+
+    #[test]
+    fn renders_an_advisory_summary() {
+        assert_eq!(
+            summary_html("`openssl` `X509Extension::new` & <null>"),
+            "<code>openssl</code> <code>X509Extension::new</code> &amp; &lt;null&gt;"
+        );
+        assert_eq!(summary_html("one ` alone"), "one ` alone");
     }
 
     #[test]

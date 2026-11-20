@@ -21,6 +21,11 @@
   </details>
   {%- elif sig.status == "failed" %}<span class="unverified" title="{{ sig.reason }}">didn't verify</span>
   {%- else %}<span class="dim">not signed</span>{% endif %}</dd>{% endif %}{% endmacro %}
+{#- an SBOM entry's bullet: the icon of its most severe vulnerability, linked to its advisories, or
+    the same room left empty, so each one's text lines up as a list's does #}
+{% macro dep_bullet(c, tag="td") %}<{{ tag }} class="dep-bullet">{% if c.worst %}<a class="sev-{{ c.worst }}" href="#advisories" title="{{ c.worst_title }}"><svg class="sev-icon" aria-hidden="true" focusable="false"><use href="#sev-{{ c.worst }}"/></svg><span class="visually-hidden">{{ c.worst }} vulnerability</span></a>{% else %}<span class="dep-slot"></span>{% endif %}</{{ tag }}>{% endmacro %}
+{#- its informational advisories, e.g. unmaintained, which its icon can't say #}
+{% macro dep_notes(c) %}{% for n in c.notes %} <a class="badge advisory-kind" href="{% if synthetic %}#advisories{% else %}{{ n.url }}{% endif %}" title="{{ n.id }}: {{ n.summary }}">{{ n.kind }}</a>{% endfor %}{% endmacro %}
 {% block toc %}
 <ol>
   {% if docs %}<li><a href="#overview">Overview</a></li>{% endif %}
@@ -138,6 +143,11 @@
         {% if sbom.license %}<dt>License</dt><dd class="license-expr">{{ sbom.license|safe }}</dd>{% endif %}
         {% if sbom.created %}<dt>Generated</dt><dd><time datetime="{{ sbom.created.datetime }}">{{ sbom.created.text }}</time></dd>{% endif %}
         {% if sbom.tools %}<dt>Tools</dt><dd><ul class="sbom-tools">{% for t in sbom.tools %}<li><code>{{ t.name }}</code>{% if t.version %} <span class="dim">{{ t.version }}</span>{% endif %}</li>{% endfor %}</ul></dd>{% endif %}
+        {#- known advisories of what it lists, from OSV.dev; none is only said once everything is checked #}
+        {%- if sbom.advisories.checkable %}<dt>Advisories</dt><dd>
+          {%- if not sbom.advisories.checked %}<span class="dim">not checked yet</span>
+          {%- elif not sbom.advisories.findings %}<span class="signed">none known</span> <span class="dim">for its {{ sbom.advisories.checkable }} packages{% if not synthetic %}, from <a href="https://osv.dev">OSV.dev</a>{% endif %}</span>
+          {%- else %}<a href="#advisories">{{ sbom.advisories.findings|length }}</a>{% if sbom.advisories.built_in != sbom.advisories.findings|length %}, <span class="dim">{{ sbom.advisories.built_in }} in what's built into it</span>{% endif %}{% endif %}</dd>{% endif %}
         <dt>Document</dt><dd><a href="{{ sbom.url }}" download><code>sbom.cdx.json</code></a> <span class="dim">{{ sbom.format }}</span></dd>
       </dl>
       {% if sbom.components %}
@@ -145,7 +155,30 @@
       <ul class="links packages sbom-components">{% for c in sbom.components %}<li>{{ kind_icon(c.icon) }}
         {%- if c.url %}<a href="{{ c.url }}" data-tip><code>{{ c.label }}</code></a>
         {%- else %}<code>{{ c.name }}{% if c.version %}@{{ c.version }}{% endif %}</code> <span class="dim">not published</span>{% endif %}
+        {%- if c.worst %} <a class="dep-sev sev-{{ c.worst }}" href="#advisories" title="{{ c.worst_title }}"><svg class="sev-icon" aria-hidden="true" focusable="false"><use href="#sev-{{ c.worst }}"/></svg><span class="visually-hidden">{{ c.worst }} vulnerability</span></a>{% endif %}{{ dep_notes(c) }}
         {%- if c.license_html %} <span class="sbom-license license-expr">{{ c.license_html|safe }}</span>{% endif %}</li>{% endfor %}</ul>
+      {% endif %}
+      {% if sbom.advisories.findings %}
+      {#- each advisory of what it lists: what's built into it first, vulnerabilities before
+          informational advisories, the most severe first #}
+      <h3 id="advisories">Advisories</h3>
+      <ul class="advisories">{% for f in sbom.advisories.findings %}{% set a = f.advisory %}<li class="advisory{% if not f.built_in %} build-only{% endif %}">
+        {#- its bullet: a vulnerability's severity's icon, as in the header, or for an informational
+            advisory, which has none, the same room left empty, so each one's text lines up #}
+        {%- if not a.informational %}{% set sev = a.severity if a.severity in ["critical", "high", "moderate", "low"] else "unrated" %}<span class="advisory-bullet sev-{{ sev }}" title="{{ sev }}{% if sev == "unrated" %} vulnerability{% endif %}"><svg class="sev-icon" aria-hidden="true" focusable="false"><use href="#sev-{{ sev }}"/></svg><span class="visually-hidden">{{ sev }}{% if sev == "unrated" %} vulnerability{% endif %}</span></span>
+        {%- else %}<span class="advisory-bullet" aria-hidden="true"></span>{% endif %}
+        <div class="advisory-body">
+          <div class="advisory-head">
+            {#- a synthetic sample's made-up advisories are on no database to link to #}
+            {%- if synthetic %}<code>{{ a.id }}</code>{% else %}<a href="{{ a.url }}"><code>{{ a.id }}</code></a>{% endif %}
+            {#- an informational advisory's kind, after its id #}
+            {%- if a.informational %} <span class="badge advisory-kind">{{ a.kind }}</span>{% endif %}
+            {%- if a.cve %} <span class="dim"><code>{{ a.cve }}</code></span>{% endif %}
+            <span class="advisory-package"><code>{{ f.package }}{% if f.version %}@{{ f.version }}{% endif %}</code>{% if not f.built_in %} <span class="badge" title="Used to build it, e.g. a macro or a build script, rather than built into it">build</span>{% endif %}</span>
+          </div>
+          <p class="advisory-summary">{{ a.summary_html|safe }}{% if a.fixed %} <span class="dim">Fixed in {{ a.fixed|join(", ") }}.</span>{% endif %}</p>
+        </div>
+      </li>{% endfor %}</ul>
       {% endif %}
       {% if sbom.licenses %}
       {#- every license the components and crates it lists name, each with what the SPDX license list
@@ -154,8 +187,8 @@
       <details class="sbom-fold">
         <summary><svg class="pivot-chevron sbom-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 6.5 3.5 3.5 3.5-3.5"/></svg><h3>Licenses</h3> <span class="dim">{{ sbom.licenses|length }}{% if copyleft %}, <span class="copyleft-note">{{ copyleft|length }} copyleft</span>{% endif %}</span></summary>
         <div class="sbom-scroll"><table class="sbom-table sbom-licenses">
-          <thead><tr><th scope="col">License</th><th scope="col">Name</th><th scope="col"></th><th scope="col" title="How many of what the SBOM lists name it">Named by</th></tr></thead>
-          <tbody>{% for l in sbom.licenses %}<tr><td>{% if l.named.url %}<a class="license{% if l.named.copyleft %} copyleft{% endif %}" href="{{ l.named.url }}" title="{{ l.title }}"><code>{{ l.named.id }}</code></a>{% else %}<code title="{{ l.title }}">{{ l.named.id }}</code>{% endif %}</td>
+          <thead><tr><th class="dep-bullet" aria-hidden="true"><span class="dep-slot"></span></th><th scope="col">License</th><th scope="col">Name</th><th scope="col"></th><th scope="col" title="How many of what the SBOM lists name it">Named by</th></tr></thead>
+          <tbody>{% for l in sbom.licenses %}<tr><td class="dep-bullet" aria-hidden="true"><span class="dep-slot"></span></td><td>{% if l.named.url %}<a class="license{% if l.named.copyleft %} copyleft{% endif %}" href="{{ l.named.url }}" title="{{ l.title }}"><code>{{ l.named.id }}</code></a>{% else %}<code title="{{ l.title }}">{{ l.named.id }}</code>{% endif %}</td>
             <td>{{ l.named.name or "" }}</td>
             <td class="license-flags">{% if l.named.exception %}<span class="badge">exception</span>{% endif %}{% if l.named.copyleft %}<span class="badge copyleft">copyleft</span>{% endif %}{% if l.named.osi %}<span class="badge" title="Approved by the Open Source Initiative">OSI</span>{% endif %}{% if l.named.fsf %}<span class="badge" title="Free/libre, by the Free Software Foundation">FSF</span>{% endif %}{% if l.named.deprecated %}<span class="badge" title="A deprecated SPDX identifier">deprecated</span>{% endif %}{% if not l.named.url %}<span class="badge" title="{{ l.title }}">unlisted</span>{% endif %}</td>
             <td class="num">{{ l.count }}</td></tr>{% endfor %}</tbody>
@@ -164,10 +197,10 @@
       {% endif %}
       {% if sbom.crates %}
       <details class="sbom-fold">
-        <summary><svg class="pivot-chevron sbom-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 6.5 3.5 3.5 3.5-3.5"/></svg><h3>Rust crates</h3> <span class="dim">{{ sbom.crates|length }}, {{ sbom.linked }} built into it</span></summary>
+        <summary><svg class="pivot-chevron sbom-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 6.5 3.5 3.5 3.5-3.5"/></svg><h3>Rust crates</h3> <span class="dim">{#- the crates built into it, then those only used to build it #}{{ sbom.linked }}{% set build_only = sbom.crates|length - sbom.linked %}{% if build_only %}, {{ build_only }} build-only{% endif %}</span></summary>
         <div class="sbom-scroll"><table class="sbom-table">
-          <thead><tr><th scope="col">Crate</th><th scope="col">Version</th><th scope="col">License</th></tr></thead>
-          <tbody>{% for c in sbom.crates %}<tr{% if c.build_only %} class="build-only"{% endif %}><td>{% if c.local %}<code title="A crate of its own source, not from crates.io">{{ c.name }}</code>{% else %}<a href="https://crates.io/crates/{{ c.name }}/{{ c.version }}"><code>{{ c.name }}</code></a>{% endif %}{% if c.build_only %} <span class="badge" title="Used to build it, e.g. a macro or a build script, rather than built into it">build</span>{% endif %}</td><td><code>{{ c.version }}</code></td><td class="license-expr">{{ (c.license_html or "")|safe }}</td></tr>{% endfor %}</tbody>
+          <thead><tr><th class="dep-bullet" aria-hidden="true"><span class="dep-slot"></span></th><th scope="col">Crate</th><th scope="col">Version</th><th scope="col">License</th></tr></thead>
+          <tbody>{% for c in sbom.crates %}<tr{% if c.build_only %} class="build-only"{% endif %}>{{ dep_bullet(c) }}<td class="dep-name">{% if c.local %}<code title="A crate of its own source, not from crates.io">{{ c.name }}</code>{% else %}<a href="https://crates.io/crates/{{ c.name }}/{{ c.version }}"><code>{{ c.name }}</code></a>{% endif %}{% if c.build_only %} <span class="badge" title="Used to build it, e.g. a macro or a build script, rather than built into it">build</span>{% endif %}{{ dep_notes(c) }}</td><td class="dep-version"><code>{{ c.version }}</code></td><td class="license-expr">{{ (c.license_html or "")|safe }}</td></tr>{% endfor %}</tbody>
         </table></div>
       </details>
       {% endif %}
@@ -175,8 +208,8 @@
       <details class="sbom-fold">
         <summary><svg class="pivot-chevron sbom-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 6.5 3.5 3.5 3.5-3.5"/></svg><h3>Other</h3> <span class="dim">{{ sbom.others|length }}</span></summary>
         <div class="sbom-scroll"><table class="sbom-table">
-          <thead><tr><th scope="col">Name</th><th scope="col">Version</th><th scope="col">License</th></tr></thead>
-          <tbody>{% for c in sbom.others %}<tr><td><code>{{ c.name }}</code>{% if c.kind %} <span class="dim">{{ c.kind }}</span>{% endif %}</td><td>{% if c.version %}<code>{{ c.version }}</code>{% endif %}</td><td class="license-expr">{{ (c.license_html or "")|safe }}</td></tr>{% endfor %}</tbody>
+          <thead><tr><th class="dep-bullet" aria-hidden="true"><span class="dep-slot"></span></th><th scope="col">Name</th><th scope="col">Version</th><th scope="col">License</th></tr></thead>
+          <tbody>{% for c in sbom.others %}<tr>{{ dep_bullet(c) }}<td class="dep-name"><code>{{ c.name }}</code>{% if c.kind %} <span class="dim">{{ c.kind }}</span>{% endif %}{{ dep_notes(c) }}</td><td class="dep-version">{% if c.version %}<code>{{ c.version }}</code>{% endif %}</td><td class="license-expr">{{ (c.license_html or "")|safe }}</td></tr>{% endfor %}</tbody>
         </table></div>
       </details>
       {% endif %}

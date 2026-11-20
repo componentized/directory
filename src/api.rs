@@ -24,6 +24,10 @@ pub struct Api {
     #[serde(skip_serializing_if = "String::is_empty")]
     pub summary: String,
     pub date: String,
+    /// How many known vulnerabilities what's built into it has, by severity, the most severe
+    /// first, for a tooltip. None for one with none known.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub vulnerabilities: Vec<Level>,
     pub interfaces: BTreeMap<String, Interface>,
     pub worlds: BTreeMap<String, World>,
     /// A component's imports and exports.
@@ -34,6 +38,14 @@ pub struct Api {
     /// Its WIT as its page shows it, highlighted HTML, its types linked to their definitions, for a
     /// line by line diff of its text, which the browser reads from the HTML.
     pub wit: String,
+}
+
+/// How many known vulnerabilities of one severity a version has, e.g. 2 `high`.
+#[derive(Serialize)]
+pub struct Level {
+    /// `critical`, `high`, `moderate`, `low` or `unrated`.
+    pub severity: &'static str,
+    pub count: usize,
 }
 
 #[derive(Serialize)]

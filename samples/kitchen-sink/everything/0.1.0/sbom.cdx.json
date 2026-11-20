@@ -1,0 +1,333 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-11-12T00:00:00Z",
+    "tools": {
+      "components": [
+        {
+          "type": "application",
+          "name": "cargo-cyclonedx",
+          "version": "0.5.10"
+        },
+        {
+          "type": "application",
+          "name": "wkg"
+        }
+      ]
+    },
+    "component": {
+      "bom-ref": "component:kitchen-sink:everything",
+      "type": "library",
+      "name": "kitchen-sink:everything",
+      "version": "0.1.0",
+      "description": "Synthetic: an SBOM made up to show how each part of one renders.",
+      "licenses": [
+        {
+          "expression": "Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT"
+        }
+      ]
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "bom-ref": "component:kitchen-sink:hidden-helper",
+      "name": "kitchen-sink:hidden-helper",
+      "version": "0.1.0",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "1111111111111111111111111111111111111111111111111111111111111111"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "LicenseRef-kitchen-sink-terms"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:cargo/bitflags@2.11.1",
+      "name": "bitflags",
+      "version": "2.11.1",
+      "purl": "pkg:cargo/bitflags@2.11.1",
+      "scope": "required",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:cargo/wit-bindgen@0.63.0",
+      "name": "wit-bindgen",
+      "version": "0.63.0",
+      "purl": "pkg:cargo/wit-bindgen@0.63.0",
+      "scope": "required",
+      "licenses": [
+        {
+          "expression": "Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:cargo/example-parser@1.2.0",
+      "name": "example-parser",
+      "version": "1.2.0",
+      "purl": "pkg:cargo/example-parser@1.2.0?download_url=file://.",
+      "scope": "required",
+      "licenses": [
+        {
+          "expression": "MIT"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:cargo/example-tls@0.9.0",
+      "name": "example-tls",
+      "version": "0.9.0",
+      "purl": "pkg:cargo/example-tls@0.9.0?download_url=file://.",
+      "scope": "required",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:cargo/example-codec@2.0.0",
+      "name": "example-codec",
+      "version": "2.0.0",
+      "purl": "pkg:cargo/example-codec@2.0.0?download_url=file://.",
+      "scope": "required",
+      "licenses": [
+        {
+          "expression": "MPL-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:cargo/example-time@0.5.0-alpha.1",
+      "name": "example-time",
+      "version": "0.5.0-alpha.1",
+      "purl": "pkg:cargo/example-time@0.5.0-alpha.1?download_url=file://.",
+      "scope": "required",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:cargo/example-pool@3.1.0",
+      "name": "example-pool",
+      "version": "3.1.0",
+      "purl": "pkg:cargo/example-pool@3.1.0?download_url=file://.",
+      "scope": "required",
+      "licenses": [
+        {
+          "expression": "Zlib"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:cargo/example-legacy@0.1.0",
+      "name": "example-legacy",
+      "version": "0.1.0",
+      "purl": "pkg:cargo/example-legacy@0.1.0?download_url=file://.",
+      "scope": "required",
+      "licenses": [
+        {
+          "expression": "GPL-2.0+"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:cargo/example-terms@0.2.0",
+      "name": "example-terms",
+      "version": "0.2.0",
+      "purl": "pkg:cargo/example-terms@0.2.0?download_url=file://.",
+      "scope": "required",
+      "licenses": [
+        {
+          "expression": "Some custom terms"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:cargo/kitchen-sink-everything@0.1.0",
+      "name": "kitchen-sink-everything",
+      "version": "0.1.0",
+      "purl": "pkg:cargo/kitchen-sink-everything@0.1.0?download_url=file://.",
+      "scope": "required",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:cargo/example-macros@1.0.2",
+      "name": "example-macros",
+      "version": "1.0.2",
+      "purl": "pkg:cargo/example-macros@1.0.2?download_url=file://.",
+      "scope": "excluded",
+      "licenses": [
+        {
+          "expression": "(MIT OR Apache-2.0) AND Unicode-3.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:cargo/syn@2.0.117",
+      "name": "syn",
+      "version": "2.0.117",
+      "purl": "pkg:cargo/syn@2.0.117",
+      "scope": "excluded",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "pkg:cargo/proc-macro2@1.0.106",
+      "name": "proc-macro2",
+      "version": "1.0.106",
+      "purl": "pkg:cargo/proc-macro2@1.0.106",
+      "scope": "excluded",
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "rust-std:synthetic:wasm32-wasip2",
+      "name": "rust-std",
+      "version": "1.100.0",
+      "purl": "pkg:github/rust-lang/rust@0000000000000000000000000000000000000000",
+      "description": "the Rust standard library for wasm32-wasip2"
+    },
+    {
+      "type": "library",
+      "bom-ref": "wasi-libc:synthetic:wasm32-wasip2",
+      "name": "wasi-libc",
+      "version": "wasi-sdk-34",
+      "purl": "pkg:github/WebAssembly/wasi-libc@0000000000000000000000000000000000000000",
+      "licenses": [
+        {
+          "expression": "Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "component:kitchen-sink:everything",
+      "dependsOn": [
+        "component:kitchen-sink:hidden-helper",
+        "pkg:cargo/bitflags@2.11.1",
+        "pkg:cargo/wit-bindgen@0.63.0",
+        "pkg:cargo/example-parser@1.2.0",
+        "pkg:cargo/example-tls@0.9.0",
+        "pkg:cargo/example-codec@2.0.0",
+        "pkg:cargo/example-time@0.5.0-alpha.1",
+        "pkg:cargo/example-pool@3.1.0",
+        "pkg:cargo/example-legacy@0.1.0",
+        "pkg:cargo/example-terms@0.2.0",
+        "pkg:cargo/kitchen-sink-everything@0.1.0",
+        "rust-std:synthetic:wasm32-wasip2",
+        "wasi-libc:synthetic:wasm32-wasip2"
+      ]
+    }
+  ]
+}

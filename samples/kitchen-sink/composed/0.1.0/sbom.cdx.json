@@ -1,0 +1,55 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-11-12T00:00:00Z",
+    "tools": {
+      "components": [
+        {
+          "type": "application",
+          "name": "wac"
+        }
+      ]
+    },
+    "component": {
+      "bom-ref": "component:kitchen-sink:composed",
+      "type": "library",
+      "name": "kitchen-sink:composed",
+      "version": "0.1.0",
+      "description": "Synthetic: an SBOM made up to show a composition's components.",
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ]
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "bom-ref": "component:kitchen-sink:everything",
+      "name": "kitchen-sink:everything",
+      "version": "0.1.0",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "component:kitchen-sink:composed",
+      "dependsOn": [
+        "component:kitchen-sink:everything"
+      ]
+    }
+  ]
+}

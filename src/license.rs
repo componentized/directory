@@ -22,30 +22,40 @@ pub struct Named {
 
 impl Named {
     fn license(token: &str) -> Self {
-        // `GPL-2.0+`, the older way to say `GPL-2.0-or-later`
-        let (base, plus) = match token.strip_suffix('+') {
-            Some(base) => (base, true),
-            None => (token, false),
-        };
-        let id = spdx::license_id(token).or_else(|| {
-            if plus {
-                spdx::gnu_license_id(base, true).or_else(|| spdx::license_id(base))
-            } else {
-                None
+        // `GPL-2.0+`, the older way to say `GPL-2.0-or-later`, which SPDX has deprecated, or `+`
+        // on another license, this version of it or any later one
+        if let Some(base) = token.strip_suffix('+') {
+            if let Some(id) = spdx::gnu_license_id(base, true) {
+                return Named {
+                    deprecated: true,
+                    ..Self::listed(token, id)
+                };
             }
-        });
-        match id {
-            Some(id) => Named {
-                id: token.to_string(),
-                name: Some(id.full_name.to_string()),
-                url: Some(format!("https://spdx.org/licenses/{}.html", id.name)),
-                exception: false,
-                osi: id.is_osi_approved(),
-                fsf: id.is_fsf_free_libre(),
-                copyleft: id.is_copyleft(),
-                deprecated: id.is_deprecated(),
-            },
+            if let Some(id) = spdx::license_id(base) {
+                let listed = Self::listed(token, id);
+                return Named {
+                    name: listed.name.map(|n| format!("{n} or later")),
+                    ..listed
+                };
+            }
+            return Self::unlisted(token, false);
+        }
+        match spdx::license_id(token) {
+            Some(id) => Self::listed(token, id),
             None => Self::unlisted(token, false),
+        }
+    }
+
+    fn listed(token: &str, id: spdx::LicenseId) -> Self {
+        Named {
+            id: token.to_string(),
+            name: Some(id.full_name.to_string()),
+            url: Some(format!("https://spdx.org/licenses/{}.html", id.name)),
+            exception: false,
+            osi: id.is_osi_approved(),
+            fsf: id.is_fsf_free_libre(),
+            copyleft: id.is_copyleft(),
+            deprecated: id.is_deprecated(),
         }
     }
 
@@ -264,8 +274,21 @@ mod tests {
             apache.url.as_deref(),
             Some("https://spdx.org/licenses/Apache-2.0.html")
         );
-        // copyleft, and the older `+` for `-or-later`
-        assert!(named("GPL-2.0+")[0].copyleft);
+        // copyleft, and the older `+` for `-or-later`, deprecated, or on another license
+        let gpl = &named("GPL-2.0+")[0];
+        assert!(gpl.copyleft && gpl.deprecated);
+        assert_eq!(
+            gpl.name.as_deref(),
+            Some("GNU General Public License v2.0 or later")
+        );
+        assert_eq!(
+            gpl.url.as_deref(),
+            Some("https://spdx.org/licenses/GPL-2.0-or-later.html")
+        );
+        assert_eq!(
+            named("Apache-2.0+")[0].name.as_deref(),
+            Some("Apache License 2.0 or later")
+        );
         assert!(named("MPL-2.0")[0].copyleft);
         // a license of the SBOM's own isn't on the list
         let own = &named("LicenseRef-example AND MIT")[0];

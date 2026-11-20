@@ -1,0 +1,16 @@
+package root:component;
+
+world root {
+  import kitchen-sink:types/primitives@0.1.0;
+  import pictures: kitchen-sink:types/resources@0.1.0;
+  import inline: interface {
+    ping: func() -> bool;
+  }
+  import log: func(message: string);
+  import sleep: async func(ms: u64);
+
+  export kitchen-sink:extras/greeter@0.1.0;
+  export kitchen-sink:types/concurrency@0.1.0;
+  export run: func(args: list<string>) -> result;
+  export serve: async func() -> result<_, string>;
+}

@@ -1,6 +1,7 @@
 //! The componentized directory: indexes the components and WIT packages published under
 //! ghcr.io/componentized and renders them as a static site.
 
+mod advisories;
 mod api;
 mod config;
 mod data;
@@ -60,6 +61,9 @@ enum Command {
         #[arg(long, default_value = ".config/wasm-pkg/config.toml")]
         config: PathBuf,
     },
+    /// Check the packages the indexed SBOMs list for known advisories, from OSV.dev, into the
+    /// index's `advisories.json`
+    Advisories,
     /// Render the index as a static site
     Build {
         /// The output directory
@@ -96,6 +100,7 @@ fn main() -> Result<()> {
             sources: config::Sources::load(&cli.sources)?,
             tracked: config::Tracked::load(&cli.tracked)?,
         }),
+        Command::Advisories => advisories::run(&cli.data),
         Command::Build {
             out,
             base_url,

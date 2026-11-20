@@ -5,7 +5,7 @@
 // interface's page, e.g. `/wasi/http/0.3.0/types/`, has one too: the interface, how many types and
 // functions it has, and the first paragraph of its docs. So does a link to a version's page, e.g.
 // `/wasi/http/0.3.0/`, in a list of packages such as a version's dependencies: the package, what it
-// has, when it was published, and its description. Links in the contents and in menus, which name
+// has, when it was published, its known vulnerabilities, and its description. Links in the contents and in menus, which name
 // what they lead to anyway, have none, nor do cards, which show as much.
 //
 // It also draws the icons of items as their pages do, for the compare page to share.
@@ -96,8 +96,8 @@
       .map((m) => `  ${m},\n`)
       .join("")}${more ? `  <span class="wit-tip-more">… ${more} more</span>\n` : ""}}`;
   };
-  // a version's tooltip: its package and version, what it has, when it was published, and its
-  // description
+  // a version's tooltip: its package and version, what it has, when it was published, its known
+  // vulnerabilities, and its description
   const versionTip = ({ version: v }) => {
     const count = (n, what) => `${n} ${what}${n === 1 ? "" : "s"}`;
     const has = v.kind === "component"
@@ -108,7 +108,15 @@
           v.components && count(v.components, "component"),
         ]
       : [count(Object.keys(v.interfaces ?? {}).length, "interface"), count(Object.keys(v.worlds ?? {}).length, "world")];
-    return `<div class="wit-tip-head">${icon(v.components ? "composition" : v.kind === "interface" ? "package" : v.kind)}<div class="wit-tip-body"><code class="wit-tip-def">${esc(`${v.package}@${v.version}`)}</code><span class="wit-tip-from">${[...has, v.date].filter(Boolean).map(esc).join(" · ")}</span></div></div>
+    // its known vulnerabilities, by severity, as its header shows them
+    const levels = v.vulnerabilities ?? [];
+    const total = levels.reduce((n, l) => n + l.count, 0);
+    const vulns = total
+      ? `<span class="wit-tip-vulns">${levels
+          .map((l) => `<span class="vuln-level sev-${esc(l.severity)}" title="${esc(`${l.count} ${l.severity}`)}"><svg class="sev-icon" aria-hidden="true" focusable="false"><use href="#sev-${esc(l.severity)}"/></svg>${esc(l.count)}<span class="visually-hidden"> ${esc(l.severity)}</span></span>`)
+          .join("")}<span class="wit-tip-vulns-label">known ${total === 1 ? "vulnerability" : "vulnerabilities"}</span></span>`
+      : "";
+    return `<div class="wit-tip-head">${icon(v.components ? "composition" : v.kind === "interface" ? "package" : v.kind)}<div class="wit-tip-body"><code class="wit-tip-def">${esc(`${v.package}@${v.version}`)}</code><span class="wit-tip-from">${[...has, v.date].filter(Boolean).map(esc).join(" · ")}</span>${vulns}</div></div>
       ${v.summary ? `<p class="wit-tip-docs">${esc(v.summary)}</p>` : ""}`;
   };
   // an interface's tooltip: its id, how many types and functions it has, its gates, and its docs
