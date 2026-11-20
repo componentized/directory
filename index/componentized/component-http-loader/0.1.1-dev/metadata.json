@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/component/http-loader",
     "tag": "0.1.1-dev",
-    "digest": "sha256:1b0d3fce2f1abb0436faaa98043ee324eb5bcd7ff75276c1853dadb67a052651",
+    "digest": "sha256:100b31f8a94169e803313090bd07877823d94392bd74259a560c3331bfe67f64",
     "layer_digest": "sha256:44c34ea90f054735aec9b845fabe9987dcf209d57097c695310e0d2696d68f2e",
     "size": 72288,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/component",
       "git_ref": "refs/heads/main",
-      "log_index": 3929906787
+      "log_index": 4028262988
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/component/http-loader",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:9b932956915a0572c1105ac6354cef6a233aac10b21fa0883274c3919afbaaaa",
+    "digest": "sha256:2c08a3ece2bce1c27523905cd8e1e7a0d450217988ff182d95df2d9c880d9882",
     "layer_digest": "sha256:db58792a69574767fe405f0b448a82d48bba7371b35a9cf1ca765a45299f2313",
     "size": 869171,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/component",
       "git_ref": "refs/heads/main",
-      "log_index": 3929912237
+      "log_index": 4028264152
     }
   },
-  "created": "2026-11-16T16:26:22.960156972Z",
+  "created": "2026-11-20T19:48:25.277170289Z",
   "annotations": {
     "org.opencontainers.image.description": "Loads a component from an HTTP URL.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "ca0ed54a64bc9c331b4ac6ce59437764d5c69b08",
+    "org.opencontainers.image.revision": "565b1489b9f947f0c9da7cc1e0f8bb4adcd1f6bf",
     "org.opencontainers.image.source": "https://github.com/componentized/component.git",
     "org.opencontainers.image.title": "componentized:component-http-loader",
-    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/ca0ed54a64bc9c331b4ac6ce59437764d5c69b08/components/http-loader",
+    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/565b1489b9f947f0c9da7cc1e0f8bb4adcd1f6bf/components/http-loader",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -71,5 +71,5 @@
   "sbom": {
     "status": "missing"
   },
-  "indexed_at": "2026-11-16T16:29:52Z"
+  "indexed_at": "2026-11-20T19:51:29Z"
 }

@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/component/oci-loader",
     "tag": "0.1.1-dev",
-    "digest": "sha256:356c68d746553fdaad6334fcef86bdaed0a385c2c6cebdb470467883e54bc156",
+    "digest": "sha256:744e537548b62871c394985071bb3e098eb7a387c44997962efe439de431ffa1",
     "layer_digest": "sha256:731d6c5a42bc44cadde029c5198b6a855825c3c32d49ba680a312547eadcaeea",
     "size": 116971,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/component",
       "git_ref": "refs/heads/main",
-      "log_index": 3929916829
+      "log_index": 4028264990
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/component/oci-loader",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:2e84f56045251e95ae63ce67b58dd1217501c7aaac1e9aee372db4a74070211c",
+    "digest": "sha256:8a92e7bf35da48edd6c8f4ba168e2318f7c70ec0a95d5c2c086648e8da4c833e",
     "layer_digest": "sha256:818f67be8a6e4c094504a5d3cc9e79519d74ad9cd2c356b837cba96d71fcafe0",
     "size": 1783380,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/component",
       "git_ref": "refs/heads/main",
-      "log_index": 3929919622
+      "log_index": 4028265730
     }
   },
-  "created": "2026-11-16T16:26:50.390734871Z",
+  "created": "2026-11-20T19:48:43.856247859Z",
   "annotations": {
     "org.opencontainers.image.description": "Loads a component from an OCI registry by reference.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "ca0ed54a64bc9c331b4ac6ce59437764d5c69b08",
+    "org.opencontainers.image.revision": "565b1489b9f947f0c9da7cc1e0f8bb4adcd1f6bf",
     "org.opencontainers.image.source": "https://github.com/componentized/component.git",
     "org.opencontainers.image.title": "componentized:component-oci-loader",
-    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/ca0ed54a64bc9c331b4ac6ce59437764d5c69b08/components/oci-loader",
+    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/565b1489b9f947f0c9da7cc1e0f8bb4adcd1f6bf/components/oci-loader",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -77,5 +77,5 @@
   "sbom": {
     "status": "missing"
   },
-  "indexed_at": "2026-11-16T16:29:56Z"
+  "indexed_at": "2026-11-20T19:51:34Z"
 }

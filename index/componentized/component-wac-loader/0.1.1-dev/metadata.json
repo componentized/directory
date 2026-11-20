@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/component/wac-loader",
     "tag": "0.1.1-dev",
-    "digest": "sha256:eacf50567c92dfbd49e1703305927005cc0b7167730cec162954d1c4e4469037",
+    "digest": "sha256:2bbdf7f0d108ee98da693e20f3beee923fece7b32aeb7a02278a0028bcd42a6d",
     "layer_digest": "sha256:1b9ff48d474f495f5eb4fa2c27d84a61f7836a086e9d259fd8ba81d956ed8d45",
     "size": 1730791,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/component",
       "git_ref": "refs/heads/main",
-      "log_index": 3929936310
+      "log_index": 4028269438
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/component/wac-loader",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:3829a94d0b6113c7fd160154e770e3dd57c7330ef0e1cc3392d55d4e84d08f7f",
+    "digest": "sha256:0e7525b27ae0cb6907332a2df4db36016108c040d4454850f521c7a77e694575",
     "layer_digest": "sha256:8fd056d2daac117dfc6fe020a2eacafa642305a533add9f9af96a29c17969058",
     "size": 21164589,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/component",
       "git_ref": "refs/heads/main",
-      "log_index": 3929939393
+      "log_index": 4028269742
     }
   },
-  "created": "2026-11-16T16:27:56.418114559Z",
+  "created": "2026-11-20T19:49:39.280232013Z",
   "annotations": {
     "org.opencontainers.image.description": "Compose a component from other components using wac.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "ca0ed54a64bc9c331b4ac6ce59437764d5c69b08",
+    "org.opencontainers.image.revision": "565b1489b9f947f0c9da7cc1e0f8bb4adcd1f6bf",
     "org.opencontainers.image.source": "https://github.com/componentized/component.git",
     "org.opencontainers.image.title": "componentized:component-wac-loader",
-    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/ca0ed54a64bc9c331b4ac6ce59437764d5c69b08/components/wac-loader",
+    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/565b1489b9f947f0c9da7cc1e0f8bb4adcd1f6bf/components/wac-loader",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -66,5 +66,5 @@
   "sbom": {
     "status": "missing"
   },
-  "indexed_at": "2026-11-16T16:30:17Z"
+  "indexed_at": "2026-11-20T19:51:51Z"
 }
