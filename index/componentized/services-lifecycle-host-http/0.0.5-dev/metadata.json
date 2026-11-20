@@ -7,54 +7,52 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/lifecycle-host-http",
     "tag": "0.0.5-dev",
-    "digest": "sha256:bf92aff126cfc3bb7bfb0659299bfd4dbff2c699a972043951c1f05b150336d1",
-    "layer_digest": "sha256:292ed07959ba2d7043f1a6570565675cc1969c4881bda79e413b376fcdf7a753",
-    "size": 92450,
+    "digest": "sha256:97dc0fa0e2d4878b0a2db56f1e4cce38c2b66754811da2d15c7c44ec6eac829b",
+    "layer_digest": "sha256:0d207631c7c6b0c18014100193edfb7dabf654ce2fb48773370b729fc920d43f",
+    "size": 179964,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4015687829
+      "log_index": 4025130388
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/services/lifecycle-host-http",
     "tag": "0.0.5-dev_debug",
-    "digest": "sha256:bb0073a1e264fa31bb37c0c4d4b2e9ad9997468a91733f88c78adee90ceaba7d",
-    "layer_digest": "sha256:245ef829eb0addd2587e2c9bd25c631bcc7f6846961804df359353513dd0e72e",
-    "size": 227581,
+    "digest": "sha256:21889032d2925093a80214f7a99cd188893c1f54b3574b45733e3aafb5218076",
+    "layer_digest": "sha256:9e1b4f0f17f7ca76d345beba2a827ace81e1b6973f58b1eed7cc71cf10f5ecf3",
+    "size": 624235,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4015693902
+      "log_index": 4025140920
     }
   },
-  "created": "2026-11-20T03:24:15.980122064Z",
+  "created": "2026-11-20T12:46:51.190067180Z",
   "annotations": {
     "org.opencontainers.image.description": "Exposes a `componentized:services/lifecycle` over http, exporting `wasi:http/incoming-handler`.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "c175e74819440b21c5578bd75697bd2de8f9045e",
+    "org.opencontainers.image.revision": "f5b0150e7210002d78d43d798a9e5c7a63dc1898",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-lifecycle-host-http",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/c175e74819440b21c5578bd75697bd2de8f9045e/components/lifecycle-host-http",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/f5b0150e7210002d78d43d798a9e5c7a63dc1898/components/lifecycle-host-http",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
     "componentized:services/lifecycle@0.0.5-dev",
     "componentized:services/types@0.0.5-dev",
-    "wasi:http/types@0.2.6",
-    "wasi:io/error@0.2.6",
-    "wasi:io/streams@0.2.6",
+    "wasi:http/types@0.3.0",
     "wasi:logging/logging@0.1.0-draft"
   ],
   "exports": [
-    "wasi:http/incoming-handler@0.2.6"
+    "wasi:http/handler@0.3.0"
   ],
   "dependencies": [
     {
@@ -63,11 +61,7 @@
     },
     {
       "package": "wasi:http",
-      "version": "0.2.6"
-    },
-    {
-      "package": "wasi:io",
-      "version": "0.2.6"
+      "version": "0.3.0"
     },
     {
       "package": "wasi:logging",
@@ -76,8 +70,8 @@
   ],
   "parts": [
     {
-      "digest": "sha256:7b330b7286835583a52da330c2167cf837d594453d29216e6a43176ccda892c6",
-      "size": 306
+      "digest": "sha256:474592e1e1383f457fcad936bebef7e01d7cc6503a4b00b0e782e74a5b081c54",
+      "size": 1551
     }
   ],
   "sbom": {
@@ -86,7 +80,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/services",
     "git_ref": "refs/heads/main",
-    "log_index": 4015689342
+    "log_index": 4025134885
   },
-  "indexed_at": "2026-11-20T03:32:07Z"
+  "indexed_at": "2026-11-20T12:54:35Z"
 }

@@ -7,32 +7,32 @@
     "registry": "ghcr.io",
     "repository": "componentized/services",
     "tag": "0.0.5-dev",
-    "digest": "sha256:a29c07f072fed1d7968cb61b6d4e3b44feae26e57c786c0f3e201d27ed9d63fe",
-    "layer_digest": "sha256:709dfa22144446c9b2f614e3ca0ea71fa479dd4e4805c7b6d00acfe31b382dcb",
-    "size": 17374,
+    "digest": "sha256:d8da83c54a2378f635e5482a4750a809f2047650622a2c9df36a2b6314dad25c",
+    "layer_digest": "sha256:6c0975f4858d40540d06d7865113d1f02b1a06871a539732fb5898fa53167d7c",
+    "size": 14552,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4015546525
+      "log_index": 4024960961
     }
   },
-  "created": "2026-11-20T03:18:29.502750710Z",
+  "created": "2026-11-20T12:40:09.592990038Z",
   "annotations": {
     "org.opencontainers.image.description": "A WASM component services lifecycle.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "c175e74819440b21c5578bd75697bd2de8f9045e",
+    "org.opencontainers.image.revision": "f5b0150e7210002d78d43d798a9e5c7a63dc1898",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/c175e74819440b21c5578bd75697bd2de8f9045e",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/f5b0150e7210002d78d43d798a9e5c7a63dc1898",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "dependencies": [
     {
       "package": "wasi:clocks",
-      "version": "0.2.6"
+      "version": "0.3.0"
     },
     {
       "package": "wasi:config",
@@ -40,11 +40,7 @@
     },
     {
       "package": "wasi:filesystem",
-      "version": "0.2.6"
-    },
-    {
-      "package": "wasi:io",
-      "version": "0.2.6"
+      "version": "0.3.0"
     },
     {
       "package": "wasi:logging",
@@ -52,11 +48,11 @@
     },
     {
       "package": "wasi:random",
-      "version": "0.2.6"
+      "version": "0.3.0"
     },
     {
       "package": "wasi:sockets",
-      "version": "0.2.6"
+      "version": "0.3.0"
     }
   ],
   "sbom": {
@@ -65,7 +61,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/services",
     "git_ref": "refs/heads/main",
-    "log_index": 4015549749
+    "log_index": 4024969078
   },
-  "indexed_at": "2026-11-20T03:31:20Z"
+  "indexed_at": "2026-11-20T12:53:31Z"
 }

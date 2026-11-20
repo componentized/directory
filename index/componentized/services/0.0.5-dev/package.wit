@@ -31,7 +31,7 @@ interface credential-store {
   use types.{service-id, credential, error};
 
   /// Fetch credentials from the store for a specific instance or binding.
-  fetch: func(id: service-id) -> result<list<credential>, error>;
+  fetch: async func(id: service-id) -> result<list<credential>, error>;
 }
 
 /// Credential Admins manage the credentials for an instance or binding. The platform typically
@@ -47,11 +47,11 @@ interface credential-admin {
   /// Publish new or refreshed credentials to the store for use by the service instance/binding.
   /// When rotating credentials, the previously valid credentials should be revoked after calling
   /// publish with the new credentials.
-  publish: func(id: service-id, credentials: list<credential>) -> result<_, error>;
+  publish: async func(id: service-id, credentials: list<credential>) -> result<_, error>;
 
   /// Destroy credentials previously published for a service instance or binding. Valid
   /// credentials should be revoked before calling destroy.
-  destroy: func(id: service-id) -> result<_, error>;
+  destroy: async func(id: service-id) -> result<_, error>;
 }
 
 /// Service lifecycle manage a specific type of service on demand. Allowed tiers and requested
@@ -65,54 +65,49 @@ interface lifecycle {
   /// if the tier or attributes are invalid, or if the service could not be provisioned for any
   /// reason. A service-instance-id is returned on success which can be used to update the
   ///  service instance, create bindings, or destroy the service instance.
-  provision: func(instance-id: service-instance-id, %type: string, tier: option<tier>, requests: option<list<request>>) -> result<_, error>;
+  provision: async func(instance-id: service-instance-id, %type: string, tier: option<tier>, requests: option<list<request>>) -> result<_, error>;
 
   /// Update tier or requested attributes for an existing service. An error is returned
   /// if the tier or attributes are invalid, or if the service could not be updated for any
   /// reason.
-  update: func(instance-id: service-instance-id, tier: option<tier>, requests: option<list<request>>) -> result<_, error>;
+  update: async func(instance-id: service-instance-id, tier: option<tier>, requests: option<list<request>>) -> result<_, error>;
 
   /// Destroys an existing service, optionally requesting that state contained within the service
   /// be retained rather than destroyed. A service-error is returned if the retention request
   /// cannot be satisfied, or if the service could not be destroyed for any reason.
-  destroy: func(instance-id: service-instance-id, retain: option<bool>) -> result<_, error>;
+  destroy: async func(instance-id: service-instance-id, retain: option<bool>) -> result<_, error>;
 
   /// Bind new credentials for the provisioned service publishing them to the credential store.
   /// Scopes limit access to the service for the binding. The specific scopes available are
   /// defined by the service. An error is returned if the scopes are invalid or the binding could
   /// not be created for any reason.
-  bind: func(binding-id: service-binding-id, instance-id: service-instance-id, scopes: option<list<scope>>) -> result<_, error>;
+  bind: async func(binding-id: service-binding-id, instance-id: service-instance-id, scopes: option<list<scope>>) -> result<_, error>;
 
   /// List bindings for a service instance.
-  list-bindings: func(instance-id: service-instance-id) -> result<list<service-binding-id>, error>;
+  list-bindings: async func(instance-id: service-instance-id) -> result<list<service-binding-id>, error>;
 
   /// Unbind removes the binding. Expire any valid credentials and remove them from the
   /// credential store. An error is returned if the binding could not be released for any reason.
-  unbind: func(binding-id: service-binding-id, instance-id: service-instance-id) -> result<_, error>;
+  unbind: async func(binding-id: service-binding-id, instance-id: service-instance-id) -> result<_, error>;
 }
 
 world service-lifecycle {
   import types;
   import credential-admin;
-  import wasi:io/poll@0.2.6;
-  import wasi:clocks/monotonic-clock@0.2.6;
-  import wasi:clocks/wall-clock@0.2.6;
+  import wasi:clocks/types@0.3.0;
+  import wasi:clocks/monotonic-clock@0.3.0;
+  import wasi:clocks/system-clock@0.3.0;
+  @unstable(feature = clocks-timezone)
+  import wasi:clocks/timezone@0.3.0;
   import wasi:config/store@0.2.0-rc.1;
-  import wasi:io/error@0.2.6;
-  import wasi:io/streams@0.2.6;
-  import wasi:filesystem/types@0.2.6;
-  import wasi:filesystem/preopens@0.2.6;
+  import wasi:filesystem/types@0.3.0;
+  import wasi:filesystem/preopens@0.3.0;
   import wasi:logging/logging@0.1.0-draft;
-  import wasi:random/random@0.2.6;
-  import wasi:random/insecure@0.2.6;
-  import wasi:random/insecure-seed@0.2.6;
-  import wasi:sockets/network@0.2.6;
-  import wasi:sockets/instance-network@0.2.6;
-  import wasi:sockets/udp@0.2.6;
-  import wasi:sockets/udp-create-socket@0.2.6;
-  import wasi:sockets/tcp@0.2.6;
-  import wasi:sockets/tcp-create-socket@0.2.6;
-  import wasi:sockets/ip-name-lookup@0.2.6;
+  import wasi:random/random@0.3.0;
+  import wasi:random/insecure@0.3.0;
+  import wasi:random/insecure-seed@0.3.0;
+  import wasi:sockets/types@0.3.0;
+  import wasi:sockets/ip-name-lookup@0.3.0;
 
   export lifecycle;
 }

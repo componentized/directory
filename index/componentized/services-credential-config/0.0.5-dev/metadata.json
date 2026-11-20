@@ -7,53 +7,58 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/credential-config",
     "tag": "0.0.5-dev",
-    "digest": "sha256:adac8ce006b2062169784579f55d795558598ea724da39085252b7030f1cce32",
-    "layer_digest": "sha256:fa34c74569e0a1596845f451f700e72b5a768297f01181d88bd458117df646ed",
-    "size": 30835,
+    "digest": "sha256:16c2e341c8c2bb9a504f96de486d3736b2881bb7cbea1e789bc864e76e8cc104",
+    "layer_digest": "sha256:d797f701d62770e6c90f6437474c73f811a31412562976d6166b159f6b433794",
+    "size": 74947,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4015555441
+      "log_index": 4024972470
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/services/credential-config",
     "tag": "0.0.5-dev_debug",
-    "digest": "sha256:35fdc34d6557b030c8510658500676646483df7eb876a248627c61d42ed26263",
-    "layer_digest": "sha256:f403a421401bb29b3a4252fb2beb1c39c9845eded050200b555081e49a5fa8b7",
-    "size": 99872,
+    "digest": "sha256:01ea188762a0cd4aa2e40c045612c4000bb3366b686ccc7805b2f5832a9fd924",
+    "layer_digest": "sha256:dcc7913a3db1caa492adabea4cc0034c4944ad1a0323d606ce12aa650af450ca",
+    "size": 250784,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4015565080
+      "log_index": 4024993919
     }
   },
-  "created": "2026-11-20T03:18:52.940066052Z",
+  "created": "2026-11-20T12:40:53.424869577Z",
   "annotations": {
     "org.opencontainers.image.description": "Exports `wasi:config/store` with the credentials of a service binding, the binding named by the `binding-id` key of the imported `wasi:config/store`, fetched from a `componentized:services/credential-store`.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "c175e74819440b21c5578bd75697bd2de8f9045e",
+    "org.opencontainers.image.revision": "f5b0150e7210002d78d43d798a9e5c7a63dc1898",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-credential-config",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/c175e74819440b21c5578bd75697bd2de8f9045e/components/credential-config",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/f5b0150e7210002d78d43d798a9e5c7a63dc1898/components/credential-config",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
+    "componentized:secrets/types@0.1.1",
     "componentized:services/credential-store@0.0.5-dev",
     "componentized:services/types@0.0.5-dev",
     "wasi:config/store@0.2.0-rc.1"
   ],
   "exports": [
-    "wasi:config/store@0.2.0-rc.1"
+    "componentized:secrets/store@0.1.1"
   ],
   "dependencies": [
+    {
+      "package": "componentized:secrets",
+      "version": "0.1.1"
+    },
     {
       "package": "componentized:services",
       "version": "0.0.5-dev"
@@ -65,8 +70,8 @@
   ],
   "parts": [
     {
-      "digest": "sha256:75b10a5429d748c55100996b3a11e6628c47214ee66d46fb7e6091702d07dd0b",
-      "size": 244
+      "digest": "sha256:dc5c3ae9a9d02647d2dd97d365ac1e3ebffa3f96176e9674f1ea7f68bd71b499",
+      "size": 345
     }
   ],
   "sbom": {
@@ -75,7 +80,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/services",
     "git_ref": "refs/heads/main",
-    "log_index": 4015558462
+    "log_index": 4024982649
   },
-  "indexed_at": "2026-11-20T03:31:26Z"
+  "indexed_at": "2026-11-20T12:53:39Z"
 }

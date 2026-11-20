@@ -7,65 +7,51 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/filesystem-lifecycle",
     "tag": "0.0.5-dev",
-    "digest": "sha256:f443e485ebe766737d24a5501a7a0f8e7d93ef82c592b571856dfe580f08fef3",
-    "layer_digest": "sha256:0dbcba8cf7c25f4ce228f3d7d1983e8fd511e3f30360ea6bfe861839c78a3c7d",
-    "size": 191528,
+    "digest": "sha256:ef41a50aaab6b9ff7d8d261f880b161ace670629506e85573e8640c069d8b84d",
+    "layer_digest": "sha256:e9df86be3e615e94a31bfd09665a22b94514bcd4d4e3555d2aed1f87357af87c",
+    "size": 223030,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4015608658
+      "log_index": 4025056764
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/services/filesystem-lifecycle",
     "tag": "0.0.5-dev_debug",
-    "digest": "sha256:762369d09a54ccaed7d10786e378e6270fbd6404d8f18abdb93070ef254630a7",
-    "layer_digest": "sha256:6fd0a6e8d27c7ff7def4528490643cd20d7566121efadd0839323f50b4e1517b",
-    "size": 385874,
+    "digest": "sha256:3933be881c1d44d76248b971df70b2d1aa4325922b3193410c44069a80769d12",
+    "layer_digest": "sha256:a85fef64c6a967dc62b8c171e94d1c8e0fae3b2169156175b1290841f2c6eff0",
+    "size": 690172,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4015620294
+      "log_index": 4025067562
     }
   },
-  "created": "2026-11-20T03:21:02.871183930Z",
+  "created": "2026-11-20T12:44:04.129144592Z",
   "annotations": {
     "org.opencontainers.image.description": "Implements `componentized:services/service-lifecycle` for `filesystem` services, each service instance a directory in `wasi:filesystem`, under the directory of the `path` key in `wasi:config`, `services` by default.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "c175e74819440b21c5578bd75697bd2de8f9045e",
+    "org.opencontainers.image.revision": "f5b0150e7210002d78d43d798a9e5c7a63dc1898",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-filesystem-lifecycle",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/c175e74819440b21c5578bd75697bd2de8f9045e/components/filesystem-lifecycle",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/f5b0150e7210002d78d43d798a9e5c7a63dc1898/components/filesystem-lifecycle",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
     "componentized:services/credential-admin@0.0.5-dev",
     "componentized:services/types@0.0.5-dev",
-    "wasi:cli/environment@0.2.12",
-    "wasi:cli/exit@0.2.12",
-    "wasi:cli/stderr@0.2.12",
-    "wasi:cli/stdin@0.2.12",
-    "wasi:cli/stdout@0.2.12",
-    "wasi:cli/terminal-input@0.2.12",
-    "wasi:cli/terminal-output@0.2.12",
-    "wasi:cli/terminal-stderr@0.2.12",
-    "wasi:cli/terminal-stdin@0.2.12",
-    "wasi:cli/terminal-stdout@0.2.12",
-    "wasi:clocks/monotonic-clock@0.2.12",
-    "wasi:clocks/wall-clock@0.2.12",
+    "wasi:clocks/system-clock@0.3.0",
     "wasi:config/store@0.2.0-rc.1",
-    "wasi:filesystem/preopens@0.2.12",
-    "wasi:filesystem/types@0.2.12",
-    "wasi:io/error@0.2.12",
-    "wasi:io/poll@0.2.12",
-    "wasi:io/streams@0.2.12"
+    "wasi:filesystem/preopens@0.3.0",
+    "wasi:filesystem/types@0.3.0"
   ],
   "exports": [
     "componentized:services/lifecycle@0.0.5-dev"
@@ -76,12 +62,8 @@
       "version": "0.0.5-dev"
     },
     {
-      "package": "wasi:cli",
-      "version": "0.2.12"
-    },
-    {
       "package": "wasi:clocks",
-      "version": "0.2.12"
+      "version": "0.3.0"
     },
     {
       "package": "wasi:config",
@@ -89,16 +71,12 @@
     },
     {
       "package": "wasi:filesystem",
-      "version": "0.2.12"
-    },
-    {
-      "package": "wasi:io",
-      "version": "0.2.12"
+      "version": "0.3.0"
     }
   ],
   "parts": [
     {
-      "digest": "sha256:62083ba53ff5f7790bc1a0edd0e0cf4087d1c7aaac6ff2bf1c3dc2da0e7bd999",
+      "digest": "sha256:cf7614e59abfb5b3b1fa026a41624eed24e131425c3d4d415cbb97c3d1c14886",
       "size": 1218
     }
   ],
@@ -108,7 +86,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/services",
     "git_ref": "refs/heads/main",
-    "log_index": 4015612255
+    "log_index": 4025061765
   },
-  "indexed_at": "2026-11-20T03:31:43Z"
+  "indexed_at": "2026-11-20T12:54:03Z"
 }

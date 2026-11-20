@@ -2,11 +2,11 @@
   "bomFormat": "CycloneDX",
   "components": [
     {
-      "bom-ref": "wit:wasi:clocks@0.2.6",
+      "bom-ref": "wit:wasi:clocks@0.3.0",
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "569984cc45d3f5a362a3b2897aabbaa3cc4184a6113bfcbbf03c1bd7fc20338c"
+          "content": "59e1f4079e64ada450e19ffc9d08854c904e356ed8cc1fda36ff4fe150264db2"
         }
       ],
       "name": "wasi:clocks",
@@ -17,7 +17,7 @@
         }
       ],
       "type": "library",
-      "version": "0.2.6"
+      "version": "0.3.0"
     },
     {
       "bom-ref": "wit:wasi:config@0.2.0-rc.1",
@@ -38,11 +38,11 @@
       "version": "0.2.0-rc.1"
     },
     {
-      "bom-ref": "wit:wasi:filesystem@0.2.6",
+      "bom-ref": "wit:wasi:filesystem@0.3.0",
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "7b735005e020ee3d727d995c05849c59bbf084b51a054013c0f0796c571e1ab0"
+          "content": "42921410cddcdce2e009fd65c9a763bfb3fb61e2c0a64ff71647cc4405470378"
         }
       ],
       "name": "wasi:filesystem",
@@ -53,7 +53,7 @@
         }
       ],
       "type": "library",
-      "version": "0.2.6"
+      "version": "0.3.0"
     },
     {
       "bom-ref": "wit:wasi:logging@0.1.0-draft",
@@ -74,11 +74,11 @@
       "version": "0.1.0-draft"
     },
     {
-      "bom-ref": "wit:wasi:random@0.2.6",
+      "bom-ref": "wit:wasi:random@0.3.0",
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "14ea24097cbe19ae2c79c6ffead72f70c4aed65bb68ef40ed8eca6e08383dc1b"
+          "content": "daa3c8897a68fbfc58b95c2e1de1b7af5be8c647bbb2cfeaa54c1e5b1ba9b772"
         }
       ],
       "name": "wasi:random",
@@ -89,14 +89,14 @@
         }
       ],
       "type": "library",
-      "version": "0.2.6"
+      "version": "0.3.0"
     },
     {
-      "bom-ref": "wit:wasi:sockets@0.2.6",
+      "bom-ref": "wit:wasi:sockets@0.3.0",
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "f3e112b5a7926758b82cfc884b5febfce8b924cda766dbdc1f4f60893f59b301"
+          "content": "47d4cb10ad41dbd7f543693211876bf413793d4d8dc0aad08ead34bf44348fa1"
         }
       ],
       "name": "wasi:sockets",
@@ -107,24 +107,24 @@
         }
       ],
       "type": "library",
-      "version": "0.2.6"
+      "version": "0.3.0"
     }
   ],
   "dependencies": [
     {
       "dependsOn": [
-        "wit:wasi:clocks@0.2.6",
+        "wit:wasi:clocks@0.3.0",
         "wit:wasi:config@0.2.0-rc.1",
-        "wit:wasi:filesystem@0.2.6",
+        "wit:wasi:filesystem@0.3.0",
         "wit:wasi:logging@0.1.0-draft",
-        "wit:wasi:random@0.2.6",
-        "wit:wasi:sockets@0.2.6"
+        "wit:wasi:random@0.3.0",
+        "wit:wasi:sockets@0.3.0"
       ],
       "ref": "component:componentized:services"
     },
     {
       "dependsOn": [],
-      "ref": "wit:wasi:clocks@0.2.6"
+      "ref": "wit:wasi:clocks@0.3.0"
     },
     {
       "dependsOn": [],
@@ -132,7 +132,7 @@
     },
     {
       "dependsOn": [],
-      "ref": "wit:wasi:filesystem@0.2.6"
+      "ref": "wit:wasi:filesystem@0.3.0"
     },
     {
       "dependsOn": [],
@@ -140,11 +140,11 @@
     },
     {
       "dependsOn": [],
-      "ref": "wit:wasi:random@0.2.6"
+      "ref": "wit:wasi:random@0.3.0"
     },
     {
       "dependsOn": [],
-      "ref": "wit:wasi:sockets@0.2.6"
+      "ref": "wit:wasi:sockets@0.3.0"
     }
   ],
   "metadata": {
@@ -153,19 +153,19 @@
       "description": "A WASM component services lifecycle.",
       "externalReferences": [
         {
-          "comment": "revision c175e74819440b21c5578bd75697bd2de8f9045e",
+          "comment": "revision f5b0150e7210002d78d43d798a9e5c7a63dc1898",
           "type": "vcs",
           "url": "https://github.com/componentized/services.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/services/tree/c175e74819440b21c5578bd75697bd2de8f9045e"
+          "url": "https://github.com/componentized/services/tree/f5b0150e7210002d78d43d798a9e5c7a63dc1898"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "709dfa22144446c9b2f614e3ca0ea71fa479dd4e4805c7b6d00acfe31b382dcb"
+          "content": "6c0975f4858d40540d06d7865113d1f02b1a06871a539732fb5898fa53167d7c"
         }
       ],
       "licenses": [
@@ -174,11 +174,11 @@
         }
       ],
       "name": "componentized:services",
-      "purl": "pkg:oci/services@sha256%3Aa29c07f072fed1d7968cb61b6d4e3b44feae26e57c786c0f3e201d27ed9d63fe?repository_url=ghcr.io/componentized/services&tag=0.0.5-dev",
+      "purl": "pkg:oci/services@sha256%3Ad8da83c54a2378f635e5482a4750a809f2047650622a2c9df36a2b6314dad25c?repository_url=ghcr.io/componentized/services&tag=0.0.5-dev",
       "type": "library",
       "version": "0.0.5-dev"
     },
-    "timestamp": "2026-11-20T03:15:44Z",
+    "timestamp": "2026-11-20T12:33:31Z",
     "tools": {
       "components": [
         {

@@ -7,50 +7,49 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/webhook-credential-admin",
     "tag": "0.0.5-dev",
-    "digest": "sha256:c9ac04db8f06b21839c90b095b66c90caa2482fec50ffe05566c054619b0b130",
-    "layer_digest": "sha256:012f6bc5454e69c695b28648ef0452dc36e656f2e22b3d47d9e8ce616fd138cf",
-    "size": 90650,
+    "digest": "sha256:61c20db4bc93b967d0adf6ce411accec3086a4fad7e1cf2ef39d44f7f1b75639",
+    "layer_digest": "sha256:32f96e9950946498af83f746b7ef640e424cd18ac18f4c280acdd8bd550fff9d",
+    "size": 139093,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4015763395
+      "log_index": 4025228983
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/services/webhook-credential-admin",
     "tag": "0.0.5-dev_debug",
-    "digest": "sha256:7619eb00e2b7d1c908ef0cde6c496fb4aeb4d7f8ca797be4a718ac9e999306fe",
-    "layer_digest": "sha256:7219aa0aa40621d6e70d0bfe77090287498084784e2954114d7a67c585b5a99f",
-    "size": 241247,
+    "digest": "sha256:da7fbcf5bf4486a08f2fef6e599680d344df059b355c83aa07b56d77456aad85",
+    "layer_digest": "sha256:830802346eaaad5cdefa52509a63d276fb45d53189e9894584ce0a7cf39a18cb",
+    "size": 445651,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4015774002
+      "log_index": 4025238997
     }
   },
-  "created": "2026-11-20T03:27:15.688286219Z",
+  "created": "2026-11-20T12:50:18.688400595Z",
   "annotations": {
     "org.opencontainers.image.description": "Implements `componentized:services/credential-admin`, publishing and destroying the credentials of service bindings with a webhook over `wasi:http`, at the `scheme` and `host` keys in `wasi:config`.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "c175e74819440b21c5578bd75697bd2de8f9045e",
+    "org.opencontainers.image.revision": "f5b0150e7210002d78d43d798a9e5c7a63dc1898",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-webhook-credential-admin",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/c175e74819440b21c5578bd75697bd2de8f9045e/components/webhook-credential-admin",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/f5b0150e7210002d78d43d798a9e5c7a63dc1898/components/webhook-credential-admin",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
     "componentized:services/types@0.0.5-dev",
     "wasi:config/store@0.2.0-rc.1",
-    "wasi:http/outgoing-handler@0.2.6",
-    "wasi:http/types@0.2.6",
-    "wasi:io/poll@0.2.6"
+    "wasi:http/client@0.3.0",
+    "wasi:http/types@0.3.0"
   ],
   "exports": [
     "componentized:services/credential-admin@0.0.5-dev"
@@ -66,16 +65,12 @@
     },
     {
       "package": "wasi:http",
-      "version": "0.2.6"
-    },
-    {
-      "package": "wasi:io",
-      "version": "0.2.6"
+      "version": "0.3.0"
     }
   ],
   "parts": [
     {
-      "digest": "sha256:efead5f72aafd93a198316a3e048c06cbd726441a50c70dda245ee5eb0f12d34",
+      "digest": "sha256:e7405684ffdcfdc7ea02d6442ff59321060107367ae0a6e1e531d777d4145ac2",
       "size": 414
     }
   ],
@@ -85,7 +80,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/services",
     "git_ref": "refs/heads/main",
-    "log_index": 4015766840
+    "log_index": 4025231934
   },
-  "indexed_at": "2026-11-20T03:32:31Z"
+  "indexed_at": "2026-11-20T12:55:06Z"
 }

@@ -7,56 +7,56 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/lifecycle-host-cli",
     "tag": "0.0.5-dev",
-    "digest": "sha256:55f8648d3cf4a48f4652f44076deffd3e8d659ca08e6de1bed0581e5008f41ee",
-    "layer_digest": "sha256:05c3a6da52fa8086df4497e1edf55224c23a48b57a160050fd7989cef68781db",
-    "size": 552589,
+    "digest": "sha256:f40e38a2162b3dcf51eab4796235491d1b946d4f8051f6475f36293381126d41",
+    "layer_digest": "sha256:c5ebb12e00eaf613f2fd7be745cbd22e3c0daf7dc380ac8718d2fc8c2513f6d7",
+    "size": 631294,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4015669243
+      "log_index": 4025108987
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/services/lifecycle-host-cli",
     "tag": "0.0.5-dev_debug",
-    "digest": "sha256:02d756f6163238b79e0248e740bd419e10de6f9097a52504893b333ff76bb0bc",
-    "layer_digest": "sha256:44829550953c2265ce1579b4ff590f352339fb36ffb224433b705e975f802217",
-    "size": 2262729,
+    "digest": "sha256:acdf8eb89bfeb0e50ca3e9cd765044fc383265f36f3777dba83fd3643572b37a",
+    "layer_digest": "sha256:a61e3bbf6267e6138d9f4cf2d55eb892de9276355d40df8320905a9732ac6933",
+    "size": 2528310,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4015679677
+      "log_index": 4025119199
     }
   },
-  "created": "2026-11-20T03:23:27.382750116Z",
+  "created": "2026-11-20T12:46:04.964915726Z",
   "annotations": {
     "org.opencontainers.image.description": "Exposes a `componentized:services/lifecycle` as a cli, exporting `wasi:cli/run`.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "c175e74819440b21c5578bd75697bd2de8f9045e",
+    "org.opencontainers.image.revision": "f5b0150e7210002d78d43d798a9e5c7a63dc1898",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-lifecycle-host-cli",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/c175e74819440b21c5578bd75697bd2de8f9045e/components/lifecycle-host-cli",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/f5b0150e7210002d78d43d798a9e5c7a63dc1898/components/lifecycle-host-cli",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
     "componentized:services/lifecycle@0.0.5-dev",
     "componentized:services/types@0.0.5-dev",
-    "wasi:cli/environment@0.2.6",
-    "wasi:cli/stdout@0.2.6",
-    "wasi:io/error@0.2.6",
-    "wasi:io/streams@0.2.6",
+    "wasi:cli/environment@0.3.0",
+    "wasi:cli/stdin@0.3.0",
+    "wasi:cli/stdout@0.3.0",
+    "wasi:cli/types@0.3.0",
     "wasi:logging/logging@0.1.0-draft",
-    "wasi:random/random@0.2.6"
+    "wasi:random/random@0.3.0"
   ],
   "exports": [
-    "wasi:cli/run@0.2.6"
+    "wasi:cli/run@0.3.0"
   ],
   "dependencies": [
     {
@@ -65,11 +65,7 @@
     },
     {
       "package": "wasi:cli",
-      "version": "0.2.6"
-    },
-    {
-      "package": "wasi:io",
-      "version": "0.2.6"
+      "version": "0.3.0"
     },
     {
       "package": "wasi:logging",
@@ -77,12 +73,12 @@
     },
     {
       "package": "wasi:random",
-      "version": "0.2.6"
+      "version": "0.3.0"
     }
   ],
   "parts": [
     {
-      "digest": "sha256:5e373fee1f4ebdd8812414f05f7665fd7c810e12e600a90cc0f246bbf7d38339",
+      "digest": "sha256:ad7a7f4979c707bf6d1398521e82ffebeb3a720486b4cf7bdb2d65a606bbd88c",
       "size": 63
     }
   ],
@@ -92,7 +88,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/services",
     "git_ref": "refs/heads/main",
-    "log_index": 4015673548
+    "log_index": 4025114146
   },
-  "indexed_at": "2026-11-20T03:32:01Z"
+  "indexed_at": "2026-11-20T12:54:27Z"
 }

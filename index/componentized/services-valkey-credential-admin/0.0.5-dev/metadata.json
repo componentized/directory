@@ -7,86 +7,98 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/valkey-credential-admin",
     "tag": "0.0.5-dev",
-    "digest": "sha256:c1ea6982bf4e7bdcf67a5b3d0e3c7b194a5e64ae0ded38d63c1aa44a5af00e90",
-    "layer_digest": "sha256:557e31422972124df2e1b966d63db5672b6780048847c00e43f6982e953269f6",
-    "size": 412793,
+    "digest": "sha256:806213e1e01733fcfe5a28bbf0dabf882f14da1c26a52ab579525dc73637faea",
+    "layer_digest": "sha256:e3f5d4c8aae4dd49baf9f6027c204b93790195c5d9de9d7bd51304ae196e4541",
+    "size": 2851633,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4015705057
+      "log_index": 4025151624
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/services/valkey-credential-admin",
     "tag": "0.0.5-dev_debug",
-    "digest": "sha256:ea19499286b856f9d5821c01098a9738d53be93474ec3786dbc52544eacf3acb",
-    "layer_digest": "sha256:f059bed9bf08eae4792e0e5895837f2f800b4b155dd09c7af330a4bf19ef69e9",
-    "size": 518109,
+    "digest": "sha256:987f2c0c4ae3f2360119f2d8772d3e84dee79519b1425e79f2ff425e34a59017",
+    "layer_digest": "sha256:ccc918f73119305528c8d33c0f7ffa5170c408fbe0c0620dcfb031bcd5f0a40d",
+    "size": 31252788,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4015714409
+      "log_index": 4025166415
     }
   },
-  "created": "2026-11-20T03:24:56.947833659Z",
+  "created": "2026-11-20T12:47:35.800716054Z",
   "annotations": {
     "org.opencontainers.image.description": "Implements `componentized:services/credential-admin`, publishing and destroying the credentials of service bindings in a Valkey server.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "c175e74819440b21c5578bd75697bd2de8f9045e",
+    "org.opencontainers.image.revision": "f5b0150e7210002d78d43d798a9e5c7a63dc1898",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-valkey-credential-admin",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/c175e74819440b21c5578bd75697bd2de8f9045e/components/valkey-credential-admin",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/f5b0150e7210002d78d43d798a9e5c7a63dc1898/components/valkey-credential-admin",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
+    "componentized:secrets/store@0.1.1",
+    "componentized:secrets/types@0.1.1",
     "componentized:services/types@0.0.5-dev",
+    "componentized:valkey/types@0.3.0-dev",
+    "wasi:clocks/monotonic-clock@0.3.0",
+    "wasi:clocks/types@0.3.0",
     "wasi:config/store@0.2.0-rc.1",
-    "wasi:io/error@0.2.6",
-    "wasi:io/poll@0.2.6",
-    "wasi:io/streams@0.2.6",
-    "wasi:sockets/instance-network@0.2.6",
-    "wasi:sockets/ip-name-lookup@0.2.6",
-    "wasi:sockets/network@0.2.6",
-    "wasi:sockets/tcp@0.2.6",
-    "wasi:sockets/tcp-create-socket@0.2.6"
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:sockets/ip-name-lookup@0.3.0",
+    "wasi:sockets/types@0.3.0"
   ],
   "exports": [
     "componentized:services/credential-admin@0.0.5-dev"
   ],
   "dependencies": [
     {
+      "package": "componentized:secrets",
+      "version": "0.1.1"
+    },
+    {
       "package": "componentized:services",
       "version": "0.0.5-dev"
+    },
+    {
+      "package": "componentized:valkey",
+      "version": "0.3.0-dev"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
     },
     {
       "package": "wasi:config",
       "version": "0.2.0-rc.1"
     },
     {
-      "package": "wasi:io",
-      "version": "0.2.6"
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
     },
     {
       "package": "wasi:sockets",
-      "version": "0.2.6"
+      "version": "0.3.0"
     }
   ],
   "parts": [
     {
-      "digest": "sha256:cec18421f99bc39310fed875f0c3ffad0b171c49b3763fc8b60cc9bf4b249748",
-      "size": 361983,
+      "digest": "sha256:700716e6bf06b7e2cea7c21d0f32cb425816a06505fb3411e4c0bde057421613",
+      "size": 2741616,
       "code": true
     },
     {
-      "digest": "sha256:2dfa56df62b9c2e3975dde8c16ed241efc085bd82570f366fab9cc9a48a8da0a",
-      "size": 47669,
+      "digest": "sha256:cf811f4bfff592082a32f92cac07a6e1bed265aa85a0382bf8cbeb97617226e8",
+      "size": 95305,
       "code": true
     }
   ],
@@ -96,40 +108,36 @@
         "part": 0,
         "args": [
           {
-            "name": "wasi:io/error@0.2.6",
-            "import": "wasi:io/error@0.2.6"
+            "name": "wasi:clocks/types@0.3.0",
+            "import": "wasi:clocks/types@0.3.0"
           },
           {
-            "name": "wasi:sockets/network@0.2.6",
-            "import": "wasi:sockets/network@0.2.6"
+            "name": "wasi:clocks/monotonic-clock@0.3.0",
+            "import": "wasi:clocks/monotonic-clock@0.3.0"
           },
           {
-            "name": "wasi:sockets/instance-network@0.2.6",
-            "import": "wasi:sockets/instance-network@0.2.6"
+            "name": "wasi:sockets/types@0.3.0",
+            "import": "wasi:sockets/types@0.3.0"
           },
           {
-            "name": "wasi:io/poll@0.2.6",
-            "import": "wasi:io/poll@0.2.6"
+            "name": "wasi:sockets/ip-name-lookup@0.3.0",
+            "import": "wasi:sockets/ip-name-lookup@0.3.0"
           },
           {
-            "name": "wasi:io/streams@0.2.6",
-            "import": "wasi:io/streams@0.2.6"
+            "name": "wasi:logging/logging@0.1.0-draft",
+            "import": "wasi:logging/logging@0.1.0-draft"
           },
           {
-            "name": "wasi:sockets/tcp@0.2.6",
-            "import": "wasi:sockets/tcp@0.2.6"
+            "name": "componentized:valkey/types@0.3.0-dev",
+            "import": "componentized:valkey/types@0.3.0-dev"
           },
           {
-            "name": "wasi:sockets/tcp-create-socket@0.2.6",
-            "import": "wasi:sockets/tcp-create-socket@0.2.6"
+            "name": "componentized:secrets/types@0.1.1",
+            "import": "componentized:secrets/types@0.1.1"
           },
           {
-            "name": "wasi:sockets/ip-name-lookup@0.2.6",
-            "import": "wasi:sockets/ip-name-lookup@0.2.6"
-          },
-          {
-            "name": "wasi:config/store@0.2.0-rc.1",
-            "import": "wasi:config/store@0.2.0-rc.1"
+            "name": "componentized:secrets/store@0.1.1",
+            "import": "componentized:secrets/store@0.1.1"
           }
         ]
       },
@@ -137,9 +145,14 @@
         "part": 1,
         "args": [
           {
-            "name": "wasi:keyvalue/store@0.2.0-draft2",
+            "name": "wasmcloud:keyvalue/store@0.2.0",
             "instance": 0,
-            "export": "wasi:keyvalue/store@0.2.0-draft2"
+            "export": "wasmcloud:keyvalue/store@0.2.0"
+          },
+          {
+            "name": "wasmcloud:keyvalue/types@0.2.0",
+            "instance": 0,
+            "export": "wasmcloud:keyvalue/types@0.2.0"
           },
           {
             "name": "wasi:config/store@0.2.0-rc.1",
@@ -166,7 +179,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/services",
     "git_ref": "refs/heads/main",
-    "log_index": 4015708810
+    "log_index": 4025155133
   },
-  "indexed_at": "2026-11-20T03:32:13Z"
+  "indexed_at": "2026-11-20T12:54:43Z"
 }

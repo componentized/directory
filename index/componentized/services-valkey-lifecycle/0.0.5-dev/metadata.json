@@ -7,107 +7,100 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/valkey-lifecycle",
     "tag": "0.0.5-dev",
-    "digest": "sha256:20e72634fea093b9ae3bc27ebbf4cd8b5f8a997fbe817c7912196b71d8f806fb",
-    "layer_digest": "sha256:8cb1899b03a9e144261c72a8a6ddaf2fe4c0db2d23f77ed84510566b2f6fefe4",
-    "size": 526777,
+    "digest": "sha256:4aa86de79f80fc387483b636bf8e587bdd9898fa1714557a71d87ab4a92c035d",
+    "layer_digest": "sha256:9130c32b72f77a2f44eb6585aa06169a1dd8c3ee6c577a4424d830489641ba46",
+    "size": 2986869,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4015743078
+      "log_index": 4025203970
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/services/valkey-lifecycle",
     "tag": "0.0.5-dev_debug",
-    "digest": "sha256:29427fb77bec9232692214cae03597d9c78ad5be9a5302af1f622f1c60d75c81",
-    "layer_digest": "sha256:64859dccb89aff7135e3c54618d7fd0ed7637fff9fb2d3ff061ba6e54d69bf85",
-    "size": 746827,
+    "digest": "sha256:b14fcf2319234edded8803fb50603771f72d103a5b635eca78bdf1894047c5eb",
+    "layer_digest": "sha256:2438d863fb51428261bf23365b74b6113877bd0fe5627b4f21c467d584cccf6a",
+    "size": 31700672,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4015753748
+      "log_index": 4025217400
     }
   },
-  "created": "2026-11-20T03:26:29.234728161Z",
+  "created": "2026-11-20T12:49:25.533229394Z",
   "annotations": {
     "org.opencontainers.image.description": "Implements `componentized:services/service-lifecycle` for `valkey` services on a Valkey server, at the `hostname` and `port` keys in `wasi:config`, `127.0.0.1:6379` by default.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "c175e74819440b21c5578bd75697bd2de8f9045e",
+    "org.opencontainers.image.revision": "f5b0150e7210002d78d43d798a9e5c7a63dc1898",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-valkey-lifecycle",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/c175e74819440b21c5578bd75697bd2de8f9045e/components/valkey-lifecycle",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/f5b0150e7210002d78d43d798a9e5c7a63dc1898/components/valkey-lifecycle",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
+    "componentized:secrets/store@0.1.1",
+    "componentized:secrets/types@0.1.1",
     "componentized:services/credential-admin@0.0.5-dev",
     "componentized:services/types@0.0.5-dev",
-    "wasi:cli/environment@0.2.12",
-    "wasi:cli/exit@0.2.12",
-    "wasi:cli/stderr@0.2.12",
-    "wasi:cli/stdin@0.2.12",
-    "wasi:cli/stdout@0.2.12",
-    "wasi:cli/terminal-input@0.2.12",
-    "wasi:cli/terminal-output@0.2.12",
-    "wasi:cli/terminal-stderr@0.2.12",
-    "wasi:cli/terminal-stdin@0.2.12",
-    "wasi:cli/terminal-stdout@0.2.12",
-    "wasi:clocks/monotonic-clock@0.2.12",
-    "wasi:clocks/wall-clock@0.2.12",
-    "wasi:config/store@0.2.0-rc.1",
-    "wasi:io/error@0.2.12",
-    "wasi:io/poll@0.2.12",
-    "wasi:io/streams@0.2.12",
-    "wasi:sockets/instance-network@0.2.6",
-    "wasi:sockets/ip-name-lookup@0.2.6",
-    "wasi:sockets/network@0.2.6",
-    "wasi:sockets/tcp@0.2.6",
-    "wasi:sockets/tcp-create-socket@0.2.6"
+    "componentized:valkey/types@0.3.0-dev",
+    "wasi:clocks/monotonic-clock@0.3.0",
+    "wasi:clocks/system-clock@0.3.0",
+    "wasi:clocks/types@0.3.0",
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:sockets/ip-name-lookup@0.3.0",
+    "wasi:sockets/types@0.3.0"
   ],
   "exports": [
     "componentized:services/lifecycle@0.0.5-dev"
   ],
   "dependencies": [
     {
+      "package": "componentized:secrets",
+      "version": "0.1.1"
+    },
+    {
       "package": "componentized:services",
       "version": "0.0.5-dev"
     },
     {
-      "package": "wasi:cli",
-      "version": "0.2.12"
+      "package": "componentized:valkey",
+      "version": "0.3.0-dev"
     },
     {
       "package": "wasi:clocks",
-      "version": "0.2.12"
+      "version": "0.3.0"
     },
     {
-      "package": "wasi:config",
-      "version": "0.2.0-rc.1"
-    },
-    {
-      "package": "wasi:io",
-      "version": "0.2.12"
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
     },
     {
       "package": "wasi:sockets",
-      "version": "0.2.6"
+      "version": "0.3.0"
     }
   ],
   "parts": [
     {
-      "digest": "sha256:cec18421f99bc39310fed875f0c3ffad0b171c49b3763fc8b60cc9bf4b249748",
-      "size": 361983,
+      "digest": "sha256:700716e6bf06b7e2cea7c21d0f32cb425816a06505fb3411e4c0bde057421613",
+      "size": 2741616,
       "code": true
     },
     {
-      "digest": "sha256:77be103c056bce3683e17bb1e3e7268c300fddd7176747bd45a8156daafcab1c",
-      "size": 159312,
+      "digest": "sha256:94006045fe673a3d3da85bd04780b58188e98f092622247651a5ad0d6828ce34",
+      "size": 3943,
+      "code": true
+    },
+    {
+      "digest": "sha256:e38741432507acaff4ad3de5714270e287cf98d83e9f85470ffbdb0d231d1a16",
+      "size": 225871,
       "code": true
     }
   ],
@@ -117,55 +110,72 @@
         "part": 0,
         "args": [
           {
-            "name": "wasi:io/error@0.2.6",
-            "import": "wasi:io/error@0.2.12"
+            "name": "wasi:clocks/types@0.3.0",
+            "import": "wasi:clocks/types@0.3.0"
           },
           {
-            "name": "wasi:sockets/network@0.2.6",
-            "import": "wasi:sockets/network@0.2.6"
+            "name": "wasi:clocks/monotonic-clock@0.3.0",
+            "import": "wasi:clocks/monotonic-clock@0.3.0"
           },
           {
-            "name": "wasi:sockets/instance-network@0.2.6",
-            "import": "wasi:sockets/instance-network@0.2.6"
+            "name": "wasi:sockets/types@0.3.0",
+            "import": "wasi:sockets/types@0.3.0"
           },
           {
-            "name": "wasi:io/poll@0.2.6",
-            "import": "wasi:io/poll@0.2.12"
+            "name": "wasi:sockets/ip-name-lookup@0.3.0",
+            "import": "wasi:sockets/ip-name-lookup@0.3.0"
           },
           {
-            "name": "wasi:io/streams@0.2.6",
-            "import": "wasi:io/streams@0.2.12"
+            "name": "wasi:logging/logging@0.1.0-draft",
+            "import": "wasi:logging/logging@0.1.0-draft"
           },
           {
-            "name": "wasi:sockets/tcp@0.2.6",
-            "import": "wasi:sockets/tcp@0.2.6"
+            "name": "componentized:valkey/types@0.3.0-dev",
+            "import": "componentized:valkey/types@0.3.0-dev"
           },
           {
-            "name": "wasi:sockets/tcp-create-socket@0.2.6",
-            "import": "wasi:sockets/tcp-create-socket@0.2.6"
+            "name": "componentized:secrets/types@0.1.1",
+            "import": "componentized:secrets/types@0.1.1"
           },
           {
-            "name": "wasi:sockets/ip-name-lookup@0.2.6",
-            "import": "wasi:sockets/ip-name-lookup@0.2.6"
-          },
-          {
-            "name": "wasi:config/store@0.2.0-rc.1",
-            "import": "wasi:config/store@0.2.0-rc.1"
+            "name": "componentized:secrets/store@0.1.1",
+            "import": "componentized:secrets/store@0.1.1"
           }
         ]
       },
       {
-        "part": 1,
+        "part": 1
+      },
+      {
+        "part": 2,
         "args": [
           {
-            "name": "componentized:valkey/store",
-            "instance": 0,
-            "export": "componentized:valkey/store"
+            "name": "componentized:valkey/tcp-connector-constants@0.3.0-dev",
+            "instance": 1,
+            "export": "componentized:valkey/tcp-connector-constants@0.3.0-dev"
           },
           {
-            "name": "componentized:valkey/resp",
+            "name": "componentized:valkey/commands@0.3.0-dev",
             "instance": 0,
-            "export": "componentized:valkey/resp"
+            "export": "componentized:valkey/commands@0.3.0-dev"
+          },
+          {
+            "name": "componentized:valkey/connector@0.3.0-dev",
+            "instance": 0,
+            "export": "componentized:valkey/connector@0.3.0-dev"
+          },
+          {
+            "name": "componentized:valkey/connection@0.3.0-dev",
+            "instance": 0,
+            "export": "componentized:valkey/connection@0.3.0-dev"
+          },
+          {
+            "name": "componentized:secrets/types@0.1.1",
+            "import": "componentized:secrets/types@0.1.1"
+          },
+          {
+            "name": "componentized:secrets/store@0.1.1",
+            "import": "componentized:secrets/store@0.1.1"
           },
           {
             "name": "componentized:services/types@0.0.5-dev",
@@ -176,68 +186,12 @@
             "import": "componentized:services/credential-admin@0.0.5-dev"
           },
           {
-            "name": "wasi:config/store@0.2.0-rc.1",
-            "import": "wasi:config/store@0.2.0-rc.1"
+            "name": "wasi:clocks/system-clock@0.3.0",
+            "import": "wasi:clocks/system-clock@0.3.0"
           },
           {
-            "name": "wasi:io/poll@0.2.12",
-            "import": "wasi:io/poll@0.2.12"
-          },
-          {
-            "name": "wasi:clocks/monotonic-clock@0.2.12",
-            "import": "wasi:clocks/monotonic-clock@0.2.12"
-          },
-          {
-            "name": "wasi:clocks/wall-clock@0.2.12",
-            "import": "wasi:clocks/wall-clock@0.2.12"
-          },
-          {
-            "name": "wasi:io/error@0.2.12",
-            "import": "wasi:io/error@0.2.12"
-          },
-          {
-            "name": "wasi:io/streams@0.2.12",
-            "import": "wasi:io/streams@0.2.12"
-          },
-          {
-            "name": "wasi:cli/stdout@0.2.12",
-            "import": "wasi:cli/stdout@0.2.12"
-          },
-          {
-            "name": "wasi:cli/stderr@0.2.12",
-            "import": "wasi:cli/stderr@0.2.12"
-          },
-          {
-            "name": "wasi:cli/stdin@0.2.12",
-            "import": "wasi:cli/stdin@0.2.12"
-          },
-          {
-            "name": "wasi:cli/environment@0.2.12",
-            "import": "wasi:cli/environment@0.2.12"
-          },
-          {
-            "name": "wasi:cli/exit@0.2.12",
-            "import": "wasi:cli/exit@0.2.12"
-          },
-          {
-            "name": "wasi:cli/terminal-input@0.2.12",
-            "import": "wasi:cli/terminal-input@0.2.12"
-          },
-          {
-            "name": "wasi:cli/terminal-output@0.2.12",
-            "import": "wasi:cli/terminal-output@0.2.12"
-          },
-          {
-            "name": "wasi:cli/terminal-stdin@0.2.12",
-            "import": "wasi:cli/terminal-stdin@0.2.12"
-          },
-          {
-            "name": "wasi:cli/terminal-stdout@0.2.12",
-            "import": "wasi:cli/terminal-stdout@0.2.12"
-          },
-          {
-            "name": "wasi:cli/terminal-stderr@0.2.12",
-            "import": "wasi:cli/terminal-stderr@0.2.12"
+            "name": "componentized:valkey/types@0.3.0-dev",
+            "import": "componentized:valkey/types@0.3.0-dev"
           }
         ]
       }
@@ -245,7 +199,7 @@
     "exports": [
       {
         "name": "componentized:services/lifecycle@0.0.5-dev",
-        "instance": 1,
+        "instance": 2,
         "export": "componentized:services/lifecycle@0.0.5-dev"
       }
     ]
@@ -256,7 +210,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/services",
     "git_ref": "refs/heads/main",
-    "log_index": 4015748166
+    "log_index": 4025207880
   },
-  "indexed_at": "2026-11-20T03:32:25Z"
+  "indexed_at": "2026-11-20T12:54:59Z"
 }

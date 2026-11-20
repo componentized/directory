@@ -7,65 +7,49 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/filesystem-credential-admin",
     "tag": "0.0.5-dev",
-    "digest": "sha256:f90fd603c7587f2af90efe32154365016c6f9d6bd7b58cfe2ab552600678c21b",
-    "layer_digest": "sha256:25d182b8eb9c6e313a386b7de1576bf856664b7ecc81d142ee4566787dff4149",
-    "size": 145169,
+    "digest": "sha256:8317f08388a4f84d55a710724ee75a484ccf5ae319fe27b8c9cf32830b84d675",
+    "layer_digest": "sha256:63a57bccbad1ed3185abfa221ba180dcc5e9d3911a90d1a8defb98719fe862d9",
+    "size": 150140,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4015576164
+      "log_index": 4025000264
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/services/filesystem-credential-admin",
     "tag": "0.0.5-dev_debug",
-    "digest": "sha256:7ad03230a2ed1ceca55d3e041b012faa69f98d19b78c753cf8e15abd84c25cf2",
-    "layer_digest": "sha256:8981fef6ff943860cf68c662202404d7491b155743bcd644765b091ffea4e3dd",
-    "size": 259051,
+    "digest": "sha256:8a71b89f8688d924ca7eed763b0cdda3fe9e497e1a90fa1b2749b9a17aaa8889",
+    "layer_digest": "sha256:e22b9b43bda195c0e0f1258fe4244cf30af04f6b05be11edfa19ace1d9ddd97d",
+    "size": 482183,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4015584522
+      "log_index": 4025019236
     }
   },
-  "created": "2026-11-20T03:19:41.294260434Z",
+  "created": "2026-11-20T12:41:59.661726218Z",
   "annotations": {
     "org.opencontainers.image.description": "Implements `componentized:services/credential-admin`, publishing and destroying the credentials of service bindings as files in `wasi:filesystem`, under the directory of the `path` key in `wasi:config`, `services` by default.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "c175e74819440b21c5578bd75697bd2de8f9045e",
+    "org.opencontainers.image.revision": "f5b0150e7210002d78d43d798a9e5c7a63dc1898",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-filesystem-credential-admin",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/c175e74819440b21c5578bd75697bd2de8f9045e/components/filesystem-credential-admin",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/f5b0150e7210002d78d43d798a9e5c7a63dc1898/components/filesystem-credential-admin",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
     "componentized:services/types@0.0.5-dev",
-    "wasi:cli/environment@0.2.12",
-    "wasi:cli/exit@0.2.12",
-    "wasi:cli/stderr@0.2.12",
-    "wasi:cli/stdin@0.2.12",
-    "wasi:cli/stdout@0.2.12",
-    "wasi:cli/terminal-input@0.2.12",
-    "wasi:cli/terminal-output@0.2.12",
-    "wasi:cli/terminal-stderr@0.2.12",
-    "wasi:cli/terminal-stdin@0.2.12",
-    "wasi:cli/terminal-stdout@0.2.12",
-    "wasi:clocks/monotonic-clock@0.2.12",
-    "wasi:clocks/wall-clock@0.2.12",
     "wasi:config/store@0.2.0-rc.1",
-    "wasi:filesystem/preopens@0.2.12",
-    "wasi:filesystem/types@0.2.12",
-    "wasi:io/error@0.2.12",
-    "wasi:io/poll@0.2.12",
-    "wasi:io/streams@0.2.12",
-    "wasi:random/insecure-seed@0.2.12"
+    "wasi:filesystem/preopens@0.3.0",
+    "wasi:filesystem/types@0.3.0"
   ],
   "exports": [
     "componentized:services/credential-admin@0.0.5-dev"
@@ -76,33 +60,17 @@
       "version": "0.0.5-dev"
     },
     {
-      "package": "wasi:cli",
-      "version": "0.2.12"
-    },
-    {
-      "package": "wasi:clocks",
-      "version": "0.2.12"
-    },
-    {
       "package": "wasi:config",
       "version": "0.2.0-rc.1"
     },
     {
       "package": "wasi:filesystem",
-      "version": "0.2.12"
-    },
-    {
-      "package": "wasi:io",
-      "version": "0.2.12"
-    },
-    {
-      "package": "wasi:random",
-      "version": "0.2.12"
+      "version": "0.3.0"
     }
   ],
   "parts": [
     {
-      "digest": "sha256:efead5f72aafd93a198316a3e048c06cbd726441a50c70dda245ee5eb0f12d34",
+      "digest": "sha256:e7405684ffdcfdc7ea02d6442ff59321060107367ae0a6e1e531d777d4145ac2",
       "size": 414
     }
   ],
@@ -112,7 +80,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/services",
     "git_ref": "refs/heads/main",
-    "log_index": 4015579551
+    "log_index": 4025007810
   },
-  "indexed_at": "2026-11-20T03:31:32Z"
+  "indexed_at": "2026-11-20T12:53:47Z"
 }

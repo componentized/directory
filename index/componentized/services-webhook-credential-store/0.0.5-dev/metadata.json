@@ -7,52 +7,49 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/webhook-credential-store",
     "tag": "0.0.5-dev",
-    "digest": "sha256:852a3dc0c9f3d4d52cd6409bf3e12c7bbcd4581d3d8039edfdaea31aeb11de6f",
-    "layer_digest": "sha256:ea0ac85e522e1f8754245dd7d81fe2863638b6146a154a6736ace1cf5f233367",
-    "size": 164384,
+    "digest": "sha256:a8dd3a589a67045c4f1c2d6a088e6264b0a2805a926c8ec62842bd0eef7dbf9c",
+    "layer_digest": "sha256:ce6b24e38cb6c7f99e0081d13d29d7ed4b74a7eb10ed03b14bdf9f30dd74ad5e",
+    "size": 229891,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4015782787
+      "log_index": 4025250722
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/services/webhook-credential-store",
     "tag": "0.0.5-dev_debug",
-    "digest": "sha256:489a297e2b65cf41494c3c6ed7619ae07e357b9fd14f0c047841899893020db7",
-    "layer_digest": "sha256:1aae6c22270156f8c0c5bc548707e4a216433725ac426e4c8fe5b76bd81bde17",
-    "size": 396753,
+    "digest": "sha256:aaeddf84c26b9439510286062891e8362c8ce51f77a2c0d29ba2265718fa7947",
+    "layer_digest": "sha256:024714fc0289ac9ca984858da3fefb081553d4c011e8d209a1f1ee1c813426a8",
+    "size": 672116,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4015791209
+      "log_index": 4025265345
     }
   },
-  "created": "2026-11-20T03:27:57.876457494Z",
+  "created": "2026-11-20T12:51:04.867808763Z",
   "annotations": {
     "org.opencontainers.image.description": "Implements `componentized:services/credential-store`, fetching the credentials of service bindings from a webhook over `wasi:http`, at the `scheme` and `host` keys in `wasi:config`.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "c175e74819440b21c5578bd75697bd2de8f9045e",
+    "org.opencontainers.image.revision": "f5b0150e7210002d78d43d798a9e5c7a63dc1898",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-webhook-credential-store",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/c175e74819440b21c5578bd75697bd2de8f9045e/components/webhook-credential-store",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/f5b0150e7210002d78d43d798a9e5c7a63dc1898/components/webhook-credential-store",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
     "componentized:services/types@0.0.5-dev",
     "wasi:config/store@0.2.0-rc.1",
-    "wasi:http/outgoing-handler@0.2.6",
-    "wasi:http/types@0.2.6",
-    "wasi:io/error@0.2.6",
-    "wasi:io/poll@0.2.6",
-    "wasi:io/streams@0.2.6"
+    "wasi:http/client@0.3.0",
+    "wasi:http/types@0.3.0"
   ],
   "exports": [
     "componentized:services/credential-store@0.0.5-dev"
@@ -68,16 +65,12 @@
     },
     {
       "package": "wasi:http",
-      "version": "0.2.6"
-    },
-    {
-      "package": "wasi:io",
-      "version": "0.2.6"
+      "version": "0.3.0"
     }
   ],
   "parts": [
     {
-      "digest": "sha256:3980c039b49a516d9b507719e2be61beea634b8e2fc36910190fadbaa860070b",
+      "digest": "sha256:481032240eb3051fe43ae2f6c994a67af707e05642e190a32429c0b0b0eb677e",
       "size": 321
     }
   ],
@@ -87,7 +80,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/services",
     "git_ref": "refs/heads/main",
-    "log_index": 4015785844
+    "log_index": 4025255522
   },
-  "indexed_at": "2026-11-20T03:32:37Z"
+  "indexed_at": "2026-11-20T12:55:14Z"
 }
