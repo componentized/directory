@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/component/filesystem-loader",
     "tag": "0.1.1-dev",
-    "digest": "sha256:68adc060730b390dd61de27b67e14543f76fa98aab98007a232ede0bab4fe00c",
+    "digest": "sha256:6c70dc620b21f5a05f8a2e075f87e5e9a17a69bf5e7507c61b95c67b6189eeb8",
     "layer_digest": "sha256:80ff59962218c13acb2772a0e914ede2c6e82d9551cd69995a57bd8c93bf0d1d",
     "size": 91807,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/component",
       "git_ref": "refs/heads/main",
-      "log_index": 4028261171
+      "log_index": 4028441933
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/component/filesystem-loader",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:f85367a107c8d08b2baf54a1520b0ae1ebabdf540f6f040d6053fe1dc76653e5",
+    "digest": "sha256:cb4d358f55b49fff54fbe9d8ccd5eeac2393b2bccc8403f046c6f2f353672fb2",
     "layer_digest": "sha256:df2096b264c4fd3112d5528307f72a2434d609670f5e8f2bd2ed401f6a93b537",
     "size": 1029488,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/component",
       "git_ref": "refs/heads/main",
-      "log_index": 4028261975
+      "log_index": 4028442650
     }
   },
-  "created": "2026-11-20T19:48:06.863390171Z",
+  "created": "2026-11-20T20:09:10.481345634Z",
   "annotations": {
     "org.opencontainers.image.description": "Loads a component from a filesystem path.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "565b1489b9f947f0c9da7cc1e0f8bb4adcd1f6bf",
+    "org.opencontainers.image.revision": "2fee8a64bc85a3cd7ae419548dfdbddda6291cef",
     "org.opencontainers.image.source": "https://github.com/componentized/component.git",
     "org.opencontainers.image.title": "componentized:component-filesystem-loader",
-    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/565b1489b9f947f0c9da7cc1e0f8bb4adcd1f6bf/components/filesystem-loader",
+    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/2fee8a64bc85a3cd7ae419548dfdbddda6291cef/components/filesystem-loader",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -72,5 +72,5 @@
   "sbom": {
     "status": "missing"
   },
-  "indexed_at": "2026-11-20T19:51:24Z"
+  "indexed_at": "2026-11-20T20:12:43Z"
 }
