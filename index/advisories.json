@@ -4,7 +4,6 @@
     "pkg:cargo/anstyle-parse@1.0.0",
     "pkg:cargo/anstyle-query@1.1.2",
     "pkg:cargo/anstyle@1.0.14",
-    "pkg:cargo/anyhow@1.0.102",
     "pkg:cargo/anyhow@1.0.104",
     "pkg:cargo/as-keyvalue@0.1.0",
     "pkg:cargo/bitflags@2.11.1",
@@ -77,7 +76,6 @@
     "pkg:cargo/leb128fmt@0.1.0",
     "pkg:cargo/lifecycle-host-cli@0.1.0",
     "pkg:cargo/lifecycle-host-http@0.1.0",
-    "pkg:cargo/log@0.4.26",
     "pkg:cargo/log@0.4.34",
     "pkg:cargo/log@0.4.35",
     "pkg:cargo/macro-string@0.2.0",
@@ -96,7 +94,6 @@
     "pkg:cargo/ryu@1.0.19",
     "pkg:cargo/sample-http-incrementor@0.1.0",
     "pkg:cargo/secrets-latch-n@0.1.0",
-    "pkg:cargo/semver@1.0.26",
     "pkg:cargo/semver@1.0.28",
     "pkg:cargo/serde@1.0.228",
     "pkg:cargo/serde@1.0.229",
@@ -111,7 +108,7 @@
     "pkg:cargo/strsim@0.11.1",
     "pkg:cargo/syn@2.0.117",
     "pkg:cargo/syn@2.0.98",
-    "pkg:cargo/syn@3.0.3",
+    "pkg:cargo/syn@3.0.10",
     "pkg:cargo/syn@3.0.5",
     "pkg:cargo/syn@3.0.9",
     "pkg:cargo/tcp-connector@0.1.0",
@@ -144,22 +141,11 @@
     "pkg:cargo/zmij@1.0.23"
   ],
   "packages": {
-    "pkg:cargo/anyhow@1.0.102": [
-      "RUSTSEC-2026-0190"
-    ],
     "pkg:cargo/chrono@0.5.0-alpha.1": [
       "RUSTSEC-2026-0543"
     ]
   },
   "advisories": {
-    "RUSTSEC-2026-0190": {
-      "summary": "Unsoundness in `Error::downcast_mut()`",
-      "kind": "unsound",
-      "fixed": [
-        "1.0.103"
-      ],
-      "published": "2026-06-25"
-    },
     "RUSTSEC-2026-0543": {
       "summary": "chrono is unmaintained",
       "kind": "unmaintained",
