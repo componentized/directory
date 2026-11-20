@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/constants/random",
     "tag": "0.2.1-dev",
-    "digest": "sha256:7a6f725c925b7189f7e05883f9667ef034c4351732a3f178c6dd6606e3b78991",
+    "digest": "sha256:dac8c039461c65d3da16d33f09ffb98c52680805ba8720d40955f33df9c1d7b2",
     "layer_digest": "sha256:33916b54a4cc33f87b6c2d67e87f792f35166dd5341ea847f81857173a44787f",
     "size": 5845,
     "signature": {
@@ -16,17 +16,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/constants",
       "git_ref": "refs/heads/main",
-      "log_index": 3947350297
+      "log_index": 4024236999
     }
   },
-  "created": "2026-11-17T14:44:05.072509967Z",
+  "created": "2026-11-20T12:04:07.200718750Z",
   "annotations": {
     "org.opencontainers.image.description": "Pseudorandom number generators.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "2b3876d9ef5d6aa4bdae2f3f3e9729e6cd08b894",
+    "org.opencontainers.image.revision": "c1ff551162c1944540a868d5ad7f396448f1dde9",
     "org.opencontainers.image.source": "https://github.com/componentized/constants.git",
     "org.opencontainers.image.title": "componentized:constants-random",
-    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/2b3876d9ef5d6aa4bdae2f3f3e9729e6cd08b894/components/random",
+    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/c1ff551162c1944540a868d5ad7f396448f1dde9/components/random",
     "org.opencontainers.image.version": "v0.2.1-dev"
   },
   "exports": [
@@ -47,5 +47,5 @@
   "sbom": {
     "status": "missing"
   },
-  "indexed_at": "2026-11-17T14:45:49Z"
+  "indexed_at": "2026-11-20T12:05:28Z"
 }
