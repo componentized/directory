@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/http/latch-method-readonly-config",
     "tag": "0.1.1-dev",
-    "digest": "sha256:9cc99078645bc929ae81287e61319a0afcea69c7fb19672e2b7a44825a3b06a9",
+    "digest": "sha256:79694015392cb35849e5e138fd317e2ac2e9884e5121d58ca256e91eea0dcc72",
     "layer_digest": "sha256:c23a06ebaf759b1d7ccc78246dbbe09e73b2a0ef0c8605acbb5c27a3c2493732",
     "size": 6301,
     "signature": {
@@ -16,7 +16,7 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 4015824660
+      "log_index": 4030859697
     }
   },
   "debug": {
@@ -35,14 +35,14 @@
       "log_index": 3321220824
     }
   },
-  "created": "2026-11-20T03:29:34.505111143Z",
+  "created": "2026-11-21T01:48:41.582252627Z",
   "annotations": {
     "org.opencontainers.image.description": "Config for `latch-method` that denies every request method except GET, HEAD, QUERY and OPTIONS.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "870b2098f2a6f4d1b70aa4d7d9daeeb453c86346",
+    "org.opencontainers.image.revision": "b9b052114882425c9df13d1233d67fccfcd4c130",
     "org.opencontainers.image.source": "https://github.com/componentized/http.git",
     "org.opencontainers.image.title": "componentized:http-latch-method-readonly-config",
-    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/870b2098f2a6f4d1b70aa4d7d9daeeb453c86346/components/latch-method-readonly-config",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/b9b052114882425c9df13d1233d67fccfcd4c130/components/latch-method-readonly-config",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "exports": [
@@ -91,7 +91,12 @@
     ]
   },
   "sbom": {
-    "status": "missing"
+    "status": "verified",
+    "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/http",
+    "git_ref": "refs/heads/main",
+    "log_index": 4030859893
   },
-  "indexed_at": "2026-11-20T03:30:41Z"
+  "indexed_at": "2026-11-21T02:00:48Z"
 }

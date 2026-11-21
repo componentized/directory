@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/http/status-codes",
     "tag": "0.1.1-dev",
-    "digest": "sha256:a72eef2a570cb77630869d1ae7f692c6ba3c42dd5ef8da8fe57e3ec0cfb295ab",
+    "digest": "sha256:ff48267bac521c199ffb264b56f5fe5d1e8a98bef8157f20c1615340a74cb607",
     "layer_digest": "sha256:9495d32959344dea22bec9f38530809a0bcf805821cf141bc478f5d6c067405d",
     "size": 19511,
     "signature": {
@@ -16,7 +16,7 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 4015901115
+      "log_index": 4030865619
     }
   },
   "debug": {
@@ -35,14 +35,14 @@
       "log_index": 3321252340
     }
   },
-  "created": "2026-11-20T03:32:45.944080824Z",
+  "created": "2026-11-21T01:52:43.053129964Z",
   "annotations": {
     "org.opencontainers.image.description": "HTTP status code constants.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "870b2098f2a6f4d1b70aa4d7d9daeeb453c86346",
+    "org.opencontainers.image.revision": "b9b052114882425c9df13d1233d67fccfcd4c130",
     "org.opencontainers.image.source": "https://github.com/componentized/http.git",
     "org.opencontainers.image.title": "componentized:http-status-codes",
-    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/870b2098f2a6f4d1b70aa4d7d9daeeb453c86346/components/status-codes",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/b9b052114882425c9df13d1233d67fccfcd4c130/components/status-codes",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "exports": [
@@ -61,7 +61,12 @@
     }
   ],
   "sbom": {
-    "status": "missing"
+    "status": "verified",
+    "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/http",
+    "git_ref": "refs/heads/main",
+    "log_index": 4030865752
   },
-  "indexed_at": "2026-11-20T03:40:59Z"
+  "indexed_at": "2026-11-21T02:01:52Z"
 }

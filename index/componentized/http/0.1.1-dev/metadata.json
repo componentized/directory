@@ -7,8 +7,8 @@
     "registry": "ghcr.io",
     "repository": "componentized/http",
     "tag": "0.1.1-dev",
-    "digest": "sha256:55705690bb62a4495a92f44df732cd26c224fef908efd5149363466fab77820c",
-    "layer_digest": "sha256:dc4d870a4c602206b7157b43e4395369e44cfd15696551b7d2562a875950458a",
+    "digest": "sha256:3a4c10a438afbabf5aa098e01525605267def5cb72453444b76a9e29b4b0e8d7",
+    "layer_digest": "sha256:55d7c855dee784b7c5dc8f907e27602b1744a85c7ad5805d0fc4ea6ab91e44db",
     "size": 21220,
     "signature": {
       "status": "verified",
@@ -16,17 +16,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 4015686263
+      "log_index": 4030848242
     }
   },
-  "created": "2026-11-20T03:24:11.320556921Z",
+  "created": "2026-11-21T01:42:22.539437684Z",
   "annotations": {
     "org.opencontainers.image.description": "A collection of utility components that remix wasi:http types and interfaces.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "870b2098f2a6f4d1b70aa4d7d9daeeb453c86346",
+    "org.opencontainers.image.revision": "b9b052114882425c9df13d1233d67fccfcd4c130",
     "org.opencontainers.image.source": "https://github.com/componentized/http.git",
     "org.opencontainers.image.title": "componentized:http",
-    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/870b2098f2a6f4d1b70aa4d7d9daeeb453c86346",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/b9b052114882425c9df13d1233d67fccfcd4c130",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "dependencies": [
@@ -40,7 +40,12 @@
     }
   ],
   "sbom": {
-    "status": "missing"
+    "status": "verified",
+    "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/http",
+    "git_ref": "refs/heads/main",
+    "log_index": 4030848335
   },
-  "indexed_at": "2026-11-20T03:29:59Z"
+  "indexed_at": "2026-11-21T01:58:46Z"
 }
