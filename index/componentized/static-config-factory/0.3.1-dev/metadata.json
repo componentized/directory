@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/static-config/factory",
     "tag": "0.3.1-dev",
-    "digest": "sha256:7a17adaa71b03c8edab970e42616ff75b3162dd32db8487e43ed2ed0deafcf19",
+    "digest": "sha256:e57559d3c0f53e06a2e9b6784d43a52c415c3f9e73d8958c8a7e584a992923ac",
     "layer_digest": "sha256:3c1a42abbad240dd5c08bb27ac51d42b12a3d1f1fa43298403fce40a1812ae41",
     "size": 1968799,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/static-config",
       "git_ref": "refs/heads/main",
-      "log_index": 4024248861
+      "log_index": 4030832934
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/static-config/factory",
     "tag": "0.3.1-dev_debug",
-    "digest": "sha256:32dc95b19fbe11b19c16f50a65d56ec8bee589720a5d245f585fbd93f5361269",
+    "digest": "sha256:056e8bff4122ba76d1cf9493978aadfe0e4e0bc93324c079bcc5267bba642bf5",
     "layer_digest": "sha256:7baa992a8d58e176abe86cdf58e67273304c3373f5ff3e63339bc1ac263381f2",
     "size": 39049839,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/static-config",
       "git_ref": "refs/heads/main",
-      "log_index": 4024249353
+      "log_index": 4030833337
     }
   },
-  "created": "2026-11-20T12:10:53.118148387Z",
+  "created": "2026-11-21T01:34:22.026018212Z",
   "annotations": {
     "org.opencontainers.image.description": "Create wasi:config components with static values, from key value pairs.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "ffb2120790fed2cdb2ceb2ed18adbb755eb8b475",
+    "org.opencontainers.image.revision": "9855325473cf2aecbed3c149b9d1a3035d0d86f6",
     "org.opencontainers.image.source": "https://github.com/componentized/static-config.git",
     "org.opencontainers.image.title": "componentized:static-config-factory",
-    "org.opencontainers.image.url": "https://github.com/componentized/static-config/tree/ffb2120790fed2cdb2ceb2ed18adbb755eb8b475/components/factory",
+    "org.opencontainers.image.url": "https://github.com/componentized/static-config/tree/9855325473cf2aecbed3c149b9d1a3035d0d86f6/components/factory",
     "org.opencontainers.image.version": "v0.3.1-dev"
   },
   "imports": [
@@ -68,7 +68,12 @@
     }
   ],
   "sbom": {
-    "status": "missing"
+    "status": "verified",
+    "identity": "https://github.com/componentized/static-config/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/static-config",
+    "git_ref": "refs/heads/main",
+    "log_index": 4030833090
   },
-  "indexed_at": "2026-11-20T12:14:50Z"
+  "indexed_at": "2026-11-21T01:38:37Z"
 }

@@ -7,8 +7,8 @@
     "registry": "ghcr.io",
     "repository": "componentized/static-config",
     "tag": "0.3.1-dev",
-    "digest": "sha256:d370b81ef8ee5e64de32d90b8218a5abdf7937b51d6f237d2c6bf0b58f08abe9",
-    "layer_digest": "sha256:735cda128a2de2b20c555a593ecbd6c74f84752e83a6e02f411fcca5961f92c9",
+    "digest": "sha256:a600de6dfc336053c12757b1a9ccee591c6dac1db877a24dd0549657eb7b6c1c",
+    "layer_digest": "sha256:6c9ff21162ef2139fd7d23985dfee267ecf6dd84568d8551c9e3030dc8db68b0",
     "size": 1102,
     "signature": {
       "status": "verified",
@@ -16,17 +16,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/static-config",
       "git_ref": "refs/heads/main",
-      "log_index": 4024248600
+      "log_index": 4030832572
     }
   },
-  "created": "2026-11-20T12:10:43.722627859Z",
+  "created": "2026-11-21T01:34:08.207800143Z",
   "annotations": {
     "org.opencontainers.image.description": "Create custom `wasi:config` components with static values.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "ffb2120790fed2cdb2ceb2ed18adbb755eb8b475",
+    "org.opencontainers.image.revision": "9855325473cf2aecbed3c149b9d1a3035d0d86f6",
     "org.opencontainers.image.source": "https://github.com/componentized/static-config.git",
     "org.opencontainers.image.title": "componentized:static-config",
-    "org.opencontainers.image.url": "https://github.com/componentized/static-config/tree/ffb2120790fed2cdb2ceb2ed18adbb755eb8b475",
+    "org.opencontainers.image.url": "https://github.com/componentized/static-config/tree/9855325473cf2aecbed3c149b9d1a3035d0d86f6",
     "org.opencontainers.image.version": "v0.3.1-dev"
   },
   "dependencies": [
@@ -36,7 +36,12 @@
     }
   ],
   "sbom": {
-    "status": "missing"
+    "status": "verified",
+    "identity": "https://github.com/componentized/static-config/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/static-config",
+    "git_ref": "refs/heads/main",
+    "log_index": 4030832683
   },
-  "indexed_at": "2026-11-20T12:14:46Z"
+  "indexed_at": "2026-11-21T01:38:32Z"
 }
