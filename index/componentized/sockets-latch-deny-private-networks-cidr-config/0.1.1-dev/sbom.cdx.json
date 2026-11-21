@@ -1,0 +1,68 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "pkg:cargo/componentized-static-config-cli@0.3.0",
+      "name": "componentized-static-config-cli",
+      "purl": "pkg:cargo/componentized-static-config-cli@0.3.0",
+      "type": "library",
+      "version": "0.3.0"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "pkg:cargo/componentized-static-config-cli@0.3.0"
+      ],
+      "ref": "component:componentized:sockets-latch-deny-private-networks-cidr-config"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:cargo/componentized-static-config-cli@0.3.0"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "component:componentized:sockets-latch-deny-private-networks-cidr-config",
+      "description": "Static config for `latch-cidr-egress` that denies originating outbound traffic to addresses that are not globally reachable, like private networks, loopback, link local and cloud metadata endpoints.",
+      "externalReferences": [
+        {
+          "comment": "revision b82efe9f486f2c53723974192ce074cd39145b53",
+          "type": "vcs",
+          "url": "https://github.com/componentized/sockets.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/componentized/sockets/tree/b82efe9f486f2c53723974192ce074cd39145b53/components/latch-deny-private-networks-cidr-config"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "f4d2542be6d7b3cfca32c16eeef276ebc358510c9390d24d5b093b9eb4d03351"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "componentized:sockets-latch-deny-private-networks-cidr-config",
+      "purl": "pkg:oci/latch-deny-private-networks-cidr-config@sha256%3Aced9cf93362a204f95b25cbfbe530683b3e2aab0572710f0025bd773c48d34b9?repository_url=ghcr.io/componentized/sockets/latch-deny-private-networks-cidr-config&tag=0.1.1-dev",
+      "type": "library",
+      "version": "0.1.1-dev"
+    },
+    "timestamp": "2026-11-21T01:32:26Z",
+    "tools": {
+      "components": [
+        {
+          "name": "componentized-static-config-cli",
+          "type": "application",
+          "version": "0.3.0"
+        }
+      ]
+    }
+  },
+  "specVersion": "1.6",
+  "version": 1
+}

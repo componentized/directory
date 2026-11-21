@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-cidr",
     "tag": "0.1.1-dev",
-    "digest": "sha256:5c8051746a0c7ad75e42281589c6892234fbfbfbd4f6a2feb6e2f2a232c5d424",
+    "digest": "sha256:278c2384220d6cea4212c585c736bbf8080a148f2c24f7668df1a91a170c2f79",
     "layer_digest": "sha256:c8071b00618abad1eef8a0ece4a4435df857da31262c358a2b8c6f699471f4c2",
     "size": 296894,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 4024235620
+      "log_index": 4030844066
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-cidr",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:55bd3ca4dde39c919e3f4db6397eee1e671af5a04792276f15f5732709c347a2",
+    "digest": "sha256:df33e1545b41aba0b35546d274df81af9c08c9491479889917c777ee8963d8cb",
     "layer_digest": "sha256:5bb7551b5042cfb1f497feb8624fddd59f2ef8886bc6b5ee54134ebcf8be7eb3",
     "size": 3389650,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 4024235931
+      "log_index": 4030844799
     }
   },
-  "created": "2026-11-20T12:03:13.798772481Z",
+  "created": "2026-11-21T01:39:48.488431358Z",
   "annotations": {
     "org.opencontainers.image.description": "Socket latch that uses CIDR ranges to grant or deny traffic originating in either direction based on the remote address. Return traffic is not restricted.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "a906b5014ae0b0e229107489d79303a7283a01b6",
+    "org.opencontainers.image.revision": "b82efe9f486f2c53723974192ce074cd39145b53",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-latch-cidr",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/a906b5014ae0b0e229107489d79303a7283a01b6/components/latch-cidr",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/b82efe9f486f2c53723974192ce074cd39145b53/components/latch-cidr",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -155,7 +155,12 @@
     ]
   },
   "sbom": {
-    "status": "missing"
+    "status": "verified",
+    "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/sockets",
+    "git_ref": "refs/heads/main",
+    "log_index": 4030844416
   },
-  "indexed_at": "2026-11-20T12:11:43Z"
+  "indexed_at": "2026-11-21T01:54:53Z"
 }

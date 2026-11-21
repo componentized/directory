@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/gate",
     "tag": "0.1.1-dev",
-    "digest": "sha256:ba6b744e34664f0bbb0aa9d1460c9180b9a583cb97dfbe1ed51cb088f65b4a2f",
+    "digest": "sha256:71656535e29931b02179d54bcf41a8c79ccc220c718c66c4f06f70ed546c4731",
     "layer_digest": "sha256:cc3e09517c6c89f964ef490e5f49ede833f3cf8f38ca7d0925e21c98a999067c",
     "size": 315446,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 4024233364
+      "log_index": 4030841226
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/gate",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:6b5993bd5cc65f49288d7179fd668ac25dde9fcb040dad6c89e2b51b7eaf4a56",
+    "digest": "sha256:6423efa252e1027b29b01e348dc7ca2c38df714ced0259d07259c3e678265ec6",
     "layer_digest": "sha256:5f76d548872d9bc6fe5b014d43a1450cb442acca6c42469e2e58e8c32ebe4a5e",
     "size": 3008832,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 4024233761
+      "log_index": 4030841740
     }
   },
-  "created": "2026-11-20T12:02:07.956682818Z",
+  "created": "2026-11-21T01:38:16.592325095Z",
   "annotations": {
     "org.opencontainers.image.description": "Socket gate access control.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "a906b5014ae0b0e229107489d79303a7283a01b6",
+    "org.opencontainers.image.revision": "b82efe9f486f2c53723974192ce074cd39145b53",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-gate",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/a906b5014ae0b0e229107489d79303a7283a01b6/components/gate",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/b82efe9f486f2c53723974192ce074cd39145b53/components/gate",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -145,7 +145,12 @@
     ]
   },
   "sbom": {
-    "status": "missing"
+    "status": "verified",
+    "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/sockets",
+    "git_ref": "refs/heads/main",
+    "log_index": 4030841365
   },
-  "indexed_at": "2026-11-20T12:11:30Z"
+  "indexed_at": "2026-11-21T01:54:36Z"
 }

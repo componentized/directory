@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/trace-types",
     "tag": "0.1.1-dev",
-    "digest": "sha256:8826f03fdbcade84c29fd043ac3d30a1481d64bba659633caeb28d8defb70b8d",
+    "digest": "sha256:6d717cd674880a8c9192f3137ebb96ecc1373af6c98ffe2d3063a357ba6baafe",
     "layer_digest": "sha256:ac1014bb488b4b1a054d03f83c6e0ad98654080d488e14112f1b21e96cc0fea7",
     "size": 209370,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 4024263461
+      "log_index": 4030866212
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/trace-types",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:52aced364b0b738e21e1b2bb58cd48d084d803674948d3cf084d8893b2d31181",
+    "digest": "sha256:0ac4f3645bbf75a4aeaf35e88d39d2f3cd2c8f92856cf34d76ad7e1c1b6e0edc",
     "layer_digest": "sha256:a5c3f934d7aa1f0e84d91fc9d210b9571490e0a2bb0742235156a97b51d010d7",
     "size": 1790170,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 4024267064
+      "log_index": 4030866545
     }
   },
-  "created": "2026-11-20T12:12:42.197556774Z",
+  "created": "2026-11-21T01:53:06.002111519Z",
   "annotations": {
     "org.opencontainers.image.description": "Trace wasi:sockets/types calls using a logger.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "a906b5014ae0b0e229107489d79303a7283a01b6",
+    "org.opencontainers.image.revision": "b82efe9f486f2c53723974192ce074cd39145b53",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-trace-types",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/a906b5014ae0b0e229107489d79303a7283a01b6/components/trace-types",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/b82efe9f486f2c53723974192ce074cd39145b53/components/trace-types",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -74,7 +74,12 @@
     }
   ],
   "sbom": {
-    "status": "missing"
+    "status": "verified",
+    "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/sockets",
+    "git_ref": "refs/heads/main",
+    "log_index": 4030866340
   },
-  "indexed_at": "2026-11-20T12:13:41Z"
+  "indexed_at": "2026-11-21T01:57:27Z"
 }

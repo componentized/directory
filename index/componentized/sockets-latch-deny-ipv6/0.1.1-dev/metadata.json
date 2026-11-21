@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-deny-ipv6",
     "tag": "0.1.1-dev",
-    "digest": "sha256:8411518a62ad4bdf4e891935688d2ee42a424651f532cf1104fd64405b0c9a6d",
+    "digest": "sha256:6302e582eaf94be5d0372fe6798e862bb583229508cb0505f9f62a8a684b6b69",
     "layer_digest": "sha256:d38b239af4d3f8eea925db5b5f2e85c5843f05f4b62cb6ac339c40638cacf9f9",
     "size": 63814,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 4024243185
+      "log_index": 4030854015
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-deny-ipv6",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:16b5d4340a94a9de5bdc4de83f968cd4ca70b4d20a997f079a86aa08c654788c",
+    "digest": "sha256:2305e06af17b4410dc242b44ddc8e819b41289343c11df1db529f4a657ca053b",
     "layer_digest": "sha256:ffce014161e94007799413823fbde730b820825cdda5eed7c061f0de9ea0bee6",
     "size": 487902,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 4024243549
+      "log_index": 4030854367
     }
   },
-  "created": "2026-11-20T12:07:54.967256369Z",
+  "created": "2026-11-21T01:46:26.479642197Z",
   "annotations": {
     "org.opencontainers.image.description": "Sockets latch that implicitly denies all IPv6 operations.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "a906b5014ae0b0e229107489d79303a7283a01b6",
+    "org.opencontainers.image.revision": "b82efe9f486f2c53723974192ce074cd39145b53",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-latch-deny-ipv6",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/a906b5014ae0b0e229107489d79303a7283a01b6/components/latch-deny-ipv6",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/b82efe9f486f2c53723974192ce074cd39145b53/components/latch-deny-ipv6",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -68,7 +68,12 @@
     }
   ],
   "sbom": {
-    "status": "missing"
+    "status": "verified",
+    "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/sockets",
+    "git_ref": "refs/heads/main",
+    "log_index": 4030854150
   },
-  "indexed_at": "2026-11-20T12:12:43Z"
+  "indexed_at": "2026-11-21T01:56:10Z"
 }

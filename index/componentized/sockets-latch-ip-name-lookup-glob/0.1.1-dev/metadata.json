@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-ip-name-lookup-glob",
     "tag": "0.1.1-dev",
-    "digest": "sha256:d4b4379d7a38747fbcf6b8ba8dce2b28e01f55e0593fbd5d97921495c3c8f5fa",
+    "digest": "sha256:44b84542d9b79a308a815646d130c6f5f579e9a0091744b3b9cdc18e895bfb8c",
     "layer_digest": "sha256:65c0ec454801cf0bf790d4fd26aaa43f10db8b4ddf2c85e621d7be356e24bb71",
     "size": 67580,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 4024246353
+      "log_index": 4030860549
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-ip-name-lookup-glob",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:4c840d2b66136738159878b7a39d0b7308598364b48c0245665d19d843d8a38b",
+    "digest": "sha256:8d6a88ab8c6d6acdaadf2fc162faba069ba9f6f1ec0d0074cce91e68629365b5",
     "layer_digest": "sha256:147ae18eec7d02b0b8222a2f2161b76a79fac4d8d5e2a69c5e30d9bb8232fb00",
     "size": 823565,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 4024246811
+      "log_index": 4030861095
     }
   },
-  "created": "2026-11-20T12:09:51.935742792Z",
+  "created": "2026-11-21T01:49:11.106397459Z",
   "annotations": {
     "org.opencontainers.image.description": "Socket latch that uses glob patterns to grant or deny ip-name lookups.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "a906b5014ae0b0e229107489d79303a7283a01b6",
+    "org.opencontainers.image.revision": "b82efe9f486f2c53723974192ce074cd39145b53",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-latch-ip-name-lookup-glob",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/a906b5014ae0b0e229107489d79303a7283a01b6/components/latch-ip-name-lookup-glob",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/b82efe9f486f2c53723974192ce074cd39145b53/components/latch-ip-name-lookup-glob",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -78,7 +78,12 @@
     }
   ],
   "sbom": {
-    "status": "missing"
+    "status": "verified",
+    "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/sockets",
+    "git_ref": "refs/heads/main",
+    "log_index": 4030860755
   },
-  "indexed_at": "2026-11-20T12:13:08Z"
+  "indexed_at": "2026-11-21T01:56:42Z"
 }

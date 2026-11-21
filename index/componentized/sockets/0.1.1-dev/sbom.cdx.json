@@ -1,0 +1,78 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "wit:wasi:sockets@0.3.0",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "47d4cb10ad41dbd7f543693211876bf413793d4d8dc0aad08ead34bf44348fa1"
+        }
+      ],
+      "name": "wasi:sockets",
+      "properties": [
+        {
+          "name": "wkg:registry",
+          "value": "wasi.dev"
+        }
+      ],
+      "type": "library",
+      "version": "0.3.0"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "wit:wasi:sockets@0.3.0"
+      ],
+      "ref": "component:componentized:sockets"
+    },
+    {
+      "dependsOn": [],
+      "ref": "wit:wasi:sockets@0.3.0"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "component:componentized:sockets",
+      "description": "A collection of utility components that remix wasi:sockets types and interfaces.",
+      "externalReferences": [
+        {
+          "comment": "revision b82efe9f486f2c53723974192ce074cd39145b53",
+          "type": "vcs",
+          "url": "https://github.com/componentized/sockets.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/componentized/sockets/tree/b82efe9f486f2c53723974192ce074cd39145b53"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "7c88c6fc21150df532909090b91f85dd3b60293368a3283ff4a20a5fc7d6e968"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "componentized:sockets",
+      "purl": "pkg:oci/sockets@sha256%3A9be26ae1d94e95a8763c7b71d80f9a00a1446067de271667bb0d8c2440fd07f2?repository_url=ghcr.io/componentized/sockets&tag=0.1.1-dev",
+      "type": "library",
+      "version": "0.1.1-dev"
+    },
+    "timestamp": "2026-11-21T01:32:26Z",
+    "tools": {
+      "components": [
+        {
+          "name": "wkg",
+          "type": "application"
+        }
+      ]
+    }
+  },
+  "specVersion": "1.6",
+  "version": 1
+}
