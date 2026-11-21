@@ -1,0 +1,78 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "wit:wasi:cli@0.3.0",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "3a2d58743b67a057f7210b9a73d3b21b34ec7895ffe34d1cb092927307156e40"
+        }
+      ],
+      "name": "wasi:cli",
+      "properties": [
+        {
+          "name": "wkg:registry",
+          "value": "wasi.dev"
+        }
+      ],
+      "type": "library",
+      "version": "0.3.0"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "wit:wasi:cli@0.3.0"
+      ],
+      "ref": "component:componentized:cli"
+    },
+    {
+      "dependsOn": [],
+      "ref": "wit:wasi:cli@0.3.0"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "component:componentized:cli",
+      "description": "A collection of utility components that remix wasi:cli types and interfaces.",
+      "externalReferences": [
+        {
+          "comment": "revision 1201eca791ec23f6d87b01478c08c84f7ea6c1e9",
+          "type": "vcs",
+          "url": "https://github.com/componentized/cli.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/componentized/cli/tree/1201eca791ec23f6d87b01478c08c84f7ea6c1e9"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "b28722baa1710a0bb6e34e04a035c0fc5186bd7bc971447a6d3188fabf8b863c"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "componentized:cli",
+      "purl": "pkg:oci/cli@sha256%3A09f214580468fb771616ee33388ed928fb3c8548dc793b2031f16f2222cc573b?repository_url=ghcr.io/componentized/cli&tag=0.2.1-dev",
+      "type": "library",
+      "version": "0.2.1-dev"
+    },
+    "timestamp": "2026-11-21T01:31:01Z",
+    "tools": {
+      "components": [
+        {
+          "name": "wkg",
+          "type": "application"
+        }
+      ]
+    }
+  },
+  "specVersion": "1.6",
+  "version": 1
+}
