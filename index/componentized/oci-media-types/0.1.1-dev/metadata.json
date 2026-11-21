@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/oci/media-types",
     "tag": "0.1.1-dev",
-    "digest": "sha256:619f040aefb49920f343919c4a76aeccade026d092e119513873f9905a8b96de",
+    "digest": "sha256:13c9107cb0669fe902bb4887a4d5bbe326dada06e703bfa3055754fed7379890",
     "layer_digest": "sha256:939043e649b1cfb94f858c232062b4beedaf24e03d733bcc79c1420aae51dbcd",
     "size": 6133,
     "signature": {
@@ -16,17 +16,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/oci",
       "git_ref": "refs/heads/main",
-      "log_index": 4024866444
+      "log_index": 4030832055
     }
   },
-  "created": "2026-11-20T12:36:58.018900601Z",
+  "created": "2026-11-21T01:33:47.858915021Z",
   "annotations": {
     "org.opencontainers.image.description": "Common OCI related media types.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "80c1e1efd18ac6943874885dcf7b41a1fd885537",
+    "org.opencontainers.image.revision": "c8512f510c647b051a0dc4fe54440b15c779974f",
     "org.opencontainers.image.source": "https://github.com/componentized/oci.git",
     "org.opencontainers.image.title": "componentized:oci-media-types",
-    "org.opencontainers.image.url": "https://github.com/componentized/oci/tree/80c1e1efd18ac6943874885dcf7b41a1fd885537/components/media-types",
+    "org.opencontainers.image.url": "https://github.com/componentized/oci/tree/c8512f510c647b051a0dc4fe54440b15c779974f/components/media-types",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "exports": [
@@ -45,7 +45,12 @@
     }
   ],
   "sbom": {
-    "status": "missing"
+    "status": "verified",
+    "identity": "https://github.com/componentized/oci/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/oci",
+    "git_ref": "refs/heads/main",
+    "log_index": 4030832183
   },
-  "indexed_at": "2026-11-20T12:38:24Z"
+  "indexed_at": "2026-11-21T01:35:17Z"
 }
