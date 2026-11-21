@@ -7,8 +7,8 @@
     "registry": "ghcr.io",
     "repository": "componentized/config",
     "tag": "0.2.2-dev",
-    "digest": "sha256:cdb1a7382fc7d75e88ee6989855d24ff068f09f5baf9f40ad86548a2f68a8413",
-    "layer_digest": "sha256:0a628a632d8a9303bd824d7ec1d7c74d73ddcea735f2bed44bae158c817b125f",
+    "digest": "sha256:8b5597f0d6514c074c81ac695fb914f6e27aa256050b52de07c0ac52905b194e",
+    "layer_digest": "sha256:1b1d0ac058a41d1967b4ed91ec523ce2e70492d803f5ebdddb0d599f4786d4a7",
     "size": 348,
     "signature": {
       "status": "verified",
@@ -16,17 +16,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/config",
       "git_ref": "refs/heads/main",
-      "log_index": 3929877502
+      "log_index": 4030830939
     }
   },
-  "created": "2026-11-16T16:24:58.164364461Z",
+  "created": "2026-11-21T01:32:58.827164459Z",
   "annotations": {
     "org.opencontainers.image.description": "A collection of utility components that remix wasi:config types and interfaces.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "f39df6819211465fe984986b5e6c709b7d38a6de",
+    "org.opencontainers.image.revision": "ce6800346197fe3322b8291268ccf45dd508a295",
     "org.opencontainers.image.source": "https://github.com/componentized/config.git",
     "org.opencontainers.image.title": "componentized:config",
-    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/f39df6819211465fe984986b5e6c709b7d38a6de",
+    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/ce6800346197fe3322b8291268ccf45dd508a295",
     "org.opencontainers.image.version": "v0.2.2-dev"
   },
   "dependencies": [
@@ -36,7 +36,12 @@
     }
   ],
   "sbom": {
-    "status": "missing"
+    "status": "verified",
+    "identity": "https://github.com/componentized/config/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/config",
+    "git_ref": "refs/heads/main",
+    "log_index": 4030831107
   },
-  "indexed_at": "2026-11-16T16:28:09Z"
+  "indexed_at": "2026-11-21T01:39:43Z"
 }
