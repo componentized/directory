@@ -1,0 +1,78 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "wit:wasi:logging@0.1.0-draft",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "09621a45b12b0a9cddc798517f778aac0e5ae4bd234077b3d70758d6cf625580"
+        }
+      ],
+      "name": "wasi:logging",
+      "properties": [
+        {
+          "name": "wkg:registry",
+          "value": "wasi.dev"
+        }
+      ],
+      "type": "library",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "wit:wasi:logging@0.1.0-draft"
+      ],
+      "ref": "component:componentized:logging"
+    },
+    {
+      "dependsOn": [],
+      "ref": "wit:wasi:logging@0.1.0-draft"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "component:componentized:logging",
+      "description": "A collection of utility components that remix wasi:logging types and interfaces.",
+      "externalReferences": [
+        {
+          "comment": "revision a8808dc469ad628f77e5a3eeb3348e87df6a68c5",
+          "type": "vcs",
+          "url": "https://github.com/componentized/logging.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/componentized/logging/tree/a8808dc469ad628f77e5a3eeb3348e87df6a68c5"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "776ed0f68e8643c9ba7391cd6b583dd763e8b95cac7babe7e37fef16fe41f8c9"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "componentized:logging",
+      "purl": "pkg:oci/logging@sha256%3A6126d511616871a52ced0121ce86d8723f2d9b98fb413388d11393f33eee8e0f?repository_url=ghcr.io/componentized/logging&tag=0.3.2-dev",
+      "type": "library",
+      "version": "0.3.2-dev"
+    },
+    "timestamp": "2026-11-21T01:31:13Z",
+    "tools": {
+      "components": [
+        {
+          "name": "wkg",
+          "type": "application"
+        }
+      ]
+    }
+  },
+  "specVersion": "1.6",
+  "version": 1
+}
