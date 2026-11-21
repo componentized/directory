@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/constants/types",
     "tag": "0.2.1-dev",
-    "digest": "sha256:11306d9e12c8435a597ff0341b45a1ba7ce9ecc714db027ee9988261609ed2e5",
+    "digest": "sha256:a3d1dd6fc89e5c6f3efbd439195292b57bdbdd147fb86928b018a48b74362aea",
     "layer_digest": "sha256:663552f31e356af14eead1a20b9b6f8a7b1a3bd34364d82168b3ad497e6b2c07",
     "size": 15583,
     "signature": {
@@ -16,17 +16,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/constants",
       "git_ref": "refs/heads/main",
-      "log_index": 4024242945
+      "log_index": 4030860516
     }
   },
-  "created": "2026-11-20T12:07:46.303716925Z",
+  "created": "2026-11-21T01:49:08.596509474Z",
   "annotations": {
     "org.opencontainers.image.description": "Limits of each numeric type.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "7be715973e9cdb99d56260a23b6cd8538c33c460",
+    "org.opencontainers.image.revision": "acd96e54a8c0da1560860e3e47f118e8639ac95f",
     "org.opencontainers.image.source": "https://github.com/componentized/constants.git",
     "org.opencontainers.image.title": "componentized:constants-types",
-    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/7be715973e9cdb99d56260a23b6cd8538c33c460/components/types",
+    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/acd96e54a8c0da1560860e3e47f118e8639ac95f/components/types",
     "org.opencontainers.image.version": "v0.2.1-dev"
   },
   "exports": [
@@ -90,7 +90,12 @@
     }
   ],
   "sbom": {
-    "status": "missing"
+    "status": "verified",
+    "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/constants",
+    "git_ref": "refs/heads/main",
+    "log_index": 4030860675
   },
-  "indexed_at": "2026-11-20T12:08:48Z"
+  "indexed_at": "2026-11-21T01:51:13Z"
 }

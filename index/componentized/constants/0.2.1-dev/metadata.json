@@ -7,8 +7,8 @@
     "registry": "ghcr.io",
     "repository": "componentized/constants",
     "tag": "0.2.1-dev",
-    "digest": "sha256:5ed105c23c7b890a6d516409c486d9f5b628e5bb6ca6cf508d7a822424ffdf63",
-    "layer_digest": "sha256:4ec6513bef9c4892ac219d5a99978375079baa1c64d97849b801e2c45e7421c6",
+    "digest": "sha256:e03573913f6cab249260a3f71abc2fa664c5c18dde361f112ccc7ec339274bf5",
+    "layer_digest": "sha256:a2109605276f531e93a858c4cc3370a2780b7f9e6988e908bf1ae3562f5cc05a",
     "size": 19092,
     "signature": {
       "status": "verified",
@@ -16,17 +16,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/constants",
       "git_ref": "refs/heads/main",
-      "log_index": 4024240447
+      "log_index": 4030855134
     }
   },
-  "created": "2026-11-20T12:06:16.749204946Z",
+  "created": "2026-11-21T01:47:02.907885258Z",
   "annotations": {
     "org.opencontainers.image.description": "Create custom wasm components that export constant values.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "7be715973e9cdb99d56260a23b6cd8538c33c460",
+    "org.opencontainers.image.revision": "acd96e54a8c0da1560860e3e47f118e8639ac95f",
     "org.opencontainers.image.source": "https://github.com/componentized/constants.git",
     "org.opencontainers.image.title": "componentized:constants",
-    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/7be715973e9cdb99d56260a23b6cd8538c33c460",
+    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/acd96e54a8c0da1560860e3e47f118e8639ac95f",
     "org.opencontainers.image.version": "v0.2.1-dev"
   },
   "dependencies": [
@@ -40,7 +40,12 @@
     }
   ],
   "sbom": {
-    "status": "missing"
+    "status": "verified",
+    "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/constants",
+    "git_ref": "refs/heads/main",
+    "log_index": 4030855304
   },
-  "indexed_at": "2026-11-20T12:08:29Z"
+  "indexed_at": "2026-11-21T01:50:35Z"
 }

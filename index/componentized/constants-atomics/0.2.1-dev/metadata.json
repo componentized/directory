@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/constants/atomics",
     "tag": "0.2.1-dev",
-    "digest": "sha256:cbecd765c7e1510667e2c4018cde85d90f3b17854519dd18c3f16bb60f047bfc",
+    "digest": "sha256:d70eeb9e05e778e8195c46e991d56ba3809e3b714a2e5375ffcfbcbde25bd361",
     "layer_digest": "sha256:d8d311e5cfd2bf144e4b4317e7f122b6cf60945cf6e24ecd1f521e76fdbf9f48",
     "size": 5385,
     "signature": {
@@ -16,17 +16,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/constants",
       "git_ref": "refs/heads/main",
-      "log_index": 4024240761
+      "log_index": 4030855700
     }
   },
-  "created": "2026-11-20T12:06:26.885554397Z",
+  "created": "2026-11-21T01:47:18.519832101Z",
   "annotations": {
     "org.opencontainers.image.description": "lock-free, thread-safe operations on streams",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "7be715973e9cdb99d56260a23b6cd8538c33c460",
+    "org.opencontainers.image.revision": "acd96e54a8c0da1560860e3e47f118e8639ac95f",
     "org.opencontainers.image.source": "https://github.com/componentized/constants.git",
     "org.opencontainers.image.title": "componentized:constants-atomics",
-    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/7be715973e9cdb99d56260a23b6cd8538c33c460/components/atomics",
+    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/acd96e54a8c0da1560860e3e47f118e8639ac95f/components/atomics",
     "org.opencontainers.image.version": "v0.2.1-dev"
   },
   "exports": [
@@ -45,7 +45,12 @@
     }
   ],
   "sbom": {
-    "status": "missing"
+    "status": "verified",
+    "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/constants",
+    "git_ref": "refs/heads/main",
+    "log_index": 4030855934
   },
-  "indexed_at": "2026-11-20T12:08:31Z"
+  "indexed_at": "2026-11-21T01:50:40Z"
 }
