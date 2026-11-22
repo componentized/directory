@@ -246,8 +246,9 @@ fn remove_superseded(root: &std::path::Path) -> Result<Vec<String>> {
     let mut superseded: BTreeSet<String> = stored
         .iter()
         .filter(|s| {
-            version::release_of(&s.metadata.version)
-                .is_some_and(|release| indexed.contains(&format!("{}@{release}", s.metadata.package)))
+            version::release_of(&s.metadata.version).is_some_and(|release| {
+                indexed.contains(&format!("{}@{release}", s.metadata.package))
+            })
         })
         .map(id)
         .collect();
@@ -269,8 +270,7 @@ fn remove_superseded(root: &std::path::Path) -> Result<Vec<String>> {
         superseded.retain(|s| !needed.contains(s));
     }
     for s in stored.iter().filter(|s| superseded.contains(&id(s))) {
-        std::fs::remove_dir_all(&s.dir)
-            .with_context(|| format!("removing {}", s.dir.display()))?;
+        std::fs::remove_dir_all(&s.dir).with_context(|| format!("removing {}", s.dir.display()))?;
     }
     if !superseded.is_empty() {
         eprintln!(
@@ -952,7 +952,8 @@ mod tests {
 
     #[test]
     fn removes_dev_versions_superseded_by_their_release() {
-        let root = std::env::temp_dir().join(format!("directory-superseded-{}", std::process::id()));
+        let root =
+            std::env::temp_dir().join(format!("directory-superseded-{}", std::process::id()));
         let _ = std::fs::remove_dir_all(&root);
         let write = |package: &str, version: &str, depends_on: &[(&str, &str)]| {
             let metadata: Metadata = serde_json::from_value(serde_json::json!({

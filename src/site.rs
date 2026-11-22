@@ -660,11 +660,12 @@ fn render_packages(site: &Site, env: &Environment, out: &Path) -> Result<()> {
                 // a dev build, which its release will supersede, is kept out of search engines, but
                 // its package's page, which lasts, is indexed, as itself
                 let page = if version::dev(&entry.meta.version).is_some() {
-                    env.get_template("version.html")?.render(minijinja::context! {
-                        canonical => entry.package_url(),
-                        package_page => true,
-                        ..site.version(index)?
-                    })?
+                    env.get_template("version.html")?
+                        .render(minijinja::context! {
+                            canonical => entry.package_url(),
+                            package_page => true,
+                            ..site.version(index)?
+                        })?
                 } else {
                     page
                 };
@@ -4462,7 +4463,10 @@ mod tests {
 
         // the superseded dev build has no pages, and it's listed nowhere
         assert!(!out.join("example/to-stdout/0.1.0-dev/index.html").exists());
-        assert!(!out.join("example/to-stdout/0.1.0-dev/sbom.cdx.json").exists());
+        assert!(
+            !out.join("example/to-stdout/0.1.0-dev/sbom.cdx.json")
+                .exists()
+        );
         assert!(out.join("example/to-stdout/0.1.0-dev/api.json").exists());
         // the 404 page sends a link to a dev build on to its release
         assert!(read("404.html").contains("-dev"));
