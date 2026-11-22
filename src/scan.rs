@@ -96,6 +96,7 @@ pub fn run(options: &Options) -> Result<()> {
         scanner.backfill_signatures()?;
         scanner.backfill_sboms()?;
     }
+    let removed = remove_superseded(&options.root)?;
     trim_nested(&options.root)?;
     refresh_items(&options.root)?;
     if let Err(err) = refresh_releases(&options.root, &github, &options.sources) {
@@ -105,6 +106,9 @@ pub fn run(options: &Options) -> Result<()> {
     eprintln!("indexed {} new versions", scanner.added.len());
     for added in &scanner.added {
         println!("{added}");
+    }
+    for removed in &removed {
+        println!("removed {removed}");
     }
     for (what, err) in &scanner.failed {
         println!("::warning::{what}: {err:#}");
@@ -228,6 +232,53 @@ fn refresh_items(root: &std::path::Path) -> Result<()> {
         eprintln!("refreshed the imports and exports of {refreshed} indexed versions");
     }
     Ok(())
+}
+
+/// Removes each dev version of the index whose release is indexed, e.g. `0.3.1-dev` once `0.3.1`
+/// is, as the dev tag that published it moved on to build the release. One that a version staying
+/// in the index depends on, e.g. another repository's dev build built against it, stays, so that
+/// version still resolves, until it no longer depends on it. Returns those removed, e.g.
+/// `componentized:logging@0.3.1-dev`.
+fn remove_superseded(root: &std::path::Path) -> Result<Vec<String>> {
+    let stored = data::load(root)?;
+    let id = |s: &data::Stored| format!("{}@{}", s.metadata.package, s.metadata.version);
+    let indexed: BTreeSet<String> = stored.iter().map(id).collect();
+    let mut superseded: BTreeSet<String> = stored
+        .iter()
+        .filter(|s| {
+            version::release_of(&s.metadata.version).is_some_and(|release| {
+                indexed.contains(&format!("{}@{release}", s.metadata.package))
+            })
+        })
+        .map(id)
+        .collect();
+    // a superseded version a staying one depends on stays too, and so on, until none does
+    loop {
+        let needed: BTreeSet<String> = stored
+            .iter()
+            .filter(|s| !superseded.contains(&id(s)))
+            .flat_map(|s| &s.metadata.dependencies)
+            .map(|d| d.id())
+            .filter(|d| superseded.contains(d))
+            .collect();
+        if needed.is_empty() {
+            break;
+        }
+        for kept in &needed {
+            eprintln!("note: {kept} stays, though its release is indexed, a version depends on it");
+        }
+        superseded.retain(|s| !needed.contains(s));
+    }
+    for s in stored.iter().filter(|s| superseded.contains(&id(s))) {
+        std::fs::remove_dir_all(&s.dir).with_context(|| format!("removing {}", s.dir.display()))?;
+    }
+    if !superseded.is_empty() {
+        eprintln!(
+            "removed {} dev versions superseded by their release",
+            superseded.len()
+        );
+    }
+    Ok(superseded.into_iter().collect())
 }
 
 /// Reduces the stored WIT of each version to its main package. A decoded component or package
@@ -593,10 +644,12 @@ impl Scanner<'_> {
                 }
                 // a dev tag moves with each build, until its release is published
                 Some(release) => {
+                    // once its release is published, a dev build is no longer indexed, and the one
+                    // indexed is removed, see `remove_superseded`
+                    if releases.contains(&release) {
+                        continue;
+                    }
                     if let Some(stored) = data::read(&self.options.root, &package_id, &version) {
-                        if releases.contains(&release) {
-                            continue;
-                        }
                         let (digest, _) = match self.oci.manifest(REGISTRY, &repository, tag) {
                             Ok(manifest) => manifest,
                             Err(err) => {
@@ -895,5 +948,57 @@ mod tests {
             github_repo("https://github.com/componentized/logging/tree/main"),
             None
         );
+    }
+
+    #[test]
+    fn removes_dev_versions_superseded_by_their_release() {
+        let root =
+            std::env::temp_dir().join(format!("directory-superseded-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&root);
+        let write = |package: &str, version: &str, depends_on: &[(&str, &str)]| {
+            let metadata: Metadata = serde_json::from_value(serde_json::json!({
+                "package": package,
+                "version": version,
+                "kind": "interface",
+                "origin": "release",
+                "oci": {
+                    "registry": "ghcr.io",
+                    "repository": package.replace(':', "/"),
+                    "tag": version,
+                    "digest": format!("sha256:{}", "0".repeat(64)),
+                    "layer_digest": format!("sha256:{}", "1".repeat(64)),
+                    "size": 0,
+                },
+                "dependencies": depends_on
+                    .iter()
+                    .map(|(p, v)| serde_json::json!({ "package": p, "version": v }))
+                    .collect::<Vec<_>>(),
+                "indexed_at": "2026-11-11T00:00:00Z",
+            }))
+            .unwrap();
+            data::write(&root, &metadata, &format!("package {package}@{version};")).unwrap();
+        };
+        // released, so its dev build goes
+        write("a:logging", "0.1.0", &[]);
+        write("a:logging", "0.1.0-dev", &[]);
+        // released, but a dev build of another package still depends on its dev build
+        write("a:config", "0.2.0", &[]);
+        write("a:config", "0.2.0-dev", &[]);
+        write("b:app", "0.3.0-dev", &[("a:config", "0.2.0-dev")]);
+        // not released yet
+        write("a:logging", "0.2.0-dev", &[]);
+
+        let removed = remove_superseded(&root).unwrap();
+        assert_eq!(removed, ["a:logging@0.1.0-dev"]);
+        assert!(!data::exists(&root, "a:logging", "0.1.0-dev"));
+        for (package, version) in [
+            ("a:logging", "0.1.0"),
+            ("a:logging", "0.2.0-dev"),
+            ("a:config", "0.2.0-dev"),
+            ("b:app", "0.3.0-dev"),
+        ] {
+            assert!(data::exists(&root, package, version), "{package}@{version}");
+        }
+        std::fs::remove_dir_all(&root).unwrap();
     }
 }

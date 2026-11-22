@@ -124,13 +124,27 @@ jobs:
           # a release asked for, credits no one
           GITHUB_ACTOR: ${{ github.event_name == 'workflow_dispatch' && github.actor || '' }}
         run: |
-          added=$( grep -v '^::' "${RUNNER_TEMP}/added.txt" || true )
+          added=$( grep -v -e '^::' -e '^removed ' "${RUNNER_TEMP}/added.txt" || true )
           count=$( printf '%s\n' "${added}" | grep -c . || true )
-          if [ "${count}" -gt 0 ] ; then
+          # the dev versions removed, their release indexed
+          removed=$( sed -n 's/^removed //p' "${RUNNER_TEMP}/added.txt" )
+          removed_count=$( printf '%s\n' "${removed}" | grep -c . || true )
+          if [ "${count}" -gt 0 ] || [ "${removed_count}" -gt 0 ] ; then
             {
-              echo "Index ${count} new version(s)"
-              echo
-              printf '%s\n' "${added}" | sed 's/^/- /'
+              if [ "${count}" -gt 0 ] ; then
+                echo "Index ${count} new version(s)"
+              else
+                echo "Remove ${removed_count} superseded dev version(s)"
+              fi
+              if [ "${count}" -gt 0 ] ; then
+                echo
+                printf '%s\n' "${added}" | sed 's/^/- /'
+              fi
+              if [ "${removed_count}" -gt 0 ] ; then
+                echo
+                [ "${count}" -gt 0 ] && echo "Remove ${removed_count} superseded dev version(s)" && echo
+                printf '%s\n' "${removed}" | sed 's/^/- /'
+              fi
             } > "${RUNNER_TEMP}/message.txt"
           elif [ "$( git diff --cached --name-only )" = "index/advisories.json" ] ; then
             # only what's known of the packages the SBOMs list changed, e.g. a new advisory

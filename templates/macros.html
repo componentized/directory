@@ -252,6 +252,5 @@
   {% if pkg.prerelease %}<span class="badge pre"{% if pkg.dev %} title="A development build of the upcoming release"{% endif %}>pre-release</span>{% endif %}
 </div>
 </div>
-{% if pkg.superseded_by %}<p class="notice">This development build was superseded by the release of <a href="{{ pkg.superseded_by.url }}">{{ pkg.superseded_by.version }}</a>.</p>{% endif %}
 {% if pkg.description and not iface %}<div class="lede">{{ pkg.description_html|safe }}</div>{% endif %}
 {% endmacro %}

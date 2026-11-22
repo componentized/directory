@@ -267,7 +267,8 @@ struct Site {
     /// The versions that depend on a package version, e.g. `wasi:logging@0.1.0-draft`.
     dependents: HashMap<String, Vec<Link>>,
     /// The release that supersedes each dev version, e.g. `0.2.3` for `0.2.3-dev`. A superseded
-    /// version keeps its pages, so links to it still work, but is left out of every listing.
+    /// version is left out of every listing and has no pages: the 404 page sends a link to one on to
+    /// the release's, so links to it still work.
     superseded_by: Vec<Option<usize>>,
     /// The repositories the versions are built from, e.g. `componentized/logging`. A repository
     /// releases its interface package and its components together, with the same version.
@@ -640,11 +641,34 @@ fn render_packages(site: &Site, env: &Environment, out: &Path) -> Result<()> {
     for indexes in site.packages.values() {
         for &index in indexes {
             let entry = &site.entries[index];
+            // a dev build its release supersedes has no pages of its own: the 404 page sends a
+            // link to one on to its release's. Its API stays, for the tooltip of a link to it from
+            // a composition nesting its bytes, which no release has
+            if site.superseded_by[index].is_some() {
+                write_file(
+                    out,
+                    &format!("{}api.json", entry.url()),
+                    serde_json::to_string(&site.api(index))?,
+                )?;
+                continue;
+            }
             let page = env
                 .get_template("version.html")?
                 .render(site.version(index)?)?;
             write_file(out, &format!("{}index.html", entry.url()), &page)?;
             if Some(&index) == site.latest(indexes) {
+                // a dev build, which its release will supersede, is kept out of search engines, but
+                // its package's page, which lasts, is indexed, as itself
+                let page = if version::dev(&entry.meta.version).is_some() {
+                    env.get_template("version.html")?
+                        .render(minijinja::context! {
+                            canonical => entry.package_url(),
+                            package_page => true,
+                            ..site.version(index)?
+                        })?
+                } else {
+                    page
+                };
                 write_file(out, &format!("{}index.html", entry.package_url()), &page)?;
             }
             for (name, id, _) in entry.interfaces() {
@@ -2903,10 +2927,6 @@ impl Site {
             dev => version::dev(&meta.version).is_some(),
             prerelease => version::is_prerelease(&meta.version),
             vulnerabilities => self.vulnerability_summary(index),
-            superseded_by => self.superseded_by[index].map(|i| ctx! {
-                version => self.entries[i].meta.version,
-                url => self.entries[i].url(),
-            }),
             date => entry.date(),
             // its license expression, each license linked to the SPDX license list
             license => meta.annotation("licenses").map(crate::license::html),
@@ -4441,10 +4461,15 @@ mod tests {
         assert!(namespace.contains(r#"<div data-version-panel="0.2.0-dev" hidden>"#));
         assert!(!namespace.contains("0.1.0-dev"));
 
-        // the superseded dev build keeps its page, but is listed nowhere else
-        let superseded = read("example/to-stdout/0.1.0-dev/index.html");
-        assert!(superseded.contains("noindex"));
-        assert!(superseded.contains("superseded by the release"));
+        // the superseded dev build has no pages, and it's listed nowhere
+        assert!(!out.join("example/to-stdout/0.1.0-dev/index.html").exists());
+        assert!(
+            !out.join("example/to-stdout/0.1.0-dev/sbom.cdx.json")
+                .exists()
+        );
+        assert!(out.join("example/to-stdout/0.1.0-dev/api.json").exists());
+        // the 404 page sends a link to a dev build on to its release
+        assert!(read("404.html").contains("-dev"));
         for page in [
             "example/to-stdout/0.1.0/index.html",
             "example/to-stdout/0.2.0-dev/index.html",
@@ -4460,6 +4485,10 @@ mod tests {
         );
         // any version with a pre-release component is marked a pre-release, a dev build among them
         assert!(read("example/to-stdout/0.2.0-dev/index.html").contains(">pre-release<"));
+        // a dev build's pages are kept out of search engines, as they go once it's released
+        let noindex = r#"<meta name="robots" content="noindex">"#;
+        assert!(read("example/to-stdout/0.2.0-dev/index.html").contains(noindex));
+        assert!(!read("example/to-stdout/0.1.0/index.html").contains(noindex));
         assert!(read("wasi/logging/0.1.0-draft/index.html").contains(">pre-release<"));
         assert!(!read("example/to-stdout/0.1.0/index.html").contains(">pre-release<"));
 
