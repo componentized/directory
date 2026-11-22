@@ -1,5 +1,0 @@
-package componentized:logging@0.3.1-dev;
-
-world imports {
-  import wasi:logging/logging@0.1.0-draft;
-}

@@ -1,5 +1,0 @@
-package root:component;
-
-world root {
-  export componentized:secrets/store@0.1.0-dev;
-}

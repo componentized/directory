@@ -40,7 +40,6 @@
     "pkg:cargo/componentized-valkey@0.1.0",
     "pkg:cargo/config@0.1.0",
     "pkg:cargo/connection-minimal@0.3.0",
-    "pkg:cargo/connection-minimal@0.3.0-dev",
     "pkg:cargo/connection-minimal@0.3.1-dev",
     "pkg:cargo/connection@0.3.0",
     "pkg:cargo/connection@0.3.0-dev",
@@ -332,6 +331,9 @@
     ],
     "pkg:cargo/chrono@0.5.0-alpha.1": [
       "RUSTSEC-2026-0543"
+    ],
+    "pkg:cargo/url@2.5.8": [
+      "RUSTSEC-2026-0592"
     ]
   },
   "advisories": {
@@ -347,6 +349,17 @@
       "summary": "chrono is unmaintained",
       "kind": "unmaintained",
       "published": "2026-09-14"
+    },
+    "RUSTSEC-2026-0592": {
+      "summary": "Stack overflow in `Url::origin()` on nested `blob:` URLs",
+      "aliases": [
+        "GHSA-hrj5-67jp-wqp9"
+      ],
+      "kind": "vulnerability",
+      "fixed": [
+        "2.5.9"
+      ],
+      "published": "2026-11-20"
     }
   }
 }

@@ -1,8 +1,0 @@
-package root:component;
-
-world root {
-  import wasi:config/store@0.2.0-rc.1;
-
-  export componentized:secrets/types@0.1.1-dev;
-  export componentized:secrets/store@0.1.1-dev;
-}
