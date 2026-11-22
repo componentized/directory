@@ -1,6 +1,17 @@
 {% extends "base.html" %}
 {% set title = "Not found" %}
 {% block main %}
+{#- a link to a dev build its release superseded, whose pages are gone, goes on to the same page of
+    the release: each version of the path ending in `-dev`, e.g. `0.1.0-dev`, without it. A package's
+    name ending in `-dev` is left as it is, and a dev build with no release lands here again, with
+    no `-dev` left to drop #}
+<script>
+(() => {
+  const parts = location.pathname.split("/");
+  const released = parts.map((p) => p.replace(/^(\d+\.\d+\.\d+)-dev$/, "$1"));
+  if (released.some((p, i) => p !== parts[i])) location.replace(released.join("/") + location.search + location.hash);
+})();
+</script>
 <h1>Not found</h1>
 <p>That page isn't in the directory. Try <a href="/all/">all packages</a>.</p>
 {% endblock %}
