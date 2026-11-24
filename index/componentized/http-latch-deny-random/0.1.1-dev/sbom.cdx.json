@@ -1460,13 +1460,13 @@
       "description": "HTTP latch that randomly denies requests, to prove a component is resilient to failures.",
       "externalReferences": [
         {
-          "comment": "revision 4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf",
+          "comment": "revision ff50cab6ab8845db0f4d48b47ff6aa3c337faefa",
           "type": "vcs",
           "url": "https://github.com/componentized/http.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/http/tree/4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf/components/latch-deny-random"
+          "url": "https://github.com/componentized/http/tree/ff50cab6ab8845db0f4d48b47ff6aa3c337faefa/components/latch-deny-random"
         }
       ],
       "hashes": [
@@ -1481,11 +1481,11 @@
         }
       ],
       "name": "componentized:http-latch-deny-random",
-      "purl": "pkg:oci/latch-deny-random@sha256%3A2b245e932c86d5a139151a69b9b19bbce1f2f59ff633083ea0afbebcdb84f6c5?repository_url=ghcr.io/componentized/http/latch-deny-random&tag=0.1.1-dev",
+      "purl": "pkg:oci/latch-deny-random@sha256%3A224f089156fe19551fc3067db7c2af6b97eee390680bbb70010bb1a73003ebba?repository_url=ghcr.io/componentized/http/latch-deny-random&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-24T02:03:17Z",
+    "timestamp": "2026-11-24T02:20:22Z",
     "tools": {
       "components": [
         {

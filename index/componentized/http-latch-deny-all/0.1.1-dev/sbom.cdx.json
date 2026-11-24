@@ -1458,13 +1458,13 @@
       "description": "HTTP latch that denies every request with `http-request-denied`.",
       "externalReferences": [
         {
-          "comment": "revision 4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf",
+          "comment": "revision ff50cab6ab8845db0f4d48b47ff6aa3c337faefa",
           "type": "vcs",
           "url": "https://github.com/componentized/http.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/http/tree/4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf/components/latch-deny-all"
+          "url": "https://github.com/componentized/http/tree/ff50cab6ab8845db0f4d48b47ff6aa3c337faefa/components/latch-deny-all"
         }
       ],
       "hashes": [
@@ -1479,11 +1479,11 @@
         }
       ],
       "name": "componentized:http-latch-deny-all",
-      "purl": "pkg:oci/latch-deny-all@sha256%3Ac0f3a240a4449759e94b1f01ef966268443233e3f9dafa864052a950e5b8ad82?repository_url=ghcr.io/componentized/http/latch-deny-all&tag=0.1.1-dev",
+      "purl": "pkg:oci/latch-deny-all@sha256%3Ac6d0f139e07e8f90bd7847a96f178b3c56a0a7ee53630427b29b11ee929462f3?repository_url=ghcr.io/componentized/http/latch-deny-all&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-24T02:03:17Z",
+    "timestamp": "2026-11-24T02:20:22Z",
     "tools": {
       "components": [
         {

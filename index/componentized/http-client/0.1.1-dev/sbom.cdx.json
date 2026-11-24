@@ -2612,13 +2612,13 @@
       "description": "A higher-level HTTP client that delegates to wasi:http/client.",
       "externalReferences": [
         {
-          "comment": "revision 4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf",
+          "comment": "revision 37d73ee84a98427ebd11f41d8a88d07cbd2cf282",
           "type": "vcs",
           "url": "https://github.com/componentized/http.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/http/tree/4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf/components/client"
+          "url": "https://github.com/componentized/http/tree/37d73ee84a98427ebd11f41d8a88d07cbd2cf282/components/client"
         }
       ],
       "hashes": [
@@ -2633,11 +2633,11 @@
         }
       ],
       "name": "componentized:http-client",
-      "purl": "pkg:oci/client@sha256%3Ae2185d9d4ef02fe9b9a86bb4a1cfd5c1f7548b18165329c31858cddd2171f1d2?repository_url=ghcr.io/componentized/http/client&tag=0.1.1-dev",
+      "purl": "pkg:oci/client@sha256%3Ab6148b11a13ebbf59ee5591f5232095780e9e49e4adfc402f6609397267b70d7?repository_url=ghcr.io/componentized/http/client&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-24T02:03:17Z",
+    "timestamp": "2026-11-24T02:20:07Z",
     "tools": {
       "components": [
         {

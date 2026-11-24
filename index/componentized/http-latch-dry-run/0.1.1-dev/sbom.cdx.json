@@ -1458,13 +1458,13 @@
       "description": "HTTP latch that wraps another latch, logging the requests it would deny without denying them.",
       "externalReferences": [
         {
-          "comment": "revision 4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf",
+          "comment": "revision ff50cab6ab8845db0f4d48b47ff6aa3c337faefa",
           "type": "vcs",
           "url": "https://github.com/componentized/http.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/http/tree/4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf/components/latch-dry-run"
+          "url": "https://github.com/componentized/http/tree/ff50cab6ab8845db0f4d48b47ff6aa3c337faefa/components/latch-dry-run"
         }
       ],
       "hashes": [
@@ -1479,11 +1479,11 @@
         }
       ],
       "name": "componentized:http-latch-dry-run",
-      "purl": "pkg:oci/latch-dry-run@sha256%3Addb8b53a136b03f37db03ac8293f6f3c797d0add47ec979d4ead5317dcb72798?repository_url=ghcr.io/componentized/http/latch-dry-run&tag=0.1.1-dev",
+      "purl": "pkg:oci/latch-dry-run@sha256%3Adc9b15e8ba512a2836916d7c7e895986c9b96a93e2c12b5075df7f3b8a5cb777?repository_url=ghcr.io/componentized/http/latch-dry-run&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-24T02:03:17Z",
+    "timestamp": "2026-11-24T02:20:22Z",
     "tools": {
       "components": [
         {

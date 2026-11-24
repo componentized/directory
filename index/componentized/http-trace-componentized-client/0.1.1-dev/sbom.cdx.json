@@ -1422,13 +1422,13 @@
       "description": "Virtualizes the componentized:http/client interface logging all method calls at the TRACE level and 'componentized-trace' component.",
       "externalReferences": [
         {
-          "comment": "revision 4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf",
+          "comment": "revision ff50cab6ab8845db0f4d48b47ff6aa3c337faefa",
           "type": "vcs",
           "url": "https://github.com/componentized/http.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/http/tree/4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf/components/trace-componentized-client"
+          "url": "https://github.com/componentized/http/tree/ff50cab6ab8845db0f4d48b47ff6aa3c337faefa/components/trace-componentized-client"
         }
       ],
       "hashes": [
@@ -1443,11 +1443,11 @@
         }
       ],
       "name": "componentized:http-trace-componentized-client",
-      "purl": "pkg:oci/trace-componentized-client@sha256%3A59d52d808005ab059b160130074ec1ccff43cda8907492128816521f08f91c0a?repository_url=ghcr.io/componentized/http/trace-componentized-client&tag=0.1.1-dev",
+      "purl": "pkg:oci/trace-componentized-client@sha256%3A275f367fee69d0b8ab87f8244b58166baf729dcddee5d5f1601689bf3a93690e?repository_url=ghcr.io/componentized/http/trace-componentized-client&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-24T02:03:17Z",
+    "timestamp": "2026-11-24T02:20:22Z",
     "tools": {
       "components": [
         {

@@ -1458,13 +1458,13 @@
       "description": "HTTP latch that defers every request, allowing all requests.",
       "externalReferences": [
         {
-          "comment": "revision 4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf",
+          "comment": "revision 37d73ee84a98427ebd11f41d8a88d07cbd2cf282",
           "type": "vcs",
           "url": "https://github.com/componentized/http.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/http/tree/4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf/components/latch-defer-all"
+          "url": "https://github.com/componentized/http/tree/37d73ee84a98427ebd11f41d8a88d07cbd2cf282/components/latch-defer-all"
         }
       ],
       "hashes": [
@@ -1479,11 +1479,11 @@
         }
       ],
       "name": "componentized:http-latch-defer-all",
-      "purl": "pkg:oci/latch-defer-all@sha256%3Ae76121d255a26039a817d07e1f76e323df6c4312ce6a8a646e318568fc388865?repository_url=ghcr.io/componentized/http/latch-defer-all&tag=0.1.1-dev",
+      "purl": "pkg:oci/latch-defer-all@sha256%3A49765903cade57186d2cbf3deafb639dfaf2667622417dc7b3975206bf7f8ee4?repository_url=ghcr.io/componentized/http/latch-defer-all&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-24T02:03:17Z",
+    "timestamp": "2026-11-24T02:20:07Z",
     "tools": {
       "components": [
         {

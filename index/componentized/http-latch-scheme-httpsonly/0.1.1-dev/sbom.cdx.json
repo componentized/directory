@@ -1504,13 +1504,13 @@
       "description": "HTTP latch that denies every request scheme except HTTPS.",
       "externalReferences": [
         {
-          "comment": "revision 4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf",
+          "comment": "revision ff50cab6ab8845db0f4d48b47ff6aa3c337faefa",
           "type": "vcs",
           "url": "https://github.com/componentized/http.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/http/tree/4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf/components/latch-scheme-httpsonly"
+          "url": "https://github.com/componentized/http/tree/ff50cab6ab8845db0f4d48b47ff6aa3c337faefa/components/latch-scheme-httpsonly"
         }
       ],
       "hashes": [
@@ -1525,11 +1525,11 @@
         }
       ],
       "name": "componentized:http-latch-scheme-httpsonly",
-      "purl": "pkg:oci/latch-scheme-httpsonly@sha256%3A41e77425591674ff7239f0ad55f95f0e4970f52bc89311fd98dce42b07d50edb?repository_url=ghcr.io/componentized/http/latch-scheme-httpsonly&tag=0.1.1-dev",
+      "purl": "pkg:oci/latch-scheme-httpsonly@sha256%3A5bf4b8e6d58c8077d14be53254bff89f82c16d4c66d80e4eb268ea20096c7482?repository_url=ghcr.io/componentized/http/latch-scheme-httpsonly&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-24T02:03:17Z",
+    "timestamp": "2026-11-24T02:20:22Z",
     "tools": {
       "components": [
         {

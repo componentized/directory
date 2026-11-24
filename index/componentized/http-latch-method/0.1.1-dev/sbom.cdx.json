@@ -1458,13 +1458,13 @@
       "description": "HTTP latch that decides each request by its method.",
       "externalReferences": [
         {
-          "comment": "revision 4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf",
+          "comment": "revision ff50cab6ab8845db0f4d48b47ff6aa3c337faefa",
           "type": "vcs",
           "url": "https://github.com/componentized/http.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/http/tree/4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf/components/latch-method"
+          "url": "https://github.com/componentized/http/tree/ff50cab6ab8845db0f4d48b47ff6aa3c337faefa/components/latch-method"
         }
       ],
       "hashes": [
@@ -1479,11 +1479,11 @@
         }
       ],
       "name": "componentized:http-latch-method",
-      "purl": "pkg:oci/latch-method@sha256%3A2b64a465c34538fc66935dbf2246f6569876b3df9de15b42a7702a0e88fd6d7e?repository_url=ghcr.io/componentized/http/latch-method&tag=0.1.1-dev",
+      "purl": "pkg:oci/latch-method@sha256%3A53a465ca6c713b50220af6995d3e9070146feeb2b9dbfa7ceb42f647453681bb?repository_url=ghcr.io/componentized/http/latch-method&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-24T02:03:17Z",
+    "timestamp": "2026-11-24T02:20:22Z",
     "tools": {
       "components": [
         {

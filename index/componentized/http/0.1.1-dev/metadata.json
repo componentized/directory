@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/http",
     "tag": "0.1.1-dev",
-    "digest": "sha256:36d232a1fd30f1749ff371220794e0758dac945aea5d75e0400c68733dbec75a",
+    "digest": "sha256:290ffd646f46e50c5f1a7fabb81b72edf42acb42e5b6df88129e778ba1565c78",
     "layer_digest": "sha256:55d7c855dee784b7c5dc8f907e27602b1744a85c7ad5805d0fc4ea6ab91e44db",
     "size": 21220,
     "signature": {
@@ -16,17 +16,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 4065676569
+      "log_index": 4066398324
     }
   },
-  "created": "2026-11-24T02:08:23.640641020Z",
+  "created": "2026-11-24T02:27:45.145642816Z",
   "annotations": {
     "org.opencontainers.image.description": "A collection of utility components that remix wasi:http types and interfaces.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf",
+    "org.opencontainers.image.revision": "37d73ee84a98427ebd11f41d8a88d07cbd2cf282",
     "org.opencontainers.image.source": "https://github.com/componentized/http.git",
     "org.opencontainers.image.title": "componentized:http",
-    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/37d73ee84a98427ebd11f41d8a88d07cbd2cf282",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "dependencies": [
@@ -45,7 +45,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/http",
     "git_ref": "refs/heads/main",
-    "log_index": 4065680705
+    "log_index": 4066398846
   },
-  "indexed_at": "2026-11-24T02:25:11Z"
+  "indexed_at": "2026-11-24T02:40:37Z"
 }

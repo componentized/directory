@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/http/latch-dry-run",
     "tag": "0.1.1-dev",
-    "digest": "sha256:ddb8b53a136b03f37db03ac8293f6f3c797d0add47ec979d4ead5317dcb72798",
+    "digest": "sha256:dc9b15e8ba512a2836916d7c7e895986c9b96a93e2c12b5075df7f3b8a5cb777",
     "layer_digest": "sha256:9914ce8272af2e39e18ad4ed02f0582e568e6310d66b1584496c06eeab6d5cfe",
     "size": 51993,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 4065923089
+      "log_index": 4066449310
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/http/latch-dry-run",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:24815022c6c61bfae302176519f26b11fe6461adc6e19da12378b3850207195c",
+    "digest": "sha256:da988c6eb9e4411e63431f2ddb6cbd5e740de4ddc0c3c958ce10fc86bd723170",
     "layer_digest": "sha256:1a5987c7bd7fe742e2d7b269f42d7e1b83e9cb1c3e84710658a33e84fc649507",
     "size": 179554,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 4065938356
+      "log_index": 4066452482
     }
   },
-  "created": "2026-11-24T02:14:04.641736994Z",
+  "created": "2026-11-24T02:32:02.498274602Z",
   "annotations": {
     "org.opencontainers.image.description": "HTTP latch that wraps another latch, logging the requests it would deny without denying them.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf",
+    "org.opencontainers.image.revision": "ff50cab6ab8845db0f4d48b47ff6aa3c337faefa",
     "org.opencontainers.image.source": "https://github.com/componentized/http.git",
     "org.opencontainers.image.title": "componentized:http-latch-dry-run",
-    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf/components/latch-dry-run",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/ff50cab6ab8845db0f4d48b47ff6aa3c337faefa/components/latch-dry-run",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -79,7 +79,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/http",
     "git_ref": "refs/heads/main",
-    "log_index": 4065928655
+    "log_index": 4066450146
   },
-  "indexed_at": "2026-11-24T02:26:20Z"
+  "indexed_at": "2026-11-24T02:41:45Z"
 }

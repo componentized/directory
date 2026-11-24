@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/http/status-codes",
     "tag": "0.1.1-dev",
-    "digest": "sha256:9142890edb75cf4857e81cd21c2c31b5e9d4402d38ddbfb6b71b3a879cfdcc15",
+    "digest": "sha256:e24083579619cc6b804e19e27724db63ff44b5e8b925940f51a0722c8a53cbd6",
     "layer_digest": "sha256:9495d32959344dea22bec9f38530809a0bcf805821cf141bc478f5d6c067405d",
     "size": 19511,
     "signature": {
@@ -16,7 +16,7 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 4066227267
+      "log_index": 4066581500
     }
   },
   "debug": {
@@ -35,14 +35,14 @@
       "log_index": 3321252340
     }
   },
-  "created": "2026-11-24T02:20:58.457780322Z",
+  "created": "2026-11-24T02:37:23.961651282Z",
   "annotations": {
     "org.opencontainers.image.description": "HTTP status code constants.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf",
+    "org.opencontainers.image.revision": "ff50cab6ab8845db0f4d48b47ff6aa3c337faefa",
     "org.opencontainers.image.source": "https://github.com/componentized/http.git",
     "org.opencontainers.image.title": "componentized:http-status-codes",
-    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf/components/status-codes",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/ff50cab6ab8845db0f4d48b47ff6aa3c337faefa/components/status-codes",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "exports": [
@@ -66,7 +66,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/http",
     "git_ref": "refs/heads/main",
-    "log_index": 4066232311
+    "log_index": 4066582771
   },
-  "indexed_at": "2026-11-24T02:27:40Z"
+  "indexed_at": "2026-11-24T02:43:08Z"
 }

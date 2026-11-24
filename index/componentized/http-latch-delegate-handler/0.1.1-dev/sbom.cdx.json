@@ -1458,13 +1458,13 @@
       "description": "HTTP latch that wraps another latch, delegating only `wasi:http/handler` requests to it. `wasi:http/client` requests are deferred without consulting the wrapped latch, it neither authorizes nor observes them.",
       "externalReferences": [
         {
-          "comment": "revision 4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf",
+          "comment": "revision ff50cab6ab8845db0f4d48b47ff6aa3c337faefa",
           "type": "vcs",
           "url": "https://github.com/componentized/http.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/http/tree/4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf/components/latch-delegate-handler"
+          "url": "https://github.com/componentized/http/tree/ff50cab6ab8845db0f4d48b47ff6aa3c337faefa/components/latch-delegate-handler"
         }
       ],
       "hashes": [
@@ -1479,11 +1479,11 @@
         }
       ],
       "name": "componentized:http-latch-delegate-handler",
-      "purl": "pkg:oci/latch-delegate-handler@sha256%3Aaf3812529c6d5dea3c52cd15383b438c7a5ec09128c60596ca91c1d0168879f6?repository_url=ghcr.io/componentized/http/latch-delegate-handler&tag=0.1.1-dev",
+      "purl": "pkg:oci/latch-delegate-handler@sha256%3A6b507dcc0c867d6384b7acaf9230b7a545441e5fd15c2f196560c2e009203472?repository_url=ghcr.io/componentized/http/latch-delegate-handler&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-24T02:03:17Z",
+    "timestamp": "2026-11-24T02:20:22Z",
     "tools": {
       "components": [
         {
