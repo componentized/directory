@@ -27,13 +27,13 @@
       "description": "Pseudorandom number generators.",
       "externalReferences": [
         {
-          "comment": "revision acd96e54a8c0da1560860e3e47f118e8639ac95f",
+          "comment": "revision 15f19f12ece06ee25fe881aae4de7075fef79471",
           "type": "vcs",
           "url": "https://github.com/componentized/constants.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/constants/tree/acd96e54a8c0da1560860e3e47f118e8639ac95f/components/random"
+          "url": "https://github.com/componentized/constants/tree/15f19f12ece06ee25fe881aae4de7075fef79471/components/random"
         }
       ],
       "hashes": [
@@ -48,11 +48,11 @@
         }
       ],
       "name": "componentized:constants-random",
-      "purl": "pkg:oci/random@sha256%3A8fb41bcfecf2dd283d01af48560c4fa9781f49e48f93a97432c019b22eb4f7bb?repository_url=ghcr.io/componentized/constants/random&tag=0.2.1-dev",
+      "purl": "pkg:oci/random@sha256%3Aaecb33871a63df390d4976b2c00ed638cbe3b796f989c8e00be65cd85ab5d1ad?repository_url=ghcr.io/componentized/constants/random&tag=0.2.1-dev",
       "type": "library",
       "version": "0.2.1-dev"
     },
-    "timestamp": "2026-11-21T01:37:54Z",
+    "timestamp": "2026-11-24T02:25:15Z",
     "tools": {
       "components": [
         {
