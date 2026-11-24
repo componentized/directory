@@ -15,12 +15,12 @@
       "version": "0.1.0"
     },
     {
-      "bom-ref": "rust-std:fd8e211ae301c84a86d13cf52a6d3ce08c589e2e:wasm32-unknown-unknown",
+      "bom-ref": "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-unknown-unknown",
       "description": "the Rust standard library for wasm32-unknown-unknown",
       "name": "rust-std",
-      "purl": "pkg:github/rust-lang/rust@fd8e211ae301c84a86d13cf52a6d3ce08c589e2e",
+      "purl": "pkg:github/rust-lang/rust@0ef1bc386059596dada8fb65b50425aab2ea637a",
       "type": "library",
-      "version": "1.100.0-beta.7"
+      "version": "1.100.0"
     },
     {
       "bom-ref": "path+file://./crates/http-utils#0.1.0",
@@ -1197,7 +1197,7 @@
     {
       "dependsOn": [
         "path+file://./components/gate-handler#0.1.0",
-        "rust-std:fd8e211ae301c84a86d13cf52a6d3ce08c589e2e:wasm32-unknown-unknown"
+        "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-unknown-unknown"
       ],
       "ref": "component:componentized:http-gate-handler"
     },
@@ -1430,7 +1430,7 @@
     },
     {
       "dependsOn": [],
-      "ref": "rust-std:fd8e211ae301c84a86d13cf52a6d3ce08c589e2e:wasm32-unknown-unknown"
+      "ref": "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-unknown-unknown"
     }
   ],
   "metadata": {
@@ -1439,19 +1439,19 @@
       "description": "HTTP gate access control for requests handled with `wasi:http/handler`.",
       "externalReferences": [
         {
-          "comment": "revision 37d73ee84a98427ebd11f41d8a88d07cbd2cf282",
+          "comment": "revision 865b16b737e604b15045928249a8d18492da125f",
           "type": "vcs",
           "url": "https://github.com/componentized/http.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/http/tree/37d73ee84a98427ebd11f41d8a88d07cbd2cf282/components/gate-handler"
+          "url": "https://github.com/componentized/http/tree/865b16b737e604b15045928249a8d18492da125f/components/gate-handler"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "58cbcd4debbf16d5b4991dd82a701bde584c0152f2dee12011b00c5ded72253c"
+          "content": "8f62d63eb3fef7d242668dce05b46bbd43d8c20e1ca64f14d9751e743ad131ff"
         }
       ],
       "licenses": [
@@ -1460,11 +1460,11 @@
         }
       ],
       "name": "componentized:http-gate-handler",
-      "purl": "pkg:oci/gate-handler@sha256%3A2ea13bb9a57fdb08f4199f0475e370b2ce2cadea1fdb9c11410741b47489721f?repository_url=ghcr.io/componentized/http/gate-handler&tag=0.1.1-dev",
+      "purl": "pkg:oci/gate-handler@sha256%3Ad98d22ae940d2ab3a1d959653b5884605e63111665f45511116c5d3d9bdfd6d2?repository_url=ghcr.io/componentized/http/gate-handler&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-24T02:20:07Z",
+    "timestamp": "2026-11-24T19:36:45Z",
     "tools": {
       "components": [
         {

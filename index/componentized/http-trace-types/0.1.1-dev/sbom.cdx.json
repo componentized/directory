@@ -15,12 +15,12 @@
       "version": "0.1.0"
     },
     {
-      "bom-ref": "rust-std:fd8e211ae301c84a86d13cf52a6d3ce08c589e2e:wasm32-wasip3",
+      "bom-ref": "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-wasip3",
       "description": "the Rust standard library for wasm32-wasip3",
       "name": "rust-std",
-      "purl": "pkg:github/rust-lang/rust@fd8e211ae301c84a86d13cf52a6d3ce08c589e2e",
+      "purl": "pkg:github/rust-lang/rust@0ef1bc386059596dada8fb65b50425aab2ea637a",
       "type": "library",
-      "version": "1.100.0-beta.7"
+      "version": "1.100.0"
     },
     {
       "bom-ref": "pkg:github/webassembly/wasi-libc@f6e9006376e6f8e8f91ab84fc956be4e345588bc",
@@ -1221,7 +1221,7 @@
     {
       "dependsOn": [
         "path+file://./components/trace-types#0.1.0",
-        "rust-std:fd8e211ae301c84a86d13cf52a6d3ce08c589e2e:wasm32-wasip3",
+        "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-wasip3",
         "pkg:github/webassembly/wasi-libc@f6e9006376e6f8e8f91ab84fc956be4e345588bc"
       ],
       "ref": "component:componentized:http-trace-types"
@@ -1461,7 +1461,7 @@
       "dependsOn": [
         "pkg:github/webassembly/wasi-libc@f6e9006376e6f8e8f91ab84fc956be4e345588bc"
       ],
-      "ref": "rust-std:fd8e211ae301c84a86d13cf52a6d3ce08c589e2e:wasm32-wasip3"
+      "ref": "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-wasip3"
     },
     {
       "dependsOn": [],
@@ -1474,19 +1474,19 @@
       "description": "Virtualizes the wasi:http/types interface logging all method calls at the TRACE level and 'componentized-trace' component.",
       "externalReferences": [
         {
-          "comment": "revision ff50cab6ab8845db0f4d48b47ff6aa3c337faefa",
+          "comment": "revision 865b16b737e604b15045928249a8d18492da125f",
           "type": "vcs",
           "url": "https://github.com/componentized/http.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/http/tree/ff50cab6ab8845db0f4d48b47ff6aa3c337faefa/components/trace-types"
+          "url": "https://github.com/componentized/http/tree/865b16b737e604b15045928249a8d18492da125f/components/trace-types"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "fb3f9b667a21d6c599db304ef737424c96965c2acc678e98c70f700aa201fdcb"
+          "content": "8c00125adf6336dfb7f61ea6228f78267b9f6c90b17cfa78c79918b4845ee8af"
         }
       ],
       "licenses": [
@@ -1495,11 +1495,11 @@
         }
       ],
       "name": "componentized:http-trace-types",
-      "purl": "pkg:oci/trace-types@sha256%3A3b8624451c1a983301af8c2bf47a58cbf18504754b26b28ed225b7c869064c5b?repository_url=ghcr.io/componentized/http/trace-types&tag=0.1.1-dev",
+      "purl": "pkg:oci/trace-types@sha256%3Ad24ec1fc53e2d6259fc4ff744f454b0c72fa2ca64194934d3bf83137a520d97b?repository_url=ghcr.io/componentized/http/trace-types&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-24T02:20:22Z",
+    "timestamp": "2026-11-24T19:36:45Z",
     "tools": {
       "components": [
         {

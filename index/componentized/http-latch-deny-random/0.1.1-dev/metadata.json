@@ -7,42 +7,42 @@
     "registry": "ghcr.io",
     "repository": "componentized/http/latch-deny-random",
     "tag": "0.1.1-dev",
-    "digest": "sha256:224f089156fe19551fc3067db7c2af6b97eee390680bbb70010bb1a73003ebba",
-    "layer_digest": "sha256:58e3f7b5b295344826b8cef4035975b1b1e45855c50f19a321f7b83d585c51de",
-    "size": 84598,
+    "digest": "sha256:11716f63a43d417043e3285493b9b2dca5784eff7dcaba3dcbe83d44abbea364",
+    "layer_digest": "sha256:33ba189bb831dc33ab376bab99d2c5e3f165f70e7e177be4812f8648298aaf8c",
+    "size": 84586,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 4066442018
+      "log_index": 4085642874
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/http/latch-deny-random",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:cc4b8efcf90706bfe2f2e66e1932cda303e148a97b3c216873df67380c58c5e0",
-    "layer_digest": "sha256:169159e1befd45acb557009dc0d18fcdcff8c1498e7c15f69b417b4451f84622",
-    "size": 188725,
+    "digest": "sha256:238363edf01b8a3e3f2b2d57669aeefc689d21e8ab2671daa52ff233b7c3a6f9",
+    "layer_digest": "sha256:af4ac10676ce82249c7b1827fa519c292bc273f9cccd10df40a000bbb5e68dd3",
+    "size": 188212,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 4066445070
+      "log_index": 4085645615
     }
   },
-  "created": "2026-11-24T02:31:33.113634623Z",
+  "created": "2026-11-24T19:50:28.232750412Z",
   "annotations": {
     "org.opencontainers.image.description": "HTTP latch that randomly denies requests, to prove a component is resilient to failures.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "ff50cab6ab8845db0f4d48b47ff6aa3c337faefa",
+    "org.opencontainers.image.revision": "865b16b737e604b15045928249a8d18492da125f",
     "org.opencontainers.image.source": "https://github.com/componentized/http.git",
     "org.opencontainers.image.title": "componentized:http-latch-deny-random",
-    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/ff50cab6ab8845db0f4d48b47ff6aa3c337faefa/components/latch-deny-random",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/865b16b737e604b15045928249a8d18492da125f/components/latch-deny-random",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -88,7 +88,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/http",
     "git_ref": "refs/heads/main",
-    "log_index": 4066442951
+    "log_index": 4085643545
   },
-  "indexed_at": "2026-11-24T02:41:38Z"
+  "indexed_at": "2026-11-24T20:01:54Z"
 }

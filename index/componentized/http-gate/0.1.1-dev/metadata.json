@@ -7,42 +7,42 @@
     "registry": "ghcr.io",
     "repository": "componentized/http/gate",
     "tag": "0.1.1-dev",
-    "digest": "sha256:4621da79782360f884eb3339dd8d1b03d0520c55dee33610307513969d017f1b",
-    "layer_digest": "sha256:29007dfe4aff00b2b1b5b60a22a54c99247e9cddb8bc7069fc77b3991945bd68",
-    "size": 159682,
+    "digest": "sha256:0db4b4bed3e3dd1a30b93e05f4f869c52bcfb91873d4a0899a3d2a58a46d1988",
+    "layer_digest": "sha256:d96a1fb4a09ada20d1d1b9c5932f8805d8a5af4da5ed82e26474bf29cefa8ecb",
+    "size": 159666,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 4066404168
+      "log_index": 4085610917
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/http/gate",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:c33455504e998ae66bb6843f7a2a56b930a3315385263d63ac7594f334a6a66a",
-    "layer_digest": "sha256:d071e21d791b827a66640e0a72cbf399316c047bdb28e119506051e84f28fa02",
-    "size": 569520,
+    "digest": "sha256:ac39b2fe17ec931fe918a222002aa3db101daa896d9faacec7f6efb32265b299",
+    "layer_digest": "sha256:3b7e0dcebf7c3515910f7a887f0028ec7ede716df820e39b57adbd253e425e1c",
+    "size": 566841,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 4066406655
+      "log_index": 4085612997
     }
   },
-  "created": "2026-11-24T02:28:19.553888448Z",
+  "created": "2026-11-24T19:47:03.701561828Z",
   "annotations": {
     "org.opencontainers.image.description": "HTTP gate access control for both requests sent and handled.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "37d73ee84a98427ebd11f41d8a88d07cbd2cf282",
+    "org.opencontainers.image.revision": "865b16b737e604b15045928249a8d18492da125f",
     "org.opencontainers.image.source": "https://github.com/componentized/http.git",
     "org.opencontainers.image.title": "componentized:http-gate",
-    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/37d73ee84a98427ebd11f41d8a88d07cbd2cf282/components/gate",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/865b16b737e604b15045928249a8d18492da125f/components/gate",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -72,13 +72,13 @@
   ],
   "parts": [
     {
-      "digest": "sha256:03832aa5845792d7febed95cf413b7c3f7a32c2bbc7f2a13a059881f5fa6f8c0",
-      "size": 78330,
+      "digest": "sha256:3fa94f986ead0be5f427c48f41fc2cf7e29bc58002084664cdf0faf44d854ddd",
+      "size": 78322,
       "code": true
     },
     {
-      "digest": "sha256:58cbcd4debbf16d5b4991dd82a701bde584c0152f2dee12011b00c5ded72253c",
-      "size": 78483,
+      "digest": "sha256:8f62d63eb3fef7d242668dce05b46bbd43d8c20e1ca64f14d9751e743ad131ff",
+      "size": 78475,
       "code": true
     }
   ],
@@ -146,7 +146,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/http",
     "git_ref": "refs/heads/main",
-    "log_index": 4066405227
+    "log_index": 4085611486
   },
-  "indexed_at": "2026-11-24T02:40:50Z"
+  "indexed_at": "2026-11-24T20:00:58Z"
 }

@@ -27,13 +27,13 @@
       "description": "HTTP status code constants.",
       "externalReferences": [
         {
-          "comment": "revision ff50cab6ab8845db0f4d48b47ff6aa3c337faefa",
+          "comment": "revision 865b16b737e604b15045928249a8d18492da125f",
           "type": "vcs",
           "url": "https://github.com/componentized/http.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/http/tree/ff50cab6ab8845db0f4d48b47ff6aa3c337faefa/components/status-codes"
+          "url": "https://github.com/componentized/http/tree/865b16b737e604b15045928249a8d18492da125f/components/status-codes"
         }
       ],
       "hashes": [
@@ -48,11 +48,11 @@
         }
       ],
       "name": "componentized:http-status-codes",
-      "purl": "pkg:oci/status-codes@sha256%3Ae24083579619cc6b804e19e27724db63ff44b5e8b925940f51a0722c8a53cbd6?repository_url=ghcr.io/componentized/http/status-codes&tag=0.1.1-dev",
+      "purl": "pkg:oci/status-codes@sha256%3Ab052fd46a6d51d4dbace9a6787cead0ca4eda281e4ede5333cbc450bb0ca05ec?repository_url=ghcr.io/componentized/http/status-codes&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-24T02:20:22Z",
+    "timestamp": "2026-11-24T19:36:45Z",
     "tools": {
       "components": [
         {

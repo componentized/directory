@@ -7,42 +7,42 @@
     "registry": "ghcr.io",
     "repository": "componentized/http/client",
     "tag": "0.1.1-dev",
-    "digest": "sha256:b6148b11a13ebbf59ee5591f5232095780e9e49e4adfc402f6609397267b70d7",
-    "layer_digest": "sha256:9bf8c2c1a25714b265684e88140c25a1cbb72bbc59773751f1fd7ab937892f30",
-    "size": 391732,
+    "digest": "sha256:2a28181079f55c57f8be1e9432f623fca2ec32667dea38fbb43c604bc762f734",
+    "layer_digest": "sha256:a79a219cce15c729ed9e96b3e77acf544eaed045fa471574a708e97398a1ea2e",
+    "size": 391968,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 4066400519
+      "log_index": 4085605635
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/http/client",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:51477d8cf83fe241460d7b536157910f185e046fca4433361beba5c9e427c9ee",
-    "layer_digest": "sha256:b4963882cb07b73a7102cd0ccb3429dfdef09df0a966e13cf97f36bcdd759f50",
-    "size": 1457885,
+    "digest": "sha256:ef8346af4f88b2f167adaeff420adfabcdae76be7ca5cc1defd08cb8dbc93d7b",
+    "layer_digest": "sha256:eb10280f0e6a0218a9c0e4096076c58944f79cbc10b0be3a30c014f3d1c16ff7",
+    "size": 1457744,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 4066401929
+      "log_index": 4085608753
     }
   },
-  "created": "2026-11-24T02:27:57.100174944Z",
+  "created": "2026-11-24T19:46:36.133166408Z",
   "annotations": {
     "org.opencontainers.image.description": "A higher-level HTTP client that delegates to wasi:http/client.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "37d73ee84a98427ebd11f41d8a88d07cbd2cf282",
+    "org.opencontainers.image.revision": "865b16b737e604b15045928249a8d18492da125f",
     "org.opencontainers.image.source": "https://github.com/componentized/http.git",
     "org.opencontainers.image.title": "componentized:http-client",
-    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/37d73ee84a98427ebd11f41d8a88d07cbd2cf282/components/client",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/865b16b737e604b15045928249a8d18492da125f/components/client",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -79,7 +79,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/http",
     "git_ref": "refs/heads/main",
-    "log_index": 4066400877
+    "log_index": 4085606849
   },
-  "indexed_at": "2026-11-24T02:40:43Z"
+  "indexed_at": "2026-11-24T20:00:49Z"
 }

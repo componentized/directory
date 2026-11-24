@@ -15,12 +15,12 @@
       "version": "0.1.0"
     },
     {
-      "bom-ref": "rust-std:fd8e211ae301c84a86d13cf52a6d3ce08c589e2e:wasm32-unknown-unknown",
+      "bom-ref": "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-unknown-unknown",
       "description": "the Rust standard library for wasm32-unknown-unknown",
       "name": "rust-std",
-      "purl": "pkg:github/rust-lang/rust@fd8e211ae301c84a86d13cf52a6d3ce08c589e2e",
+      "purl": "pkg:github/rust-lang/rust@0ef1bc386059596dada8fb65b50425aab2ea637a",
       "type": "library",
-      "version": "1.100.0-beta.7"
+      "version": "1.100.0"
     },
     {
       "authors": [
@@ -1184,7 +1184,7 @@
     {
       "dependsOn": [
         "path+file://./components/trace-componentized-client#0.1.0",
-        "rust-std:fd8e211ae301c84a86d13cf52a6d3ce08c589e2e:wasm32-unknown-unknown"
+        "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-unknown-unknown"
       ],
       "ref": "component:componentized:http-trace-componentized-client"
     },
@@ -1413,7 +1413,7 @@
     },
     {
       "dependsOn": [],
-      "ref": "rust-std:fd8e211ae301c84a86d13cf52a6d3ce08c589e2e:wasm32-unknown-unknown"
+      "ref": "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-unknown-unknown"
     }
   ],
   "metadata": {
@@ -1422,19 +1422,19 @@
       "description": "Virtualizes the componentized:http/client interface logging all method calls at the TRACE level and 'componentized-trace' component.",
       "externalReferences": [
         {
-          "comment": "revision ff50cab6ab8845db0f4d48b47ff6aa3c337faefa",
+          "comment": "revision 865b16b737e604b15045928249a8d18492da125f",
           "type": "vcs",
           "url": "https://github.com/componentized/http.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/http/tree/ff50cab6ab8845db0f4d48b47ff6aa3c337faefa/components/trace-componentized-client"
+          "url": "https://github.com/componentized/http/tree/865b16b737e604b15045928249a8d18492da125f/components/trace-componentized-client"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "d5e3e5821cf3ed56f20bb66a23526450f09f1216c366131f89d59f61d8c62478"
+          "content": "bd2ae9cf0a76235d700fd381f703242b70953255cf4719c7e7432a5cb46cce64"
         }
       ],
       "licenses": [
@@ -1443,11 +1443,11 @@
         }
       ],
       "name": "componentized:http-trace-componentized-client",
-      "purl": "pkg:oci/trace-componentized-client@sha256%3A275f367fee69d0b8ab87f8244b58166baf729dcddee5d5f1601689bf3a93690e?repository_url=ghcr.io/componentized/http/trace-componentized-client&tag=0.1.1-dev",
+      "purl": "pkg:oci/trace-componentized-client@sha256%3A9409e4e73f24d1eac37335109daff8ad2cd380b259d7869e4db3c875da191f1a?repository_url=ghcr.io/componentized/http/trace-componentized-client&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-24T02:20:22Z",
+    "timestamp": "2026-11-24T19:36:45Z",
     "tools": {
       "components": [
         {

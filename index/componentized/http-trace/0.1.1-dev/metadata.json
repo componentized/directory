@@ -7,42 +7,42 @@
     "registry": "ghcr.io",
     "repository": "componentized/http/trace",
     "tag": "0.1.1-dev",
-    "digest": "sha256:2f4519b5391c0f71817717764d6ba107ef35171950776d3e147b914c7d46d120",
-    "layer_digest": "sha256:28d4ea39d01c458cdcdb8d7042cccd73f0b825806f0045c02091bf0f810a5e3f",
-    "size": 191608,
+    "digest": "sha256:a0deeaa39105527deac2c24eba22bbee919e8108d6dfbb76c8fa253aabff4c3d",
+    "layer_digest": "sha256:1a18b610c46ef5b5d6a2173cb8aedaa0fac74d007cbedb398ec0ecabc12bd9d9",
+    "size": 191596,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 4066585708
+      "log_index": 4085723223
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/http/trace",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:3195aad08dd327bb003a1462f1e8ce1b8ab35bb5309759db993e94a8a2dd1c20",
-    "layer_digest": "sha256:1da208d3dbaf32e53b93afef77138826d27c0c2c68540bb4588a7084fa4e7ebd",
-    "size": 747736,
+    "digest": "sha256:8dfaf8a5b79c728b78405428191d3833a45f9eec7d840ff198e05b42f1d19483",
+    "layer_digest": "sha256:b51c509a1ab022e046e8598baf34dc0c457f8b4eb549cda1fd10c9949017d551",
+    "size": 747801,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 4066590645
+      "log_index": 4085727700
     }
   },
-  "created": "2026-11-24T02:37:38.776807543Z",
+  "created": "2026-11-24T19:56:33.465056137Z",
   "annotations": {
     "org.opencontainers.image.description": "Virtualizes the wasi:http/types, wasi:http/client and wasi:http/handler interfaces logging all method calls at the TRACE level and 'componentized-trace' component.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "ff50cab6ab8845db0f4d48b47ff6aa3c337faefa",
+    "org.opencontainers.image.revision": "865b16b737e604b15045928249a8d18492da125f",
     "org.opencontainers.image.source": "https://github.com/componentized/http.git",
     "org.opencontainers.image.title": "componentized:http-trace",
-    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/ff50cab6ab8845db0f4d48b47ff6aa3c337faefa/components/trace",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/865b16b737e604b15045928249a8d18492da125f/components/trace",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -91,7 +91,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/http",
     "git_ref": "refs/heads/main",
-    "log_index": 4066587356
+    "log_index": 4085724144
   },
-  "indexed_at": "2026-11-24T02:43:15Z"
+  "indexed_at": "2026-11-24T20:03:43Z"
 }

@@ -6,7 +6,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "ba61a925cbda90da73b0ab999478ac742dc4ccb3b244c9667bb279b4ef11e95d"
+          "content": "9abc6a9cd4c5ce38b30022b42c27c1fab87bb7661ab2fd0f176e45cedb5c046b"
         }
       ],
       "name": "componentized:http-latch-method",
@@ -1227,12 +1227,12 @@
       "version": "1.0.23"
     },
     {
-      "bom-ref": "rust-std:fd8e211ae301c84a86d13cf52a6d3ce08c589e2e:wasm32-unknown-unknown",
+      "bom-ref": "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-unknown-unknown",
       "description": "the Rust standard library for wasm32-unknown-unknown",
       "name": "rust-std",
-      "purl": "pkg:github/rust-lang/rust@fd8e211ae301c84a86d13cf52a6d3ce08c589e2e",
+      "purl": "pkg:github/rust-lang/rust@0ef1bc386059596dada8fb65b50425aab2ea637a",
       "type": "library",
-      "version": "1.100.0-beta.7"
+      "version": "1.100.0"
     }
   ],
   "dependencies": [
@@ -1246,7 +1246,7 @@
     {
       "dependsOn": [
         "path+file://./components/latch-method#0.1.0",
-        "rust-std:fd8e211ae301c84a86d13cf52a6d3ce08c589e2e:wasm32-unknown-unknown"
+        "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-unknown-unknown"
       ],
       "ref": "component:componentized:http-latch-method"
     },
@@ -1495,7 +1495,7 @@
     },
     {
       "dependsOn": [],
-      "ref": "rust-std:fd8e211ae301c84a86d13cf52a6d3ce08c589e2e:wasm32-unknown-unknown"
+      "ref": "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-unknown-unknown"
     }
   ],
   "metadata": {
@@ -1504,19 +1504,19 @@
       "description": "HTTP latch that denies every request method except GET, HEAD, QUERY and OPTIONS.",
       "externalReferences": [
         {
-          "comment": "revision ff50cab6ab8845db0f4d48b47ff6aa3c337faefa",
+          "comment": "revision 865b16b737e604b15045928249a8d18492da125f",
           "type": "vcs",
           "url": "https://github.com/componentized/http.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/http/tree/ff50cab6ab8845db0f4d48b47ff6aa3c337faefa/components/latch-method-readonly"
+          "url": "https://github.com/componentized/http/tree/865b16b737e604b15045928249a8d18492da125f/components/latch-method-readonly"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "1b8c38d03d144f27f1c9bd05e90c6d684de0538af818246c4a51c243affeb768"
+          "content": "2351f60e57ed1cccd344afbaacbe8e30be2901abd2efdc0b149fa5182d2a83a8"
         }
       ],
       "licenses": [
@@ -1525,11 +1525,11 @@
         }
       ],
       "name": "componentized:http-latch-method-readonly",
-      "purl": "pkg:oci/latch-method-readonly@sha256%3A14735b924c7ccf38353ea97e2d0373612e1ff8a2d04823678c86551eab608135?repository_url=ghcr.io/componentized/http/latch-method-readonly&tag=0.1.1-dev",
+      "purl": "pkg:oci/latch-method-readonly@sha256%3A4d8599cf8a28516c3e7182732eb57593db79ff72607d125a0e977569b0c9c5fd?repository_url=ghcr.io/componentized/http/latch-method-readonly&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-24T02:20:22Z",
+    "timestamp": "2026-11-24T19:36:45Z",
     "tools": {
       "components": [
         {

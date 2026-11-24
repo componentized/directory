@@ -7,42 +7,42 @@
     "registry": "ghcr.io",
     "repository": "componentized/http/trace-componentized-client",
     "tag": "0.1.1-dev",
-    "digest": "sha256:275f367fee69d0b8ab87f8244b58166baf729dcddee5d5f1601689bf3a93690e",
-    "layer_digest": "sha256:d5e3e5821cf3ed56f20bb66a23526450f09f1216c366131f89d59f61d8c62478",
-    "size": 141901,
+    "digest": "sha256:9409e4e73f24d1eac37335109daff8ad2cd380b259d7869e4db3c875da191f1a",
+    "layer_digest": "sha256:bd2ae9cf0a76235d700fd381f703242b70953255cf4719c7e7432a5cb46cce64",
+    "size": 141893,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 4066605528
+      "log_index": 4085742520
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/http/trace-componentized-client",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:ef7b040f2dcda672632e5aea5215225b825398eb37c9eb75616f8669aa9289ac",
-    "layer_digest": "sha256:8d1714c359f96f2f817847afcd21adc4c443b2a8034a964e721801efeb84dc60",
-    "size": 735671,
+    "digest": "sha256:e2bf7f890d0cbd4f629f9cb1668bb05073b61cf2ec3ff8cc431141171b4b6877",
+    "layer_digest": "sha256:0efdcd87646bebd5d6af834a1d74dce73c2a0c01252c5d45acea8d0149a6719c",
+    "size": 736448,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 4066609586
+      "log_index": 4085749069
     }
   },
-  "created": "2026-11-24T02:38:38.650813957Z",
+  "created": "2026-11-24T19:57:32.459912348Z",
   "annotations": {
     "org.opencontainers.image.description": "Virtualizes the componentized:http/client interface logging all method calls at the TRACE level and 'componentized-trace' component.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "ff50cab6ab8845db0f4d48b47ff6aa3c337faefa",
+    "org.opencontainers.image.revision": "865b16b737e604b15045928249a8d18492da125f",
     "org.opencontainers.image.source": "https://github.com/componentized/http.git",
     "org.opencontainers.image.title": "componentized:http-trace-componentized-client",
-    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/ff50cab6ab8845db0f4d48b47ff6aa3c337faefa/components/trace-componentized-client",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/865b16b737e604b15045928249a8d18492da125f/components/trace-componentized-client",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -74,7 +74,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/http",
     "git_ref": "refs/heads/main",
-    "log_index": 4066606640
+    "log_index": 4085745120
   },
-  "indexed_at": "2026-11-24T02:43:29Z"
+  "indexed_at": "2026-11-24T20:03:59Z"
 }

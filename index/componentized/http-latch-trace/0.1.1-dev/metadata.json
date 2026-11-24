@@ -7,42 +7,42 @@
     "registry": "ghcr.io",
     "repository": "componentized/http/latch-trace",
     "tag": "0.1.1-dev",
-    "digest": "sha256:d355900b27be2f850a81b62c598f8e6f6bc4416d862b29cf86d9397be89f9007",
-    "layer_digest": "sha256:77cb42548e9b202f09f5ceb428edc7458ae4986208aae3652f350bd637c893be",
-    "size": 51734,
+    "digest": "sha256:32c7dbf6e2b6f12e3e15877d8f9cd0d9a2749bc445f60bfb5d0b8efd678c1e71",
+    "layer_digest": "sha256:6a273df683ab40a654b1597f02670037ec9bdcea05037c45186b80c4d6bbd676",
+    "size": 51618,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 4066568134
+      "log_index": 4085715195
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/http/latch-trace",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:11d8fdc2e615c430da3cb881bb977e657905f933cf3e5bb52aa4214f160c52ad",
-    "layer_digest": "sha256:5c688e75ee03b9d0406abe2be514ab95617fa29731cee4d691a251246e7baa68",
-    "size": 179442,
+    "digest": "sha256:16c0016960e44b12e32633023f92ec84dfec0cbad0890743704636c53109a010",
+    "layer_digest": "sha256:0c3a0ccb6b2f8c2f3f88fb1211230714d46f035c3497df32a6f521da4f89a752",
+    "size": 177691,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 4066576185
+      "log_index": 4085717750
     }
   },
-  "created": "2026-11-24T02:36:54.173584740Z",
+  "created": "2026-11-24T19:55:51.653221358Z",
   "annotations": {
     "org.opencontainers.image.description": "HTTP latch that wraps another latch, logging each decision it makes without changing it.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "ff50cab6ab8845db0f4d48b47ff6aa3c337faefa",
+    "org.opencontainers.image.revision": "865b16b737e604b15045928249a8d18492da125f",
     "org.opencontainers.image.source": "https://github.com/componentized/http.git",
     "org.opencontainers.image.title": "componentized:http-latch-trace",
-    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/ff50cab6ab8845db0f4d48b47ff6aa3c337faefa/components/latch-trace",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/865b16b737e604b15045928249a8d18492da125f/components/latch-trace",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -79,7 +79,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/http",
     "git_ref": "refs/heads/main",
-    "log_index": 4066571049
+    "log_index": 4085716023
   },
-  "indexed_at": "2026-11-24T02:43:02Z"
+  "indexed_at": "2026-11-24T20:03:28Z"
 }
