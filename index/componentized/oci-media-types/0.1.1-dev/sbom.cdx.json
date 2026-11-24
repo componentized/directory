@@ -27,13 +27,13 @@
       "description": "Common OCI related media types.",
       "externalReferences": [
         {
-          "comment": "revision c8512f510c647b051a0dc4fe54440b15c779974f",
+          "comment": "revision 5fd7e263477fea298b0a7893762cae15646d33d6",
           "type": "vcs",
           "url": "https://github.com/componentized/oci.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/oci/tree/c8512f510c647b051a0dc4fe54440b15c779974f/components/media-types"
+          "url": "https://github.com/componentized/oci/tree/5fd7e263477fea298b0a7893762cae15646d33d6/components/media-types"
         }
       ],
       "hashes": [
@@ -48,11 +48,11 @@
         }
       ],
       "name": "componentized:oci-media-types",
-      "purl": "pkg:oci/media-types@sha256%3A13c9107cb0669fe902bb4887a4d5bbe326dada06e703bfa3055754fed7379890?repository_url=ghcr.io/componentized/oci/media-types&tag=0.1.1-dev",
+      "purl": "pkg:oci/media-types@sha256%3A0958ddf4b20b0dde9b75465eb12571796c4f1b2db39763633c31a03f5bdcd9ec?repository_url=ghcr.io/componentized/oci/media-types&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-21T01:30:15Z",
+    "timestamp": "2026-11-24T02:24:36Z",
     "tools": {
       "components": [
         {

@@ -3330,13 +3330,13 @@
       "description": "OCI image client component.",
       "externalReferences": [
         {
-          "comment": "revision c8512f510c647b051a0dc4fe54440b15c779974f",
+          "comment": "revision 5fd7e263477fea298b0a7893762cae15646d33d6",
           "type": "vcs",
           "url": "https://github.com/componentized/oci.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/oci/tree/c8512f510c647b051a0dc4fe54440b15c779974f/components/client"
+          "url": "https://github.com/componentized/oci/tree/5fd7e263477fea298b0a7893762cae15646d33d6/components/client"
         }
       ],
       "hashes": [
@@ -3351,11 +3351,11 @@
         }
       ],
       "name": "componentized:oci-client",
-      "purl": "pkg:oci/client@sha256%3Aa51ef20bcf8cdf41a337135775a1e52ee8b1e8e87522f6887cc0019161dbee8a?repository_url=ghcr.io/componentized/oci/client&tag=0.1.1-dev",
+      "purl": "pkg:oci/client@sha256%3A0a8ae8d35e4fa3150c0f41046b91fad23a5e723f0dcb62782a3db83a667e4ea0?repository_url=ghcr.io/componentized/oci/client&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-21T01:30:15Z",
+    "timestamp": "2026-11-24T02:24:36Z",
     "tools": {
       "components": [
         {

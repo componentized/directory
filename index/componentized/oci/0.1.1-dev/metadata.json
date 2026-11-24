@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/oci",
     "tag": "0.1.1-dev",
-    "digest": "sha256:08da18152da78161325d9d3e7d1b99ffa8cea7b224ae2c924ee16799cad30219",
+    "digest": "sha256:9ded665ceb02f83ac3cc71c3761878fdfb7a0059e8bf5869beefeadc4ce0abe6",
     "layer_digest": "sha256:b7a57285bdd6db4d59ad1e0a2d6ae3ae6938b8f43b66824d4f7f8667b4cf6460",
     "size": 18266,
     "signature": {
@@ -16,17 +16,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/oci",
       "git_ref": "refs/heads/main",
-      "log_index": 4030831069
+      "log_index": 4066387081
     }
   },
-  "created": "2026-11-21T01:33:00.930086920Z",
+  "created": "2026-11-24T02:27:01.433139272Z",
   "annotations": {
     "org.opencontainers.image.description": "WASM components for interacting with resources in OCI image repositories.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "c8512f510c647b051a0dc4fe54440b15c779974f",
+    "org.opencontainers.image.revision": "5fd7e263477fea298b0a7893762cae15646d33d6",
     "org.opencontainers.image.source": "https://github.com/componentized/oci.git",
     "org.opencontainers.image.title": "componentized:oci",
-    "org.opencontainers.image.url": "https://github.com/componentized/oci/tree/c8512f510c647b051a0dc4fe54440b15c779974f",
+    "org.opencontainers.image.url": "https://github.com/componentized/oci/tree/5fd7e263477fea298b0a7893762cae15646d33d6",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "dependencies": [
@@ -41,7 +41,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/oci",
     "git_ref": "refs/heads/main",
-    "log_index": 4030831184
+    "log_index": 4066387793
   },
-  "indexed_at": "2026-11-21T01:35:02Z"
+  "indexed_at": "2026-11-24T02:30:55Z"
 }
