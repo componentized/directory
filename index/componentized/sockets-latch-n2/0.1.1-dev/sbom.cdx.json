@@ -1819,13 +1819,13 @@
       "description": "Sockets latch that aggregates two other sockets latches.",
       "externalReferences": [
         {
-          "comment": "revision b82efe9f486f2c53723974192ce074cd39145b53",
+          "comment": "revision f5a423a4b4d6febf2859d708a18388798778d664",
           "type": "vcs",
           "url": "https://github.com/componentized/sockets.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/sockets/tree/b82efe9f486f2c53723974192ce074cd39145b53/components/latch-n2"
+          "url": "https://github.com/componentized/sockets/tree/f5a423a4b4d6febf2859d708a18388798778d664/components/latch-n2"
         }
       ],
       "hashes": [
@@ -1840,11 +1840,11 @@
         }
       ],
       "name": "componentized:sockets-latch-n2",
-      "purl": "pkg:oci/latch-n2@sha256%3A260b58338c61d52bc6a1af3fc0743088296c54431a1c6468c29c359b9d3cd591?repository_url=ghcr.io/componentized/sockets/latch-n2&tag=0.1.1-dev",
+      "purl": "pkg:oci/latch-n2@sha256%3A7c2b174d7059ccc103edc111f1d627456f62352a989b693f96c728ebd8812f01?repository_url=ghcr.io/componentized/sockets/latch-n2&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-21T01:32:26Z",
+    "timestamp": "2026-11-24T12:32:26Z",
     "tools": {
       "components": [
         {

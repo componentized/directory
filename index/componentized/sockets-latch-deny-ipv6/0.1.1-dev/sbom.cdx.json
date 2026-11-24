@@ -1820,13 +1820,13 @@
       "description": "Sockets latch that implicitly denies all IPv6 operations.",
       "externalReferences": [
         {
-          "comment": "revision b82efe9f486f2c53723974192ce074cd39145b53",
+          "comment": "revision f5a423a4b4d6febf2859d708a18388798778d664",
           "type": "vcs",
           "url": "https://github.com/componentized/sockets.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/sockets/tree/b82efe9f486f2c53723974192ce074cd39145b53/components/latch-deny-ipv6"
+          "url": "https://github.com/componentized/sockets/tree/f5a423a4b4d6febf2859d708a18388798778d664/components/latch-deny-ipv6"
         }
       ],
       "hashes": [
@@ -1841,11 +1841,11 @@
         }
       ],
       "name": "componentized:sockets-latch-deny-ipv6",
-      "purl": "pkg:oci/latch-deny-ipv6@sha256%3A6302e582eaf94be5d0372fe6798e862bb583229508cb0505f9f62a8a684b6b69?repository_url=ghcr.io/componentized/sockets/latch-deny-ipv6&tag=0.1.1-dev",
+      "purl": "pkg:oci/latch-deny-ipv6@sha256%3A73ec83af031c842b1a3688f251027d9f3352ef5b35aedef82b7194b1a47f3272?repository_url=ghcr.io/componentized/sockets/latch-deny-ipv6&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-21T01:32:26Z",
+    "timestamp": "2026-11-24T12:32:26Z",
     "tools": {
       "components": [
         {

@@ -1820,13 +1820,13 @@
       "description": "Sockets latch that implicitly denies explicitly binding tcp and udp sockets to a local address.",
       "externalReferences": [
         {
-          "comment": "revision b82efe9f486f2c53723974192ce074cd39145b53",
+          "comment": "revision f5a423a4b4d6febf2859d708a18388798778d664",
           "type": "vcs",
           "url": "https://github.com/componentized/sockets.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/sockets/tree/b82efe9f486f2c53723974192ce074cd39145b53/components/latch-deny-bind"
+          "url": "https://github.com/componentized/sockets/tree/f5a423a4b4d6febf2859d708a18388798778d664/components/latch-deny-bind"
         }
       ],
       "hashes": [
@@ -1841,11 +1841,11 @@
         }
       ],
       "name": "componentized:sockets-latch-deny-bind",
-      "purl": "pkg:oci/latch-deny-bind@sha256%3A7d5f6fb15cf17cfb833479214d5aa7908e3a08c2c6fb8894ed3de960b695e9bd?repository_url=ghcr.io/componentized/sockets/latch-deny-bind&tag=0.1.1-dev",
+      "purl": "pkg:oci/latch-deny-bind@sha256%3A5462786e4a3741acb86b52a5b2323d0fe073ec34554be55aff34250dac0aeeb1?repository_url=ghcr.io/componentized/sockets/latch-deny-bind&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-21T01:32:26Z",
+    "timestamp": "2026-11-24T12:32:26Z",
     "tools": {
       "components": [
         {

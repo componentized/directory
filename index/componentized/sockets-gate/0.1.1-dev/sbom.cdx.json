@@ -1875,13 +1875,13 @@
       "description": "Socket gate access control.",
       "externalReferences": [
         {
-          "comment": "revision b82efe9f486f2c53723974192ce074cd39145b53",
+          "comment": "revision f5a423a4b4d6febf2859d708a18388798778d664",
           "type": "vcs",
           "url": "https://github.com/componentized/sockets.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/sockets/tree/b82efe9f486f2c53723974192ce074cd39145b53/components/gate"
+          "url": "https://github.com/componentized/sockets/tree/f5a423a4b4d6febf2859d708a18388798778d664/components/gate"
         }
       ],
       "hashes": [
@@ -1896,11 +1896,11 @@
         }
       ],
       "name": "componentized:sockets-gate",
-      "purl": "pkg:oci/gate@sha256%3A71656535e29931b02179d54bcf41a8c79ccc220c718c66c4f06f70ed546c4731?repository_url=ghcr.io/componentized/sockets/gate&tag=0.1.1-dev",
+      "purl": "pkg:oci/gate@sha256%3A1ef2306e241c8f2cb85673a048e6717d47559893cfac0b115209bdcabef41b9e?repository_url=ghcr.io/componentized/sockets/gate&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-21T01:32:26Z",
+    "timestamp": "2026-11-24T12:32:26Z",
     "tools": {
       "components": [
         {

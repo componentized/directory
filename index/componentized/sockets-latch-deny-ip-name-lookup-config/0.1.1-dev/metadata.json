@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-deny-ip-name-lookup-config",
     "tag": "0.1.1-dev",
-    "digest": "sha256:e03d96309bb697b3bb15f84d3a5a439e561f6ee59299982507a10c7a808051e8",
+    "digest": "sha256:8e99e9e8fe14ba772d04713849ba5012ffe0dfaba92c00b11e73e56fbf3765db",
     "layer_digest": "sha256:cf314ee84acf8a29df9860849680e39b0a644e762904a20334b7bf4adebdad99",
     "size": 6188,
     "signature": {
@@ -16,7 +16,7 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 4030852532
+      "log_index": 4078135789
     }
   },
   "debug": {
@@ -35,14 +35,14 @@
       "log_index": 3321088415
     }
   },
-  "created": "2026-11-21T01:45:43.684604592Z",
+  "created": "2026-11-24T12:50:17.188193315Z",
   "annotations": {
     "org.opencontainers.image.description": "Internal config for latch-deny-ip-name-lookup.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "b82efe9f486f2c53723974192ce074cd39145b53",
+    "org.opencontainers.image.revision": "f5a423a4b4d6febf2859d708a18388798778d664",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-latch-deny-ip-name-lookup-config",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/b82efe9f486f2c53723974192ce074cd39145b53/components/latch-deny-ip-name-lookup-config",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/f5a423a4b4d6febf2859d708a18388798778d664/components/latch-deny-ip-name-lookup-config",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "exports": [
@@ -96,7 +96,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/sockets",
     "git_ref": "refs/heads/main",
-    "log_index": 4030852724
+    "log_index": 4078137296
   },
-  "indexed_at": "2026-11-21T01:55:59Z"
+  "indexed_at": "2026-11-24T12:57:52Z"
 }

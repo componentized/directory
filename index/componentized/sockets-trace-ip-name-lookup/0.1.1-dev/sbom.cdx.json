@@ -1800,13 +1800,13 @@
       "description": "Trace wasi:sockets/ip-name-lookup calls using a logger.",
       "externalReferences": [
         {
-          "comment": "revision b82efe9f486f2c53723974192ce074cd39145b53",
+          "comment": "revision f5a423a4b4d6febf2859d708a18388798778d664",
           "type": "vcs",
           "url": "https://github.com/componentized/sockets.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/sockets/tree/b82efe9f486f2c53723974192ce074cd39145b53/components/trace-ip-name-lookup"
+          "url": "https://github.com/componentized/sockets/tree/f5a423a4b4d6febf2859d708a18388798778d664/components/trace-ip-name-lookup"
         }
       ],
       "hashes": [
@@ -1821,11 +1821,11 @@
         }
       ],
       "name": "componentized:sockets-trace-ip-name-lookup",
-      "purl": "pkg:oci/trace-ip-name-lookup@sha256%3A5174a3e89a96bab579d9d1a61274c5961f78af38996605bd08ba1810fdb890c2?repository_url=ghcr.io/componentized/sockets/trace-ip-name-lookup&tag=0.1.1-dev",
+      "purl": "pkg:oci/trace-ip-name-lookup@sha256%3A55fd6d60b73b7e576bbbf0624816e1eadc32069b05855d85c0342822a679d23c?repository_url=ghcr.io/componentized/sockets/trace-ip-name-lookup&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-21T01:32:26Z",
+    "timestamp": "2026-11-24T12:32:26Z",
     "tools": {
       "components": [
         {

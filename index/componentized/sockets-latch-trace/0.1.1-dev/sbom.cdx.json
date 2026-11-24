@@ -1820,13 +1820,13 @@
       "description": "Sockets latch that wraps another latch, logging each decision it makes without changing it.",
       "externalReferences": [
         {
-          "comment": "revision b82efe9f486f2c53723974192ce074cd39145b53",
+          "comment": "revision f5a423a4b4d6febf2859d708a18388798778d664",
           "type": "vcs",
           "url": "https://github.com/componentized/sockets.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/sockets/tree/b82efe9f486f2c53723974192ce074cd39145b53/components/latch-trace"
+          "url": "https://github.com/componentized/sockets/tree/f5a423a4b4d6febf2859d708a18388798778d664/components/latch-trace"
         }
       ],
       "hashes": [
@@ -1841,11 +1841,11 @@
         }
       ],
       "name": "componentized:sockets-latch-trace",
-      "purl": "pkg:oci/latch-trace@sha256%3A4ddcf06a1146980947e35127b9fd61c7061f54b947dae656e25bef20e3151d32?repository_url=ghcr.io/componentized/sockets/latch-trace&tag=0.1.1-dev",
+      "purl": "pkg:oci/latch-trace@sha256%3A19090b21f200e92f2fbc7c3086e62666a348473dddf2b6bcf92089202b13e7c4?repository_url=ghcr.io/componentized/sockets/latch-trace&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-21T01:32:26Z",
+    "timestamp": "2026-11-24T12:32:26Z",
     "tools": {
       "components": [
         {

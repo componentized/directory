@@ -1880,13 +1880,13 @@
       "description": "Socket latch that uses CIDR ranges to grant or deny binding tcp/udp sockets to a local address and port.",
       "externalReferences": [
         {
-          "comment": "revision b82efe9f486f2c53723974192ce074cd39145b53",
+          "comment": "revision f5a423a4b4d6febf2859d708a18388798778d664",
           "type": "vcs",
           "url": "https://github.com/componentized/sockets.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/sockets/tree/b82efe9f486f2c53723974192ce074cd39145b53/components/latch-cidr-bind"
+          "url": "https://github.com/componentized/sockets/tree/f5a423a4b4d6febf2859d708a18388798778d664/components/latch-cidr-bind"
         }
       ],
       "hashes": [
@@ -1901,11 +1901,11 @@
         }
       ],
       "name": "componentized:sockets-latch-cidr-bind",
-      "purl": "pkg:oci/latch-cidr-bind@sha256%3Af7b248405adf0ace3db5b8d140ad7d7cb3a282e6365555108c6959c23d7316b1?repository_url=ghcr.io/componentized/sockets/latch-cidr-bind&tag=0.1.1-dev",
+      "purl": "pkg:oci/latch-cidr-bind@sha256%3A402085aabf4c3b75b9f953962c4a5ad4b318ef2204664f65d2464f7069389a49?repository_url=ghcr.io/componentized/sockets/latch-cidr-bind&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-21T01:32:26Z",
+    "timestamp": "2026-11-24T12:32:26Z",
     "tools": {
       "components": [
         {

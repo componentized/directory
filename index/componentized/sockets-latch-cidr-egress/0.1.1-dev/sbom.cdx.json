@@ -1880,13 +1880,13 @@
       "description": "Socket latch that uses CIDR ranges to grant or deny originating outbound tcp/udp traffic based on the remote address. Return traffic to peers that reached the guest first is not restricted.",
       "externalReferences": [
         {
-          "comment": "revision b82efe9f486f2c53723974192ce074cd39145b53",
+          "comment": "revision f5a423a4b4d6febf2859d708a18388798778d664",
           "type": "vcs",
           "url": "https://github.com/componentized/sockets.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/sockets/tree/b82efe9f486f2c53723974192ce074cd39145b53/components/latch-cidr-egress"
+          "url": "https://github.com/componentized/sockets/tree/f5a423a4b4d6febf2859d708a18388798778d664/components/latch-cidr-egress"
         }
       ],
       "hashes": [
@@ -1901,11 +1901,11 @@
         }
       ],
       "name": "componentized:sockets-latch-cidr-egress",
-      "purl": "pkg:oci/latch-cidr-egress@sha256%3A521ed30818bd4e128a391e5a9e868bbcb8540de3ae6b883eec872a3c65594524?repository_url=ghcr.io/componentized/sockets/latch-cidr-egress&tag=0.1.1-dev",
+      "purl": "pkg:oci/latch-cidr-egress@sha256%3A9477de68a20bdb96685879d186cc1ebf73be84fcd2fa5996b7f3067dc18284d6?repository_url=ghcr.io/componentized/sockets/latch-cidr-egress&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-21T01:32:26Z",
+    "timestamp": "2026-11-24T12:32:26Z",
     "tools": {
       "components": [
         {

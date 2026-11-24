@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-deny-private-networks-cidr-config",
     "tag": "0.1.1-dev",
-    "digest": "sha256:ced9cf93362a204f95b25cbfbe530683b3e2aab0572710f0025bd773c48d34b9",
+    "digest": "sha256:186aecf878e4b0b4ba5c57cd9ab027e88e85488573b8f98470e897102cad039f",
     "layer_digest": "sha256:f4d2542be6d7b3cfca32c16eeef276ebc358510c9390d24d5b093b9eb4d03351",
     "size": 7437,
     "signature": {
@@ -16,7 +16,7 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 4030854929
+      "log_index": 4078169168
     }
   },
   "debug": {
@@ -35,14 +35,14 @@
       "log_index": 3321102190
     }
   },
-  "created": "2026-11-21T01:46:54.678151220Z",
+  "created": "2026-11-24T12:51:37.668494358Z",
   "annotations": {
     "org.opencontainers.image.description": "Static config for `latch-cidr-egress` that denies originating outbound traffic to addresses that are not globally reachable, like private networks, loopback, link local and cloud metadata endpoints.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "b82efe9f486f2c53723974192ce074cd39145b53",
+    "org.opencontainers.image.revision": "f5a423a4b4d6febf2859d708a18388798778d664",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-latch-deny-private-networks-cidr-config",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/b82efe9f486f2c53723974192ce074cd39145b53/components/latch-deny-private-networks-cidr-config",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/f5a423a4b4d6febf2859d708a18388798778d664/components/latch-deny-private-networks-cidr-config",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "exports": [
@@ -96,7 +96,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/sockets",
     "git_ref": "refs/heads/main",
-    "log_index": 4030855135
+    "log_index": 4078171679
   },
-  "indexed_at": "2026-11-21T01:56:15Z"
+  "indexed_at": "2026-11-24T12:58:13Z"
 }

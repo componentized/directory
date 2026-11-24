@@ -1820,13 +1820,13 @@
       "description": "Sockets latch that implicitly denies all UDP operations.",
       "externalReferences": [
         {
-          "comment": "revision b82efe9f486f2c53723974192ce074cd39145b53",
+          "comment": "revision f5a423a4b4d6febf2859d708a18388798778d664",
           "type": "vcs",
           "url": "https://github.com/componentized/sockets.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/sockets/tree/b82efe9f486f2c53723974192ce074cd39145b53/components/latch-deny-udp"
+          "url": "https://github.com/componentized/sockets/tree/f5a423a4b4d6febf2859d708a18388798778d664/components/latch-deny-udp"
         }
       ],
       "hashes": [
@@ -1841,11 +1841,11 @@
         }
       ],
       "name": "componentized:sockets-latch-deny-udp",
-      "purl": "pkg:oci/latch-deny-udp@sha256%3Ad4f7766d6ad490912feff93ea613989f7cc04e3a766fc2161761beaef948e187?repository_url=ghcr.io/componentized/sockets/latch-deny-udp&tag=0.1.1-dev",
+      "purl": "pkg:oci/latch-deny-udp@sha256%3A4d660bfe5955a0fc637a85232fe8a9a8967e5c283075452472f0dbe9ae9d1406?repository_url=ghcr.io/componentized/sockets/latch-deny-udp&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-21T01:32:26Z",
+    "timestamp": "2026-11-24T12:32:26Z",
     "tools": {
       "components": [
         {

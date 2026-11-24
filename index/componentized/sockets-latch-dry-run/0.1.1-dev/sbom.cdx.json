@@ -1820,13 +1820,13 @@
       "description": "Sockets latch that wraps another latch, logging the operations it would deny without denying them.",
       "externalReferences": [
         {
-          "comment": "revision b82efe9f486f2c53723974192ce074cd39145b53",
+          "comment": "revision f5a423a4b4d6febf2859d708a18388798778d664",
           "type": "vcs",
           "url": "https://github.com/componentized/sockets.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/sockets/tree/b82efe9f486f2c53723974192ce074cd39145b53/components/latch-dry-run"
+          "url": "https://github.com/componentized/sockets/tree/f5a423a4b4d6febf2859d708a18388798778d664/components/latch-dry-run"
         }
       ],
       "hashes": [
@@ -1841,11 +1841,11 @@
         }
       ],
       "name": "componentized:sockets-latch-dry-run",
-      "purl": "pkg:oci/latch-dry-run@sha256%3A0780cc8a89f5d83ec1a3e2e91e8986dfd6b17755c2487374172bb4a253fc36b5?repository_url=ghcr.io/componentized/sockets/latch-dry-run&tag=0.1.1-dev",
+      "purl": "pkg:oci/latch-dry-run@sha256%3A922b0759a9d28a5abcc5ad3949df9c508efcb76c7dfe73fbeb52db0976a54adb?repository_url=ghcr.io/componentized/sockets/latch-dry-run&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-21T01:32:26Z",
+    "timestamp": "2026-11-24T12:32:26Z",
     "tools": {
       "components": [
         {

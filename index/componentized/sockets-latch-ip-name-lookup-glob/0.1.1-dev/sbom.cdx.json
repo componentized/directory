@@ -1863,13 +1863,13 @@
       "description": "Socket latch that uses glob patterns to grant or deny ip-name lookups.",
       "externalReferences": [
         {
-          "comment": "revision b82efe9f486f2c53723974192ce074cd39145b53",
+          "comment": "revision f5a423a4b4d6febf2859d708a18388798778d664",
           "type": "vcs",
           "url": "https://github.com/componentized/sockets.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/sockets/tree/b82efe9f486f2c53723974192ce074cd39145b53/components/latch-ip-name-lookup-glob"
+          "url": "https://github.com/componentized/sockets/tree/f5a423a4b4d6febf2859d708a18388798778d664/components/latch-ip-name-lookup-glob"
         }
       ],
       "hashes": [
@@ -1884,11 +1884,11 @@
         }
       ],
       "name": "componentized:sockets-latch-ip-name-lookup-glob",
-      "purl": "pkg:oci/latch-ip-name-lookup-glob@sha256%3A44b84542d9b79a308a815646d130c6f5f579e9a0091744b3b9cdc18e895bfb8c?repository_url=ghcr.io/componentized/sockets/latch-ip-name-lookup-glob&tag=0.1.1-dev",
+      "purl": "pkg:oci/latch-ip-name-lookup-glob@sha256%3A0f8708a02a99cdf42f54de3b43a60ad07cbbf8c7ef1cd3503ed14a3c62a61607?repository_url=ghcr.io/componentized/sockets/latch-ip-name-lookup-glob&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-21T01:32:26Z",
+    "timestamp": "2026-11-24T12:32:26Z",
     "tools": {
       "components": [
         {

@@ -1820,13 +1820,13 @@
       "description": "Sockets latch that implicitly denies connecting to addresses, unless they were granted for wasi:sockets/ip-name-lookup.",
       "externalReferences": [
         {
-          "comment": "revision b82efe9f486f2c53723974192ce074cd39145b53",
+          "comment": "revision f5a423a4b4d6febf2859d708a18388798778d664",
           "type": "vcs",
           "url": "https://github.com/componentized/sockets.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/sockets/tree/b82efe9f486f2c53723974192ce074cd39145b53/components/latch-deny-connect-unless-lookup-address"
+          "url": "https://github.com/componentized/sockets/tree/f5a423a4b4d6febf2859d708a18388798778d664/components/latch-deny-connect-unless-lookup-address"
         }
       ],
       "hashes": [
@@ -1841,11 +1841,11 @@
         }
       ],
       "name": "componentized:sockets-latch-deny-connect-unless-lookup-address",
-      "purl": "pkg:oci/latch-deny-connect-unless-lookup-address@sha256%3A69ccbd74dcf78b0e0b330d5824c888939819a745ff24de1da8247d939ab9d653?repository_url=ghcr.io/componentized/sockets/latch-deny-connect-unless-lookup-address&tag=0.1.1-dev",
+      "purl": "pkg:oci/latch-deny-connect-unless-lookup-address@sha256%3Abeafa25d9d31ae0b74a9653fc2cab789e4037cc8ca35562ca768cee2308214ea?repository_url=ghcr.io/componentized/sockets/latch-deny-connect-unless-lookup-address&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-21T01:32:26Z",
+    "timestamp": "2026-11-24T12:32:26Z",
     "tools": {
       "components": [
         {

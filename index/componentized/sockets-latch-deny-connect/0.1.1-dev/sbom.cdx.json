@@ -1820,13 +1820,13 @@
       "description": "Sockets latch that implicitly denies all outbound connections.",
       "externalReferences": [
         {
-          "comment": "revision b82efe9f486f2c53723974192ce074cd39145b53",
+          "comment": "revision f5a423a4b4d6febf2859d708a18388798778d664",
           "type": "vcs",
           "url": "https://github.com/componentized/sockets.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/sockets/tree/b82efe9f486f2c53723974192ce074cd39145b53/components/latch-deny-connect"
+          "url": "https://github.com/componentized/sockets/tree/f5a423a4b4d6febf2859d708a18388798778d664/components/latch-deny-connect"
         }
       ],
       "hashes": [
@@ -1841,11 +1841,11 @@
         }
       ],
       "name": "componentized:sockets-latch-deny-connect",
-      "purl": "pkg:oci/latch-deny-connect@sha256%3Adbc08f86ac8b4653b9b9f03063bf80cc8934285c88eb093bf3791b8e7778e200?repository_url=ghcr.io/componentized/sockets/latch-deny-connect&tag=0.1.1-dev",
+      "purl": "pkg:oci/latch-deny-connect@sha256%3Aa92613d831985a9d9992d6fb30ce88c9b2d0878aeefe6058488ee39e7f470a56?repository_url=ghcr.io/componentized/sockets/latch-deny-connect&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-21T01:32:26Z",
+    "timestamp": "2026-11-24T12:32:26Z",
     "tools": {
       "components": [
         {

@@ -1820,13 +1820,13 @@
       "description": "Sockets latch that implicitly denies all TCP operations.",
       "externalReferences": [
         {
-          "comment": "revision b82efe9f486f2c53723974192ce074cd39145b53",
+          "comment": "revision f5a423a4b4d6febf2859d708a18388798778d664",
           "type": "vcs",
           "url": "https://github.com/componentized/sockets.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/sockets/tree/b82efe9f486f2c53723974192ce074cd39145b53/components/latch-deny-tcp"
+          "url": "https://github.com/componentized/sockets/tree/f5a423a4b4d6febf2859d708a18388798778d664/components/latch-deny-tcp"
         }
       ],
       "hashes": [
@@ -1841,11 +1841,11 @@
         }
       ],
       "name": "componentized:sockets-latch-deny-tcp",
-      "purl": "pkg:oci/latch-deny-tcp@sha256%3A4cab8ed091c1a3d3a08d371e7a8fe1c901d44ebfe84291e56b1bd32a86065383?repository_url=ghcr.io/componentized/sockets/latch-deny-tcp&tag=0.1.1-dev",
+      "purl": "pkg:oci/latch-deny-tcp@sha256%3A30086e0acd5c378a6a082fe026c52bea5360217c7297459bba9ff80abee28979?repository_url=ghcr.io/componentized/sockets/latch-deny-tcp&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-21T01:32:26Z",
+    "timestamp": "2026-11-24T12:32:26Z",
     "tools": {
       "components": [
         {

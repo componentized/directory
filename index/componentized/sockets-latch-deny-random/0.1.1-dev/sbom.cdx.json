@@ -1821,13 +1821,13 @@
       "description": "Sockets latch that randomly denies operations, to prove a component is resilient to failures.",
       "externalReferences": [
         {
-          "comment": "revision b82efe9f486f2c53723974192ce074cd39145b53",
+          "comment": "revision f5a423a4b4d6febf2859d708a18388798778d664",
           "type": "vcs",
           "url": "https://github.com/componentized/sockets.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/sockets/tree/b82efe9f486f2c53723974192ce074cd39145b53/components/latch-deny-random"
+          "url": "https://github.com/componentized/sockets/tree/f5a423a4b4d6febf2859d708a18388798778d664/components/latch-deny-random"
         }
       ],
       "hashes": [
@@ -1842,11 +1842,11 @@
         }
       ],
       "name": "componentized:sockets-latch-deny-random",
-      "purl": "pkg:oci/latch-deny-random@sha256%3Af6c7c68f805b5d0341cc0059cb5d023fe10b0cc7acae4e709abb13311137eb96?repository_url=ghcr.io/componentized/sockets/latch-deny-random&tag=0.1.1-dev",
+      "purl": "pkg:oci/latch-deny-random@sha256%3Ae55da20b91f43d6ca0ee88631e82461e9685302d7638ca3d90bc0e6d58155e95?repository_url=ghcr.io/componentized/sockets/latch-deny-random&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-21T01:32:26Z",
+    "timestamp": "2026-11-24T12:32:26Z",
     "tools": {
       "components": [
         {

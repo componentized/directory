@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-deny-udp",
     "tag": "0.1.1-dev",
-    "digest": "sha256:d4f7766d6ad490912feff93ea613989f7cc04e3a766fc2161761beaef948e187",
+    "digest": "sha256:4d660bfe5955a0fc637a85232fe8a9a8967e5c283075452472f0dbe9ae9d1406",
     "layer_digest": "sha256:88b95ab6614a3f902583a653f937137f738855eb5749c8328b3bed4f8eabe948",
     "size": 30892,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 4030858083
+      "log_index": 4078203101
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-deny-udp",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:17f3afcef1593feb2ebb37c87fcc689ce95f4fc841145b0f59a1d39abff0acc0",
+    "digest": "sha256:c151503db35c0298ab138136062018db9103905165a4838c8a71b1d9457f3869",
     "layer_digest": "sha256:bec573463d5485e27ff757e992791325dbdf75a15552e42cdcc8369a440a7430",
     "size": 306356,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 4030858957
+      "log_index": 4078207966
     }
   },
-  "created": "2026-11-21T01:48:12.423694639Z",
+  "created": "2026-11-24T12:52:57.365871084Z",
   "annotations": {
     "org.opencontainers.image.description": "Sockets latch that implicitly denies all UDP operations.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "b82efe9f486f2c53723974192ce074cd39145b53",
+    "org.opencontainers.image.revision": "f5a423a4b4d6febf2859d708a18388798778d664",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-latch-deny-udp",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/b82efe9f486f2c53723974192ce074cd39145b53/components/latch-deny-udp",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/f5a423a4b4d6febf2859d708a18388798778d664/components/latch-deny-udp",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -73,7 +73,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/sockets",
     "git_ref": "refs/heads/main",
-    "log_index": 4030858204
+    "log_index": 4078204629
   },
-  "indexed_at": "2026-11-21T01:56:31Z"
+  "indexed_at": "2026-11-24T12:58:34Z"
 }
