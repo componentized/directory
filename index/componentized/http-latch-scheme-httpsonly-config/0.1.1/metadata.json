@@ -1,0 +1,86 @@
+{
+  "package": "componentized:http-latch-scheme-httpsonly-config",
+  "version": "0.1.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-scheme-httpsonly-config",
+    "tag": "0.1.1",
+    "digest": "sha256:eb77957399913f10f15f45a2885bd6871c785e2384b34f4ee7879c9728cc20b1",
+    "layer_digest": "sha256:d9ff925a2c5573cb2fa27fc00968b0042ee240b974e493b067b0d01a984e1e57",
+    "size": 6213,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/http",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4087781228
+    }
+  },
+  "created": "2026-11-24T22:45:17.814067601Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Config for `latch-scheme` that denies every request scheme except HTTPS.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "ed39b30559884ba920aa86b27c86c2a8dee32a25",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-latch-scheme-httpsonly-config",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/ed39b30559884ba920aa86b27c86c2a8dee32a25/components/latch-scheme-httpsonly-config",
+    "org.opencontainers.image.version": "v0.1.1"
+  },
+  "exports": [
+    "wasi:config/store@0.2.0-rc.1"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:8f2bd6e9a8cb3e4f31857185620f2eb8aaa5dbb151db8ddb09dadcd59d78036a",
+      "size": 963,
+      "code": true
+    },
+    {
+      "digest": "sha256:ebe174edb9d33d8f9eb5811f34f3e0235ce9955ca3e6521575fc51e404835dc9",
+      "size": 4996,
+      "code": true
+    }
+  ],
+  "wiring": {
+    "instances": [
+      {
+        "part": 0
+      },
+      {
+        "part": 1,
+        "args": [
+          {
+            "name": "componentized:constants/config-values@0.1.1",
+            "instance": 0,
+            "export": "componentized:constants/config-values@0.1.1"
+          }
+        ]
+      }
+    ],
+    "exports": [
+      {
+        "name": "wasi:config/store@0.2.0-rc.1",
+        "instance": 1,
+        "export": "wasi:config/store@0.2.0-rc.1"
+      }
+    ]
+  },
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/http",
+    "git_ref": "refs/tags/v0.1.1",
+    "log_index": 4087781809
+  },
+  "indexed_at": "2026-11-24T22:50:37Z"
+}

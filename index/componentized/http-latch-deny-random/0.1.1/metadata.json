@@ -1,0 +1,94 @@
+{
+  "package": "componentized:http-latch-deny-random",
+  "version": "0.1.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-deny-random",
+    "tag": "0.1.1",
+    "digest": "sha256:75b75d779f9cf95df0063293dae30cde913712c157cf0bb3f22e8704d643b7b6",
+    "layer_digest": "sha256:aff81ae6cee6bf0eb6507702dcdabd511b6545e68b3080073449fb0813e4fd45",
+    "size": 84498,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/http",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4087731031
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-deny-random",
+    "tag": "0.1.1_debug",
+    "digest": "sha256:f966fb5668fef2d2b1ad720c4257ed7bfe877e96775b34383fc454b36c620e09",
+    "layer_digest": "sha256:2c0b24531a066d6c17a73f49cfd50adc4b584f43cc3360a273e041ce3fd71827",
+    "size": 188124,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/http",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4087732970
+    }
+  },
+  "created": "2026-11-24T22:40:20.675356451Z",
+  "annotations": {
+    "org.opencontainers.image.description": "HTTP latch that randomly denies requests, to prove a component is resilient to failures.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "ed39b30559884ba920aa86b27c86c2a8dee32a25",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-latch-deny-random",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/ed39b30559884ba920aa86b27c86c2a8dee32a25/components/latch-deny-random",
+    "org.opencontainers.image.version": "v0.1.1"
+  },
+  "imports": [
+    "wasi:config/store@0.2.0-rc.1",
+    "wasi:http/types@0.3.0",
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:random/insecure@0.3.0"
+  ],
+  "exports": [
+    "componentized:http/latch@0.1.1"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:http",
+      "version": "0.1.1"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:random",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:bd1c69195eb58a5d6c763097b8db3120aac2a15cb3a545262c50306351b2ce7b",
+      "size": 2362
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/http",
+    "git_ref": "refs/tags/v0.1.1",
+    "log_index": 4087731752
+  },
+  "indexed_at": "2026-11-24T22:50:09Z"
+}

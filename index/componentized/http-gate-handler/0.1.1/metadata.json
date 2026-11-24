@@ -1,0 +1,86 @@
+{
+  "package": "componentized:http-gate-handler",
+  "version": "0.1.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/gate-handler",
+    "tag": "0.1.1",
+    "digest": "sha256:0e784d971ea3aed4b406c7b3d07f85fd52b0870b15ad36397c6907e45b59ecac",
+    "layer_digest": "sha256:7307e2bd3742093fb6b79bc0241febb81febc79dcf79c9d6d0cedbb8f029ef9e",
+    "size": 78419,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/http",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4087711341
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/gate-handler",
+    "tag": "0.1.1_debug",
+    "digest": "sha256:415ff2ca3e76089b6ec093b3b44a9007176f2b5f5da744a3abbf68edb2bc131b",
+    "layer_digest": "sha256:f7476c2f756a8c651f5be4275307b7853a9f1914e54e3bcc2a5f9a487c041c5b",
+    "size": 282207,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/http",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4087713427
+    }
+  },
+  "created": "2026-11-24T22:38:00.304079319Z",
+  "annotations": {
+    "org.opencontainers.image.description": "HTTP gate access control for requests handled with `wasi:http/handler`.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "ed39b30559884ba920aa86b27c86c2a8dee32a25",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-gate-handler",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/ed39b30559884ba920aa86b27c86c2a8dee32a25/components/gate-handler",
+    "org.opencontainers.image.version": "v0.1.1"
+  },
+  "imports": [
+    "componentized:http/latch@0.1.1",
+    "wasi:http/handler@0.3.0",
+    "wasi:http/types@0.3.0",
+    "wasi:logging/logging@0.1.0-draft"
+  ],
+  "exports": [
+    "wasi:http/handler@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:http",
+      "version": "0.1.1"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:474592e1e1383f457fcad936bebef7e01d7cc6503a4b00b0e782e74a5b081c54",
+      "size": 1551
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/http",
+    "git_ref": "refs/tags/v0.1.1",
+    "log_index": 4087712203
+  },
+  "indexed_at": "2026-11-24T22:49:54Z"
+}

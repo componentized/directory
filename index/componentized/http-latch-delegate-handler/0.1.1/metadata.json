@@ -1,0 +1,80 @@
+{
+  "package": "componentized:http-latch-delegate-handler",
+  "version": "0.1.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-delegate-handler",
+    "tag": "0.1.1",
+    "digest": "sha256:8c8d0d4dc54fbb40e1116f9a243f2ada6f90cbc0993fb8a43c3c795b0a2bde38",
+    "layer_digest": "sha256:321f792f2ce1d5868389f95a00393a47323a5f52abb22186286e7158989931c4",
+    "size": 34010,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/http",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4087723899
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-delegate-handler",
+    "tag": "0.1.1_debug",
+    "digest": "sha256:8d5a9843ec5a908703ba4cb357bfd9937c6100a157cf222764f9c43fab3d407c",
+    "layer_digest": "sha256:d508da7775d3cac09a86b9f293eb81ba187604bd9222d0cbf72ef6e632b86d1d",
+    "size": 115442,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/http",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4087725457
+    }
+  },
+  "created": "2026-11-24T22:39:25.766323442Z",
+  "annotations": {
+    "org.opencontainers.image.description": "HTTP latch that wraps another latch, delegating only `wasi:http/handler` requests to it. `wasi:http/client` requests are deferred without consulting the wrapped latch, it neither authorizes nor observes them.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "ed39b30559884ba920aa86b27c86c2a8dee32a25",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-latch-delegate-handler",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/ed39b30559884ba920aa86b27c86c2a8dee32a25/components/latch-delegate-handler",
+    "org.opencontainers.image.version": "v0.1.1"
+  },
+  "imports": [
+    "componentized:http/latch@0.1.1",
+    "wasi:http/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:http/latch@0.1.1"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:http",
+      "version": "0.1.1"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:bd1c69195eb58a5d6c763097b8db3120aac2a15cb3a545262c50306351b2ce7b",
+      "size": 2362
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/http",
+    "git_ref": "refs/tags/v0.1.1",
+    "log_index": 4087724472
+  },
+  "indexed_at": "2026-11-24T22:50:03Z"
+}

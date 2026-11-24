@@ -1,0 +1,68 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "pkg:cargo/componentized-static-config-cli@0.3.0",
+      "name": "componentized-static-config-cli",
+      "purl": "pkg:cargo/componentized-static-config-cli@0.3.0",
+      "type": "library",
+      "version": "0.3.0"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "pkg:cargo/componentized-static-config-cli@0.3.0"
+      ],
+      "ref": "component:componentized:http-latch-scheme-httpsonly-config"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:cargo/componentized-static-config-cli@0.3.0"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "component:componentized:http-latch-scheme-httpsonly-config",
+      "description": "Config for `latch-scheme` that denies every request scheme except HTTPS.",
+      "externalReferences": [
+        {
+          "comment": "revision ed39b30559884ba920aa86b27c86c2a8dee32a25",
+          "type": "vcs",
+          "url": "https://github.com/componentized/http.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/componentized/http/tree/ed39b30559884ba920aa86b27c86c2a8dee32a25/components/latch-scheme-httpsonly-config"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "d9ff925a2c5573cb2fa27fc00968b0042ee240b974e493b067b0d01a984e1e57"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "componentized:http-latch-scheme-httpsonly-config",
+      "purl": "pkg:oci/latch-scheme-httpsonly-config@sha256%3Aeb77957399913f10f15f45a2885bd6871c785e2384b34f4ee7879c9728cc20b1?repository_url=ghcr.io/componentized/http/latch-scheme-httpsonly-config&tag=0.1.1",
+      "type": "library",
+      "version": "0.1.1"
+    },
+    "timestamp": "2026-11-24T22:31:45Z",
+    "tools": {
+      "components": [
+        {
+          "name": "componentized-static-config-cli",
+          "type": "application",
+          "version": "0.3.0"
+        }
+      ]
+    }
+  },
+  "specVersion": "1.6",
+  "version": 1
+}

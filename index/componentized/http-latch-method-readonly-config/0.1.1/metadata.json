@@ -1,0 +1,86 @@
+{
+  "package": "componentized:http-latch-method-readonly-config",
+  "version": "0.1.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-method-readonly-config",
+    "tag": "0.1.1",
+    "digest": "sha256:90e775055ff97acaf7ef75a20e04ea31938f17f1d3bdca1b503ab4a70f81e19f",
+    "layer_digest": "sha256:c23a06ebaf759b1d7ccc78246dbbe09e73b2a0ef0c8605acbb5c27a3c2493732",
+    "size": 6301,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/http",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4087749871
+    }
+  },
+  "created": "2026-11-24T22:42:14.688700594Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Config for `latch-method` that denies every request method except GET, HEAD, QUERY and OPTIONS.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "ed39b30559884ba920aa86b27c86c2a8dee32a25",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-latch-method-readonly-config",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/ed39b30559884ba920aa86b27c86c2a8dee32a25/components/latch-method-readonly-config",
+    "org.opencontainers.image.version": "v0.1.1"
+  },
+  "exports": [
+    "wasi:config/store@0.2.0-rc.1"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:b87d6162e95633a2a5b650ee92d55b2059ad2dafb690ff880cea50deccc87b60",
+      "size": 1051,
+      "code": true
+    },
+    {
+      "digest": "sha256:ebe174edb9d33d8f9eb5811f34f3e0235ce9955ca3e6521575fc51e404835dc9",
+      "size": 4996,
+      "code": true
+    }
+  ],
+  "wiring": {
+    "instances": [
+      {
+        "part": 0
+      },
+      {
+        "part": 1,
+        "args": [
+          {
+            "name": "componentized:constants/config-values@0.1.1",
+            "instance": 0,
+            "export": "componentized:constants/config-values@0.1.1"
+          }
+        ]
+      }
+    ],
+    "exports": [
+      {
+        "name": "wasi:config/store@0.2.0-rc.1",
+        "instance": 1,
+        "export": "wasi:config/store@0.2.0-rc.1"
+      }
+    ]
+  },
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/http",
+    "git_ref": "refs/tags/v0.1.1",
+    "log_index": 4087750308
+  },
+  "indexed_at": "2026-11-24T22:50:19Z"
+}

@@ -1,0 +1,78 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "wit:wasi:http@0.3.0",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "92cd8f3730c00226dc15626a2e7b21834dd187fc221f09818720d228585bbbf7"
+        }
+      ],
+      "name": "wasi:http",
+      "properties": [
+        {
+          "name": "wkg:registry",
+          "value": "wasi.dev"
+        }
+      ],
+      "type": "library",
+      "version": "0.3.0"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "wit:wasi:http@0.3.0"
+      ],
+      "ref": "component:componentized:http"
+    },
+    {
+      "dependsOn": [],
+      "ref": "wit:wasi:http@0.3.0"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "component:componentized:http",
+      "description": "A collection of utility components that remix wasi:http types and interfaces.",
+      "externalReferences": [
+        {
+          "comment": "revision ed39b30559884ba920aa86b27c86c2a8dee32a25",
+          "type": "vcs",
+          "url": "https://github.com/componentized/http.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/componentized/http/tree/ed39b30559884ba920aa86b27c86c2a8dee32a25"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "7990d36eded93da1070d862239b802f729411ba51d2aa81b3389c3da8434f30a"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "componentized:http",
+      "purl": "pkg:oci/http@sha256%3A4826863a6627929af2d6a3ca18607d40edfea6a1024fe9f2c049d2c261fa87b9?repository_url=ghcr.io/componentized/http&tag=0.1.1",
+      "type": "library",
+      "version": "0.1.1"
+    },
+    "timestamp": "2026-11-24T22:31:45Z",
+    "tools": {
+      "components": [
+        {
+          "name": "wkg",
+          "type": "application"
+        }
+      ]
+    }
+  },
+  "specVersion": "1.6",
+  "version": 1
+}

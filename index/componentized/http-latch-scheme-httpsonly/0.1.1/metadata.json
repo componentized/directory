@@ -1,0 +1,122 @@
+{
+  "package": "componentized:http-latch-scheme-httpsonly",
+  "version": "0.1.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-scheme-httpsonly",
+    "tag": "0.1.1",
+    "digest": "sha256:fd781ed639b54d74ce953033041c4a720963f33787db8ed73bf57a5b6e52dd3a",
+    "layer_digest": "sha256:102e096408175427326f1faf03f3a30ccab4fbb3a8abc2152c2a74c982f620ca",
+    "size": 51988,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/http",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4087776263
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-scheme-httpsonly",
+    "tag": "0.1.1_debug",
+    "digest": "sha256:7c6a20d1143f1e74d9bc28b448e3084ace49905eb11ba186deb02211df2da9fe",
+    "layer_digest": "sha256:bbe8f8771bc2ce9a42521283c67d1e1070ddfb6bd8faef0633ee133f431139a5",
+    "size": 174634,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/http",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4087779146
+    }
+  },
+  "created": "2026-11-24T22:44:48.660077675Z",
+  "annotations": {
+    "org.opencontainers.image.description": "HTTP latch that denies every request scheme except HTTPS.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "ed39b30559884ba920aa86b27c86c2a8dee32a25",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-latch-scheme-httpsonly",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/ed39b30559884ba920aa86b27c86c2a8dee32a25/components/latch-scheme-httpsonly",
+    "org.opencontainers.image.version": "v0.1.1"
+  },
+  "imports": [
+    "wasi:http/types@0.3.0",
+    "wasi:logging/logging@0.1.0-draft"
+  ],
+  "exports": [
+    "componentized:http/latch@0.1.1"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:http",
+      "version": "0.1.1"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:d9ff925a2c5573cb2fa27fc00968b0042ee240b974e493b067b0d01a984e1e57",
+      "size": 6213,
+      "code": true
+    },
+    {
+      "digest": "sha256:e245a5cf82862fa83472f10bbd767ca25573dbab6aea668379385fc27cf139a3",
+      "size": 44028,
+      "code": true
+    }
+  ],
+  "wiring": {
+    "instances": [
+      {
+        "part": 0
+      },
+      {
+        "part": 1,
+        "args": [
+          {
+            "name": "wasi:config/store@0.2.0-rc.1",
+            "instance": 0,
+            "export": "wasi:config/store@0.2.0-rc.1"
+          },
+          {
+            "name": "wasi:logging/logging@0.1.0-draft",
+            "import": "wasi:logging/logging@0.1.0-draft"
+          },
+          {
+            "name": "wasi:http/types@0.3.0",
+            "import": "wasi:http/types@0.3.0"
+          }
+        ]
+      }
+    ],
+    "exports": [
+      {
+        "name": "componentized:http/latch@0.1.1",
+        "instance": 1,
+        "export": "componentized:http/latch@0.1.1"
+      }
+    ]
+  },
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/http",
+    "git_ref": "refs/tags/v0.1.1",
+    "log_index": 4087777019
+  },
+  "indexed_at": "2026-11-24T22:50:36Z"
+}

@@ -1,0 +1,56 @@
+{
+  "package": "componentized:http-status-codes",
+  "version": "0.1.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/status-codes",
+    "tag": "0.1.1",
+    "digest": "sha256:a3f10bd5d3fd7907be011209db2c8a1835f396ab3a2a203bf70fd86ce4f6728a",
+    "layer_digest": "sha256:7995551f8622125713572665588c474674ea761b3f237a464cd9319470020f8e",
+    "size": 18743,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/http",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4087788933
+    }
+  },
+  "created": "2026-11-24T22:46:01.618970433Z",
+  "annotations": {
+    "org.opencontainers.image.description": "HTTP status code constants.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "ed39b30559884ba920aa86b27c86c2a8dee32a25",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-status-codes",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/ed39b30559884ba920aa86b27c86c2a8dee32a25/components/status-codes",
+    "org.opencontainers.image.version": "v0.1.1"
+  },
+  "exports": [
+    "componentized:http/status-codes@0.1.1"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:http",
+      "version": "0.1.1"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:7a8b6b4d0d0123bbdf8dc18c731e22abe8ca18cdb670a186d577ed50830df19f",
+      "size": 3342
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/http",
+    "git_ref": "refs/tags/v0.1.1",
+    "log_index": 4087789671
+  },
+  "indexed_at": "2026-11-24T22:50:42Z"
+}

@@ -1,0 +1,85 @@
+{
+  "package": "componentized:http-client",
+  "version": "0.1.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/client",
+    "tag": "0.1.1",
+    "digest": "sha256:bcdc3acd7a415508ad99dbdcc87f86c588c65647e61312372ee4cfe8d8b9a0bd",
+    "layer_digest": "sha256:d9f728e6f0149969226ec9640701be590f7eb8c02301136d08b1c20438681ed7",
+    "size": 391488,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/http",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4087699110
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/client",
+    "tag": "0.1.1_debug",
+    "digest": "sha256:80e41e2b900ecb0b8e0db1daec20eea0c7760469c635fafe9a956c203e52362c",
+    "layer_digest": "sha256:2abd5fdae11d6296df327ca10d80591642ac34b8984bedab448408a203a4e395",
+    "size": 1457228,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/http",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4087700548
+    }
+  },
+  "created": "2026-11-24T22:36:32.939338254Z",
+  "annotations": {
+    "org.opencontainers.image.description": "A higher-level HTTP client that delegates to wasi:http/client.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "ed39b30559884ba920aa86b27c86c2a8dee32a25",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-client",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/ed39b30559884ba920aa86b27c86c2a8dee32a25/components/client",
+    "org.opencontainers.image.version": "v0.1.1"
+  },
+  "imports": [
+    "wasi:clocks/types@0.3.0",
+    "wasi:http/client@0.3.0",
+    "wasi:http/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:http/client@0.1.1"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:http",
+      "version": "0.1.1"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:585efc95240326ab4e39af80e0dd84c4e844eb2249f344f487dd51f610eb1e37",
+      "size": 1581
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/http",
+    "git_ref": "refs/tags/v0.1.1",
+    "log_index": 4087699640
+  },
+  "indexed_at": "2026-11-24T22:49:46Z"
+}

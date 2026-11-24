@@ -1,0 +1,79 @@
+{
+  "package": "componentized:http-latch-defer-all",
+  "version": "0.1.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-defer-all",
+    "tag": "0.1.1",
+    "digest": "sha256:68cfa94927033b578ffb276069492310a4e4cbc080ca4e21de4cb05946632248",
+    "layer_digest": "sha256:77978ecb668935b91cb77653dcbf0a693174f90c8c1dcdcd17402c556d921b1f",
+    "size": 27120,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/http",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4087716303
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/latch-defer-all",
+    "tag": "0.1.1_debug",
+    "digest": "sha256:ffc1afcc79d5a63e9bb20ea6faa3cac649440231a8628cb21b536b81159233b1",
+    "layer_digest": "sha256:9f972e4dc9b7aed8563fccdfec335f16ca34c4e070ccb34df6933fff295b8100",
+    "size": 89752,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/http",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4087718022
+    }
+  },
+  "created": "2026-11-24T22:38:28.306691197Z",
+  "annotations": {
+    "org.opencontainers.image.description": "HTTP latch that defers every request, allowing all requests.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "ed39b30559884ba920aa86b27c86c2a8dee32a25",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-latch-defer-all",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/ed39b30559884ba920aa86b27c86c2a8dee32a25/components/latch-defer-all",
+    "org.opencontainers.image.version": "v0.1.1"
+  },
+  "imports": [
+    "wasi:http/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:http/latch@0.1.1"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:http",
+      "version": "0.1.1"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:bd1c69195eb58a5d6c763097b8db3120aac2a15cb3a545262c50306351b2ce7b",
+      "size": 2362
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/http",
+    "git_ref": "refs/tags/v0.1.1",
+    "log_index": 4087716860
+  },
+  "indexed_at": "2026-11-24T22:49:56Z"
+}
