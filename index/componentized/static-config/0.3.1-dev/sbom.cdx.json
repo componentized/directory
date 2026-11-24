@@ -38,13 +38,13 @@
       "description": "Create custom `wasi:config` components with static values.",
       "externalReferences": [
         {
-          "comment": "revision ca49e825510bfcd74a674e68fbd16f847fe87202",
+          "comment": "revision 9267feee4d6f91a44763551046d1c16bb985d258",
           "type": "vcs",
           "url": "https://github.com/componentized/static-config.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/static-config/tree/ca49e825510bfcd74a674e68fbd16f847fe87202"
+          "url": "https://github.com/componentized/static-config/tree/9267feee4d6f91a44763551046d1c16bb985d258"
         }
       ],
       "hashes": [
@@ -59,11 +59,11 @@
         }
       ],
       "name": "componentized:static-config",
-      "purl": "pkg:oci/static-config@sha256%3A4574b69536666152835f90fa15b76bbfdce82fc0e4ab84906df45876311c409a?repository_url=ghcr.io/componentized/static-config&tag=0.3.1-dev",
+      "purl": "pkg:oci/static-config@sha256%3Ab39c3749a3226c23732e365a5a0b7d575d232f87e57b72281c38723821f84689?repository_url=ghcr.io/componentized/static-config&tag=0.3.1-dev",
       "type": "library",
       "version": "0.3.1-dev"
     },
-    "timestamp": "2026-11-24T02:24:57Z",
+    "timestamp": "2026-11-24T12:33:11Z",
     "tools": {
       "components": [
         {

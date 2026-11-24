@@ -3542,13 +3542,13 @@
       "description": "Create wasi:config components with static values, from key value pairs.",
       "externalReferences": [
         {
-          "comment": "revision ca49e825510bfcd74a674e68fbd16f847fe87202",
+          "comment": "revision 9267feee4d6f91a44763551046d1c16bb985d258",
           "type": "vcs",
           "url": "https://github.com/componentized/static-config.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/static-config/tree/ca49e825510bfcd74a674e68fbd16f847fe87202/components/factory"
+          "url": "https://github.com/componentized/static-config/tree/9267feee4d6f91a44763551046d1c16bb985d258/components/factory"
         }
       ],
       "hashes": [
@@ -3563,11 +3563,11 @@
         }
       ],
       "name": "componentized:static-config-factory",
-      "purl": "pkg:oci/factory@sha256%3Ace72dec1bc9ca71af1ff9dba3d2f5eb1d7c01c8eddd844e32dc223a009812bef?repository_url=ghcr.io/componentized/static-config/factory&tag=0.3.1-dev",
+      "purl": "pkg:oci/factory@sha256%3A0f6c331a0a20c8900006ba458add5d5d826cdd3804ec6eec6adff6517bf7b893?repository_url=ghcr.io/componentized/static-config/factory&tag=0.3.1-dev",
       "type": "library",
       "version": "0.3.1-dev"
     },
-    "timestamp": "2026-11-24T02:24:57Z",
+    "timestamp": "2026-11-24T12:33:11Z",
     "tools": {
       "components": [
         {
