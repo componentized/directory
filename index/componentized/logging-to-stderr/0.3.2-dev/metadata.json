@@ -7,42 +7,42 @@
     "registry": "ghcr.io",
     "repository": "componentized/logging/to-stderr",
     "tag": "0.3.2-dev",
-    "digest": "sha256:3eec1b4e817920838b1720a9424f57c0825b3fe7cd9b5f916403d6c4c5ca346c",
-    "layer_digest": "sha256:56d1217527b80e742a4b589b67c2d2dacc0022501d9051dd382523272288d28a",
-    "size": 90829,
+    "digest": "sha256:fc8abd20903b7183d132b1bf11380ba60438608a82632b30627e2c44a609ce93",
+    "layer_digest": "sha256:5fb61e6010c7ff3691bcff68a939ed5d6ec8576be096f1102dbd5d86993b873f",
+    "size": 62364,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/logging/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/logging",
       "git_ref": "refs/heads/main",
-      "log_index": 4030831466
+      "log_index": 4079391705
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/logging/to-stderr",
     "tag": "0.3.2-dev_debug",
-    "digest": "sha256:b6b6905c257df7cdf0721e76e064620e5d6012c81fc110e35e4d91b070d06c99",
-    "layer_digest": "sha256:c3d093f15ca1dca88cbd797ff331404fc25a081b9f60a2a51a55f90a9732fd91",
-    "size": 339639,
+    "digest": "sha256:053a65619a619d4b94910639f18088bd0ca22ebeada23c32ea902696b609b1d5",
+    "layer_digest": "sha256:04f0cffbdd95ed2617b7d72e8ff27233508511d10211e0ea96c5c2188cd557e3",
+    "size": 319275,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/logging/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/logging",
       "git_ref": "refs/heads/main",
-      "log_index": 4030831784
+      "log_index": 4079397203
     }
   },
-  "created": "2026-11-21T01:33:20.383233624Z",
+  "created": "2026-11-24T13:51:07.352945507Z",
   "annotations": {
     "org.opencontainers.image.description": "Implements wasi:logging/logging@0.1.0-draft writing log statements to stderr via wasi:cli/stderr@0.3.0. A composition of [`to-stdout`](../to-stdout/) with its wasi:cli/stdout@0.3.0 import satisfied by wasi:cli/stderr@0.3.0.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "a8808dc469ad628f77e5a3eeb3348e87df6a68c5",
+    "org.opencontainers.image.revision": "6ff62a0ee470ad94d405a73b89008197371ecd9b",
     "org.opencontainers.image.source": "https://github.com/componentized/logging.git",
     "org.opencontainers.image.title": "componentized:logging-to-stderr",
-    "org.opencontainers.image.url": "https://github.com/componentized/logging/tree/a8808dc469ad628f77e5a3eeb3348e87df6a68c5/components/to-stderr",
+    "org.opencontainers.image.url": "https://github.com/componentized/logging/tree/6ff62a0ee470ad94d405a73b89008197371ecd9b/components/to-stderr",
     "org.opencontainers.image.version": "v0.3.2-dev"
   },
   "imports": [
@@ -69,8 +69,8 @@
   ],
   "parts": [
     {
-      "digest": "sha256:9c018b546994bbaa5d7e95cd2c729d0ac70bb83a7ed6ef119831303327309204",
-      "size": 90277,
+      "digest": "sha256:e8b5d5486d25d71717307d50088adc3851cdef5ae3de71d3d572a41215808ee5",
+      "size": 61812,
       "code": true
     }
   ],
@@ -109,7 +109,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/logging",
     "git_ref": "refs/heads/main",
-    "log_index": 4030831565
+    "log_index": 4079393645
   },
-  "indexed_at": "2026-11-21T01:37:30Z"
+  "indexed_at": "2026-11-24T13:53:07Z"
 }
