@@ -202,7 +202,7 @@
       "version": "2.11.1"
     },
     {
-      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#clap@4.6.8",
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#clap@4.6.9",
       "description": "A simple to use, efficient, and full-featured Command Line Argument Parser",
       "externalReferences": [
         {
@@ -213,7 +213,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "ac230478587d0269d8d6998b82ae69ea51509d55df66d9e92edd1f986904cd4a"
+          "content": "844c5c0b65be192cb68d570cca1b21a6444431d24e39c084dc0336177015337c"
         }
       ],
       "licenses": [
@@ -222,10 +222,10 @@
         }
       ],
       "name": "clap",
-      "purl": "pkg:cargo/clap@4.6.8",
+      "purl": "pkg:cargo/clap@4.6.9",
       "scope": "required",
       "type": "library",
-      "version": "4.6.8"
+      "version": "4.6.9"
     },
     {
       "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#clap_builder@4.6.7",
@@ -254,7 +254,7 @@
       "version": "4.6.7"
     },
     {
-      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#clap_derive@4.6.8",
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#clap_derive@4.6.9",
       "description": "Parse command line argument by defining a struct, derive crate.",
       "externalReferences": [
         {
@@ -265,7 +265,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "895c9d8d2ac2dd8b8a29f3724a14e72aaaa6debcf8c38c82f97305c6a172767a"
+          "content": "b4c174f11f949b9ca8c60580925e282b9cbd5454750e506f08648b2038080cd7"
         }
       ],
       "licenses": [
@@ -274,10 +274,10 @@
         }
       ],
       "name": "clap_derive",
-      "purl": "pkg:cargo/clap_derive@4.6.8",
+      "purl": "pkg:cargo/clap_derive@4.6.9",
       "scope": "excluded",
       "type": "library",
-      "version": "4.6.8"
+      "version": "4.6.9"
     },
     {
       "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#clap_lex@1.0.0",
@@ -1887,7 +1887,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#clap@4.6.8",
+        "registry+https://github.com/rust-lang/crates.io-index#clap@4.6.9",
         "registry+https://github.com/rust-lang/crates.io-index#regex-lite@0.1.9",
         "registry+https://github.com/rust-lang/crates.io-index#wit-bindgen@0.63.0"
       ],
@@ -1925,9 +1925,9 @@
     {
       "dependsOn": [
         "registry+https://github.com/rust-lang/crates.io-index#clap_builder@4.6.7",
-        "registry+https://github.com/rust-lang/crates.io-index#clap_derive@4.6.8"
+        "registry+https://github.com/rust-lang/crates.io-index#clap_derive@4.6.9"
       ],
-      "ref": "registry+https://github.com/rust-lang/crates.io-index#clap@4.6.8"
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#clap@4.6.9"
     },
     {
       "dependsOn": [
@@ -1945,7 +1945,7 @@
         "registry+https://github.com/rust-lang/crates.io-index#quote@1.0.47",
         "registry+https://github.com/rust-lang/crates.io-index#syn@3.0.10"
       ],
-      "ref": "registry+https://github.com/rust-lang/crates.io-index#clap_derive@4.6.8"
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#clap_derive@4.6.9"
     },
     {
       "ref": "registry+https://github.com/rust-lang/crates.io-index#clap_lex@1.0.0"
@@ -2245,19 +2245,19 @@
       "description": "Exposes a `componentized:services/lifecycle` as a cli, exporting `wasi:cli/run`.",
       "externalReferences": [
         {
-          "comment": "revision 326d0d724546d595c51aacc3548803855469393e",
+          "comment": "revision 34319ba1a6f087dbf4f8810c9d85745f0cb65ac0",
           "type": "vcs",
           "url": "https://github.com/componentized/services.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/services/tree/326d0d724546d595c51aacc3548803855469393e/components/lifecycle-host-cli"
+          "url": "https://github.com/componentized/services/tree/34319ba1a6f087dbf4f8810c9d85745f0cb65ac0/components/lifecycle-host-cli"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "9265d6aec3fed42e68280dac99b697230d8a5c0b208b1ddf850314cae0f00c4d"
+          "content": "a50ec2e1f05691c59a705f65f529aef7678b816205bfcd591b017070acfd868b"
         }
       ],
       "licenses": [
@@ -2266,11 +2266,11 @@
         }
       ],
       "name": "componentized:services-lifecycle-host-cli",
-      "purl": "pkg:oci/lifecycle-host-cli@sha256%3A16823a6c878883a648672d354c49165a0dab34231bd6d5004638ebd7edce8a49?repository_url=ghcr.io/componentized/services/lifecycle-host-cli&tag=0.0.5-dev",
+      "purl": "pkg:oci/lifecycle-host-cli@sha256%3Ae85f66747343b8b90ef49157b09a69299826ce9c1b32834a3b7a277997987660?repository_url=ghcr.io/componentized/services/lifecycle-host-cli&tag=0.0.5-dev",
       "type": "library",
       "version": "0.0.5-dev"
     },
-    "timestamp": "2026-11-20T21:41:45Z",
+    "timestamp": "2026-11-24T02:22:49Z",
     "tools": {
       "components": [
         {

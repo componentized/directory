@@ -1791,13 +1791,13 @@
       "description": "Implements `componentized:services/credential-admin`, publishing and destroying the credentials of service bindings in a `wasi:keyvalue` bucket, named by the `bucket` key in `wasi:config`, `bindings` by default.",
       "externalReferences": [
         {
-          "comment": "revision 326d0d724546d595c51aacc3548803855469393e",
+          "comment": "revision 8ef6fa2ab2353c7db2c51cb2d8572c6134618db5",
           "type": "vcs",
           "url": "https://github.com/componentized/services.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/services/tree/326d0d724546d595c51aacc3548803855469393e/components/keyvalue-credential-admin"
+          "url": "https://github.com/componentized/services/tree/8ef6fa2ab2353c7db2c51cb2d8572c6134618db5/components/keyvalue-credential-admin"
         }
       ],
       "hashes": [
@@ -1812,11 +1812,11 @@
         }
       ],
       "name": "componentized:services-keyvalue-credential-admin",
-      "purl": "pkg:oci/keyvalue-credential-admin@sha256%3A4fd920f35dd14cb3156f00da624f745361148fd485c3b85786d8ecf495ffc189?repository_url=ghcr.io/componentized/services/keyvalue-credential-admin&tag=0.0.5-dev",
+      "purl": "pkg:oci/keyvalue-credential-admin@sha256%3A0251dde2e3e14125f13306ad6f4386275c5afdad5fcbfc73a31397b44c1c3965?repository_url=ghcr.io/componentized/services/keyvalue-credential-admin&tag=0.0.5-dev",
       "type": "library",
       "version": "0.0.5-dev"
     },
-    "timestamp": "2026-11-20T21:41:45Z",
+    "timestamp": "2026-11-24T02:23:08Z",
     "tools": {
       "components": [
         {

@@ -1791,13 +1791,13 @@
       "description": "Implements `componentized:services/credential-admin`, publishing and destroying the credentials of service bindings with a webhook over `wasi:http`, at the `scheme` and `host` keys in `wasi:config`.",
       "externalReferences": [
         {
-          "comment": "revision 326d0d724546d595c51aacc3548803855469393e",
+          "comment": "revision 34319ba1a6f087dbf4f8810c9d85745f0cb65ac0",
           "type": "vcs",
           "url": "https://github.com/componentized/services.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/services/tree/326d0d724546d595c51aacc3548803855469393e/components/webhook-credential-admin"
+          "url": "https://github.com/componentized/services/tree/34319ba1a6f087dbf4f8810c9d85745f0cb65ac0/components/webhook-credential-admin"
         }
       ],
       "hashes": [
@@ -1812,11 +1812,11 @@
         }
       ],
       "name": "componentized:services-webhook-credential-admin",
-      "purl": "pkg:oci/webhook-credential-admin@sha256%3Af3260f0b353eea9872f6398bb4e9873259c88bda55535533201c3e30291f217c?repository_url=ghcr.io/componentized/services/webhook-credential-admin&tag=0.0.5-dev",
+      "purl": "pkg:oci/webhook-credential-admin@sha256%3A224a79d38268dd80bac223912b829bcb7d1962e735327daffc46e522799c7c9a?repository_url=ghcr.io/componentized/services/webhook-credential-admin&tag=0.0.5-dev",
       "type": "library",
       "version": "0.0.5-dev"
     },
-    "timestamp": "2026-11-20T21:41:45Z",
+    "timestamp": "2026-11-24T02:22:49Z",
     "tools": {
       "components": [
         {

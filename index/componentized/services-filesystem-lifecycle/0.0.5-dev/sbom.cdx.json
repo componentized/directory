@@ -1822,13 +1822,13 @@
       "description": "Implements `componentized:services/service-lifecycle` for `filesystem` services, each service instance a directory in `wasi:filesystem`, under the directory of the `path` key in `wasi:config`, `services` by default.",
       "externalReferences": [
         {
-          "comment": "revision 326d0d724546d595c51aacc3548803855469393e",
+          "comment": "revision 8ef6fa2ab2353c7db2c51cb2d8572c6134618db5",
           "type": "vcs",
           "url": "https://github.com/componentized/services.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/services/tree/326d0d724546d595c51aacc3548803855469393e/components/filesystem-lifecycle"
+          "url": "https://github.com/componentized/services/tree/8ef6fa2ab2353c7db2c51cb2d8572c6134618db5/components/filesystem-lifecycle"
         }
       ],
       "hashes": [
@@ -1843,11 +1843,11 @@
         }
       ],
       "name": "componentized:services-filesystem-lifecycle",
-      "purl": "pkg:oci/filesystem-lifecycle@sha256%3A9a781107962df51342ba8ae2333cfcbef7f43c768847a5d81a1dc5827148c7b7?repository_url=ghcr.io/componentized/services/filesystem-lifecycle&tag=0.0.5-dev",
+      "purl": "pkg:oci/filesystem-lifecycle@sha256%3A2ac9c1afef7e1d341fd5be1609743c3598528e78ee5279523c41e3acdd25d562?repository_url=ghcr.io/componentized/services/filesystem-lifecycle&tag=0.0.5-dev",
       "type": "library",
       "version": "0.0.5-dev"
     },
-    "timestamp": "2026-11-20T21:41:45Z",
+    "timestamp": "2026-11-24T02:23:08Z",
     "tools": {
       "components": [
         {

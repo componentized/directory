@@ -1791,13 +1791,13 @@
       "description": "Implements `componentized:services/credential-store`, fetching the credentials of service bindings from a webhook over `wasi:http`, at the `scheme` and `host` keys in `wasi:config`.",
       "externalReferences": [
         {
-          "comment": "revision 326d0d724546d595c51aacc3548803855469393e",
+          "comment": "revision 34319ba1a6f087dbf4f8810c9d85745f0cb65ac0",
           "type": "vcs",
           "url": "https://github.com/componentized/services.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/services/tree/326d0d724546d595c51aacc3548803855469393e/components/webhook-credential-store"
+          "url": "https://github.com/componentized/services/tree/34319ba1a6f087dbf4f8810c9d85745f0cb65ac0/components/webhook-credential-store"
         }
       ],
       "hashes": [
@@ -1812,11 +1812,11 @@
         }
       ],
       "name": "componentized:services-webhook-credential-store",
-      "purl": "pkg:oci/webhook-credential-store@sha256%3A3415a4ee4cefa3b1d51ef4ce512629dd494d5b7cab594c9b4bc1cf15686a8115?repository_url=ghcr.io/componentized/services/webhook-credential-store&tag=0.0.5-dev",
+      "purl": "pkg:oci/webhook-credential-store@sha256%3A81d0c12102915fe5eb4628a2af87d22049e3190d91baff1d98df93de45198857?repository_url=ghcr.io/componentized/services/webhook-credential-store&tag=0.0.5-dev",
       "type": "library",
       "version": "0.0.5-dev"
     },
-    "timestamp": "2026-11-20T21:41:45Z",
+    "timestamp": "2026-11-24T02:22:49Z",
     "tools": {
       "components": [
         {

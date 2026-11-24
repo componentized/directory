@@ -1790,13 +1790,13 @@
       "description": "Exports `wasi:config/store` with the credentials of a service binding, the binding named by the `binding-id` key of the imported `wasi:config/store`, fetched from a `componentized:services/credential-store`.",
       "externalReferences": [
         {
-          "comment": "revision 326d0d724546d595c51aacc3548803855469393e",
+          "comment": "revision 8ef6fa2ab2353c7db2c51cb2d8572c6134618db5",
           "type": "vcs",
           "url": "https://github.com/componentized/services.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/services/tree/326d0d724546d595c51aacc3548803855469393e/components/credential-config"
+          "url": "https://github.com/componentized/services/tree/8ef6fa2ab2353c7db2c51cb2d8572c6134618db5/components/credential-config"
         }
       ],
       "hashes": [
@@ -1811,11 +1811,11 @@
         }
       ],
       "name": "componentized:services-credential-config",
-      "purl": "pkg:oci/credential-config@sha256%3Aafb5dd18e1f07ec921038cf68985ef40345527f67a06573c9f0307d0add4c044?repository_url=ghcr.io/componentized/services/credential-config&tag=0.0.5-dev",
+      "purl": "pkg:oci/credential-config@sha256%3Aa31e31af2e2974998ec3e08668d140a3df593788e6217919344399bfb482bb13?repository_url=ghcr.io/componentized/services/credential-config&tag=0.0.5-dev",
       "type": "library",
       "version": "0.0.5-dev"
     },
-    "timestamp": "2026-11-20T21:41:45Z",
+    "timestamp": "2026-11-24T02:23:08Z",
     "tools": {
       "components": [
         {
