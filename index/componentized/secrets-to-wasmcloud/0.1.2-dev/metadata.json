@@ -1,0 +1,85 @@
+{
+  "package": "componentized:secrets-to-wasmcloud",
+  "version": "0.1.2-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/secrets/to-wasmcloud",
+    "tag": "0.1.2-dev",
+    "digest": "sha256:a94db9fc8b5cf94e4661fb3693f039e106ba4f35a434af64f97ba607b14a774f",
+    "layer_digest": "sha256:5ac10fb24d6368f05789098a070965bb340f6652e31e962e0983def0cb1aae7a",
+    "size": 58682,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/secrets/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/secrets",
+      "git_ref": "refs/heads/main",
+      "log_index": 4063891930
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/secrets/to-wasmcloud",
+    "tag": "0.1.2-dev_debug",
+    "digest": "sha256:058cbcb30619f4d9a4ce88f490b9ed3dad666619d8cdafd72273226c35114de9",
+    "layer_digest": "sha256:bd24f76110c850c9e4214f90b430390821b540044b30ca6f125a3a1157894dec",
+    "size": 188695,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/secrets/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/secrets",
+      "git_ref": "refs/heads/main",
+      "log_index": 4063902149
+    }
+  },
+  "created": "2026-11-24T01:23:26.236980342Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Adapts a `componentized:secrets` store to `wasmcloud:secrets`, for components that use the secrets of a wasmCloud host. Plug a store into it, e.g. [`from-config`](../from-config/).",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "53fafb57f84581f99f962467749d847523a6c901",
+    "org.opencontainers.image.source": "https://github.com/componentized/secrets.git",
+    "org.opencontainers.image.title": "componentized:secrets-to-wasmcloud",
+    "org.opencontainers.image.url": "https://github.com/componentized/secrets/tree/53fafb57f84581f99f962467749d847523a6c901/components/to-wasmcloud",
+    "org.opencontainers.image.version": "v0.1.2-dev"
+  },
+  "imports": [
+    "componentized:secrets/store@0.1.2-dev",
+    "componentized:secrets/types@0.1.2-dev"
+  ],
+  "exports": [
+    "wasmcloud:secrets/reveal@2.1.0",
+    "wasmcloud:secrets/store@2.1.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:secrets",
+      "version": "0.1.2-dev"
+    },
+    {
+      "package": "wasmcloud:secrets",
+      "version": "2.1.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:6394771e293f237167d5a2e8ba2376d6b03bfe57f72a66435d01275fa78599c4",
+      "size": 287
+    },
+    {
+      "digest": "sha256:175f33eaa596019a4c59c99f52c7b1e4e02ee748473b54236317262ea911c409",
+      "size": 247
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/secrets/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/secrets",
+    "git_ref": "refs/heads/main",
+    "log_index": 4063895416
+  },
+  "indexed_at": "2026-11-24T01:26:25Z"
+}

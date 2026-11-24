@@ -1501,13 +1501,13 @@
       "description": "`componentized:secrets` latch that aggregates 4 latches, any latch can deny an operation.",
       "externalReferences": [
         {
-          "comment": "revision 781ac13ef5f93a4c342c2d0b653f30a254de2ab4",
+          "comment": "revision 53fafb57f84581f99f962467749d847523a6c901",
           "type": "vcs",
           "url": "https://github.com/componentized/secrets.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/secrets/tree/781ac13ef5f93a4c342c2d0b653f30a254de2ab4/components/latch-n4"
+          "url": "https://github.com/componentized/secrets/tree/53fafb57f84581f99f962467749d847523a6c901/components/latch-n4"
         }
       ],
       "hashes": [
@@ -1522,11 +1522,11 @@
         }
       ],
       "name": "componentized:secrets-latch-n4",
-      "purl": "pkg:oci/latch-n4@sha256%3Adff53ee717575ce41dcade743b5356aa015556f56a7dd1db8b0f1e8e5465a1b3?repository_url=ghcr.io/componentized/secrets/latch-n4&tag=0.1.2-dev",
+      "purl": "pkg:oci/latch-n4@sha256%3A3a076dd13c923e5aa74a4aebad426f9987323e6c4c1547a03b4f0878fb1d4552?repository_url=ghcr.io/componentized/secrets/latch-n4&tag=0.1.2-dev",
       "type": "library",
       "version": "0.1.2-dev"
     },
-    "timestamp": "2026-11-19T03:18:23Z",
+    "timestamp": "2026-11-24T01:15:02Z",
     "tools": {
       "components": [
         {

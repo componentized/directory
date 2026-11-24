@@ -1482,13 +1482,13 @@
       "description": "`componentized:secrets` gate, access control for the secrets of a store.",
       "externalReferences": [
         {
-          "comment": "revision 781ac13ef5f93a4c342c2d0b653f30a254de2ab4",
+          "comment": "revision 53fafb57f84581f99f962467749d847523a6c901",
           "type": "vcs",
           "url": "https://github.com/componentized/secrets.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/secrets/tree/781ac13ef5f93a4c342c2d0b653f30a254de2ab4/components/gate"
+          "url": "https://github.com/componentized/secrets/tree/53fafb57f84581f99f962467749d847523a6c901/components/gate"
         }
       ],
       "hashes": [
@@ -1503,11 +1503,11 @@
         }
       ],
       "name": "componentized:secrets-gate",
-      "purl": "pkg:oci/gate@sha256%3Abaa9e7b0dd7fc96bdc7e58ba4c8f79f8d56a0e404c94ad67c9d08556f443a8f8?repository_url=ghcr.io/componentized/secrets/gate&tag=0.1.2-dev",
+      "purl": "pkg:oci/gate@sha256%3A62cea61ee186cdbdca167bc30f6b670c42cd5765aaec6ec444880901407bf1a3?repository_url=ghcr.io/componentized/secrets/gate&tag=0.1.2-dev",
       "type": "library",
       "version": "0.1.2-dev"
     },
-    "timestamp": "2026-11-19T03:18:23Z",
+    "timestamp": "2026-11-24T01:15:02Z",
     "tools": {
       "components": [
         {

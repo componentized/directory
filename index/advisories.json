@@ -262,6 +262,7 @@
     "pkg:cargo/tinystr@0.8.3",
     "pkg:cargo/tinystr@0.8.4",
     "pkg:cargo/to-stdout@0.1.0",
+    "pkg:cargo/to-wasmcloud@0.1.0",
     "pkg:cargo/topological-sort@0.2.2",
     "pkg:cargo/trace-client@0.1.0",
     "pkg:cargo/trace-componentized-client@0.1.0",
