@@ -296,6 +296,7 @@
     "pkg:cargo/wasm-metadata@0.262.0",
     "pkg:cargo/wasm-metadata@0.263.0",
     "pkg:cargo/wasm-wave@0.262.0",
+    "pkg:cargo/wasm-wave@0.263.0",
     "pkg:cargo/wasmparser@0.258.3",
     "pkg:cargo/wasmparser@0.262.0",
     "pkg:cargo/wasmparser@0.263.0",

@@ -2326,9 +2326,45 @@
       ],
       "name": "wasm-encoder",
       "purl": "pkg:cargo/wasm-encoder@0.262.0",
-      "scope": "required",
+      "scope": "excluded",
       "type": "library",
       "version": "0.262.0"
+    },
+    {
+      "authors": [
+        {
+          "email": "fitzgen@gmail.com",
+          "name": "Nick Fitzgerald"
+        }
+      ],
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#wasm-encoder@0.263.0",
+      "description": "A low-level WebAssembly encoder. ",
+      "externalReferences": [
+        {
+          "type": "documentation",
+          "url": "https://docs.rs/wasm-encoder"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/bytecodealliance/wasm-tools/tree/main/crates/wasm-encoder"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "0b883a26aea02eaabe2d2c3fba7eb039ef5cdcb5d5201ae5551e73d5e251a81f"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT"
+        }
+      ],
+      "name": "wasm-encoder",
+      "purl": "pkg:cargo/wasm-encoder@0.263.0",
+      "scope": "required",
+      "type": "library",
+      "version": "0.263.0"
     },
     {
       "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#wasm-metadata@0.262.0",
@@ -2352,9 +2388,35 @@
       ],
       "name": "wasm-metadata",
       "purl": "pkg:cargo/wasm-metadata@0.262.0",
-      "scope": "required",
+      "scope": "excluded",
       "type": "library",
       "version": "0.262.0"
+    },
+    {
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#wasm-metadata@0.263.0",
+      "description": "Read and manipulate WebAssembly metadata",
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/bytecodealliance/wasm-tools/tree/main/crates/wasm-metadata"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "8997a297f42413bee775d73a750def062ee1ec4a6d904703cb08046c0296774d"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT"
+        }
+      ],
+      "name": "wasm-metadata",
+      "purl": "pkg:cargo/wasm-metadata@0.263.0",
+      "scope": "required",
+      "type": "library",
+      "version": "0.263.0"
     },
     {
       "authors": [
@@ -2362,7 +2424,7 @@
           "name": "lann.martin@fermyon.com"
         }
       ],
-      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#wasm-wave@0.262.0",
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#wasm-wave@0.263.0",
       "description": "WebAssembly Value Encoding",
       "externalReferences": [
         {
@@ -2377,7 +2439,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "9290c2d9b4528528199374292c051d5b3d4d401e464a90235da45d78f42f00a2"
+          "content": "ee6d8d3340761c0f41fe624a1e88be7ae81c17a2c086a2286ada584d3c475188"
         }
       ],
       "licenses": [
@@ -2386,10 +2448,10 @@
         }
       ],
       "name": "wasm-wave",
-      "purl": "pkg:cargo/wasm-wave@0.262.0",
+      "purl": "pkg:cargo/wasm-wave@0.263.0",
       "scope": "required",
       "type": "library",
-      "version": "0.262.0"
+      "version": "0.263.0"
     },
     {
       "authors": [
@@ -2419,9 +2481,41 @@
       ],
       "name": "wasmparser",
       "purl": "pkg:cargo/wasmparser@0.262.0",
-      "scope": "required",
+      "scope": "excluded",
       "type": "library",
       "version": "0.262.0"
+    },
+    {
+      "authors": [
+        {
+          "email": "ydelendik@mozilla.com",
+          "name": "Yury Delendik"
+        }
+      ],
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#wasmparser@0.263.0",
+      "description": "A simple event-driven library for parsing WebAssembly binary files. ",
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/bytecodealliance/wasm-tools/tree/main/crates/wasmparser"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "4f5fa0a054ae153606df820eb0a84213e28cda41bbe04ba2628e71b6ba100fcb"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT"
+        }
+      ],
+      "name": "wasmparser",
+      "purl": "pkg:cargo/wasmparser@0.263.0",
+      "scope": "required",
+      "type": "library",
+      "version": "0.263.0"
     },
     {
       "authors": [
@@ -2583,9 +2677,45 @@
       ],
       "name": "wit-component",
       "purl": "pkg:cargo/wit-component@0.262.0",
-      "scope": "required",
+      "scope": "excluded",
       "type": "library",
       "version": "0.262.0"
+    },
+    {
+      "authors": [
+        {
+          "email": "peter@huene.dev",
+          "name": "Peter Huene"
+        }
+      ],
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#wit-component@0.263.0",
+      "description": "Tooling for working with `*.wit` and component files together. ",
+      "externalReferences": [
+        {
+          "type": "documentation",
+          "url": "https://docs.rs/wit-component"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/bytecodealliance/wasm-tools/tree/main/crates/wit-component"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "4189bd180353b942b788715519dff886517b540e648c6f6e5129f57429945bf7"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT"
+        }
+      ],
+      "name": "wit-component",
+      "purl": "pkg:cargo/wit-component@0.263.0",
+      "scope": "required",
+      "type": "library",
+      "version": "0.263.0"
     },
     {
       "authors": [
@@ -2619,9 +2749,45 @@
       ],
       "name": "wit-parser",
       "purl": "pkg:cargo/wit-parser@0.262.0",
-      "scope": "required",
+      "scope": "excluded",
       "type": "library",
       "version": "0.262.0"
+    },
+    {
+      "authors": [
+        {
+          "email": "alex@alexcrichton.com",
+          "name": "Alex Crichton"
+        }
+      ],
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#wit-parser@0.263.0",
+      "description": "Tooling for parsing `*.wit` files and working with their contents. ",
+      "externalReferences": [
+        {
+          "type": "documentation",
+          "url": "https://docs.rs/wit-parser"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/bytecodealliance/wasm-tools/tree/main/crates/wit-parser"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "874d6ce9db4261cb66980ab14f3da066b24292497b6f46f988c0d1b9b27913f3"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT"
+        }
+      ],
+      "name": "wit-parser",
+      "purl": "pkg:cargo/wit-parser@0.263.0",
+      "scope": "required",
+      "type": "library",
+      "version": "0.263.0"
     },
     {
       "authors": [
@@ -2960,18 +3126,18 @@
         "path+file://./crates/componentized-constants#0.2.1-dev",
         "registry+https://github.com/rust-lang/crates.io-index#semver@1.0.28",
         "registry+https://github.com/rust-lang/crates.io-index#wit-bindgen@0.63.0",
-        "registry+https://github.com/rust-lang/crates.io-index#wit-parser@0.262.0"
+        "registry+https://github.com/rust-lang/crates.io-index#wit-parser@0.263.0"
       ],
       "ref": "path+file://./components/factory#0.1.0"
     },
     {
       "dependsOn": [
         "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
-        "registry+https://github.com/rust-lang/crates.io-index#wasm-encoder@0.262.0",
-        "registry+https://github.com/rust-lang/crates.io-index#wasm-metadata@0.262.0",
-        "registry+https://github.com/rust-lang/crates.io-index#wasm-wave@0.262.0",
-        "registry+https://github.com/rust-lang/crates.io-index#wit-component@0.262.0",
-        "registry+https://github.com/rust-lang/crates.io-index#wit-parser@0.262.0"
+        "registry+https://github.com/rust-lang/crates.io-index#wasm-encoder@0.263.0",
+        "registry+https://github.com/rust-lang/crates.io-index#wasm-metadata@0.263.0",
+        "registry+https://github.com/rust-lang/crates.io-index#wasm-wave@0.263.0",
+        "registry+https://github.com/rust-lang/crates.io-index#wit-component@0.263.0",
+        "registry+https://github.com/rust-lang/crates.io-index#wit-parser@0.263.0"
       ],
       "ref": "path+file://./crates/componentized-constants#0.2.1-dev"
     },
@@ -3352,6 +3518,22 @@
     },
     {
       "dependsOn": [
+        "registry+https://github.com/rust-lang/crates.io-index#leb128fmt@0.1.0",
+        "registry+https://github.com/rust-lang/crates.io-index#wasmparser@0.263.0"
+      ],
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#wasm-encoder@0.263.0"
+    },
+    {
+      "dependsOn": [
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
+        "registry+https://github.com/rust-lang/crates.io-index#indexmap@2.14.2",
+        "registry+https://github.com/rust-lang/crates.io-index#wasm-encoder@0.262.0",
+        "registry+https://github.com/rust-lang/crates.io-index#wasmparser@0.262.0"
+      ],
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#wasm-metadata@0.262.0"
+    },
+    {
+      "dependsOn": [
         "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
         "registry+https://github.com/rust-lang/crates.io-index#auditable-serde@0.9.0",
         "registry+https://github.com/rust-lang/crates.io-index#flate2@1.1.10",
@@ -3361,17 +3543,17 @@
         "registry+https://github.com/rust-lang/crates.io-index#serde_json@1.0.154",
         "registry+https://github.com/rust-lang/crates.io-index#spdx@0.13.6",
         "registry+https://github.com/rust-lang/crates.io-index#url@2.5.8",
-        "registry+https://github.com/rust-lang/crates.io-index#wasm-encoder@0.262.0",
-        "registry+https://github.com/rust-lang/crates.io-index#wasmparser@0.262.0"
+        "registry+https://github.com/rust-lang/crates.io-index#wasm-encoder@0.263.0",
+        "registry+https://github.com/rust-lang/crates.io-index#wasmparser@0.263.0"
       ],
-      "ref": "registry+https://github.com/rust-lang/crates.io-index#wasm-metadata@0.262.0"
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#wasm-metadata@0.263.0"
     },
     {
       "dependsOn": [
         "registry+https://github.com/rust-lang/crates.io-index#logos@0.16.1",
         "registry+https://github.com/rust-lang/crates.io-index#thiserror@2.0.21"
       ],
-      "ref": "registry+https://github.com/rust-lang/crates.io-index#wasm-wave@0.262.0"
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#wasm-wave@0.263.0"
     },
     {
       "dependsOn": [
@@ -3381,6 +3563,15 @@
         "registry+https://github.com/rust-lang/crates.io-index#semver@1.0.28"
       ],
       "ref": "registry+https://github.com/rust-lang/crates.io-index#wasmparser@0.262.0"
+    },
+    {
+      "dependsOn": [
+        "registry+https://github.com/rust-lang/crates.io-index#bitflags@2.13.2",
+        "registry+https://github.com/rust-lang/crates.io-index#hashbrown@0.17.1",
+        "registry+https://github.com/rust-lang/crates.io-index#indexmap@2.14.2",
+        "registry+https://github.com/rust-lang/crates.io-index#semver@1.0.28"
+      ],
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#wasmparser@0.263.0"
     },
     {
       "dependsOn": [
@@ -3442,6 +3633,22 @@
     {
       "dependsOn": [
         "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
+        "registry+https://github.com/rust-lang/crates.io-index#bitflags@2.13.2",
+        "registry+https://github.com/rust-lang/crates.io-index#indexmap@2.14.2",
+        "registry+https://github.com/rust-lang/crates.io-index#log@0.4.34",
+        "registry+https://github.com/rust-lang/crates.io-index#serde@1.0.229",
+        "registry+https://github.com/rust-lang/crates.io-index#serde_derive@1.0.229",
+        "registry+https://github.com/rust-lang/crates.io-index#serde_json@1.0.154",
+        "registry+https://github.com/rust-lang/crates.io-index#wasm-encoder@0.263.0",
+        "registry+https://github.com/rust-lang/crates.io-index#wasm-metadata@0.263.0",
+        "registry+https://github.com/rust-lang/crates.io-index#wasmparser@0.263.0",
+        "registry+https://github.com/rust-lang/crates.io-index#wit-parser@0.263.0"
+      ],
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#wit-component@0.263.0"
+    },
+    {
+      "dependsOn": [
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
         "registry+https://github.com/rust-lang/crates.io-index#hashbrown@0.17.1",
         "registry+https://github.com/rust-lang/crates.io-index#id-arena@2.3.0",
         "registry+https://github.com/rust-lang/crates.io-index#indexmap@2.14.2",
@@ -3454,6 +3661,22 @@
         "registry+https://github.com/rust-lang/crates.io-index#wasmparser@0.262.0"
       ],
       "ref": "registry+https://github.com/rust-lang/crates.io-index#wit-parser@0.262.0"
+    },
+    {
+      "dependsOn": [
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
+        "registry+https://github.com/rust-lang/crates.io-index#hashbrown@0.17.1",
+        "registry+https://github.com/rust-lang/crates.io-index#id-arena@2.3.0",
+        "registry+https://github.com/rust-lang/crates.io-index#indexmap@2.14.2",
+        "registry+https://github.com/rust-lang/crates.io-index#log@0.4.34",
+        "registry+https://github.com/rust-lang/crates.io-index#semver@1.0.28",
+        "registry+https://github.com/rust-lang/crates.io-index#serde@1.0.229",
+        "registry+https://github.com/rust-lang/crates.io-index#serde_derive@1.0.229",
+        "registry+https://github.com/rust-lang/crates.io-index#serde_json@1.0.154",
+        "registry+https://github.com/rust-lang/crates.io-index#unicode-ident@1.0.27",
+        "registry+https://github.com/rust-lang/crates.io-index#wasmparser@0.263.0"
+      ],
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#wit-parser@0.263.0"
     },
     {
       "ref": "registry+https://github.com/rust-lang/crates.io-index#writeable@0.6.4"
@@ -3531,19 +3754,19 @@
       "description": "Create components whose exported functions return constant values, from a WIT world with values in its doc comments.",
       "externalReferences": [
         {
-          "comment": "revision 8d7752d8840e5d34d74d6c49803ee1d4413b5bbd",
+          "comment": "revision 13250aee62419c832ab51cae158d87de12ebd490",
           "type": "vcs",
           "url": "https://github.com/componentized/constants.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/constants/tree/8d7752d8840e5d34d74d6c49803ee1d4413b5bbd/components/factory"
+          "url": "https://github.com/componentized/constants/tree/13250aee62419c832ab51cae158d87de12ebd490/components/factory"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "30ae36d97c99639dd7533035ee7958065b42b064ae1fb997a908103244b6b18b"
+          "content": "9ccebc09df16b59503d681f2b7f629959b68889839a65c9bfea219c2eb8708c4"
         }
       ],
       "licenses": [
@@ -3552,11 +3775,11 @@
         }
       ],
       "name": "componentized:constants-factory",
-      "purl": "pkg:oci/factory@sha256%3Ad4266a01b4acd45688a7722f2724b7f854a4b5e53ac888ef2ed7211ecb9be0a3?repository_url=ghcr.io/componentized/constants/factory&tag=0.2.1-dev",
+      "purl": "pkg:oci/factory@sha256%3A7180ff483d08cd1ff1faff108f08be1270f10a7f09611221b26df2db65ac8f26?repository_url=ghcr.io/componentized/constants/factory&tag=0.2.1-dev",
       "type": "library",
       "version": "0.2.1-dev"
     },
-    "timestamp": "2026-11-24T12:31:08Z",
+    "timestamp": "2026-11-24T14:08:39Z",
     "tools": {
       "components": [
         {
