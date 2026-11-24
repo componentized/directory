@@ -477,7 +477,7 @@
           "name": "The rust-url developers"
         }
       ],
-      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#form_urlencoded@1.2.2",
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#form_urlencoded@1.2.3",
       "description": "Parser and serializer for the application/x-www-form-urlencoded syntax, as used by HTML forms.",
       "externalReferences": [
         {
@@ -488,7 +488,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "cb4cb245038516f5f85277875cdaa4f7d2c9a0fa0468de06ed190163b1581fcf"
+          "content": "afa489199eaffb1211795df1c6236ce1ad0d41a6fa45250add73e3b02420f06e"
         }
       ],
       "licenses": [
@@ -497,10 +497,10 @@
         }
       ],
       "name": "form_urlencoded",
-      "purl": "pkg:cargo/form_urlencoded@1.2.2",
+      "purl": "pkg:cargo/form_urlencoded@1.2.3",
       "scope": "required",
       "type": "library",
-      "version": "1.2.2"
+      "version": "1.2.3"
     },
     {
       "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#hashbrown@0.17.1",
@@ -2225,7 +2225,7 @@
           "name": "The rust-url developers"
         }
       ],
-      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#url@2.5.8",
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#url@2.5.9",
       "description": "URL library for Rust, based on the WHATWG URL Standard",
       "externalReferences": [
         {
@@ -2240,7 +2240,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "ff67a8a4397373c3ef660812acab3268222035010ab8680ec4215f38ba3d0eed"
+          "content": "f00cd2407bb42c0ef17be88d4cf020f5cceffd121665bac9b8b9493a369b3b1a"
         }
       ],
       "licenses": [
@@ -2249,10 +2249,10 @@
         }
       ],
       "name": "url",
-      "purl": "pkg:cargo/url@2.5.8",
+      "purl": "pkg:cargo/url@2.5.9",
       "scope": "required",
       "type": "library",
-      "version": "2.5.8"
+      "version": "2.5.9"
     },
     {
       "authors": [
@@ -3203,7 +3203,7 @@
       "dependsOn": [
         "registry+https://github.com/rust-lang/crates.io-index#percent-encoding@2.3.2"
       ],
-      "ref": "registry+https://github.com/rust-lang/crates.io-index#form_urlencoded@1.2.2"
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#form_urlencoded@1.2.3"
     },
     {
       "dependsOn": [
@@ -3499,12 +3499,12 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#form_urlencoded@1.2.2",
+        "registry+https://github.com/rust-lang/crates.io-index#form_urlencoded@1.2.3",
         "registry+https://github.com/rust-lang/crates.io-index#idna@1.1.0",
         "registry+https://github.com/rust-lang/crates.io-index#percent-encoding@2.3.2",
         "registry+https://github.com/rust-lang/crates.io-index#serde@1.0.229"
       ],
-      "ref": "registry+https://github.com/rust-lang/crates.io-index#url@2.5.8"
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#url@2.5.9"
     },
     {
       "ref": "registry+https://github.com/rust-lang/crates.io-index#utf8_iter@1.0.4"
@@ -3542,7 +3542,7 @@
         "registry+https://github.com/rust-lang/crates.io-index#serde_derive@1.0.229",
         "registry+https://github.com/rust-lang/crates.io-index#serde_json@1.0.154",
         "registry+https://github.com/rust-lang/crates.io-index#spdx@0.13.6",
-        "registry+https://github.com/rust-lang/crates.io-index#url@2.5.8",
+        "registry+https://github.com/rust-lang/crates.io-index#url@2.5.9",
         "registry+https://github.com/rust-lang/crates.io-index#wasm-encoder@0.263.0",
         "registry+https://github.com/rust-lang/crates.io-index#wasmparser@0.263.0"
       ],
@@ -3755,19 +3755,19 @@
       "description": "Create components whose exported functions return constant values, from a WIT world with values in its doc comments.",
       "externalReferences": [
         {
-          "comment": "revision 447631081ff7522d2c6b43b93ee0e28c87c66929",
+          "comment": "revision 6b20457041723a90b2d4f29c709965d93c748aac",
           "type": "vcs",
           "url": "https://github.com/componentized/constants.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/constants/tree/447631081ff7522d2c6b43b93ee0e28c87c66929/components/factory"
+          "url": "https://github.com/componentized/constants/tree/6b20457041723a90b2d4f29c709965d93c748aac/components/factory"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "485de3485a1586c5e2949a456eae62dd982c44233dbd0b262740f51e4fd32598"
+          "content": "5d8a9f662ee615d2af62c2d01fb089b45e03d5e83665e2b11e8e2a5b1d2916d5"
         }
       ],
       "licenses": [
@@ -3776,11 +3776,11 @@
         }
       ],
       "name": "componentized:constants-factory",
-      "purl": "pkg:oci/factory@sha256%3Aa3a95ac61ed45936338d4d9debfe3b023cc067e82370ed6f9ee898ab689a9855?repository_url=ghcr.io/componentized/constants/factory&tag=0.2.1-dev",
+      "purl": "pkg:oci/factory@sha256%3A90f2b0c9233d2cda61bb177602cc6c359a844a6bc860a7d389bcf07775152cea?repository_url=ghcr.io/componentized/constants/factory&tag=0.2.1-dev",
       "type": "library",
       "version": "0.2.1-dev"
     },
-    "timestamp": "2026-11-24T18:41:57Z",
+    "timestamp": "2026-11-24T19:20:55Z",
     "tools": {
       "components": [
         {
