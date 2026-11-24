@@ -225,7 +225,7 @@
           "name": "The rust-url developers"
         }
       ],
-      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#form_urlencoded@1.2.2",
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#form_urlencoded@1.2.3",
       "description": "Parser and serializer for the application/x-www-form-urlencoded syntax, as used by HTML forms.",
       "externalReferences": [
         {
@@ -236,7 +236,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "cb4cb245038516f5f85277875cdaa4f7d2c9a0fa0468de06ed190163b1581fcf"
+          "content": "afa489199eaffb1211795df1c6236ce1ad0d41a6fa45250add73e3b02420f06e"
         }
       ],
       "licenses": [
@@ -245,10 +245,10 @@
         }
       ],
       "name": "form_urlencoded",
-      "purl": "pkg:cargo/form_urlencoded@1.2.2",
+      "purl": "pkg:cargo/form_urlencoded@1.2.3",
       "scope": "required",
       "type": "library",
-      "version": "1.2.2"
+      "version": "1.2.3"
     },
     {
       "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#hashbrown@0.17.1",
@@ -1504,7 +1504,7 @@
           "name": "The rust-url developers"
         }
       ],
-      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#url@2.5.8",
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#url@2.5.9",
       "description": "URL library for Rust, based on the WHATWG URL Standard",
       "externalReferences": [
         {
@@ -1519,7 +1519,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "ff67a8a4397373c3ef660812acab3268222035010ab8680ec4215f38ba3d0eed"
+          "content": "f00cd2407bb42c0ef17be88d4cf020f5cceffd121665bac9b8b9493a369b3b1a"
         }
       ],
       "licenses": [
@@ -1528,10 +1528,10 @@
         }
       ],
       "name": "url",
-      "purl": "pkg:cargo/url@2.5.8",
+      "purl": "pkg:cargo/url@2.5.9",
       "scope": "required",
       "type": "library",
-      "version": "2.5.8"
+      "version": "2.5.9"
     },
     {
       "authors": [
@@ -2171,7 +2171,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#url@2.5.8",
+        "registry+https://github.com/rust-lang/crates.io-index#url@2.5.9",
         "path+file://./crates/wasip3-rt#0.1.0",
         "registry+https://github.com/rust-lang/crates.io-index#wit-bindgen@0.63.0"
       ],
@@ -2204,7 +2204,7 @@
       "dependsOn": [
         "registry+https://github.com/rust-lang/crates.io-index#percent-encoding@2.3.2"
       ],
-      "ref": "registry+https://github.com/rust-lang/crates.io-index#form_urlencoded@1.2.2"
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#form_urlencoded@1.2.3"
     },
     {
       "dependsOn": [
@@ -2425,12 +2425,12 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#form_urlencoded@1.2.2",
+        "registry+https://github.com/rust-lang/crates.io-index#form_urlencoded@1.2.3",
         "registry+https://github.com/rust-lang/crates.io-index#idna@1.1.0",
         "registry+https://github.com/rust-lang/crates.io-index#percent-encoding@2.3.2",
         "registry+https://github.com/rust-lang/crates.io-index#serde@1.0.229"
       ],
-      "ref": "registry+https://github.com/rust-lang/crates.io-index#url@2.5.8"
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#url@2.5.9"
     },
     {
       "ref": "registry+https://github.com/rust-lang/crates.io-index#utf8_iter@1.0.4"
@@ -2612,19 +2612,19 @@
       "description": "A higher-level HTTP client that delegates to wasi:http/client.",
       "externalReferences": [
         {
-          "comment": "revision b9b052114882425c9df13d1233d67fccfcd4c130",
+          "comment": "revision 4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf",
           "type": "vcs",
           "url": "https://github.com/componentized/http.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/http/tree/b9b052114882425c9df13d1233d67fccfcd4c130/components/client"
+          "url": "https://github.com/componentized/http/tree/4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf/components/client"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "8633f068c18ac5ab365242bc8a996a23de85ec413105ce03c489e6068f28da40"
+          "content": "9bf8c2c1a25714b265684e88140c25a1cbb72bbc59773751f1fd7ab937892f30"
         }
       ],
       "licenses": [
@@ -2633,11 +2633,11 @@
         }
       ],
       "name": "componentized:http-client",
-      "purl": "pkg:oci/client@sha256%3A0cbbee8e5384713f519a97e9f4448b2e1aaab3872d3414b8bd893a9ecc6beb7f?repository_url=ghcr.io/componentized/http/client&tag=0.1.1-dev",
+      "purl": "pkg:oci/client@sha256%3Ae2185d9d4ef02fe9b9a86bb4a1cfd5c1f7548b18165329c31858cddd2171f1d2?repository_url=ghcr.io/componentized/http/client&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-21T01:34:05Z",
+    "timestamp": "2026-11-24T02:03:17Z",
     "tools": {
       "components": [
         {

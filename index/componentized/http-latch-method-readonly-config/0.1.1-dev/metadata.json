@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/http/latch-method-readonly-config",
     "tag": "0.1.1-dev",
-    "digest": "sha256:79694015392cb35849e5e138fd317e2ac2e9884e5121d58ca256e91eea0dcc72",
+    "digest": "sha256:edfc383408164d2f94122f251d16478516102cb3e94697e04786da4a959625e6",
     "layer_digest": "sha256:c23a06ebaf759b1d7ccc78246dbbe09e73b2a0ef0c8605acbb5c27a3c2493732",
     "size": 6301,
     "signature": {
@@ -16,7 +16,7 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 4030859697
+      "log_index": 4066013655
     }
   },
   "debug": {
@@ -35,14 +35,14 @@
       "log_index": 3321220824
     }
   },
-  "created": "2026-11-21T01:48:41.582252627Z",
+  "created": "2026-11-24T02:16:08.444039243Z",
   "annotations": {
     "org.opencontainers.image.description": "Config for `latch-method` that denies every request method except GET, HEAD, QUERY and OPTIONS.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "b9b052114882425c9df13d1233d67fccfcd4c130",
+    "org.opencontainers.image.revision": "4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf",
     "org.opencontainers.image.source": "https://github.com/componentized/http.git",
     "org.opencontainers.image.title": "componentized:http-latch-method-readonly-config",
-    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/b9b052114882425c9df13d1233d67fccfcd4c130/components/latch-method-readonly-config",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf/components/latch-method-readonly-config",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "exports": [
@@ -96,7 +96,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/http",
     "git_ref": "refs/heads/main",
-    "log_index": 4030859893
+    "log_index": 4066018025
   },
-  "indexed_at": "2026-11-21T02:00:48Z"
+  "indexed_at": "2026-11-24T02:26:40Z"
 }

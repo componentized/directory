@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/http/latch-n2",
     "tag": "0.1.1-dev",
-    "digest": "sha256:73f8f58e0043de424ab68245c0d6f290d0ebfe143834cc5679aa59c5381213ce",
+    "digest": "sha256:335b5323d1213f1f8b6036527b22955dcb131a8c490f31235c65412a272ce7f3",
     "layer_digest": "sha256:8587731405916cbc081e17a2a70a7615da9661c965bc548e57ae38af0851705f",
     "size": 38875,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 4030860202
+      "log_index": 4066028311
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/http/latch-n2",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:27e4d8eb69a02ced13c12d350134b87d6e20cd4b7cb0271927135d68145fc833",
+    "digest": "sha256:fce45975e0cdacec591fae6cc4575ec2af3d4fb0246f457708d9054ae892e65e",
     "layer_digest": "sha256:becf96296b3eef373400c34b9a1e6ac8fabd90f62e37ca3d4174f4fe56c93b48",
     "size": 147993,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 4030860594
+      "log_index": 4066044498
     }
   },
-  "created": "2026-11-21T01:48:56.244722052Z",
+  "created": "2026-11-24T02:16:25.458251922Z",
   "annotations": {
     "org.opencontainers.image.description": "HTTP latch that aggregates 2 latches, any latch can deny a request.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "b9b052114882425c9df13d1233d67fccfcd4c130",
+    "org.opencontainers.image.revision": "4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf",
     "org.opencontainers.image.source": "https://github.com/componentized/http.git",
     "org.opencontainers.image.title": "componentized:http-latch-n2",
-    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/b9b052114882425c9df13d1233d67fccfcd4c130/components/latch-n2",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf/components/latch-n2",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -75,7 +75,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/http",
     "git_ref": "refs/heads/main",
-    "log_index": 4030860327
+    "log_index": 4066034943
   },
-  "indexed_at": "2026-11-21T02:00:55Z"
+  "indexed_at": "2026-11-24T02:26:47Z"
 }

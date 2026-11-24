@@ -38,13 +38,13 @@
       "description": "A collection of utility components that remix wasi:http types and interfaces.",
       "externalReferences": [
         {
-          "comment": "revision b9b052114882425c9df13d1233d67fccfcd4c130",
+          "comment": "revision 4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf",
           "type": "vcs",
           "url": "https://github.com/componentized/http.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/http/tree/b9b052114882425c9df13d1233d67fccfcd4c130"
+          "url": "https://github.com/componentized/http/tree/4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf"
         }
       ],
       "hashes": [
@@ -59,11 +59,11 @@
         }
       ],
       "name": "componentized:http",
-      "purl": "pkg:oci/http@sha256%3A3a4c10a438afbabf5aa098e01525605267def5cb72453444b76a9e29b4b0e8d7?repository_url=ghcr.io/componentized/http&tag=0.1.1-dev",
+      "purl": "pkg:oci/http@sha256%3A36d232a1fd30f1749ff371220794e0758dac945aea5d75e0400c68733dbec75a?repository_url=ghcr.io/componentized/http&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-21T01:34:05Z",
+    "timestamp": "2026-11-24T02:03:17Z",
     "tools": {
       "components": [
         {

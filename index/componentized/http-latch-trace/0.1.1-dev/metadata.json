@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/http/latch-trace",
     "tag": "0.1.1-dev",
-    "digest": "sha256:fab372843b77c70a8029c37d9a070e8500139744319126e4e3026a4d2a327738",
+    "digest": "sha256:1077a64bef4642560d12b004653da54f0419edc2635088e24c99ca28bc4d0573",
     "layer_digest": "sha256:77cb42548e9b202f09f5ceb428edc7458ae4986208aae3652f350bd637c893be",
     "size": 51734,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 4030865103
+      "log_index": 4066202427
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/http/latch-trace",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:193e0260a73b116d761d9ebb04972a89beb66df1aa26e3dcd5a759d7b16d13b8",
+    "digest": "sha256:5c75bd0bf150199e50a077066a807753cf38b4e83fae8b0e95ed692ba3a7ea5b",
     "layer_digest": "sha256:5c688e75ee03b9d0406abe2be514ab95617fa29731cee4d691a251246e7baa68",
     "size": 179442,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 4030865428
+      "log_index": 4066215362
     }
   },
-  "created": "2026-11-21T01:52:13.037936162Z",
+  "created": "2026-11-24T02:20:22.969386321Z",
   "annotations": {
     "org.opencontainers.image.description": "HTTP latch that wraps another latch, logging each decision it makes without changing it.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "b9b052114882425c9df13d1233d67fccfcd4c130",
+    "org.opencontainers.image.revision": "4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf",
     "org.opencontainers.image.source": "https://github.com/componentized/http.git",
     "org.opencontainers.image.title": "componentized:http-latch-trace",
-    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/b9b052114882425c9df13d1233d67fccfcd4c130/components/latch-trace",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf/components/latch-trace",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -79,7 +79,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/http",
     "git_ref": "refs/heads/main",
-    "log_index": 4030865194
+    "log_index": 4066207943
   },
-  "indexed_at": "2026-11-21T02:01:45Z"
+  "indexed_at": "2026-11-24T02:27:34Z"
 }

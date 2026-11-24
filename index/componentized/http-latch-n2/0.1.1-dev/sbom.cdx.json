@@ -1441,13 +1441,13 @@
       "description": "HTTP latch that aggregates 2 latches, any latch can deny a request.",
       "externalReferences": [
         {
-          "comment": "revision b9b052114882425c9df13d1233d67fccfcd4c130",
+          "comment": "revision 4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf",
           "type": "vcs",
           "url": "https://github.com/componentized/http.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/http/tree/b9b052114882425c9df13d1233d67fccfcd4c130/components/latch-n2"
+          "url": "https://github.com/componentized/http/tree/4fabd3aca90fe2b80d1ae31ebef36b1f7f7a48bf/components/latch-n2"
         }
       ],
       "hashes": [
@@ -1462,11 +1462,11 @@
         }
       ],
       "name": "componentized:http-latch-n2",
-      "purl": "pkg:oci/latch-n2@sha256%3A73f8f58e0043de424ab68245c0d6f290d0ebfe143834cc5679aa59c5381213ce?repository_url=ghcr.io/componentized/http/latch-n2&tag=0.1.1-dev",
+      "purl": "pkg:oci/latch-n2@sha256%3A335b5323d1213f1f8b6036527b22955dcb131a8c490f31235c65412a272ce7f3?repository_url=ghcr.io/componentized/http/latch-n2&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-21T01:34:05Z",
+    "timestamp": "2026-11-24T02:03:17Z",
     "tools": {
       "components": [
         {
