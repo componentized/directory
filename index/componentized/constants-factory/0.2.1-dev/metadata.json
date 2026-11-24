@@ -7,42 +7,42 @@
     "registry": "ghcr.io",
     "repository": "componentized/constants/factory",
     "tag": "0.2.1-dev",
-    "digest": "sha256:7180ff483d08cd1ff1faff108f08be1270f10a7f09611221b26df2db65ac8f26",
-    "layer_digest": "sha256:9ccebc09df16b59503d681f2b7f629959b68889839a65c9bfea219c2eb8708c4",
-    "size": 2228880,
+    "digest": "sha256:95d75f19e22778f8a59c993fa28d29fb21dfb33183a07790e5a70899fa9b07f9",
+    "layer_digest": "sha256:485de3485a1586c5e2949a456eae62dd982c44233dbd0b262740f51e4fd32598",
+    "size": 2235147,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/constants",
       "git_ref": "refs/heads/main",
-      "log_index": 4079811723
+      "log_index": 4084687006
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/constants/factory",
     "tag": "0.2.1-dev_debug",
-    "digest": "sha256:e9ee8f92770a13e4701acc487ef6f6f7fae3a2687e9bad2b5cecd1cf5460c8f3",
-    "layer_digest": "sha256:068852fa93008a5494a9c908e4862c244653f4412f1b291800e114cbfdb54d5f",
-    "size": 46180951,
+    "digest": "sha256:c7ef8ccb32f564efb85dba102b95a24e11d711325f59acd9ee093cfb50a54686",
+    "layer_digest": "sha256:97e3279171aab70d95ec4dc9c55514dc234c31c63a6e06b1bff8303b8ac5dfba",
+    "size": 46379042,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/constants",
       "git_ref": "refs/heads/main",
-      "log_index": 4079819639
+      "log_index": 4084695763
     }
   },
-  "created": "2026-11-24T14:16:18.310159219Z",
+  "created": "2026-11-24T18:26:18.125366491Z",
   "annotations": {
     "org.opencontainers.image.description": "Create components whose exported functions return constant values, from a WIT world with values in its doc comments.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "13250aee62419c832ab51cae158d87de12ebd490",
+    "org.opencontainers.image.revision": "b0eba5d8da3f0266e7656b0955ed5f7113bc8de6",
     "org.opencontainers.image.source": "https://github.com/componentized/constants.git",
     "org.opencontainers.image.title": "componentized:constants-factory",
-    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/13250aee62419c832ab51cae158d87de12ebd490/components/factory",
+    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/b0eba5d8da3f0266e7656b0955ed5f7113bc8de6/components/factory",
     "org.opencontainers.image.version": "v0.2.1-dev"
   },
   "imports": [
@@ -74,7 +74,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/constants",
     "git_ref": "refs/heads/main",
-    "log_index": 4079812507
+    "log_index": 4084688576
   },
-  "indexed_at": "2026-11-24T14:19:19Z"
+  "indexed_at": "2026-11-24T18:29:04Z"
 }
