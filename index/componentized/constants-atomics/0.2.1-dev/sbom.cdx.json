@@ -27,13 +27,13 @@
       "description": "lock-free, thread-safe operations on streams",
       "externalReferences": [
         {
-          "comment": "revision 15f19f12ece06ee25fe881aae4de7075fef79471",
+          "comment": "revision 8d7752d8840e5d34d74d6c49803ee1d4413b5bbd",
           "type": "vcs",
           "url": "https://github.com/componentized/constants.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/constants/tree/15f19f12ece06ee25fe881aae4de7075fef79471/components/atomics"
+          "url": "https://github.com/componentized/constants/tree/8d7752d8840e5d34d74d6c49803ee1d4413b5bbd/components/atomics"
         }
       ],
       "hashes": [
@@ -48,11 +48,11 @@
         }
       ],
       "name": "componentized:constants-atomics",
-      "purl": "pkg:oci/atomics@sha256%3A0cca4045e00f3fd37901e021d1526f3682b117191a8f80d36423adbf48c43088?repository_url=ghcr.io/componentized/constants/atomics&tag=0.2.1-dev",
+      "purl": "pkg:oci/atomics@sha256%3A72158b4cf0750cb09bffcf6f55df9adb7960925188463c0a8c7a56edfde8f7c1?repository_url=ghcr.io/componentized/constants/atomics&tag=0.2.1-dev",
       "type": "library",
       "version": "0.2.1-dev"
     },
-    "timestamp": "2026-11-24T02:25:15Z",
+    "timestamp": "2026-11-24T12:31:08Z",
     "tools": {
       "components": [
         {

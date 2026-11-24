@@ -3531,13 +3531,13 @@
       "description": "Create components whose exported functions return constant values, from a WIT world with values in its doc comments.",
       "externalReferences": [
         {
-          "comment": "revision 15f19f12ece06ee25fe881aae4de7075fef79471",
+          "comment": "revision 8d7752d8840e5d34d74d6c49803ee1d4413b5bbd",
           "type": "vcs",
           "url": "https://github.com/componentized/constants.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/constants/tree/15f19f12ece06ee25fe881aae4de7075fef79471/components/factory"
+          "url": "https://github.com/componentized/constants/tree/8d7752d8840e5d34d74d6c49803ee1d4413b5bbd/components/factory"
         }
       ],
       "hashes": [
@@ -3552,11 +3552,11 @@
         }
       ],
       "name": "componentized:constants-factory",
-      "purl": "pkg:oci/factory@sha256%3A5271a9b99d9a3040c36900185991ab127405cc789b8b479c32d25f8d31763c9d?repository_url=ghcr.io/componentized/constants/factory&tag=0.2.1-dev",
+      "purl": "pkg:oci/factory@sha256%3Ad4266a01b4acd45688a7722f2724b7f854a4b5e53ac888ef2ed7211ecb9be0a3?repository_url=ghcr.io/componentized/constants/factory&tag=0.2.1-dev",
       "type": "library",
       "version": "0.2.1-dev"
     },
-    "timestamp": "2026-11-24T02:25:15Z",
+    "timestamp": "2026-11-24T12:31:08Z",
     "tools": {
       "components": [
         {

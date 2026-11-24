@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/constants/math",
     "tag": "0.2.1-dev",
-    "digest": "sha256:07dc38b1704821299c2b12e535e44414616fb7df1a9333d796287273c5db2cbe",
+    "digest": "sha256:535d50a724d03297e72f26e8c19c968f87c1a40bab12f40564d39a17957772b9",
     "layer_digest": "sha256:a98a2c38777ac2200abb62538c4f8094f175549e36a6ed81ad8350f0d3b24567",
     "size": 23841,
     "signature": {
@@ -16,17 +16,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/constants",
       "git_ref": "refs/heads/main",
-      "log_index": 4066437416
+      "log_index": 4077776378
     }
   },
-  "created": "2026-11-24T02:31:13.869812673Z",
+  "created": "2026-11-24T12:36:04.505234032Z",
   "annotations": {
     "org.opencontainers.image.description": "Common mathematical constants.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "15f19f12ece06ee25fe881aae4de7075fef79471",
+    "org.opencontainers.image.revision": "8d7752d8840e5d34d74d6c49803ee1d4413b5bbd",
     "org.opencontainers.image.source": "https://github.com/componentized/constants.git",
     "org.opencontainers.image.title": "componentized:constants-math",
-    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/15f19f12ece06ee25fe881aae4de7075fef79471/components/math",
+    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/8d7752d8840e5d34d74d6c49803ee1d4413b5bbd/components/math",
     "org.opencontainers.image.version": "v0.2.1-dev"
   },
   "exports": [
@@ -50,7 +50,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/constants",
     "git_ref": "refs/heads/main",
-    "log_index": 4066438747
+    "log_index": 4077776780
   },
-  "indexed_at": "2026-11-24T02:36:12Z"
+  "indexed_at": "2026-11-24T12:37:44Z"
 }
