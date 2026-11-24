@@ -6,7 +6,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "4ae79df7ca5087da65dd44a9af8715ad3629db0e52665796a61ec9049ca93c05"
+          "content": "f5a14200b9d35a456ff5469612272b9d09902ddfef015e36198a06bdfd0336fd"
         }
       ],
       "name": "componentized:oci-internal-client",
@@ -22,34 +22,6 @@
       ],
       "name": "componentized:oci-media-types",
       "type": "library"
-    },
-    {
-      "bom-ref": "git+https://github.com/chronotope/chrono.git?branch=0.5.x#chrono@0.5.0-alpha.1",
-      "description": "Date and time library for Rust",
-      "externalReferences": [
-        {
-          "type": "documentation",
-          "url": "https://docs.rs/chrono/"
-        },
-        {
-          "type": "website",
-          "url": "https://github.com/chronotope/chrono"
-        },
-        {
-          "type": "vcs",
-          "url": "https://github.com/chronotope/chrono"
-        }
-      ],
-      "licenses": [
-        {
-          "expression": "MIT OR Apache-2.0"
-        }
-      ],
-      "name": "chrono",
-      "purl": "pkg:cargo/chrono@0.5.0-alpha.1?vcs_url=git%2Bhttps://github.com/chronotope/chrono.git%4016c45fa8eab2c906ab50a70dea39949b28fdfb28",
-      "scope": "required",
-      "type": "library",
-      "version": "0.5.0-alpha.1"
     },
     {
       "bom-ref": "path+file://./components/internal-client#0.1.0",
@@ -286,6 +258,38 @@
       "scope": "required",
       "type": "library",
       "version": "0.2.2"
+    },
+    {
+      "authors": [
+        {
+          "email": "jacob@jhpratt.dev",
+          "name": "Jacob Pratt"
+        }
+      ],
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#deranged@0.5.9",
+      "description": "Ranged integers",
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/jhpratt/deranged"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "9e9de72ce2ad1f90dc62fa25f0f430ef85eb4b0d8fa0be4f30373bc40a21d28e"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "name": "deranged",
+      "purl": "pkg:cargo/deranged@0.5.9",
+      "scope": "required",
+      "type": "library",
+      "version": "0.5.9"
     },
     {
       "authors": [
@@ -1389,6 +1393,38 @@
     {
       "authors": [
         {
+          "email": "jacob@jhpratt.dev",
+          "name": "Jacob Pratt"
+        }
+      ],
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#num-conv@0.2.2",
+      "description": "`num_conv` is a crate to convert between integer types without using `as` casts. This provides better certainty when refactoring, makes the exact behavior of code more explicit, and allows using turbofish syntax. ",
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/jhpratt/num-conv"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "521739c6d2bac4aa25192232afe6841231376b2b26d4d9fae5ecf8ca5772e441"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "name": "num-conv",
+      "purl": "pkg:cargo/num-conv@0.2.2",
+      "scope": "required",
+      "type": "library",
+      "version": "0.2.2"
+    },
+    {
+      "authors": [
+        {
           "name": "The rust-url developers"
         }
       ],
@@ -1477,6 +1513,38 @@
       "scope": "required",
       "type": "library",
       "version": "0.1.6"
+    },
+    {
+      "authors": [
+        {
+          "email": "jacob@jhpratt.dev",
+          "name": "Jacob Pratt"
+        }
+      ],
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#powerfmt@0.2.1",
+      "description": "    `powerfmt` is a library that provides utilities for formatting values. This crate makes it     significantly easier to support filling to a minimum width with alignment, avoid heap     allocation, and avoid repetitive calculations. ",
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/jhpratt/powerfmt"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "4a6394b9e965e73d0a289ee54f589087e2c676aedf60885baf52c76b771e4958"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "name": "powerfmt",
+      "purl": "pkg:cargo/powerfmt@0.2.1",
+      "scope": "required",
+      "type": "library",
+      "version": "0.2.1"
     },
     {
       "authors": [
@@ -2001,6 +2069,115 @@
       "scope": "excluded",
       "type": "library",
       "version": "0.14.0"
+    },
+    {
+      "authors": [
+        {
+          "email": "open-source@jhpratt.dev",
+          "name": "Jacob Pratt"
+        },
+        {
+          "name": "Time contributors"
+        }
+      ],
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#time-core@0.1.9",
+      "description": "This crate is an implementation detail and should not be relied upon directly.",
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/time-rs/time"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "9e1c906769ad99c88eaa54e728060edef082f8e358ff32030cb7c7d315e81109"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "name": "time-core",
+      "purl": "pkg:cargo/time-core@0.1.9",
+      "scope": "required",
+      "type": "library",
+      "version": "0.1.9"
+    },
+    {
+      "authors": [
+        {
+          "email": "open-source@jhpratt.dev",
+          "name": "Jacob Pratt"
+        },
+        {
+          "name": "Time contributors"
+        }
+      ],
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#time-macros@0.2.32",
+      "description": "    Procedural macros for the time crate.     This crate is an implementation detail and should not be relied upon directly. ",
+      "externalReferences": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/time-rs/time"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "7e689342a48d2ea927c87ea50cabf8594854bf940e9310208848d680d668ed85"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "name": "time-macros",
+      "purl": "pkg:cargo/time-macros@0.2.32",
+      "scope": "excluded",
+      "type": "library",
+      "version": "0.2.32"
+    },
+    {
+      "authors": [
+        {
+          "email": "open-source@jhpratt.dev",
+          "name": "Jacob Pratt"
+        },
+        {
+          "name": "Time contributors"
+        }
+      ],
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#time@0.3.55",
+      "description": "Date and time library. Fully interoperable with the standard library. Mostly compatible with #![no_std].",
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://time-rs.github.io"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/time-rs/time"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "cdb87b95ec50ddfa440816d227a17b2ccbdda963a316a727fda0fc4334f7d134"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "MIT OR Apache-2.0"
+        }
+      ],
+      "name": "time",
+      "purl": "pkg:cargo/time@0.3.55",
+      "scope": "required",
+      "type": "library",
+      "version": "0.3.55"
     },
     {
       "authors": [
@@ -2791,15 +2968,12 @@
       "ref": "component:componentized:oci-media-types"
     },
     {
-      "ref": "git+https://github.com/chronotope/chrono.git?branch=0.5.x#chrono@0.5.0-alpha.1"
-    },
-    {
       "dependsOn": [
-        "git+https://github.com/chronotope/chrono.git?branch=0.5.x#chrono@0.5.0-alpha.1",
         "registry+https://github.com/rust-lang/crates.io-index#httpdate@1.0.3",
         "registry+https://github.com/rust-lang/crates.io-index#serde@1.0.229",
         "registry+https://github.com/rust-lang/crates.io-index#serde_json@1.0.154",
         "registry+https://github.com/rust-lang/crates.io-index#sha2@0.11.1",
+        "registry+https://github.com/rust-lang/crates.io-index#time@0.3.55",
         "registry+https://github.com/rust-lang/crates.io-index#url@2.5.9",
         "registry+https://github.com/rust-lang/crates.io-index#wit-bindgen@0.63.0"
       ],
@@ -2832,6 +3006,9 @@
         "registry+https://github.com/rust-lang/crates.io-index#hybrid-array@0.4.15"
       ],
       "ref": "registry+https://github.com/rust-lang/crates.io-index#crypto-common@0.2.2"
+    },
+    {
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#deranged@0.5.9"
     },
     {
       "dependsOn": [
@@ -3035,6 +3212,9 @@
       "ref": "registry+https://github.com/rust-lang/crates.io-index#memchr@2.8.3"
     },
     {
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#num-conv@0.2.2"
+    },
+    {
       "ref": "registry+https://github.com/rust-lang/crates.io-index#percent-encoding@2.3.2"
     },
     {
@@ -3045,6 +3225,9 @@
         "registry+https://github.com/rust-lang/crates.io-index#zerovec@0.11.8"
       ],
       "ref": "registry+https://github.com/rust-lang/crates.io-index#potential_utf@0.1.6"
+    },
+    {
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#powerfmt@0.2.1"
     },
     {
       "dependsOn": [
@@ -3132,6 +3315,26 @@
         "registry+https://github.com/rust-lang/crates.io-index#syn@3.0.6"
       ],
       "ref": "registry+https://github.com/rust-lang/crates.io-index#synstructure@0.14.0"
+    },
+    {
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#time-core@0.1.9"
+    },
+    {
+      "dependsOn": [
+        "registry+https://github.com/rust-lang/crates.io-index#num-conv@0.2.2",
+        "registry+https://github.com/rust-lang/crates.io-index#time-core@0.1.9"
+      ],
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#time-macros@0.2.32"
+    },
+    {
+      "dependsOn": [
+        "registry+https://github.com/rust-lang/crates.io-index#deranged@0.5.9",
+        "registry+https://github.com/rust-lang/crates.io-index#num-conv@0.2.2",
+        "registry+https://github.com/rust-lang/crates.io-index#powerfmt@0.2.1",
+        "registry+https://github.com/rust-lang/crates.io-index#time-core@0.1.9",
+        "registry+https://github.com/rust-lang/crates.io-index#time-macros@0.2.32"
+      ],
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#time@0.3.55"
     },
     {
       "dependsOn": [
@@ -3330,19 +3533,19 @@
       "description": "OCI image client component.",
       "externalReferences": [
         {
-          "comment": "revision 26f15cad0c1d053d8f1de1991d2bf1848eb6fff4",
+          "comment": "revision 7e16da30d4f0cea3d441566d3195cb0edc60d731",
           "type": "vcs",
           "url": "https://github.com/componentized/oci.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/oci/tree/26f15cad0c1d053d8f1de1991d2bf1848eb6fff4/components/client"
+          "url": "https://github.com/componentized/oci/tree/7e16da30d4f0cea3d441566d3195cb0edc60d731/components/client"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "ae4fe74d4ecbe2aa80b7df001ad09ac36d245ab52360b92571b89acf42858239"
+          "content": "699cd940dc3d3b93d249d7422d95f3cd9070d7abc57dfab4d8e6577b961192c2"
         }
       ],
       "licenses": [
@@ -3351,11 +3554,11 @@
         }
       ],
       "name": "componentized:oci-client",
-      "purl": "pkg:oci/client@sha256%3A4fcbb781f2f8a98bec0e8ee230c1620d7c1f6c1b38320414e12f3ebce519d2e9?repository_url=ghcr.io/componentized/oci/client&tag=0.1.1-dev",
+      "purl": "pkg:oci/client@sha256%3A4e0e72c016a8199d0fe032be95e09fb84f98fffd2e3f86d32a1bc85abf5996bc?repository_url=ghcr.io/componentized/oci/client&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-24T12:27:01Z",
+    "timestamp": "2026-11-24T21:53:46Z",
     "tools": {
       "components": [
         {

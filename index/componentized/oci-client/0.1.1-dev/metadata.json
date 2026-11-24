@@ -7,42 +7,42 @@
     "registry": "ghcr.io",
     "repository": "componentized/oci/client",
     "tag": "0.1.1-dev",
-    "digest": "sha256:4fcbb781f2f8a98bec0e8ee230c1620d7c1f6c1b38320414e12f3ebce519d2e9",
-    "layer_digest": "sha256:ae4fe74d4ecbe2aa80b7df001ad09ac36d245ab52360b92571b89acf42858239",
-    "size": 565110,
+    "digest": "sha256:4e0e72c016a8199d0fe032be95e09fb84f98fffd2e3f86d32a1bc85abf5996bc",
+    "layer_digest": "sha256:699cd940dc3d3b93d249d7422d95f3cd9070d7abc57dfab4d8e6577b961192c2",
+    "size": 554065,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/oci/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/oci",
       "git_ref": "refs/heads/main",
-      "log_index": 4077693849
+      "log_index": 4087220676
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/oci/client",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:acae14d4c74c013f692c76cca5e5211461acd05dcfd1fbea2ed6e34bdd5b014f",
-    "layer_digest": "sha256:dc171aa9d28050ed3d953b54dfdc912959c36382d523e01c40a48801fa00e9ab",
-    "size": 6270709,
+    "digest": "sha256:55ff59f3f8ec5b83b0d250d1fffa256e8fa1096fb9e51c8bbdbb897bdfbab013",
+    "layer_digest": "sha256:9f0d24005abf8f0a17d8d09c7318714417e0a35ed2e40d60c714aa9de91fd94e",
+    "size": 6313183,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/oci/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/oci",
       "git_ref": "refs/heads/main",
-      "log_index": 4077698398
+      "log_index": 4087226274
     }
   },
-  "created": "2026-11-24T12:30:16.284196791Z",
+  "created": "2026-11-24T21:56:37.522595076Z",
   "annotations": {
     "org.opencontainers.image.description": "OCI image client component.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "26f15cad0c1d053d8f1de1991d2bf1848eb6fff4",
+    "org.opencontainers.image.revision": "7e16da30d4f0cea3d441566d3195cb0edc60d731",
     "org.opencontainers.image.source": "https://github.com/componentized/oci.git",
     "org.opencontainers.image.title": "componentized:oci-client",
-    "org.opencontainers.image.url": "https://github.com/componentized/oci/tree/26f15cad0c1d053d8f1de1991d2bf1848eb6fff4/components/client",
+    "org.opencontainers.image.url": "https://github.com/componentized/oci/tree/7e16da30d4f0cea3d441566d3195cb0edc60d731/components/client",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -74,8 +74,8 @@
       "code": true
     },
     {
-      "digest": "sha256:4ae79df7ca5087da65dd44a9af8715ad3629db0e52665796a61ec9049ca93c05",
-      "size": 557968,
+      "digest": "sha256:f5a14200b9d35a456ff5469612272b9d09902ddfef015e36198a06bdfd0336fd",
+      "size": 546923,
       "code": true
     }
   ],
@@ -124,7 +124,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/oci",
     "git_ref": "refs/heads/main",
-    "log_index": 4077695742
+    "log_index": 4087222537
   },
-  "indexed_at": "2026-11-24T12:30:52Z"
+  "indexed_at": "2026-11-24T21:58:27Z"
 }
