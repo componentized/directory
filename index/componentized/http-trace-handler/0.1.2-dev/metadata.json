@@ -1,0 +1,91 @@
+{
+  "package": "componentized:http-trace-handler",
+  "version": "0.1.2-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/trace-handler",
+    "tag": "0.1.2-dev",
+    "digest": "sha256:57894a3455be1dead9210605ee17e1eefc74f4823b156ebeb10c1081098dfd8c",
+    "layer_digest": "sha256:89536b02a6cf9ff84625826b612db3ff3a151cb649ccb46645a3910ec3e46bc8",
+    "size": 186398,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/http",
+      "git_ref": "refs/heads/main",
+      "log_index": 4087872070
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/trace-handler",
+    "tag": "0.1.2-dev_debug",
+    "digest": "sha256:e5f6f6c9aed6a16a304824e453e67146c1c83a648c3bf1480b00c2351688e8e6",
+    "layer_digest": "sha256:d0d4602043810926b49a66d886960a4f83978e9ddc9748ac2a80906e1fc9ecf4",
+    "size": 715963,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/http",
+      "git_ref": "refs/heads/main",
+      "log_index": 4087873381
+    }
+  },
+  "created": "2026-11-24T22:55:09.453584484Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Virtualizes the wasi:http/types and wasi:http/handler interfaces logging all method calls at the TRACE level and 'componentized-trace' component.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "2d8a9aec694e8b9eed56e13eb523e1bf51e4612b",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-trace-handler",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/2d8a9aec694e8b9eed56e13eb523e1bf51e4612b/components/trace-handler",
+    "org.opencontainers.image.version": "v0.1.2-dev"
+  },
+  "imports": [
+    "wasi:clocks/types@0.3.0",
+    "wasi:http/handler@0.3.0",
+    "wasi:http/types@0.3.0",
+    "wasi:logging/logging@0.1.0-draft"
+  ],
+  "exports": [
+    "wasi:http/handler@0.3.0",
+    "wasi:http/types@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:6508ea067293821955590adce335300bb5b4597b4a014e3dd27f9d8686253e6c",
+      "size": 7955
+    },
+    {
+      "digest": "sha256:474592e1e1383f457fcad936bebef7e01d7cc6503a4b00b0e782e74a5b081c54",
+      "size": 1551
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/http",
+    "git_ref": "refs/heads/main",
+    "log_index": 4087872581
+  },
+  "indexed_at": "2026-11-24T23:00:48Z"
+}

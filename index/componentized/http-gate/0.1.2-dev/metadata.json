@@ -1,0 +1,152 @@
+{
+  "package": "componentized:http-gate",
+  "version": "0.1.2-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/gate",
+    "tag": "0.1.2-dev",
+    "digest": "sha256:f996a4ebf8f31d41523953c9995ef06222887f4c42a383243ceac33c8cea3367",
+    "layer_digest": "sha256:37c4ff1905d5fce910f94fa8c035f169955fd94e36f50b4f90589e279a4a1e1d",
+    "size": 159666,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/http",
+      "git_ref": "refs/heads/main",
+      "log_index": 4087759003
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/gate",
+    "tag": "0.1.2-dev_debug",
+    "digest": "sha256:17155c6538c2481d5ee962c0c20d494753fa1f4defca85b8ebf3ef4dfd2f6ec3",
+    "layer_digest": "sha256:91e1b42f3d3c84ee4f2a5335dbbcb758b7787ddde6634b3d01479dcf8a04db31",
+    "size": 566841,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/http",
+      "git_ref": "refs/heads/main",
+      "log_index": 4087762321
+    }
+  },
+  "created": "2026-11-24T22:43:20.281970267Z",
+  "annotations": {
+    "org.opencontainers.image.description": "HTTP gate access control for both requests sent and handled.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "2d8a9aec694e8b9eed56e13eb523e1bf51e4612b",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-gate",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/2d8a9aec694e8b9eed56e13eb523e1bf51e4612b/components/gate",
+    "org.opencontainers.image.version": "v0.1.2-dev"
+  },
+  "imports": [
+    "componentized:http/latch@0.1.2-dev",
+    "wasi:http/client@0.3.0",
+    "wasi:http/handler@0.3.0",
+    "wasi:http/types@0.3.0",
+    "wasi:logging/logging@0.1.0-draft"
+  ],
+  "exports": [
+    "wasi:http/client@0.3.0",
+    "wasi:http/handler@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:http",
+      "version": "0.1.2-dev"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:fd5f3e102f43620488031996464399ea15b931318ce6875b758f4267de85903e",
+      "size": 78322,
+      "code": true
+    },
+    {
+      "digest": "sha256:2ffbbc9ad856292d27b3116d2af582bf60cdd655633116c3301086f023833024",
+      "size": 78475,
+      "code": true
+    }
+  ],
+  "wiring": {
+    "instances": [
+      {
+        "part": 0,
+        "args": [
+          {
+            "name": "wasi:http/types@0.3.0",
+            "import": "wasi:http/types@0.3.0"
+          },
+          {
+            "name": "componentized:http/latch@0.1.2-dev",
+            "import": "componentized:http/latch@0.1.2-dev"
+          },
+          {
+            "name": "wasi:logging/logging@0.1.0-draft",
+            "import": "wasi:logging/logging@0.1.0-draft"
+          },
+          {
+            "name": "wasi:http/client@0.3.0",
+            "import": "wasi:http/client@0.3.0"
+          }
+        ]
+      },
+      {
+        "part": 1,
+        "args": [
+          {
+            "name": "wasi:http/types@0.3.0",
+            "import": "wasi:http/types@0.3.0"
+          },
+          {
+            "name": "componentized:http/latch@0.1.2-dev",
+            "import": "componentized:http/latch@0.1.2-dev"
+          },
+          {
+            "name": "wasi:logging/logging@0.1.0-draft",
+            "import": "wasi:logging/logging@0.1.0-draft"
+          },
+          {
+            "name": "wasi:http/handler@0.3.0",
+            "import": "wasi:http/handler@0.3.0"
+          }
+        ]
+      }
+    ],
+    "exports": [
+      {
+        "name": "wasi:http/client@0.3.0",
+        "instance": 0,
+        "export": "wasi:http/client@0.3.0"
+      },
+      {
+        "name": "wasi:http/handler@0.3.0",
+        "instance": 1,
+        "export": "wasi:http/handler@0.3.0"
+      }
+    ]
+  },
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/http",
+    "git_ref": "refs/heads/main",
+    "log_index": 4087759938
+  },
+  "indexed_at": "2026-11-24T22:57:32Z"
+}

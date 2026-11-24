@@ -1,0 +1,68 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "pkg:cargo/componentized-constants-cli@0.2.0",
+      "name": "componentized-constants-cli",
+      "purl": "pkg:cargo/componentized-constants-cli@0.2.0",
+      "type": "library",
+      "version": "0.2.0"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "pkg:cargo/componentized-constants-cli@0.2.0"
+      ],
+      "ref": "component:componentized:http-status-codes"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:cargo/componentized-constants-cli@0.2.0"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "component:componentized:http-status-codes",
+      "description": "HTTP status code constants.",
+      "externalReferences": [
+        {
+          "comment": "revision 2d8a9aec694e8b9eed56e13eb523e1bf51e4612b",
+          "type": "vcs",
+          "url": "https://github.com/componentized/http.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/componentized/http/tree/2d8a9aec694e8b9eed56e13eb523e1bf51e4612b/components/status-codes"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "da09a4eee1b33c4c94c0bb2bb7e6653136e590037fbad5408782270187cb7bae"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "componentized:http-status-codes",
+      "purl": "pkg:oci/status-codes@sha256%3A63f610ad9fa996dc293bbe3090cabc7103714692718306941c398d2bf10fbe4b?repository_url=ghcr.io/componentized/http/status-codes&tag=0.1.2-dev",
+      "type": "library",
+      "version": "0.1.2-dev"
+    },
+    "timestamp": "2026-11-24T22:37:03Z",
+    "tools": {
+      "components": [
+        {
+          "name": "componentized-constants-cli",
+          "type": "application",
+          "version": "0.2.0"
+        }
+      ]
+    }
+  },
+  "specVersion": "1.6",
+  "version": 1
+}

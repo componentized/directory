@@ -1,0 +1,56 @@
+{
+  "package": "componentized:http-status-codes",
+  "version": "0.1.2-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/http/status-codes",
+    "tag": "0.1.2-dev",
+    "digest": "sha256:63f610ad9fa996dc293bbe3090cabc7103714692718306941c398d2bf10fbe4b",
+    "layer_digest": "sha256:da09a4eee1b33c4c94c0bb2bb7e6653136e590037fbad5408782270187cb7bae",
+    "size": 19511,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/http",
+      "git_ref": "refs/heads/main",
+      "log_index": 4087856116
+    }
+  },
+  "created": "2026-11-24T22:53:20.258264892Z",
+  "annotations": {
+    "org.opencontainers.image.description": "HTTP status code constants.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "2d8a9aec694e8b9eed56e13eb523e1bf51e4612b",
+    "org.opencontainers.image.source": "https://github.com/componentized/http.git",
+    "org.opencontainers.image.title": "componentized:http-status-codes",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/2d8a9aec694e8b9eed56e13eb523e1bf51e4612b/components/status-codes",
+    "org.opencontainers.image.version": "v0.1.2-dev"
+  },
+  "exports": [
+    "componentized:http/status-codes@0.1.2-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:http",
+      "version": "0.1.2-dev"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:7a8b6b4d0d0123bbdf8dc18c731e22abe8ca18cdb670a186d577ed50830df19f",
+      "size": 3342
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/http/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/http",
+    "git_ref": "refs/heads/main",
+    "log_index": 4087857043
+  },
+  "indexed_at": "2026-11-24T22:59:47Z"
+}
