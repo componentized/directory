@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/cli/stdout-to-stderr",
     "tag": "0.2.1-dev",
-    "digest": "sha256:13347ce4dff5102fde67b90e844f3cdb23f0b4f048c1de810691b5819dd1e6a1",
+    "digest": "sha256:50caf7c2cd4d5c34baf8c30b8a6f01bde1078ceabdf5128a13e369ec5c174ce2",
     "layer_digest": "sha256:03b6d85d3ae6d00491b37bd6df90ec415a32c4c5992812c7c333ea8aaded50c6",
     "size": 20545,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/cli",
       "git_ref": "refs/heads/main",
-      "log_index": 4030831722
+      "log_index": 4066337209
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/cli/stdout-to-stderr",
     "tag": "0.2.1-dev_debug",
-    "digest": "sha256:643cee7b2ff3c052da1ae18dd4fb41b7050a3c06264039f4de4715c9cb0d1a11",
+    "digest": "sha256:ee4cc5fb781007c9e56907ddd9b314f0f2198e9af1115438581fc863f71ddd32",
     "layer_digest": "sha256:e9899fc979f5b954eff811dce557e4a60dbadac0b52012f63ae93a4b3acb88ca",
     "size": 40496,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/cli",
       "git_ref": "refs/heads/main",
-      "log_index": 4030832035
+      "log_index": 4066340921
     }
   },
-  "created": "2026-11-21T01:33:32.689648333Z",
+  "created": "2026-11-24T02:23:56.549853515Z",
   "annotations": {
     "org.opencontainers.image.description": "Redirects stdout's output stream to stderr.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "1201eca791ec23f6d87b01478c08c84f7ea6c1e9",
+    "org.opencontainers.image.revision": "2f089b16c445b9328c179995a63b5d7ba838f1fc",
     "org.opencontainers.image.source": "https://github.com/componentized/cli.git",
     "org.opencontainers.image.title": "componentized:cli-stdout-to-stderr",
-    "org.opencontainers.image.url": "https://github.com/componentized/cli/tree/1201eca791ec23f6d87b01478c08c84f7ea6c1e9/components/stdout-to-stderr",
+    "org.opencontainers.image.url": "https://github.com/componentized/cli/tree/2f089b16c445b9328c179995a63b5d7ba838f1fc/components/stdout-to-stderr",
     "org.opencontainers.image.version": "v0.2.1-dev"
   },
   "imports": [
@@ -70,7 +70,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/cli",
     "git_ref": "refs/heads/main",
-    "log_index": 4030831840
+    "log_index": 4066338817
   },
-  "indexed_at": "2026-11-21T01:36:19Z"
+  "indexed_at": "2026-11-24T02:29:53Z"
 }

@@ -1477,13 +1477,13 @@
       "description": "Redirects stderr's output stream to stdout.",
       "externalReferences": [
         {
-          "comment": "revision 1201eca791ec23f6d87b01478c08c84f7ea6c1e9",
+          "comment": "revision 2f089b16c445b9328c179995a63b5d7ba838f1fc",
           "type": "vcs",
           "url": "https://github.com/componentized/cli.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/cli/tree/1201eca791ec23f6d87b01478c08c84f7ea6c1e9/components/stderr-to-stdout"
+          "url": "https://github.com/componentized/cli/tree/2f089b16c445b9328c179995a63b5d7ba838f1fc/components/stderr-to-stdout"
         }
       ],
       "hashes": [
@@ -1498,11 +1498,11 @@
         }
       ],
       "name": "componentized:cli-stderr-to-stdout",
-      "purl": "pkg:oci/stderr-to-stdout@sha256%3Aab37938867bad704790d4dbe2bcc14a72e00834673639ac685a699e136a24063?repository_url=ghcr.io/componentized/cli/stderr-to-stdout&tag=0.2.1-dev",
+      "purl": "pkg:oci/stderr-to-stdout@sha256%3Aebdfab811a1daf6386a08c3697f27b610ab4da7613904450795427c4cbf98fbf?repository_url=ghcr.io/componentized/cli/stderr-to-stdout&tag=0.2.1-dev",
       "type": "library",
       "version": "0.2.1-dev"
     },
-    "timestamp": "2026-11-21T01:31:01Z",
+    "timestamp": "2026-11-24T02:21:13Z",
     "tools": {
       "components": [
         {
