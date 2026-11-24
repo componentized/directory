@@ -13,13 +13,13 @@
       "description": "A WASM component client for Valkey (and Redis).",
       "externalReferences": [
         {
-          "comment": "revision fea48c1b0bc5d38d33434d3a92e86f0bfb332365",
+          "comment": "revision f8c4a65226b4b9332a2605ace8abe084059ffdf8",
           "type": "vcs",
           "url": "https://github.com/componentized/valkey.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/valkey/tree/fea48c1b0bc5d38d33434d3a92e86f0bfb332365"
+          "url": "https://github.com/componentized/valkey/tree/f8c4a65226b4b9332a2605ace8abe084059ffdf8"
         }
       ],
       "hashes": [
@@ -34,11 +34,11 @@
         }
       ],
       "name": "componentized:valkey",
-      "purl": "pkg:oci/valkey@sha256%3Ac821348d6a203f68088252b1db5bf06f06244d8dc2bf235372580da94cbbf328?repository_url=ghcr.io/componentized/valkey&tag=0.3.1-dev",
+      "purl": "pkg:oci/valkey@sha256%3A2eb2baea7939e96a219b92b7b99a6e900031824936e47b2f1e638069092e221e?repository_url=ghcr.io/componentized/valkey&tag=0.3.1-dev",
       "type": "library",
       "version": "0.3.1-dev"
     },
-    "timestamp": "2026-11-20T04:23:56Z",
+    "timestamp": "2026-11-24T02:41:52Z",
     "tools": {
       "components": [
         {

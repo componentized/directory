@@ -27,13 +27,13 @@
       "description": "The keys of the `as-keyvalue` secrets and their defaults, as constants.",
       "externalReferences": [
         {
-          "comment": "revision fea48c1b0bc5d38d33434d3a92e86f0bfb332365",
+          "comment": "revision f8c4a65226b4b9332a2605ace8abe084059ffdf8",
           "type": "vcs",
           "url": "https://github.com/componentized/valkey.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/valkey/tree/fea48c1b0bc5d38d33434d3a92e86f0bfb332365/components/as-keyvalue-constants"
+          "url": "https://github.com/componentized/valkey/tree/f8c4a65226b4b9332a2605ace8abe084059ffdf8/components/as-keyvalue-constants"
         }
       ],
       "hashes": [
@@ -48,11 +48,11 @@
         }
       ],
       "name": "componentized:valkey-as-keyvalue-constants",
-      "purl": "pkg:oci/as-keyvalue-constants@sha256%3A85b4b35c63810b9fff2b3158a26130527a90d608a2bcc29c7d3e603fea28bc61?repository_url=ghcr.io/componentized/valkey/as-keyvalue-constants&tag=0.3.1-dev",
+      "purl": "pkg:oci/as-keyvalue-constants@sha256%3A48654f86f5e12f4a0b8820242417b51f37d50a194480427b92eb35ea47bce6c5?repository_url=ghcr.io/componentized/valkey/as-keyvalue-constants&tag=0.3.1-dev",
       "type": "library",
       "version": "0.3.1-dev"
     },
-    "timestamp": "2026-11-20T04:23:56Z",
+    "timestamp": "2026-11-24T02:41:52Z",
     "tools": {
       "components": [
         {

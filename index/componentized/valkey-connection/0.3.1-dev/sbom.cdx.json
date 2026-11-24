@@ -1823,13 +1823,13 @@
       "description": "The mechanics of a connection to a Valkey server, independent of the transport carrying it.",
       "externalReferences": [
         {
-          "comment": "revision fea48c1b0bc5d38d33434d3a92e86f0bfb332365",
+          "comment": "revision f8c4a65226b4b9332a2605ace8abe084059ffdf8",
           "type": "vcs",
           "url": "https://github.com/componentized/valkey.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/valkey/tree/fea48c1b0bc5d38d33434d3a92e86f0bfb332365/components/connection"
+          "url": "https://github.com/componentized/valkey/tree/f8c4a65226b4b9332a2605ace8abe084059ffdf8/components/connection"
         }
       ],
       "hashes": [
@@ -1844,11 +1844,11 @@
         }
       ],
       "name": "componentized:valkey-connection",
-      "purl": "pkg:oci/connection@sha256%3A58c95fb4de4bb903d415d4a626999cc26e0c0f6cd09c2af6c19a584ed1628334?repository_url=ghcr.io/componentized/valkey/connection&tag=0.3.1-dev",
+      "purl": "pkg:oci/connection@sha256%3Ae7b0f997d0ead68040138073c1279527adc768c74153a62c9ef74adcb9d0c5e7?repository_url=ghcr.io/componentized/valkey/connection&tag=0.3.1-dev",
       "type": "library",
       "version": "0.3.1-dev"
     },
-    "timestamp": "2026-11-20T04:23:56Z",
+    "timestamp": "2026-11-24T02:41:52Z",
     "tools": {
       "components": [
         {

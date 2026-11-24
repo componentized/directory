@@ -2142,13 +2142,13 @@
       "description": "A `componentized:sockets` latch limiting network access to the Valkey server in the `tcp-connector` secrets, denying every other socket.",
       "externalReferences": [
         {
-          "comment": "revision fea48c1b0bc5d38d33434d3a92e86f0bfb332365",
+          "comment": "revision f8c4a65226b4b9332a2605ace8abe084059ffdf8",
           "type": "vcs",
           "url": "https://github.com/componentized/valkey.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/valkey/tree/fea48c1b0bc5d38d33434d3a92e86f0bfb332365/components/tcp-connector-latch"
+          "url": "https://github.com/componentized/valkey/tree/f8c4a65226b4b9332a2605ace8abe084059ffdf8/components/tcp-connector-latch"
         }
       ],
       "hashes": [
@@ -2163,11 +2163,11 @@
         }
       ],
       "name": "componentized:valkey-tcp-connector-latch",
-      "purl": "pkg:oci/tcp-connector-latch@sha256%3Afe9f25a96be64d535fa1b879b8b1a76740f092462d36a6a24bba256b870e4a26?repository_url=ghcr.io/componentized/valkey/tcp-connector-latch&tag=0.3.1-dev",
+      "purl": "pkg:oci/tcp-connector-latch@sha256%3A8882318748ac76c4b93c64545d2346377e417da4d12c71b95a694cb30a637ff8?repository_url=ghcr.io/componentized/valkey/tcp-connector-latch&tag=0.3.1-dev",
       "type": "library",
       "version": "0.3.1-dev"
     },
-    "timestamp": "2026-11-20T04:23:56Z",
+    "timestamp": "2026-11-24T02:41:52Z",
     "tools": {
       "components": [
         {

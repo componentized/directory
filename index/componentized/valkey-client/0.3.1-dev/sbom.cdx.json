@@ -2535,13 +2535,13 @@
       "description": "Client for interacting with a Valkey server, as `componentized:valkey` and `wasmcloud:keyvalue`.",
       "externalReferences": [
         {
-          "comment": "revision fea48c1b0bc5d38d33434d3a92e86f0bfb332365",
+          "comment": "revision f8c4a65226b4b9332a2605ace8abe084059ffdf8",
           "type": "vcs",
           "url": "https://github.com/componentized/valkey.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/valkey/tree/fea48c1b0bc5d38d33434d3a92e86f0bfb332365/components/client"
+          "url": "https://github.com/componentized/valkey/tree/f8c4a65226b4b9332a2605ace8abe084059ffdf8/components/client"
         }
       ],
       "hashes": [
@@ -2556,11 +2556,11 @@
         }
       ],
       "name": "componentized:valkey-client",
-      "purl": "pkg:oci/client@sha256%3A41ed0289b5ca5df37dcf70f7848458fc34772cad52245b3d7ec1ec32938c2bab?repository_url=ghcr.io/componentized/valkey/client&tag=0.3.1-dev",
+      "purl": "pkg:oci/client@sha256%3A05f426af74d66bdda47c79cd9aeb7728ca67d1fc558047006da7e27c13cd3465?repository_url=ghcr.io/componentized/valkey/client&tag=0.3.1-dev",
       "type": "library",
       "version": "0.3.1-dev"
     },
-    "timestamp": "2026-11-20T04:23:56Z",
+    "timestamp": "2026-11-24T02:41:52Z",
     "tools": {
       "components": [
         {

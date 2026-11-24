@@ -1800,13 +1800,13 @@
       "description": "Adapter to back `wasmcloud:keyvalue` with the `componentized:valkey` client.",
       "externalReferences": [
         {
-          "comment": "revision fea48c1b0bc5d38d33434d3a92e86f0bfb332365",
+          "comment": "revision f8c4a65226b4b9332a2605ace8abe084059ffdf8",
           "type": "vcs",
           "url": "https://github.com/componentized/valkey.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/valkey/tree/fea48c1b0bc5d38d33434d3a92e86f0bfb332365/components/as-keyvalue"
+          "url": "https://github.com/componentized/valkey/tree/f8c4a65226b4b9332a2605ace8abe084059ffdf8/components/as-keyvalue"
         }
       ],
       "hashes": [
@@ -1821,11 +1821,11 @@
         }
       ],
       "name": "componentized:valkey-as-keyvalue",
-      "purl": "pkg:oci/as-keyvalue@sha256%3A6fb6577d7061ce3d5e973b1fd04293c2969d99fbd69e9dae80bc9038472b86f2?repository_url=ghcr.io/componentized/valkey/as-keyvalue&tag=0.3.1-dev",
+      "purl": "pkg:oci/as-keyvalue@sha256%3A5e75273618685c097aab89f782690c913967b4e3fb6ce1831c72a4c4865a2ecd?repository_url=ghcr.io/componentized/valkey/as-keyvalue&tag=0.3.1-dev",
       "type": "library",
       "version": "0.3.1-dev"
     },
-    "timestamp": "2026-11-20T04:23:56Z",
+    "timestamp": "2026-11-24T02:41:52Z",
     "tools": {
       "components": [
         {

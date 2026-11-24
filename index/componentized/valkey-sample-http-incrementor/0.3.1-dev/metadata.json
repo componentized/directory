@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/sample-http-incrementor",
     "tag": "0.3.1-dev",
-    "digest": "sha256:58a6d52e9406e40f5f25a587c3525f7f47500d95970a1e34f0b17a8537611237",
+    "digest": "sha256:54c0a73d16623a4d79227fd8b21870af9909a7c1861fcf9ebd24efbe1fe18313",
     "layer_digest": "sha256:d7648981b06d5d67636800cadc9932261055e8f6d935d520f4de77421f0da889",
     "size": 118815,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/valkey",
       "git_ref": "refs/heads/main",
-      "log_index": 4017479096
+      "log_index": 4067082842
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/valkey/sample-http-incrementor",
     "tag": "0.3.1-dev_debug",
-    "digest": "sha256:0eb0187fa7a94011637b980825566cc1e21cf8cf92e6af92ea6d6d51d6105a33",
+    "digest": "sha256:8c6e6477e6875e09781143ed2591ff1bbb2fb19c1649e0f942cd3926dba339f8",
     "layer_digest": "sha256:7596da3cd229940a5fd81afe7a0a00ff30dc46cf49d7c5377eb50bceb24f0906",
     "size": 1301699,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/valkey",
       "git_ref": "refs/heads/main",
-      "log_index": 4017488396
+      "log_index": 4067091694
     }
   },
-  "created": "2026-11-20T04:41:59.611782766Z",
+  "created": "2026-11-24T02:54:37.485002496Z",
   "annotations": {
     "org.opencontainers.image.description": "Sample component that exposes `wasi:http` incrementing a counter based on the http path.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "fea48c1b0bc5d38d33434d3a92e86f0bfb332365",
+    "org.opencontainers.image.revision": "f8c4a65226b4b9332a2605ace8abe084059ffdf8",
     "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
     "org.opencontainers.image.title": "componentized:valkey-sample-http-incrementor",
-    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/fea48c1b0bc5d38d33434d3a92e86f0bfb332365/components/sample-http-incrementor",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/f8c4a65226b4b9332a2605ace8abe084059ffdf8/components/sample-http-incrementor",
     "org.opencontainers.image.version": "v0.3.1-dev"
   },
   "imports": [
@@ -76,7 +76,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/valkey",
     "git_ref": "refs/heads/main",
-    "log_index": 4017482463
+    "log_index": 4067086637
   },
-  "indexed_at": "2026-11-20T04:47:27Z"
+  "indexed_at": "2026-11-24T02:58:29Z"
 }

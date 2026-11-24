@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/valkey/as-keyvalue-latch-key-config",
     "tag": "0.3.1-dev",
-    "digest": "sha256:aa3a0edc71c49aa4383b91adcf963615de09cb30e03ef9bf423f55074911d2c6",
+    "digest": "sha256:35510cfebe5ec1839b9b081a6499928b0aa7adbeac844371dffb234f05c664e8",
     "layer_digest": "sha256:027f4fc2a0bd857f71c7ece6a6bdb61cc92f3523d35385a4002955fd7ffc1847",
     "size": 6218,
     "signature": {
@@ -16,17 +16,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/valkey",
       "git_ref": "refs/heads/main",
-      "log_index": 4017374819
+      "log_index": 4067006608
     }
   },
-  "created": "2026-11-20T04:37:37.886588849Z",
+  "created": "2026-11-24T02:51:56.079696643Z",
   "annotations": {
     "org.opencontainers.image.description": "Denies access to all secret keys except `key-prefix`.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "fea48c1b0bc5d38d33434d3a92e86f0bfb332365",
+    "org.opencontainers.image.revision": "f8c4a65226b4b9332a2605ace8abe084059ffdf8",
     "org.opencontainers.image.source": "https://github.com/componentized/valkey.git",
     "org.opencontainers.image.title": "componentized:valkey-as-keyvalue-latch-key-config",
-    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/fea48c1b0bc5d38d33434d3a92e86f0bfb332365/components/as-keyvalue-latch-key-config",
+    "org.opencontainers.image.url": "https://github.com/componentized/valkey/tree/f8c4a65226b4b9332a2605ace8abe084059ffdf8/components/as-keyvalue-latch-key-config",
     "org.opencontainers.image.version": "v0.3.1-dev"
   },
   "exports": [
@@ -80,7 +80,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/valkey",
     "git_ref": "refs/heads/main",
-    "log_index": 4017377991
+    "log_index": 4067007998
   },
-  "indexed_at": "2026-11-20T04:46:53Z"
+  "indexed_at": "2026-11-24T02:57:58Z"
 }
