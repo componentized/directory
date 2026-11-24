@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/secrets/from-config",
     "tag": "0.1.2-dev",
-    "digest": "sha256:adcdeb84ee09ee2a11559e7e40ccae09b5226521daed0c85d302d191ce8a7835",
+    "digest": "sha256:b8b2ca3135c5a1192adcfdede771d1bf96dc7122d731315762d5f2cdeb5de748",
     "layer_digest": "sha256:b656c800a478772ddd632e4e9291371fd7aeddcb083fab04ec29b039855de30f",
     "size": 60662,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/secrets",
       "git_ref": "refs/heads/main",
-      "log_index": 4066384257
+      "log_index": 4079167469
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/secrets/from-config",
     "tag": "0.1.2-dev_debug",
-    "digest": "sha256:4df814ff37234db04d7aa64fe34ffed42ca5901817410b61aa347f547e8af962",
+    "digest": "sha256:458f99b65e4b262dcec54627747dd0911b94bfefd56b155f1e063b8c062a2d56",
     "layer_digest": "sha256:f5c09c136f574c10bd384313dfe2b84b9ce78cfba8b9c1fc74f13effaf46d341",
     "size": 205258,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/secrets",
       "git_ref": "refs/heads/main",
-      "log_index": 4066387283
+      "log_index": 4079172775
     }
   },
-  "created": "2026-11-24T02:26:48.816299072Z",
+  "created": "2026-11-24T13:39:50.636929746Z",
   "annotations": {
     "org.opencontainers.image.description": "`componentized:secrets`, backed by `wasi:config`, for hosts without secrets, e.g. wasmtime. Each secret is the config value of the same key, a missing key is not found. The config values are read once, when the store is initialized.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "40c44dc71ad839fe7a3d344acce555f246b9de3a",
+    "org.opencontainers.image.revision": "83b6d06df7310670e68044484693621823607dcd",
     "org.opencontainers.image.source": "https://github.com/componentized/secrets.git",
     "org.opencontainers.image.title": "componentized:secrets-from-config",
-    "org.opencontainers.image.url": "https://github.com/componentized/secrets/tree/40c44dc71ad839fe7a3d344acce555f246b9de3a/components/from-config",
+    "org.opencontainers.image.url": "https://github.com/componentized/secrets/tree/83b6d06df7310670e68044484693621823607dcd/components/from-config",
     "org.opencontainers.image.version": "v0.1.2-dev"
   },
   "imports": [
@@ -78,7 +78,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/secrets",
     "git_ref": "refs/heads/main",
-    "log_index": 4066385406
+    "log_index": 4079169304
   },
-  "indexed_at": "2026-11-24T02:33:12Z"
+  "indexed_at": "2026-11-24T13:46:44Z"
 }

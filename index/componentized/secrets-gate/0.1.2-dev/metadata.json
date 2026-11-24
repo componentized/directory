@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/secrets/gate",
     "tag": "0.1.2-dev",
-    "digest": "sha256:70f5a19d08c8c6bc65e3925768961b3b93491abd088946fc06927cb30aa4d09d",
+    "digest": "sha256:a055a2582ce58727fa89d67fdc4678830c8cd284842e519dac3aa540a7475d29",
     "layer_digest": "sha256:2d191c3233930bfda7dd90f66c9e098499ed320e05fb2a0857ae46c1440b97ba",
     "size": 63442,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/secrets",
       "git_ref": "refs/heads/main",
-      "log_index": 4066389868
+      "log_index": 4079180433
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/secrets/gate",
     "tag": "0.1.2-dev_debug",
-    "digest": "sha256:8a482e234de89e3a480e45f3bff50ef21fd246a1ba8b1f2a6f1cb418356cccd9",
+    "digest": "sha256:8269c888110f19a1eb06c1cc52810604b9d00f26f1d22b7dd53ba063827186a3",
     "layer_digest": "sha256:317822425d91c6e2af34b675d3fdc5d668cde70cf90d46a1cab08a47d00c4676",
     "size": 199652,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/secrets",
       "git_ref": "refs/heads/main",
-      "log_index": 4066393809
+      "log_index": 4079188433
     }
   },
-  "created": "2026-11-24T02:27:15.868727888Z",
+  "created": "2026-11-24T13:40:27.914359585Z",
   "annotations": {
     "org.opencontainers.image.description": "`componentized:secrets` gate, access control for the secrets of a store.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "40c44dc71ad839fe7a3d344acce555f246b9de3a",
+    "org.opencontainers.image.revision": "83b6d06df7310670e68044484693621823607dcd",
     "org.opencontainers.image.source": "https://github.com/componentized/secrets.git",
     "org.opencontainers.image.title": "componentized:secrets-gate",
-    "org.opencontainers.image.url": "https://github.com/componentized/secrets/tree/40c44dc71ad839fe7a3d344acce555f246b9de3a/components/gate",
+    "org.opencontainers.image.url": "https://github.com/componentized/secrets/tree/83b6d06df7310670e68044484693621823607dcd/components/gate",
     "org.opencontainers.image.version": "v0.1.2-dev"
   },
   "imports": [
@@ -81,7 +81,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/secrets",
     "git_ref": "refs/heads/main",
-    "log_index": 4066391029
+    "log_index": 4079182890
   },
-  "indexed_at": "2026-11-24T02:33:20Z"
+  "indexed_at": "2026-11-24T13:46:51Z"
 }

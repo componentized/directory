@@ -1482,13 +1482,13 @@
       "description": "Adapts a `componentized:secrets` store to `wasmcloud:secrets`, for components that use the secrets of a wasmCloud host. Plug a store into it, e.g. [`from-config`](../from-config/).",
       "externalReferences": [
         {
-          "comment": "revision 40c44dc71ad839fe7a3d344acce555f246b9de3a",
+          "comment": "revision 83b6d06df7310670e68044484693621823607dcd",
           "type": "vcs",
           "url": "https://github.com/componentized/secrets.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/secrets/tree/40c44dc71ad839fe7a3d344acce555f246b9de3a/components/to-wasmcloud"
+          "url": "https://github.com/componentized/secrets/tree/83b6d06df7310670e68044484693621823607dcd/components/to-wasmcloud"
         }
       ],
       "hashes": [
@@ -1503,11 +1503,11 @@
         }
       ],
       "name": "componentized:secrets-to-wasmcloud",
-      "purl": "pkg:oci/to-wasmcloud@sha256%3Ab43e1ed33a4493e3019e33adf7d50f4cd0deb0a4013f8c239839822dfe17cc6d?repository_url=ghcr.io/componentized/secrets/to-wasmcloud&tag=0.1.2-dev",
+      "purl": "pkg:oci/to-wasmcloud@sha256%3A3f500be4fe444ae6961821e1e4fbc469d9c5b26fb7dddf6850484f1d8d27472c?repository_url=ghcr.io/componentized/secrets/to-wasmcloud&tag=0.1.2-dev",
       "type": "library",
       "version": "0.1.2-dev"
     },
-    "timestamp": "2026-11-24T02:24:09Z",
+    "timestamp": "2026-11-24T13:36:10Z",
     "tools": {
       "components": [
         {

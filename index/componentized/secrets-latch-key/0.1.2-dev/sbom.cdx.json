@@ -1482,13 +1482,13 @@
       "description": "`componentized:secrets` latch that decides each secret by its key.",
       "externalReferences": [
         {
-          "comment": "revision 40c44dc71ad839fe7a3d344acce555f246b9de3a",
+          "comment": "revision 83b6d06df7310670e68044484693621823607dcd",
           "type": "vcs",
           "url": "https://github.com/componentized/secrets.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/secrets/tree/40c44dc71ad839fe7a3d344acce555f246b9de3a/components/latch-key"
+          "url": "https://github.com/componentized/secrets/tree/83b6d06df7310670e68044484693621823607dcd/components/latch-key"
         }
       ],
       "hashes": [
@@ -1503,11 +1503,11 @@
         }
       ],
       "name": "componentized:secrets-latch-key",
-      "purl": "pkg:oci/latch-key@sha256%3A467a4004fb1343187cdfc5a92d811d15a87df81e6e16ad9dca22027966f95e88?repository_url=ghcr.io/componentized/secrets/latch-key&tag=0.1.2-dev",
+      "purl": "pkg:oci/latch-key@sha256%3A9f5c92e3565289ab2c93bc47e801f87e8f6f7d572b0fa4b771a2e7ea17bbd2fa?repository_url=ghcr.io/componentized/secrets/latch-key&tag=0.1.2-dev",
       "type": "library",
       "version": "0.1.2-dev"
     },
-    "timestamp": "2026-11-24T02:24:09Z",
+    "timestamp": "2026-11-24T13:36:10Z",
     "tools": {
       "components": [
         {

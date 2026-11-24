@@ -1482,13 +1482,13 @@
       "description": "`componentized:secrets`, that returns `not-found` for all keys.",
       "externalReferences": [
         {
-          "comment": "revision 40c44dc71ad839fe7a3d344acce555f246b9de3a",
+          "comment": "revision 83b6d06df7310670e68044484693621823607dcd",
           "type": "vcs",
           "url": "https://github.com/componentized/secrets.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/secrets/tree/40c44dc71ad839fe7a3d344acce555f246b9de3a/components/empty"
+          "url": "https://github.com/componentized/secrets/tree/83b6d06df7310670e68044484693621823607dcd/components/empty"
         }
       ],
       "hashes": [
@@ -1503,11 +1503,11 @@
         }
       ],
       "name": "componentized:secrets-empty",
-      "purl": "pkg:oci/empty@sha256%3Aad73c539abad1de5ea560440629501057cb4b7c4c6d9ae3385f67e06a9f27a3c?repository_url=ghcr.io/componentized/secrets/empty&tag=0.1.2-dev",
+      "purl": "pkg:oci/empty@sha256%3A67e94540e0d2146f12a0515879f0a715f122381d3d26d9f733b5512cc4d4b0ee?repository_url=ghcr.io/componentized/secrets/empty&tag=0.1.2-dev",
       "type": "library",
       "version": "0.1.2-dev"
     },
-    "timestamp": "2026-11-24T02:24:09Z",
+    "timestamp": "2026-11-24T13:36:10Z",
     "tools": {
       "components": [
         {
