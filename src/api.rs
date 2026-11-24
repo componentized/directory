@@ -38,6 +38,53 @@ pub struct Api {
     /// Its WIT as its page shows it, highlighted HTML, its types linked to their definitions, for a
     /// line by line diff of its text, which the browser reads from the HTML.
     pub wit: String,
+    /// The size of its wasm layer in bytes, and of its debug build's, when it has one.
+    pub size: u64,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub debug_size: Option<u64>,
+    /// What its verified SBOM lists, and the advisories of it. None for a version without one.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sbom: Option<Sbom>,
+}
+
+/// What a version's verified SBOM lists, for a compare page to tell what was added, removed or
+/// upgraded, and the advisories of it, to tell which were fixed and which are new.
+#[derive(Serialize)]
+pub struct Sbom {
+    /// Each package it lists, by its ecosystem and name, e.g. `cargo` and `url`.
+    pub packages: Vec<SbomPackage>,
+    /// Its known advisories, the most severe first.
+    pub advisories: Vec<Advisory>,
+    /// Whether every package it lists that OSV.dev knows of is checked, so its advisories are all
+    /// that are known of it.
+    pub checked: bool,
+}
+
+#[derive(Serialize)]
+pub struct SbomPackage {
+    /// Its package URL's type, e.g. `cargo` or `oci`, or empty for one without a package URL.
+    pub kind: String,
+    pub name: String,
+    /// Its versions, oldest first: an SBOM can list a package at more than one.
+    pub versions: Vec<String>,
+    /// Whether it's only used to build the version, e.g. a macro or a build script's.
+    #[serde(skip_serializing_if = "std::ops::Not::not")]
+    pub build_only: bool,
+}
+
+#[derive(Serialize)]
+pub struct Advisory {
+    pub id: String,
+    pub summary: String,
+    /// `vulnerability`, or an informational kind, e.g. `unmaintained`.
+    pub kind: String,
+    /// How severe a vulnerability is: `critical`, `high`, `moderate`, `low` or `unrated`.
+    pub severity: &'static str,
+    /// The packages it's of, e.g. `url@2.5.8`.
+    pub packages: Vec<String>,
+    /// Whether every package it's of is only used to build the version.
+    #[serde(skip_serializing_if = "std::ops::Not::not")]
+    pub build_only: bool,
 }
 
 /// How many known vulnerabilities of one severity a version has, e.g. 2 `high`.

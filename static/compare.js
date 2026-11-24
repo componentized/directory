@@ -398,6 +398,120 @@
     return `<pre class="wit wit-diff"><code>${html}</code></pre>`;
   };
 
+  // a size in bytes as a version's page says it, e.g. `12.3 KiB`
+  const bytes = (n) => {
+    const abs = Math.abs(n);
+    if (abs >= 1024 * 1024) return `${(n / (1024 * 1024)).toFixed(1)} MiB`;
+    if (abs >= 1024) return `${(n / 1024).toFixed(1)} KiB`;
+    return `${n} B`;
+  };
+  // the sizes of the two versions' wasm layers, and of their debug builds', with how much each
+  // grew or shrank
+  const sizeSection = (a, b) => {
+    // a wasm layer is never empty, so a size of 0 isn't known
+    const row = (label, was, is) => {
+      was ||= null;
+      is ||= null;
+      if (was == null && is == null) return "";
+      if (was == null || is == null) {
+        return `<dt>${esc(label)}</dt><dd>${was == null ? `<span class="dim">none</span> → <code>${esc(bytes(is))}</code>` : `<code>${esc(bytes(was))}</code> → <span class="dim">none</span>`}</dd>`;
+      }
+      const delta = is - was;
+      const share = Math.abs((delta / was) * 100);
+      const pct = was ? ` (${delta > 0 ? "+" : "−"}${share < 0.1 ? "<0.1" : share.toFixed(1)}%)` : "";
+      const said = delta === 0 ? `<span class="dim">the same</span>` : `<span class="size-delta ${delta > 0 ? "size-up" : "size-down"}">${delta > 0 ? "+" : "−"}${esc(bytes(Math.abs(delta)))}${esc(pct)}</span>`;
+      return `<dt>${esc(label)}</dt><dd><code>${esc(bytes(was))}</code> → <code>${esc(bytes(is))}</code> ${said}</dd>`;
+    };
+    const rows = [row("Wasm", a.size, b.size), row("Debug build", a.debug_size, b.debug_size)].join("");
+    const dl = rows && `<dl class="facts compare-sizes">${rows}</dl>`;
+    return `<section class="compare-section" id="compare-size"><h2>Size</h2>
+      ${dl || `<p class="dim">Neither version's size is known.</p>`}</section>`;
+  };
+
+  // orders versions by their `major.minor.patch`, a pre-release before its release, else as text
+  const cmpVersion = (x, y) => {
+    const parse = (v) => {
+      const [core, pre] = v.split("+")[0].split(/-(.*)/s);
+      return { nums: core.split(".").map((n) => parseInt(n, 10) || 0), pre: pre ?? null };
+    };
+    const [p, q] = [parse(x), parse(y)];
+    for (let i = 0; i < Math.max(p.nums.length, q.nums.length); i++) {
+      const d = (p.nums[i] ?? 0) - (q.nums[i] ?? 0);
+      if (d) return d;
+    }
+    if (p.pre === q.pre) return 0;
+    if (p.pre === null) return 1;
+    if (q.pre === null) return -1;
+    return p.pre.localeCompare(q.pre, undefined, { numeric: true });
+  };
+
+  // a version without a verified SBOM, said so, for the SBOM's and advisories' sections
+  const noSbom = (a, b) => [a, b].filter((v) => !v.sbom).map((v) => `<code>${esc(v.version)}</code>`).join(" and ");
+
+  // the packages the two versions' SBOMs list: those added, removed, upgraded and downgraded, by
+  // their ecosystem and name
+  const sbomSection = (a, b) => {
+    const title = "SBOM packages";
+    if (!a.sbom || !b.sbom) {
+      return `<section class="compare-section" id="compare-sbom"><h2>${title}</h2><p class="dim">${noSbom(a, b)} ${!a.sbom && !b.sbom ? "have" : "has"} no verified SBOM to compare.</p></section>`;
+    }
+    const byKey = (sbom) => new Map(sbom.packages.map((p) => [`${p.kind}/${p.name}`, p]));
+    const [was, is] = [byKey(a.sbom), byKey(b.sbom)];
+    const at = (p) => p.versions.join(", ");
+    const changes = [];
+    for (const key of [...new Set([...was.keys(), ...is.keys()])].sort()) {
+      const old = was.get(key);
+      const now = is.get(key);
+      const p = now ?? old;
+      const label = !old ? `${p.name}@${at(now)}` : !now ? `${p.name}@${at(old)}` : `${p.name} ${at(old)} → ${at(now)}`;
+      let change = !old ? "added" : !now ? "removed" : null;
+      if (!change && at(old) !== at(now)) {
+        change = cmpVersion(now.versions.at(-1) ?? "", old.versions.at(-1) ?? "") >= 0 ? "upgraded" : "downgraded";
+      }
+      if (change) changes.push({ change, label, kind: p.kind, build_only: p.build_only });
+    }
+    const order = ["removed", "downgraded", "upgraded", "added"];
+    changes.sort((x, y) => order.indexOf(x.change) - order.indexOf(y.change));
+    const body = changes.length
+      ? `<ul class="changes">${changes
+          .map((c) => `<li class="change"><span class="change-badge change-${c.change}">${esc(c.change)}</span> <code>${esc(c.label)}</code>${c.kind ? ` <span class="dim">${esc(c.kind)}</span>` : ""}${c.build_only ? ` <span class="badge sbom-build" title="Used to build it, e.g. a macro or a build script, rather than built into it">build</span>` : ""}</li>`)
+          .join("")}</ul>`
+      : `<p class="dim">The same packages, at the same versions.</p>`;
+    return `<section class="compare-section" id="compare-sbom"><h2>${title} <span class="count-chip">${changes.length}</span></h2>
+      <p class="dim">${a.sbom.packages.length} → ${b.sbom.packages.length} packages</p>${body}</section>`;
+  };
+
+  // the advisories of what the two versions' SBOMs list: those the later version is no longer
+  // affected by, those new to it, and those that affect both, each linked to its page
+  const advisoriesSection = (a, b) => {
+    const title = "Advisories";
+    if (!a.sbom || !b.sbom) {
+      return `<section class="compare-section" id="compare-advisories"><h2>${title}</h2><p class="dim">${noSbom(a, b)} ${!a.sbom && !b.sbom ? "have" : "has"} no verified SBOM to compare.</p></section>`;
+    }
+    const was = new Map(a.sbom.advisories.map((x) => [x.id, x]));
+    const is = new Map(b.sbom.advisories.map((x) => [x.id, x]));
+    const fixed = [...was.values()].filter((x) => !is.has(x.id));
+    const added = [...is.values()].filter((x) => !was.has(x.id));
+    const both = [...is.values()].filter((x) => was.has(x.id));
+    const item = (x, change) => {
+      const informational = x.kind !== "vulnerability";
+      const bullet = informational
+        ? `<span class="badge advisory-kind">${esc(x.kind)}</span>`
+        : `<span class="sev-${esc(x.severity)}" title="${esc(x.severity)}"><svg class="sev-icon" aria-hidden="true" focusable="false"><use href="#sev-${esc(x.severity)}"/></svg><span class="visually-hidden">${esc(x.severity)}</span></span>`;
+      return `<li class="change"><span class="change-badge change-${change}">${esc(change)}</span> ${bullet} <a href="/advisories/${encodeURIComponent(x.id)}/"><code>${esc(x.id)}</code></a> <span class="dim"><code>${esc(x.packages.join(", "))}</code></span>${x.build_only ? ` <span class="badge sbom-build" title="Used to build it, e.g. a macro or a build script, rather than built into it">build</span>` : ""}
+        <span class="change-caveat">${esc(x.summary)}</span></li>`;
+    };
+    const group = (heading, list, change) =>
+      list.length ? `<h3 class="change-group">${esc(heading)} <span class="count-chip">${list.length}</span></h3><ul class="changes">${list.map((x) => item(x, change)).join("")}</ul>` : "";
+    // a version not fully checked may have advisories not known yet
+    const unchecked = [a, b].filter((v) => !v.sbom.checked).map((v) => `<code>${esc(v.version)}</code>`);
+    const caveat = unchecked.length ? `<p class="dim">Not every package ${unchecked.join(" and ")} lists is checked yet, so there may be more.</p>` : "";
+    const body = fixed.length || added.length || both.length
+      ? `${group(`New in ${b.version}`, added, "new")}${group(`Fixed in ${b.version}`, fixed, "fixed")}${group("Affecting both", both, "remaining")}`
+      : `<p class="dim">None known of either version.</p>`;
+    return `<section class="compare-section" id="compare-advisories"><h2>${title} <span class="count-chip" title="${b.sbom.advisories.length} affecting ${esc(b.version)}">${b.sbom.advisories.length}</span></h2>${caveat}${body}</section>`;
+  };
+
   let shown = 0;
   const compare = async () => {
     const run = ++shown;
@@ -432,6 +546,8 @@
         ${section("compare-breaking", "Breaking changes", breaking, "Nothing removed or changed: a component using the earlier version works with this one.")}
         ${section("compare-cautions", "Cautions", cautions, "Nothing added, and no dependency's new major or minor version.")}
         ${section("compare-other", "Other changes", notes, "No deprecations, and the same dependencies.")}
+        ${sizeSection(old, now)}
+        ${old.sbom || now.sbom ? sbomSection(old, now) + advisoriesSection(old, now) : ""}
         <section class="compare-section" id="compare-wit">
           <h2>WIT</h2>
           <label class="wit-options"><input type="checkbox" data-ignore-versions checked> Ignore dependencies' versions</label>

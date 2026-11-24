@@ -294,6 +294,16 @@ ul.changes { list-style: none; margin: 0; padding: 0; }
 .change-removed { color: var(--deprecated); background: var(--deprecated-soft); }
 .change-changed, .change-deprecated, .change-upgraded { color: var(--interface); background: var(--interface-soft); }
 .change-added, .change-stabilized { color: var(--component); background: var(--component-soft); }
+/* an advisory new to the later version, one it's fixed in, and one affecting both */
+.change-new, .change-downgraded { color: var(--deprecated); background: var(--deprecated-soft); }
+.change-fixed { color: var(--component); background: var(--component-soft); }
+.change-remaining { color: var(--dim); background: var(--code-bg); }
+.change .sev-icon { width: 13px; height: 13px; vertical-align: -2px; }
+.change .badge.sbom-build, .change .badge.advisory-kind { color: var(--dim); background: var(--code-bg); }
+/* how much a version's wasm grew or shrank */
+.size-delta { font-family: var(--mono); font-size: 0.85rem; font-weight: 600; }
+.size-up { color: var(--deprecated); }
+.size-down { color: var(--component); }
 .change-caveat { display: block; margin-top: 2px; color: var(--dim); font-size: 0.85rem; }
 /* a changed item's members, or its definition, before and after */
 .diff { display: grid; gap: 2px; margin-top: 6px; }
