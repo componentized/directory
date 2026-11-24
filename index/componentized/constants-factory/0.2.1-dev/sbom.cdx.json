@@ -3569,7 +3569,8 @@
         "registry+https://github.com/rust-lang/crates.io-index#bitflags@2.13.2",
         "registry+https://github.com/rust-lang/crates.io-index#hashbrown@0.17.1",
         "registry+https://github.com/rust-lang/crates.io-index#indexmap@2.14.2",
-        "registry+https://github.com/rust-lang/crates.io-index#semver@1.0.28"
+        "registry+https://github.com/rust-lang/crates.io-index#semver@1.0.28",
+        "registry+https://github.com/rust-lang/crates.io-index#serde@1.0.229"
       ],
       "ref": "registry+https://github.com/rust-lang/crates.io-index#wasmparser@0.263.0"
     },
@@ -3754,13 +3755,13 @@
       "description": "Create components whose exported functions return constant values, from a WIT world with values in its doc comments.",
       "externalReferences": [
         {
-          "comment": "revision b0eba5d8da3f0266e7656b0955ed5f7113bc8de6",
+          "comment": "revision 447631081ff7522d2c6b43b93ee0e28c87c66929",
           "type": "vcs",
           "url": "https://github.com/componentized/constants.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/constants/tree/b0eba5d8da3f0266e7656b0955ed5f7113bc8de6/components/factory"
+          "url": "https://github.com/componentized/constants/tree/447631081ff7522d2c6b43b93ee0e28c87c66929/components/factory"
         }
       ],
       "hashes": [
@@ -3775,11 +3776,11 @@
         }
       ],
       "name": "componentized:constants-factory",
-      "purl": "pkg:oci/factory@sha256%3A95d75f19e22778f8a59c993fa28d29fb21dfb33183a07790e5a70899fa9b07f9?repository_url=ghcr.io/componentized/constants/factory&tag=0.2.1-dev",
+      "purl": "pkg:oci/factory@sha256%3Aa3a95ac61ed45936338d4d9debfe3b023cc067e82370ed6f9ee898ab689a9855?repository_url=ghcr.io/componentized/constants/factory&tag=0.2.1-dev",
       "type": "library",
       "version": "0.2.1-dev"
     },
-    "timestamp": "2026-11-24T18:21:45Z",
+    "timestamp": "2026-11-24T18:41:57Z",
     "tools": {
       "components": [
         {

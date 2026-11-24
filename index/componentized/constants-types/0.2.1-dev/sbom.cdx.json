@@ -27,13 +27,13 @@
       "description": "Limits of each numeric type.",
       "externalReferences": [
         {
-          "comment": "revision b0eba5d8da3f0266e7656b0955ed5f7113bc8de6",
+          "comment": "revision 447631081ff7522d2c6b43b93ee0e28c87c66929",
           "type": "vcs",
           "url": "https://github.com/componentized/constants.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/constants/tree/b0eba5d8da3f0266e7656b0955ed5f7113bc8de6/components/types"
+          "url": "https://github.com/componentized/constants/tree/447631081ff7522d2c6b43b93ee0e28c87c66929/components/types"
         }
       ],
       "hashes": [
@@ -48,11 +48,11 @@
         }
       ],
       "name": "componentized:constants-types",
-      "purl": "pkg:oci/types@sha256%3A882ac321c72dd05019d628e9ea1bdaa1406202c8dc8d3cabec59a5631f57b2a6?repository_url=ghcr.io/componentized/constants/types&tag=0.2.1-dev",
+      "purl": "pkg:oci/types@sha256%3A7131f9b6e9296dabc18c04076db37f0d2c08d6d4510de436e78b1c2ac14c21d1?repository_url=ghcr.io/componentized/constants/types&tag=0.2.1-dev",
       "type": "library",
       "version": "0.2.1-dev"
     },
-    "timestamp": "2026-11-24T18:21:45Z",
+    "timestamp": "2026-11-24T18:41:57Z",
     "tools": {
       "components": [
         {
