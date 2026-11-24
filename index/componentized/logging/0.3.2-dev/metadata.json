@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/logging",
     "tag": "0.3.2-dev",
-    "digest": "sha256:0c93eb8a575657700d2acbaf6972742ee1f07e74ca6046f66efa9b3d66f0dd0a",
+    "digest": "sha256:1a3390400f4319d8c0645a0e9f38b1634af87315e392f6f186429c436f16b885",
     "layer_digest": "sha256:776ed0f68e8643c9ba7391cd6b583dd763e8b95cac7babe7e37fef16fe41f8c9",
     "size": 353,
     "signature": {
@@ -16,17 +16,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/logging",
       "git_ref": "refs/heads/main",
-      "log_index": 4079375759
+      "log_index": 4079437482
     }
   },
-  "created": "2026-11-24T13:50:21.356168158Z",
+  "created": "2026-11-24T13:53:22.227746192Z",
   "annotations": {
     "org.opencontainers.image.description": "A collection of utility components that remix wasi:logging types and interfaces.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "6ff62a0ee470ad94d405a73b89008197371ecd9b",
+    "org.opencontainers.image.revision": "f49a8d7784fb94c28a8a5651c0b3aa34958dd742",
     "org.opencontainers.image.source": "https://github.com/componentized/logging.git",
     "org.opencontainers.image.title": "componentized:logging",
-    "org.opencontainers.image.url": "https://github.com/componentized/logging/tree/6ff62a0ee470ad94d405a73b89008197371ecd9b",
+    "org.opencontainers.image.url": "https://github.com/componentized/logging/tree/f49a8d7784fb94c28a8a5651c0b3aa34958dd742",
     "org.opencontainers.image.version": "v0.3.2-dev"
   },
   "dependencies": [
@@ -41,7 +41,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/logging",
     "git_ref": "refs/heads/main",
-    "log_index": 4079377825
+    "log_index": 4079439457
   },
-  "indexed_at": "2026-11-24T13:53:00Z"
+  "indexed_at": "2026-11-24T13:56:00Z"
 }

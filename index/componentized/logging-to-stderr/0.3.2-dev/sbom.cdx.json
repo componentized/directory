@@ -1590,13 +1590,13 @@
       "description": "Implements wasi:logging/logging@0.1.0-draft writing log statements to stderr via wasi:cli/stderr@0.3.0. A composition of [`to-stdout`](../to-stdout/) with its wasi:cli/stdout@0.3.0 import satisfied by wasi:cli/stderr@0.3.0.",
       "externalReferences": [
         {
-          "comment": "revision 6ff62a0ee470ad94d405a73b89008197371ecd9b",
+          "comment": "revision f49a8d7784fb94c28a8a5651c0b3aa34958dd742",
           "type": "vcs",
           "url": "https://github.com/componentized/logging.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/logging/tree/6ff62a0ee470ad94d405a73b89008197371ecd9b/components/to-stderr"
+          "url": "https://github.com/componentized/logging/tree/f49a8d7784fb94c28a8a5651c0b3aa34958dd742/components/to-stderr"
         }
       ],
       "hashes": [
@@ -1611,11 +1611,11 @@
         }
       ],
       "name": "componentized:logging-to-stderr",
-      "purl": "pkg:oci/to-stderr@sha256%3Afc8abd20903b7183d132b1bf11380ba60438608a82632b30627e2c44a609ce93?repository_url=ghcr.io/componentized/logging/to-stderr&tag=0.3.2-dev",
+      "purl": "pkg:oci/to-stderr@sha256%3A22e5fca2124d48fe8f323657a7a284a38d83106c75ca83b99f24671a13a3c317?repository_url=ghcr.io/componentized/logging/to-stderr&tag=0.3.2-dev",
       "type": "library",
       "version": "0.3.2-dev"
     },
-    "timestamp": "2026-11-24T13:46:35Z",
+    "timestamp": "2026-11-24T13:52:07Z",
     "tools": {
       "components": [
         {

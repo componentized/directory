@@ -38,13 +38,13 @@
       "description": "A collection of utility components that remix wasi:logging types and interfaces.",
       "externalReferences": [
         {
-          "comment": "revision 6ff62a0ee470ad94d405a73b89008197371ecd9b",
+          "comment": "revision f49a8d7784fb94c28a8a5651c0b3aa34958dd742",
           "type": "vcs",
           "url": "https://github.com/componentized/logging.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/logging/tree/6ff62a0ee470ad94d405a73b89008197371ecd9b"
+          "url": "https://github.com/componentized/logging/tree/f49a8d7784fb94c28a8a5651c0b3aa34958dd742"
         }
       ],
       "hashes": [
@@ -59,11 +59,11 @@
         }
       ],
       "name": "componentized:logging",
-      "purl": "pkg:oci/logging@sha256%3A0c93eb8a575657700d2acbaf6972742ee1f07e74ca6046f66efa9b3d66f0dd0a?repository_url=ghcr.io/componentized/logging&tag=0.3.2-dev",
+      "purl": "pkg:oci/logging@sha256%3A1a3390400f4319d8c0645a0e9f38b1634af87315e392f6f186429c436f16b885?repository_url=ghcr.io/componentized/logging&tag=0.3.2-dev",
       "type": "library",
       "version": "0.3.2-dev"
     },
-    "timestamp": "2026-11-24T13:46:35Z",
+    "timestamp": "2026-11-24T13:52:07Z",
     "tools": {
       "components": [
         {

@@ -1482,13 +1482,13 @@
       "description": "Virtual logger that selectively emits log events based on the context and level.",
       "externalReferences": [
         {
-          "comment": "revision 6ff62a0ee470ad94d405a73b89008197371ecd9b",
+          "comment": "revision f49a8d7784fb94c28a8a5651c0b3aa34958dd742",
           "type": "vcs",
           "url": "https://github.com/componentized/logging.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/logging/tree/6ff62a0ee470ad94d405a73b89008197371ecd9b/components/levels"
+          "url": "https://github.com/componentized/logging/tree/f49a8d7784fb94c28a8a5651c0b3aa34958dd742/components/levels"
         }
       ],
       "hashes": [
@@ -1503,11 +1503,11 @@
         }
       ],
       "name": "componentized:logging-levels",
-      "purl": "pkg:oci/levels@sha256%3A490dc19a13d03e11923ad85a873ad54e9d02b27a793c75c9092340b3debd3f82?repository_url=ghcr.io/componentized/logging/levels&tag=0.3.2-dev",
+      "purl": "pkg:oci/levels@sha256%3A5bf6b2885bdf7c7fdd6f9ea65a23491118651822d76700a16e703a829938d32d?repository_url=ghcr.io/componentized/logging/levels&tag=0.3.2-dev",
       "type": "library",
       "version": "0.3.2-dev"
     },
-    "timestamp": "2026-11-24T13:46:35Z",
+    "timestamp": "2026-11-24T13:52:07Z",
     "tools": {
       "components": [
         {

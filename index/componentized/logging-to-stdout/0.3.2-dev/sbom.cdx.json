@@ -1573,13 +1573,13 @@
       "description": "Implements wasi:logging/logging@0.1.0-draft writing log statements to stdout via wasi:cli/stdout@0.2.3. Timestamps for each log statement are generated from wasi:clocks/wall-clock@0.2.3.",
       "externalReferences": [
         {
-          "comment": "revision 6ff62a0ee470ad94d405a73b89008197371ecd9b",
+          "comment": "revision f49a8d7784fb94c28a8a5651c0b3aa34958dd742",
           "type": "vcs",
           "url": "https://github.com/componentized/logging.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/logging/tree/6ff62a0ee470ad94d405a73b89008197371ecd9b/components/to-stdout"
+          "url": "https://github.com/componentized/logging/tree/f49a8d7784fb94c28a8a5651c0b3aa34958dd742/components/to-stdout"
         }
       ],
       "hashes": [
@@ -1594,11 +1594,11 @@
         }
       ],
       "name": "componentized:logging-to-stdout",
-      "purl": "pkg:oci/to-stdout@sha256%3A53f1b37ea00b27383079783237b04d537321f96bdfaa6ae6156ea8b6eee50db1?repository_url=ghcr.io/componentized/logging/to-stdout&tag=0.3.2-dev",
+      "purl": "pkg:oci/to-stdout@sha256%3A694704589c37600ae3680e09b7aa94b0cd5a35d97d7af63b44e5e293f6c6a77e?repository_url=ghcr.io/componentized/logging/to-stdout&tag=0.3.2-dev",
       "type": "library",
       "version": "0.3.2-dev"
     },
-    "timestamp": "2026-11-24T13:46:35Z",
+    "timestamp": "2026-11-24T13:52:07Z",
     "tools": {
       "components": [
         {
