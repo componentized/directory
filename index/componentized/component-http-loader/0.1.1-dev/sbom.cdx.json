@@ -1432,13 +1432,13 @@
       "description": "Loads a component from an HTTP URL.",
       "externalReferences": [
         {
-          "comment": "revision 7cc057c650b30c4b3586990171938b73ffd60cbf",
+          "comment": "revision 7aa81c27bc7ae89a01378411f29d375764569397",
           "type": "vcs",
           "url": "https://github.com/componentized/component.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/component/tree/7cc057c650b30c4b3586990171938b73ffd60cbf/components/http-loader"
+          "url": "https://github.com/componentized/component/tree/7aa81c27bc7ae89a01378411f29d375764569397/components/http-loader"
         }
       ],
       "hashes": [
@@ -1453,11 +1453,11 @@
         }
       ],
       "name": "componentized:component-http-loader",
-      "purl": "pkg:oci/http-loader@sha256%3A28b8f7c87783d3cada08d2f874bfd26f8395faadc7f42eeaa9ac93051ab21a4a?repository_url=ghcr.io/componentized/component/http-loader&tag=0.1.1-dev",
+      "purl": "pkg:oci/http-loader@sha256%3A5dd0495668394ffa72abe1d95659c5475f726e0f9320958b2fdbee16e8ba7d0f?repository_url=ghcr.io/componentized/component/http-loader&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-21T01:30:08Z",
+    "timestamp": "2026-11-24T13:31:13Z",
     "tools": {
       "components": [
         {

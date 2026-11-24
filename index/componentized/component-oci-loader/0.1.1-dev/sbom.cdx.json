@@ -1432,13 +1432,13 @@
       "description": "Loads a component from an OCI registry by reference.",
       "externalReferences": [
         {
-          "comment": "revision 7cc057c650b30c4b3586990171938b73ffd60cbf",
+          "comment": "revision 7aa81c27bc7ae89a01378411f29d375764569397",
           "type": "vcs",
           "url": "https://github.com/componentized/component.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/component/tree/7cc057c650b30c4b3586990171938b73ffd60cbf/components/oci-loader"
+          "url": "https://github.com/componentized/component/tree/7aa81c27bc7ae89a01378411f29d375764569397/components/oci-loader"
         }
       ],
       "hashes": [
@@ -1453,11 +1453,11 @@
         }
       ],
       "name": "componentized:component-oci-loader",
-      "purl": "pkg:oci/oci-loader@sha256%3A0a4570a7fd82b426b0794af59dc2dd92bc8f3934fc3c175da380ff4992aa9411?repository_url=ghcr.io/componentized/component/oci-loader&tag=0.1.1-dev",
+      "purl": "pkg:oci/oci-loader@sha256%3A04525f549c3cf9e539a9b427dce8ab6d63d8c412b5660055d998588c43ece61a?repository_url=ghcr.io/componentized/component/oci-loader&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-21T01:30:08Z",
+    "timestamp": "2026-11-24T13:31:13Z",
     "tools": {
       "components": [
         {

@@ -13,13 +13,13 @@
       "description": "WASM components for creating and interacting with WASM components.",
       "externalReferences": [
         {
-          "comment": "revision 7cc057c650b30c4b3586990171938b73ffd60cbf",
+          "comment": "revision 7aa81c27bc7ae89a01378411f29d375764569397",
           "type": "vcs",
           "url": "https://github.com/componentized/component.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/component/tree/7cc057c650b30c4b3586990171938b73ffd60cbf"
+          "url": "https://github.com/componentized/component/tree/7aa81c27bc7ae89a01378411f29d375764569397"
         }
       ],
       "hashes": [
@@ -34,11 +34,11 @@
         }
       ],
       "name": "componentized:component",
-      "purl": "pkg:oci/component@sha256%3Aa78b9f08c833a670e2bce00657dc6fdbc8566b420a914c625630160b6589db32?repository_url=ghcr.io/componentized/component&tag=0.1.1-dev",
+      "purl": "pkg:oci/component@sha256%3Ae42e93035acd7bc23910247562274f6daecfee7f4678b4e84d5a37936e808222?repository_url=ghcr.io/componentized/component&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-21T01:30:08Z",
+    "timestamp": "2026-11-24T13:31:13Z",
     "tools": {
       "components": [
         {

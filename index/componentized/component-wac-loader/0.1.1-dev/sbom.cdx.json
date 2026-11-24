@@ -3933,13 +3933,13 @@
       "description": "Compose a component from other components using wac.",
       "externalReferences": [
         {
-          "comment": "revision 7cc057c650b30c4b3586990171938b73ffd60cbf",
+          "comment": "revision 7aa81c27bc7ae89a01378411f29d375764569397",
           "type": "vcs",
           "url": "https://github.com/componentized/component.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/component/tree/7cc057c650b30c4b3586990171938b73ffd60cbf/components/wac-loader"
+          "url": "https://github.com/componentized/component/tree/7aa81c27bc7ae89a01378411f29d375764569397/components/wac-loader"
         }
       ],
       "hashes": [
@@ -3954,11 +3954,11 @@
         }
       ],
       "name": "componentized:component-wac-loader",
-      "purl": "pkg:oci/wac-loader@sha256%3Ae5de8d14e0372f41003610f333addba6d71602bd8ae980b45b57a8372143ee94?repository_url=ghcr.io/componentized/component/wac-loader&tag=0.1.1-dev",
+      "purl": "pkg:oci/wac-loader@sha256%3Af9893b0b22cbea1a7839ed00f7e3a4e7fbbc598a1270478adb12c2398a97a0e1?repository_url=ghcr.io/componentized/component/wac-loader&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-21T01:30:08Z",
+    "timestamp": "2026-11-24T13:31:13Z",
     "tools": {
       "components": [
         {
