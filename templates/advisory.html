@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% from "macros.html" import kind_icon %}
+{% set a = advisory %}
+{% set title = a.id %}
+{% block description %}{{ a.id }}: {{ a.summary }}{% endblock %}
+{% block main %}
+<div class="page-head">
+<nav class="crumbs" aria-label="Breadcrumbs">{% if synthetic %}<span>Advisories</span>{% else %}<a href="/advisories/">Advisories</a>{% endif %}</nav>
+<div class="title-row">
+  {#- a vulnerability by its severity's icon, as in a version's header; an informational advisory by
+      its kind #}
+  <h1>{% if not a.informational %}<span class="advisory-title-icon sev-{{ level }}" title="{{ level }}{% if level == "unrated" %} vulnerability{% endif %}"><svg class="sev-icon" aria-hidden="true" focusable="false"><use href="#sev-{{ level }}"/></svg><span class="visually-hidden">{{ level }} vulnerability </span></span>{% endif %}<code data-copy data-copy-at=".title-row" data-copy-label="Copy the advisory's id">{{ a.id }}</code></h1>
+  {% if a.informational %}<span class="badge advisory-kind">{{ a.kind }}</span>{% else %}<span class="badge advisory-kind severity-{{ level }}">{{ level }}</span>{% endif %}
+</div>
+</div>
+<p class="lede">{{ a.summary_html|safe }}</p>
+
+<dl class="facts">
+  <dt>Kind</dt><dd>{{ a.kind }}</dd>
+  {% if not a.informational %}<dt>Severity</dt><dd><span class="sev-{{ level }}">{{ level }}</span>{% if level == "unrated" %} <span class="dim">no database rates it</span>{% endif %}</dd>{% endif %}
+  {% if cvss %}<dt>CVSS</dt><dd><code>{{ cvss }}</code></dd>{% endif %}
+  {% if published %}<dt>Published</dt><dd><time datetime="{{ published }}">{{ published }}</time></dd>{% endif %}
+  {% if aliases %}<dt>Aliases</dt><dd>{% for alias in aliases %}<code>{{ alias }}</code>{% if not loop.last %}, {% endif %}{% endfor %}</dd>{% endif %}
+  {% if a.fixed %}<dt>Fixed in</dt><dd>{% for f in a.fixed %}<code>{{ f }}</code>{% if not loop.last %}, {% endif %}{% endfor %}</dd>{% endif %}
+</dl>
+
+{#- a synthetic sample's made-up advisories are on no database to link to #}
+{% if not synthetic %}
+<section id="details">
+  <h2>Full details</h2>
+  <ul class="advisory-sources">{% for s in sources %}<li><a href="{{ s.url }}"><code>{{ s.id }}</code></a> <span class="dim">{{ s.authority }}</span></li>{% endfor %}</ul>
+</section>
+{% endif %}
+
+<section id="packages">
+  <h2>Affected packages</h2>
+  <p class="dim">What the components' SBOMs list that the advisory is of.</p>
+  <ul class="advisory-sources">{% for p in packages %}<li><code>{{ p.name }}</code> <span class="dim">{{ p.ecosystem }}</span></li>{% endfor %}</ul>
+</section>
+
+<section id="components">
+  {%- set n = components|length %}
+  <h2>Affected components <span class="count-chip" title="{{ n }} component{% if n != 1 %}s{% endif %} affected">{{ n }}<span class="visually-hidden"> component{% if n != 1 %}s{% endif %}</span></span></h2>
+  <div class="sbom-scroll"><table class="sbom-table advisory-components">
+    <thead><tr><th scope="col">Name</th><th scope="col">Affected versions</th><th scope="col">Through</th><th scope="col">No longer affected</th></tr></thead>
+    <tbody>{% for c in components %}<tr{% if c.build_only %} class="build-only"{% endif %}>
+      <td class="dep-name">{{ kind_icon(c.icon) }}<a href="{{ c.url }}" data-tip><code>{{ c.package }}</code></a></td>
+      {#- each run of versions next to each other that are affected, from the oldest to the newest #}
+      <td><ul class="version-ranges">{% for r in c.ranges %}<li><a href="{{ r.from.url }}" data-tip><code>{{ r.from.version }}</code></a>{% if r.to %} – <a href="{{ r.to.url }}" data-tip><code>{{ r.to.version }}</code></a> <span class="dim">{{ r.count }} versions</span>{% endif %}</li>{% endfor %}</ul></td>
+      <td>{% for v in c.via %}<code>{{ v }}</code>{% if not loop.last %}, {% endif %}{% endfor %}{% if c.build_only %} <span class="badge" title="Used to build it, e.g. a macro or a build script, rather than built into it">build</span>{% endif %}</td>
+      <td>{% if c.unaffected %}<ul class="version-ranges">{% for v in c.unaffected %}<li><a class="unaffected" href="{{ v.url }}" data-tip><code>{{ v.version }}</code></a></li>{% endfor %}</ul>
+        {%- elif c.latest_affected %}<span class="still-affected">none yet</span> <span class="dim">the latest, <code>{{ c.latest }}</code>, is affected</span>
+        {%- else %}<span class="dim">not known</span>{% endif %}</td>
+    </tr>{% endfor %}</tbody>
+  </table></div>
+</section>
+{% endblock %}

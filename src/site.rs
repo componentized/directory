@@ -554,6 +554,12 @@ pub fn build(
         "404.html",
         &env.get_template("404.html")?.render(ctx! {})?,
     )?;
+    write_file(
+        out,
+        "advisories/index.html",
+        &env.get_template("advisories.html")?
+            .render(site.advisories_page())?,
+    )?;
     render_packages(&site, &env, out)?;
     eprintln!(
         "rendered {} packages, {} versions to {}",
@@ -629,8 +635,16 @@ fn load_samples(dir: &Path, site: &Site) -> Result<Option<Site>> {
     Ok(Some(samples))
 }
 
-/// Renders the page of each namespace, package version and interface of a site.
+/// Renders the page of each namespace, package version and interface of a site, and of each
+/// advisory of its versions. Only the index's site lists its advisories, on `/advisories/`.
 fn render_packages(site: &Site, env: &Environment, out: &Path) -> Result<()> {
+    for (id, ctx) in site.advisory_pages() {
+        write_file(
+            out,
+            &format!("{}index.html", advisory_url(&id)),
+            &env.get_template("advisory.html")?.render(ctx)?,
+        )?;
+    }
     for (namespace, ctx) in site.namespaces() {
         write_file(
             out,
@@ -782,6 +796,11 @@ fn environment() -> Result<Environment<'static>> {
             include_str!("../templates/interface.html"),
         ),
         ("404.html", include_str!("../templates/404.html")),
+        (
+            "advisories.html",
+            include_str!("../templates/advisories.html"),
+        ),
+        ("advisory.html", include_str!("../templates/advisory.html")),
         ("icons.html", include_str!("../templates/icons.html")),
         ("compare.html", include_str!("../templates/compare.html")),
     ] {
@@ -1242,13 +1261,7 @@ fn summary_html(summary: &str) -> String {
 fn dep_advisories(
     advisories: &[(&String, &crate::advisories::Advisory)],
 ) -> (Option<&'static str>, String, Vec<minijinja::Value>) {
-    let rank = |a: &crate::advisories::Advisory| match a.severity.as_deref() {
-        Some("CRITICAL") => (0, "critical"),
-        Some("HIGH") => (1, "high"),
-        Some("MODERATE" | "MEDIUM") => (2, "moderate"),
-        Some("LOW") => (3, "low"),
-        _ => (4, "unrated"),
-    };
+    let rank = severity_rank;
     let vulnerabilities: Vec<_> = advisories
         .iter()
         .filter(|(_, a)| a.kind == "vulnerability")
@@ -1271,10 +1284,90 @@ fn dep_advisories(
     (worst, title, notes)
 }
 
-/// An advisory as a page shows it, linked to its page on OSV.dev.
+/// How severe an advisory is, the most severe first, and its name, e.g. `high`, or `unrated` for
+/// one no database rates.
+fn severity_rank(advisory: &crate::advisories::Advisory) -> (u8, &'static str) {
+    match advisory.severity.as_deref() {
+        Some("CRITICAL") => (0, "critical"),
+        Some("HIGH") => (1, "high"),
+        Some("MODERATE" | "MEDIUM") => (2, "moderate"),
+        Some("LOW") => (3, "low"),
+        _ => (4, "unrated"),
+    }
+}
+
+/// The page of an advisory, e.g. `/advisories/RUSTSEC-2026-0592/`.
+fn advisory_url(id: &str) -> String {
+    format!("/advisories/{id}/")
+}
+
+/// Where an advisory's full details are, by each of its ids, from the authority that issued it:
+/// RustSec, the GitHub Advisory Database, the CVE program, the Go vulnerability database, and
+/// last OSV.dev, which gathers them all.
+fn advisory_sources(id: &str, aliases: &[String]) -> Vec<minijinja::Value> {
+    let mut sources: Vec<minijinja::Value> = std::iter::once(id)
+        .chain(aliases.iter().map(String::as_str))
+        .filter_map(|name| {
+            let (authority, url) = if name.starts_with("RUSTSEC-") {
+                (
+                    "RustSec",
+                    format!("https://rustsec.org/advisories/{name}.html"),
+                )
+            } else if name.starts_with("GHSA-") {
+                (
+                    "GitHub Advisory Database",
+                    format!("https://github.com/advisories/{name}"),
+                )
+            } else if name.starts_with("CVE-") {
+                ("CVE", format!("https://www.cve.org/CVERecord?id={name}"))
+            } else if name.starts_with("GO-") {
+                (
+                    "Go vulnerability database",
+                    format!("https://pkg.go.dev/vuln/{name}"),
+                )
+            } else {
+                return None;
+            };
+            Some(ctx! { id => name, authority, url })
+        })
+        .collect();
+    sources.push(ctx! {
+        id,
+        authority => "OSV.dev",
+        url => format!("https://osv.dev/vulnerability/{id}"),
+    });
+    sources
+}
+
+/// How an advisory is of a version: whether any of the packages it's of is built into the version,
+/// rather than only used to build it, and those packages, by their package URLs.
+type Affecting = (bool, BTreeSet<String>);
+
+/// Each run of versions next to each other, in the order given, that `affected` holds of: one it
+/// doesn't, whether not affected or not known to be, ends a run, so a range of versions an advisory
+/// is said to be of never spans one it isn't.
+fn runs(versions: &[usize], affected: impl Fn(usize) -> bool) -> Vec<Vec<usize>> {
+    versions
+        .chunk_by(|a, b| affected(*a) == affected(*b))
+        .filter(|run| affected(run[0]))
+        .map(<[usize]>::to_vec)
+        .collect()
+}
+
+/// A package URL as a page names it, e.g. `url@2.5.8` for `pkg:cargo/url@2.5.8`, with its
+/// ecosystem, e.g. `cargo`.
+fn purl_label(purl: &str) -> (String, String) {
+    let rest = purl.strip_prefix("pkg:").unwrap_or(purl);
+    let (kind, path) = rest.split_once('/').unwrap_or(("", rest));
+    let path = path.replace("%40", "@");
+    (path, kind.to_string())
+}
+
+/// An advisory as a page shows it, linked to its page here and on OSV.dev.
 fn advisory_view(id: &str, advisory: &crate::advisories::Advisory) -> minijinja::Value {
     ctx! {
         id,
+        page => advisory_url(id),
         url => format!("https://osv.dev/vulnerability/{id}"),
         summary => advisory.summary.clone(),
         summary_html => summary_html(&advisory.summary),
@@ -2891,6 +2984,199 @@ impl Site {
                 if total == 1 { "vulnerability" } else { "vulnerabilities" }
             ),
         })
+    }
+
+    /// The advisories of what a version's verified SBOM lists, by their ids: whether any of the
+    /// packages it's known by is built into it, rather than only used to build it, and those
+    /// packages, by their package URLs, e.g. `pkg:cargo/url@2.5.8`.
+    fn advisories_of(&self, index: usize) -> BTreeMap<&str, Affecting> {
+        let entry = &self.entries[index];
+        let mut found: BTreeMap<&str, Affecting> = BTreeMap::new();
+        let Some(document) = entry.sbom.as_ref() else {
+            return found;
+        };
+        if !matches!(entry.meta.sbom, Some(data::Sbom::Verified(_))) {
+            return found;
+        }
+        for c in sbom_components(document) {
+            let Some(key) = c["purl"].as_str().and_then(crate::advisories::key) else {
+                continue;
+            };
+            let built_in = c["scope"].as_str() != Some("excluded");
+            for id in self.advisories.packages.get(&key).into_iter().flatten() {
+                if !self.advisories.advisories.contains_key(id) {
+                    continue;
+                }
+                let (any_built_in, packages) = found.entry(id.as_str()).or_default();
+                *any_built_in |= built_in;
+                packages.insert(key.clone());
+            }
+        }
+        found
+    }
+
+    /// Whether a version is known to have none of the advisories it hasn't: its SBOM is verified,
+    /// and every package it lists that OSV.dev knows of is checked.
+    fn advisories_known(&self, index: usize) -> bool {
+        let entry = &self.entries[index];
+        let (Some(document), Some(data::Sbom::Verified(_))) = (&entry.sbom, &entry.meta.sbom)
+        else {
+            return false;
+        };
+        sbom_components(document)
+            .into_iter()
+            .filter_map(|c| c["purl"].as_str().and_then(crate::advisories::key))
+            .all(|key| self.advisories.checked.contains(&key))
+    }
+
+    /// The listed versions each advisory is of, by the advisory's id, then by package, each
+    /// version's entry with what [`Self::advisories_of`] says of it.
+    fn advisory_impact(&self) -> BTreeMap<&str, BTreeMap<&str, BTreeMap<usize, Affecting>>> {
+        let mut impact: BTreeMap<&str, BTreeMap<&str, BTreeMap<usize, _>>> = BTreeMap::new();
+        for (package, indexes) in &self.packages {
+            for &index in indexes.iter().filter(|i| self.listed(**i)) {
+                for (id, found) in self.advisories_of(index) {
+                    impact
+                        .entry(id)
+                        .or_default()
+                        .entry(package.as_str())
+                        .or_default()
+                        .insert(index, found);
+                }
+            }
+        }
+        impact
+    }
+
+    /// The listing of every advisory of a listed version, for the advisories' page: vulnerabilities
+    /// before informational advisories, the most severe first, then the newest.
+    fn advisories_page(&self) -> minijinja::Value {
+        let impact = self.advisory_impact();
+        let mut rows: Vec<_> = impact
+            .iter()
+            .filter_map(|(id, packages)| {
+                let advisory = self.advisories.advisories.get(*id)?;
+                // a package whose latest listed version has it still
+                let current = packages
+                    .iter()
+                    .filter(|(package, versions)| {
+                        self.packages[**package]
+                            .iter()
+                            .find(|i| self.listed(**i))
+                            .is_some_and(|latest| versions.contains_key(latest))
+                    })
+                    .count();
+                let order = (
+                    advisory.kind != "vulnerability",
+                    severity_rank(advisory).0,
+                    std::cmp::Reverse(advisory.published.clone()),
+                    id.to_string(),
+                );
+                Some((
+                    order,
+                    ctx! {
+                        advisory => advisory_view(id, advisory),
+                        level => severity_rank(advisory).1,
+                        published => advisory.published,
+                        components => packages.len(),
+                        current,
+                    },
+                ))
+            })
+            .collect();
+        rows.sort_by(|(a, _), (b, _)| a.cmp(b));
+        let vulnerabilities = rows.iter().filter(|((info, ..), _)| !info).count();
+        ctx! {
+            advisories => rows.into_iter().map(|(_, row)| row).collect::<Vec<_>>(),
+            vulnerabilities,
+        }
+    }
+
+    /// Each advisory of a listed version, with its page's context: what it is, where its full
+    /// details are, the packages it's of, and the components affected, each by the ranges of their
+    /// versions it's of and the newer versions that no longer are.
+    fn advisory_pages(&self) -> Vec<(String, minijinja::Value)> {
+        let impact = self.advisory_impact();
+        let link = |index: usize| {
+            let entry = &self.entries[index];
+            ctx! { version => entry.meta.version, url => entry.url(), date => entry.date() }
+        };
+        impact
+            .iter()
+            .filter_map(|(id, packages)| {
+                let advisory = self.advisories.advisories.get(*id)?;
+                let mut components = Vec::new();
+                for (package, affected) in packages {
+                    // its listed versions, oldest first
+                    let versions: Vec<usize> = self.packages[*package]
+                        .iter()
+                        .rev()
+                        .copied()
+                        .filter(|i| self.listed(*i))
+                        .collect();
+                    let ranges = runs(&versions, |i| affected.contains_key(&i));
+                    // the versions after the newest one affected that are known not to be
+                    let newest = versions.iter().rposition(|i| affected.contains_key(i));
+                    let unaffected: Vec<minijinja::Value> = newest
+                        .map_or(&[][..], |at| &versions[at + 1..])
+                        .iter()
+                        .filter(|i| self.advisories_known(**i))
+                        .map(|i| link(*i))
+                        .collect();
+                    let via: BTreeSet<&String> = affected.values().flat_map(|(_, p)| p).collect();
+                    let latest = self.entries[*versions.last()?].meta.version.clone();
+                    // the newest version affected, which its link is to
+                    let entry = &self.entries[versions[newest?]];
+                    components.push(ctx! {
+                        package,
+                        url => entry.url(),
+                        version => entry.meta.version,
+                        icon => entry.icon_kind(),
+                        // affected only by what's used to build it, e.g. a macro
+                        build_only => affected.values().all(|(built_in, _)| !built_in),
+                        ranges => ranges
+                            .iter()
+                            .map(|r| ctx! {
+                                from => link(r[0]),
+                                to => (r.len() > 1).then(|| link(r[r.len() - 1])),
+                                count => r.len(),
+                            })
+                            .collect::<Vec<_>>(),
+                        versions => affected.len(),
+                        via => via.iter().map(|p| purl_label(p).0).collect::<Vec<_>>(),
+                        unaffected,
+                        latest_affected => newest == Some(versions.len() - 1),
+                        latest,
+                    });
+                }
+                // the packages it's of, and its fixes
+                let of: BTreeSet<&String> = packages
+                    .values()
+                    .flat_map(BTreeMap::values)
+                    .flat_map(|(_, p)| p)
+                    .collect();
+                let level = severity_rank(advisory).1;
+                Some((
+                    id.to_string(),
+                    ctx! {
+                        advisory => advisory_view(id, advisory),
+                        level,
+                        aliases => advisory.aliases,
+                        cvss => advisory.cvss,
+                        published => advisory.published,
+                        sources => advisory_sources(id, &advisory.aliases),
+                        packages => of
+                            .iter()
+                            .map(|p| {
+                                let (name, ecosystem) = purl_label(p);
+                                ctx! { name, ecosystem }
+                            })
+                            .collect::<Vec<_>>(),
+                        components,
+                    },
+                ))
+            })
+            .collect()
     }
 
     fn header(&self, index: usize) -> minijinja::Value {
@@ -4806,6 +5092,88 @@ mod tests {
         )
         .unwrap_err();
         assert!(err.to_string().contains("belongs in the samples"));
+
+        std::fs::remove_dir_all(&root).unwrap();
+    }
+
+    #[test]
+    fn groups_affected_versions_into_ranges() {
+        let affected = [1, 2, 4, 6, 7, 8];
+        let ranges = runs(&[0, 1, 2, 3, 4, 5, 6, 7, 8], |i| affected.contains(&i));
+        assert_eq!(ranges, [vec![1, 2], vec![4], vec![6, 7, 8]]);
+        assert!(runs(&[0, 1], |_| false).is_empty());
+        assert_eq!(runs(&[3], |_| true), [vec![3]]);
+    }
+
+    #[test]
+    fn links_advisories_to_their_authorities() {
+        let sources = advisory_sources(
+            "RUSTSEC-2026-0592",
+            &["GHSA-hrj5-67jp-wqp9".to_string(), "CVE-2026-1".to_string()],
+        );
+        let urls: Vec<String> = sources
+            .iter()
+            .map(|s| s.get_attr("url").unwrap().to_string())
+            .collect();
+        assert_eq!(
+            urls,
+            [
+                "https://rustsec.org/advisories/RUSTSEC-2026-0592.html",
+                "https://github.com/advisories/GHSA-hrj5-67jp-wqp9",
+                "https://www.cve.org/CVERecord?id=CVE-2026-1",
+                "https://osv.dev/vulnerability/RUSTSEC-2026-0592",
+            ]
+        );
+        assert_eq!(
+            purl_label("pkg:npm/%40scope/name@1.2.3"),
+            ("@scope/name@1.2.3".to_string(), "npm".to_string())
+        );
+    }
+
+    #[test]
+    fn renders_a_page_for_each_advisory() {
+        let root =
+            std::env::temp_dir().join(format!("directory-site-advisories-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&root);
+        let (index, out) = (root.join("index"), root.join("_site"));
+        std::fs::create_dir_all(&index).unwrap();
+        let samples = Path::new(env!("CARGO_MANIFEST_DIR")).join("samples");
+        build(
+            &index,
+            &samples,
+            &out,
+            "https://example.com",
+            &Default::default(),
+        )
+        .unwrap();
+        let read = |path: &str| std::fs::read_to_string(out.join(path)).unwrap();
+
+        // the samples' made-up advisory, of the version with its SBOM, not the dev build after it
+        let page = read("advisories/EXAMPLE-2026-0001/index.html");
+        assert!(page.contains("Synthetic sample."));
+        assert!(page.contains("example-parser@1.2.0"));
+        assert!(page.contains("&#x2f;kitchen-sink&#x2f;everything&#x2f;0.1.0&#x2f;"));
+        assert!(
+            page.contains(r#"class="unaffected" href="&#x2f;kitchen-sink&#x2f;everything&#x2f;0.2.0-dev&#x2f;""#),
+            "the newer version is no longer affected"
+        );
+        // each link to a component is to a version it affects, the newest, with its tooltip
+        assert!(
+            page.contains(
+                r#"href="&#x2f;kitchen-sink&#x2f;everything&#x2f;0.1.0&#x2f;" data-tip>"#
+            )
+        );
+        // its ids are on no database to link to
+        assert!(!page.contains("osv.dev&#x2f;vulnerability"));
+        // a version's page links each of its advisories to its page
+        assert!(
+            read("kitchen-sink/everything/0.1.0/index.html")
+                .contains("&#x2f;advisories&#x2f;EXAMPLE-2026-0001&#x2f;")
+        );
+        // the index's listing of advisories lists none of the samples'
+        let listing = read("advisories/index.html");
+        assert!(!listing.contains("EXAMPLE-"));
+        assert!(listing.contains("None known."));
 
         std::fs::remove_dir_all(&root).unwrap();
     }

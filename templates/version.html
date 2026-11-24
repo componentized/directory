@@ -25,7 +25,7 @@
     the same room left empty, so each one's text lines up as a list's does #}
 {% macro dep_bullet(c, tag="td") %}<{{ tag }} class="dep-bullet">{% if c.worst %}<a class="sev-{{ c.worst }}" href="#advisories" title="{{ c.worst_title }}"><svg class="sev-icon" aria-hidden="true" focusable="false"><use href="#sev-{{ c.worst }}"/></svg><span class="visually-hidden">{{ c.worst }} vulnerability</span></a>{% else %}<span class="dep-slot"></span>{% endif %}</{{ tag }}>{% endmacro %}
 {#- its informational advisories, e.g. unmaintained, which its icon can't say #}
-{% macro dep_notes(c) %}{% for n in c.notes %} <a class="badge advisory-kind" href="{% if synthetic %}#advisories{% else %}{{ n.url }}{% endif %}" title="{{ n.id }}: {{ n.summary }}">{{ n.kind }}</a>{% endfor %}{% endmacro %}
+{% macro dep_notes(c) %}{% for n in c.notes %} <a class="badge advisory-kind" href="{{ n.page }}" title="{{ n.id }}: {{ n.summary }}">{{ n.kind }}</a>{% endfor %}{% endmacro %}
 {% block toc %}
 <ol>
   {% if docs %}<li><a href="#overview">Overview</a></li>{% endif %}
@@ -169,8 +169,8 @@
         {%- else %}<span class="advisory-bullet" aria-hidden="true"></span>{% endif %}
         <div class="advisory-body">
           <div class="advisory-head">
-            {#- a synthetic sample's made-up advisories are on no database to link to #}
-            {%- if synthetic %}<code>{{ a.id }}</code>{% else %}<a href="{{ a.url }}"><code>{{ a.id }}</code></a>{% endif %}
+            {#- its page here, which links to where its full details are #}
+            <a href="{{ a.page }}"><code>{{ a.id }}</code></a>
             {#- an informational advisory's kind, after its id #}
             {%- if a.informational %} <span class="badge advisory-kind">{{ a.kind }}</span>{% endif %}
             {%- if a.cve %} <span class="dim"><code>{{ a.cve }}</code></span>{% endif %}
