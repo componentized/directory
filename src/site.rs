@@ -3670,7 +3670,76 @@ impl Site {
                 .package_wit(index)
                 .map(|(own, _)| own)
                 .unwrap_or_default(),
+            size: entry.meta.oci.size,
+            debug_size: entry.meta.debug.as_ref().map(|d| d.size),
+            sbom: self.api_sbom(index),
         }
+    }
+
+    /// What a version's verified SBOM lists, and its advisories, for its API. `None` for one
+    /// without a verified SBOM.
+    fn api_sbom(&self, index: usize) -> Option<api::Sbom> {
+        let entry = &self.entries[index];
+        let document = entry.sbom.as_ref()?;
+        if !matches!(entry.meta.sbom, Some(data::Sbom::Verified(_))) {
+            return None;
+        }
+        // each package by its ecosystem and name, with its versions, only used to build it when
+        // every listing of it is
+        let mut packages: BTreeMap<(String, String), (BTreeSet<String>, bool)> = BTreeMap::new();
+        for c in sbom_components(document) {
+            let kind = c["purl"]
+                .as_str()
+                .and_then(|p| p.strip_prefix("pkg:"))
+                .and_then(|p| p.split(['/', '@', '?']).next())
+                .unwrap_or_default()
+                .to_string();
+            let name = c["name"].as_str().unwrap_or_default().to_string();
+            let (versions, build_only) = packages
+                .entry((kind, name))
+                .or_insert((BTreeSet::new(), true));
+            versions.extend(c["version"].as_str().map(str::to_string));
+            *build_only &= c["scope"].as_str() == Some("excluded");
+        }
+        let mut advisories: Vec<api::Advisory> = self
+            .advisories_of(index)
+            .into_iter()
+            .filter_map(|(id, (built_in, of))| {
+                let advisory = self.advisories.advisories.get(id)?;
+                Some(api::Advisory {
+                    id: id.to_string(),
+                    summary: advisory.summary.clone(),
+                    kind: advisory.kind.clone(),
+                    severity: severity_rank(advisory).1,
+                    packages: of.iter().map(|p| purl_label(p).0).collect(),
+                    build_only: !built_in,
+                })
+            })
+            .collect();
+        advisories.sort_by_cached_key(|a| {
+            let rank = ["critical", "high", "moderate", "low", "unrated"]
+                .iter()
+                .position(|s| *s == a.severity);
+            (a.kind != "vulnerability", rank, a.id.clone())
+        });
+        Some(api::Sbom {
+            packages: packages
+                .into_iter()
+                .map(|((kind, name), (versions, build_only))| {
+                    let mut versions: Vec<String> = versions.into_iter().collect();
+                    // oldest first
+                    versions.sort_by(|a, b| version::cmp_desc(b, a));
+                    api::SbomPackage {
+                        kind,
+                        name,
+                        versions,
+                        build_only,
+                    }
+                })
+                .collect(),
+            advisories,
+            checked: self.advisories_known(index),
+        })
     }
 
     /// The version to compare with in the line of `version`, of `versions` newest first: the
@@ -5170,6 +5239,21 @@ mod tests {
             read("kitchen-sink/everything/0.1.0/index.html")
                 .contains("&#x2f;advisories&#x2f;EXAMPLE-2026-0001&#x2f;")
         );
+        // a version's API has what its SBOM lists and its advisories, for its compare page
+        let api: serde_json::Value =
+            serde_json::from_str(&read("kitchen-sink/everything/0.1.0/api.json")).unwrap();
+        let packages = api["sbom"]["packages"].as_array().unwrap();
+        assert!(packages.iter().any(|p| p["kind"] == "cargo"
+            && p["name"] == "example-parser"
+            && p["versions"][0] == "1.2.0"));
+        assert_eq!(
+            api["sbom"]["advisories"][0]["id"], "EXAMPLE-2026-0001",
+            "the most severe first"
+        );
+        assert_eq!(api["sbom"]["advisories"][0]["severity"], "critical");
+        let newer: serde_json::Value =
+            serde_json::from_str(&read("kitchen-sink/everything/0.2.0-dev/api.json")).unwrap();
+        assert_eq!(newer["sbom"]["advisories"], serde_json::json!([]));
         // the index's listing of advisories lists none of the samples'
         let listing = read("advisories/index.html");
         assert!(!listing.contains("EXAMPLE-"));
