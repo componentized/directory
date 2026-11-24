@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% set title = "Advisories" %}
+{% block description %}Known advisories of what the directory's components are built from.{% endblock %}
+{% block main %}
+<h1>Advisories</h1>
+<p class="lede">The known advisories of what the components in the directory are built from, as their SBOMs list it, from <a href="https://osv.dev">OSV.dev</a>.</p>
+{% if advisories %}
+<p class="dim">{{ advisories|length }} advisor{% if advisories|length == 1 %}y{% else %}ies{% endif %}, {{ vulnerabilities }} vulnerabilit{% if vulnerabilities == 1 %}y{% else %}ies{% endif %}</p>
+{#- vulnerabilities before informational advisories, the most severe first, then the newest #}
+<ul class="advisories">{% for row in advisories %}{% set a = row.advisory %}<li class="advisory">
+  {%- if not a.informational %}<span class="advisory-bullet sev-{{ row.level }}" title="{{ row.level }}{% if row.level == "unrated" %} vulnerability{% endif %}"><svg class="sev-icon" aria-hidden="true" focusable="false"><use href="#sev-{{ row.level }}"/></svg><span class="visually-hidden">{{ row.level }}{% if row.level == "unrated" %} vulnerability{% endif %}</span></span>
+  {%- else %}<span class="advisory-bullet" aria-hidden="true"></span>{% endif %}
+  <div class="advisory-body">
+    <div class="advisory-head">
+      <a href="{{ a.page }}"><code>{{ a.id }}</code></a>
+      {%- if a.informational %} <span class="badge advisory-kind">{{ a.kind }}</span>{% endif %}
+      {%- if a.cve %} <span class="dim"><code>{{ a.cve }}</code></span>{% endif %}
+      <span class="advisory-package dim">{{ row.components }} component{% if row.components != 1 %}s{% endif %}{% if row.current %}, <span class="still-affected" title="Components whose latest version is affected">{{ row.current }} at their latest</span>{% endif %}{% if row.published %} · <time datetime="{{ row.published }}">{{ row.published }}</time>{% endif %}</span>
+    </div>
+    <p class="advisory-summary">{{ a.summary_html|safe }}{% if a.fixed %} <span class="dim">Fixed in {{ a.fixed|join(", ") }}.</span>{% endif %}</p>
+  </div>
+</li>{% endfor %}</ul>
+{% else %}
+<p class="dim">None known.</p>
+{% endif %}
+{% endblock %}

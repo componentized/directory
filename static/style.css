@@ -987,6 +987,16 @@ span.kind-icon-used > svg.kind-icon { display: block; margin: 0; }
 .badge.advisory-kind.severity-low { color: var(--t); background: color-mix(in srgb, var(--t) 14%, transparent); }
 .advisory-summary code { font-size: 0.9em; }
 
+/* an advisory's page: where its full details are, and the components it's of, by version range */
+.advisory-title-icon { display: inline-flex; vertical-align: -0.1em; margin-right: 8px; }
+.advisory-title-icon .sev-icon { width: 1.1em; height: 1.1em; }
+.advisory-sources { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 4px; }
+.advisory-components td { vertical-align: top; }
+.advisory-components .dep-name svg { margin-right: 6px; vertical-align: -0.15em; }
+.version-ranges { list-style: none; padding: 0; margin: 0; display: grid; gap: 2px; white-space: nowrap; }
+.version-ranges a.unaffected code { color: var(--component); }
+.still-affected { color: var(--deprecated); font-weight: 600; }
+
 /* a version's known vulnerabilities in its header, by severity: a shape and a color each */
 /* the breadcrumbs, and at the end of their line, the vulnerabilities, in the breadcrumbs' type */
 .crumbs-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 16px; }
