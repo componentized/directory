@@ -1482,13 +1482,13 @@
       "description": "`componentized:secrets` latch that denies every operation with `not-found`, allowing no secrets.",
       "externalReferences": [
         {
-          "comment": "revision 53fafb57f84581f99f962467749d847523a6c901",
+          "comment": "revision 40c44dc71ad839fe7a3d344acce555f246b9de3a",
           "type": "vcs",
           "url": "https://github.com/componentized/secrets.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/secrets/tree/53fafb57f84581f99f962467749d847523a6c901/components/latch-deny-all"
+          "url": "https://github.com/componentized/secrets/tree/40c44dc71ad839fe7a3d344acce555f246b9de3a/components/latch-deny-all"
         }
       ],
       "hashes": [
@@ -1503,11 +1503,11 @@
         }
       ],
       "name": "componentized:secrets-latch-deny-all",
-      "purl": "pkg:oci/latch-deny-all@sha256%3Af467710b67f73376f2bf4daf1071785f5d5770add9fd08411c4f3303218a94b6?repository_url=ghcr.io/componentized/secrets/latch-deny-all&tag=0.1.2-dev",
+      "purl": "pkg:oci/latch-deny-all@sha256%3A8d04918ab69059100eb2bd2a9139f5571cdd189ab69d29935ca39e666c178f6d?repository_url=ghcr.io/componentized/secrets/latch-deny-all&tag=0.1.2-dev",
       "type": "library",
       "version": "0.1.2-dev"
     },
-    "timestamp": "2026-11-24T01:15:02Z",
+    "timestamp": "2026-11-24T02:24:09Z",
     "tools": {
       "components": [
         {

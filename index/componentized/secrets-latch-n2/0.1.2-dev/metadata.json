@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/secrets/latch-n2",
     "tag": "0.1.2-dev",
-    "digest": "sha256:1a9b5bc7f88cb71e4574ced1895b5560eeba3ebd444a6afedd4344769b6ff4b4",
+    "digest": "sha256:24af783b3fc3c4897339fbf6a4d39aa139b9c5cbc2567ddbc3973258df08a3b2",
     "layer_digest": "sha256:2083f297ca6896f0b92c461d09aec4d3f1f097e9a004743fb473e84e1b12365a",
     "size": 30377,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/secrets",
       "git_ref": "refs/heads/main",
-      "log_index": 4063825630
+      "log_index": 4066414144
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/secrets/latch-n2",
     "tag": "0.1.2-dev_debug",
-    "digest": "sha256:36b3ad163e846352e51f88cb72e18ce26889e6e7e89608ccfa17e8b4be53a89f",
+    "digest": "sha256:5300f612c166c86b62fad25f0f2fd9ee4545510aec236a31c5006138f7e82abe",
     "layer_digest": "sha256:8a418daade563715f091a3478df06e1e280eaed9684ff240b1f5dc6c91c577e1",
     "size": 78943,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/secrets",
       "git_ref": "refs/heads/main",
-      "log_index": 4063835131
+      "log_index": 4066415539
     }
   },
-  "created": "2026-11-24T01:21:14.745796074Z",
+  "created": "2026-11-24T02:29:06.834010850Z",
   "annotations": {
     "org.opencontainers.image.description": "`componentized:secrets` latch that aggregates 2 latches, any latch can deny an operation.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "53fafb57f84581f99f962467749d847523a6c901",
+    "org.opencontainers.image.revision": "40c44dc71ad839fe7a3d344acce555f246b9de3a",
     "org.opencontainers.image.source": "https://github.com/componentized/secrets.git",
     "org.opencontainers.image.title": "componentized:secrets-latch-n2",
-    "org.opencontainers.image.url": "https://github.com/componentized/secrets/tree/53fafb57f84581f99f962467749d847523a6c901/components/latch-n2",
+    "org.opencontainers.image.url": "https://github.com/componentized/secrets/tree/40c44dc71ad839fe7a3d344acce555f246b9de3a/components/latch-n2",
     "org.opencontainers.image.version": "v0.1.2-dev"
   },
   "imports": [
@@ -71,7 +71,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/secrets",
     "git_ref": "refs/heads/main",
-    "log_index": 4063828423
+    "log_index": 4066414819
   },
-  "indexed_at": "2026-11-24T01:25:56Z"
+  "indexed_at": "2026-11-24T02:33:52Z"
 }

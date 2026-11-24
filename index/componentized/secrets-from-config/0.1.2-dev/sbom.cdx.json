@@ -1482,13 +1482,13 @@
       "description": "`componentized:secrets`, backed by `wasi:config`, for hosts without secrets, e.g. wasmtime. Each secret is the config value of the same key, a missing key is not found. The config values are read once, when the store is initialized.",
       "externalReferences": [
         {
-          "comment": "revision 53fafb57f84581f99f962467749d847523a6c901",
+          "comment": "revision 40c44dc71ad839fe7a3d344acce555f246b9de3a",
           "type": "vcs",
           "url": "https://github.com/componentized/secrets.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/secrets/tree/53fafb57f84581f99f962467749d847523a6c901/components/from-config"
+          "url": "https://github.com/componentized/secrets/tree/40c44dc71ad839fe7a3d344acce555f246b9de3a/components/from-config"
         }
       ],
       "hashes": [
@@ -1503,11 +1503,11 @@
         }
       ],
       "name": "componentized:secrets-from-config",
-      "purl": "pkg:oci/from-config@sha256%3A1be218e3317cde7f818fcc47b551586f55b1dfc47ac60c2b27465c9d56ffaba0?repository_url=ghcr.io/componentized/secrets/from-config&tag=0.1.2-dev",
+      "purl": "pkg:oci/from-config@sha256%3Aadcdeb84ee09ee2a11559e7e40ccae09b5226521daed0c85d302d191ce8a7835?repository_url=ghcr.io/componentized/secrets/from-config&tag=0.1.2-dev",
       "type": "library",
       "version": "0.1.2-dev"
     },
-    "timestamp": "2026-11-24T01:15:02Z",
+    "timestamp": "2026-11-24T02:24:09Z",
     "tools": {
       "components": [
         {

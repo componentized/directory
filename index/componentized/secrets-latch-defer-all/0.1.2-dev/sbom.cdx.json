@@ -1482,13 +1482,13 @@
       "description": "`componentized:secrets` latch that defers every operation, allowing all secrets.",
       "externalReferences": [
         {
-          "comment": "revision 53fafb57f84581f99f962467749d847523a6c901",
+          "comment": "revision 40c44dc71ad839fe7a3d344acce555f246b9de3a",
           "type": "vcs",
           "url": "https://github.com/componentized/secrets.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/secrets/tree/53fafb57f84581f99f962467749d847523a6c901/components/latch-defer-all"
+          "url": "https://github.com/componentized/secrets/tree/40c44dc71ad839fe7a3d344acce555f246b9de3a/components/latch-defer-all"
         }
       ],
       "hashes": [
@@ -1503,11 +1503,11 @@
         }
       ],
       "name": "componentized:secrets-latch-defer-all",
-      "purl": "pkg:oci/latch-defer-all@sha256%3Ad931ed69ed6b5b62ef90b06fe0e5e7907b38e824ecb6e7008ee2058624dfd7d8?repository_url=ghcr.io/componentized/secrets/latch-defer-all&tag=0.1.2-dev",
+      "purl": "pkg:oci/latch-defer-all@sha256%3Abe206e3e72281e8160b95599b01aed8b471cd58a2ecaf0225a9bc43faf33dbd4?repository_url=ghcr.io/componentized/secrets/latch-defer-all&tag=0.1.2-dev",
       "type": "library",
       "version": "0.1.2-dev"
     },
-    "timestamp": "2026-11-24T01:15:02Z",
+    "timestamp": "2026-11-24T02:24:09Z",
     "tools": {
       "components": [
         {
