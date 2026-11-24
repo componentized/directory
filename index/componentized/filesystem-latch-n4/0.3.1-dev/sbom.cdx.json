@@ -1759,13 +1759,13 @@
       "description": "Fileystem latch that aggregates four other filesystem latches.",
       "externalReferences": [
         {
-          "comment": "revision e22f7dea040f77224a515c98144e0a66d8ffb716",
+          "comment": "revision 9643257823b16f324c2b73dacbbfbdc12c7047eb",
           "type": "vcs",
           "url": "https://github.com/componentized/filesystem.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/filesystem/tree/e22f7dea040f77224a515c98144e0a66d8ffb716/components/latch-n4"
+          "url": "https://github.com/componentized/filesystem/tree/9643257823b16f324c2b73dacbbfbdc12c7047eb/components/latch-n4"
         }
       ],
       "hashes": [
@@ -1780,11 +1780,11 @@
         }
       ],
       "name": "componentized:filesystem-latch-n4",
-      "purl": "pkg:oci/latch-n4@sha256%3A892cbe645353346af31a6f3b74ae6afc01517d6dd3d4256f786248dde5108e62?repository_url=ghcr.io/componentized/filesystem/latch-n4&tag=0.3.1-dev",
+      "purl": "pkg:oci/latch-n4@sha256%3A622395758ad9a3c4b56aad0470ec01f4dfa05259d616bed7a1bce06e538ac103?repository_url=ghcr.io/componentized/filesystem/latch-n4&tag=0.3.1-dev",
       "type": "library",
       "version": "0.3.1-dev"
     },
-    "timestamp": "2026-11-20T04:13:55Z",
+    "timestamp": "2026-11-24T03:21:33Z",
     "tools": {
       "components": [
         {

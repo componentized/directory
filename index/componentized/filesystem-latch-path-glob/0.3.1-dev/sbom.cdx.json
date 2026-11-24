@@ -1803,13 +1803,13 @@
       "description": "Filesystem latch that uses glob patterns to defer or deny operations on a path.",
       "externalReferences": [
         {
-          "comment": "revision e22f7dea040f77224a515c98144e0a66d8ffb716",
+          "comment": "revision 9643257823b16f324c2b73dacbbfbdc12c7047eb",
           "type": "vcs",
           "url": "https://github.com/componentized/filesystem.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/filesystem/tree/e22f7dea040f77224a515c98144e0a66d8ffb716/components/latch-path-glob"
+          "url": "https://github.com/componentized/filesystem/tree/9643257823b16f324c2b73dacbbfbdc12c7047eb/components/latch-path-glob"
         }
       ],
       "hashes": [
@@ -1824,11 +1824,11 @@
         }
       ],
       "name": "componentized:filesystem-latch-path-glob",
-      "purl": "pkg:oci/latch-path-glob@sha256%3A5a2402cf09b738cbd9156b46270d3b4c95cf7b827ba1f4f1270c6cbe2091c269?repository_url=ghcr.io/componentized/filesystem/latch-path-glob&tag=0.3.1-dev",
+      "purl": "pkg:oci/latch-path-glob@sha256%3A3503f96be346484cbd4579494c5b69f9d465b1728cd97cbafa5628d24375e60a?repository_url=ghcr.io/componentized/filesystem/latch-path-glob&tag=0.3.1-dev",
       "type": "library",
       "version": "0.3.1-dev"
     },
-    "timestamp": "2026-11-20T04:13:55Z",
+    "timestamp": "2026-11-24T03:21:33Z",
     "tools": {
       "components": [
         {

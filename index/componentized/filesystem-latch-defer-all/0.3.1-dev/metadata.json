@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/latch-defer-all",
     "tag": "0.3.1-dev",
-    "digest": "sha256:044cbce2a2ee6c860be789f0ebc47f0bf8a5a043edc92b28a7abeb7fdca3b120",
+    "digest": "sha256:b8882f4437fac54529c629621ed524b73a4cf654b4842277a366ac71457e3272",
     "layer_digest": "sha256:1953168d1a1e1f3daf0fe194e2610372dad4ed988572ef6f5953d13258afdc79",
     "size": 41150,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/filesystem",
       "git_ref": "refs/heads/main",
-      "log_index": 4017045288
+      "log_index": 4067925331
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/latch-defer-all",
     "tag": "0.3.1-dev_debug",
-    "digest": "sha256:f0d7a4fbb1a8f84e7664b3cab72bd390212f493e3ee00c6f82c74b80a1e0d2dd",
+    "digest": "sha256:9b63f1eb5affc2f2690d4aaa6cdd24d082483e344fb86bf58b0b0024d63cef97",
     "layer_digest": "sha256:d492239557cb6c232ca7dea8fdc5d27b7555cf65d0ce516c7c35168547e25da1",
     "size": 426593,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/filesystem",
       "git_ref": "refs/heads/main",
-      "log_index": 4017063553
+      "log_index": 4067930757
     }
   },
-  "created": "2026-11-20T04:24:46.291614436Z",
+  "created": "2026-11-24T03:28:34.722505346Z",
   "annotations": {
     "org.opencontainers.image.description": "Filesystem latch that implicitly defers all operations.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "e22f7dea040f77224a515c98144e0a66d8ffb716",
+    "org.opencontainers.image.revision": "9643257823b16f324c2b73dacbbfbdc12c7047eb",
     "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
     "org.opencontainers.image.title": "componentized:filesystem-latch-defer-all",
-    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/e22f7dea040f77224a515c98144e0a66d8ffb716/components/latch-defer-all",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/9643257823b16f324c2b73dacbbfbdc12c7047eb/components/latch-defer-all",
     "org.opencontainers.image.version": "v0.3.1-dev"
   },
   "imports": [
@@ -78,7 +78,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/filesystem",
     "git_ref": "refs/heads/main",
-    "log_index": 4017056976
+    "log_index": 4067927598
   },
-  "indexed_at": "2026-11-20T04:38:27Z"
+  "indexed_at": "2026-11-24T03:35:40Z"
 }

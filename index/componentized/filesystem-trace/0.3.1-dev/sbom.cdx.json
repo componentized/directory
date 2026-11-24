@@ -1773,13 +1773,13 @@
       "description": "Virtualizes the wasi:filesystem interfaces logging all method calls at the TRACE level and 'filesystem' component.",
       "externalReferences": [
         {
-          "comment": "revision e22f7dea040f77224a515c98144e0a66d8ffb716",
+          "comment": "revision 9643257823b16f324c2b73dacbbfbdc12c7047eb",
           "type": "vcs",
           "url": "https://github.com/componentized/filesystem.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/filesystem/tree/e22f7dea040f77224a515c98144e0a66d8ffb716/components/trace"
+          "url": "https://github.com/componentized/filesystem/tree/9643257823b16f324c2b73dacbbfbdc12c7047eb/components/trace"
         }
       ],
       "hashes": [
@@ -1794,11 +1794,11 @@
         }
       ],
       "name": "componentized:filesystem-trace",
-      "purl": "pkg:oci/trace@sha256%3A35a33c2cb8e73730861829d7576ce2da643171c5f0f541ef389caabef366f33a?repository_url=ghcr.io/componentized/filesystem/trace&tag=0.3.1-dev",
+      "purl": "pkg:oci/trace@sha256%3Aec9c6db7f58bc1af2da74856d7393a5250c859a258e5c539c37f355ede7f02f7?repository_url=ghcr.io/componentized/filesystem/trace&tag=0.3.1-dev",
       "type": "library",
       "version": "0.3.1-dev"
     },
-    "timestamp": "2026-11-20T04:13:55Z",
+    "timestamp": "2026-11-24T03:21:33Z",
     "tools": {
       "components": [
         {

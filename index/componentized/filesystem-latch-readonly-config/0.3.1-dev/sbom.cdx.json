@@ -27,13 +27,13 @@
       "description": "Config for `latch-path-glob` that makes every path readonly.",
       "externalReferences": [
         {
-          "comment": "revision e22f7dea040f77224a515c98144e0a66d8ffb716",
+          "comment": "revision 9643257823b16f324c2b73dacbbfbdc12c7047eb",
           "type": "vcs",
           "url": "https://github.com/componentized/filesystem.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/filesystem/tree/e22f7dea040f77224a515c98144e0a66d8ffb716/components/latch-readonly-config"
+          "url": "https://github.com/componentized/filesystem/tree/9643257823b16f324c2b73dacbbfbdc12c7047eb/components/latch-readonly-config"
         }
       ],
       "hashes": [
@@ -48,11 +48,11 @@
         }
       ],
       "name": "componentized:filesystem-latch-readonly-config",
-      "purl": "pkg:oci/latch-readonly-config@sha256%3A3ab933aa0b3fc8a4695086116b9204112cb591041a8309c58f5e524c4c5c30f0?repository_url=ghcr.io/componentized/filesystem/latch-readonly-config&tag=0.3.1-dev",
+      "purl": "pkg:oci/latch-readonly-config@sha256%3A24f6f34827effa6225b1f13e051167ee308f30766c2e92081af60cfb79a71f30?repository_url=ghcr.io/componentized/filesystem/latch-readonly-config&tag=0.3.1-dev",
       "type": "library",
       "version": "0.3.1-dev"
     },
-    "timestamp": "2026-11-20T04:13:55Z",
+    "timestamp": "2026-11-24T03:21:33Z",
     "tools": {
       "components": [
         {

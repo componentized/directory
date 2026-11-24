@@ -1760,13 +1760,13 @@
       "description": "Filesystem latch that randomly denies operations, to prove a component is resilient to failures.",
       "externalReferences": [
         {
-          "comment": "revision e22f7dea040f77224a515c98144e0a66d8ffb716",
+          "comment": "revision 9643257823b16f324c2b73dacbbfbdc12c7047eb",
           "type": "vcs",
           "url": "https://github.com/componentized/filesystem.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/filesystem/tree/e22f7dea040f77224a515c98144e0a66d8ffb716/components/latch-deny-random"
+          "url": "https://github.com/componentized/filesystem/tree/9643257823b16f324c2b73dacbbfbdc12c7047eb/components/latch-deny-random"
         }
       ],
       "hashes": [
@@ -1781,11 +1781,11 @@
         }
       ],
       "name": "componentized:filesystem-latch-deny-random",
-      "purl": "pkg:oci/latch-deny-random@sha256%3A94c90d3c7dc5467d95f350d20f599df75d9dd34a4e989aa79021aa182d56c08b?repository_url=ghcr.io/componentized/filesystem/latch-deny-random&tag=0.3.1-dev",
+      "purl": "pkg:oci/latch-deny-random@sha256%3A9ac983a43bc63c4529c5dd127cd88f7943b80804df1b3685962f8187f6d02eb4?repository_url=ghcr.io/componentized/filesystem/latch-deny-random&tag=0.3.1-dev",
       "type": "library",
       "version": "0.3.1-dev"
     },
-    "timestamp": "2026-11-20T04:13:55Z",
+    "timestamp": "2026-11-24T03:21:33Z",
     "tools": {
       "components": [
         {

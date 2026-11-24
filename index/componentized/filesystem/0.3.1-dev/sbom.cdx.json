@@ -38,13 +38,13 @@
       "description": "A collection of utility components that remix wasi:filesystem types and interfaces.",
       "externalReferences": [
         {
-          "comment": "revision e22f7dea040f77224a515c98144e0a66d8ffb716",
+          "comment": "revision 9643257823b16f324c2b73dacbbfbdc12c7047eb",
           "type": "vcs",
           "url": "https://github.com/componentized/filesystem.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/filesystem/tree/e22f7dea040f77224a515c98144e0a66d8ffb716"
+          "url": "https://github.com/componentized/filesystem/tree/9643257823b16f324c2b73dacbbfbdc12c7047eb"
         }
       ],
       "hashes": [
@@ -59,11 +59,11 @@
         }
       ],
       "name": "componentized:filesystem",
-      "purl": "pkg:oci/filesystem@sha256%3Aec621dec531d6cc8bad73ba1f59b26a6fd308178e8cd9aa0da5472732ad8d488?repository_url=ghcr.io/componentized/filesystem&tag=0.3.1-dev",
+      "purl": "pkg:oci/filesystem@sha256%3A8368a406d1d768566689a7527fd7d4887a46bb09c6857f30f179e3b95206d545?repository_url=ghcr.io/componentized/filesystem&tag=0.3.1-dev",
       "type": "library",
       "version": "0.3.1-dev"
     },
-    "timestamp": "2026-11-20T04:13:55Z",
+    "timestamp": "2026-11-24T03:21:33Z",
     "tools": {
       "components": [
         {

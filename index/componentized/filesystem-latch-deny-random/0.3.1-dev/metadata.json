@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/latch-deny-random",
     "tag": "0.3.1-dev",
-    "digest": "sha256:94c90d3c7dc5467d95f350d20f599df75d9dd34a4e989aa79021aa182d56c08b",
+    "digest": "sha256:9ac983a43bc63c4529c5dd127cd88f7943b80804df1b3685962f8187f6d02eb4",
     "layer_digest": "sha256:303a09d99d86c020aaaa078c70d7c80faf4748e319d0155ae8ac9605403d5d3b",
     "size": 114527,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/filesystem",
       "git_ref": "refs/heads/main",
-      "log_index": 4017102490
+      "log_index": 4067951909
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/latch-deny-random",
     "tag": "0.3.1-dev_debug",
-    "digest": "sha256:d22f437ff5a87a8b0e9fc33431f7e8497bcb49b5702cf6c53ca004034c5d06b4",
+    "digest": "sha256:c14a843e1cb5f4f8a7c15e5c59f21ebf1130232a9ac3d5cf74ee1ca950470af0",
     "layer_digest": "sha256:4bf6b3c20582c2e4a3d628e148e7d1a41a879c3ec313d0687bfb9789d0f6db58",
     "size": 996893,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/filesystem",
       "git_ref": "refs/heads/main",
-      "log_index": 4017113051
+      "log_index": 4067957350
     }
   },
-  "created": "2026-11-20T04:27:01.917743171Z",
+  "created": "2026-11-24T03:29:36.111746411Z",
   "annotations": {
     "org.opencontainers.image.description": "Filesystem latch that randomly denies operations, to prove a component is resilient to failures.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "e22f7dea040f77224a515c98144e0a66d8ffb716",
+    "org.opencontainers.image.revision": "9643257823b16f324c2b73dacbbfbdc12c7047eb",
     "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
     "org.opencontainers.image.title": "componentized:filesystem-latch-deny-random",
-    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/e22f7dea040f77224a515c98144e0a66d8ffb716/components/latch-deny-random",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/9643257823b16f324c2b73dacbbfbdc12c7047eb/components/latch-deny-random",
     "org.opencontainers.image.version": "v0.3.1-dev"
   },
   "imports": [
@@ -93,7 +93,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/filesystem",
     "git_ref": "refs/heads/main",
-    "log_index": 4017107803
+    "log_index": 4067953796
   },
-  "indexed_at": "2026-11-20T04:38:43Z"
+  "indexed_at": "2026-11-24T03:35:51Z"
 }

@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/gate",
     "tag": "0.3.1-dev",
-    "digest": "sha256:c69f7b1dde2da85f1f712217c6d12362e9bd5659f62931eabc411db4bef8e869",
+    "digest": "sha256:97bbd0471fbef794d9cae91804af4da38df24755f2554a937cb27d5954dda290",
     "layer_digest": "sha256:ac18d19bdedb25ec8c56834501a85cea310ed2e1d4a0138d6e6d4fe6103591ba",
     "size": 391103,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/filesystem",
       "git_ref": "refs/heads/main",
-      "log_index": 4017016707
+      "log_index": 4067913527
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/gate",
     "tag": "0.3.1-dev_debug",
-    "digest": "sha256:f567d47b42c3092b774d652019b350566c7b5888b9082ff753ba088c26313b25",
+    "digest": "sha256:05040d8820ac0b0d6109bb9b5aef2a977360cdc35ae14ed812b7b4ffdfb9ff33",
     "layer_digest": "sha256:ed17f22e765c5bbca50d3395a751a37d3f606eb3a0c39f66edfd0ee3995af25b",
     "size": 3583047,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/filesystem",
       "git_ref": "refs/heads/main",
-      "log_index": 4017026235
+      "log_index": 4067919457
     }
   },
-  "created": "2026-11-20T04:23:31.229303227Z",
+  "created": "2026-11-24T03:28:03.911771289Z",
   "annotations": {
     "org.opencontainers.image.description": "Filesystem gate access control for preopens and descriptors.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "e22f7dea040f77224a515c98144e0a66d8ffb716",
+    "org.opencontainers.image.revision": "9643257823b16f324c2b73dacbbfbdc12c7047eb",
     "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
     "org.opencontainers.image.title": "componentized:filesystem-gate",
-    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/e22f7dea040f77224a515c98144e0a66d8ffb716/components/gate",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/9643257823b16f324c2b73dacbbfbdc12c7047eb/components/gate",
     "org.opencontainers.image.version": "v0.3.1-dev"
   },
   "imports": [
@@ -90,7 +90,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/filesystem",
     "git_ref": "refs/heads/main",
-    "log_index": 4017019297
+    "log_index": 4067914993
   },
-  "indexed_at": "2026-11-20T04:38:19Z"
+  "indexed_at": "2026-11-24T03:35:35Z"
 }
