@@ -38,13 +38,13 @@
       "description": "WASM components for interacting with resources in OCI image repositories.",
       "externalReferences": [
         {
-          "comment": "revision 7e16da30d4f0cea3d441566d3195cb0edc60d731",
+          "comment": "revision 780dde0b666e4414d8f5e8499bb5f6b338193320",
           "type": "vcs",
           "url": "https://github.com/componentized/oci.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/oci/tree/7e16da30d4f0cea3d441566d3195cb0edc60d731"
+          "url": "https://github.com/componentized/oci/tree/780dde0b666e4414d8f5e8499bb5f6b338193320"
         }
       ],
       "hashes": [
@@ -59,11 +59,11 @@
         }
       ],
       "name": "componentized:oci",
-      "purl": "pkg:oci/oci@sha256%3A1480c2764aeaacb6a798abe2ea69dcd9cac5654642ac604268a4a7ddf58653af?repository_url=ghcr.io/componentized/oci&tag=0.1.1-dev",
+      "purl": "pkg:oci/oci@sha256%3A2b779217a0bb1bad78ea6bc8a5a3358f4c8a9b529f9d58007f55d76169e47103?repository_url=ghcr.io/componentized/oci&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-24T21:53:46Z",
+    "timestamp": "2026-11-24T22:18:22Z",
     "tools": {
       "components": [
         {
