@@ -1,0 +1,68 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "pkg:cargo/componentized-constants-cli@0.2.0",
+      "name": "componentized-constants-cli",
+      "purl": "pkg:cargo/componentized-constants-cli@0.2.0",
+      "type": "library",
+      "version": "0.2.0"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "pkg:cargo/componentized-constants-cli@0.2.0"
+      ],
+      "ref": "component:componentized:oci-media-types"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:cargo/componentized-constants-cli@0.2.0"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "component:componentized:oci-media-types",
+      "description": "Common OCI related media types.",
+      "externalReferences": [
+        {
+          "comment": "revision c30641153cabc6f410d2813abdb06522e866fbe8",
+          "type": "vcs",
+          "url": "https://github.com/componentized/oci.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/componentized/oci/tree/c30641153cabc6f410d2813abdb06522e866fbe8/components/media-types"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "beca43eda16c5292d6b32269b764248ac2b1c2426cae24d84ac49d3fcdbed97a"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "componentized:oci-media-types",
+      "purl": "pkg:oci/media-types@sha256%3A164e86cfe260634fb831619b45eb068c8becbf33fe33082d4550cda4f6d2a716?repository_url=ghcr.io/componentized/oci/media-types&tag=0.1.2-dev",
+      "type": "library",
+      "version": "0.1.2-dev"
+    },
+    "timestamp": "2026-11-25T17:18:05Z",
+    "tools": {
+      "components": [
+        {
+          "name": "componentized-constants-cli",
+          "type": "application",
+          "version": "0.2.0"
+        }
+      ]
+    }
+  },
+  "specVersion": "1.6",
+  "version": 1
+}

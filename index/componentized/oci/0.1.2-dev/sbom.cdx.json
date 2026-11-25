@@ -1,0 +1,78 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "wit:wasi:clocks@0.3.0",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "59e1f4079e64ada450e19ffc9d08854c904e356ed8cc1fda36ff4fe150264db2"
+        }
+      ],
+      "name": "wasi:clocks",
+      "properties": [
+        {
+          "name": "wkg:registry",
+          "value": "wasi.dev"
+        }
+      ],
+      "type": "library",
+      "version": "0.3.0"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "wit:wasi:clocks@0.3.0"
+      ],
+      "ref": "component:componentized:oci"
+    },
+    {
+      "dependsOn": [],
+      "ref": "wit:wasi:clocks@0.3.0"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "component:componentized:oci",
+      "description": "WASM components for interacting with resources in OCI image repositories.",
+      "externalReferences": [
+        {
+          "comment": "revision c30641153cabc6f410d2813abdb06522e866fbe8",
+          "type": "vcs",
+          "url": "https://github.com/componentized/oci.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/componentized/oci/tree/c30641153cabc6f410d2813abdb06522e866fbe8"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "aeba9495c4c4e04fe54760ccb9abd019b45d887ae574af0cfc25443779c1caca"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "componentized:oci",
+      "purl": "pkg:oci/oci@sha256%3Abc5a2c53b8a21a17e9dd8e9479a0f38d93bd104fcf39a73b2b4dd04491f5985c?repository_url=ghcr.io/componentized/oci&tag=0.1.2-dev",
+      "type": "library",
+      "version": "0.1.2-dev"
+    },
+    "timestamp": "2026-11-25T17:18:05Z",
+    "tools": {
+      "components": [
+        {
+          "name": "wkg",
+          "type": "application"
+        }
+      ]
+    }
+  },
+  "specVersion": "1.6",
+  "version": 1
+}

@@ -1,0 +1,130 @@
+{
+  "package": "componentized:oci-client",
+  "version": "0.1.2-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/oci/client",
+    "tag": "0.1.2-dev",
+    "digest": "sha256:5ce6b46b88a039d1ea5c964deba513d947ea204748a987f7bba99a4fefb48f88",
+    "layer_digest": "sha256:9e19ffce0b82161dced52e26d55de04c183a1ba72b3607678ffc79b5d5cc3745",
+    "size": 554065,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/oci/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/oci",
+      "git_ref": "refs/heads/main",
+      "log_index": 4107583402
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/oci/client",
+    "tag": "0.1.2-dev_debug",
+    "digest": "sha256:878a1a8c0074f17717e330f2ffea92f970f47b1612a3a7ce8a12baf314e5e454",
+    "layer_digest": "sha256:682e4d2287b306a368bdbe4b0f2cf49c6cb92e655751fed4826f9dad2260615e",
+    "size": 6313183,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/oci/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/oci",
+      "git_ref": "refs/heads/main",
+      "log_index": 4107587424
+    }
+  },
+  "created": "2026-11-25T17:20:33.050882077Z",
+  "annotations": {
+    "org.opencontainers.image.description": "OCI image client component.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "c30641153cabc6f410d2813abdb06522e866fbe8",
+    "org.opencontainers.image.source": "https://github.com/componentized/oci.git",
+    "org.opencontainers.image.title": "componentized:oci-client",
+    "org.opencontainers.image.url": "https://github.com/componentized/oci/tree/c30641153cabc6f410d2813abdb06522e866fbe8/components/client",
+    "org.opencontainers.image.version": "v0.1.2-dev"
+  },
+  "imports": [
+    "componentized:http/client@0.1.1",
+    "wasi:clocks/system-clock@0.3.0"
+  ],
+  "exports": [
+    "componentized:oci/client@0.1.2-dev",
+    "componentized:oci/media-types@0.1.2-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:http",
+      "version": "0.1.1"
+    },
+    {
+      "package": "componentized:oci",
+      "version": "0.1.2-dev"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:beca43eda16c5292d6b32269b764248ac2b1c2426cae24d84ac49d3fcdbed97a",
+      "size": 6133,
+      "code": true
+    },
+    {
+      "digest": "sha256:4e157ff70bbb076c3ff6ddabee4eb588b69d5b961d3e0007a41141c55d57de4a",
+      "size": 546923,
+      "code": true
+    }
+  ],
+  "wiring": {
+    "instances": [
+      {
+        "part": 0,
+        "name": "media-types"
+      },
+      {
+        "part": 1,
+        "name": "client",
+        "args": [
+          {
+            "name": "componentized:oci/media-types@0.1.2-dev",
+            "instance": 0,
+            "export": "componentized:oci/media-types@0.1.2-dev"
+          },
+          {
+            "name": "componentized:http/client@0.1.1",
+            "import": "componentized:http/client@0.1.1"
+          },
+          {
+            "name": "wasi:clocks/system-clock@0.3.0",
+            "import": "wasi:clocks/system-clock@0.3.0"
+          }
+        ]
+      }
+    ],
+    "exports": [
+      {
+        "name": "componentized:oci/client@0.1.2-dev",
+        "instance": 1,
+        "export": "componentized:oci/client@0.1.2-dev"
+      },
+      {
+        "name": "componentized:oci/media-types@0.1.2-dev",
+        "instance": 0,
+        "export": "componentized:oci/media-types@0.1.2-dev"
+      }
+    ]
+  },
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/oci/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/oci",
+    "git_ref": "refs/heads/main",
+    "log_index": 4107584765
+  },
+  "indexed_at": "2026-11-25T17:22:21Z"
+}

@@ -1,0 +1,56 @@
+{
+  "package": "componentized:oci-media-types",
+  "version": "0.1.2-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/oci/media-types",
+    "tag": "0.1.2-dev",
+    "digest": "sha256:164e86cfe260634fb831619b45eb068c8becbf33fe33082d4550cda4f6d2a716",
+    "layer_digest": "sha256:beca43eda16c5292d6b32269b764248ac2b1c2426cae24d84ac49d3fcdbed97a",
+    "size": 6133,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/oci/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/oci",
+      "git_ref": "refs/heads/main",
+      "log_index": 4107590020
+    }
+  },
+  "created": "2026-11-25T17:21:02.925652149Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Common OCI related media types.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "c30641153cabc6f410d2813abdb06522e866fbe8",
+    "org.opencontainers.image.source": "https://github.com/componentized/oci.git",
+    "org.opencontainers.image.title": "componentized:oci-media-types",
+    "org.opencontainers.image.url": "https://github.com/componentized/oci/tree/c30641153cabc6f410d2813abdb06522e866fbe8/components/media-types",
+    "org.opencontainers.image.version": "v0.1.2-dev"
+  },
+  "exports": [
+    "componentized:oci/media-types@0.1.2-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:oci",
+      "version": "0.1.2-dev"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:59bb5022c6297d2cf585c6f6e29d213c7e5c85b716fbce02d7c0c7c1cae2e36a",
+      "size": 1099
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/oci/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/oci",
+    "git_ref": "refs/heads/main",
+    "log_index": 4107590873
+  },
+  "indexed_at": "2026-11-25T17:22:26Z"
+}
