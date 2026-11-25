@@ -495,6 +495,8 @@ pub fn build(
             tip => fingerprint(include_str!("../static/tip.js")),
             pane => fingerprint(include_str!("../static/pane.js")),
             compare => fingerprint(include_str!("../static/compare.js")),
+            diff => fingerprint(include_str!("../static/diff.js")),
+            repo_compare => fingerprint(include_str!("../static/repo-compare.js")),
             wiring => fingerprint(include_str!("../static/wiring.js")),
         },
     );
@@ -518,6 +520,12 @@ pub fn build(
     write_file(out, "tip.js", include_str!("../static/tip.js"))?;
     write_file(out, "pane.js", include_str!("../static/pane.js"))?;
     write_file(out, "compare.js", include_str!("../static/compare.js"))?;
+    write_file(out, "diff.js", include_str!("../static/diff.js"))?;
+    write_file(
+        out,
+        "repo-compare.js",
+        include_str!("../static/repo-compare.js"),
+    )?;
     write_file(out, "wiring.js", include_str!("../static/wiring.js"))?;
     // tells wasm-pkg tools where the namespaces' packages are published
     write_file(
@@ -644,6 +652,15 @@ fn render_packages(site: &Site, env: &Environment, out: &Path) -> Result<()> {
             &format!("{}index.html", advisory_url(&id)),
             &env.get_template("advisory.html")?.render(ctx)?,
         )?;
+    }
+    for repo in site.repos.values() {
+        if let Some(ctx) = site.repo_compare(repo) {
+            write_file(
+                out,
+                &format!("{}index.html", repo_compare_url(repo)),
+                &env.get_template("repo-compare.html")?.render(ctx)?,
+            )?;
+        }
     }
     for (namespace, ctx) in site.namespaces() {
         write_file(
@@ -803,6 +820,10 @@ fn environment() -> Result<Environment<'static>> {
         ("advisory.html", include_str!("../templates/advisory.html")),
         ("icons.html", include_str!("../templates/icons.html")),
         ("compare.html", include_str!("../templates/compare.html")),
+        (
+            "repo-compare.html",
+            include_str!("../templates/repo-compare.html"),
+        ),
     ] {
         env.add_template(name, source)?;
     }
@@ -1294,6 +1315,13 @@ fn severity_rank(advisory: &crate::advisories::Advisory) -> (u8, &'static str) {
         Some("LOW") => (3, "low"),
         _ => (4, "unrated"),
     }
+}
+
+/// A repository's compare page, e.g. `/_repos/componentized/logging/compare/`. It's apart from the
+/// namespaces' pages, as `/componentized/logging/compare/` is the compare page of the package
+/// `componentized:logging`.
+fn repo_compare_url(repo: &Repo) -> String {
+    format!("/_repos/{}/compare/", repo.key)
 }
 
 /// The page of an advisory, e.g. `/advisories/RUSTSEC-2026-0592/`.
@@ -2392,18 +2420,110 @@ impl Site {
                             .unwrap_or_default();
                         // the packages without a repository each at their own latest version
                         let listing = listing(&ordered(members));
+                        // the repository's versions compared, each of its packages summed up
+                        let compare = repo
+                            .filter(|repo| self.repo_versions(repo).len() > 1)
+                            .map(repo_compare_url);
                         ctx! {
                             key,
                             name,
                             version_lines => release_lines(&versions),
                             versions,
                             listing,
+                            compare,
                         }
                     })
                     .collect();
                 (namespace.clone(), ctx! { namespace, count, groups })
             })
             .collect()
+    }
+
+    /// A repository's versions, newest first, each with the packages it released at it that are
+    /// listed, of every namespace: a superseded dev version is left out, as its namespace's page
+    /// leaves it out, unless it's the repository's latest.
+    fn repo_versions<'a>(&self, repo: &'a Repo) -> Vec<(&'a str, Vec<usize>)> {
+        let latest = repo.latest();
+        repo.versions
+            .iter()
+            .enumerate()
+            .filter(|(i, (v, _))| *i == latest || !repo.superseded(v))
+            .map(|(_, (version, members))| {
+                let mut members: Vec<usize> = members
+                    .iter()
+                    .copied()
+                    .filter(|m| self.listed(*m))
+                    .collect();
+                // the interface packages, then the components, by name
+                members.sort_by(|a, b| {
+                    let (a, b) = (&self.entries[*a].meta, &self.entries[*b].meta);
+                    (a.kind != Kind::Interface, &a.package)
+                        .cmp(&(b.kind != Kind::Interface, &b.package))
+                });
+                (version.as_str(), members)
+            })
+            .filter(|(_, members)| !members.is_empty())
+            .collect()
+    }
+
+    /// A repository's compare page: two of its versions, each of the packages either released
+    /// summed up in the browser from their APIs, as their own compare pages diff them, linking to
+    /// those for the details. `None` for a repository with one version.
+    fn repo_compare(&self, repo: &Repo) -> Option<minijinja::Value> {
+        let versions: Vec<minijinja::Value> = self
+            .repo_versions(repo)
+            .into_iter()
+            .map(|(version, members)| {
+                let packages: Vec<minijinja::Value> = members
+                    .iter()
+                    .map(|m| {
+                        let entry = &self.entries[*m];
+                        ctx! {
+                            package => entry.meta.package,
+                            version => entry.meta.version,
+                            kind => entry.meta.kind,
+                            icon => entry.icon_kind(),
+                            api => format!("{}api.json", entry.url()),
+                            url => entry.url(),
+                            compare => format!("{}compare/", entry.package_url()),
+                        }
+                    })
+                    .collect();
+                ctx! {
+                    version,
+                    line => release_line(version),
+                    stable => version::stable(version).is_some(),
+                    date => members.iter().map(|m| self.entries[*m].date()).min().unwrap_or_default(),
+                    packages,
+                }
+            })
+            .collect();
+        if versions.len() < 2 {
+            return None;
+        }
+        // the namespaces it releases packages of, each linking to its section of their page
+        let namespaces: BTreeSet<&str> = repo
+            .versions
+            .iter()
+            .flat_map(|(_, members)| members)
+            .map(|m| self.entries[*m].namespace())
+            .collect();
+        Some(ctx! {
+            title => format!("Compare {}", repo.key),
+            noindex => true,
+            canonical => repo_compare_url(repo),
+            repo => ctx! {
+                key => repo.key,
+                web => repo.web,
+                url => self.repo_url(repo),
+            },
+            namespaces => namespaces
+                .into_iter()
+                .map(|ns| ctx! { namespace => ns, url => format!("/{ns}/#{}", repo.key) })
+                .collect::<Vec<_>>(),
+            lines => release_lines(&versions),
+            versions,
+        })
     }
 
     fn versions(&self, index: usize) -> Vec<VersionLink> {
@@ -4924,6 +5044,83 @@ mod tests {
         )
         .unwrap();
         std::fs::remove_dir_all(&root).unwrap();
+    }
+
+    #[test]
+    fn compares_a_repository_s_versions() {
+        let entry = |name: &str, version: &str, kind: Kind| {
+            let mut meta = metadata(&format!("a:{name}"), version, kind, Origin::Release);
+            meta.annotations.insert(
+                "org.opencontainers.image.source".to_string(),
+                "https://github.com/a/repo".to_string(),
+            );
+            let mut resolve = Resolve::new();
+            let pkg = resolve
+                .push_str("package.wit", &format!("package a:{name}@{version};\n"))
+                .unwrap();
+            Entry {
+                meta,
+                nested: false,
+                sbom: None,
+                resolve,
+                pkg,
+            }
+        };
+        // a release, and the dev build of the next one, which adds a component
+        let site = Site::new(vec![
+            entry("types", "0.1.0", Kind::Interface),
+            entry("impl", "0.1.0", Kind::Component),
+            entry("types", "0.1.1-dev", Kind::Interface),
+            entry("impl", "0.1.1-dev", Kind::Component),
+            entry("extra", "0.1.1-dev", Kind::Component),
+        ]);
+        let repo = &site.repos["a/repo"];
+        assert_eq!(repo_compare_url(repo), "/_repos/a/repo/compare/");
+        let ctx = site.repo_compare(repo).unwrap();
+        let versions = ctx.get_attr("versions").unwrap();
+        let packages = |at: usize| -> Vec<String> {
+            versions
+                .get_item(&at.into())
+                .unwrap()
+                .get_attr("packages")
+                .unwrap()
+                .try_iter()
+                .unwrap()
+                .map(|p| p.get_attr("package").unwrap().to_string())
+                .collect()
+        };
+        // the newest first, the interface packages before the components
+        assert_eq!(
+            versions
+                .get_item(&0.into())
+                .unwrap()
+                .get_attr("version")
+                .unwrap()
+                .to_string(),
+            "0.1.1-dev"
+        );
+        assert_eq!(packages(0), ["a:types", "a:extra", "a:impl"]);
+        assert_eq!(packages(1), ["a:types", "a:impl"]);
+        // each package's API, and its compare page, for the details
+        let first = versions
+            .get_item(&1.into())
+            .unwrap()
+            .get_attr("packages")
+            .unwrap()
+            .get_item(&1.into())
+            .unwrap();
+        assert_eq!(
+            first.get_attr("api").unwrap().to_string(),
+            "/a/impl/0.1.0/api.json"
+        );
+        assert_eq!(
+            first.get_attr("compare").unwrap().to_string(),
+            "/a/impl/compare/"
+        );
+
+        // one with a single version has nothing to compare
+        let single = Site::new(vec![entry("types", "0.1.0", Kind::Interface)]);
+        assert!(single.repo_compare(&single.repos["a/repo"]).is_none());
     }
 
     #[test]

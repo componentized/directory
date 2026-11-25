@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% from "macros.html" import kind_icon, compare_pick %}
+{% block description %}What changed in each package of {{ repo.key }} between two of its versions{% endblock %}
+{% block main %}
+{#- the head: the breadcrumbs and the totals on one row, the repository and the versions compared on
+    the next, all pinned, so they stay in reach as the packages scroll #}
+<div class="page-head compare-head" data-page-head>
+<div class="compare-row">
+  <nav class="crumbs" aria-label="Breadcrumbs">{% for ns in namespaces %}<a href="{{ ns.url }}">{{ ns.namespace }}</a>{% if not loop.last %}, {% endif %}{% endfor %} / <span>compare</span></nav>
+  {#- how many changes of each kind across its packages #}
+  <p class="compare-counts dots" data-compare-counts hidden></p>
+</div>
+<div class="compare-row title-row">
+  <h1>{{ kind_icon("repo") }}<a href="{{ repo.web }}"><code>{{ repo.key }}</code></a></h1>
+  <form class="compare-pick" data-compare>
+    {{ compare_pick("from", "From", lines) }}
+    <button type="button" class="compare-swap" data-compare-swap title="Swap the versions" aria-label="Swap the versions">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 5.5h10.5M10.5 3 13 5.5 10.5 8M13.5 10.5H3M5.5 8 3 10.5 5.5 13"/></svg>
+    </button>
+    {{ compare_pick("to", "To", lines) }}
+  </form>
+</div>
+</div>
+<p class="lede">Each package the repository released at either version, summed up: the changes to its API, its size, the packages its SBOM lists and its advisories. Each package with differences links to its own comparison for the details.</p>
+
+<script type="application/json" id="compare-versions">{{ versions|tojson }}</script>
+
+<div class="compare-result" data-compare-result aria-live="polite">
+  <noscript><p class="notice">Comparing versions needs JavaScript. Each package's page lists its versions.</p></noscript>
+</div>
+<script src="/diff.js?v={{ assets.diff }}" defer></script>
+<script src="/repo-compare.js?v={{ assets.repo_compare }}" defer></script>
+{% endblock %}
