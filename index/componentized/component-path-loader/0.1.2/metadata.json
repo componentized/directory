@@ -1,0 +1,199 @@
+{
+  "package": "componentized:component-path-loader",
+  "version": "0.1.2",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component/path-loader",
+    "tag": "0.1.2",
+    "digest": "sha256:3076e1d2091b335ef1b3e4327918d01805aedb2f0a829d225836a1751871368f",
+    "layer_digest": "sha256:d02425ea991d73c1426b090fe0594251eb2c434b9f147a98b4401e43f6cf346a",
+    "size": 354085,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/component/.github/workflows/ci.yaml@refs/tags/v0.1.2",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/component",
+      "git_ref": "refs/tags/v0.1.2",
+      "log_index": 4113895966
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component/path-loader",
+    "tag": "0.1.2_debug",
+    "digest": "sha256:943ff0f598bd1f3b95078b0813a86d1ad3aa5d456eee001e8b7bf98a80d13edb",
+    "layer_digest": "sha256:7c4af9eaa39021551f97ad5a497eeab9e1fee0d8ac17187788380f9bf599c4f3",
+    "size": 4529964,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/component/.github/workflows/ci.yaml@refs/tags/v0.1.2",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/component",
+      "git_ref": "refs/tags/v0.1.2",
+      "log_index": 4113898413
+    }
+  },
+  "created": "2026-11-25T23:32:53.539707717Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Loads a component from a path.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "6f02b8b826dcba677e83535d3b4327c854eb08b7",
+    "org.opencontainers.image.source": "https://github.com/componentized/component.git",
+    "org.opencontainers.image.title": "componentized:component-path-loader",
+    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/6f02b8b826dcba677e83535d3b4327c854eb08b7/components/path-loader",
+    "org.opencontainers.image.version": "v0.1.2"
+  },
+  "imports": [
+    "componentized:component/types@0.1.2",
+    "componentized:http/client@0.1.1",
+    "componentized:oci/client@0.1.1",
+    "componentized:oci/media-types@0.1.1",
+    "wasi:clocks/system-clock@0.3.0",
+    "wasi:filesystem/preopens@0.3.0",
+    "wasi:filesystem/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:component/path-loader@0.1.2"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:component",
+      "version": "0.1.2"
+    },
+    {
+      "package": "componentized:http",
+      "version": "0.1.1"
+    },
+    {
+      "package": "componentized:oci",
+      "version": "0.1.1"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:c67e58af082d3894b8f956545941c82e54d344897e3ee19f9b566ddc95da431f",
+      "size": 91723,
+      "code": true
+    },
+    {
+      "digest": "sha256:de84c1ed8fafc193de4f734544272a1052a7e3b3ee9b99e95831c30a8c55311b",
+      "size": 72204,
+      "code": true
+    },
+    {
+      "digest": "sha256:f4de2dc9a9edf82a9313add1e03f5ed2e60075685fcb0ab91d959de19e1ff864",
+      "size": 116887,
+      "code": true
+    },
+    {
+      "digest": "sha256:8c394306e1808d093194f4cb4c16935339d47bef31c89a1eef2d49113d7c36ee",
+      "size": 68535,
+      "code": true
+    }
+  ],
+  "wiring": {
+    "instances": [
+      {
+        "part": 0,
+        "args": [
+          {
+            "name": "wasi:filesystem/types@0.3.0",
+            "import": "wasi:filesystem/types@0.3.0"
+          },
+          {
+            "name": "wasi:filesystem/preopens@0.3.0",
+            "import": "wasi:filesystem/preopens@0.3.0"
+          },
+          {
+            "name": "componentized:component/types@0.1.2",
+            "import": "componentized:component/types@0.1.2"
+          }
+        ]
+      },
+      {
+        "part": 1,
+        "args": [
+          {
+            "name": "componentized:http/client@0.1.1",
+            "import": "componentized:http/client@0.1.1"
+          },
+          {
+            "name": "componentized:component/types@0.1.2",
+            "import": "componentized:component/types@0.1.2"
+          }
+        ]
+      },
+      {
+        "part": 2,
+        "args": [
+          {
+            "name": "wasi:clocks/system-clock@0.3.0",
+            "import": "wasi:clocks/system-clock@0.3.0"
+          },
+          {
+            "name": "componentized:oci/client@0.1.1",
+            "import": "componentized:oci/client@0.1.1"
+          },
+          {
+            "name": "componentized:oci/media-types@0.1.1",
+            "import": "componentized:oci/media-types@0.1.1"
+          },
+          {
+            "name": "componentized:component/types@0.1.2",
+            "import": "componentized:component/types@0.1.2"
+          }
+        ]
+      },
+      {
+        "part": 3,
+        "args": [
+          {
+            "name": "oci-loader",
+            "instance": 2,
+            "export": "componentized:component/path-loader@0.1.2"
+          },
+          {
+            "name": "http-loader",
+            "instance": 1,
+            "export": "componentized:component/path-loader@0.1.2"
+          },
+          {
+            "name": "filesystem-loader",
+            "instance": 0,
+            "export": "componentized:component/path-loader@0.1.2"
+          },
+          {
+            "name": "componentized:component/types@0.1.2",
+            "import": "componentized:component/types@0.1.2"
+          }
+        ]
+      }
+    ],
+    "exports": [
+      {
+        "name": "componentized:component/path-loader@0.1.2",
+        "instance": 3,
+        "export": "componentized:component/path-loader@0.1.2"
+      }
+    ]
+  },
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/component/.github/workflows/ci.yaml@refs/tags/v0.1.2",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/component",
+    "git_ref": "refs/tags/v0.1.2",
+    "log_index": 4113896437
+  },
+  "indexed_at": "2026-11-25T23:36:26Z"
+}

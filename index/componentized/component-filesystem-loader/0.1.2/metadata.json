@@ -1,0 +1,81 @@
+{
+  "package": "componentized:component-filesystem-loader",
+  "version": "0.1.2",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component/filesystem-loader",
+    "tag": "0.1.2",
+    "digest": "sha256:202156ba8ae647053a4a7ae1ee8f720142116e7ccedc8f8a314c3e4011ded8af",
+    "layer_digest": "sha256:c67e58af082d3894b8f956545941c82e54d344897e3ee19f9b566ddc95da431f",
+    "size": 91723,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/component/.github/workflows/ci.yaml@refs/tags/v0.1.2",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/component",
+      "git_ref": "refs/tags/v0.1.2",
+      "log_index": 4113883039
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component/filesystem-loader",
+    "tag": "0.1.2_debug",
+    "digest": "sha256:3d8cd1a5e0ceb847b479309bcff78342716ec029c831f1ef5665fdb6d417eb11",
+    "layer_digest": "sha256:3009dd2c65193b285f537dc093e3cca5abda114da4f71962f4b138835d67aa99",
+    "size": 1029400,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/component/.github/workflows/ci.yaml@refs/tags/v0.1.2",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/component",
+      "git_ref": "refs/tags/v0.1.2",
+      "log_index": 4113885753
+    }
+  },
+  "created": "2026-11-25T23:31:31.016993562Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Loads a component from a filesystem path.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "6f02b8b826dcba677e83535d3b4327c854eb08b7",
+    "org.opencontainers.image.source": "https://github.com/componentized/component.git",
+    "org.opencontainers.image.title": "componentized:component-filesystem-loader",
+    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/6f02b8b826dcba677e83535d3b4327c854eb08b7/components/filesystem-loader",
+    "org.opencontainers.image.version": "v0.1.2"
+  },
+  "imports": [
+    "componentized:component/types@0.1.2",
+    "wasi:filesystem/preopens@0.3.0",
+    "wasi:filesystem/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:component/path-loader@0.1.2"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:component",
+      "version": "0.1.2"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:9f101cc8608fd91600734ff64ebf6802dec2d92ef17e691cbd053aa0755860aa",
+      "size": 325
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/component/.github/workflows/ci.yaml@refs/tags/v0.1.2",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/component",
+    "git_ref": "refs/tags/v0.1.2",
+    "log_index": 4113883941
+  },
+  "indexed_at": "2026-11-25T23:36:09Z"
+}

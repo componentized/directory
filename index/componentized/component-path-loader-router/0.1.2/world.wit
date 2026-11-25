@@ -1,0 +1,10 @@
+package root:component;
+
+world root {
+  import componentized:component/types@0.1.2;
+  import filesystem-loader: componentized:component/path-loader@0.1.2;
+  import http-loader: componentized:component/path-loader@0.1.2;
+  import oci-loader: componentized:component/path-loader@0.1.2;
+
+  export componentized:component/path-loader@0.1.2;
+}

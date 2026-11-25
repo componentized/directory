@@ -1,0 +1,53 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [],
+  "dependencies": [
+    {
+      "dependsOn": [],
+      "ref": "component:componentized:component"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "component:componentized:component",
+      "description": "WASM components for creating and interacting with WASM components.",
+      "externalReferences": [
+        {
+          "comment": "revision 6f02b8b826dcba677e83535d3b4327c854eb08b7",
+          "type": "vcs",
+          "url": "https://github.com/componentized/component.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/componentized/component/tree/6f02b8b826dcba677e83535d3b4327c854eb08b7"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "8fe815da1e59708893bec7367b16b036e7eaa6c7f25dd305f3199574551c231e"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "componentized:component",
+      "purl": "pkg:oci/component@sha256%3A63f87d5aa1171ed87d6f26ec64e281fb69cabd42e7fb1194c2c8e13982823fff?repository_url=ghcr.io/componentized/component&tag=0.1.2",
+      "type": "library",
+      "version": "0.1.2"
+    },
+    "timestamp": "2026-11-25T23:28:05Z",
+    "tools": {
+      "components": [
+        {
+          "name": "wkg",
+          "type": "application"
+        }
+      ]
+    }
+  },
+  "specVersion": "1.6",
+  "version": 1
+}
