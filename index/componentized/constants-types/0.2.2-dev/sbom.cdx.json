@@ -1,0 +1,68 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "pkg:cargo/componentized-constants-cli@0.2.2-dev",
+      "name": "componentized-constants-cli",
+      "purl": "pkg:cargo/componentized-constants-cli@0.2.2-dev",
+      "type": "library",
+      "version": "0.2.2-dev"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "pkg:cargo/componentized-constants-cli@0.2.2-dev"
+      ],
+      "ref": "component:componentized:constants-types"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:cargo/componentized-constants-cli@0.2.2-dev"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "component:componentized:constants-types",
+      "description": "Limits of each numeric type.",
+      "externalReferences": [
+        {
+          "comment": "revision f9de54482cbaad483cf65eb7adc314be23742750",
+          "type": "vcs",
+          "url": "https://github.com/componentized/constants.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/componentized/constants/tree/f9de54482cbaad483cf65eb7adc314be23742750/components/types"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "38c55084ffac84d5524753ab615036337077b863a4f0ef5903f4aef2ceb4933a"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "componentized:constants-types",
+      "purl": "pkg:oci/types@sha256%3Aa8f8dc8c22369fec9feaacf0e26745757b5ffe095be943e9d8d7518939738ae8?repository_url=ghcr.io/componentized/constants/types&tag=0.2.2-dev",
+      "type": "library",
+      "version": "0.2.2-dev"
+    },
+    "timestamp": "2026-11-25T19:29:19Z",
+    "tools": {
+      "components": [
+        {
+          "name": "componentized-constants-cli",
+          "type": "application",
+          "version": "0.2.2-dev"
+        }
+      ]
+    }
+  },
+  "specVersion": "1.6",
+  "version": 1
+}

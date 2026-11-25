@@ -1,0 +1,80 @@
+{
+  "package": "componentized:constants-factory",
+  "version": "0.2.2-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/constants/factory",
+    "tag": "0.2.2-dev",
+    "digest": "sha256:92e3137f5db750cdd13467a3eb2a23ea160ac419ccde7d96e7b0a0712de1187a",
+    "layer_digest": "sha256:a94f288acf3861b896fce3d23eb25f2717698168657e441540390bfe532fc051",
+    "size": 2235650,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/constants",
+      "git_ref": "refs/heads/main",
+      "log_index": 4109968945
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/constants/factory",
+    "tag": "0.2.2-dev_debug",
+    "digest": "sha256:4b776eb2ca639f30cefcae3a1eff45258b8fe3b03446f5949891550c852c4873",
+    "layer_digest": "sha256:d29792184359d0205ea37a46088c0e6f3c8870262531ef9af7b6997c2d4b82d9",
+    "size": 46378811,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/constants",
+      "git_ref": "refs/heads/main",
+      "log_index": 4109973532
+    }
+  },
+  "created": "2026-11-25T19:33:31.979984459Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Create components whose exported functions return constant values, from a WIT world with values in its doc comments.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "f9de54482cbaad483cf65eb7adc314be23742750",
+    "org.opencontainers.image.source": "https://github.com/componentized/constants.git",
+    "org.opencontainers.image.title": "componentized:constants-factory",
+    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/f9de54482cbaad483cf65eb7adc314be23742750/components/factory",
+    "org.opencontainers.image.version": "v0.2.2-dev"
+  },
+  "imports": [
+    "componentized:component/types@0.1.1",
+    "componentized:component/wit@0.1.1"
+  ],
+  "exports": [
+    "componentized:constants/factory@0.2.2-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:component",
+      "version": "0.1.1"
+    },
+    {
+      "package": "componentized:constants",
+      "version": "0.2.2-dev"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:68896c38ad11dd43846dc933bcb034ed9d910e61dd20c59e5dbb9e6fb2705546",
+      "size": 3277
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/constants",
+    "git_ref": "refs/heads/main",
+    "log_index": 4109970297
+  },
+  "indexed_at": "2026-11-25T19:35:52Z"
+}

@@ -1,0 +1,68 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "pkg:cargo/componentized-constants-cli@0.2.2-dev",
+      "name": "componentized-constants-cli",
+      "purl": "pkg:cargo/componentized-constants-cli@0.2.2-dev",
+      "type": "library",
+      "version": "0.2.2-dev"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "pkg:cargo/componentized-constants-cli@0.2.2-dev"
+      ],
+      "ref": "component:componentized:constants-math"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:cargo/componentized-constants-cli@0.2.2-dev"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "component:componentized:constants-math",
+      "description": "Common mathematical constants.",
+      "externalReferences": [
+        {
+          "comment": "revision f9de54482cbaad483cf65eb7adc314be23742750",
+          "type": "vcs",
+          "url": "https://github.com/componentized/constants.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/componentized/constants/tree/f9de54482cbaad483cf65eb7adc314be23742750/components/math"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "94547b0e6175957182e2d3b937696da6f340642f0c6b98f2ff0acc10c4f9348a"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "componentized:constants-math",
+      "purl": "pkg:oci/math@sha256%3A950fca870d313d8e4aeea17f68ea3d0bb96e35244bd20ce7c984ecbd742d3ba0?repository_url=ghcr.io/componentized/constants/math&tag=0.2.2-dev",
+      "type": "library",
+      "version": "0.2.2-dev"
+    },
+    "timestamp": "2026-11-25T19:29:19Z",
+    "tools": {
+      "components": [
+        {
+          "name": "componentized-constants-cli",
+          "type": "application",
+          "version": "0.2.2-dev"
+        }
+      ]
+    }
+  },
+  "specVersion": "1.6",
+  "version": 1
+}

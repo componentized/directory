@@ -1,0 +1,56 @@
+{
+  "package": "componentized:constants-random",
+  "version": "0.2.2-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/constants/random",
+    "tag": "0.2.2-dev",
+    "digest": "sha256:24770d1557db1c348a5af1cc5b7d8abca05abf4fe605012d8ca4783e3eacc717",
+    "layer_digest": "sha256:1d6f98cde01d474ce3a858b36539c5b2c9cd202e9ee479aca9a56163b0d978b5",
+    "size": 5845,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/constants",
+      "git_ref": "refs/heads/main",
+      "log_index": 4109979375
+    }
+  },
+  "created": "2026-11-25T19:34:12.715925004Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Pseudorandom number generators.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "f9de54482cbaad483cf65eb7adc314be23742750",
+    "org.opencontainers.image.source": "https://github.com/componentized/constants.git",
+    "org.opencontainers.image.title": "componentized:constants-random",
+    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/f9de54482cbaad483cf65eb7adc314be23742750/components/random",
+    "org.opencontainers.image.version": "v0.2.2-dev"
+  },
+  "exports": [
+    "componentized:constants/random@0.2.2-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:constants",
+      "version": "0.2.2-dev"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:42263d0342748967d3d54b3e535352e50980d1813a8972c6b0dbf5f13fd4a688",
+      "size": 194
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/constants",
+    "git_ref": "refs/heads/main",
+    "log_index": 4109980972
+  },
+  "indexed_at": "2026-11-25T19:36:01Z"
+}

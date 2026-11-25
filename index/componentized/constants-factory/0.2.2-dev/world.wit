@@ -1,0 +1,8 @@
+package root:component;
+
+world root {
+  import componentized:component/types@0.1.1;
+  import componentized:component/wit@0.1.1;
+
+  export componentized:constants/factory@0.2.2-dev;
+}

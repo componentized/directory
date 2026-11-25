@@ -1,0 +1,56 @@
+{
+  "package": "componentized:constants-math",
+  "version": "0.2.2-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/constants/math",
+    "tag": "0.2.2-dev",
+    "digest": "sha256:950fca870d313d8e4aeea17f68ea3d0bb96e35244bd20ce7c984ecbd742d3ba0",
+    "layer_digest": "sha256:94547b0e6175957182e2d3b937696da6f340642f0c6b98f2ff0acc10c4f9348a",
+    "size": 23841,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/constants",
+      "git_ref": "refs/heads/main",
+      "log_index": 4109976217
+    }
+  },
+  "created": "2026-11-25T19:34:00.129037030Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Common mathematical constants.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "f9de54482cbaad483cf65eb7adc314be23742750",
+    "org.opencontainers.image.source": "https://github.com/componentized/constants.git",
+    "org.opencontainers.image.title": "componentized:constants-math",
+    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/f9de54482cbaad483cf65eb7adc314be23742750/components/math",
+    "org.opencontainers.image.version": "v0.2.2-dev"
+  },
+  "exports": [
+    "componentized:constants/math@0.2.2-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:constants",
+      "version": "0.2.2-dev"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:25b94d760ca129a876e59dfaab15cec0170b2e75bef75eb8f57903d67058cebc",
+      "size": 1350
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/constants",
+    "git_ref": "refs/heads/main",
+    "log_index": 4109977200
+  },
+  "indexed_at": "2026-11-25T19:35:56Z"
+}

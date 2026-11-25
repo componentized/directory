@@ -1,0 +1,68 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "pkg:cargo/componentized-constants-cli@0.2.2-dev",
+      "name": "componentized-constants-cli",
+      "purl": "pkg:cargo/componentized-constants-cli@0.2.2-dev",
+      "type": "library",
+      "version": "0.2.2-dev"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "pkg:cargo/componentized-constants-cli@0.2.2-dev"
+      ],
+      "ref": "component:componentized:constants-atomics"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:cargo/componentized-constants-cli@0.2.2-dev"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "component:componentized:constants-atomics",
+      "description": "lock-free, thread-safe operations on streams",
+      "externalReferences": [
+        {
+          "comment": "revision f9de54482cbaad483cf65eb7adc314be23742750",
+          "type": "vcs",
+          "url": "https://github.com/componentized/constants.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/componentized/constants/tree/f9de54482cbaad483cf65eb7adc314be23742750/components/atomics"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "203a2b381d157d2000475137296d53d28ef57d1c80c608ec0bb618ff2c16c87d"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "componentized:constants-atomics",
+      "purl": "pkg:oci/atomics@sha256%3Ab65e907d1df13bfce3564840f190b60c43955de7e5ed97f9b4cee32211ac33ea?repository_url=ghcr.io/componentized/constants/atomics&tag=0.2.2-dev",
+      "type": "library",
+      "version": "0.2.2-dev"
+    },
+    "timestamp": "2026-11-25T19:29:19Z",
+    "tools": {
+      "components": [
+        {
+          "name": "componentized-constants-cli",
+          "type": "application",
+          "version": "0.2.2-dev"
+        }
+      ]
+    }
+  },
+  "specVersion": "1.6",
+  "version": 1
+}

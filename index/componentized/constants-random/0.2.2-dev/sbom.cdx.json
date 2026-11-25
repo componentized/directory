@@ -1,0 +1,68 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "pkg:cargo/componentized-constants-cli@0.2.2-dev",
+      "name": "componentized-constants-cli",
+      "purl": "pkg:cargo/componentized-constants-cli@0.2.2-dev",
+      "type": "library",
+      "version": "0.2.2-dev"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "pkg:cargo/componentized-constants-cli@0.2.2-dev"
+      ],
+      "ref": "component:componentized:constants-random"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:cargo/componentized-constants-cli@0.2.2-dev"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "component:componentized:constants-random",
+      "description": "Pseudorandom number generators.",
+      "externalReferences": [
+        {
+          "comment": "revision f9de54482cbaad483cf65eb7adc314be23742750",
+          "type": "vcs",
+          "url": "https://github.com/componentized/constants.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/componentized/constants/tree/f9de54482cbaad483cf65eb7adc314be23742750/components/random"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "1d6f98cde01d474ce3a858b36539c5b2c9cd202e9ee479aca9a56163b0d978b5"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "componentized:constants-random",
+      "purl": "pkg:oci/random@sha256%3A24770d1557db1c348a5af1cc5b7d8abca05abf4fe605012d8ca4783e3eacc717?repository_url=ghcr.io/componentized/constants/random&tag=0.2.2-dev",
+      "type": "library",
+      "version": "0.2.2-dev"
+    },
+    "timestamp": "2026-11-25T19:29:19Z",
+    "tools": {
+      "components": [
+        {
+          "name": "componentized-constants-cli",
+          "type": "application",
+          "version": "0.2.2-dev"
+        }
+      ]
+    }
+  },
+  "specVersion": "1.6",
+  "version": 1
+}

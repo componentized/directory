@@ -1,0 +1,101 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "wit:componentized:component@0.1.1",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "834ab2662bcbdfda846251feca738783489823ace416c9993a7c09a9bd11a39d"
+        }
+      ],
+      "name": "componentized:component",
+      "properties": [
+        {
+          "name": "wkg:registry",
+          "value": "componentized.dev"
+        }
+      ],
+      "type": "library",
+      "version": "0.1.1"
+    },
+    {
+      "bom-ref": "wit:wasi:config@0.2.0-rc.1",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "1b7f1b0fd07bb4cede16c6a6ec8852815dfb924639a78735fc7bdffdc164485d"
+        }
+      ],
+      "name": "wasi:config",
+      "properties": [
+        {
+          "name": "wkg:registry",
+          "value": "wasi.dev"
+        }
+      ],
+      "type": "library",
+      "version": "0.2.0-rc.1"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "wit:componentized:component@0.1.1",
+        "wit:wasi:config@0.2.0-rc.1"
+      ],
+      "ref": "component:componentized:constants"
+    },
+    {
+      "dependsOn": [],
+      "ref": "wit:componentized:component@0.1.1"
+    },
+    {
+      "dependsOn": [],
+      "ref": "wit:wasi:config@0.2.0-rc.1"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "component:componentized:constants",
+      "description": "Create custom wasm components that export constant values.",
+      "externalReferences": [
+        {
+          "comment": "revision f9de54482cbaad483cf65eb7adc314be23742750",
+          "type": "vcs",
+          "url": "https://github.com/componentized/constants.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/componentized/constants/tree/f9de54482cbaad483cf65eb7adc314be23742750"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "967e9e2f28b1df19f05845abf756f47eeab52ddec30e6b58cc137109f5df085b"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "componentized:constants",
+      "purl": "pkg:oci/constants@sha256%3A0c7f2d39a0022843fb6e0bfa187a2d9a571fa3466c54fe7b1d1ae308495e7f26?repository_url=ghcr.io/componentized/constants&tag=0.2.2-dev",
+      "type": "library",
+      "version": "0.2.2-dev"
+    },
+    "timestamp": "2026-11-25T19:29:19Z",
+    "tools": {
+      "components": [
+        {
+          "name": "wkg",
+          "type": "application"
+        }
+      ]
+    }
+  },
+  "specVersion": "1.6",
+  "version": 1
+}
