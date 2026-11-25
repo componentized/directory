@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-deny-bind",
     "tag": "0.1.1-dev",
-    "digest": "sha256:5462786e4a3741acb86b52a5b2323d0fe073ec34554be55aff34250dac0aeeb1",
+    "digest": "sha256:b3141fff34c02ff9460b589bd53d929c36f89d871eb81b03f37eacf51151c2e4",
     "layer_digest": "sha256:63cdb14f47a59bd66daaad52c664c788d60e3ec0041b4095482cdef99204561f",
     "size": 33493,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 4078085149
+      "log_index": 4101924345
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-deny-bind",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:bbba334caddea67d123071efdc5b58465e9e03f89437eb4becaab013ebed7d32",
+    "digest": "sha256:65c2af9d6a0b0ff30f07dd36ad98cc60e2539647f7cb4c2a0a7fa586f9fa3b64",
     "layer_digest": "sha256:0288e172452f2e7a95ea4c32c73bcd32265a76e316759268242ccf344ccbb932",
     "size": 306627,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 4078091164
+      "log_index": 4101929608
     }
   },
-  "created": "2026-11-24T12:48:09.166294809Z",
+  "created": "2026-11-25T12:29:56.441520592Z",
   "annotations": {
     "org.opencontainers.image.description": "Sockets latch that implicitly denies explicitly binding tcp and udp sockets to a local address.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "f5a423a4b4d6febf2859d708a18388798778d664",
+    "org.opencontainers.image.revision": "d458c9a4ddab4baee3b53613c4c72fc4c27d43bf",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-latch-deny-bind",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/f5a423a4b4d6febf2859d708a18388798778d664/components/latch-deny-bind",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/d458c9a4ddab4baee3b53613c4c72fc4c27d43bf/components/latch-deny-bind",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -73,7 +73,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/sockets",
     "git_ref": "refs/heads/main",
-    "log_index": 4078087347
+    "log_index": 4101926596
   },
-  "indexed_at": "2026-11-24T12:57:24Z"
+  "indexed_at": "2026-11-25T12:42:09Z"
 }

@@ -1993,13 +1993,13 @@
       "description": "Socket latch that uses CIDR ranges to grant or deny traffic originating in either direction based on the remote address. Return traffic is not restricted.",
       "externalReferences": [
         {
-          "comment": "revision f5a423a4b4d6febf2859d708a18388798778d664",
+          "comment": "revision d458c9a4ddab4baee3b53613c4c72fc4c27d43bf",
           "type": "vcs",
           "url": "https://github.com/componentized/sockets.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/sockets/tree/f5a423a4b4d6febf2859d708a18388798778d664/components/latch-cidr"
+          "url": "https://github.com/componentized/sockets/tree/d458c9a4ddab4baee3b53613c4c72fc4c27d43bf/components/latch-cidr"
         }
       ],
       "hashes": [
@@ -2014,11 +2014,11 @@
         }
       ],
       "name": "componentized:sockets-latch-cidr",
-      "purl": "pkg:oci/latch-cidr@sha256%3Ac729eebdf36666d7a06c1baf3ce8b8caf1b9aa833df15d40fcb490514c54c0b4?repository_url=ghcr.io/componentized/sockets/latch-cidr&tag=0.1.1-dev",
+      "purl": "pkg:oci/latch-cidr@sha256%3A6ddf0149f63702c41d2cd19cd3f21007f19236d515c427412dbab3f72f31f5a9?repository_url=ghcr.io/componentized/sockets/latch-cidr&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-24T12:32:26Z",
+    "timestamp": "2026-11-25T12:18:25Z",
     "tools": {
       "components": [
         {

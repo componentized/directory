@@ -1820,13 +1820,13 @@
       "description": "Trace wasi:sockets/types calls using a logger.",
       "externalReferences": [
         {
-          "comment": "revision f5a423a4b4d6febf2859d708a18388798778d664",
+          "comment": "revision d458c9a4ddab4baee3b53613c4c72fc4c27d43bf",
           "type": "vcs",
           "url": "https://github.com/componentized/sockets.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/sockets/tree/f5a423a4b4d6febf2859d708a18388798778d664/components/trace-types"
+          "url": "https://github.com/componentized/sockets/tree/d458c9a4ddab4baee3b53613c4c72fc4c27d43bf/components/trace-types"
         }
       ],
       "hashes": [
@@ -1841,11 +1841,11 @@
         }
       ],
       "name": "componentized:sockets-trace-types",
-      "purl": "pkg:oci/trace-types@sha256%3Abfaf7e8f3b46bee09c1e0f8e6ce1ad8d638f29a7971cf5f41adfc8ec6ac5d15d?repository_url=ghcr.io/componentized/sockets/trace-types&tag=0.1.1-dev",
+      "purl": "pkg:oci/trace-types@sha256%3A2860e80d136668ed7be9956720b1e3bdc0c843f54aedf6599ec17ef418181561?repository_url=ghcr.io/componentized/sockets/trace-types&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-24T12:32:26Z",
+    "timestamp": "2026-11-25T12:18:25Z",
     "tools": {
       "components": [
         {

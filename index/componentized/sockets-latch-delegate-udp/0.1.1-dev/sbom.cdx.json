@@ -1820,13 +1820,13 @@
       "description": "Sockets latch that wraps another latch, delegating only udp socket operations to it. Tcp socket and ip-name-lookup operations are deferred without consulting the wrapped latch, it neither authorizes nor observes them.",
       "externalReferences": [
         {
-          "comment": "revision f5a423a4b4d6febf2859d708a18388798778d664",
+          "comment": "revision d458c9a4ddab4baee3b53613c4c72fc4c27d43bf",
           "type": "vcs",
           "url": "https://github.com/componentized/sockets.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/sockets/tree/f5a423a4b4d6febf2859d708a18388798778d664/components/latch-delegate-udp"
+          "url": "https://github.com/componentized/sockets/tree/d458c9a4ddab4baee3b53613c4c72fc4c27d43bf/components/latch-delegate-udp"
         }
       ],
       "hashes": [
@@ -1841,11 +1841,11 @@
         }
       ],
       "name": "componentized:sockets-latch-delegate-udp",
-      "purl": "pkg:oci/latch-delegate-udp@sha256%3A877239640b7546b8966be165ac59c3a384063a7981f129320fb43a44060381d4?repository_url=ghcr.io/componentized/sockets/latch-delegate-udp&tag=0.1.1-dev",
+      "purl": "pkg:oci/latch-delegate-udp@sha256%3Ac218c9540e9dad7154fcd99ffe90555bb3a250fbf00fce997469861d5833bbf5?repository_url=ghcr.io/componentized/sockets/latch-delegate-udp&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-24T12:32:26Z",
+    "timestamp": "2026-11-25T12:18:25Z",
     "tools": {
       "components": [
         {

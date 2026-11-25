@@ -1820,13 +1820,13 @@
       "description": "Sockets latch that implicitly defers all decisions.",
       "externalReferences": [
         {
-          "comment": "revision f5a423a4b4d6febf2859d708a18388798778d664",
+          "comment": "revision d458c9a4ddab4baee3b53613c4c72fc4c27d43bf",
           "type": "vcs",
           "url": "https://github.com/componentized/sockets.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/sockets/tree/f5a423a4b4d6febf2859d708a18388798778d664/components/latch-defer-all"
+          "url": "https://github.com/componentized/sockets/tree/d458c9a4ddab4baee3b53613c4c72fc4c27d43bf/components/latch-defer-all"
         }
       ],
       "hashes": [
@@ -1841,11 +1841,11 @@
         }
       ],
       "name": "componentized:sockets-latch-defer-all",
-      "purl": "pkg:oci/latch-defer-all@sha256%3A546b8476879abd00c6429a98cb8b8eed2ec3a664470df5053caf4365ee7daf51?repository_url=ghcr.io/componentized/sockets/latch-defer-all&tag=0.1.1-dev",
+      "purl": "pkg:oci/latch-defer-all@sha256%3A1c8d4454ce96bcd3386fa3e5da49906f984daaeec0c0fc939b12c5f2df332628?repository_url=ghcr.io/componentized/sockets/latch-defer-all&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-24T12:32:26Z",
+    "timestamp": "2026-11-25T12:18:25Z",
     "tools": {
       "components": [
         {

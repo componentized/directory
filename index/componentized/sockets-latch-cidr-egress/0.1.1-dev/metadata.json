@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-cidr-egress",
     "tag": "0.1.1-dev",
-    "digest": "sha256:9477de68a20bdb96685879d186cc1ebf73be84fcd2fa5996b7f3067dc18284d6",
+    "digest": "sha256:c21b1905b28ff66df37a4c4488dee4fd82eb5ac2d4bc929abd1edb62dd2ebec9",
     "layer_digest": "sha256:33279943c152ae79efd7e1893825c1e9e26c09b90cf3357d972812b67c5fe3a3",
     "size": 124144,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 4077993146
+      "log_index": 4101875564
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/sockets/latch-cidr-egress",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:39ee68fadb9f83bfcc4dd80873fd4ff884e9be8e081ebb62353306ac83ba8427",
+    "digest": "sha256:9716cf2e9e349f26b73e02d44d81b13a5a8ebf45e4ebbf11f7c0054d9280a3fc",
     "layer_digest": "sha256:dcf5ff94e587bed7a49e8e4881ef17593afc619913808b1cbbe1360be4d42847",
     "size": 1468807,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/sockets",
       "git_ref": "refs/heads/main",
-      "log_index": 4078000601
+      "log_index": 4101881359
     }
   },
-  "created": "2026-11-24T12:44:51.636417649Z",
+  "created": "2026-11-25T12:27:10.217173516Z",
   "annotations": {
     "org.opencontainers.image.description": "Socket latch that uses CIDR ranges to grant or deny originating outbound tcp/udp traffic based on the remote address. Return traffic to peers that reached the guest first is not restricted.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "f5a423a4b4d6febf2859d708a18388798778d664",
+    "org.opencontainers.image.revision": "d458c9a4ddab4baee3b53613c4c72fc4c27d43bf",
     "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
     "org.opencontainers.image.title": "componentized:sockets-latch-cidr-egress",
-    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/f5a423a4b4d6febf2859d708a18388798778d664/components/latch-cidr-egress",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/d458c9a4ddab4baee3b53613c4c72fc4c27d43bf/components/latch-cidr-egress",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -83,7 +83,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/sockets",
     "git_ref": "refs/heads/main",
-    "log_index": 4077995940
+    "log_index": 4101877315
   },
-  "indexed_at": "2026-11-24T12:56:41Z"
+  "indexed_at": "2026-11-25T12:41:19Z"
 }

@@ -1909,13 +1909,13 @@
       "description": "Sockets latch that implicitly denies all ip-name lookups.",
       "externalReferences": [
         {
-          "comment": "revision f5a423a4b4d6febf2859d708a18388798778d664",
+          "comment": "revision d458c9a4ddab4baee3b53613c4c72fc4c27d43bf",
           "type": "vcs",
           "url": "https://github.com/componentized/sockets.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/sockets/tree/f5a423a4b4d6febf2859d708a18388798778d664/components/latch-deny-ip-name-lookup"
+          "url": "https://github.com/componentized/sockets/tree/d458c9a4ddab4baee3b53613c4c72fc4c27d43bf/components/latch-deny-ip-name-lookup"
         }
       ],
       "hashes": [
@@ -1930,11 +1930,11 @@
         }
       ],
       "name": "componentized:sockets-latch-deny-ip-name-lookup",
-      "purl": "pkg:oci/latch-deny-ip-name-lookup@sha256%3A6082d8803e7e9135a0801c03116fa01f7435596fab3074144e5ec45cf11b24b4?repository_url=ghcr.io/componentized/sockets/latch-deny-ip-name-lookup&tag=0.1.1-dev",
+      "purl": "pkg:oci/latch-deny-ip-name-lookup@sha256%3Afc68df29a37648d9d9927ac0c5915596435859f35d45e27569534ab02f96f6bc?repository_url=ghcr.io/componentized/sockets/latch-deny-ip-name-lookup&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-24T12:32:26Z",
+    "timestamp": "2026-11-25T12:18:25Z",
     "tools": {
       "components": [
         {

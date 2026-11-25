@@ -1820,13 +1820,13 @@
       "description": "Sockets latch that implicitly denies all operations.",
       "externalReferences": [
         {
-          "comment": "revision f5a423a4b4d6febf2859d708a18388798778d664",
+          "comment": "revision d458c9a4ddab4baee3b53613c4c72fc4c27d43bf",
           "type": "vcs",
           "url": "https://github.com/componentized/sockets.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/sockets/tree/f5a423a4b4d6febf2859d708a18388798778d664/components/latch-deny-all"
+          "url": "https://github.com/componentized/sockets/tree/d458c9a4ddab4baee3b53613c4c72fc4c27d43bf/components/latch-deny-all"
         }
       ],
       "hashes": [
@@ -1841,11 +1841,11 @@
         }
       ],
       "name": "componentized:sockets-latch-deny-all",
-      "purl": "pkg:oci/latch-deny-all@sha256%3A340dba01e504cfdeaf7e6f881e3ad8caadfbc9fffb743ef26d4e5635d0697456?repository_url=ghcr.io/componentized/sockets/latch-deny-all&tag=0.1.1-dev",
+      "purl": "pkg:oci/latch-deny-all@sha256%3A9df1408d1287de8bb79aa96f7d9dd1cbea05fd41ca600472cb53f31440397506?repository_url=ghcr.io/componentized/sockets/latch-deny-all&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-24T12:32:26Z",
+    "timestamp": "2026-11-25T12:18:25Z",
     "tools": {
       "components": [
         {
