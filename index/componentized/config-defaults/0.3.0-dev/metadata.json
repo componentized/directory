@@ -7,8 +7,8 @@
     "registry": "ghcr.io",
     "repository": "componentized/config/defaults",
     "tag": "0.3.0-dev",
-    "digest": "sha256:71dbe3f9793fb8587928a42e467818eddbc3d2160d652a9f0b5a6d45768d6134",
-    "layer_digest": "sha256:9903eaf52d04c34dd133f5007522c80cfefc46510d1688d19aff9655f86d5424",
+    "digest": "sha256:d75154ed1bc63b8b7c9b78f01b918c111ceab5b4f1d593d6fa0cc51efbba7e05",
+    "layer_digest": "sha256:5063e0b880660cf6247fc4b42de553eabef7ca08eece57b58d96f066105597f9",
     "size": 34840,
     "signature": {
       "status": "verified",
@@ -16,15 +16,15 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/config",
       "git_ref": "refs/heads/main",
-      "log_index": 4111729772
+      "log_index": 4111804763
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/config/defaults",
     "tag": "0.3.0-dev_debug",
-    "digest": "sha256:1b9adcd9f35f7d524489f82c3429ee8187fc23774d3653a5590462b303d165d8",
-    "layer_digest": "sha256:d5c8512c0ef3da894bdda77cce1510587133323d81212c33649b720fd025c218",
+    "digest": "sha256:f106181141e3b6f38150bf9e3773e172e86ae044ea9813c698d9da77f623530f",
+    "layer_digest": "sha256:658628fe0e25d24f59815101db0222e9dfd3e9fc1ba482ae47a9a59293895860",
     "size": 121584,
     "signature": {
       "status": "verified",
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/config",
       "git_ref": "refs/heads/main",
-      "log_index": 4111733716
+      "log_index": 4111811624
     }
   },
-  "created": "2026-11-25T21:05:09.009226461Z",
+  "created": "2026-11-25T21:09:15.451555886Z",
   "annotations": {
     "org.opencontainers.image.description": "Combines value from two wasi:config/stores into a single store. The 'store' import is the base set of values, while the 'defaults' import, a mirror of the store interface, contributes default values when the config does not contain a value.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "427311b2da2de226e3dad88c36b2fb20da156691",
+    "org.opencontainers.image.revision": "b1ee4d95ee4c020ab2ad795b6f5d9d5fc187fae8",
     "org.opencontainers.image.source": "https://github.com/componentized/config.git",
     "org.opencontainers.image.title": "componentized:config-defaults",
-    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/427311b2da2de226e3dad88c36b2fb20da156691/components/defaults",
+    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/b1ee4d95ee4c020ab2ad795b6f5d9d5fc187fae8/components/defaults",
     "org.opencontainers.image.version": "v0.3.0-dev"
   },
   "imports": [
@@ -70,7 +70,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/config",
     "git_ref": "refs/heads/main",
-    "log_index": 4111730867
+    "log_index": 4111807326
   },
-  "indexed_at": "2026-11-25T21:08:34Z"
+  "indexed_at": "2026-11-25T21:13:50Z"
 }

@@ -29,7 +29,7 @@
           "name": "David Tolnay"
         }
       ],
-      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.102",
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
       "description": "Flexible concrete Error type built on std::error::Error",
       "externalReferences": [
         {
@@ -44,7 +44,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "7f202df86484c868dbad7eaa557ef785d5c66295e41b460ef922eca0723b842c"
+          "content": "2cb931c189b85683d69a5cfad41d4d418671e1ac413dd209f3f2fc31e3cfd902"
         }
       ],
       "licenses": [
@@ -53,10 +53,10 @@
         }
       ],
       "name": "anyhow",
-      "purl": "pkg:cargo/anyhow@1.0.102",
+      "purl": "pkg:cargo/anyhow@1.0.105",
       "scope": "excluded",
       "type": "library",
-      "version": "1.0.102"
+      "version": "1.0.105"
     },
     {
       "authors": [
@@ -1247,7 +1247,7 @@
       "ref": "path+file://./components/overlay#0.1.0"
     },
     {
-      "ref": "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.102"
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105"
     },
     {
       "ref": "registry+https://github.com/rust-lang/crates.io-index#bitflags@2.11.1"
@@ -1377,7 +1377,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.102",
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
         "registry+https://github.com/rust-lang/crates.io-index#indexmap@2.14.0",
         "registry+https://github.com/rust-lang/crates.io-index#wasm-encoder@0.262.0",
         "registry+https://github.com/rust-lang/crates.io-index#wasmparser@0.262.0"
@@ -1395,7 +1395,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.102",
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
         "registry+https://github.com/rust-lang/crates.io-index#heck@0.5.0",
         "registry+https://github.com/rust-lang/crates.io-index#wit-parser@0.262.0"
       ],
@@ -1403,7 +1403,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.102",
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
         "registry+https://github.com/rust-lang/crates.io-index#macro-string@0.3.0",
         "registry+https://github.com/rust-lang/crates.io-index#prettyplease@0.3.0",
         "registry+https://github.com/rust-lang/crates.io-index#proc-macro2@1.0.93",
@@ -1416,7 +1416,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.102",
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
         "registry+https://github.com/rust-lang/crates.io-index#heck@0.5.0",
         "registry+https://github.com/rust-lang/crates.io-index#indexmap@2.14.0",
         "registry+https://github.com/rust-lang/crates.io-index#prettyplease@0.3.0",
@@ -1436,7 +1436,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.102",
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
         "registry+https://github.com/rust-lang/crates.io-index#bitflags@2.11.1",
         "registry+https://github.com/rust-lang/crates.io-index#indexmap@2.14.0",
         "registry+https://github.com/rust-lang/crates.io-index#log@0.4.25",
@@ -1452,7 +1452,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.102",
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
         "registry+https://github.com/rust-lang/crates.io-index#hashbrown@0.17.0",
         "registry+https://github.com/rust-lang/crates.io-index#id-arena@2.3.0",
         "registry+https://github.com/rust-lang/crates.io-index#indexmap@2.14.0",
@@ -1477,19 +1477,19 @@
       "description": "Combines value from two wasi:config/stores into a single store. The 'store' import is the base set of values, while the 'overlay' import, a mirror of the store interface, contributes additional values overriding in the case of a conflict.",
       "externalReferences": [
         {
-          "comment": "revision 427311b2da2de226e3dad88c36b2fb20da156691",
+          "comment": "revision b1ee4d95ee4c020ab2ad795b6f5d9d5fc187fae8",
           "type": "vcs",
           "url": "https://github.com/componentized/config.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/config/tree/427311b2da2de226e3dad88c36b2fb20da156691/components/overlay"
+          "url": "https://github.com/componentized/config/tree/b1ee4d95ee4c020ab2ad795b6f5d9d5fc187fae8/components/overlay"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "e377850316c4e63413c0eecb0485afecece73d4c24f4dced2f656cdfd7881af0"
+          "content": "bbe27eb3f48b9823843a526a456d0afe7eedf7061aa1582bc0728b8bc6eb9402"
         }
       ],
       "licenses": [
@@ -1498,11 +1498,11 @@
         }
       ],
       "name": "componentized:config-overlay",
-      "purl": "pkg:oci/overlay@sha256%3Afcb832d01aabfaaebf5da071c3f64d974cae4d3ef7287e1c12fedcd513d29a4d?repository_url=ghcr.io/componentized/config/overlay&tag=0.3.0-dev",
+      "purl": "pkg:oci/overlay@sha256%3A9bca77894e5a32af8999dc7d5ed3c4f011d3100c55b92180ddb576be7cf4cf3f?repository_url=ghcr.io/componentized/config/overlay&tag=0.3.0-dev",
       "type": "library",
       "version": "0.3.0-dev"
     },
-    "timestamp": "2026-11-25T21:03:39Z",
+    "timestamp": "2026-11-25T21:07:35Z",
     "tools": {
       "components": [
         {
