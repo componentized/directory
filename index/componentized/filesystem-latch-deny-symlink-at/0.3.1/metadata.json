@@ -1,0 +1,84 @@
+{
+  "package": "componentized:filesystem-latch-deny-symlink-at",
+  "version": "0.3.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem/latch-deny-symlink-at",
+    "tag": "0.3.1",
+    "digest": "sha256:c1d92bfbd342b1673ff5bd10bc5fe485c7f9fa6a99035f5a278f4d538c7e475b",
+    "layer_digest": "sha256:b2f301ae24a3a652459cdb6141c5cb7d6f6802739e9713aa38f76576c4e178b1",
+    "size": 41555,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/tags/v0.3.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/filesystem",
+      "git_ref": "refs/tags/v0.3.1",
+      "log_index": 4092553442
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem/latch-deny-symlink-at",
+    "tag": "0.3.1_debug",
+    "digest": "sha256:d5c4fa1becdf2f31e67bdc76ad2d5fe1afc5df7136d74d06c6eb714307d39b70",
+    "layer_digest": "sha256:9e9423ec1326f986b1e408296de21336f40e524d3a64f87af583f7438e5464dc",
+    "size": 430121,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/tags/v0.3.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/filesystem",
+      "git_ref": "refs/tags/v0.3.1",
+      "log_index": 4092557331
+    }
+  },
+  "created": "2026-11-25T03:57:48.311851542Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Filesystem latch that denies creating symlinks.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "cfb17426fa1e321ce70569884a02d5cd76c9cdd1",
+    "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
+    "org.opencontainers.image.title": "componentized:filesystem-latch-deny-symlink-at",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/cfb17426fa1e321ce70569884a02d5cd76c9cdd1/components/latch-deny-symlink-at",
+    "org.opencontainers.image.version": "v0.3.1"
+  },
+  "imports": [
+    "wasi:clocks/system-clock@0.3.0",
+    "wasi:filesystem/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:filesystem/latch@0.3.1"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:filesystem",
+      "version": "0.3.1"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:e8711e0b0e2e46415321f2e447388097ab9c5ce2fe2c7f039a4d96975e36fa55",
+      "size": 6009
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/tags/v0.3.1",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/filesystem",
+    "git_ref": "refs/tags/v0.3.1",
+    "log_index": 4092554578
+  },
+  "indexed_at": "2026-11-25T04:02:40Z"
+}

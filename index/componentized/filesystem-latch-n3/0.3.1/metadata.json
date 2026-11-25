@@ -1,0 +1,87 @@
+{
+  "package": "componentized:filesystem-latch-n3",
+  "version": "0.3.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem/latch-n3",
+    "tag": "0.3.1",
+    "digest": "sha256:91ee636dbcb13d92c91b265530decd5c07ab8e50071a337c12d606ba4d0b0262",
+    "layer_digest": "sha256:f242887ba142b94e9a965ebe8a9ed1cc8610ae808d80e527b7d98112a4bb512d",
+    "size": 67771,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/tags/v0.3.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/filesystem",
+      "git_ref": "refs/tags/v0.3.1",
+      "log_index": 4092567275
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem/latch-n3",
+    "tag": "0.3.1_debug",
+    "digest": "sha256:ada3c15abf771c7df6ac03060e09a9458ecf4494bc4820b4b8f4de19459e53dc",
+    "layer_digest": "sha256:28293b03b4195b6aefc70d96c8f7ff72805a0f793d39e3f9e6419a371ac22315",
+    "size": 656150,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/tags/v0.3.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/filesystem",
+      "git_ref": "refs/tags/v0.3.1",
+      "log_index": 4092569434
+    }
+  },
+  "created": "2026-11-25T03:58:35.653097038Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Filesystem latch that aggregates three other filesystem latches.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "cfb17426fa1e321ce70569884a02d5cd76c9cdd1",
+    "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
+    "org.opencontainers.image.title": "componentized:filesystem-latch-n3",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/cfb17426fa1e321ce70569884a02d5cd76c9cdd1/components/latch-n3",
+    "org.opencontainers.image.version": "v0.3.1"
+  },
+  "imports": [
+    "latch0: componentized:filesystem/latch@0.3.1",
+    "latch1: componentized:filesystem/latch@0.3.1",
+    "latch2: componentized:filesystem/latch@0.3.1",
+    "wasi:clocks/system-clock@0.3.0",
+    "wasi:filesystem/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:filesystem/latch@0.3.1"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:filesystem",
+      "version": "0.3.1"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:e8711e0b0e2e46415321f2e447388097ab9c5ce2fe2c7f039a4d96975e36fa55",
+      "size": 6009
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/tags/v0.3.1",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/filesystem",
+    "git_ref": "refs/tags/v0.3.1",
+    "log_index": 4092567868
+  },
+  "indexed_at": "2026-11-25T04:02:46Z"
+}
