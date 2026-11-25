@@ -48,6 +48,8 @@
       {%- if v.date %}<span class="dim" title="Published">{{ meta_icon("date") }}<span class="visually-hidden">published </span><time datetime="{{ v.date }}">{{ v.date }}</time></span>{% endif %}
       {%- if v.revision %}{% if v.commit %}<a href="{{ v.commit }}" title="The commit {{ v.version }} was built from">{{ meta_icon("commit") }}<span class="visually-hidden">commit </span><code>{{ v.revision }}</code></a>{% else %}<span title="The commit {{ v.version }} was built from">{{ meta_icon("commit") }}<code>{{ v.revision }}</code></span>{% endif %}{% endif %}
     </span>{% endfor %}
+    {#- its versions compared, each of its packages summed up, at the end of the heading #}
+    {%- if g.compare %}<a class="group-compare" href="{{ g.compare }}" title="Compare the versions of {{ g.key }}, each of its packages summed up">{{ meta_icon("diff") }}compare</a>{% endif %}
   </div>
   {% for v in g.versions %}<div data-version-panel="{{ v.version }}"{% if v.version != sel %} hidden{% endif %}>{{ cards(v.listing, meta=false) }}
     {#- the repository's packages it didn't release at this version, in a menu, each with the

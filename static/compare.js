@@ -1,12 +1,7 @@
 // Compares two versions of a package from their APIs, the `api.json` the build writes for each
 // version, so a package has one compare page rather than a page for each pair of its versions.
-//
-// What can break a component upgrading from one version to the other comes first: WIT types are
-// structural, with no subtyping, so a removed or changed type or function breaks whoever uses
-// it, importing or implementing it. An addition is listed apart: it breaks only a component that
-// implements, exports, the interface, which then has to provide it too. Dependencies' versions are
-// compared on their own; a type is referred to by its name alone, so a dependency's new version
-// doesn't change every item that uses it.
+// What changed is worked out by diff.js, which a repository's compare page shares; this page lists
+// each change, breaking changes first, and diffs the WIT line by line.
 (() => {
   const form = document.querySelector("[data-compare]");
   const result = document.querySelector("[data-compare-result]");
@@ -48,7 +43,8 @@
 
   // the icons of items, as their pages draw them, from tip.js
   const { esc, icon, itemIcon } = window.directory;
-  const keys = (a, b) => [...new Set([...Object.keys(a ?? {}), ...Object.keys(b ?? {})])].sort();
+  // what changed between two versions' APIs, their SBOMs and their advisories, from diff.js
+  const { diff, bytes, kib, sbomChanges, advisoryChanges } = window.directory.diff;
 
   // the versions in the url, or the latest and the one before it
   const params = new URLSearchParams(location.search);
@@ -84,172 +80,6 @@
     }
     return apis.get(version);
   };
-
-  // the differences between two APIs, `a` the version upgraded from and `b` the one upgraded to
-  const diff = (a, b) => {
-    const breaking = [];
-    const cautions = [];
-    const notes = [];
-    for (const name of keys(a.interfaces, b.interfaces)) {
-      const was = a.interfaces[name];
-      const is = b.interfaces[name];
-      const where = { interface: name };
-      if (!is) {
-        const unstable = was.unstable;
-        (unstable ? cautions : breaking).push({ ...where, change: "removed", kind: "interface", label: name, version: a.version, unstable, caveat: gated(unstable, null) });
-        continue;
-      }
-      if (!was) {
-        cautions.push({ ...where, change: "added", kind: "interface", label: name, version: b.version, unstable: is.unstable });
-        continue;
-      }
-      if (was.unstable && !is.unstable) {
-        notes.push({ ...where, change: "stabilized", kind: "interface", label: name, version: b.version, caveat: STABILIZED(was.unstable) });
-      }
-      if (!was.deprecated && is.deprecated) {
-        notes.push({ ...where, change: "deprecated", kind: "interface", label: name, version: b.version });
-      }
-      for (const key of keys(was.items, is.items)) {
-        const old = was.items[key];
-        const now = is.items[key];
-        const item = { ...where, key, label: key };
-        // an item of an unstable interface is as unstable as it is
-        const wasUnstable = old && (old.unstable ?? was.unstable);
-        const isUnstable = now && (now.unstable ?? is.unstable);
-        if (!now) {
-          (wasUnstable ? cautions : breaking).push({ ...item, change: "removed", kind: old.kind, anchor: old.anchor, version: a.version, old, unstable: wasUnstable, caveat: gated(wasUnstable, null) });
-        } else if (!old) {
-          cautions.push({
-            ...item,
-            change: "added",
-            kind: now.kind,
-            anchor: now.anchor,
-            version: b.version,
-            now,
-            unstable: isUnstable,
-            caveat: now.kind === "func" ? gated(isUnstable, "a component exporting the interface must implement it") : null,
-          });
-        } else if (old.def !== now.def) {
-          // a change to an item that was unstable breaks only a component using its feature
-          (wasUnstable ? cautions : breaking).push({ ...item, change: "changed", kind: now.kind, anchor: now.anchor, version: b.version, old, now, unstable: wasUnstable, caveat: gated(wasUnstable, null) });
-        } else if (wasUnstable && !isUnstable) {
-          notes.push({ ...item, change: "stabilized", kind: now.kind, anchor: now.anchor, version: b.version, now, caveat: STABILIZED(wasUnstable) });
-        } else if (!old.deprecated && now.deprecated) {
-          notes.push({ ...item, change: "deprecated", kind: now.kind, anchor: now.anchor, version: b.version, now, unstable: isUnstable });
-        }
-      }
-    }
-
-    // a world's imports and exports: a removed one, or a new export a component targeting the
-    // world must provide, can break it; a new import is optional for it, but a host must provide it.
-    // One behind a feature gate, `@unstable(feature = ..)`, is only there when the feature is, so
-    // it asks something only of a host or component with the feature, and breaks nothing else
-    for (const name of keys(a.worlds, b.worlds)) {
-      const was = a.worlds[name];
-      const is = b.worlds[name];
-      const where = { world: name };
-      if (!is) {
-        breaking.push({ ...where, change: "removed", kind: "world", label: name, version: a.version });
-        continue;
-      }
-      if (!was) {
-        cautions.push({ ...where, change: "added", kind: "world", label: name, version: b.version });
-        continue;
-      }
-      for (const side of ["imports", "exports"]) {
-        refs(was[side], is[side], (ref, change, old) => {
-          const entry = { ...where, change, kind: ref.label.endsWith(": func") ? "func" : "interface", label: `${side === "imports" ? "import" : "export"} ${ref.label}`, unstable: ref.unstable };
-          if (change === "stabilized") notes.push({ ...entry, unstable: null, caveat: STABILIZED(old.unstable) });
-          else if (ref.types_only) notes.push({ ...entry, caveat: TYPES_ONLY });
-          else if (change === "removed" || side === "exports") {
-            const caveat = side === "exports" && change === "added" ? "a component targeting the world must export it" : null;
-            (ref.unstable ? cautions : breaking).push({ ...entry, caveat: gated(ref.unstable, caveat) });
-          } else cautions.push({ ...entry, caveat: gated(ref.unstable, "a host must provide it") });
-        });
-      }
-    }
-
-    // a component's imports and exports: a new import needs a host to provide it, and a removed
-    // export breaks whoever uses it
-    if (b.kind === "component") {
-      const where = { component: b.package };
-      refs(a.imports, b.imports, (ref, change) => {
-        const entry = { ...where, change, kind: "interface", label: `import ${ref.label}` };
-        if (ref.types_only) notes.push({ ...entry, caveat: TYPES_ONLY });
-        else if (change === "added") breaking.push({ ...entry, caveat: "a host must provide it" });
-        else cautions.push({ ...entry, caveat: "a host no longer needs to provide it" });
-      });
-      refs(a.exports, b.exports, (ref, change) => {
-        const entry = { ...where, change, kind: "interface", label: `export ${ref.label}` };
-        if (ref.types_only) notes.push({ ...entry, caveat: TYPES_ONLY });
-        else if (change === "removed") breaking.push(entry);
-        else cautions.push(entry);
-      });
-    }
-
-    // the dependencies' versions: a new major or minor version is a caution, as it may change
-    // what the dependency provides, a new patch is informational
-    const deps = (list) => new Map(list.map((d) => [d.slice(0, d.lastIndexOf("@")), d]));
-    const versionOf = (dep) => dep.slice(dep.lastIndexOf("@") + 1);
-    const wasDeps = deps(a.dependencies);
-    const isDeps = deps(b.dependencies);
-    for (const pkg of [...new Set([...wasDeps.keys(), ...isDeps.keys()])].sort()) {
-      const was = wasDeps.get(pkg);
-      const is = isDeps.get(pkg);
-      if (was === is) continue;
-      const entry = {
-        dependency: true,
-        change: !was ? "added" : !is ? "removed" : "upgraded",
-        // a package depended on, by its icon apart from an interface
-        kind: "package",
-        label: !was ? is : !is ? was : `${was} → ${versionOf(is)}`,
-      };
-      const step = was && is ? release(versionOf(was), versionOf(is)) : null;
-      if (step === "major" || step === "minor") {
-        cautions.push({ ...entry, caveat: `a new ${step} version, which may change what it provides` });
-      } else {
-        notes.push(entry);
-      }
-    }
-    return { breaking, cautions, notes };
-  };
-
-  // an interface of types alone, with no functions or resources of its own, asks nothing of a
-  // host: there's nothing to call, so importing or exporting it is informational
-  const TYPES_ONLY = "types only: there's nothing to provide or call, so nothing has to supply it";
-
-  // what a change asks, when it's behind a feature gate: only with the feature enabled. A change
-  // that would otherwise break, e.g. a removal, breaks only a component using the feature
-  const gated = (feature, caveat) => {
-    if (!feature) return caveat;
-    if (!caveat) return `unstable, so it breaks only a component using the ${feature} feature`;
-    return `${caveat} when the ${feature} feature is enabled`;
-  };
-  const STABILIZED = (feature) => `no longer behind the ${feature} feature`;
-
-  // how far apart two versions are, `major`, `minor` or `patch`, by their `major.minor.patch`,
-  // or `null` when they share it, e.g. two pre-releases of one version
-  function release(a, b) {
-    const parts = (v) => v.split(/[-+]/)[0].split(".").map((n) => parseInt(n, 10) || 0);
-    const [x, y] = [parts(a), parts(b)];
-    if (x[0] !== y[0]) return "major";
-    if (x[1] !== y[1]) return "minor";
-    if (x[2] !== y[2]) return "patch";
-    return null;
-  }
-
-  // calls back with each ref only one side has, by its key, the ref without its version, and each
-  // both have that's no longer behind a feature gate, with the ref it was
-  function refs(was = [], is = [], each) {
-    const wasKeys = new Map(was.map((r) => [r.key, r]));
-    const isKeys = new Map(is.map((r) => [r.key, r]));
-    for (const [key, ref] of wasKeys) if (!isKeys.has(key)) each(ref, "removed");
-    for (const [key, ref] of isKeys) {
-      const old = wasKeys.get(key);
-      if (!old) each(ref, "added");
-      else if (old.unstable && !ref.unstable) each(ref, "stabilized", old);
-    }
-  }
 
   // a changed item's members, a record's fields or a variant's cases, as removed and added lines;
   // or, when its members didn't change, its definition before and after. The text is compared,
@@ -398,13 +228,6 @@
     return `<pre class="wit wit-diff"><code>${html}</code></pre>`;
   };
 
-  // a size in bytes as a version's page says it, e.g. `12.3 KiB`
-  const bytes = (n) => {
-    const abs = Math.abs(n);
-    if (abs >= 1024 * 1024) return `${(n / (1024 * 1024)).toFixed(1)} MiB`;
-    if (abs >= 1024) return `${(n / 1024).toFixed(1)} KiB`;
-    return `${n} B`;
-  };
   // the sizes of the two versions' wasm layers, and of their debug builds', with how much each
   // grew or shrank
   const sizeSection = (a, b) => {
@@ -419,30 +242,13 @@
       const delta = is - was;
       const share = Math.abs((delta / was) * 100);
       const pct = was ? ` (${delta > 0 ? "+" : "−"}${share < 0.1 ? "<0.1" : share.toFixed(1)}%)` : "";
-      const said = delta === 0 ? `<span class="dim">the same</span>` : `<span class="size-delta ${delta > 0 ? "size-up" : "size-down"}">${delta > 0 ? "+" : "−"}${esc(bytes(Math.abs(delta)))}${esc(pct)}</span>`;
+      const said = delta === 0 ? `<span class="dim">the same</span>` : `<span class="size-delta ${delta > 0 ? "size-up" : "size-down"}">${delta > 0 ? "+" : "−"}${esc(kib(delta))}${esc(pct)}</span>`;
       return `<dt>${esc(label)}</dt><dd><code>${esc(bytes(was))}</code> → <code>${esc(bytes(is))}</code> ${said}</dd>`;
     };
     const rows = [row("Wasm", a.size, b.size), row("Debug build", a.debug_size, b.debug_size)].join("");
     const dl = rows && `<dl class="facts compare-sizes">${rows}</dl>`;
     return `<section class="compare-section" id="compare-size"><h2>Size</h2>
       ${dl || `<p class="dim">Neither version's size is known.</p>`}</section>`;
-  };
-
-  // orders versions by their `major.minor.patch`, a pre-release before its release, else as text
-  const cmpVersion = (x, y) => {
-    const parse = (v) => {
-      const [core, pre] = v.split("+")[0].split(/-(.*)/s);
-      return { nums: core.split(".").map((n) => parseInt(n, 10) || 0), pre: pre ?? null };
-    };
-    const [p, q] = [parse(x), parse(y)];
-    for (let i = 0; i < Math.max(p.nums.length, q.nums.length); i++) {
-      const d = (p.nums[i] ?? 0) - (q.nums[i] ?? 0);
-      if (d) return d;
-    }
-    if (p.pre === q.pre) return 0;
-    if (p.pre === null) return 1;
-    if (q.pre === null) return -1;
-    return p.pre.localeCompare(q.pre, undefined, { numeric: true });
   };
 
   // a version without a verified SBOM, said so, for the SBOM's and advisories' sections
@@ -455,23 +261,7 @@
     if (!a.sbom || !b.sbom) {
       return `<section class="compare-section" id="compare-sbom"><h2>${title}</h2><p class="dim">${noSbom(a, b)} ${!a.sbom && !b.sbom ? "have" : "has"} no verified SBOM to compare.</p></section>`;
     }
-    const byKey = (sbom) => new Map(sbom.packages.map((p) => [`${p.kind}/${p.name}`, p]));
-    const [was, is] = [byKey(a.sbom), byKey(b.sbom)];
-    const at = (p) => p.versions.join(", ");
-    const changes = [];
-    for (const key of [...new Set([...was.keys(), ...is.keys()])].sort()) {
-      const old = was.get(key);
-      const now = is.get(key);
-      const p = now ?? old;
-      const label = !old ? `${p.name}@${at(now)}` : !now ? `${p.name}@${at(old)}` : `${p.name} ${at(old)} → ${at(now)}`;
-      let change = !old ? "added" : !now ? "removed" : null;
-      if (!change && at(old) !== at(now)) {
-        change = cmpVersion(now.versions.at(-1) ?? "", old.versions.at(-1) ?? "") >= 0 ? "upgraded" : "downgraded";
-      }
-      if (change) changes.push({ change, label, kind: p.kind, build_only: p.build_only });
-    }
-    const order = ["removed", "downgraded", "upgraded", "added"];
-    changes.sort((x, y) => order.indexOf(x.change) - order.indexOf(y.change));
+    const changes = sbomChanges(a, b);
     const body = changes.length
       ? `<ul class="changes">${changes
           .map((c) => `<li class="change"><span class="change-badge change-${c.change}">${esc(c.change)}</span> <code>${esc(c.label)}</code>${c.kind ? ` <span class="dim">${esc(c.kind)}</span>` : ""}${c.build_only ? ` <span class="badge sbom-build" title="Used to build it, e.g. a macro or a build script, rather than built into it">build</span>` : ""}</li>`)
@@ -488,11 +278,7 @@
     if (!a.sbom || !b.sbom) {
       return `<section class="compare-section" id="compare-advisories"><h2>${title}</h2><p class="dim">${noSbom(a, b)} ${!a.sbom && !b.sbom ? "have" : "has"} no verified SBOM to compare.</p></section>`;
     }
-    const was = new Map(a.sbom.advisories.map((x) => [x.id, x]));
-    const is = new Map(b.sbom.advisories.map((x) => [x.id, x]));
-    const fixed = [...was.values()].filter((x) => !is.has(x.id));
-    const added = [...is.values()].filter((x) => !was.has(x.id));
-    const both = [...is.values()].filter((x) => was.has(x.id));
+    const { fixed, added, both } = advisoryChanges(a, b);
     const item = (x, change) => {
       const informational = x.kind !== "vulnerability";
       const bullet = informational
@@ -510,6 +296,18 @@
       ? `${group(`New in ${b.version}`, added, "new")}${group(`Fixed in ${b.version}`, fixed, "fixed")}${group("Affecting both", both, "remaining")}`
       : `<p class="dim">None known of either version.</p>`;
     return `<section class="compare-section" id="compare-advisories"><h2>${title} <span class="count-chip" title="${b.sbom.advisories.length} affecting ${esc(b.version)}">${b.sbom.advisories.length}</span></h2>${caveat}${body}</section>`;
+  };
+
+  // the section a link into the page is to, e.g. `#compare-size` from a repository's comparison,
+  // which is only there once the comparison is drawn: it's scrolled to then, the first time only,
+  // so choosing other versions keeps the page where it is
+  let anchor = decodeURIComponent(location.hash.slice(1));
+  const scrollToAnchor = () => {
+    if (!anchor) return;
+    const target = document.getElementById(anchor);
+    anchor = "";
+    // below the pinned head, by the page's `scroll-padding-top`
+    target?.scrollIntoView();
   };
 
   let shown = 0;
@@ -556,6 +354,7 @@
       result.querySelector("[data-ignore-versions]").addEventListener("change", (e) => {
         result.querySelector("[data-wit-diff]").innerHTML = witDiff(old.wit ?? "", now.wit ?? "", e.target.checked);
       });
+      scrollToAnchor();
     } catch (err) {
       if (run !== shown) return;
       result.innerHTML = `<p class="notice">Couldn't compare the versions: ${esc(err.message)}</p>`;

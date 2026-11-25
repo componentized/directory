@@ -1034,3 +1034,19 @@ span.kind-icon-used > svg.kind-icon { display: block; margin: 0; }
 .dep-slot { display: block; width: 14px; height: 1px; }
 .dep-bullet .sev-icon, .dep-sev .sev-icon { display: block; width: 14px; height: 14px; }
 .dep-sev { display: inline-flex; align-self: center; }
+
+/* a repository's versions compared: each of its packages summed up, linking to its own comparison */
+.group-compare { font-size: 0.85rem; }
+/* the page's full width, its package column taking what the others leave */
+.repo-compare { width: 100%; }
+.repo-compare td.num, .repo-compare th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.repo-compare td { vertical-align: baseline; }
+.repo-compare .dep-name .kind-icon { margin-right: 6px; vertical-align: -0.15em; }
+/* a heading's icon without the margin that parts an icon from its text, so it lines up with the
+   numbers under it */
+.repo-compare th .meta-icon { width: 14px; height: 14px; margin: 0; vertical-align: -2px; }
+.repo-count { font-family: var(--mono); font-weight: 600; }
+.repo-count-stop { color: var(--deprecated); }
+.repo-count-caution { color: var(--interface); }
+.repo-advisories:hover { text-decoration: none; }
+.repo-same td { color: var(--dim); }

@@ -254,3 +254,25 @@
 </div>
 {% if pkg.description and not iface %}<div class="lede">{{ pkg.description_html|safe }}</div>{% endif %}
 {% endmacro %}
+{#- a version to compare on a compare page, a package's or a repository's, chosen from a menu of the release lines, each leading with its latest
+    version and folding its older ones. Without scripts each choice is a link. #}
+{% macro compare_pick(side, label, lines) %}
+<div class="compare-side">
+  <span class="compare-label" id="compare-{{ side }}-label">{{ label }}</span>
+  <details class="pivot compare-version" data-pivot data-pivot-no-filter data-compare-side="{{ side }}">
+    <summary aria-labelledby="compare-{{ side }}-label compare-{{ side }}-value"><span id="compare-{{ side }}-value" data-pivot-label></span><svg class="pivot-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 6.5 3.5 3.5 3.5-3.5"/></svg></summary>
+    <ul class="pivot-menu" aria-label="{{ label }} versions">
+      {%- for line in lines %}
+      <li class="pivot-line" aria-hidden="true">{{ line.label }}</li>
+      {%- for v in line.shown %}{{ version_choice(side, v) }}{% endfor %}
+      {%- if line.older %}
+      {%- set fold = side ~ "-" ~ loop.index %}
+      <li class="pivot-fold"><button type="button" data-fold="{{ fold }}" aria-label="Show {{ line.older|length }} older {{ line.label }} version{% if line.older|length != 1 %}s{% endif %}">{{ line.older|length }} older</button></li>
+      {%- for v in line.older %}{{ version_choice(side, v, fold) }}{% endfor %}
+      {%- endif %}
+      {%- endfor %}
+    </ul>
+  </details>
+</div>
+{% endmacro %}
+{% macro version_choice(side, v, fold=none) %}<li{% if fold %} data-folded="{{ fold }}" hidden{% endif %}><a href="?{{ side }}={{ v.version }}" data-version="{{ v.version }}"><code>{{ v.version }}</code><time class="dim" datetime="{{ v.date }}">{{ v.date }}</time></a></li>{% endmacro %}
