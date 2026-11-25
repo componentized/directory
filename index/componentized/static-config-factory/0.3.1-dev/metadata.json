@@ -7,46 +7,46 @@
     "registry": "ghcr.io",
     "repository": "componentized/static-config/factory",
     "tag": "0.3.1-dev",
-    "digest": "sha256:0f6c331a0a20c8900006ba458add5d5d826cdd3804ec6eec6adff6517bf7b893",
-    "layer_digest": "sha256:3c1a42abbad240dd5c08bb27ac51d42b12a3d1f1fa43298403fce40a1812ae41",
-    "size": 1968799,
+    "digest": "sha256:5a85588b4a8009ef79ec568fd48f4a0c0e2b359ad8af1b9e7188bcb623dd1dc8",
+    "layer_digest": "sha256:3019d90149237259f281c4671d13a32cdfff6f33f74f72ab290307942b77c98e",
+    "size": 2006789,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/static-config/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/static-config",
       "git_ref": "refs/heads/main",
-      "log_index": 4077877508
+      "log_index": 4111630748
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/static-config/factory",
     "tag": "0.3.1-dev_debug",
-    "digest": "sha256:8f12a659bfea79b7a3fc85eeb2796a1029ae44600c96b5a1c0ea19055ddf3201",
-    "layer_digest": "sha256:7baa992a8d58e176abe86cdf58e67273304c3373f5ff3e63339bc1ac263381f2",
-    "size": 39049839,
+    "digest": "sha256:f6d7feb9be54281b44a23961cdb001b3ff9a5d09219b7a5daaa052b8946fd3c7",
+    "layer_digest": "sha256:3f1f958beaae1fc84548b3a7266dfea54bd09893c8b909ae1ff335ea58e219a7",
+    "size": 39842676,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/static-config/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/static-config",
       "git_ref": "refs/heads/main",
-      "log_index": 4077884889
+      "log_index": 4111638703
     }
   },
-  "created": "2026-11-24T12:40:40.253137896Z",
+  "created": "2026-11-25T21:00:53.115227239Z",
   "annotations": {
     "org.opencontainers.image.description": "Create wasi:config components with static values, from key value pairs.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "9267feee4d6f91a44763551046d1c16bb985d258",
+    "org.opencontainers.image.revision": "8956fd5769efa4d9f45c7b0ea3997b8153caf97f",
     "org.opencontainers.image.source": "https://github.com/componentized/static-config.git",
     "org.opencontainers.image.title": "componentized:static-config-factory",
-    "org.opencontainers.image.url": "https://github.com/componentized/static-config/tree/9267feee4d6f91a44763551046d1c16bb985d258/components/factory",
+    "org.opencontainers.image.url": "https://github.com/componentized/static-config/tree/8956fd5769efa4d9f45c7b0ea3997b8153caf97f/components/factory",
     "org.opencontainers.image.version": "v0.3.1-dev"
   },
   "imports": [
-    "componentized:component/types@0.1.0"
+    "componentized:component/types@0.1.1"
   ],
   "exports": [
     "componentized:static-config/factory@0.3.1-dev"
@@ -54,7 +54,7 @@
   "dependencies": [
     {
       "package": "componentized:component",
-      "version": "0.1.0"
+      "version": "0.1.1"
     },
     {
       "package": "componentized:static-config",
@@ -73,7 +73,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/static-config",
     "git_ref": "refs/heads/main",
-    "log_index": 4077879270
+    "log_index": 4111632892
   },
-  "indexed_at": "2026-11-24T12:42:17Z"
+  "indexed_at": "2026-11-25T21:02:32Z"
 }

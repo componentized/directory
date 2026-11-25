@@ -38,6 +38,7 @@
       "version": "0.2.1"
     }
   ],
+  "release": "https://github.com/componentized/constants/releases/tag/v0.2.1",
   "parts": [
     {
       "digest": "sha256:42263d0342748967d3d54b3e535352e50980d1813a8972c6b0dbf5f13fd4a688",
