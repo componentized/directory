@@ -1,49 +1,49 @@
 {
   "package": "componentized:cli-stderr-to-stdout",
-  "version": "0.2.1-dev",
+  "version": "0.2.1",
   "kind": "component",
   "origin": "release",
   "oci": {
     "registry": "ghcr.io",
     "repository": "componentized/cli/stderr-to-stdout",
-    "tag": "0.2.1-dev",
-    "digest": "sha256:9d6d1833ab9b26aac12270282f2a0c6fe0b6e285ebb8f9787ef7a998089427b0",
+    "tag": "0.2.1",
+    "digest": "sha256:3b7346ff83743a58bedd96af879345fd874e648ca02119f4328960c76e0e7dda",
     "layer_digest": "sha256:e9c66b762e4eff0e0a07253f3fccd873c4a233ea35ccc95006914a12b134cbba",
     "size": 20545,
     "signature": {
       "status": "verified",
-      "identity": "https://github.com/componentized/cli/.github/workflows/ci.yaml@refs/heads/main",
+      "identity": "https://github.com/componentized/cli/.github/workflows/ci.yaml@refs/tags/v0.2.1",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/cli",
-      "git_ref": "refs/heads/main",
-      "log_index": 4112379432
+      "git_ref": "refs/tags/v0.2.1",
+      "log_index": 4112501461
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/cli/stderr-to-stdout",
-    "tag": "0.2.1-dev_debug",
-    "digest": "sha256:cb20d312c1e85a84df85f852232096a9aa4b8f4e9b6d3a50fdbaf18912c6e388",
+    "tag": "0.2.1_debug",
+    "digest": "sha256:eb4180bd375e79b5c91eb40a2d015fb7f06d204ad894d58bdf88db5a74165fc7",
     "layer_digest": "sha256:340f5c807af5e8be9b73d5061e6e0b2d6af13be116a002f708771a448ea8849b",
     "size": 40496,
     "signature": {
       "status": "verified",
-      "identity": "https://github.com/componentized/cli/.github/workflows/ci.yaml@refs/heads/main",
+      "identity": "https://github.com/componentized/cli/.github/workflows/ci.yaml@refs/tags/v0.2.1",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/cli",
-      "git_ref": "refs/heads/main",
-      "log_index": 4112383564
+      "git_ref": "refs/tags/v0.2.1",
+      "log_index": 4112505808
     }
   },
-  "created": "2026-11-25T21:45:21.370066960Z",
+  "created": "2026-11-25T21:52:42.787558657Z",
   "annotations": {
     "org.opencontainers.image.description": "Redirects stderr's output stream to stdout.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "3cb6885d118e3a8f6e13c8cfc8e86553a6787573",
+    "org.opencontainers.image.revision": "a26695e7a0ae93f3b6665a04590bb6ea1dab35ca",
     "org.opencontainers.image.source": "https://github.com/componentized/cli.git",
     "org.opencontainers.image.title": "componentized:cli-stderr-to-stdout",
-    "org.opencontainers.image.url": "https://github.com/componentized/cli/tree/3cb6885d118e3a8f6e13c8cfc8e86553a6787573/components/stderr-to-stdout",
-    "org.opencontainers.image.version": "v0.2.1-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/cli/tree/a26695e7a0ae93f3b6665a04590bb6ea1dab35ca/components/stderr-to-stdout",
+    "org.opencontainers.image.version": "v0.2.1"
   },
   "imports": [
     "wasi:cli/stdout@0.3.0",
@@ -58,6 +58,7 @@
       "version": "0.3.0"
     }
   ],
+  "release": "https://github.com/componentized/cli/releases/tag/v0.2.1",
   "parts": [
     {
       "digest": "sha256:9581a59cbb2d5e0e5cbc4ad8b03235a904767b79dc0aa1c9495f598825a9df41",
@@ -66,11 +67,11 @@
   ],
   "sbom": {
     "status": "verified",
-    "identity": "https://github.com/componentized/cli/.github/workflows/ci.yaml@refs/heads/main",
+    "identity": "https://github.com/componentized/cli/.github/workflows/ci.yaml@refs/tags/v0.2.1",
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/cli",
-    "git_ref": "refs/heads/main",
-    "log_index": 4112380951
+    "git_ref": "refs/tags/v0.2.1",
+    "log_index": 4112503224
   },
-  "indexed_at": "2026-11-25T21:47:13Z"
+  "indexed_at": "2026-11-25T21:55:08Z"
 }
