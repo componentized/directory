@@ -1002,7 +1002,8 @@ span.kind-icon-used > svg.kind-icon { display: block; margin: 0; }
 .advisory-title-icon .sev-icon { width: 1.1em; height: 1.1em; }
 .advisory-sources { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 4px; }
 .advisory-components td { vertical-align: top; }
-.advisory-components .dep-name svg { margin-right: 6px; vertical-align: -0.15em; }
+/* a plain icon spaced from the name; a composition's, badged, keeps its own, as everywhere */
+.advisory-components .dep-name > .kind-icon { margin-right: 6px; vertical-align: -0.15em; }
 .version-ranges { list-style: none; padding: 0; margin: 0; display: grid; gap: 2px; white-space: nowrap; }
 .version-ranges a.unaffected code { color: var(--component); }
 .still-affected { color: var(--deprecated); font-weight: 600; }
@@ -1041,7 +1042,7 @@ span.kind-icon-used > svg.kind-icon { display: block; margin: 0; }
 .repo-compare { width: 100%; }
 .repo-compare td.num, .repo-compare th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .repo-compare td { vertical-align: baseline; }
-.repo-compare .dep-name .kind-icon { margin-right: 6px; vertical-align: -0.15em; }
+.repo-compare .dep-name > .kind-icon { margin-right: 6px; vertical-align: -0.15em; }
 /* a heading's icon without the margin that parts an icon from its text, so it lines up with the
    numbers under it */
 .repo-compare th .meta-icon { width: 14px; height: 14px; margin: 0; vertical-align: -2px; }
