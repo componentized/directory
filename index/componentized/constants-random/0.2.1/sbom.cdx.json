@@ -2,23 +2,23 @@
   "bomFormat": "CycloneDX",
   "components": [
     {
-      "bom-ref": "pkg:cargo/componentized-constants-cli@0.2.1-dev",
+      "bom-ref": "pkg:cargo/componentized-constants-cli@0.2.1",
       "name": "componentized-constants-cli",
-      "purl": "pkg:cargo/componentized-constants-cli@0.2.1-dev",
+      "purl": "pkg:cargo/componentized-constants-cli@0.2.1",
       "type": "library",
-      "version": "0.2.1-dev"
+      "version": "0.2.1"
     }
   ],
   "dependencies": [
     {
       "dependsOn": [
-        "pkg:cargo/componentized-constants-cli@0.2.1-dev"
+        "pkg:cargo/componentized-constants-cli@0.2.1"
       ],
       "ref": "component:componentized:constants-random"
     },
     {
       "dependsOn": [],
-      "ref": "pkg:cargo/componentized-constants-cli@0.2.1-dev"
+      "ref": "pkg:cargo/componentized-constants-cli@0.2.1"
     }
   ],
   "metadata": {
@@ -27,19 +27,19 @@
       "description": "Pseudorandom number generators.",
       "externalReferences": [
         {
-          "comment": "revision a3b080b466a542dd61bdc8a64efe64603677473d",
+          "comment": "revision 27c212888f446d0cb883a42bad5d21ac8431d937",
           "type": "vcs",
           "url": "https://github.com/componentized/constants.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/constants/tree/a3b080b466a542dd61bdc8a64efe64603677473d/components/random"
+          "url": "https://github.com/componentized/constants/tree/27c212888f446d0cb883a42bad5d21ac8431d937/components/random"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "d4f1d97795ddaead48d590a5e4fbfe9772315ea4484092793d05b94217d313ac"
+          "content": "b1675f9a989a2bdc9d0bafff58f9a5eef06b8647d8c02e4ece0ee5134d0f276b"
         }
       ],
       "licenses": [
@@ -48,17 +48,17 @@
         }
       ],
       "name": "componentized:constants-random",
-      "purl": "pkg:oci/random@sha256%3A67b51095c9785385532d18b0676a20b7dd0aab9c570f96de2c64e5456a2c175c?repository_url=ghcr.io/componentized/constants/random&tag=0.2.1-dev",
+      "purl": "pkg:oci/random@sha256%3Af225ed0b489ea46dc9fcd15806c32bc62509a40aa5b221a09094b268693f185d?repository_url=ghcr.io/componentized/constants/random&tag=0.2.1",
       "type": "library",
-      "version": "0.2.1-dev"
+      "version": "0.2.1"
     },
-    "timestamp": "2026-11-25T19:04:05Z",
+    "timestamp": "2026-11-25T19:25:59Z",
     "tools": {
       "components": [
         {
           "name": "componentized-constants-cli",
           "type": "application",
-          "version": "0.2.1-dev"
+          "version": "0.2.1"
         }
       ]
     }

@@ -1,56 +1,56 @@
 {
   "package": "componentized:constants-factory",
-  "version": "0.2.1-dev",
+  "version": "0.2.1",
   "kind": "component",
   "origin": "release",
   "oci": {
     "registry": "ghcr.io",
     "repository": "componentized/constants/factory",
-    "tag": "0.2.1-dev",
-    "digest": "sha256:27c6f3f668f263f61781935212c89591bc9acf7596c22822936603ddd71b5fd5",
-    "layer_digest": "sha256:12a06d3c4a1962e2ee6100927c52fa305a403dc968ceb69c3f346a713a66782e",
-    "size": 2235650,
+    "tag": "0.2.1",
+    "digest": "sha256:9233733d7814c896253137d2abe32d8649fb61ba163dafb0b094dbc0cefe6192",
+    "layer_digest": "sha256:ff8e5414d0f244e2452ad3fa9485751a3062de752392c44f57fb8b9c572881a0",
+    "size": 2235590,
     "signature": {
       "status": "verified",
-      "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/heads/main",
+      "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/tags/v0.2.1",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/constants",
-      "git_ref": "refs/heads/main",
-      "log_index": 4109564881
+      "git_ref": "refs/tags/v0.2.1",
+      "log_index": 4109942265
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/constants/factory",
-    "tag": "0.2.1-dev_debug",
-    "digest": "sha256:3c74608ba97f261347aab7df7fc3db45ad26048c23b9706176f0efaea187e304",
-    "layer_digest": "sha256:a3669c9403e2b245ec62bda012bbf7c876540519554716ea2373da976e9476f5",
-    "size": 46375846,
+    "tag": "0.2.1_debug",
+    "digest": "sha256:fdec7f41d609cbb7e6ae60be5ddff11290bfee1771ab87b90ef5276fc144c830",
+    "layer_digest": "sha256:b7789bdb428363c85e541ff081825accf70e0360784006a0be337ffbc443aa64",
+    "size": 46378739,
     "signature": {
       "status": "verified",
-      "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/heads/main",
+      "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/tags/v0.2.1",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/constants",
-      "git_ref": "refs/heads/main",
-      "log_index": 4109570393
+      "git_ref": "refs/tags/v0.2.1",
+      "log_index": 4109946661
     }
   },
-  "created": "2026-11-25T19:08:45.949852254Z",
+  "created": "2026-11-25T19:30:42.805360414Z",
   "annotations": {
     "org.opencontainers.image.description": "Create components whose exported functions return constant values, from a WIT world with values in its doc comments.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "a3b080b466a542dd61bdc8a64efe64603677473d",
+    "org.opencontainers.image.revision": "27c212888f446d0cb883a42bad5d21ac8431d937",
     "org.opencontainers.image.source": "https://github.com/componentized/constants.git",
     "org.opencontainers.image.title": "componentized:constants-factory",
-    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/a3b080b466a542dd61bdc8a64efe64603677473d/components/factory",
-    "org.opencontainers.image.version": "v0.2.1-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/27c212888f446d0cb883a42bad5d21ac8431d937/components/factory",
+    "org.opencontainers.image.version": "v0.2.1"
   },
   "imports": [
     "componentized:component/types@0.1.1",
     "componentized:component/wit@0.1.1"
   ],
   "exports": [
-    "componentized:constants/factory@0.2.1-dev"
+    "componentized:constants/factory@0.2.1"
   ],
   "dependencies": [
     {
@@ -59,7 +59,7 @@
     },
     {
       "package": "componentized:constants",
-      "version": "0.2.1-dev"
+      "version": "0.2.1"
     }
   ],
   "parts": [
@@ -70,11 +70,11 @@
   ],
   "sbom": {
     "status": "verified",
-    "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/heads/main",
+    "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/tags/v0.2.1",
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/constants",
-    "git_ref": "refs/heads/main",
-    "log_index": 4109566482
+    "git_ref": "refs/tags/v0.2.1",
+    "log_index": 4109943175
   },
-  "indexed_at": "2026-11-25T19:11:09Z"
+  "indexed_at": "2026-11-25T19:33:28Z"
 }

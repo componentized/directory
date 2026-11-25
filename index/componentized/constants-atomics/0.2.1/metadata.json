@@ -1,41 +1,41 @@
 {
   "package": "componentized:constants-atomics",
-  "version": "0.2.1-dev",
+  "version": "0.2.1",
   "kind": "component",
   "origin": "release",
   "oci": {
     "registry": "ghcr.io",
     "repository": "componentized/constants/atomics",
-    "tag": "0.2.1-dev",
-    "digest": "sha256:4ffb73095c71c7d8de35a30a6381744f844d935dfc49971d3a443c16b35a4d40",
-    "layer_digest": "sha256:17853208d2e5fe49264ddd0e8b6408d2370163037346e2c3006931f3a75316e4",
-    "size": 5385,
+    "tag": "0.2.1",
+    "digest": "sha256:c2b44056db140513724a4ea10073e9bcdbfc22a21d65b3ac3e7b3bb7de3b36fc",
+    "layer_digest": "sha256:60dc64a555ae9349fc04c6a6c1423d7f090d0f41b7683bff07511e7fafb41761",
+    "size": 5261,
     "signature": {
       "status": "verified",
-      "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/heads/main",
+      "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/tags/v0.2.1",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/constants",
-      "git_ref": "refs/heads/main",
-      "log_index": 4109552285
+      "git_ref": "refs/tags/v0.2.1",
+      "log_index": 4109929602
     }
   },
-  "created": "2026-11-25T19:07:59.645492507Z",
+  "created": "2026-11-25T19:29:50.117107239Z",
   "annotations": {
     "org.opencontainers.image.description": "lock-free, thread-safe operations on streams",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "a3b080b466a542dd61bdc8a64efe64603677473d",
+    "org.opencontainers.image.revision": "27c212888f446d0cb883a42bad5d21ac8431d937",
     "org.opencontainers.image.source": "https://github.com/componentized/constants.git",
     "org.opencontainers.image.title": "componentized:constants-atomics",
-    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/a3b080b466a542dd61bdc8a64efe64603677473d/components/atomics",
-    "org.opencontainers.image.version": "v0.2.1-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/27c212888f446d0cb883a42bad5d21ac8431d937/components/atomics",
+    "org.opencontainers.image.version": "v0.2.1"
   },
   "exports": [
-    "componentized:constants/atomics@0.2.1-dev"
+    "componentized:constants/atomics@0.2.1"
   ],
   "dependencies": [
     {
       "package": "componentized:constants",
-      "version": "0.2.1-dev"
+      "version": "0.2.1"
     }
   ],
   "parts": [
@@ -46,11 +46,11 @@
   ],
   "sbom": {
     "status": "verified",
-    "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/heads/main",
+    "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/tags/v0.2.1",
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/constants",
-    "git_ref": "refs/heads/main",
-    "log_index": 4109553426
+    "git_ref": "refs/tags/v0.2.1",
+    "log_index": 4109931167
   },
-  "indexed_at": "2026-11-25T19:11:03Z"
+  "indexed_at": "2026-11-25T19:33:16Z"
 }

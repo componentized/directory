@@ -1,4 +1,4 @@
-package componentized:constants@0.2.1-dev;
+package componentized:constants@0.2.1;
 
 interface atomics {
   /// Incrementing integers. Stream closes when it reaches max int.

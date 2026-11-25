@@ -1422,19 +1422,19 @@
       "description": "Config values for the wasi:config/store interface, served from a list of key value pairs.",
       "externalReferences": [
         {
-          "comment": "revision a3b080b466a542dd61bdc8a64efe64603677473d",
+          "comment": "revision 27c212888f446d0cb883a42bad5d21ac8431d937",
           "type": "vcs",
           "url": "https://github.com/componentized/constants.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/constants/tree/a3b080b466a542dd61bdc8a64efe64603677473d/components/config"
+          "url": "https://github.com/componentized/constants/tree/27c212888f446d0cb883a42bad5d21ac8431d937/components/config"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "7500493f5a67297263689d4721c971452cc6dc426383eb9343a9a545da6ae19c"
+          "content": "c86041685d94ff1ce25e3e9134a8260e8bb5522bcba5ac963d53cb0de4d3a24c"
         }
       ],
       "licenses": [
@@ -1443,11 +1443,11 @@
         }
       ],
       "name": "componentized:constants-config",
-      "purl": "pkg:oci/config@sha256%3A632d1a586e27983e20df69243964932ada033202aa870cd672319bd67074ae82?repository_url=ghcr.io/componentized/constants/config&tag=0.2.1-dev",
+      "purl": "pkg:oci/config@sha256%3A5fc33bae597aa77b2b00c0e1d05257b4073aaaadedcc8865494045f2969bc6cf?repository_url=ghcr.io/componentized/constants/config&tag=0.2.1",
       "type": "library",
-      "version": "0.2.1-dev"
+      "version": "0.2.1"
     },
-    "timestamp": "2026-11-25T19:04:05Z",
+    "timestamp": "2026-11-25T19:25:59Z",
     "tools": {
       "components": [
         {

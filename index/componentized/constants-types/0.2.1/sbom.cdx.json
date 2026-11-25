@@ -2,23 +2,23 @@
   "bomFormat": "CycloneDX",
   "components": [
     {
-      "bom-ref": "pkg:cargo/componentized-constants-cli@0.2.1-dev",
+      "bom-ref": "pkg:cargo/componentized-constants-cli@0.2.1",
       "name": "componentized-constants-cli",
-      "purl": "pkg:cargo/componentized-constants-cli@0.2.1-dev",
+      "purl": "pkg:cargo/componentized-constants-cli@0.2.1",
       "type": "library",
-      "version": "0.2.1-dev"
+      "version": "0.2.1"
     }
   ],
   "dependencies": [
     {
       "dependsOn": [
-        "pkg:cargo/componentized-constants-cli@0.2.1-dev"
+        "pkg:cargo/componentized-constants-cli@0.2.1"
       ],
       "ref": "component:componentized:constants-types"
     },
     {
       "dependsOn": [],
-      "ref": "pkg:cargo/componentized-constants-cli@0.2.1-dev"
+      "ref": "pkg:cargo/componentized-constants-cli@0.2.1"
     }
   ],
   "metadata": {
@@ -27,19 +27,19 @@
       "description": "Limits of each numeric type.",
       "externalReferences": [
         {
-          "comment": "revision a3b080b466a542dd61bdc8a64efe64603677473d",
+          "comment": "revision 27c212888f446d0cb883a42bad5d21ac8431d937",
           "type": "vcs",
           "url": "https://github.com/componentized/constants.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/constants/tree/a3b080b466a542dd61bdc8a64efe64603677473d/components/types"
+          "url": "https://github.com/componentized/constants/tree/27c212888f446d0cb883a42bad5d21ac8431d937/components/types"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "331c547fdeec5580025cbc7ee1a7b1dca9d4880c22e41b23755a2d1cfb87c292"
+          "content": "fa7fa1c170cb2f180a5e0a3fb39d6a871d3bcf2b774ab8e9a712128a35493289"
         }
       ],
       "licenses": [
@@ -48,17 +48,17 @@
         }
       ],
       "name": "componentized:constants-types",
-      "purl": "pkg:oci/types@sha256%3A87fc90172ac2956199423538169c8377333eefa1898267eca9c18ff3a788d022?repository_url=ghcr.io/componentized/constants/types&tag=0.2.1-dev",
+      "purl": "pkg:oci/types@sha256%3A96cd8f6de6fb89e77144a4d56ef9b6e7555e0dca98732684fc87ad4451ea438a?repository_url=ghcr.io/componentized/constants/types&tag=0.2.1",
       "type": "library",
-      "version": "0.2.1-dev"
+      "version": "0.2.1"
     },
-    "timestamp": "2026-11-25T19:04:05Z",
+    "timestamp": "2026-11-25T19:25:59Z",
     "tools": {
       "components": [
         {
           "name": "componentized-constants-cli",
           "type": "application",
-          "version": "0.2.1-dev"
+          "version": "0.2.1"
         }
       ]
     }

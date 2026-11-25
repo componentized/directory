@@ -1,41 +1,41 @@
 {
   "package": "componentized:constants-math",
-  "version": "0.2.1-dev",
+  "version": "0.2.1",
   "kind": "component",
   "origin": "release",
   "oci": {
     "registry": "ghcr.io",
     "repository": "componentized/constants/math",
-    "tag": "0.2.1-dev",
-    "digest": "sha256:4f6ae242efa739b7b678174387518aa05acbab7a667a29149c21a37f925a3ab9",
-    "layer_digest": "sha256:cd9f11176564ed5d4dff9f6f4ac8f556108b4024da4a3162b61db9c73d484430",
-    "size": 23841,
+    "tag": "0.2.1",
+    "digest": "sha256:41c25aa8279e676d90481a9e83e8f0825b285f4fb96bd29236ff3cb6e657ef34",
+    "layer_digest": "sha256:1917ed6e5940901eb2986ceebcd66742d3d93860d771e82866d3df32c907584b",
+    "size": 23154,
     "signature": {
       "status": "verified",
-      "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/heads/main",
+      "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/tags/v0.2.1",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/constants",
-      "git_ref": "refs/heads/main",
-      "log_index": 4109574434
+      "git_ref": "refs/tags/v0.2.1",
+      "log_index": 4109950015
     }
   },
-  "created": "2026-11-25T19:09:23.362494121Z",
+  "created": "2026-11-25T19:31:19.712257742Z",
   "annotations": {
     "org.opencontainers.image.description": "Common mathematical constants.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "a3b080b466a542dd61bdc8a64efe64603677473d",
+    "org.opencontainers.image.revision": "27c212888f446d0cb883a42bad5d21ac8431d937",
     "org.opencontainers.image.source": "https://github.com/componentized/constants.git",
     "org.opencontainers.image.title": "componentized:constants-math",
-    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/a3b080b466a542dd61bdc8a64efe64603677473d/components/math",
-    "org.opencontainers.image.version": "v0.2.1-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/27c212888f446d0cb883a42bad5d21ac8431d937/components/math",
+    "org.opencontainers.image.version": "v0.2.1"
   },
   "exports": [
-    "componentized:constants/math@0.2.1-dev"
+    "componentized:constants/math@0.2.1"
   ],
   "dependencies": [
     {
       "package": "componentized:constants",
-      "version": "0.2.1-dev"
+      "version": "0.2.1"
     }
   ],
   "parts": [
@@ -46,11 +46,11 @@
   ],
   "sbom": {
     "status": "verified",
-    "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/heads/main",
+    "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/tags/v0.2.1",
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/constants",
-    "git_ref": "refs/heads/main",
-    "log_index": 4109575624
+    "git_ref": "refs/tags/v0.2.1",
+    "log_index": 4109950715
   },
-  "indexed_at": "2026-11-25T19:11:11Z"
+  "indexed_at": "2026-11-25T19:33:32Z"
 }

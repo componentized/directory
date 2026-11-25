@@ -1,41 +1,41 @@
 {
   "package": "componentized:constants-random",
-  "version": "0.2.1-dev",
+  "version": "0.2.1",
   "kind": "component",
   "origin": "release",
   "oci": {
     "registry": "ghcr.io",
     "repository": "componentized/constants/random",
-    "tag": "0.2.1-dev",
-    "digest": "sha256:67b51095c9785385532d18b0676a20b7dd0aab9c570f96de2c64e5456a2c175c",
-    "layer_digest": "sha256:d4f1d97795ddaead48d590a5e4fbfe9772315ea4484092793d05b94217d313ac",
-    "size": 5845,
+    "tag": "0.2.1",
+    "digest": "sha256:f225ed0b489ea46dc9fcd15806c32bc62509a40aa5b221a09094b268693f185d",
+    "layer_digest": "sha256:b1675f9a989a2bdc9d0bafff58f9a5eef06b8647d8c02e4ece0ee5134d0f276b",
+    "size": 5721,
     "signature": {
       "status": "verified",
-      "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/heads/main",
+      "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/tags/v0.2.1",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/constants",
-      "git_ref": "refs/heads/main",
-      "log_index": 4109577166
+      "git_ref": "refs/tags/v0.2.1",
+      "log_index": 4109952017
     }
   },
-  "created": "2026-11-25T19:09:38.213398381Z",
+  "created": "2026-11-25T19:31:35.560878079Z",
   "annotations": {
     "org.opencontainers.image.description": "Pseudorandom number generators.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "a3b080b466a542dd61bdc8a64efe64603677473d",
+    "org.opencontainers.image.revision": "27c212888f446d0cb883a42bad5d21ac8431d937",
     "org.opencontainers.image.source": "https://github.com/componentized/constants.git",
     "org.opencontainers.image.title": "componentized:constants-random",
-    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/a3b080b466a542dd61bdc8a64efe64603677473d/components/random",
-    "org.opencontainers.image.version": "v0.2.1-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/27c212888f446d0cb883a42bad5d21ac8431d937/components/random",
+    "org.opencontainers.image.version": "v0.2.1"
   },
   "exports": [
-    "componentized:constants/random@0.2.1-dev"
+    "componentized:constants/random@0.2.1"
   ],
   "dependencies": [
     {
       "package": "componentized:constants",
-      "version": "0.2.1-dev"
+      "version": "0.2.1"
     }
   ],
   "parts": [
@@ -46,11 +46,11 @@
   ],
   "sbom": {
     "status": "verified",
-    "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/heads/main",
+    "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/tags/v0.2.1",
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/constants",
-    "git_ref": "refs/heads/main",
-    "log_index": 4109578140
+    "git_ref": "refs/tags/v0.2.1",
+    "log_index": 4109952543
   },
-  "indexed_at": "2026-11-25T19:11:13Z"
+  "indexed_at": "2026-11-25T19:33:36Z"
 }

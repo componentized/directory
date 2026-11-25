@@ -23,7 +23,7 @@
       "version": "1.100.0"
     },
     {
-      "bom-ref": "path+file://./crates/componentized-constants#0.2.1-dev",
+      "bom-ref": "path+file://./crates/componentized-constants#0.2.1",
       "description": "Create custom wasm components that export constant values",
       "externalReferences": [
         {
@@ -37,10 +37,10 @@
         }
       ],
       "name": "componentized-constants",
-      "purl": "pkg:cargo/componentized-constants@0.2.1-dev?download_url=file://../../crates/componentized-constants",
+      "purl": "pkg:cargo/componentized-constants@0.2.1?download_url=file://../../crates/componentized-constants",
       "scope": "required",
       "type": "library",
-      "version": "0.2.1-dev"
+      "version": "0.2.1"
     },
     {
       "authors": [
@@ -3123,7 +3123,7 @@
     {
       "dependsOn": [
         "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
-        "path+file://./crates/componentized-constants#0.2.1-dev",
+        "path+file://./crates/componentized-constants#0.2.1",
         "registry+https://github.com/rust-lang/crates.io-index#semver@1.0.28",
         "registry+https://github.com/rust-lang/crates.io-index#wit-bindgen@0.63.0",
         "registry+https://github.com/rust-lang/crates.io-index#wit-parser@0.263.0"
@@ -3139,7 +3139,7 @@
         "registry+https://github.com/rust-lang/crates.io-index#wit-component@0.263.0",
         "registry+https://github.com/rust-lang/crates.io-index#wit-parser@0.263.0"
       ],
-      "ref": "path+file://./crates/componentized-constants#0.2.1-dev"
+      "ref": "path+file://./crates/componentized-constants#0.2.1"
     },
     {
       "ref": "registry+https://github.com/rust-lang/crates.io-index#adler2@2.0.1"
@@ -3755,19 +3755,19 @@
       "description": "Create components whose exported functions return constant values, from a WIT world with values in its doc comments.",
       "externalReferences": [
         {
-          "comment": "revision a3b080b466a542dd61bdc8a64efe64603677473d",
+          "comment": "revision 27c212888f446d0cb883a42bad5d21ac8431d937",
           "type": "vcs",
           "url": "https://github.com/componentized/constants.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/constants/tree/a3b080b466a542dd61bdc8a64efe64603677473d/components/factory"
+          "url": "https://github.com/componentized/constants/tree/27c212888f446d0cb883a42bad5d21ac8431d937/components/factory"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "12a06d3c4a1962e2ee6100927c52fa305a403dc968ceb69c3f346a713a66782e"
+          "content": "ff8e5414d0f244e2452ad3fa9485751a3062de752392c44f57fb8b9c572881a0"
         }
       ],
       "licenses": [
@@ -3776,11 +3776,11 @@
         }
       ],
       "name": "componentized:constants-factory",
-      "purl": "pkg:oci/factory@sha256%3A27c6f3f668f263f61781935212c89591bc9acf7596c22822936603ddd71b5fd5?repository_url=ghcr.io/componentized/constants/factory&tag=0.2.1-dev",
+      "purl": "pkg:oci/factory@sha256%3A9233733d7814c896253137d2abe32d8649fb61ba163dafb0b094dbc0cefe6192?repository_url=ghcr.io/componentized/constants/factory&tag=0.2.1",
       "type": "library",
-      "version": "0.2.1-dev"
+      "version": "0.2.1"
     },
-    "timestamp": "2026-11-25T19:04:05Z",
+    "timestamp": "2026-11-25T19:25:59Z",
     "tools": {
       "components": [
         {

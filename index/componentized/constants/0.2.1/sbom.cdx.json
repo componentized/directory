@@ -61,19 +61,19 @@
       "description": "Create custom wasm components that export constant values.",
       "externalReferences": [
         {
-          "comment": "revision a3b080b466a542dd61bdc8a64efe64603677473d",
+          "comment": "revision 27c212888f446d0cb883a42bad5d21ac8431d937",
           "type": "vcs",
           "url": "https://github.com/componentized/constants.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/constants/tree/a3b080b466a542dd61bdc8a64efe64603677473d"
+          "url": "https://github.com/componentized/constants/tree/27c212888f446d0cb883a42bad5d21ac8431d937"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "a482e5c4ad457945adc899cd415ec8cf4ad824d684ff7bde3c907f05ba2984bd"
+          "content": "b880d90462ecf62865e46094942c5dda9e684f278e83ef188f57fd4ea89f651d"
         }
       ],
       "licenses": [
@@ -82,11 +82,11 @@
         }
       ],
       "name": "componentized:constants",
-      "purl": "pkg:oci/constants@sha256%3Adcef03b15fc24dbaca0181a7b920f873688fd51d44eaafeb1ee94e28472dea1c?repository_url=ghcr.io/componentized/constants&tag=0.2.1-dev",
+      "purl": "pkg:oci/constants@sha256%3A85606c88541e7599998528594e16340aae45a24c9e4a9c707f6d40434604219c?repository_url=ghcr.io/componentized/constants&tag=0.2.1",
       "type": "library",
-      "version": "0.2.1-dev"
+      "version": "0.2.1"
     },
-    "timestamp": "2026-11-25T19:04:05Z",
+    "timestamp": "2026-11-25T19:25:59Z",
     "tools": {
       "components": [
         {

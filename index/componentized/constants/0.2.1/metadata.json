@@ -1,33 +1,33 @@
 {
   "package": "componentized:constants",
-  "version": "0.2.1-dev",
+  "version": "0.2.1",
   "kind": "interface",
   "origin": "release",
   "oci": {
     "registry": "ghcr.io",
     "repository": "componentized/constants",
-    "tag": "0.2.1-dev",
-    "digest": "sha256:dcef03b15fc24dbaca0181a7b920f873688fd51d44eaafeb1ee94e28472dea1c",
-    "layer_digest": "sha256:a482e5c4ad457945adc899cd415ec8cf4ad824d684ff7bde3c907f05ba2984bd",
-    "size": 19092,
+    "tag": "0.2.1",
+    "digest": "sha256:85606c88541e7599998528594e16340aae45a24c9e4a9c707f6d40434604219c",
+    "layer_digest": "sha256:b880d90462ecf62865e46094942c5dda9e684f278e83ef188f57fd4ea89f651d",
+    "size": 18968,
     "signature": {
       "status": "verified",
-      "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/heads/main",
+      "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/tags/v0.2.1",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/constants",
-      "git_ref": "refs/heads/main",
-      "log_index": 4109548757
+      "git_ref": "refs/tags/v0.2.1",
+      "log_index": 4109925261
     }
   },
-  "created": "2026-11-25T19:07:43.729565839Z",
+  "created": "2026-11-25T19:29:34.911974694Z",
   "annotations": {
     "org.opencontainers.image.description": "Create custom wasm components that export constant values.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "a3b080b466a542dd61bdc8a64efe64603677473d",
+    "org.opencontainers.image.revision": "27c212888f446d0cb883a42bad5d21ac8431d937",
     "org.opencontainers.image.source": "https://github.com/componentized/constants.git",
     "org.opencontainers.image.title": "componentized:constants",
-    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/a3b080b466a542dd61bdc8a64efe64603677473d",
-    "org.opencontainers.image.version": "v0.2.1-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/27c212888f446d0cb883a42bad5d21ac8431d937",
+    "org.opencontainers.image.version": "v0.2.1"
   },
   "dependencies": [
     {
@@ -41,11 +41,11 @@
   ],
   "sbom": {
     "status": "verified",
-    "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/heads/main",
+    "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/tags/v0.2.1",
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/constants",
-    "git_ref": "refs/heads/main",
-    "log_index": 4109550021
+    "git_ref": "refs/tags/v0.2.1",
+    "log_index": 4109926778
   },
-  "indexed_at": "2026-11-25T19:11:01Z"
+  "indexed_at": "2026-11-25T19:33:12Z"
 }

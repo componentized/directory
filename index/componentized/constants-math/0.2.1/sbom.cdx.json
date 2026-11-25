@@ -2,23 +2,23 @@
   "bomFormat": "CycloneDX",
   "components": [
     {
-      "bom-ref": "pkg:cargo/componentized-constants-cli@0.2.1-dev",
+      "bom-ref": "pkg:cargo/componentized-constants-cli@0.2.1",
       "name": "componentized-constants-cli",
-      "purl": "pkg:cargo/componentized-constants-cli@0.2.1-dev",
+      "purl": "pkg:cargo/componentized-constants-cli@0.2.1",
       "type": "library",
-      "version": "0.2.1-dev"
+      "version": "0.2.1"
     }
   ],
   "dependencies": [
     {
       "dependsOn": [
-        "pkg:cargo/componentized-constants-cli@0.2.1-dev"
+        "pkg:cargo/componentized-constants-cli@0.2.1"
       ],
       "ref": "component:componentized:constants-math"
     },
     {
       "dependsOn": [],
-      "ref": "pkg:cargo/componentized-constants-cli@0.2.1-dev"
+      "ref": "pkg:cargo/componentized-constants-cli@0.2.1"
     }
   ],
   "metadata": {
@@ -27,19 +27,19 @@
       "description": "Common mathematical constants.",
       "externalReferences": [
         {
-          "comment": "revision a3b080b466a542dd61bdc8a64efe64603677473d",
+          "comment": "revision 27c212888f446d0cb883a42bad5d21ac8431d937",
           "type": "vcs",
           "url": "https://github.com/componentized/constants.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/constants/tree/a3b080b466a542dd61bdc8a64efe64603677473d/components/math"
+          "url": "https://github.com/componentized/constants/tree/27c212888f446d0cb883a42bad5d21ac8431d937/components/math"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "cd9f11176564ed5d4dff9f6f4ac8f556108b4024da4a3162b61db9c73d484430"
+          "content": "1917ed6e5940901eb2986ceebcd66742d3d93860d771e82866d3df32c907584b"
         }
       ],
       "licenses": [
@@ -48,17 +48,17 @@
         }
       ],
       "name": "componentized:constants-math",
-      "purl": "pkg:oci/math@sha256%3A4f6ae242efa739b7b678174387518aa05acbab7a667a29149c21a37f925a3ab9?repository_url=ghcr.io/componentized/constants/math&tag=0.2.1-dev",
+      "purl": "pkg:oci/math@sha256%3A41c25aa8279e676d90481a9e83e8f0825b285f4fb96bd29236ff3cb6e657ef34?repository_url=ghcr.io/componentized/constants/math&tag=0.2.1",
       "type": "library",
-      "version": "0.2.1-dev"
+      "version": "0.2.1"
     },
-    "timestamp": "2026-11-25T19:04:05Z",
+    "timestamp": "2026-11-25T19:25:59Z",
     "tools": {
       "components": [
         {
           "name": "componentized-constants-cli",
           "type": "application",
-          "version": "0.2.1-dev"
+          "version": "0.2.1"
         }
       ]
     }
