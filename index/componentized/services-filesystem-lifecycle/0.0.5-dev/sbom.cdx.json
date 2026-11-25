@@ -23,34 +23,6 @@
       "version": "1.100.0"
     },
     {
-      "bom-ref": "git+https://github.com/chronotope/chrono.git?branch=0.5.x#chrono@0.5.0-alpha.1",
-      "description": "Date and time library for Rust",
-      "externalReferences": [
-        {
-          "type": "documentation",
-          "url": "https://docs.rs/chrono/"
-        },
-        {
-          "type": "website",
-          "url": "https://github.com/chronotope/chrono"
-        },
-        {
-          "type": "vcs",
-          "url": "https://github.com/chronotope/chrono"
-        }
-      ],
-      "licenses": [
-        {
-          "expression": "MIT OR Apache-2.0"
-        }
-      ],
-      "name": "chrono",
-      "purl": "pkg:cargo/chrono@0.5.0-alpha.1?vcs_url=git%2Bhttps://github.com/chronotope/chrono.git%4016c45fa8eab2c906ab50a70dea39949b28fdfb28",
-      "scope": "required",
-      "type": "library",
-      "version": "0.5.0-alpha.1"
-    },
-    {
       "authors": [
         {
           "email": "dtolnay@gmail.com",
@@ -556,6 +528,82 @@
       "scope": "excluded",
       "type": "library",
       "version": "1.0.15"
+    },
+    {
+      "authors": [
+        {
+          "email": "jamslam@gmail.com",
+          "name": "Andrew Gallant"
+        }
+      ],
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#jiff-core@1.0.2",
+      "description": "Low level datetime primitives for the Jiff library.",
+      "externalReferences": [
+        {
+          "type": "documentation",
+          "url": "https://docs.rs/jiff-core"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/BurntSushi/jiff/tree/master/crates/jiff-core"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/BurntSushi/jiff"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "d44c923edf2bf456a982253f1a9ee1f6e89e421dffd0065d9b9a581da0def58f"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Unlicense OR MIT"
+        }
+      ],
+      "name": "jiff-core",
+      "purl": "pkg:cargo/jiff-core@1.0.2",
+      "scope": "required",
+      "type": "library",
+      "version": "1.0.2"
+    },
+    {
+      "authors": [
+        {
+          "email": "jamslam@gmail.com",
+          "name": "Andrew Gallant"
+        }
+      ],
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#jiff@1.0.3",
+      "description": "A date-time library that encourages you to jump into the pit of success.  This library is heavily inspired by the Temporal project. ",
+      "externalReferences": [
+        {
+          "type": "documentation",
+          "url": "https://docs.rs/jiff"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/BurntSushi/jiff"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "107f2e89536b6818514025f6787b0d94d819e54fe3b40365275fc753de485b3f"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Unlicense OR MIT"
+        }
+      ],
+      "name": "jiff",
+      "purl": "pkg:cargo/jiff@1.0.3",
+      "scope": "required",
+      "type": "library",
+      "version": "1.0.3"
     },
     {
       "authors": [
@@ -1527,11 +1575,8 @@
       "ref": "component:componentized:services-filesystem-lifecycle"
     },
     {
-      "ref": "git+https://github.com/chronotope/chrono.git?branch=0.5.x#chrono@0.5.0-alpha.1"
-    },
-    {
       "dependsOn": [
-        "git+https://github.com/chronotope/chrono.git?branch=0.5.x#chrono@0.5.0-alpha.1",
+        "registry+https://github.com/rust-lang/crates.io-index#jiff@1.0.3",
         "registry+https://github.com/rust-lang/crates.io-index#wit-bindgen@0.63.0"
       ],
       "ref": "path+file://./components/filesystem-lifecycle#0.1.0"
@@ -1614,6 +1659,20 @@
     },
     {
       "ref": "registry+https://github.com/rust-lang/crates.io-index#itoa@1.0.15"
+    },
+    {
+      "dependsOn": [
+        "registry+https://github.com/rust-lang/crates.io-index#log@0.4.35"
+      ],
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#jiff-core@1.0.2"
+    },
+    {
+      "dependsOn": [
+        "registry+https://github.com/rust-lang/crates.io-index#jiff-core@1.0.2",
+        "registry+https://github.com/rust-lang/crates.io-index#log@0.4.35",
+        "registry+https://github.com/rust-lang/crates.io-index#serde_core@1.0.228"
+      ],
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#jiff@1.0.3"
     },
     {
       "ref": "registry+https://github.com/rust-lang/crates.io-index#leb128fmt@0.1.0"
@@ -1822,19 +1881,19 @@
       "description": "Implements `componentized:services/service-lifecycle` for `filesystem` services, each service instance a directory in `wasi:filesystem`, under the directory of the `path` key in `wasi:config`, `services` by default.",
       "externalReferences": [
         {
-          "comment": "revision 8ef6fa2ab2353c7db2c51cb2d8572c6134618db5",
+          "comment": "revision ad8f9856eaaf915e5e8c91a770bd89acbe66a005",
           "type": "vcs",
           "url": "https://github.com/componentized/services.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/services/tree/8ef6fa2ab2353c7db2c51cb2d8572c6134618db5/components/filesystem-lifecycle"
+          "url": "https://github.com/componentized/services/tree/ad8f9856eaaf915e5e8c91a770bd89acbe66a005/components/filesystem-lifecycle"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "af42c2f9c10bc42c860711dfdeb5ab070be206f1bf9af9181a8c67fbcbcea974"
+          "content": "cd3c21cbdd3d655c118a8d0b023ac428928d128d339f6a4ed84f9cfcee7de5a3"
         }
       ],
       "licenses": [
@@ -1843,11 +1902,11 @@
         }
       ],
       "name": "componentized:services-filesystem-lifecycle",
-      "purl": "pkg:oci/filesystem-lifecycle@sha256%3A2ac9c1afef7e1d341fd5be1609743c3598528e78ee5279523c41e3acdd25d562?repository_url=ghcr.io/componentized/services/filesystem-lifecycle&tag=0.0.5-dev",
+      "purl": "pkg:oci/filesystem-lifecycle@sha256%3A21b3b9a942d17e9301836109a5d40854b4523c5b4fa4a22b22c85905ba73b308?repository_url=ghcr.io/componentized/services/filesystem-lifecycle&tag=0.0.5-dev",
       "type": "library",
       "version": "0.0.5-dev"
     },
-    "timestamp": "2026-11-24T02:23:08Z",
+    "timestamp": "2026-11-25T03:21:05Z",
     "tools": {
       "components": [
         {

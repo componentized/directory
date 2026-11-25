@@ -1830,13 +1830,13 @@
       "description": "Exposes a `componentized:services/lifecycle` over http, exporting `wasi:http/incoming-handler`.",
       "externalReferences": [
         {
-          "comment": "revision 34319ba1a6f087dbf4f8810c9d85745f0cb65ac0",
+          "comment": "revision ad8f9856eaaf915e5e8c91a770bd89acbe66a005",
           "type": "vcs",
           "url": "https://github.com/componentized/services.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/services/tree/34319ba1a6f087dbf4f8810c9d85745f0cb65ac0/components/lifecycle-host-http"
+          "url": "https://github.com/componentized/services/tree/ad8f9856eaaf915e5e8c91a770bd89acbe66a005/components/lifecycle-host-http"
         }
       ],
       "hashes": [
@@ -1851,11 +1851,11 @@
         }
       ],
       "name": "componentized:services-lifecycle-host-http",
-      "purl": "pkg:oci/lifecycle-host-http@sha256%3Af0fc644f58244909060f5365ad41d1e091cccafa7926e0bb1a2675a13ad32e52?repository_url=ghcr.io/componentized/services/lifecycle-host-http&tag=0.0.5-dev",
+      "purl": "pkg:oci/lifecycle-host-http@sha256%3Ac52434d50fa69a50449836e40f9ff886808f9fee728aa1f89e96f8061abda0b8?repository_url=ghcr.io/componentized/services/lifecycle-host-http&tag=0.0.5-dev",
       "type": "library",
       "version": "0.0.5-dev"
     },
-    "timestamp": "2026-11-24T02:22:49Z",
+    "timestamp": "2026-11-25T03:21:05Z",
     "tools": {
       "components": [
         {

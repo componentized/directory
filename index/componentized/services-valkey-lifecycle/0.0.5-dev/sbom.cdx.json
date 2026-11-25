@@ -122,7 +122,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "5c64dfdb67f0b0065ad9b4cf965276455cdaeac62e0fba76c9605e2c77c6b5cb"
+          "content": "e536d1ce9bb1649daa0fd0edec9b10b9d09d30e2235cbeee7f38bbb0cf2ea717"
         }
       ],
       "name": "componentized:services-internal-valkey-lifecycle",
@@ -273,34 +273,6 @@
       ],
       "name": "componentized:valkey-tcp-connector-constants",
       "type": "library"
-    },
-    {
-      "bom-ref": "git+https://github.com/chronotope/chrono.git?branch=0.5.x#chrono@0.5.0-alpha.1",
-      "description": "Date and time library for Rust",
-      "externalReferences": [
-        {
-          "type": "documentation",
-          "url": "https://docs.rs/chrono/"
-        },
-        {
-          "type": "website",
-          "url": "https://github.com/chronotope/chrono"
-        },
-        {
-          "type": "vcs",
-          "url": "https://github.com/chronotope/chrono"
-        }
-      ],
-      "licenses": [
-        {
-          "expression": "MIT OR Apache-2.0"
-        }
-      ],
-      "name": "chrono",
-      "purl": "pkg:cargo/chrono@0.5.0-alpha.1?vcs_url=git%2Bhttps://github.com/chronotope/chrono.git%4016c45fa8eab2c906ab50a70dea39949b28fdfb28",
-      "scope": "required",
-      "type": "library",
-      "version": "0.5.0-alpha.1"
     },
     {
       "bom-ref": "path+file://./components/as-keyvalue#0.1.0",
@@ -1002,6 +974,82 @@
       "scope": "excluded",
       "type": "library",
       "version": "1.0.15"
+    },
+    {
+      "authors": [
+        {
+          "email": "jamslam@gmail.com",
+          "name": "Andrew Gallant"
+        }
+      ],
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#jiff-core@1.0.2",
+      "description": "Low level datetime primitives for the Jiff library.",
+      "externalReferences": [
+        {
+          "type": "documentation",
+          "url": "https://docs.rs/jiff-core"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/BurntSushi/jiff/tree/master/crates/jiff-core"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/BurntSushi/jiff"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "d44c923edf2bf456a982253f1a9ee1f6e89e421dffd0065d9b9a581da0def58f"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Unlicense OR MIT"
+        }
+      ],
+      "name": "jiff-core",
+      "purl": "pkg:cargo/jiff-core@1.0.2",
+      "scope": "required",
+      "type": "library",
+      "version": "1.0.2"
+    },
+    {
+      "authors": [
+        {
+          "email": "jamslam@gmail.com",
+          "name": "Andrew Gallant"
+        }
+      ],
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#jiff@1.0.3",
+      "description": "A date-time library that encourages you to jump into the pit of success.  This library is heavily inspired by the Temporal project. ",
+      "externalReferences": [
+        {
+          "type": "documentation",
+          "url": "https://docs.rs/jiff"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/BurntSushi/jiff"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "107f2e89536b6818514025f6787b0d94d819e54fe3b40365275fc753de485b3f"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Unlicense OR MIT"
+        }
+      ],
+      "name": "jiff",
+      "purl": "pkg:cargo/jiff@1.0.3",
+      "scope": "required",
+      "type": "library",
+      "version": "1.0.3"
     },
     {
       "authors": [
@@ -2406,9 +2454,6 @@
       "ref": "component:componentized:valkey-tcp-connector-constants"
     },
     {
-      "ref": "git+https://github.com/chronotope/chrono.git?branch=0.5.x#chrono@0.5.0-alpha.1"
-    },
-    {
       "dependsOn": [
         "registry+https://github.com/rust-lang/crates.io-index#wit-bindgen@0.63.0"
       ],
@@ -2438,7 +2483,7 @@
     },
     {
       "dependsOn": [
-        "git+https://github.com/chronotope/chrono.git?branch=0.5.x#chrono@0.5.0-alpha.1",
+        "registry+https://github.com/rust-lang/crates.io-index#jiff@1.0.3",
         "registry+https://github.com/rust-lang/crates.io-index#wit-bindgen@0.63.0"
       ],
       "ref": "path+file://./components/internal-valkey-lifecycle#0.1.0"
@@ -2563,6 +2608,20 @@
     },
     {
       "ref": "registry+https://github.com/rust-lang/crates.io-index#itoa@1.0.15"
+    },
+    {
+      "dependsOn": [
+        "registry+https://github.com/rust-lang/crates.io-index#log@0.4.35"
+      ],
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#jiff-core@1.0.2"
+    },
+    {
+      "dependsOn": [
+        "registry+https://github.com/rust-lang/crates.io-index#jiff-core@1.0.2",
+        "registry+https://github.com/rust-lang/crates.io-index#log@0.4.35",
+        "registry+https://github.com/rust-lang/crates.io-index#serde_core@1.0.228"
+      ],
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#jiff@1.0.3"
     },
     {
       "ref": "registry+https://github.com/rust-lang/crates.io-index#leb128fmt@0.1.0"
@@ -2831,19 +2890,19 @@
       "description": "Implements `componentized:services/service-lifecycle` for `valkey` services on a Valkey server, at the `hostname` and `port` keys in `wasi:config`, `127.0.0.1:6379` by default.",
       "externalReferences": [
         {
-          "comment": "revision 34319ba1a6f087dbf4f8810c9d85745f0cb65ac0",
+          "comment": "revision ad8f9856eaaf915e5e8c91a770bd89acbe66a005",
           "type": "vcs",
           "url": "https://github.com/componentized/services.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/services/tree/34319ba1a6f087dbf4f8810c9d85745f0cb65ac0/components/valkey-lifecycle"
+          "url": "https://github.com/componentized/services/tree/ad8f9856eaaf915e5e8c91a770bd89acbe66a005/components/valkey-lifecycle"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "d825d8a41a462fd19a7a6ce1318a6a72c1025852ddfc2e6905061da9e5fca9ae"
+          "content": "778d1ca9b567b814b6a3cd1a183956867fbf811fbe75b276555664498638e66f"
         }
       ],
       "licenses": [
@@ -2852,11 +2911,11 @@
         }
       ],
       "name": "componentized:services-valkey-lifecycle",
-      "purl": "pkg:oci/valkey-lifecycle@sha256%3A7911aa6db70435732076201f2c365dbe078b98884a7068a735e1ea76d3d029b1?repository_url=ghcr.io/componentized/services/valkey-lifecycle&tag=0.0.5-dev",
+      "purl": "pkg:oci/valkey-lifecycle@sha256%3A04ae91f49415c8898c5edb14062c781dbf3cb2a0d3aa61b64ea0b342a80c4cfa?repository_url=ghcr.io/componentized/services/valkey-lifecycle&tag=0.0.5-dev",
       "type": "library",
       "version": "0.0.5-dev"
     },
-    "timestamp": "2026-11-24T02:22:49Z",
+    "timestamp": "2026-11-25T03:21:05Z",
     "tools": {
       "components": [
         {

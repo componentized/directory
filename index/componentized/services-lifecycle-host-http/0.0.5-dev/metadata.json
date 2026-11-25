@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/lifecycle-host-http",
     "tag": "0.0.5-dev",
-    "digest": "sha256:f0fc644f58244909060f5365ad41d1e091cccafa7926e0bb1a2675a13ad32e52",
+    "digest": "sha256:c52434d50fa69a50449836e40f9ff886808f9fee728aa1f89e96f8061abda0b8",
     "layer_digest": "sha256:0e9a35a2cf21361548ae808c1f9789478f7cf575b8d576410c17854f23674b17",
     "size": 189451,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4066449987
+      "log_index": 4092098363
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/services/lifecycle-host-http",
     "tag": "0.0.5-dev_debug",
-    "digest": "sha256:b2246997454afc5bf3d39c0634101ed95f3b07020b40c3eda272c6d72c66a8ab",
+    "digest": "sha256:abf5f6f6224103f0becba64d888a45da699446a930aed6300f8941a53ce34319",
     "layer_digest": "sha256:af4a84bac587e80c744d90cb61bb860a0ea1478e8fd16585527e92e74ae082eb",
     "size": 655203,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4066453548
+      "log_index": 4092101631
     }
   },
-  "created": "2026-11-24T02:32:06.513340425Z",
+  "created": "2026-11-25T03:28:23.085333487Z",
   "annotations": {
     "org.opencontainers.image.description": "Exposes a `componentized:services/lifecycle` over http, exporting `wasi:http/incoming-handler`.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "34319ba1a6f087dbf4f8810c9d85745f0cb65ac0",
+    "org.opencontainers.image.revision": "ad8f9856eaaf915e5e8c91a770bd89acbe66a005",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-lifecycle-host-http",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/34319ba1a6f087dbf4f8810c9d85745f0cb65ac0/components/lifecycle-host-http",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/ad8f9856eaaf915e5e8c91a770bd89acbe66a005/components/lifecycle-host-http",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
@@ -80,7 +80,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/services",
     "git_ref": "refs/heads/main",
-    "log_index": 4066450528
+    "log_index": 4092099664
   },
-  "indexed_at": "2026-11-24T02:37:50Z"
+  "indexed_at": "2026-11-25T03:32:52Z"
 }
