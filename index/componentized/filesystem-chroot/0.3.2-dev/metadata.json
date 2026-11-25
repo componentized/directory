@@ -1,0 +1,91 @@
+{
+  "package": "componentized:filesystem-chroot",
+  "version": "0.3.2-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem/chroot",
+    "tag": "0.3.2-dev",
+    "digest": "sha256:0a4f25eaba9f981480db8dab342bdbf5cc8d05688fd22f1913e1143a25f7252c",
+    "layer_digest": "sha256:9eebbf3de75713c926def12b16fcfc9bf23f06073445d34755242cff8d8e58f0",
+    "size": 331415,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/filesystem",
+      "git_ref": "refs/heads/main",
+      "log_index": 4092575129
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem/chroot",
+    "tag": "0.3.2-dev_debug",
+    "digest": "sha256:0dfbc5d42fcd2568e7d933b173f175edd7ba6980053b0cda896dea56af1d9a0d",
+    "layer_digest": "sha256:958c0e1fca0758041c0bf05f9562bedebd907f23f1d63734735cf56d4ec9d6ad",
+    "size": 3099719,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/filesystem",
+      "git_ref": "refs/heads/main",
+      "log_index": 4092577934
+    }
+  },
+  "created": "2026-11-25T03:59:10.753190798Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Virtualizes the `wasi:filesystem` interfaces limiting all access to a specific directory defined by the 'path' key in a `wasi:config/store`, mimicking the GNU chroot command.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "24c7a17692f96f171b083738b96ff5a3a67e97b4",
+    "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
+    "org.opencontainers.image.title": "componentized:filesystem-chroot",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/24c7a17692f96f171b083738b96ff5a3a67e97b4/components/chroot",
+    "org.opencontainers.image.version": "v0.3.2-dev"
+  },
+  "imports": [
+    "wasi:clocks/system-clock@0.3.0",
+    "wasi:config/store@0.2.0-rc.1",
+    "wasi:filesystem/preopens@0.3.0",
+    "wasi:filesystem/types@0.3.0"
+  ],
+  "exports": [
+    "wasi:filesystem/preopens@0.3.0",
+    "wasi:filesystem/types@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:6aa886a047474d7ae9850f06e5f8a52cdb96967f065c06241e4bc08f07587f7a",
+      "size": 6382
+    },
+    {
+      "digest": "sha256:409068d01909b8e1b071cc44f5757deff5dfa19c38e87ba57a5eb7fd2cf89f00",
+      "size": 172
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/filesystem",
+    "git_ref": "refs/heads/main",
+    "log_index": 4092576290
+  },
+  "indexed_at": "2026-11-25T04:06:32Z"
+}

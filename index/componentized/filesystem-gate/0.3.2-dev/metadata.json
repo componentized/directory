@@ -1,0 +1,96 @@
+{
+  "package": "componentized:filesystem-gate",
+  "version": "0.3.2-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem/gate",
+    "tag": "0.3.2-dev",
+    "digest": "sha256:e32385e019a5c8475f9cae3351fca1282caa6690cc6bf51cad516def5b2d7015",
+    "layer_digest": "sha256:bfed45cdd83680119e0a1075ed6e07126d43b66a19730e33f1886467746417a6",
+    "size": 375073,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/filesystem",
+      "git_ref": "refs/heads/main",
+      "log_index": 4092582544
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem/gate",
+    "tag": "0.3.2-dev_debug",
+    "digest": "sha256:d6d5331eca5688a6a91fa7a23608e687b6d71067ad90221f2ca7e713ecae0fa0",
+    "layer_digest": "sha256:2a1a4f18aae792065ce416ccad87380d46740e22fa08b7e737b82174dd0ff8a6",
+    "size": 3537183,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/filesystem",
+      "git_ref": "refs/heads/main",
+      "log_index": 4092585436
+    }
+  },
+  "created": "2026-11-25T03:59:34.773584886Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Filesystem gate access control for preopens and descriptors.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "24c7a17692f96f171b083738b96ff5a3a67e97b4",
+    "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
+    "org.opencontainers.image.title": "componentized:filesystem-gate",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/24c7a17692f96f171b083738b96ff5a3a67e97b4/components/gate",
+    "org.opencontainers.image.version": "v0.3.2-dev"
+  },
+  "imports": [
+    "componentized:filesystem/latch@0.3.2-dev",
+    "wasi:clocks/system-clock@0.3.0",
+    "wasi:filesystem/preopens@0.3.0",
+    "wasi:filesystem/types@0.3.0",
+    "wasi:logging/logging@0.1.0-draft"
+  ],
+  "exports": [
+    "wasi:filesystem/preopens@0.3.0",
+    "wasi:filesystem/types@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:filesystem",
+      "version": "0.3.2-dev"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:6aa886a047474d7ae9850f06e5f8a52cdb96967f065c06241e4bc08f07587f7a",
+      "size": 6382
+    },
+    {
+      "digest": "sha256:409068d01909b8e1b071cc44f5757deff5dfa19c38e87ba57a5eb7fd2cf89f00",
+      "size": 172
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/filesystem",
+    "git_ref": "refs/heads/main",
+    "log_index": 4092583704
+  },
+  "indexed_at": "2026-11-25T04:06:40Z"
+}

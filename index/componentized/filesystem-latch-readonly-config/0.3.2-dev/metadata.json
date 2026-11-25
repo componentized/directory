@@ -1,0 +1,86 @@
+{
+  "package": "componentized:filesystem-latch-readonly-config",
+  "version": "0.3.2-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/filesystem/latch-readonly-config",
+    "tag": "0.3.2-dev",
+    "digest": "sha256:8c625c2d977b1ade09fdaf88f56c6d3cf0e9044a44c8a0766c89401add61dc81",
+    "layer_digest": "sha256:054c6a4d0f8ca68df9fa980f1e801e932abf366ba8e110f2c7783c3c1a0fc9f9",
+    "size": 6187,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/filesystem",
+      "git_ref": "refs/heads/main",
+      "log_index": 4092652033
+    }
+  },
+  "created": "2026-11-25T04:04:38.897748301Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Config for `latch-path-glob` that makes every path readonly.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "24c7a17692f96f171b083738b96ff5a3a67e97b4",
+    "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
+    "org.opencontainers.image.title": "componentized:filesystem-latch-readonly-config",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/24c7a17692f96f171b083738b96ff5a3a67e97b4/components/latch-readonly-config",
+    "org.opencontainers.image.version": "v0.3.2-dev"
+  },
+  "exports": [
+    "wasi:config/store@0.2.0-rc.1"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:f2123f4586b7e236968f11837839cfdf4af9c29001698aa1479c51934e47ac46",
+      "size": 937,
+      "code": true
+    },
+    {
+      "digest": "sha256:ebe174edb9d33d8f9eb5811f34f3e0235ce9955ca3e6521575fc51e404835dc9",
+      "size": 4996,
+      "code": true
+    }
+  ],
+  "wiring": {
+    "instances": [
+      {
+        "part": 0
+      },
+      {
+        "part": 1,
+        "args": [
+          {
+            "name": "componentized:constants/config-values@0.1.1",
+            "instance": 0,
+            "export": "componentized:constants/config-values@0.1.1"
+          }
+        ]
+      }
+    ],
+    "exports": [
+      {
+        "name": "wasi:config/store@0.2.0-rc.1",
+        "instance": 1,
+        "export": "wasi:config/store@0.2.0-rc.1"
+      }
+    ]
+  },
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/filesystem",
+    "git_ref": "refs/heads/main",
+    "log_index": 4092652977
+  },
+  "indexed_at": "2026-11-25T04:08:03Z"
+}
