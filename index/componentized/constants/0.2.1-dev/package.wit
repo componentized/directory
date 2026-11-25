@@ -22,8 +22,8 @@ interface config-values {
 
 /// Creates components whose exported functions return constant values.
 interface factory {
-  use componentized:component/types@0.1.0.{wasm, error-code};
-  use componentized:component/wit@0.1.0.{wit, wit-source};
+  use componentized:component/types@0.1.1.{wasm, error-code};
+  use componentized:component/wit@0.1.1.{wit, wit-source};
 
   /// Values replacing those from the WIT. The overrides are a record with
   /// an optional field per world export. Interface exports are named by the
@@ -465,8 +465,8 @@ world config {
 }
 world imports {
   import config-values;
-  import componentized:component/types@0.1.0;
-  import componentized:component/wit@0.1.0;
+  import componentized:component/types@0.1.1;
+  import componentized:component/wit@0.1.1;
   import factory;
   import %u8;
   import %u16;

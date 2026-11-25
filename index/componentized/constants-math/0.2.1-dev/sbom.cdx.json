@@ -27,13 +27,13 @@
       "description": "Common mathematical constants.",
       "externalReferences": [
         {
-          "comment": "revision 6b20457041723a90b2d4f29c709965d93c748aac",
+          "comment": "revision a3b080b466a542dd61bdc8a64efe64603677473d",
           "type": "vcs",
           "url": "https://github.com/componentized/constants.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/constants/tree/6b20457041723a90b2d4f29c709965d93c748aac/components/math"
+          "url": "https://github.com/componentized/constants/tree/a3b080b466a542dd61bdc8a64efe64603677473d/components/math"
         }
       ],
       "hashes": [
@@ -48,11 +48,11 @@
         }
       ],
       "name": "componentized:constants-math",
-      "purl": "pkg:oci/math@sha256%3Ad04f03d9cd0daa5f2278d97d0e9671e2ae07e087c2917a3ac8af71ac4c96b0f3?repository_url=ghcr.io/componentized/constants/math&tag=0.2.1-dev",
+      "purl": "pkg:oci/math@sha256%3A4f6ae242efa739b7b678174387518aa05acbab7a667a29149c21a37f925a3ab9?repository_url=ghcr.io/componentized/constants/math&tag=0.2.1-dev",
       "type": "library",
       "version": "0.2.1-dev"
     },
-    "timestamp": "2026-11-24T19:20:55Z",
+    "timestamp": "2026-11-25T19:04:05Z",
     "tools": {
       "components": [
         {

@@ -2,11 +2,11 @@
   "bomFormat": "CycloneDX",
   "components": [
     {
-      "bom-ref": "wit:componentized:component@0.1.0",
+      "bom-ref": "wit:componentized:component@0.1.1",
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "b025920ca99a32febc514636a1dd04d1ad65cb8773d10d8e09a62445106ae90b"
+          "content": "834ab2662bcbdfda846251feca738783489823ace416c9993a7c09a9bd11a39d"
         }
       ],
       "name": "componentized:component",
@@ -17,7 +17,7 @@
         }
       ],
       "type": "library",
-      "version": "0.1.0"
+      "version": "0.1.1"
     },
     {
       "bom-ref": "wit:wasi:config@0.2.0-rc.1",
@@ -41,14 +41,14 @@
   "dependencies": [
     {
       "dependsOn": [
-        "wit:componentized:component@0.1.0",
+        "wit:componentized:component@0.1.1",
         "wit:wasi:config@0.2.0-rc.1"
       ],
       "ref": "component:componentized:constants"
     },
     {
       "dependsOn": [],
-      "ref": "wit:componentized:component@0.1.0"
+      "ref": "wit:componentized:component@0.1.1"
     },
     {
       "dependsOn": [],
@@ -61,19 +61,19 @@
       "description": "Create custom wasm components that export constant values.",
       "externalReferences": [
         {
-          "comment": "revision 6b20457041723a90b2d4f29c709965d93c748aac",
+          "comment": "revision a3b080b466a542dd61bdc8a64efe64603677473d",
           "type": "vcs",
           "url": "https://github.com/componentized/constants.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/constants/tree/6b20457041723a90b2d4f29c709965d93c748aac"
+          "url": "https://github.com/componentized/constants/tree/a3b080b466a542dd61bdc8a64efe64603677473d"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "a2109605276f531e93a858c4cc3370a2780b7f9e6988e908bf1ae3562f5cc05a"
+          "content": "a482e5c4ad457945adc899cd415ec8cf4ad824d684ff7bde3c907f05ba2984bd"
         }
       ],
       "licenses": [
@@ -82,11 +82,11 @@
         }
       ],
       "name": "componentized:constants",
-      "purl": "pkg:oci/constants@sha256%3Ab570f868cdfd69699b8c09f997ed4049edb5eccdaada139f542d183c60e1c71d?repository_url=ghcr.io/componentized/constants&tag=0.2.1-dev",
+      "purl": "pkg:oci/constants@sha256%3Adcef03b15fc24dbaca0181a7b920f873688fd51d44eaafeb1ee94e28472dea1c?repository_url=ghcr.io/componentized/constants&tag=0.2.1-dev",
       "type": "library",
       "version": "0.2.1-dev"
     },
-    "timestamp": "2026-11-24T19:20:55Z",
+    "timestamp": "2026-11-25T19:04:05Z",
     "tools": {
       "components": [
         {

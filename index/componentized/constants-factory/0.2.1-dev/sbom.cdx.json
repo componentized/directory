@@ -3755,19 +3755,19 @@
       "description": "Create components whose exported functions return constant values, from a WIT world with values in its doc comments.",
       "externalReferences": [
         {
-          "comment": "revision 6b20457041723a90b2d4f29c709965d93c748aac",
+          "comment": "revision a3b080b466a542dd61bdc8a64efe64603677473d",
           "type": "vcs",
           "url": "https://github.com/componentized/constants.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/constants/tree/6b20457041723a90b2d4f29c709965d93c748aac/components/factory"
+          "url": "https://github.com/componentized/constants/tree/a3b080b466a542dd61bdc8a64efe64603677473d/components/factory"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "5d8a9f662ee615d2af62c2d01fb089b45e03d5e83665e2b11e8e2a5b1d2916d5"
+          "content": "12a06d3c4a1962e2ee6100927c52fa305a403dc968ceb69c3f346a713a66782e"
         }
       ],
       "licenses": [
@@ -3776,11 +3776,11 @@
         }
       ],
       "name": "componentized:constants-factory",
-      "purl": "pkg:oci/factory@sha256%3A90f2b0c9233d2cda61bb177602cc6c359a844a6bc860a7d389bcf07775152cea?repository_url=ghcr.io/componentized/constants/factory&tag=0.2.1-dev",
+      "purl": "pkg:oci/factory@sha256%3A27c6f3f668f263f61781935212c89591bc9acf7596c22822936603ddd71b5fd5?repository_url=ghcr.io/componentized/constants/factory&tag=0.2.1-dev",
       "type": "library",
       "version": "0.2.1-dev"
     },
-    "timestamp": "2026-11-24T19:20:55Z",
+    "timestamp": "2026-11-25T19:04:05Z",
     "tools": {
       "components": [
         {

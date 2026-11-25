@@ -29,6 +29,7 @@
     "org.opencontainers.image.url": "https://github.com/componentized/component/tree/0add52e45ee910e3d8d5eda2cd76ff68d82eae1b",
     "org.opencontainers.image.version": "v0.1.1"
   },
+  "release": "https://github.com/componentized/component/releases/tag/v0.1.1",
   "sbom": {
     "status": "verified",
     "identity": "https://github.com/componentized/component/.github/workflows/ci.yaml@refs/tags/v0.1.1",
