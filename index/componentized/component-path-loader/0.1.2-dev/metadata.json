@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/component/path-loader",
     "tag": "0.1.2-dev",
-    "digest": "sha256:9a42fff7766b4dcbc4c9db874c5a68a9734f061b8873fcd8ad4f409674c30272",
+    "digest": "sha256:7e0c7514d2a79e88dc2b3fceed34e3b9389e00905e2791cf03f90576c594fd59",
     "layer_digest": "sha256:2cf7cdb8e7a657e0b6dfa173be6cd0da53d1f366ad7d4f86e63d78b8055ed062",
     "size": 354473,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/component",
       "git_ref": "refs/heads/main",
-      "log_index": 4109198547
+      "log_index": 4112778783
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/component/path-loader",
     "tag": "0.1.2-dev_debug",
-    "digest": "sha256:d86272230bd660facc00359b3402310a280f1a5601efd0908d9d7180cf3ef262",
+    "digest": "sha256:14a22640889f2347b447e8b2fa6cef4a2c2a47677e630811d9e970bdb115a94f",
     "layer_digest": "sha256:0fc21fe6630171373a49b7d18ff663890e157d0f2c8a6a17c2789ba1a9d12631",
     "size": 4530368,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/component",
       "git_ref": "refs/heads/main",
-      "log_index": 4109201380
+      "log_index": 4112779956
     }
   },
-  "created": "2026-11-25T18:43:24.178803763Z",
+  "created": "2026-11-25T22:06:20.754160952Z",
   "annotations": {
     "org.opencontainers.image.description": "Loads a component from a path.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "d631194e2e87ff28a0ee7627cac181602802991f",
+    "org.opencontainers.image.revision": "02909f9a2b4c236823cbb8a3da238a938ef8f37a",
     "org.opencontainers.image.source": "https://github.com/componentized/component.git",
     "org.opencontainers.image.title": "componentized:component-path-loader",
-    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/d631194e2e87ff28a0ee7627cac181602802991f/components/path-loader",
+    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/02909f9a2b4c236823cbb8a3da238a938ef8f37a/components/path-loader",
     "org.opencontainers.image.version": "v0.1.2-dev"
   },
   "imports": [
@@ -193,7 +193,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/component",
     "git_ref": "refs/heads/main",
-    "log_index": 4109199875
+    "log_index": 4112779067
   },
-  "indexed_at": "2026-11-25T18:46:45Z"
+  "indexed_at": "2026-11-25T22:09:05Z"
 }

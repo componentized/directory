@@ -492,7 +492,7 @@
           "name": "The rust-url developers"
         }
       ],
-      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#form_urlencoded@1.2.2",
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#form_urlencoded@1.2.3",
       "description": "Parser and serializer for the application/x-www-form-urlencoded syntax, as used by HTML forms.",
       "externalReferences": [
         {
@@ -503,7 +503,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "cb4cb245038516f5f85277875cdaa4f7d2c9a0fa0468de06ed190163b1581fcf"
+          "content": "afa489199eaffb1211795df1c6236ce1ad0d41a6fa45250add73e3b02420f06e"
         }
       ],
       "licenses": [
@@ -512,10 +512,10 @@
         }
       ],
       "name": "form_urlencoded",
-      "purl": "pkg:cargo/form_urlencoded@1.2.2",
+      "purl": "pkg:cargo/form_urlencoded@1.2.3",
       "scope": "required",
       "type": "library",
-      "version": "1.2.2"
+      "version": "1.2.3"
     },
     {
       "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#hashbrown@0.17.1",
@@ -2389,7 +2389,7 @@
           "name": "The rust-url developers"
         }
       ],
-      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#url@2.5.8",
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#url@2.5.9",
       "description": "URL library for Rust, based on the WHATWG URL Standard",
       "externalReferences": [
         {
@@ -2404,7 +2404,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "ff67a8a4397373c3ef660812acab3268222035010ab8680ec4215f38ba3d0eed"
+          "content": "f00cd2407bb42c0ef17be88d4cf020f5cceffd121665bac9b8b9493a369b3b1a"
         }
       ],
       "licenses": [
@@ -2413,10 +2413,10 @@
         }
       ],
       "name": "url",
-      "purl": "pkg:cargo/url@2.5.8",
+      "purl": "pkg:cargo/url@2.5.9",
       "scope": "required",
       "type": "library",
-      "version": "2.5.8"
+      "version": "2.5.9"
     },
     {
       "authors": [
@@ -3352,7 +3352,7 @@
       "dependsOn": [
         "registry+https://github.com/rust-lang/crates.io-index#percent-encoding@2.3.2"
       ],
-      "ref": "registry+https://github.com/rust-lang/crates.io-index#form_urlencoded@1.2.2"
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#form_urlencoded@1.2.3"
     },
     {
       "dependsOn": [
@@ -3671,12 +3671,12 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#form_urlencoded@1.2.2",
+        "registry+https://github.com/rust-lang/crates.io-index#form_urlencoded@1.2.3",
         "registry+https://github.com/rust-lang/crates.io-index#idna@1.1.0",
         "registry+https://github.com/rust-lang/crates.io-index#percent-encoding@2.3.2",
         "registry+https://github.com/rust-lang/crates.io-index#serde@1.0.229"
       ],
-      "ref": "registry+https://github.com/rust-lang/crates.io-index#url@2.5.8"
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#url@2.5.9"
     },
     {
       "ref": "registry+https://github.com/rust-lang/crates.io-index#utf8_iter@1.0.4"
@@ -3750,7 +3750,7 @@
         "registry+https://github.com/rust-lang/crates.io-index#serde_derive@1.0.229",
         "registry+https://github.com/rust-lang/crates.io-index#serde_json@1.0.151",
         "registry+https://github.com/rust-lang/crates.io-index#spdx@0.13.6",
-        "registry+https://github.com/rust-lang/crates.io-index#url@2.5.8",
+        "registry+https://github.com/rust-lang/crates.io-index#url@2.5.9",
         "registry+https://github.com/rust-lang/crates.io-index#wasm-encoder@0.258.3",
         "registry+https://github.com/rust-lang/crates.io-index#wasmparser@0.258.3"
       ],
@@ -3933,19 +3933,19 @@
       "description": "Compose a component from other components using wac.",
       "externalReferences": [
         {
-          "comment": "revision d631194e2e87ff28a0ee7627cac181602802991f",
+          "comment": "revision 02909f9a2b4c236823cbb8a3da238a938ef8f37a",
           "type": "vcs",
           "url": "https://github.com/componentized/component.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/component/tree/d631194e2e87ff28a0ee7627cac181602802991f/components/wac-loader"
+          "url": "https://github.com/componentized/component/tree/02909f9a2b4c236823cbb8a3da238a938ef8f37a/components/wac-loader"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "59a381671b5e66d9bb1a1284e5b0361d5160d1d78fac597fca44d2a0b64d9449"
+          "content": "aea36d13c9f5e7b1d307f7614c49c25a08952690b870840c0c76df6acd57d0a5"
         }
       ],
       "licenses": [
@@ -3954,11 +3954,11 @@
         }
       ],
       "name": "componentized:component-wac-loader",
-      "purl": "pkg:oci/wac-loader@sha256%3A702ed4912fa7f3f2cee30d2c85188179be6112bdbc83697c8855cac7a98bdb89?repository_url=ghcr.io/componentized/component/wac-loader&tag=0.1.2-dev",
+      "purl": "pkg:oci/wac-loader@sha256%3A2e2da9e431cbb92f0f1365f2f2b8f015548c4ad67f9446e651dce7c8fbe3fcb1?repository_url=ghcr.io/componentized/component/wac-loader&tag=0.1.2-dev",
       "type": "library",
       "version": "0.1.2-dev"
     },
-    "timestamp": "2026-11-25T18:38:53Z",
+    "timestamp": "2026-11-25T22:01:22Z",
     "tools": {
       "components": [
         {
