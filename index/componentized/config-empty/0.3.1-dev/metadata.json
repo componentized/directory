@@ -1,0 +1,72 @@
+{
+  "package": "componentized:config-empty",
+  "version": "0.3.1-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/config/empty",
+    "tag": "0.3.1-dev",
+    "digest": "sha256:8da77d2f907d16719e1f21c21a6146994bae233d1266e50d499748462f193aec",
+    "layer_digest": "sha256:a83e87a2b700a1c115110a3ca6490a1190de95d588e7c51b9543ab7bc3b09d59",
+    "size": 22636,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/config/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/config",
+      "git_ref": "refs/heads/main",
+      "log_index": 4112168527
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/config/empty",
+    "tag": "0.3.1-dev_debug",
+    "digest": "sha256:2a7dafb05c75518da3bb02bf13a354a1d009911aeadf047890cca4e15c6abd08",
+    "layer_digest": "sha256:0d938db4fb80ab90d2a734c863bf2beca9ee024caef72f4b969eb4ee7dae0838",
+    "size": 62010,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/config/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/config",
+      "git_ref": "refs/heads/main",
+      "log_index": 4112173348
+    }
+  },
+  "created": "2026-11-25T21:29:59.397923175Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Exposes an empty wasi:config/store which returns neither errors, nor values.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "6d12421d700408f9c0a986838fb46c9aba31b6dc",
+    "org.opencontainers.image.source": "https://github.com/componentized/config.git",
+    "org.opencontainers.image.title": "componentized:config-empty",
+    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/6d12421d700408f9c0a986838fb46c9aba31b6dc/components/empty",
+    "org.opencontainers.image.version": "v0.3.1-dev"
+  },
+  "exports": [
+    "wasi:config/store@0.2.0-rc.1"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:75b10a5429d748c55100996b3a11e6628c47214ee66d46fb7e6091702d07dd0b",
+      "size": 244
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/config/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/config",
+    "git_ref": "refs/heads/main",
+    "log_index": 4112170098
+  },
+  "indexed_at": "2026-11-25T21:33:14Z"
+}

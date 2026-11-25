@@ -1,0 +1,78 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "wit:wasi:config@0.2.0-rc.1",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "1b7f1b0fd07bb4cede16c6a6ec8852815dfb924639a78735fc7bdffdc164485d"
+        }
+      ],
+      "name": "wasi:config",
+      "properties": [
+        {
+          "name": "wkg:registry",
+          "value": "wasi.dev"
+        }
+      ],
+      "type": "library",
+      "version": "0.2.0-rc.1"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "wit:wasi:config@0.2.0-rc.1"
+      ],
+      "ref": "component:componentized:config"
+    },
+    {
+      "dependsOn": [],
+      "ref": "wit:wasi:config@0.2.0-rc.1"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "component:componentized:config",
+      "description": "A collection of utility components that remix wasi:config types and interfaces.",
+      "externalReferences": [
+        {
+          "comment": "revision 6d12421d700408f9c0a986838fb46c9aba31b6dc",
+          "type": "vcs",
+          "url": "https://github.com/componentized/config.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/componentized/config/tree/6d12421d700408f9c0a986838fb46c9aba31b6dc"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "f247ef388c47c733656af020e7c2cb0af4845b34f518aa3737992d9c79deb8e5"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "componentized:config",
+      "purl": "pkg:oci/config@sha256%3A5fc1a7d2180a93b4aea820939035802c1da416f798272b55e5e42afed7b6d076?repository_url=ghcr.io/componentized/config&tag=0.3.1-dev",
+      "type": "library",
+      "version": "0.3.1-dev"
+    },
+    "timestamp": "2026-11-25T21:28:08Z",
+    "tools": {
+      "components": [
+        {
+          "name": "wkg",
+          "type": "application"
+        }
+      ]
+    }
+  },
+  "specVersion": "1.6",
+  "version": 1
+}
