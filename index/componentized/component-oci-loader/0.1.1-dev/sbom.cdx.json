@@ -1432,19 +1432,19 @@
       "description": "Loads a component from an OCI registry by reference.",
       "externalReferences": [
         {
-          "comment": "revision 0392f4e110e5368b9d6b88daebd7cad3b6a28f3a",
+          "comment": "revision 612a3fe184459cefa058fac2ec512872a06f31e4",
           "type": "vcs",
           "url": "https://github.com/componentized/component.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/component/tree/0392f4e110e5368b9d6b88daebd7cad3b6a28f3a/components/oci-loader"
+          "url": "https://github.com/componentized/component/tree/612a3fe184459cefa058fac2ec512872a06f31e4/components/oci-loader"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "731d6c5a42bc44cadde029c5198b6a855825c3c32d49ba680a312547eadcaeea"
+          "content": "af3630a595c91c86bb74170f3a30a1ec35613607e52ac0c42467d7a326ddd906"
         }
       ],
       "licenses": [
@@ -1453,11 +1453,11 @@
         }
       ],
       "name": "componentized:component-oci-loader",
-      "purl": "pkg:oci/oci-loader@sha256%3A9d4c363a478d1cc52f8cfb5073de6966a18ce821997720030d3b4f5f1530fbe7?repository_url=ghcr.io/componentized/component/oci-loader&tag=0.1.1-dev",
+      "purl": "pkg:oci/oci-loader@sha256%3Ad12f91ba674492067d43a8476e99fd2b2bddbcc7a7fce94df71a5ec48d6a981e?repository_url=ghcr.io/componentized/component/oci-loader&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-25T14:38:04Z",
+    "timestamp": "2026-11-25T18:15:45Z",
     "tools": {
       "components": [
         {

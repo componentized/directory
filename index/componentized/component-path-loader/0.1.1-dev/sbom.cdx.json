@@ -17,7 +17,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "44c34ea90f054735aec9b845fabe9987dcf209d57097c695310e0d2696d68f2e"
+          "content": "8013caf59ea8dca3663d91a151347ee92eb4790b0205ceff6bc4a005e5c2c2d5"
         }
       ],
       "name": "componentized:component-http-loader",
@@ -28,7 +28,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "731d6c5a42bc44cadde029c5198b6a855825c3c32d49ba680a312547eadcaeea"
+          "content": "af3630a595c91c86bb74170f3a30a1ec35613607e52ac0c42467d7a326ddd906"
         }
       ],
       "name": "componentized:component-oci-loader",
@@ -1563,19 +1563,19 @@
       "description": "Loads a component from a path.",
       "externalReferences": [
         {
-          "comment": "revision 0392f4e110e5368b9d6b88daebd7cad3b6a28f3a",
+          "comment": "revision 612a3fe184459cefa058fac2ec512872a06f31e4",
           "type": "vcs",
           "url": "https://github.com/componentized/component.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/component/tree/0392f4e110e5368b9d6b88daebd7cad3b6a28f3a/components/path-loader"
+          "url": "https://github.com/componentized/component/tree/612a3fe184459cefa058fac2ec512872a06f31e4/components/path-loader"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "3bc013c4a22542aafdd3b281a6e4a26480de32c9692e8f3b3304cee3c824dbc8"
+          "content": "38e1ed8e2e11261b20623f3c0dacb6b66ece1598e6bf1534b16067be1c87d1bc"
         }
       ],
       "licenses": [
@@ -1584,11 +1584,11 @@
         }
       ],
       "name": "componentized:component-path-loader",
-      "purl": "pkg:oci/path-loader@sha256%3Ae09815ba96f19bc4a2e1b8df03fd471d2b0fecd6e5255fa6c7c8a861baab775f?repository_url=ghcr.io/componentized/component/path-loader&tag=0.1.1-dev",
+      "purl": "pkg:oci/path-loader@sha256%3Ade58c45fc7421251ddd7c1163bbb2fb4681bfb074659fb35b7aac329dce932fc?repository_url=ghcr.io/componentized/component/path-loader&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-25T14:38:04Z",
+    "timestamp": "2026-11-25T18:15:45Z",
     "tools": {
       "components": [
         {

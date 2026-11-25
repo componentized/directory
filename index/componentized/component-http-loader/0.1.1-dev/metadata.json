@@ -7,8 +7,8 @@
     "registry": "ghcr.io",
     "repository": "componentized/component/http-loader",
     "tag": "0.1.1-dev",
-    "digest": "sha256:fa4c12e72a205387c0600de20716e94efcb9d492039a6bb5a6974c926936d4a4",
-    "layer_digest": "sha256:44c34ea90f054735aec9b845fabe9987dcf209d57097c695310e0d2696d68f2e",
+    "digest": "sha256:d1ce511e0c343f7786eec49dd1f7ee7ad95ad1cb9f63927de4175fe9770b230a",
+    "layer_digest": "sha256:8013caf59ea8dca3663d91a151347ee92eb4790b0205ceff6bc4a005e5c2c2d5",
     "size": 72288,
     "signature": {
       "status": "verified",
@@ -16,15 +16,15 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/component",
       "git_ref": "refs/heads/main",
-      "log_index": 4104611457
+      "log_index": 4108766894
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/component/http-loader",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:dabf8f64c19ea3559819fe0fd6860f0c35f2ff6925bcc57d4a5b6806c93c1cc6",
-    "layer_digest": "sha256:db58792a69574767fe405f0b448a82d48bba7371b35a9cf1ca765a45299f2313",
+    "digest": "sha256:4c1436872566c87fdeffb465916a5505fcf6e174a5a0e269367c6b7b9a890e13",
+    "layer_digest": "sha256:0ab3e81f594e2688ac9a577c49024bc0f816676abfa4c81ab425c42678044276",
     "size": 869171,
     "signature": {
       "status": "verified",
@@ -32,22 +32,22 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/component",
       "git_ref": "refs/heads/main",
-      "log_index": 4104615355
+      "log_index": 4108771073
     }
   },
-  "created": "2026-11-25T14:41:59.312931424Z",
+  "created": "2026-11-25T18:19:01.237409149Z",
   "annotations": {
     "org.opencontainers.image.description": "Loads a component from an HTTP URL.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "0392f4e110e5368b9d6b88daebd7cad3b6a28f3a",
+    "org.opencontainers.image.revision": "612a3fe184459cefa058fac2ec512872a06f31e4",
     "org.opencontainers.image.source": "https://github.com/componentized/component.git",
     "org.opencontainers.image.title": "componentized:component-http-loader",
-    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/0392f4e110e5368b9d6b88daebd7cad3b6a28f3a/components/http-loader",
+    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/612a3fe184459cefa058fac2ec512872a06f31e4/components/http-loader",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
     "componentized:component/types@0.1.1-dev",
-    "componentized:http/client@0.1.0"
+    "componentized:http/client@0.1.1"
   ],
   "exports": [
     "componentized:component/path-loader@0.1.1-dev"
@@ -59,7 +59,7 @@
     },
     {
       "package": "componentized:http",
-      "version": "0.1.0"
+      "version": "0.1.1"
     }
   ],
   "parts": [
@@ -74,7 +74,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/component",
     "git_ref": "refs/heads/main",
-    "log_index": 4104612568
+    "log_index": 4108768061
   },
-  "indexed_at": "2026-11-25T14:45:35Z"
+  "indexed_at": "2026-11-25T18:22:51Z"
 }

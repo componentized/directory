@@ -67,6 +67,7 @@
       "version": "0.3.0"
     }
   ],
+  "release": "https://github.com/componentized/oci/releases/tag/v0.1.1",
   "parts": [
     {
       "digest": "sha256:6871497586d06749d89dc36015cdd97cae6abf3ecb0a72074695716fe70f434d",

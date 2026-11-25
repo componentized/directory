@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/component/path-loader-router",
     "tag": "0.1.1-dev",
-    "digest": "sha256:7fff1679a80454acb4581082dbff590dc49b14ef331bbfe3743a0114a1d3cc3d",
+    "digest": "sha256:6310e8b34745141ce20a91cfae8adbf6e2a8734a0725fd46c7fb565280a1f844",
     "layer_digest": "sha256:9e77c452620f89df3f0ddba58fe0aa67576d87906670a14c4fbe82909a2ed5e6",
     "size": 68631,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/component",
       "git_ref": "refs/heads/main",
-      "log_index": 4104636465
+      "log_index": 4108793360
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/component/path-loader-router",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:88a3151d88f2d256205a6c433a1f7bc1845974c5135b70e665aff0227fb13e0a",
+    "digest": "sha256:c6656db67680e2b21970a6d303ea3949045af2ed804078a7ca8b766b5733eaff",
     "layer_digest": "sha256:2a5ec0fe40c9ddac83d1541a98dfa7594429cedd5e225c4ff0273ffc8b2fda5d",
     "size": 843553,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/component",
       "git_ref": "refs/heads/main",
-      "log_index": 4104641051
+      "log_index": 4108797757
     }
   },
-  "created": "2026-11-25T14:43:14.369886118Z",
+  "created": "2026-11-25T18:20:12.850344379Z",
   "annotations": {
     "org.opencontainers.image.description": "Routes a component loader based on the path.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "0392f4e110e5368b9d6b88daebd7cad3b6a28f3a",
+    "org.opencontainers.image.revision": "612a3fe184459cefa058fac2ec512872a06f31e4",
     "org.opencontainers.image.source": "https://github.com/componentized/component.git",
     "org.opencontainers.image.title": "componentized:component-path-loader-router",
-    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/0392f4e110e5368b9d6b88daebd7cad3b6a28f3a/components/path-loader-router",
+    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/612a3fe184459cefa058fac2ec512872a06f31e4/components/path-loader-router",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -72,7 +72,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/component",
     "git_ref": "refs/heads/main",
-    "log_index": 4104637935
+    "log_index": 4108794633
   },
-  "indexed_at": "2026-11-25T14:45:45Z"
+  "indexed_at": "2026-11-25T18:23:16Z"
 }
