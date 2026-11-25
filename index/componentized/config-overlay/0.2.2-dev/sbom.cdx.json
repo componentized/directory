@@ -1477,19 +1477,19 @@
       "description": "Combines value from two wasi:config/stores into a single store. The 'store' import is the base set of values, while the 'overlay' import, a mirror of the store interface, contributes additional values overriding in the case of a conflict.",
       "externalReferences": [
         {
-          "comment": "revision ce6800346197fe3322b8291268ccf45dd508a295",
+          "comment": "revision 9207f82451cb30459836b01cc668f89c324b437e",
           "type": "vcs",
           "url": "https://github.com/componentized/config.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/config/tree/ce6800346197fe3322b8291268ccf45dd508a295/components/overlay"
+          "url": "https://github.com/componentized/config/tree/9207f82451cb30459836b01cc668f89c324b437e/components/overlay"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "5d49cd31a65ec8d303f80c573205b7314235d71640017356bab3552a891204d9"
+          "content": "e377850316c4e63413c0eecb0485afecece73d4c24f4dced2f656cdfd7881af0"
         }
       ],
       "licenses": [
@@ -1498,11 +1498,11 @@
         }
       ],
       "name": "componentized:config-overlay",
-      "purl": "pkg:oci/overlay@sha256%3Ad28a8ec066e9b60cd3e2477112c2eb55c05f3c30301f67c7368105e08b9f9d61?repository_url=ghcr.io/componentized/config/overlay&tag=0.2.2-dev",
+      "purl": "pkg:oci/overlay@sha256%3Afe9ee9c29da0472c8497cf174b4890623cf133e99d9d5b6a8ea1f7518b05d284?repository_url=ghcr.io/componentized/config/overlay&tag=0.2.2-dev",
       "type": "library",
       "version": "0.2.2-dev"
     },
-    "timestamp": "2026-11-21T01:31:06Z",
+    "timestamp": "2026-11-25T20:58:59Z",
     "tools": {
       "components": [
         {

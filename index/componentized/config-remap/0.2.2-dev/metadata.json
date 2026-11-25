@@ -7,47 +7,47 @@
     "registry": "ghcr.io",
     "repository": "componentized/config/remap",
     "tag": "0.2.2-dev",
-    "digest": "sha256:fc15d41ae06adafa8bce6929594f8ef13474e1e11e845f7c3671fe11b85199d6",
-    "layer_digest": "sha256:885166c183df4a5d980a9600248e22b32812ae817d2fa798cbe10a77bbd063fd",
-    "size": 37345,
+    "digest": "sha256:08fe0c86c0732209125e92ecd3c91f0e1312d1566a8bba14e95015c792321e95",
+    "layer_digest": "sha256:317e606f2ffc1fd578c5651179abdd4f41eac3e9a2a35ef27ff98e7f2bd6b36e",
+    "size": 37376,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/config/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/config",
       "git_ref": "refs/heads/main",
-      "log_index": 4030833789
+      "log_index": 4111688581
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/config/remap",
     "tag": "0.2.2-dev_debug",
-    "digest": "sha256:594ba4f512f2af2912b38e8c65959384525b3695c31b0eefab9019a99858b126",
-    "layer_digest": "sha256:3cfa0de6d6a0f3c3ff5e58b447f2bf31b4747f418cb7e3cfe31e0039e4700793",
-    "size": 125769,
+    "digest": "sha256:2198ea9d0e13253180484ae7fe74ef1371b446f5a0d2ca05fecfa08f66e1fd66",
+    "layer_digest": "sha256:5ba683acf2150732091861a1dee4395d3b0df88ff1f8713a7402d7938bf8892a",
+    "size": 125800,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/config/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/config",
       "git_ref": "refs/heads/main",
-      "log_index": 4030834161
+      "log_index": 4111695626
     }
   },
-  "created": "2026-11-21T01:34:54.920368215Z",
+  "created": "2026-11-25T21:03:06.176659529Z",
   "annotations": {
     "org.opencontainers.image.description": "Maps the keys in a wasi:config/store based on the content of a 'mapping' import which mimics wasi:config/store.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "ce6800346197fe3322b8291268ccf45dd508a295",
+    "org.opencontainers.image.revision": "9207f82451cb30459836b01cc668f89c324b437e",
     "org.opencontainers.image.source": "https://github.com/componentized/config.git",
     "org.opencontainers.image.title": "componentized:config-remap",
-    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/ce6800346197fe3322b8291268ccf45dd508a295/components/remap",
+    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/9207f82451cb30459836b01cc668f89c324b437e/components/remap",
     "org.opencontainers.image.version": "v0.2.2-dev"
   },
   "imports": [
     "wasi:config/store@0.2.0-rc.1",
-    "mapping: interface"
+    "mapping: wasi:config/store@0.2.0-rc.1"
   ],
   "exports": [
     "wasi:config/store@0.2.0-rc.1"
@@ -70,7 +70,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/config",
     "git_ref": "refs/heads/main",
-    "log_index": 4030833909
+    "log_index": 4111690447
   },
-  "indexed_at": "2026-11-21T01:40:28Z"
+  "indexed_at": "2026-11-25T21:05:50Z"
 }

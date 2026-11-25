@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/config/from-environment",
     "tag": "0.2.2-dev",
-    "digest": "sha256:1b95d370ae53c23cd3ad385c81f7292b8c40f010b182533e93fe64ab779ef66d",
+    "digest": "sha256:d7a935ec7fc148e77434a12ad75e1fe9be6424153670c25c78e727e96ecc83e3",
     "layer_digest": "sha256:b4db86da685fc344820e095b7931c8d1e5a4505144f9862e25e96ae97f7bbd08",
     "size": 26158,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/config",
       "git_ref": "refs/heads/main",
-      "log_index": 4030832464
+      "log_index": 4111656006
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/config/from-environment",
     "tag": "0.2.2-dev_debug",
-    "digest": "sha256:fb6f150f53ec9e915ecff222bf10c4bd24579b40c7e190a859a616d13b197332",
+    "digest": "sha256:2de9e069dccc13d82062b956b7a50f6acc156752d30dd47cf3e436abf72e0c43",
     "layer_digest": "sha256:2cb508ca787853c952fcc038115e387013e6ab0e391c75679f1f21165de0492a",
     "size": 71061,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/config",
       "git_ref": "refs/heads/main",
-      "log_index": 4030832747
+      "log_index": 4111664014
     }
   },
-  "created": "2026-11-21T01:34:03.600820131Z",
+  "created": "2026-11-25T21:01:51.952085686Z",
   "annotations": {
     "org.opencontainers.image.description": "Exposes the content of wasi:cli/environment variables as wasi:config/store.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "ce6800346197fe3322b8291268ccf45dd508a295",
+    "org.opencontainers.image.revision": "9207f82451cb30459836b01cc668f89c324b437e",
     "org.opencontainers.image.source": "https://github.com/componentized/config.git",
     "org.opencontainers.image.title": "componentized:config-from-environment",
-    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/ce6800346197fe3322b8291268ccf45dd508a295/components/from-environment",
+    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/9207f82451cb30459836b01cc668f89c324b437e/components/from-environment",
     "org.opencontainers.image.version": "v0.2.2-dev"
   },
   "imports": [
@@ -73,7 +73,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/config",
     "git_ref": "refs/heads/main",
-    "log_index": 4030832541
+    "log_index": 4111658806
   },
-  "indexed_at": "2026-11-21T01:40:10Z"
+  "indexed_at": "2026-11-25T21:05:35Z"
 }

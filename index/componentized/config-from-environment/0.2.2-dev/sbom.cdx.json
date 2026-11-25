@@ -1477,13 +1477,13 @@
       "description": "Exposes the content of wasi:cli/environment variables as wasi:config/store.",
       "externalReferences": [
         {
-          "comment": "revision ce6800346197fe3322b8291268ccf45dd508a295",
+          "comment": "revision 9207f82451cb30459836b01cc668f89c324b437e",
           "type": "vcs",
           "url": "https://github.com/componentized/config.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/config/tree/ce6800346197fe3322b8291268ccf45dd508a295/components/from-environment"
+          "url": "https://github.com/componentized/config/tree/9207f82451cb30459836b01cc668f89c324b437e/components/from-environment"
         }
       ],
       "hashes": [
@@ -1498,11 +1498,11 @@
         }
       ],
       "name": "componentized:config-from-environment",
-      "purl": "pkg:oci/from-environment@sha256%3A1b95d370ae53c23cd3ad385c81f7292b8c40f010b182533e93fe64ab779ef66d?repository_url=ghcr.io/componentized/config/from-environment&tag=0.2.2-dev",
+      "purl": "pkg:oci/from-environment@sha256%3Ad7a935ec7fc148e77434a12ad75e1fe9be6424153670c25c78e727e96ecc83e3?repository_url=ghcr.io/componentized/config/from-environment&tag=0.2.2-dev",
       "type": "library",
       "version": "0.2.2-dev"
     },
-    "timestamp": "2026-11-21T01:31:06Z",
+    "timestamp": "2026-11-25T20:58:59Z",
     "tools": {
       "components": [
         {

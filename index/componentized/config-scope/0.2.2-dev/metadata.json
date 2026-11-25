@@ -7,47 +7,47 @@
     "registry": "ghcr.io",
     "repository": "componentized/config/scope",
     "tag": "0.2.2-dev",
-    "digest": "sha256:39d570542c163b399af0861bb65c9c5c2a1dd02f7bbe7818e877058e0bfbecf3",
-    "layer_digest": "sha256:a2741ad4b9a94e7de4e89a9c055f225a827cb53dc3a3d7af02d0326f89428041",
-    "size": 41202,
+    "digest": "sha256:50c9cd9853064c0e58e54959bf7986c4f14de6b57efeaa1296247a3ad3c05e50",
+    "layer_digest": "sha256:d10017baba6c37dfebcaa1da9c3c8f1f0a081951fcaf2812d7be2fa87ccbf232",
+    "size": 41233,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/config/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/config",
       "git_ref": "refs/heads/main",
-      "log_index": 4030834614
+      "log_index": 4111702386
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/config/scope",
     "tag": "0.2.2-dev_debug",
-    "digest": "sha256:dd04d6f666822bcb21d2a6890807771a368eef709228abb0650b462ff39918ce",
-    "layer_digest": "sha256:d8226b02f5cb11df56d31b93d5584461d5dcfa14fe939882e4daca19e789babe",
-    "size": 98282,
+    "digest": "sha256:7e1b5db1daae935e896566bffacac0c55f056531627df97d9ab22a55cf2849b9",
+    "layer_digest": "sha256:46ce9e4eb0115151c7a88855097cafcd507c9b1eb0f40b737060958dd9da0890",
+    "size": 98313,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/config/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/config",
       "git_ref": "refs/heads/main",
-      "log_index": 4030835391
+      "log_index": 4111709580
     }
   },
-  "created": "2026-11-21T01:35:20.114319624Z",
+  "created": "2026-11-25T21:03:42.061416865Z",
   "annotations": {
     "org.opencontainers.image.description": "Selects keys in a wasi:config/store matching a scope prefix based on the content of a 'scope' import which mimics wasi:config/store. The scope value is removed from the resulting keys, and keys not matching the scope prefix are ignored.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "ce6800346197fe3322b8291268ccf45dd508a295",
+    "org.opencontainers.image.revision": "9207f82451cb30459836b01cc668f89c324b437e",
     "org.opencontainers.image.source": "https://github.com/componentized/config.git",
     "org.opencontainers.image.title": "componentized:config-scope",
-    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/ce6800346197fe3322b8291268ccf45dd508a295/components/scope",
+    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/9207f82451cb30459836b01cc668f89c324b437e/components/scope",
     "org.opencontainers.image.version": "v0.2.2-dev"
   },
   "imports": [
     "wasi:config/store@0.2.0-rc.1",
-    "scope: interface"
+    "scope: wasi:config/store@0.2.0-rc.1"
   ],
   "exports": [
     "wasi:config/store@0.2.0-rc.1"
@@ -70,7 +70,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/config",
     "git_ref": "refs/heads/main",
-    "log_index": 4030834835
+    "log_index": 4111704789
   },
-  "indexed_at": "2026-11-21T01:40:37Z"
+  "indexed_at": "2026-11-25T21:05:58Z"
 }

@@ -1477,19 +1477,19 @@
       "description": "Selects keys in a wasi:config/store matching a scope prefix based on the content of a 'scope' import which mimics wasi:config/store. The scope value is removed from the resulting keys, and keys not matching the scope prefix are ignored.",
       "externalReferences": [
         {
-          "comment": "revision ce6800346197fe3322b8291268ccf45dd508a295",
+          "comment": "revision 9207f82451cb30459836b01cc668f89c324b437e",
           "type": "vcs",
           "url": "https://github.com/componentized/config.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/config/tree/ce6800346197fe3322b8291268ccf45dd508a295/components/scope"
+          "url": "https://github.com/componentized/config/tree/9207f82451cb30459836b01cc668f89c324b437e/components/scope"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "a2741ad4b9a94e7de4e89a9c055f225a827cb53dc3a3d7af02d0326f89428041"
+          "content": "d10017baba6c37dfebcaa1da9c3c8f1f0a081951fcaf2812d7be2fa87ccbf232"
         }
       ],
       "licenses": [
@@ -1498,11 +1498,11 @@
         }
       ],
       "name": "componentized:config-scope",
-      "purl": "pkg:oci/scope@sha256%3A39d570542c163b399af0861bb65c9c5c2a1dd02f7bbe7818e877058e0bfbecf3?repository_url=ghcr.io/componentized/config/scope&tag=0.2.2-dev",
+      "purl": "pkg:oci/scope@sha256%3A50c9cd9853064c0e58e54959bf7986c4f14de6b57efeaa1296247a3ad3c05e50?repository_url=ghcr.io/componentized/config/scope&tag=0.2.2-dev",
       "type": "library",
       "version": "0.2.2-dev"
     },
-    "timestamp": "2026-11-21T01:31:06Z",
+    "timestamp": "2026-11-25T20:58:59Z",
     "tools": {
       "components": [
         {

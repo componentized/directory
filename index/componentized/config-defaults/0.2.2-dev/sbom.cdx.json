@@ -1477,19 +1477,19 @@
       "description": "Combines value from two wasi:config/stores into a single store. The 'store' import is the base set of values, while the 'defaults' import, a mirror of the store interface, contributes default values when the config does not contain a value.",
       "externalReferences": [
         {
-          "comment": "revision ce6800346197fe3322b8291268ccf45dd508a295",
+          "comment": "revision 9207f82451cb30459836b01cc668f89c324b437e",
           "type": "vcs",
           "url": "https://github.com/componentized/config.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/config/tree/ce6800346197fe3322b8291268ccf45dd508a295/components/defaults"
+          "url": "https://github.com/componentized/config/tree/9207f82451cb30459836b01cc668f89c324b437e/components/defaults"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "8c82efde550681337b7a152479d7f243cda5dce694b7073d11ac275d147e9e42"
+          "content": "9903eaf52d04c34dd133f5007522c80cfefc46510d1688d19aff9655f86d5424"
         }
       ],
       "licenses": [
@@ -1498,11 +1498,11 @@
         }
       ],
       "name": "componentized:config-defaults",
-      "purl": "pkg:oci/defaults@sha256%3A9521242c77407c9637aaba3dbcd01a5653750d45da1aac6320349764e056e717?repository_url=ghcr.io/componentized/config/defaults&tag=0.2.2-dev",
+      "purl": "pkg:oci/defaults@sha256%3A1d0b2d9c805a0a4ce2d00de702931f3d2e1083f6d22add9d02414b3a213e5298?repository_url=ghcr.io/componentized/config/defaults&tag=0.2.2-dev",
       "type": "library",
       "version": "0.2.2-dev"
     },
-    "timestamp": "2026-11-21T01:31:06Z",
+    "timestamp": "2026-11-25T20:58:59Z",
     "tools": {
       "components": [
         {

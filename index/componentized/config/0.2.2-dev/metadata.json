@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/config",
     "tag": "0.2.2-dev",
-    "digest": "sha256:8b5597f0d6514c074c81ac695fb914f6e27aa256050b52de07c0ac52905b194e",
+    "digest": "sha256:b95dd78ef57b0fea5ee3c446defc80b341bda7641fbeaab461997239baddb8d4",
     "layer_digest": "sha256:1b1d0ac058a41d1967b4ed91ec523ce2e70492d803f5ebdddb0d599f4786d4a7",
     "size": 348,
     "signature": {
@@ -16,17 +16,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/config",
       "git_ref": "refs/heads/main",
-      "log_index": 4030830939
+      "log_index": 4111615291
     }
   },
-  "created": "2026-11-21T01:32:58.827164459Z",
+  "created": "2026-11-25T21:00:06.232927089Z",
   "annotations": {
     "org.opencontainers.image.description": "A collection of utility components that remix wasi:config types and interfaces.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "ce6800346197fe3322b8291268ccf45dd508a295",
+    "org.opencontainers.image.revision": "9207f82451cb30459836b01cc668f89c324b437e",
     "org.opencontainers.image.source": "https://github.com/componentized/config.git",
     "org.opencontainers.image.title": "componentized:config",
-    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/ce6800346197fe3322b8291268ccf45dd508a295",
+    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/9207f82451cb30459836b01cc668f89c324b437e",
     "org.opencontainers.image.version": "v0.2.2-dev"
   },
   "dependencies": [
@@ -41,7 +41,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/config",
     "git_ref": "refs/heads/main",
-    "log_index": 4030831107
+    "log_index": 4111617989
   },
-  "indexed_at": "2026-11-21T01:39:43Z"
+  "indexed_at": "2026-11-25T21:05:12Z"
 }
