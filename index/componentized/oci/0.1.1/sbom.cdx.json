@@ -38,19 +38,19 @@
       "description": "WASM components for interacting with resources in OCI image repositories.",
       "externalReferences": [
         {
-          "comment": "revision 59039110714896ec906ff05f90b7aa40ac1a31f0",
+          "comment": "revision 2c207baff6a8ff7c184728e123ad6b2dcfee6810",
           "type": "vcs",
           "url": "https://github.com/componentized/oci.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/oci/tree/59039110714896ec906ff05f90b7aa40ac1a31f0"
+          "url": "https://github.com/componentized/oci/tree/2c207baff6a8ff7c184728e123ad6b2dcfee6810"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "b7a57285bdd6db4d59ad1e0a2d6ae3ae6938b8f43b66824d4f7f8667b4cf6460"
+          "content": "d72528468120b3a0627c1567789136469300ba2b42831f669b14836100f9f2c4"
         }
       ],
       "licenses": [
@@ -59,11 +59,11 @@
         }
       ],
       "name": "componentized:oci",
-      "purl": "pkg:oci/oci@sha256%3Ac6ed6e3cca23fd9df225d3b27d28e7aaee33fba9dd74c3cfa414982392ea4166?repository_url=ghcr.io/componentized/oci&tag=0.1.1-dev",
+      "purl": "pkg:oci/oci@sha256%3A462ed5ec5d1ea76e67c278fb50674b11bf443c320de1cd7114fb0ba1c0802cae?repository_url=ghcr.io/componentized/oci&tag=0.1.1",
       "type": "library",
-      "version": "0.1.1-dev"
+      "version": "0.1.1"
     },
-    "timestamp": "2026-11-25T15:51:31Z",
+    "timestamp": "2026-11-25T17:16:07Z",
     "tools": {
       "components": [
         {

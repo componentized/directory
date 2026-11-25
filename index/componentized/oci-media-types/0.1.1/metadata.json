@@ -1,41 +1,41 @@
 {
   "package": "componentized:oci-media-types",
-  "version": "0.1.1-dev",
+  "version": "0.1.1",
   "kind": "component",
   "origin": "release",
   "oci": {
     "registry": "ghcr.io",
     "repository": "componentized/oci/media-types",
-    "tag": "0.1.1-dev",
-    "digest": "sha256:7194fcd05c71206ae1d789bc9543502cd52905610a176b9134fbfebb9e1750cc",
-    "layer_digest": "sha256:939043e649b1cfb94f858c232062b4beedaf24e03d733bcc79c1420aae51dbcd",
-    "size": 6133,
+    "tag": "0.1.1",
+    "digest": "sha256:194bb3cfc90e0365bcd1358c800df0a655ca412c0e8e13c5f01cca5c39ea7499",
+    "layer_digest": "sha256:6871497586d06749d89dc36015cdd97cae6abf3ecb0a72074695716fe70f434d",
+    "size": 5977,
     "signature": {
       "status": "verified",
-      "identity": "https://github.com/componentized/oci/.github/workflows/ci.yaml@refs/heads/main",
+      "identity": "https://github.com/componentized/oci/.github/workflows/ci.yaml@refs/tags/v0.1.1",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/oci",
-      "git_ref": "refs/heads/main",
-      "log_index": 4106078299
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4107557171
     }
   },
-  "created": "2026-11-25T15:54:40.640548960Z",
+  "created": "2026-11-25T17:19:17.448863199Z",
   "annotations": {
     "org.opencontainers.image.description": "Common OCI related media types.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "59039110714896ec906ff05f90b7aa40ac1a31f0",
+    "org.opencontainers.image.revision": "2c207baff6a8ff7c184728e123ad6b2dcfee6810",
     "org.opencontainers.image.source": "https://github.com/componentized/oci.git",
     "org.opencontainers.image.title": "componentized:oci-media-types",
-    "org.opencontainers.image.url": "https://github.com/componentized/oci/tree/59039110714896ec906ff05f90b7aa40ac1a31f0/components/media-types",
-    "org.opencontainers.image.version": "v0.1.1-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/oci/tree/2c207baff6a8ff7c184728e123ad6b2dcfee6810/components/media-types",
+    "org.opencontainers.image.version": "v0.1.1"
   },
   "exports": [
-    "componentized:oci/media-types@0.1.1-dev"
+    "componentized:oci/media-types@0.1.1"
   ],
   "dependencies": [
     {
       "package": "componentized:oci",
-      "version": "0.1.1-dev"
+      "version": "0.1.1"
     }
   ],
   "parts": [
@@ -46,11 +46,11 @@
   ],
   "sbom": {
     "status": "verified",
-    "identity": "https://github.com/componentized/oci/.github/workflows/ci.yaml@refs/heads/main",
+    "identity": "https://github.com/componentized/oci/.github/workflows/ci.yaml@refs/tags/v0.1.1",
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/oci",
-    "git_ref": "refs/heads/main",
-    "log_index": 4106078801
+    "git_ref": "refs/tags/v0.1.1",
+    "log_index": 4107559280
   },
-  "indexed_at": "2026-11-25T15:56:12Z"
+  "indexed_at": "2026-11-25T17:20:46Z"
 }

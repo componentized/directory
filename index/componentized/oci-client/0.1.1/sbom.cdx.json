@@ -6,7 +6,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "25d5bebcaf0cb4b0e75b7964285d4868922218b660dce1d7a3b6f1c03650e29d"
+          "content": "8979766bb7c760fe39f572ecb6a8f818e5798830ff4c6ae171b872994ec4c3e8"
         }
       ],
       "name": "componentized:oci-internal-client",
@@ -17,7 +17,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "939043e649b1cfb94f858c232062b4beedaf24e03d733bcc79c1420aae51dbcd"
+          "content": "6871497586d06749d89dc36015cdd97cae6abf3ecb0a72074695716fe70f434d"
         }
       ],
       "name": "componentized:oci-media-types",
@@ -3533,19 +3533,19 @@
       "description": "OCI image client component.",
       "externalReferences": [
         {
-          "comment": "revision 59039110714896ec906ff05f90b7aa40ac1a31f0",
+          "comment": "revision 2c207baff6a8ff7c184728e123ad6b2dcfee6810",
           "type": "vcs",
           "url": "https://github.com/componentized/oci.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/oci/tree/59039110714896ec906ff05f90b7aa40ac1a31f0/components/client"
+          "url": "https://github.com/componentized/oci/tree/2c207baff6a8ff7c184728e123ad6b2dcfee6810/components/client"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "236e78643de73d1aac07912dffa82c256b5875d0825215179c1a697698e76564"
+          "content": "0179c165e9d3c11debf740c7f5c30b6d8553bd0973a459052ba3a5527ff76f88"
         }
       ],
       "licenses": [
@@ -3554,11 +3554,11 @@
         }
       ],
       "name": "componentized:oci-client",
-      "purl": "pkg:oci/client@sha256%3A8b3454aad81e99f0f9c200927d9bc0144b63eda63455b78a79635f26649d64b8?repository_url=ghcr.io/componentized/oci/client&tag=0.1.1-dev",
+      "purl": "pkg:oci/client@sha256%3Aca5797d64678f3f9138533839ddf234756c39624705376ca0166feccac9e37a8?repository_url=ghcr.io/componentized/oci/client&tag=0.1.1",
       "type": "library",
-      "version": "0.1.1-dev"
+      "version": "0.1.1"
     },
-    "timestamp": "2026-11-25T15:51:31Z",
+    "timestamp": "2026-11-25T17:16:07Z",
     "tools": {
       "components": [
         {
