@@ -2,14 +2,14 @@
   "bomFormat": "CycloneDX",
   "components": [
     {
-      "bom-ref": "path+file://./components/overlay#0.1.0",
+      "bom-ref": "path+file://./components/remap#0.1.0",
       "licenses": [
         {
           "expression": "Apache-2.0"
         }
       ],
-      "name": "overlay",
-      "purl": "pkg:cargo/overlay@0.1.0?download_url=file://.",
+      "name": "remap",
+      "purl": "pkg:cargo/remap@0.1.0?download_url=file://.",
       "scope": "required",
       "type": "library",
       "version": "0.1.0"
@@ -1235,16 +1235,16 @@
   "dependencies": [
     {
       "dependsOn": [
-        "path+file://./components/overlay#0.1.0",
+        "path+file://./components/remap#0.1.0",
         "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-unknown-unknown"
       ],
-      "ref": "component:componentized:config-overlay"
+      "ref": "component:componentized:config-remap"
     },
     {
       "dependsOn": [
         "registry+https://github.com/rust-lang/crates.io-index#wit-bindgen@0.63.0"
       ],
-      "ref": "path+file://./components/overlay#0.1.0"
+      "ref": "path+file://./components/remap#0.1.0"
     },
     {
       "ref": "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105"
@@ -1473,23 +1473,23 @@
   ],
   "metadata": {
     "component": {
-      "bom-ref": "component:componentized:config-overlay",
-      "description": "Combines value from two wasi:config/stores into a single store. The 'store' import is the base set of values, while the 'overlay' import, a mirror of the store interface, contributes additional values overriding in the case of a conflict.",
+      "bom-ref": "component:componentized:config-remap",
+      "description": "Maps the keys in a wasi:config/store based on the content of a 'mapping' import which mimics wasi:config/store.",
       "externalReferences": [
         {
-          "comment": "revision b1ee4d95ee4c020ab2ad795b6f5d9d5fc187fae8",
+          "comment": "revision cf4066bc2b16b44f1735c3cbd1b99422ffd4bcb6",
           "type": "vcs",
           "url": "https://github.com/componentized/config.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/config/tree/b1ee4d95ee4c020ab2ad795b6f5d9d5fc187fae8/components/overlay"
+          "url": "https://github.com/componentized/config/tree/cf4066bc2b16b44f1735c3cbd1b99422ffd4bcb6/components/remap"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "bbe27eb3f48b9823843a526a456d0afe7eedf7061aa1582bc0728b8bc6eb9402"
+          "content": "11126348211685d3fa2feeb5f76cf8b75898d924fff97746287181963f2b01f4"
         }
       ],
       "licenses": [
@@ -1497,12 +1497,12 @@
           "expression": "Apache-2.0"
         }
       ],
-      "name": "componentized:config-overlay",
-      "purl": "pkg:oci/overlay@sha256%3A9bca77894e5a32af8999dc7d5ed3c4f011d3100c55b92180ddb576be7cf4cf3f?repository_url=ghcr.io/componentized/config/overlay&tag=0.3.0-dev",
+      "name": "componentized:config-remap",
+      "purl": "pkg:oci/remap@sha256%3Af7e90556182ba320563e01ee0c5186cd4180cd98378eec9d4ded433cc8d4b566?repository_url=ghcr.io/componentized/config/remap&tag=0.3.0",
       "type": "library",
-      "version": "0.3.0-dev"
+      "version": "0.3.0"
     },
-    "timestamp": "2026-11-25T21:07:35Z",
+    "timestamp": "2026-11-25T21:22:58Z",
     "tools": {
       "components": [
         {

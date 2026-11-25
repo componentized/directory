@@ -1,4 +1,4 @@
-package componentized:config@0.3.0-dev;
+package componentized:config@0.3.0;
 
 world imports {
   import wasi:config/store@0.2.0-rc.1;

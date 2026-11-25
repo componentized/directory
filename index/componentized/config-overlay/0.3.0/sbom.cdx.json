@@ -2,14 +2,14 @@
   "bomFormat": "CycloneDX",
   "components": [
     {
-      "bom-ref": "path+file://./components/defaults#0.1.0",
+      "bom-ref": "path+file://./components/overlay#0.1.0",
       "licenses": [
         {
           "expression": "Apache-2.0"
         }
       ],
-      "name": "defaults",
-      "purl": "pkg:cargo/defaults@0.1.0?download_url=file://.",
+      "name": "overlay",
+      "purl": "pkg:cargo/overlay@0.1.0?download_url=file://.",
       "scope": "required",
       "type": "library",
       "version": "0.1.0"
@@ -1235,16 +1235,16 @@
   "dependencies": [
     {
       "dependsOn": [
-        "path+file://./components/defaults#0.1.0",
+        "path+file://./components/overlay#0.1.0",
         "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-unknown-unknown"
       ],
-      "ref": "component:componentized:config-defaults"
+      "ref": "component:componentized:config-overlay"
     },
     {
       "dependsOn": [
         "registry+https://github.com/rust-lang/crates.io-index#wit-bindgen@0.63.0"
       ],
-      "ref": "path+file://./components/defaults#0.1.0"
+      "ref": "path+file://./components/overlay#0.1.0"
     },
     {
       "ref": "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105"
@@ -1473,23 +1473,23 @@
   ],
   "metadata": {
     "component": {
-      "bom-ref": "component:componentized:config-defaults",
-      "description": "Combines value from two wasi:config/stores into a single store. The 'store' import is the base set of values, while the 'defaults' import, a mirror of the store interface, contributes default values when the config does not contain a value.",
+      "bom-ref": "component:componentized:config-overlay",
+      "description": "Combines value from two wasi:config/stores into a single store. The 'store' import is the base set of values, while the 'overlay' import, a mirror of the store interface, contributes additional values overriding in the case of a conflict.",
       "externalReferences": [
         {
-          "comment": "revision b1ee4d95ee4c020ab2ad795b6f5d9d5fc187fae8",
+          "comment": "revision cf4066bc2b16b44f1735c3cbd1b99422ffd4bcb6",
           "type": "vcs",
           "url": "https://github.com/componentized/config.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/config/tree/b1ee4d95ee4c020ab2ad795b6f5d9d5fc187fae8/components/defaults"
+          "url": "https://github.com/componentized/config/tree/cf4066bc2b16b44f1735c3cbd1b99422ffd4bcb6/components/overlay"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "5063e0b880660cf6247fc4b42de553eabef7ca08eece57b58d96f066105597f9"
+          "content": "bbe27eb3f48b9823843a526a456d0afe7eedf7061aa1582bc0728b8bc6eb9402"
         }
       ],
       "licenses": [
@@ -1497,12 +1497,12 @@
           "expression": "Apache-2.0"
         }
       ],
-      "name": "componentized:config-defaults",
-      "purl": "pkg:oci/defaults@sha256%3Ad75154ed1bc63b8b7c9b78f01b918c111ceab5b4f1d593d6fa0cc51efbba7e05?repository_url=ghcr.io/componentized/config/defaults&tag=0.3.0-dev",
+      "name": "componentized:config-overlay",
+      "purl": "pkg:oci/overlay@sha256%3A824f28f5f2a4a7d8a26859a26ed668e96e4895577341d7bf1e9fa6e63c65004d?repository_url=ghcr.io/componentized/config/overlay&tag=0.3.0",
       "type": "library",
-      "version": "0.3.0-dev"
+      "version": "0.3.0"
     },
-    "timestamp": "2026-11-25T21:07:35Z",
+    "timestamp": "2026-11-25T21:22:58Z",
     "tools": {
       "components": [
         {

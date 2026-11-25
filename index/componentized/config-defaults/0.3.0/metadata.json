@@ -1,49 +1,49 @@
 {
   "package": "componentized:config-defaults",
-  "version": "0.3.0-dev",
+  "version": "0.3.0",
   "kind": "component",
   "origin": "release",
   "oci": {
     "registry": "ghcr.io",
     "repository": "componentized/config/defaults",
-    "tag": "0.3.0-dev",
-    "digest": "sha256:d75154ed1bc63b8b7c9b78f01b918c111ceab5b4f1d593d6fa0cc51efbba7e05",
+    "tag": "0.3.0",
+    "digest": "sha256:df52a328b147db60601421e60720305e64f9e19b75bc1994083bd7c09e31ef27",
     "layer_digest": "sha256:5063e0b880660cf6247fc4b42de553eabef7ca08eece57b58d96f066105597f9",
     "size": 34840,
     "signature": {
       "status": "verified",
-      "identity": "https://github.com/componentized/config/.github/workflows/ci.yaml@refs/heads/main",
+      "identity": "https://github.com/componentized/config/.github/workflows/ci.yaml@refs/tags/v0.3.0",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/config",
-      "git_ref": "refs/heads/main",
-      "log_index": 4111804763
+      "git_ref": "refs/tags/v0.3.0",
+      "log_index": 4112062614
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/config/defaults",
-    "tag": "0.3.0-dev_debug",
-    "digest": "sha256:f106181141e3b6f38150bf9e3773e172e86ae044ea9813c698d9da77f623530f",
+    "tag": "0.3.0_debug",
+    "digest": "sha256:f70595d49e698f8423acd4f9b4b5fe4ba99cfd6ef2c88cd058bde58abc21c818",
     "layer_digest": "sha256:658628fe0e25d24f59815101db0222e9dfd3e9fc1ba482ae47a9a59293895860",
     "size": 121584,
     "signature": {
       "status": "verified",
-      "identity": "https://github.com/componentized/config/.github/workflows/ci.yaml@refs/heads/main",
+      "identity": "https://github.com/componentized/config/.github/workflows/ci.yaml@refs/tags/v0.3.0",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/config",
-      "git_ref": "refs/heads/main",
-      "log_index": 4111811624
+      "git_ref": "refs/tags/v0.3.0",
+      "log_index": 4112065252
     }
   },
-  "created": "2026-11-25T21:09:15.451555886Z",
+  "created": "2026-11-25T21:24:11.586718885Z",
   "annotations": {
     "org.opencontainers.image.description": "Combines value from two wasi:config/stores into a single store. The 'store' import is the base set of values, while the 'defaults' import, a mirror of the store interface, contributes default values when the config does not contain a value.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "b1ee4d95ee4c020ab2ad795b6f5d9d5fc187fae8",
+    "org.opencontainers.image.revision": "cf4066bc2b16b44f1735c3cbd1b99422ffd4bcb6",
     "org.opencontainers.image.source": "https://github.com/componentized/config.git",
     "org.opencontainers.image.title": "componentized:config-defaults",
-    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/b1ee4d95ee4c020ab2ad795b6f5d9d5fc187fae8/components/defaults",
-    "org.opencontainers.image.version": "v0.3.0-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/cf4066bc2b16b44f1735c3cbd1b99422ffd4bcb6/components/defaults",
+    "org.opencontainers.image.version": "v0.3.0"
   },
   "imports": [
     "wasi:config/store@0.2.0-rc.1",
@@ -66,11 +66,11 @@
   ],
   "sbom": {
     "status": "verified",
-    "identity": "https://github.com/componentized/config/.github/workflows/ci.yaml@refs/heads/main",
+    "identity": "https://github.com/componentized/config/.github/workflows/ci.yaml@refs/tags/v0.3.0",
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/config",
-    "git_ref": "refs/heads/main",
-    "log_index": 4111807326
+    "git_ref": "refs/tags/v0.3.0",
+    "log_index": 4112063673
   },
-  "indexed_at": "2026-11-25T21:13:50Z"
+  "indexed_at": "2026-11-25T21:27:57Z"
 }

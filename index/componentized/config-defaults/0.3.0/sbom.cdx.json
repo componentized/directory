@@ -2,14 +2,14 @@
   "bomFormat": "CycloneDX",
   "components": [
     {
-      "bom-ref": "path+file://./components/scope#0.1.0",
+      "bom-ref": "path+file://./components/defaults#0.1.0",
       "licenses": [
         {
           "expression": "Apache-2.0"
         }
       ],
-      "name": "scope",
-      "purl": "pkg:cargo/scope@0.1.0?download_url=file://.",
+      "name": "defaults",
+      "purl": "pkg:cargo/defaults@0.1.0?download_url=file://.",
       "scope": "required",
       "type": "library",
       "version": "0.1.0"
@@ -1235,16 +1235,16 @@
   "dependencies": [
     {
       "dependsOn": [
-        "path+file://./components/scope#0.1.0",
+        "path+file://./components/defaults#0.1.0",
         "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-unknown-unknown"
       ],
-      "ref": "component:componentized:config-scope"
+      "ref": "component:componentized:config-defaults"
     },
     {
       "dependsOn": [
         "registry+https://github.com/rust-lang/crates.io-index#wit-bindgen@0.63.0"
       ],
-      "ref": "path+file://./components/scope#0.1.0"
+      "ref": "path+file://./components/defaults#0.1.0"
     },
     {
       "ref": "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105"
@@ -1473,23 +1473,23 @@
   ],
   "metadata": {
     "component": {
-      "bom-ref": "component:componentized:config-scope",
-      "description": "Selects keys in a wasi:config/store matching a scope prefix based on the content of a 'scope' import which mimics wasi:config/store. The scope value is removed from the resulting keys, and keys not matching the scope prefix are ignored.",
+      "bom-ref": "component:componentized:config-defaults",
+      "description": "Combines value from two wasi:config/stores into a single store. The 'store' import is the base set of values, while the 'defaults' import, a mirror of the store interface, contributes default values when the config does not contain a value.",
       "externalReferences": [
         {
-          "comment": "revision b1ee4d95ee4c020ab2ad795b6f5d9d5fc187fae8",
+          "comment": "revision cf4066bc2b16b44f1735c3cbd1b99422ffd4bcb6",
           "type": "vcs",
           "url": "https://github.com/componentized/config.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/config/tree/b1ee4d95ee4c020ab2ad795b6f5d9d5fc187fae8/components/scope"
+          "url": "https://github.com/componentized/config/tree/cf4066bc2b16b44f1735c3cbd1b99422ffd4bcb6/components/defaults"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "495e8f7016c46436b22a9aacebff34c051154e3cec875f1e66380502b8f4b7be"
+          "content": "5063e0b880660cf6247fc4b42de553eabef7ca08eece57b58d96f066105597f9"
         }
       ],
       "licenses": [
@@ -1497,12 +1497,12 @@
           "expression": "Apache-2.0"
         }
       ],
-      "name": "componentized:config-scope",
-      "purl": "pkg:oci/scope@sha256%3A9627f8556bafbf5d0644450d71271a52670d26cae08a9e0bee95ee698d1cd9e8?repository_url=ghcr.io/componentized/config/scope&tag=0.3.0-dev",
+      "name": "componentized:config-defaults",
+      "purl": "pkg:oci/defaults@sha256%3Adf52a328b147db60601421e60720305e64f9e19b75bc1994083bd7c09e31ef27?repository_url=ghcr.io/componentized/config/defaults&tag=0.3.0",
       "type": "library",
-      "version": "0.3.0-dev"
+      "version": "0.3.0"
     },
-    "timestamp": "2026-11-25T21:07:35Z",
+    "timestamp": "2026-11-25T21:22:58Z",
     "tools": {
       "components": [
         {

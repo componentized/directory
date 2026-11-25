@@ -2,14 +2,14 @@
   "bomFormat": "CycloneDX",
   "components": [
     {
-      "bom-ref": "path+file://./components/remap#0.1.0",
+      "bom-ref": "path+file://./components/empty#0.1.0",
       "licenses": [
         {
           "expression": "Apache-2.0"
         }
       ],
-      "name": "remap",
-      "purl": "pkg:cargo/remap@0.1.0?download_url=file://.",
+      "name": "empty",
+      "purl": "pkg:cargo/empty@0.1.0?download_url=file://.",
       "scope": "required",
       "type": "library",
       "version": "0.1.0"
@@ -1235,16 +1235,16 @@
   "dependencies": [
     {
       "dependsOn": [
-        "path+file://./components/remap#0.1.0",
+        "path+file://./components/empty#0.1.0",
         "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-unknown-unknown"
       ],
-      "ref": "component:componentized:config-remap"
+      "ref": "component:componentized:config-empty"
     },
     {
       "dependsOn": [
         "registry+https://github.com/rust-lang/crates.io-index#wit-bindgen@0.63.0"
       ],
-      "ref": "path+file://./components/remap#0.1.0"
+      "ref": "path+file://./components/empty#0.1.0"
     },
     {
       "ref": "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105"
@@ -1473,23 +1473,23 @@
   ],
   "metadata": {
     "component": {
-      "bom-ref": "component:componentized:config-remap",
-      "description": "Maps the keys in a wasi:config/store based on the content of a 'mapping' import which mimics wasi:config/store.",
+      "bom-ref": "component:componentized:config-empty",
+      "description": "Exposes an empty wasi:config/store which returns neither errors, nor values.",
       "externalReferences": [
         {
-          "comment": "revision b1ee4d95ee4c020ab2ad795b6f5d9d5fc187fae8",
+          "comment": "revision cf4066bc2b16b44f1735c3cbd1b99422ffd4bcb6",
           "type": "vcs",
           "url": "https://github.com/componentized/config.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/config/tree/b1ee4d95ee4c020ab2ad795b6f5d9d5fc187fae8/components/remap"
+          "url": "https://github.com/componentized/config/tree/cf4066bc2b16b44f1735c3cbd1b99422ffd4bcb6/components/empty"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "11126348211685d3fa2feeb5f76cf8b75898d924fff97746287181963f2b01f4"
+          "content": "a83e87a2b700a1c115110a3ca6490a1190de95d588e7c51b9543ab7bc3b09d59"
         }
       ],
       "licenses": [
@@ -1497,12 +1497,12 @@
           "expression": "Apache-2.0"
         }
       ],
-      "name": "componentized:config-remap",
-      "purl": "pkg:oci/remap@sha256%3A2836933c5a61667d26eaacc0239be3857c2cd9ad5191de7cf277f68944a6a291?repository_url=ghcr.io/componentized/config/remap&tag=0.3.0-dev",
+      "name": "componentized:config-empty",
+      "purl": "pkg:oci/empty@sha256%3A850296680cebbb7fb92cab87b77784dc87283c7a071f83f38deb573638fa234f?repository_url=ghcr.io/componentized/config/empty&tag=0.3.0",
       "type": "library",
-      "version": "0.3.0-dev"
+      "version": "0.3.0"
     },
-    "timestamp": "2026-11-25T21:07:35Z",
+    "timestamp": "2026-11-25T21:22:58Z",
     "tools": {
       "components": [
         {

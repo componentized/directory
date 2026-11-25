@@ -1,49 +1,49 @@
 {
   "package": "componentized:config-overlay",
-  "version": "0.3.0-dev",
+  "version": "0.3.0",
   "kind": "component",
   "origin": "release",
   "oci": {
     "registry": "ghcr.io",
     "repository": "componentized/config/overlay",
-    "tag": "0.3.0-dev",
-    "digest": "sha256:9bca77894e5a32af8999dc7d5ed3c4f011d3100c55b92180ddb576be7cf4cf3f",
+    "tag": "0.3.0",
+    "digest": "sha256:824f28f5f2a4a7d8a26859a26ed668e96e4895577341d7bf1e9fa6e63c65004d",
     "layer_digest": "sha256:bbe27eb3f48b9823843a526a456d0afe7eedf7061aa1582bc0728b8bc6eb9402",
     "size": 34809,
     "signature": {
       "status": "verified",
-      "identity": "https://github.com/componentized/config/.github/workflows/ci.yaml@refs/heads/main",
+      "identity": "https://github.com/componentized/config/.github/workflows/ci.yaml@refs/tags/v0.3.0",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/config",
-      "git_ref": "refs/heads/main",
-      "log_index": 4111846828
+      "git_ref": "refs/tags/v0.3.0",
+      "log_index": 4112078553
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/config/overlay",
-    "tag": "0.3.0-dev_debug",
-    "digest": "sha256:9e2824987717411d74da8fec84ec0b3f69bb1a365ed59f2753392772a64fcb88",
+    "tag": "0.3.0_debug",
+    "digest": "sha256:53fcfb40ad19912a14514e114f512c9bf1cd48c7834fa0830b6c58b6b4c93701",
     "layer_digest": "sha256:7b2bbef407a41ee768c0226b3ca6ee36b624fe89cc4b5fdfa19de19b640ad113",
     "size": 121359,
     "signature": {
       "status": "verified",
-      "identity": "https://github.com/componentized/config/.github/workflows/ci.yaml@refs/heads/main",
+      "identity": "https://github.com/componentized/config/.github/workflows/ci.yaml@refs/tags/v0.3.0",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/config",
-      "git_ref": "refs/heads/main",
-      "log_index": 4111853837
+      "git_ref": "refs/tags/v0.3.0",
+      "log_index": 4112081958
     }
   },
-  "created": "2026-11-25T21:10:55.933283550Z",
+  "created": "2026-11-25T21:25:32.826238246Z",
   "annotations": {
     "org.opencontainers.image.description": "Combines value from two wasi:config/stores into a single store. The 'store' import is the base set of values, while the 'overlay' import, a mirror of the store interface, contributes additional values overriding in the case of a conflict.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "b1ee4d95ee4c020ab2ad795b6f5d9d5fc187fae8",
+    "org.opencontainers.image.revision": "cf4066bc2b16b44f1735c3cbd1b99422ffd4bcb6",
     "org.opencontainers.image.source": "https://github.com/componentized/config.git",
     "org.opencontainers.image.title": "componentized:config-overlay",
-    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/b1ee4d95ee4c020ab2ad795b6f5d9d5fc187fae8/components/overlay",
-    "org.opencontainers.image.version": "v0.3.0-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/cf4066bc2b16b44f1735c3cbd1b99422ffd4bcb6/components/overlay",
+    "org.opencontainers.image.version": "v0.3.0"
   },
   "imports": [
     "wasi:config/store@0.2.0-rc.1",
@@ -66,11 +66,11 @@
   ],
   "sbom": {
     "status": "verified",
-    "identity": "https://github.com/componentized/config/.github/workflows/ci.yaml@refs/heads/main",
+    "identity": "https://github.com/componentized/config/.github/workflows/ci.yaml@refs/tags/v0.3.0",
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/config",
-    "git_ref": "refs/heads/main",
-    "log_index": 4111848741
+    "git_ref": "refs/tags/v0.3.0",
+    "log_index": 4112079867
   },
-  "indexed_at": "2026-11-25T21:14:04Z"
+  "indexed_at": "2026-11-25T21:28:06Z"
 }
