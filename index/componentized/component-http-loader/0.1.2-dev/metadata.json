@@ -1,0 +1,80 @@
+{
+  "package": "componentized:component-http-loader",
+  "version": "0.1.2-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component/http-loader",
+    "tag": "0.1.2-dev",
+    "digest": "sha256:2aa8b1bc14f61d2b085b7a278719ff3785d16828c8d64d7789c37f11248941f6",
+    "layer_digest": "sha256:d9d9d81bb81afc469877ecde5e3cfcc3137182d9fd40c0a4215017be05fcc1ba",
+    "size": 72288,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/component/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/component",
+      "git_ref": "refs/heads/main",
+      "log_index": 4109185401
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component/http-loader",
+    "tag": "0.1.2-dev_debug",
+    "digest": "sha256:4641e2bf2c52592bc4b669b5efa5b9bf5093bf9d39f2faf6d3216fcfb739ebe9",
+    "layer_digest": "sha256:305d574617eaaa6a48f105cce7888ced965951f93f5c9b2bab14acf2db0eed78",
+    "size": 869171,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/component/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/component",
+      "git_ref": "refs/heads/main",
+      "log_index": 4109187407
+    }
+  },
+  "created": "2026-11-25T18:42:33.072855293Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Loads a component from an HTTP URL.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "d631194e2e87ff28a0ee7627cac181602802991f",
+    "org.opencontainers.image.source": "https://github.com/componentized/component.git",
+    "org.opencontainers.image.title": "componentized:component-http-loader",
+    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/d631194e2e87ff28a0ee7627cac181602802991f/components/http-loader",
+    "org.opencontainers.image.version": "v0.1.2-dev"
+  },
+  "imports": [
+    "componentized:component/types@0.1.2-dev",
+    "componentized:http/client@0.1.1"
+  ],
+  "exports": [
+    "componentized:component/path-loader@0.1.2-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:component",
+      "version": "0.1.2-dev"
+    },
+    {
+      "package": "componentized:http",
+      "version": "0.1.1"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:9f101cc8608fd91600734ff64ebf6802dec2d92ef17e691cbd053aa0755860aa",
+      "size": 325
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/component/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/component",
+    "git_ref": "refs/heads/main",
+    "log_index": 4109186193
+  },
+  "indexed_at": "2026-11-25T18:46:27Z"
+}
