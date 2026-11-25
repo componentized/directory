@@ -1,0 +1,47 @@
+{
+  "package": "componentized:cli",
+  "version": "0.2.2-dev",
+  "kind": "interface",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/cli",
+    "tag": "0.2.2-dev",
+    "digest": "sha256:999b19bb10d43313db19a2cc8580bb792a78ea919abad8b9d9544d5bef9a0e98",
+    "layer_digest": "sha256:229112dd42f0bd40964074b2ecaacb745ffd48469fcb8f8d443f781832c8da36",
+    "size": 498,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/cli/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/cli",
+      "git_ref": "refs/heads/main",
+      "log_index": 4112514913
+    }
+  },
+  "created": "2026-11-25T21:53:30.357819350Z",
+  "annotations": {
+    "org.opencontainers.image.description": "A collection of utility components that remix wasi:cli types and interfaces.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "5d6fa6692da24a9b042debb0576aec6bcd27a82c",
+    "org.opencontainers.image.source": "https://github.com/componentized/cli.git",
+    "org.opencontainers.image.title": "componentized:cli",
+    "org.opencontainers.image.url": "https://github.com/componentized/cli/tree/5d6fa6692da24a9b042debb0576aec6bcd27a82c",
+    "org.opencontainers.image.version": "v0.2.2-dev"
+  },
+  "dependencies": [
+    {
+      "package": "wasi:cli",
+      "version": "0.3.0"
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/cli/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/cli",
+    "git_ref": "refs/heads/main",
+    "log_index": 4112516577
+  },
+  "indexed_at": "2026-11-25T21:56:20Z"
+}

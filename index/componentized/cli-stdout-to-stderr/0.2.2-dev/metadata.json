@@ -1,0 +1,76 @@
+{
+  "package": "componentized:cli-stdout-to-stderr",
+  "version": "0.2.2-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/cli/stdout-to-stderr",
+    "tag": "0.2.2-dev",
+    "digest": "sha256:a3f6ff413292c64d502d3f957fdcd88c9fa415a8a5c9994d1525cc37b6a4b45f",
+    "layer_digest": "sha256:9dd5b980dbe663eae2dd7519161a026cb959355271daef57c8797d708c8649f1",
+    "size": 20545,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/cli/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/cli",
+      "git_ref": "refs/heads/main",
+      "log_index": 4112530297
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/cli/stdout-to-stderr",
+    "tag": "0.2.2-dev_debug",
+    "digest": "sha256:0a180b26fb05998666fb29ef09c947748590db000b4dcc9c3a7c772c7aaa6d0a",
+    "layer_digest": "sha256:56cfb2c72b7dbddd1d5b5e4931c9c1752b53f693e6b170fc3e81e44824681b09",
+    "size": 40496,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/cli/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/cli",
+      "git_ref": "refs/heads/main",
+      "log_index": 4112536230
+    }
+  },
+  "created": "2026-11-25T21:54:15.523140963Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Redirects stdout's output stream to stderr.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "5d6fa6692da24a9b042debb0576aec6bcd27a82c",
+    "org.opencontainers.image.source": "https://github.com/componentized/cli.git",
+    "org.opencontainers.image.title": "componentized:cli-stdout-to-stderr",
+    "org.opencontainers.image.url": "https://github.com/componentized/cli/tree/5d6fa6692da24a9b042debb0576aec6bcd27a82c/components/stdout-to-stderr",
+    "org.opencontainers.image.version": "v0.2.2-dev"
+  },
+  "imports": [
+    "wasi:cli/stderr@0.3.0",
+    "wasi:cli/types@0.3.0"
+  ],
+  "exports": [
+    "wasi:cli/stdout@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:cli",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:9581a59cbb2d5e0e5cbc4ad8b03235a904767b79dc0aa1c9495f598825a9df41",
+      "size": 232
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/cli/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/cli",
+    "git_ref": "refs/heads/main",
+    "log_index": 4112532267
+  },
+  "indexed_at": "2026-11-25T21:56:26Z"
+}
