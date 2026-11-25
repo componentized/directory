@@ -38,6 +38,7 @@
       "version": "0.2.0-rc.1"
     }
   ],
+  "release": "https://github.com/componentized/filesystem/releases/tag/v0.3.1",
   "parts": [
     {
       "digest": "sha256:f2123f4586b7e236968f11837839cfdf4af9c29001698aa1479c51934e47ac46",

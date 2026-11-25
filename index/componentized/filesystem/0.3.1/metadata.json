@@ -39,6 +39,7 @@
       "version": "0.3.0"
     }
   ],
+  "release": "https://github.com/componentized/filesystem/releases/tag/v0.3.1",
   "sbom": {
     "status": "verified",
     "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/tags/v0.3.1",

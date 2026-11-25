@@ -1563,13 +1563,13 @@
       "description": "Loads a component from a path.",
       "externalReferences": [
         {
-          "comment": "revision 7aa81c27bc7ae89a01378411f29d375764569397",
+          "comment": "revision 0392f4e110e5368b9d6b88daebd7cad3b6a28f3a",
           "type": "vcs",
           "url": "https://github.com/componentized/component.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/component/tree/7aa81c27bc7ae89a01378411f29d375764569397/components/path-loader"
+          "url": "https://github.com/componentized/component/tree/0392f4e110e5368b9d6b88daebd7cad3b6a28f3a/components/path-loader"
         }
       ],
       "hashes": [
@@ -1584,11 +1584,11 @@
         }
       ],
       "name": "componentized:component-path-loader",
-      "purl": "pkg:oci/path-loader@sha256%3Af752b3af9d75c2713ba9d27e751fe221a130f89d16b457796635b6d05465ddda?repository_url=ghcr.io/componentized/component/path-loader&tag=0.1.1-dev",
+      "purl": "pkg:oci/path-loader@sha256%3Ae09815ba96f19bc4a2e1b8df03fd471d2b0fecd6e5255fa6c7c8a861baab775f?repository_url=ghcr.io/componentized/component/path-loader&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-24T13:31:13Z",
+    "timestamp": "2026-11-25T14:38:04Z",
     "tools": {
       "components": [
         {

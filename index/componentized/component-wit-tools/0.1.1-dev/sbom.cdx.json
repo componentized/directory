@@ -1879,13 +1879,13 @@
       "description": "Extracts the WIT (Wasm Interface Type) from a component.",
       "externalReferences": [
         {
-          "comment": "revision 7aa81c27bc7ae89a01378411f29d375764569397",
+          "comment": "revision 0392f4e110e5368b9d6b88daebd7cad3b6a28f3a",
           "type": "vcs",
           "url": "https://github.com/componentized/component.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/component/tree/7aa81c27bc7ae89a01378411f29d375764569397/components/wit-tools"
+          "url": "https://github.com/componentized/component/tree/0392f4e110e5368b9d6b88daebd7cad3b6a28f3a/components/wit-tools"
         }
       ],
       "hashes": [
@@ -1900,11 +1900,11 @@
         }
       ],
       "name": "componentized:component-wit-tools",
-      "purl": "pkg:oci/wit-tools@sha256%3Ac99947c4e88896807605ae0356ba7afd2e0f91a202916156e4594d57dd1b5717?repository_url=ghcr.io/componentized/component/wit-tools&tag=0.1.1-dev",
+      "purl": "pkg:oci/wit-tools@sha256%3A87331ad342b2c0957d3943b6e3b62cd21b62726134eec29678394b09b144c077?repository_url=ghcr.io/componentized/component/wit-tools&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-24T13:31:13Z",
+    "timestamp": "2026-11-25T14:38:04Z",
     "tools": {
       "components": [
         {

@@ -71,6 +71,7 @@
       "version": "0.1.0-draft"
     }
   ],
+  "release": "https://github.com/componentized/filesystem/releases/tag/v0.3.1",
   "parts": [
     {
       "digest": "sha256:054c6a4d0f8ca68df9fa980f1e801e932abf366ba8e110f2c7783c3c1a0fc9f9",

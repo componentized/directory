@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/component/http-loader",
     "tag": "0.1.1-dev",
-    "digest": "sha256:5dd0495668394ffa72abe1d95659c5475f726e0f9320958b2fdbee16e8ba7d0f",
+    "digest": "sha256:fa4c12e72a205387c0600de20716e94efcb9d492039a6bb5a6974c926936d4a4",
     "layer_digest": "sha256:44c34ea90f054735aec9b845fabe9987dcf209d57097c695310e0d2696d68f2e",
     "size": 72288,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/component",
       "git_ref": "refs/heads/main",
-      "log_index": 4079104609
+      "log_index": 4104611457
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/component/http-loader",
     "tag": "0.1.1-dev_debug",
-    "digest": "sha256:e402f4284779a9f2fb56c5975f7299ed21546600a4317da3b80767578b3ede59",
+    "digest": "sha256:dabf8f64c19ea3559819fe0fd6860f0c35f2ff6925bcc57d4a5b6806c93c1cc6",
     "layer_digest": "sha256:db58792a69574767fe405f0b448a82d48bba7371b35a9cf1ca765a45299f2313",
     "size": 869171,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/component",
       "git_ref": "refs/heads/main",
-      "log_index": 4079107673
+      "log_index": 4104615355
     }
   },
-  "created": "2026-11-24T13:36:26.782853730Z",
+  "created": "2026-11-25T14:41:59.312931424Z",
   "annotations": {
     "org.opencontainers.image.description": "Loads a component from an HTTP URL.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "7aa81c27bc7ae89a01378411f29d375764569397",
+    "org.opencontainers.image.revision": "0392f4e110e5368b9d6b88daebd7cad3b6a28f3a",
     "org.opencontainers.image.source": "https://github.com/componentized/component.git",
     "org.opencontainers.image.title": "componentized:component-http-loader",
-    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/7aa81c27bc7ae89a01378411f29d375764569397/components/http-loader",
+    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/0392f4e110e5368b9d6b88daebd7cad3b6a28f3a/components/http-loader",
     "org.opencontainers.image.version": "v0.1.1-dev"
   },
   "imports": [
@@ -74,7 +74,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/component",
     "git_ref": "refs/heads/main",
-    "log_index": 4079105329
+    "log_index": 4104612568
   },
-  "indexed_at": "2026-11-24T13:38:39Z"
+  "indexed_at": "2026-11-25T14:45:35Z"
 }

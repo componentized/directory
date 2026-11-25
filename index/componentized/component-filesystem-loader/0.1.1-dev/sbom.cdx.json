@@ -1432,13 +1432,13 @@
       "description": "Loads a component from a filesystem path.",
       "externalReferences": [
         {
-          "comment": "revision 7aa81c27bc7ae89a01378411f29d375764569397",
+          "comment": "revision 0392f4e110e5368b9d6b88daebd7cad3b6a28f3a",
           "type": "vcs",
           "url": "https://github.com/componentized/component.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/component/tree/7aa81c27bc7ae89a01378411f29d375764569397/components/filesystem-loader"
+          "url": "https://github.com/componentized/component/tree/0392f4e110e5368b9d6b88daebd7cad3b6a28f3a/components/filesystem-loader"
         }
       ],
       "hashes": [
@@ -1453,11 +1453,11 @@
         }
       ],
       "name": "componentized:component-filesystem-loader",
-      "purl": "pkg:oci/filesystem-loader@sha256%3A4dc963f700e61992295497bb3c40592e2f5704629dba5bd848e72598c43bdcc5?repository_url=ghcr.io/componentized/component/filesystem-loader&tag=0.1.1-dev",
+      "purl": "pkg:oci/filesystem-loader@sha256%3A0bd19dd943e8d89f27b48a0576c846a2532e9615427bdb640e814becb1b132ae?repository_url=ghcr.io/componentized/component/filesystem-loader&tag=0.1.1-dev",
       "type": "library",
       "version": "0.1.1-dev"
     },
-    "timestamp": "2026-11-24T13:31:13Z",
+    "timestamp": "2026-11-25T14:38:04Z",
     "tools": {
       "components": [
         {
