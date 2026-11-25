@@ -1,0 +1,75 @@
+{
+  "package": "componentized:component-wit-tools",
+  "version": "0.1.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component/wit-tools",
+    "tag": "0.1.1",
+    "digest": "sha256:45a39cfc8aaca2abd74dda9d22a30f272be03c34b47554c5da36eaf538253571",
+    "layer_digest": "sha256:29e8fba1038d7f70293b5865225cb5ef770db3eb70b63e096b0519890ec9d1c9",
+    "size": 1763291,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/component/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/component",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4109169133
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component/wit-tools",
+    "tag": "0.1.1_debug",
+    "digest": "sha256:461078ddfee98286252d9fb271d9af69b6122b0ed7e342943a00745fb787e7bf",
+    "layer_digest": "sha256:605f0dad3dc790cc920d11374f9950ba2602498867c168a6e5677c38338dc6a9",
+    "size": 28902846,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/component/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/component",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4109174120
+    }
+  },
+  "created": "2026-11-25T18:41:31.553926603Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Extracts the WIT (Wasm Interface Type) from a component.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "0add52e45ee910e3d8d5eda2cd76ff68d82eae1b",
+    "org.opencontainers.image.source": "https://github.com/componentized/component.git",
+    "org.opencontainers.image.title": "componentized:component-wit-tools",
+    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/0add52e45ee910e3d8d5eda2cd76ff68d82eae1b/components/wit-tools",
+    "org.opencontainers.image.version": "v0.1.1"
+  },
+  "imports": [
+    "componentized:component/types@0.1.1"
+  ],
+  "exports": [
+    "componentized:component/wit@0.1.1"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:component",
+      "version": "0.1.1"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:d0fa2a73624d560362ce34f0623fbbd9b5a5caa1eae4dc19bb1ea9d6484e6694",
+      "size": 6000
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/component/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/component",
+    "git_ref": "refs/tags/v0.1.1",
+    "log_index": 4109170913
+  },
+  "indexed_at": "2026-11-25T18:44:17Z"
+}

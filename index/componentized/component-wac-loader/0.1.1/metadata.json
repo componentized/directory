@@ -1,0 +1,75 @@
+{
+  "package": "componentized:component-wac-loader",
+  "version": "0.1.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component/wac-loader",
+    "tag": "0.1.1",
+    "digest": "sha256:b66f6da2a81507b636ab9764b97563afaa3cb55f07aed262abaf38db57c89e7b",
+    "layer_digest": "sha256:b92dfe794cbe76d179402dd006f26e964fee67b202a6a5d362acc1f3a4bb333a",
+    "size": 1730673,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/component/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/component",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4109161746
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component/wac-loader",
+    "tag": "0.1.1_debug",
+    "digest": "sha256:21686eb164437be55682a8f86ef9b5934f80ea2390328bbab855d822844453c2",
+    "layer_digest": "sha256:014146b21e34eff553c962ae258cc27069a00c14d42cea1ca4a789c48a5a9c2d",
+    "size": 21164460,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/component/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/component",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4109165260
+    }
+  },
+  "created": "2026-11-25T18:41:04.960230986Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Compose a component from other components using wac.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "0add52e45ee910e3d8d5eda2cd76ff68d82eae1b",
+    "org.opencontainers.image.source": "https://github.com/componentized/component.git",
+    "org.opencontainers.image.title": "componentized:component-wac-loader",
+    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/0add52e45ee910e3d8d5eda2cd76ff68d82eae1b/components/wac-loader",
+    "org.opencontainers.image.version": "v0.1.1"
+  },
+  "imports": [
+    "componentized:component/types@0.1.1"
+  ],
+  "exports": [
+    "componentized:component/wac-loader@0.1.1"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:component",
+      "version": "0.1.1"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:58fd0f699af320250a6e1342b9d4a33a5f2174ab9c16b798b08917e91af12c0c",
+      "size": 636
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/component/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/component",
+    "git_ref": "refs/tags/v0.1.1",
+    "log_index": 4109162663
+  },
+  "indexed_at": "2026-11-25T18:44:08Z"
+}

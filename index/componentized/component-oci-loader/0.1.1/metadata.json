@@ -1,0 +1,86 @@
+{
+  "package": "componentized:component-oci-loader",
+  "version": "0.1.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component/oci-loader",
+    "tag": "0.1.1",
+    "digest": "sha256:1440f1d5128dad12962e2ede49ffd4688bbe495ea49fad4befd95dc755e138a9",
+    "layer_digest": "sha256:41fca97cd4cbdb2b07cd883496c9e84a608536970290b6830c804d46e50ea18b",
+    "size": 116887,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/component/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/component",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4109138243
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/component/oci-loader",
+    "tag": "0.1.1_debug",
+    "digest": "sha256:c77e9ab24fa807b1294ed95d55f814379b85c79f4bb66ac892b40ec3d26751a0",
+    "layer_digest": "sha256:762bb9de0c8d28211b65d9b557e7a701017b9553def865bcb8e3ef6951eac862",
+    "size": 1783292,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/component/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/component",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4109143424
+    }
+  },
+  "created": "2026-11-25T18:39:50.637175456Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Loads a component from an OCI registry by reference.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "0add52e45ee910e3d8d5eda2cd76ff68d82eae1b",
+    "org.opencontainers.image.source": "https://github.com/componentized/component.git",
+    "org.opencontainers.image.title": "componentized:component-oci-loader",
+    "org.opencontainers.image.url": "https://github.com/componentized/component/tree/0add52e45ee910e3d8d5eda2cd76ff68d82eae1b/components/oci-loader",
+    "org.opencontainers.image.version": "v0.1.1"
+  },
+  "imports": [
+    "componentized:component/types@0.1.1",
+    "componentized:oci/client@0.1.1",
+    "componentized:oci/media-types@0.1.1",
+    "wasi:clocks/system-clock@0.3.0"
+  ],
+  "exports": [
+    "componentized:component/path-loader@0.1.1"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:component",
+      "version": "0.1.1"
+    },
+    {
+      "package": "componentized:oci",
+      "version": "0.1.1"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:9f101cc8608fd91600734ff64ebf6802dec2d92ef17e691cbd053aa0755860aa",
+      "size": 325
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/component/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/component",
+    "git_ref": "refs/tags/v0.1.1",
+    "log_index": 4109139966
+  },
+  "indexed_at": "2026-11-25T18:43:40Z"
+}
