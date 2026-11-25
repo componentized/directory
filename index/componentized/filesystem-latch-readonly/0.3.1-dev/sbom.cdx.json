@@ -1849,13 +1849,13 @@
       "description": "Filesystem latch that denies operations which would mutate the filesystem.",
       "externalReferences": [
         {
-          "comment": "revision 9643257823b16f324c2b73dacbbfbdc12c7047eb",
+          "comment": "revision 0eac8f69b68553f4c811a24b61e8b7f39c44a2c3",
           "type": "vcs",
           "url": "https://github.com/componentized/filesystem.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/filesystem/tree/9643257823b16f324c2b73dacbbfbdc12c7047eb/components/latch-readonly"
+          "url": "https://github.com/componentized/filesystem/tree/0eac8f69b68553f4c811a24b61e8b7f39c44a2c3/components/latch-readonly"
         }
       ],
       "hashes": [
@@ -1870,11 +1870,11 @@
         }
       ],
       "name": "componentized:filesystem-latch-readonly",
-      "purl": "pkg:oci/latch-readonly@sha256%3A86af8d0cb49ea29516840b0d8861e3302a08e0b0ce866ecae33e1c2811e462d3?repository_url=ghcr.io/componentized/filesystem/latch-readonly&tag=0.3.1-dev",
+      "purl": "pkg:oci/latch-readonly@sha256%3A69506a26a15c4fd22d656dcd0e9eb984a703503595fe3f3658b835c19d00f1a8?repository_url=ghcr.io/componentized/filesystem/latch-readonly&tag=0.3.1-dev",
       "type": "library",
       "version": "0.3.1-dev"
     },
-    "timestamp": "2026-11-24T03:21:33Z",
+    "timestamp": "2026-11-25T03:19:23Z",
     "tools": {
       "components": [
         {

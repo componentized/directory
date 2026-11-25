@@ -7,42 +7,42 @@
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/trace",
     "tag": "0.3.1-dev",
-    "digest": "sha256:ec9c6db7f58bc1af2da74856d7393a5250c859a258e5c539c37f355ede7f02f7",
-    "layer_digest": "sha256:17eb048b891d67c510d613232aa75d17af0c1db954c58f3c242bf608f6b0c611",
-    "size": 296272,
+    "digest": "sha256:ade1557f2138aebb5186d379e30012be9bd738f6da91a83acef229f5db145d35",
+    "layer_digest": "sha256:5537ad093134d663fa528b782e1ffd907751930b4deabc7e0e02b0ba3104f0a3",
+    "size": 278645,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/filesystem",
       "git_ref": "refs/heads/main",
-      "log_index": 4068050874
+      "log_index": 4092130128
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/trace",
     "tag": "0.3.1-dev_debug",
-    "digest": "sha256:2095bd75b53ee8db5afaa8203caf8aa0fd3ff72b17ce8a5808e6d80f166801b2",
-    "layer_digest": "sha256:167edad453b33f0affe6ecc8d95d354fbeb61c77e86dcdeb0c9c77cc14d00bd5",
-    "size": 2867534,
+    "digest": "sha256:68c30516d1ff86c3a12e0da5f7cdff706fdaf92abddaa816f0481fb14d809865",
+    "layer_digest": "sha256:0638d551880fb35d55c93f539f94331f57346bb47d1dc99a4341979e4af45a09",
+    "size": 2820258,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/filesystem/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/filesystem",
       "git_ref": "refs/heads/main",
-      "log_index": 4068056490
+      "log_index": 4092132286
     }
   },
-  "created": "2026-11-24T03:33:52.986661147Z",
+  "created": "2026-11-25T03:32:12.095268776Z",
   "annotations": {
     "org.opencontainers.image.description": "Virtualizes the wasi:filesystem interfaces logging all method calls at the TRACE level and 'filesystem' component.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "9643257823b16f324c2b73dacbbfbdc12c7047eb",
+    "org.opencontainers.image.revision": "0eac8f69b68553f4c811a24b61e8b7f39c44a2c3",
     "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
     "org.opencontainers.image.title": "componentized:filesystem-trace",
-    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/9643257823b16f324c2b73dacbbfbdc12c7047eb/components/trace",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/0eac8f69b68553f4c811a24b61e8b7f39c44a2c3/components/trace",
     "org.opencontainers.image.version": "v0.3.1-dev"
   },
   "imports": [
@@ -85,7 +85,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/filesystem",
     "git_ref": "refs/heads/main",
-    "log_index": 4068052852
+    "log_index": 4092131009
   },
-  "indexed_at": "2026-11-24T03:36:39Z"
+  "indexed_at": "2026-11-25T03:36:05Z"
 }

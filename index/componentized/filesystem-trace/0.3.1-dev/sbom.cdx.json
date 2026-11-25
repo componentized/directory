@@ -23,34 +23,6 @@
       "version": "1.100.0"
     },
     {
-      "bom-ref": "git+https://github.com/chronotope/chrono.git?branch=0.5.x#chrono@0.5.0-alpha.1",
-      "description": "Date and time library for Rust",
-      "externalReferences": [
-        {
-          "type": "documentation",
-          "url": "https://docs.rs/chrono/"
-        },
-        {
-          "type": "website",
-          "url": "https://github.com/chronotope/chrono"
-        },
-        {
-          "type": "vcs",
-          "url": "https://github.com/chronotope/chrono"
-        }
-      ],
-      "licenses": [
-        {
-          "expression": "MIT OR Apache-2.0"
-        }
-      ],
-      "name": "chrono",
-      "purl": "pkg:cargo/chrono@0.5.0-alpha.1?vcs_url=git%2Bhttps://github.com/chronotope/chrono.git%4016c45fa8eab2c906ab50a70dea39949b28fdfb28",
-      "scope": "required",
-      "type": "library",
-      "version": "0.5.0-alpha.1"
-    },
-    {
       "authors": [
         {
           "email": "dtolnay@gmail.com",
@@ -550,6 +522,82 @@
       "scope": "excluded",
       "type": "library",
       "version": "1.0.18"
+    },
+    {
+      "authors": [
+        {
+          "email": "jamslam@gmail.com",
+          "name": "Andrew Gallant"
+        }
+      ],
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#jiff-core@1.0.2",
+      "description": "Low level datetime primitives for the Jiff library.",
+      "externalReferences": [
+        {
+          "type": "documentation",
+          "url": "https://docs.rs/jiff-core"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/BurntSushi/jiff/tree/master/crates/jiff-core"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/BurntSushi/jiff"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "d44c923edf2bf456a982253f1a9ee1f6e89e421dffd0065d9b9a581da0def58f"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Unlicense OR MIT"
+        }
+      ],
+      "name": "jiff-core",
+      "purl": "pkg:cargo/jiff-core@1.0.2",
+      "scope": "required",
+      "type": "library",
+      "version": "1.0.2"
+    },
+    {
+      "authors": [
+        {
+          "email": "jamslam@gmail.com",
+          "name": "Andrew Gallant"
+        }
+      ],
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#jiff@1.0.3",
+      "description": "A date-time library that encourages you to jump into the pit of success.  This library is heavily inspired by the Temporal project. ",
+      "externalReferences": [
+        {
+          "type": "documentation",
+          "url": "https://docs.rs/jiff"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/BurntSushi/jiff"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "107f2e89536b6818514025f6787b0d94d819e54fe3b40365275fc753de485b3f"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Unlicense OR MIT"
+        }
+      ],
+      "name": "jiff",
+      "purl": "pkg:cargo/jiff@1.0.3",
+      "scope": "required",
+      "type": "library",
+      "version": "1.0.3"
     },
     {
       "authors": [
@@ -1485,12 +1533,9 @@
       "ref": "component:componentized:filesystem-trace"
     },
     {
-      "ref": "git+https://github.com/chronotope/chrono.git?branch=0.5.x#chrono@0.5.0-alpha.1"
-    },
-    {
       "dependsOn": [
-        "git+https://github.com/chronotope/chrono.git?branch=0.5.x#chrono@0.5.0-alpha.1",
         "registry+https://github.com/rust-lang/crates.io-index#heck@0.5.0",
+        "registry+https://github.com/rust-lang/crates.io-index#jiff@1.0.3",
         "registry+https://github.com/rust-lang/crates.io-index#wit-bindgen@0.63.0"
       ],
       "ref": "path+file://./components/trace#0.1.0"
@@ -1573,6 +1618,20 @@
     },
     {
       "ref": "registry+https://github.com/rust-lang/crates.io-index#itoa@1.0.18"
+    },
+    {
+      "dependsOn": [
+        "registry+https://github.com/rust-lang/crates.io-index#log@0.4.34"
+      ],
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#jiff-core@1.0.2"
+    },
+    {
+      "dependsOn": [
+        "registry+https://github.com/rust-lang/crates.io-index#jiff-core@1.0.2",
+        "registry+https://github.com/rust-lang/crates.io-index#log@0.4.34",
+        "registry+https://github.com/rust-lang/crates.io-index#serde_core@1.0.229"
+      ],
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#jiff@1.0.3"
     },
     {
       "ref": "registry+https://github.com/rust-lang/crates.io-index#leb128fmt@0.1.0"
@@ -1773,19 +1832,19 @@
       "description": "Virtualizes the wasi:filesystem interfaces logging all method calls at the TRACE level and 'filesystem' component.",
       "externalReferences": [
         {
-          "comment": "revision 9643257823b16f324c2b73dacbbfbdc12c7047eb",
+          "comment": "revision 0eac8f69b68553f4c811a24b61e8b7f39c44a2c3",
           "type": "vcs",
           "url": "https://github.com/componentized/filesystem.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/filesystem/tree/9643257823b16f324c2b73dacbbfbdc12c7047eb/components/trace"
+          "url": "https://github.com/componentized/filesystem/tree/0eac8f69b68553f4c811a24b61e8b7f39c44a2c3/components/trace"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "17eb048b891d67c510d613232aa75d17af0c1db954c58f3c242bf608f6b0c611"
+          "content": "5537ad093134d663fa528b782e1ffd907751930b4deabc7e0e02b0ba3104f0a3"
         }
       ],
       "licenses": [
@@ -1794,11 +1853,11 @@
         }
       ],
       "name": "componentized:filesystem-trace",
-      "purl": "pkg:oci/trace@sha256%3Aec9c6db7f58bc1af2da74856d7393a5250c859a258e5c539c37f355ede7f02f7?repository_url=ghcr.io/componentized/filesystem/trace&tag=0.3.1-dev",
+      "purl": "pkg:oci/trace@sha256%3Aade1557f2138aebb5186d379e30012be9bd738f6da91a83acef229f5db145d35?repository_url=ghcr.io/componentized/filesystem/trace&tag=0.3.1-dev",
       "type": "library",
       "version": "0.3.1-dev"
     },
-    "timestamp": "2026-11-24T03:21:33Z",
+    "timestamp": "2026-11-25T03:19:23Z",
     "tools": {
       "components": [
         {
