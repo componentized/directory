@@ -2,17 +2,6 @@
   "bomFormat": "CycloneDX",
   "components": [
     {
-      "bom-ref": "component:componentized:logging-to-stdout",
-      "hashes": [
-        {
-          "alg": "SHA-256",
-          "content": "e8b5d5486d25d71717307d50088adc3851cdef5ae3de71d3d572a41215808ee5"
-        }
-      ],
-      "name": "componentized:logging-to-stdout",
-      "type": "library"
-    },
-    {
       "bom-ref": "path+file://./components/to-stdout#0.1.0",
       "licenses": [
         {
@@ -24,6 +13,14 @@
       "scope": "required",
       "type": "library",
       "version": "0.1.0"
+    },
+    {
+      "bom-ref": "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-unknown-unknown",
+      "description": "the Rust standard library for wasm32-unknown-unknown",
+      "name": "rust-std",
+      "purl": "pkg:github/rust-lang/rust@0ef1bc386059596dada8fb65b50425aab2ea637a",
+      "type": "library",
+      "version": "1.100.0"
     },
     {
       "authors": [
@@ -1309,23 +1306,9 @@
       "scope": "excluded",
       "type": "library",
       "version": "0.262.0"
-    },
-    {
-      "bom-ref": "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-unknown-unknown",
-      "description": "the Rust standard library for wasm32-unknown-unknown",
-      "name": "rust-std",
-      "purl": "pkg:github/rust-lang/rust@0ef1bc386059596dada8fb65b50425aab2ea637a",
-      "type": "library",
-      "version": "1.100.0"
     }
   ],
   "dependencies": [
-    {
-      "dependsOn": [
-        "component:componentized:logging-to-stdout"
-      ],
-      "ref": "component:componentized:logging-to-stderr"
-    },
     {
       "dependsOn": [
         "path+file://./components/to-stdout#0.1.0",
@@ -1586,23 +1569,23 @@
   ],
   "metadata": {
     "component": {
-      "bom-ref": "component:componentized:logging-to-stderr",
-      "description": "Implements wasi:logging/logging@0.1.0-draft writing log statements to stderr via wasi:cli/stderr@0.3.0. A composition of [`to-stdout`](../to-stdout/) with its wasi:cli/stdout@0.3.0 import satisfied by wasi:cli/stderr@0.3.0.",
+      "bom-ref": "component:componentized:logging-to-stdout",
+      "description": "Implements wasi:logging/logging@0.1.0-draft writing log statements to stdout via wasi:cli/stdout@0.2.3. Timestamps for each log statement are generated from wasi:clocks/wall-clock@0.2.3.",
       "externalReferences": [
         {
-          "comment": "revision f49a8d7784fb94c28a8a5651c0b3aa34958dd742",
+          "comment": "revision 0c9583c91411ce63cb81f25ad8491c9368235741",
           "type": "vcs",
           "url": "https://github.com/componentized/logging.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/logging/tree/f49a8d7784fb94c28a8a5651c0b3aa34958dd742/components/to-stderr"
+          "url": "https://github.com/componentized/logging/tree/0c9583c91411ce63cb81f25ad8491c9368235741/components/to-stdout"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "5fb61e6010c7ff3691bcff68a939ed5d6ec8576be096f1102dbd5d86993b873f"
+          "content": "e8b5d5486d25d71717307d50088adc3851cdef5ae3de71d3d572a41215808ee5"
         }
       ],
       "licenses": [
@@ -1610,12 +1593,12 @@
           "expression": "Apache-2.0"
         }
       ],
-      "name": "componentized:logging-to-stderr",
-      "purl": "pkg:oci/to-stderr@sha256%3A22e5fca2124d48fe8f323657a7a284a38d83106c75ca83b99f24671a13a3c317?repository_url=ghcr.io/componentized/logging/to-stderr&tag=0.3.2-dev",
+      "name": "componentized:logging-to-stdout",
+      "purl": "pkg:oci/to-stdout@sha256%3A0d32b4738ed0a943bc6489224d2260b65e581f8b101923fc187b477320168a2b?repository_url=ghcr.io/componentized/logging/to-stdout&tag=0.3.2",
       "type": "library",
-      "version": "0.3.2-dev"
+      "version": "0.3.2"
     },
-    "timestamp": "2026-11-24T13:52:07Z",
+    "timestamp": "2026-11-26T12:24:38Z",
     "tools": {
       "components": [
         {

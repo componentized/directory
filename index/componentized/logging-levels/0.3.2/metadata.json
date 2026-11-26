@@ -1,49 +1,49 @@
 {
   "package": "componentized:logging-levels",
-  "version": "0.3.2-dev",
+  "version": "0.3.2",
   "kind": "component",
   "origin": "release",
   "oci": {
     "registry": "ghcr.io",
     "repository": "componentized/logging/levels",
-    "tag": "0.3.2-dev",
-    "digest": "sha256:5bf6b2885bdf7c7fdd6f9ea65a23491118651822d76700a16e703a829938d32d",
+    "tag": "0.3.2",
+    "digest": "sha256:42e40504204133e5ba200dbec5adb4194f888da59996bd11bb6515bc86ccc0a0",
     "layer_digest": "sha256:b52655d1f83ddd12d2e89310d5d3b9ec761adc533bbd6f587553828e1286c8ae",
     "size": 50410,
     "signature": {
       "status": "verified",
-      "identity": "https://github.com/componentized/logging/.github/workflows/ci.yaml@refs/heads/main",
+      "identity": "https://github.com/componentized/logging/.github/workflows/ci.yaml@refs/tags/v0.3.2",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/logging",
-      "git_ref": "refs/heads/main",
-      "log_index": 4079442248
+      "git_ref": "refs/tags/v0.3.2",
+      "log_index": 4125930644
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/logging/levels",
-    "tag": "0.3.2-dev_debug",
-    "digest": "sha256:356f614512d79b5712608eabd746b7ae0039bff9fad32a691805134a60e7d352",
+    "tag": "0.3.2_debug",
+    "digest": "sha256:3cc4220fbd4ebfd428226bd1d39f7d43faf2f17a642416c2c7ffdfb7e470fca2",
     "layer_digest": "sha256:8edceaa75ae3bb38cb16873ddc19087675e41fc5cc9a193a0e6b83344d10ac26",
     "size": 118671,
     "signature": {
       "status": "verified",
-      "identity": "https://github.com/componentized/logging/.github/workflows/ci.yaml@refs/heads/main",
+      "identity": "https://github.com/componentized/logging/.github/workflows/ci.yaml@refs/tags/v0.3.2",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/logging",
-      "git_ref": "refs/heads/main",
-      "log_index": 4079449051
+      "git_ref": "refs/tags/v0.3.2",
+      "log_index": 4125933660
     }
   },
-  "created": "2026-11-24T13:53:35.692777927Z",
+  "created": "2026-11-26T12:26:08.464695350Z",
   "annotations": {
     "org.opencontainers.image.description": "Virtual logger that selectively emits log events based on the context and level.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "f49a8d7784fb94c28a8a5651c0b3aa34958dd742",
+    "org.opencontainers.image.revision": "0c9583c91411ce63cb81f25ad8491c9368235741",
     "org.opencontainers.image.source": "https://github.com/componentized/logging.git",
     "org.opencontainers.image.title": "componentized:logging-levels",
-    "org.opencontainers.image.url": "https://github.com/componentized/logging/tree/f49a8d7784fb94c28a8a5651c0b3aa34958dd742/components/levels",
-    "org.opencontainers.image.version": "v0.3.2-dev"
+    "org.opencontainers.image.url": "https://github.com/componentized/logging/tree/0c9583c91411ce63cb81f25ad8491c9368235741/components/levels",
+    "org.opencontainers.image.version": "v0.3.2"
   },
   "imports": [
     "wasi:config/store@0.2.0-rc.1",
@@ -70,11 +70,11 @@
   ],
   "sbom": {
     "status": "verified",
-    "identity": "https://github.com/componentized/logging/.github/workflows/ci.yaml@refs/heads/main",
+    "identity": "https://github.com/componentized/logging/.github/workflows/ci.yaml@refs/tags/v0.3.2",
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/logging",
-    "git_ref": "refs/heads/main",
-    "log_index": 4079444962
+    "git_ref": "refs/tags/v0.3.2",
+    "log_index": 4125931979
   },
-  "indexed_at": "2026-11-24T13:56:08Z"
+  "indexed_at": "2026-11-26T12:28:35Z"
 }

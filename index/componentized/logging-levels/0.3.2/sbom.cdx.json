@@ -2,14 +2,14 @@
   "bomFormat": "CycloneDX",
   "components": [
     {
-      "bom-ref": "path+file://./components/to-stdout#0.1.0",
+      "bom-ref": "path+file://./components/levels#0.1.0",
       "licenses": [
         {
           "expression": "Apache-2.0"
         }
       ],
-      "name": "to-stdout",
-      "purl": "pkg:cargo/to-stdout@0.1.0?download_url=file://.",
+      "name": "levels",
+      "purl": "pkg:cargo/levels@0.1.0?download_url=file://.",
       "scope": "required",
       "type": "library",
       "version": "0.1.0"
@@ -318,82 +318,6 @@
       "scope": "excluded",
       "type": "library",
       "version": "1.0.14"
-    },
-    {
-      "authors": [
-        {
-          "email": "jamslam@gmail.com",
-          "name": "Andrew Gallant"
-        }
-      ],
-      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#jiff-core@1.0.1",
-      "description": "Low level datetime primitives for the Jiff library.",
-      "externalReferences": [
-        {
-          "type": "documentation",
-          "url": "https://docs.rs/jiff-core"
-        },
-        {
-          "type": "website",
-          "url": "https://github.com/BurntSushi/jiff/tree/master/crates/jiff-core"
-        },
-        {
-          "type": "vcs",
-          "url": "https://github.com/BurntSushi/jiff"
-        }
-      ],
-      "hashes": [
-        {
-          "alg": "SHA-256",
-          "content": "b6b46a105a9874634dd96231021526bf24ca04955a5998c59a9c7666e634b7b8"
-        }
-      ],
-      "licenses": [
-        {
-          "expression": "Unlicense OR MIT"
-        }
-      ],
-      "name": "jiff-core",
-      "purl": "pkg:cargo/jiff-core@1.0.1",
-      "scope": "required",
-      "type": "library",
-      "version": "1.0.1"
-    },
-    {
-      "authors": [
-        {
-          "email": "jamslam@gmail.com",
-          "name": "Andrew Gallant"
-        }
-      ],
-      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#jiff@1.0.2",
-      "description": "A date-time library that encourages you to jump into the pit of success.  This library is heavily inspired by the Temporal project. ",
-      "externalReferences": [
-        {
-          "type": "documentation",
-          "url": "https://docs.rs/jiff"
-        },
-        {
-          "type": "vcs",
-          "url": "https://github.com/BurntSushi/jiff"
-        }
-      ],
-      "hashes": [
-        {
-          "alg": "SHA-256",
-          "content": "c5e77cbfb9fff4798e283c2d69dff39fc2c45e7da017e5ce95b654e46ea41236"
-        }
-      ],
-      "licenses": [
-        {
-          "expression": "Unlicense OR MIT"
-        }
-      ],
-      "name": "jiff",
-      "purl": "pkg:cargo/jiff@1.0.2",
-      "scope": "required",
-      "type": "library",
-      "version": "1.0.2"
     },
     {
       "authors": [
@@ -1311,17 +1235,16 @@
   "dependencies": [
     {
       "dependsOn": [
-        "path+file://./components/to-stdout#0.1.0",
+        "path+file://./components/levels#0.1.0",
         "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-unknown-unknown"
       ],
-      "ref": "component:componentized:logging-to-stdout"
+      "ref": "component:componentized:logging-levels"
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#jiff@1.0.2",
         "registry+https://github.com/rust-lang/crates.io-index#wit-bindgen@0.63.0"
       ],
-      "ref": "path+file://./components/to-stdout#0.1.0"
+      "ref": "path+file://./components/levels#0.1.0"
     },
     {
       "ref": "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105"
@@ -1358,20 +1281,6 @@
     },
     {
       "ref": "registry+https://github.com/rust-lang/crates.io-index#itoa@1.0.14"
-    },
-    {
-      "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#log@0.4.35"
-      ],
-      "ref": "registry+https://github.com/rust-lang/crates.io-index#jiff-core@1.0.1"
-    },
-    {
-      "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#jiff-core@1.0.1",
-        "registry+https://github.com/rust-lang/crates.io-index#log@0.4.35",
-        "registry+https://github.com/rust-lang/crates.io-index#serde_core@1.0.228"
-      ],
-      "ref": "registry+https://github.com/rust-lang/crates.io-index#jiff@1.0.2"
     },
     {
       "ref": "registry+https://github.com/rust-lang/crates.io-index#leb128fmt@0.1.0"
@@ -1569,23 +1478,23 @@
   ],
   "metadata": {
     "component": {
-      "bom-ref": "component:componentized:logging-to-stdout",
-      "description": "Implements wasi:logging/logging@0.1.0-draft writing log statements to stdout via wasi:cli/stdout@0.2.3. Timestamps for each log statement are generated from wasi:clocks/wall-clock@0.2.3.",
+      "bom-ref": "component:componentized:logging-levels",
+      "description": "Virtual logger that selectively emits log events based on the context and level.",
       "externalReferences": [
         {
-          "comment": "revision f49a8d7784fb94c28a8a5651c0b3aa34958dd742",
+          "comment": "revision 0c9583c91411ce63cb81f25ad8491c9368235741",
           "type": "vcs",
           "url": "https://github.com/componentized/logging.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/logging/tree/f49a8d7784fb94c28a8a5651c0b3aa34958dd742/components/to-stdout"
+          "url": "https://github.com/componentized/logging/tree/0c9583c91411ce63cb81f25ad8491c9368235741/components/levels"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "e8b5d5486d25d71717307d50088adc3851cdef5ae3de71d3d572a41215808ee5"
+          "content": "b52655d1f83ddd12d2e89310d5d3b9ec761adc533bbd6f587553828e1286c8ae"
         }
       ],
       "licenses": [
@@ -1593,12 +1502,12 @@
           "expression": "Apache-2.0"
         }
       ],
-      "name": "componentized:logging-to-stdout",
-      "purl": "pkg:oci/to-stdout@sha256%3A694704589c37600ae3680e09b7aa94b0cd5a35d97d7af63b44e5e293f6c6a77e?repository_url=ghcr.io/componentized/logging/to-stdout&tag=0.3.2-dev",
+      "name": "componentized:logging-levels",
+      "purl": "pkg:oci/levels@sha256%3A42e40504204133e5ba200dbec5adb4194f888da59996bd11bb6515bc86ccc0a0?repository_url=ghcr.io/componentized/logging/levels&tag=0.3.2",
       "type": "library",
-      "version": "0.3.2-dev"
+      "version": "0.3.2"
     },
-    "timestamp": "2026-11-24T13:52:07Z",
+    "timestamp": "2026-11-26T12:24:38Z",
     "tools": {
       "components": [
         {
