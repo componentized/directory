@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/http/latch-deny-all",
     "tag": "0.1.2-dev",
-    "digest": "sha256:fc98baf778396f60faf7c23e1b656fca263fa2ad03ac00c4ddf8926c25ef1b72",
+    "digest": "sha256:955030114f84bfb80d65d51bd5d64a782ed5c5d44f5efbfb7d0b1e42079017b4",
     "layer_digest": "sha256:8264d87dbc8e82effac6ecd7fa88234ed626b4df16e252f5eab383dd21988b31",
     "size": 27216,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 4087792887
+      "log_index": 4116929222
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/http/latch-deny-all",
     "tag": "0.1.2-dev_debug",
-    "digest": "sha256:5574ac4bf5e25a6826f8f6d5c5b654b6a32ebf531e29975bd45570a25f9d78e2",
+    "digest": "sha256:888468b0d675fd30256d140c1e38d6a2e69420dd46ebd16407ed01189b6fb472",
     "layer_digest": "sha256:85914728ea1f4a5cb6e9400da12d2a073385e25db4ba7b7cae9adb8ffd7c746c",
     "size": 89854,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 4087795175
+      "log_index": 4116932364
     }
   },
-  "created": "2026-11-24T22:46:30.990393888Z",
+  "created": "2026-11-26T03:09:22.544802159Z",
   "annotations": {
     "org.opencontainers.image.description": "HTTP latch that denies every request with `http-request-denied`.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "2d8a9aec694e8b9eed56e13eb523e1bf51e4612b",
+    "org.opencontainers.image.revision": "45b8669dbefc29bf257c56c0f3e0a59706cdaa59",
     "org.opencontainers.image.source": "https://github.com/componentized/http.git",
     "org.opencontainers.image.title": "componentized:http-latch-deny-all",
-    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/2d8a9aec694e8b9eed56e13eb523e1bf51e4612b/components/latch-deny-all",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/45b8669dbefc29bf257c56c0f3e0a59706cdaa59/components/latch-deny-all",
     "org.opencontainers.image.version": "v0.1.2-dev"
   },
   "imports": [
@@ -73,7 +73,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/http",
     "git_ref": "refs/heads/main",
-    "log_index": 4087793718
+    "log_index": 4116930180
   },
-  "indexed_at": "2026-11-24T22:58:15Z"
+  "indexed_at": "2026-11-26T03:20:25Z"
 }

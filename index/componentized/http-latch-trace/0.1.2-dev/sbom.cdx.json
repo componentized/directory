@@ -1458,13 +1458,13 @@
       "description": "HTTP latch that wraps another latch, logging each decision it makes without changing it.",
       "externalReferences": [
         {
-          "comment": "revision 2d8a9aec694e8b9eed56e13eb523e1bf51e4612b",
+          "comment": "revision 45b8669dbefc29bf257c56c0f3e0a59706cdaa59",
           "type": "vcs",
           "url": "https://github.com/componentized/http.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/http/tree/2d8a9aec694e8b9eed56e13eb523e1bf51e4612b/components/latch-trace"
+          "url": "https://github.com/componentized/http/tree/45b8669dbefc29bf257c56c0f3e0a59706cdaa59/components/latch-trace"
         }
       ],
       "hashes": [
@@ -1479,11 +1479,11 @@
         }
       ],
       "name": "componentized:http-latch-trace",
-      "purl": "pkg:oci/latch-trace@sha256%3Aa916e78819e764ce2cd02e07716d3b0e2029eeea506d0c1b4ecf16868d3f9bfc?repository_url=ghcr.io/componentized/http/latch-trace&tag=0.1.2-dev",
+      "purl": "pkg:oci/latch-trace@sha256%3A524b68733f0e29df39e01d7685e87e849012bea396c1a09c49d8c998f994cec4?repository_url=ghcr.io/componentized/http/latch-trace&tag=0.1.2-dev",
       "type": "library",
       "version": "0.1.2-dev"
     },
-    "timestamp": "2026-11-24T22:37:03Z",
+    "timestamp": "2026-11-26T03:01:21Z",
     "tools": {
       "components": [
         {

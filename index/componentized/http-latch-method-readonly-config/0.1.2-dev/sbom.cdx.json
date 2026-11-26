@@ -27,13 +27,13 @@
       "description": "Config for `latch-method` that denies every request method except GET, HEAD, QUERY and OPTIONS.",
       "externalReferences": [
         {
-          "comment": "revision 2d8a9aec694e8b9eed56e13eb523e1bf51e4612b",
+          "comment": "revision 45b8669dbefc29bf257c56c0f3e0a59706cdaa59",
           "type": "vcs",
           "url": "https://github.com/componentized/http.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/http/tree/2d8a9aec694e8b9eed56e13eb523e1bf51e4612b/components/latch-method-readonly-config"
+          "url": "https://github.com/componentized/http/tree/45b8669dbefc29bf257c56c0f3e0a59706cdaa59/components/latch-method-readonly-config"
         }
       ],
       "hashes": [
@@ -48,11 +48,11 @@
         }
       ],
       "name": "componentized:http-latch-method-readonly-config",
-      "purl": "pkg:oci/latch-method-readonly-config@sha256%3A45304b8ffb640aed9894d9c2182c1c94df1a6ba81bddc696b262b6c9b6826677?repository_url=ghcr.io/componentized/http/latch-method-readonly-config&tag=0.1.2-dev",
+      "purl": "pkg:oci/latch-method-readonly-config@sha256%3Ac5b240d2f858ecd6bb6274fc5a0775e3b2d13381dcd276610136a7420fa7d2d8?repository_url=ghcr.io/componentized/http/latch-method-readonly-config&tag=0.1.2-dev",
       "type": "library",
       "version": "0.1.2-dev"
     },
-    "timestamp": "2026-11-24T22:37:03Z",
+    "timestamp": "2026-11-26T03:01:21Z",
     "tools": {
       "components": [
         {

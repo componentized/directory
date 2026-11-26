@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/http/trace",
     "tag": "0.1.2-dev",
-    "digest": "sha256:a1e4ec7be57830f2f13bb2c208bee58b0246d98b987d597d9ce849caa7932e96",
+    "digest": "sha256:befd19b5d89ee3c19cc2297719a94ec51d23ff2797430b85f9ad938b5a80cded",
     "layer_digest": "sha256:1a18b610c46ef5b5d6a2173cb8aedaa0fac74d007cbedb398ec0ecabc12bd9d9",
     "size": 191596,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 4087858815
+      "log_index": 4117049310
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/http/trace",
     "tag": "0.1.2-dev_debug",
-    "digest": "sha256:a9116ec6a4c136323202e63bf34c0656f313d190c6fe41f4285f4123f1b3e504",
+    "digest": "sha256:c9ba5a5cf6eacef2fd29ef2332aa54f5705b0f0ff1ceb97794213c67774bdd7e",
     "layer_digest": "sha256:b51c509a1ab022e046e8598baf34dc0c457f8b4eb549cda1fd10c9949017d551",
     "size": 747801,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/http",
       "git_ref": "refs/heads/main",
-      "log_index": 4087861689
+      "log_index": 4117057109
     }
   },
-  "created": "2026-11-24T22:53:35.878926617Z",
+  "created": "2026-11-26T03:15:50.608946048Z",
   "annotations": {
     "org.opencontainers.image.description": "Virtualizes the wasi:http/types, wasi:http/client and wasi:http/handler interfaces logging all method calls at the TRACE level and 'componentized-trace' component.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "2d8a9aec694e8b9eed56e13eb523e1bf51e4612b",
+    "org.opencontainers.image.revision": "45b8669dbefc29bf257c56c0f3e0a59706cdaa59",
     "org.opencontainers.image.source": "https://github.com/componentized/http.git",
     "org.opencontainers.image.title": "componentized:http-trace",
-    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/2d8a9aec694e8b9eed56e13eb523e1bf51e4612b/components/trace",
+    "org.opencontainers.image.url": "https://github.com/componentized/http/tree/45b8669dbefc29bf257c56c0f3e0a59706cdaa59/components/trace",
     "org.opencontainers.image.version": "v0.1.2-dev"
   },
   "imports": [
@@ -91,7 +91,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/http",
     "git_ref": "refs/heads/main",
-    "log_index": 4087859725
+    "log_index": 4117051655
   },
-  "indexed_at": "2026-11-24T22:59:54Z"
+  "indexed_at": "2026-11-26T03:22:03Z"
 }

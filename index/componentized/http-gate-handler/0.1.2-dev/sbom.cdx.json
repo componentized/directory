@@ -1439,13 +1439,13 @@
       "description": "HTTP gate access control for requests handled with `wasi:http/handler`.",
       "externalReferences": [
         {
-          "comment": "revision 2d8a9aec694e8b9eed56e13eb523e1bf51e4612b",
+          "comment": "revision 45b8669dbefc29bf257c56c0f3e0a59706cdaa59",
           "type": "vcs",
           "url": "https://github.com/componentized/http.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/http/tree/2d8a9aec694e8b9eed56e13eb523e1bf51e4612b/components/gate-handler"
+          "url": "https://github.com/componentized/http/tree/45b8669dbefc29bf257c56c0f3e0a59706cdaa59/components/gate-handler"
         }
       ],
       "hashes": [
@@ -1460,11 +1460,11 @@
         }
       ],
       "name": "componentized:http-gate-handler",
-      "purl": "pkg:oci/gate-handler@sha256%3A2167eb7c8ad7012aa7b00e3e0843da85f9d21c993eee5d5fae61cfc82ed9b2cc?repository_url=ghcr.io/componentized/http/gate-handler&tag=0.1.2-dev",
+      "purl": "pkg:oci/gate-handler@sha256%3A1298ff089f00c2e78368bbccb03ecca3f83586b8f21e562d61c392f8551ea849?repository_url=ghcr.io/componentized/http/gate-handler&tag=0.1.2-dev",
       "type": "library",
       "version": "0.1.2-dev"
     },
-    "timestamp": "2026-11-24T22:37:03Z",
+    "timestamp": "2026-11-26T03:01:21Z",
     "tools": {
       "components": [
         {

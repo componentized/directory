@@ -1474,13 +1474,13 @@
       "description": "Virtualizes the wasi:http/types, wasi:http/client and wasi:http/handler interfaces logging all method calls at the TRACE level and 'componentized-trace' component.",
       "externalReferences": [
         {
-          "comment": "revision 2d8a9aec694e8b9eed56e13eb523e1bf51e4612b",
+          "comment": "revision 45b8669dbefc29bf257c56c0f3e0a59706cdaa59",
           "type": "vcs",
           "url": "https://github.com/componentized/http.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/http/tree/2d8a9aec694e8b9eed56e13eb523e1bf51e4612b/components/trace"
+          "url": "https://github.com/componentized/http/tree/45b8669dbefc29bf257c56c0f3e0a59706cdaa59/components/trace"
         }
       ],
       "hashes": [
@@ -1495,11 +1495,11 @@
         }
       ],
       "name": "componentized:http-trace",
-      "purl": "pkg:oci/trace@sha256%3Aa1e4ec7be57830f2f13bb2c208bee58b0246d98b987d597d9ce849caa7932e96?repository_url=ghcr.io/componentized/http/trace&tag=0.1.2-dev",
+      "purl": "pkg:oci/trace@sha256%3Abefd19b5d89ee3c19cc2297719a94ec51d23ff2797430b85f9ad938b5a80cded?repository_url=ghcr.io/componentized/http/trace&tag=0.1.2-dev",
       "type": "library",
       "version": "0.1.2-dev"
     },
-    "timestamp": "2026-11-24T22:37:03Z",
+    "timestamp": "2026-11-26T03:01:21Z",
     "tools": {
       "components": [
         {
