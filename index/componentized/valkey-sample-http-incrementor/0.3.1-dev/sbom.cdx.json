@@ -1800,13 +1800,13 @@
       "description": "Sample component that exposes `wasi:http` incrementing a counter based on the http path.",
       "externalReferences": [
         {
-          "comment": "revision f8c4a65226b4b9332a2605ace8abe084059ffdf8",
+          "comment": "revision 55420b9589743c7ce57e318af1c81a368fdf9914",
           "type": "vcs",
           "url": "https://github.com/componentized/valkey.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/valkey/tree/f8c4a65226b4b9332a2605ace8abe084059ffdf8/components/sample-http-incrementor"
+          "url": "https://github.com/componentized/valkey/tree/55420b9589743c7ce57e318af1c81a368fdf9914/components/sample-http-incrementor"
         }
       ],
       "hashes": [
@@ -1821,11 +1821,11 @@
         }
       ],
       "name": "componentized:valkey-sample-http-incrementor",
-      "purl": "pkg:oci/sample-http-incrementor@sha256%3A54c0a73d16623a4d79227fd8b21870af9909a7c1861fcf9ebd24efbe1fe18313?repository_url=ghcr.io/componentized/valkey/sample-http-incrementor&tag=0.3.1-dev",
+      "purl": "pkg:oci/sample-http-incrementor@sha256%3A36b75e4076361f148093e228b4f77b08a792a7f525d0ab183ea52e355e59247d?repository_url=ghcr.io/componentized/valkey/sample-http-incrementor&tag=0.3.1-dev",
       "type": "library",
       "version": "0.3.1-dev"
     },
-    "timestamp": "2026-11-24T02:41:52Z",
+    "timestamp": "2026-11-26T03:00:31Z",
     "tools": {
       "components": [
         {

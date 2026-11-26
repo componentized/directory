@@ -27,13 +27,13 @@
       "description": "The keys of the `tcp-connector` config and their defaults, as constants.",
       "externalReferences": [
         {
-          "comment": "revision f8c4a65226b4b9332a2605ace8abe084059ffdf8",
+          "comment": "revision 55420b9589743c7ce57e318af1c81a368fdf9914",
           "type": "vcs",
           "url": "https://github.com/componentized/valkey.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/valkey/tree/f8c4a65226b4b9332a2605ace8abe084059ffdf8/components/tcp-connector-constants"
+          "url": "https://github.com/componentized/valkey/tree/55420b9589743c7ce57e318af1c81a368fdf9914/components/tcp-connector-constants"
         }
       ],
       "hashes": [
@@ -48,11 +48,11 @@
         }
       ],
       "name": "componentized:valkey-tcp-connector-constants",
-      "purl": "pkg:oci/tcp-connector-constants@sha256%3Ad6abde4b4a757920965488110daf80dec2cb50edf31fbb6870d5d8ef6ba59b6a?repository_url=ghcr.io/componentized/valkey/tcp-connector-constants&tag=0.3.1-dev",
+      "purl": "pkg:oci/tcp-connector-constants@sha256%3A400bca44a52e00f4512bb6709900b72ebc93da29111473fa42af424de5a1873f?repository_url=ghcr.io/componentized/valkey/tcp-connector-constants&tag=0.3.1-dev",
       "type": "library",
       "version": "0.3.1-dev"
     },
-    "timestamp": "2026-11-24T02:41:52Z",
+    "timestamp": "2026-11-26T03:00:31Z",
     "tools": {
       "components": [
         {

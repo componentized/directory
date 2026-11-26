@@ -2805,13 +2805,13 @@
       "description": "A command line client for Valkey, sending its arguments as a command and printing the reply.",
       "externalReferences": [
         {
-          "comment": "revision f8c4a65226b4b9332a2605ace8abe084059ffdf8",
+          "comment": "revision 55420b9589743c7ce57e318af1c81a368fdf9914",
           "type": "vcs",
           "url": "https://github.com/componentized/valkey.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/valkey/tree/f8c4a65226b4b9332a2605ace8abe084059ffdf8/components/cli"
+          "url": "https://github.com/componentized/valkey/tree/55420b9589743c7ce57e318af1c81a368fdf9914/components/cli"
         }
       ],
       "hashes": [
@@ -2826,11 +2826,11 @@
         }
       ],
       "name": "componentized:valkey-cli",
-      "purl": "pkg:oci/cli@sha256%3Ae4c1229d3517dc7d458a66696b5f79bd0e2463d1f6003722142689bbf2f24640?repository_url=ghcr.io/componentized/valkey/cli&tag=0.3.1-dev",
+      "purl": "pkg:oci/cli@sha256%3Afdd84291e49f940fe83b52b55f1e4dc3553890a8e8d2fd4d0ecd4926f7148c9c?repository_url=ghcr.io/componentized/valkey/cli&tag=0.3.1-dev",
       "type": "library",
       "version": "0.3.1-dev"
     },
-    "timestamp": "2026-11-24T02:41:52Z",
+    "timestamp": "2026-11-26T03:00:31Z",
     "tools": {
       "components": [
         {
