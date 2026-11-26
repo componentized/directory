@@ -29,7 +29,7 @@
           "name": "David Tolnay"
         }
       ],
-      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
       "description": "Flexible concrete Error type built on std::error::Error",
       "externalReferences": [
         {
@@ -44,7 +44,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "330a5ed07fa54e4702c9d6c4174f74427fc0ef6e214bbd677ae50a5099946470"
+          "content": "2cb931c189b85683d69a5cfad41d4d418671e1ac413dd209f3f2fc31e3cfd902"
         }
       ],
       "licenses": [
@@ -53,10 +53,10 @@
         }
       ],
       "name": "anyhow",
-      "purl": "pkg:cargo/anyhow@1.0.104",
+      "purl": "pkg:cargo/anyhow@1.0.105",
       "scope": "excluded",
       "type": "library",
-      "version": "1.0.104"
+      "version": "1.0.105"
     },
     {
       "authors": [
@@ -1195,7 +1195,7 @@
       "ref": "path+file://./components/config#0.1.0"
     },
     {
-      "ref": "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104"
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105"
     },
     {
       "ref": "registry+https://github.com/rust-lang/crates.io-index#bitflags@2.13.2"
@@ -1319,7 +1319,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
         "registry+https://github.com/rust-lang/crates.io-index#indexmap@2.14.2",
         "registry+https://github.com/rust-lang/crates.io-index#wasm-encoder@0.262.0",
         "registry+https://github.com/rust-lang/crates.io-index#wasmparser@0.262.0"
@@ -1337,7 +1337,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
         "registry+https://github.com/rust-lang/crates.io-index#heck@0.5.0",
         "registry+https://github.com/rust-lang/crates.io-index#wit-parser@0.262.0"
       ],
@@ -1345,7 +1345,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
         "registry+https://github.com/rust-lang/crates.io-index#macro-string@0.3.0",
         "registry+https://github.com/rust-lang/crates.io-index#prettyplease@0.3.0",
         "registry+https://github.com/rust-lang/crates.io-index#proc-macro2@1.0.107",
@@ -1358,7 +1358,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
         "registry+https://github.com/rust-lang/crates.io-index#heck@0.5.0",
         "registry+https://github.com/rust-lang/crates.io-index#indexmap@2.14.2",
         "registry+https://github.com/rust-lang/crates.io-index#prettyplease@0.3.0",
@@ -1378,7 +1378,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
         "registry+https://github.com/rust-lang/crates.io-index#bitflags@2.13.2",
         "registry+https://github.com/rust-lang/crates.io-index#indexmap@2.14.2",
         "registry+https://github.com/rust-lang/crates.io-index#log@0.4.34",
@@ -1394,7 +1394,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
         "registry+https://github.com/rust-lang/crates.io-index#hashbrown@0.17.1",
         "registry+https://github.com/rust-lang/crates.io-index#id-arena@2.3.0",
         "registry+https://github.com/rust-lang/crates.io-index#indexmap@2.14.2",
@@ -1422,13 +1422,13 @@
       "description": "Config values for the wasi:config/store interface, served from a list of key value pairs.",
       "externalReferences": [
         {
-          "comment": "revision f9de54482cbaad483cf65eb7adc314be23742750",
+          "comment": "revision 47a575876cd28bcb8b6d83edb5c87e0d131522ea",
           "type": "vcs",
           "url": "https://github.com/componentized/constants.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/constants/tree/f9de54482cbaad483cf65eb7adc314be23742750/components/config"
+          "url": "https://github.com/componentized/constants/tree/47a575876cd28bcb8b6d83edb5c87e0d131522ea/components/config"
         }
       ],
       "hashes": [
@@ -1443,11 +1443,11 @@
         }
       ],
       "name": "componentized:constants-config",
-      "purl": "pkg:oci/config@sha256%3A7ef105168c31f406f3462017e834f030806c42e4fbb0b9ae8f0ab53097000553?repository_url=ghcr.io/componentized/constants/config&tag=0.2.2-dev",
+      "purl": "pkg:oci/config@sha256%3A6b26a54ea02fd3117a0f78863f9c6d2bc541dcea4e225cd566d36f105d4089a8?repository_url=ghcr.io/componentized/constants/config&tag=0.2.2-dev",
       "type": "library",
       "version": "0.2.2-dev"
     },
-    "timestamp": "2026-11-25T19:29:19Z",
+    "timestamp": "2026-11-26T11:27:30Z",
     "tools": {
       "components": [
         {

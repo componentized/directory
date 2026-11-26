@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/constants/config",
     "tag": "0.2.2-dev",
-    "digest": "sha256:7ef105168c31f406f3462017e834f030806c42e4fbb0b9ae8f0ab53097000553",
+    "digest": "sha256:6b26a54ea02fd3117a0f78863f9c6d2bc541dcea4e225cd566d36f105d4089a8",
     "layer_digest": "sha256:58a62217beb25b7dc028747b48f9b4a127a3ce1c4cc93d15b178c6071a43e6d5",
     "size": 5477,
     "signature": {
@@ -16,33 +16,33 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/constants",
       "git_ref": "refs/heads/main",
-      "log_index": 4109964692
+      "log_index": 4125030972
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/constants/config",
     "tag": "0.2.2-dev_debug",
-    "digest": "sha256:a3b84dd1700f05357bbc1c9d7578da16a56f796a58da36d62d1323e52b92ca21",
-    "layer_digest": "sha256:148899843973f921c191ff593204cb42ec953e52de6bc67769c187e33823dacb",
-    "size": 188202,
+    "digest": "sha256:26f660a0b0a4dcd179e3f90e058516d245048c8c3f70ade4648721fa0559d2af",
+    "layer_digest": "sha256:b78a13fc53fe43b4bf4e8323e1a015fa73201b999f534bcd3ffb32b6112128be",
+    "size": 188352,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/constants/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/constants",
       "git_ref": "refs/heads/main",
-      "log_index": 4109965768
+      "log_index": 4125034283
     }
   },
-  "created": "2026-11-25T19:33:06.189996461Z",
+  "created": "2026-11-26T11:35:16.158970139Z",
   "annotations": {
     "org.opencontainers.image.description": "Config values for the wasi:config/store interface, served from a list of key value pairs.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "f9de54482cbaad483cf65eb7adc314be23742750",
+    "org.opencontainers.image.revision": "47a575876cd28bcb8b6d83edb5c87e0d131522ea",
     "org.opencontainers.image.source": "https://github.com/componentized/constants.git",
     "org.opencontainers.image.title": "componentized:constants-config",
-    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/f9de54482cbaad483cf65eb7adc314be23742750/components/config",
+    "org.opencontainers.image.url": "https://github.com/componentized/constants/tree/47a575876cd28bcb8b6d83edb5c87e0d131522ea/components/config",
     "org.opencontainers.image.version": "v0.2.2-dev"
   },
   "imports": [
@@ -73,7 +73,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/constants",
     "git_ref": "refs/heads/main",
-    "log_index": 4109965093
+    "log_index": 4125031888
   },
-  "indexed_at": "2026-11-25T19:35:44Z"
+  "indexed_at": "2026-11-26T11:38:03Z"
 }
