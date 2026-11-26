@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/static-config",
     "tag": "0.3.2-dev",
-    "digest": "sha256:f78561320223576f7cedf312aaa401015f9f48e3c3b3770a129b71a1726ca4ea",
+    "digest": "sha256:801254716ebc7ed8b80646168bc0ec83eb32034fcdd791deb04d8aeadd683214",
     "layer_digest": "sha256:8833363721353f3a69afbc051b10172d483f225a8f50cf2a8fee1d6c5f550c3e",
     "size": 1102,
     "signature": {
@@ -16,17 +16,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/static-config",
       "git_ref": "refs/heads/main",
-      "log_index": 4114943735
+      "log_index": 4125011812
     }
   },
-  "created": "2026-11-26T00:50:08.796019809Z",
+  "created": "2026-11-26T11:33:37.967896654Z",
   "annotations": {
     "org.opencontainers.image.description": "Create custom `wasi:config` components with static values.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "eb496668bdfc2b7cc4cccc9b5c3c151fd7b06ba9",
+    "org.opencontainers.image.revision": "e31cc62b10254d1b833afb5d1ccb5229d83e0420",
     "org.opencontainers.image.source": "https://github.com/componentized/static-config.git",
     "org.opencontainers.image.title": "componentized:static-config",
-    "org.opencontainers.image.url": "https://github.com/componentized/static-config/tree/eb496668bdfc2b7cc4cccc9b5c3c151fd7b06ba9",
+    "org.opencontainers.image.url": "https://github.com/componentized/static-config/tree/e31cc62b10254d1b833afb5d1ccb5229d83e0420",
     "org.opencontainers.image.version": "v0.3.2-dev"
   },
   "dependencies": [
@@ -41,7 +41,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/static-config",
     "git_ref": "refs/heads/main",
-    "log_index": 4114945151
+    "log_index": 4125012183
   },
-  "indexed_at": "2026-11-26T00:51:50Z"
+  "indexed_at": "2026-11-26T11:34:44Z"
 }
