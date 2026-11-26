@@ -1,0 +1,86 @@
+{
+  "package": "componentized:services-lifecycle-host-http",
+  "version": "0.0.6-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/lifecycle-host-http",
+    "tag": "0.0.6-dev",
+    "digest": "sha256:96aa694f50ea100a27a780f4cddc0a898a0bc837a34071a165b14434b789d631",
+    "layer_digest": "sha256:eabca3922629805d7ad3dde2be25b8736e706976bdcd671235528efb8ee3d47e",
+    "size": 189451,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/services",
+      "git_ref": "refs/heads/main",
+      "log_index": 4127445998
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/lifecycle-host-http",
+    "tag": "0.0.6-dev_debug",
+    "digest": "sha256:085b39a67f2ad4b5ee5b305aa755e741ca0ed4ace4eff663593137925efe2481",
+    "layer_digest": "sha256:4376c071bb4b1333d783b490bbfc11531867347614d841141b8d413b2f9c99b9",
+    "size": 655203,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/services",
+      "git_ref": "refs/heads/main",
+      "log_index": 4127452635
+    }
+  },
+  "created": "2026-11-26T14:05:37.716554901Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Exposes a `componentized:services/lifecycle` over http, exporting `wasi:http/incoming-handler`.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "d699004ff9cf208d8ef3c3bea78adac1f1c888f7",
+    "org.opencontainers.image.source": "https://github.com/componentized/services.git",
+    "org.opencontainers.image.title": "componentized:services-lifecycle-host-http",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/d699004ff9cf208d8ef3c3bea78adac1f1c888f7/components/lifecycle-host-http",
+    "org.opencontainers.image.version": "v0.0.6-dev"
+  },
+  "imports": [
+    "componentized:services/lifecycle@0.0.6-dev",
+    "componentized:services/types@0.0.6-dev",
+    "wasi:http/types@0.3.0",
+    "wasi:logging/logging@0.1.0-draft"
+  ],
+  "exports": [
+    "wasi:http/handler@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:services",
+      "version": "0.0.6-dev"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:474592e1e1383f457fcad936bebef7e01d7cc6503a4b00b0e782e74a5b081c54",
+      "size": 1551
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/services",
+    "git_ref": "refs/heads/main",
+    "log_index": 4127446962
+  },
+  "indexed_at": "2026-11-26T14:10:41Z"
+}

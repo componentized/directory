@@ -1,0 +1,86 @@
+{
+  "package": "componentized:services-keyvalue-credential-store",
+  "version": "0.0.6-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/keyvalue-credential-store",
+    "tag": "0.0.6-dev",
+    "digest": "sha256:409c193e040cde122349b5a3e97fc3ed6f6783938243649caf0ffa0723b67797",
+    "layer_digest": "sha256:6874ad3bf210c90a8137e09febfa026c696681d22a7a85b907f7c3595fd89976",
+    "size": 166479,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/services",
+      "git_ref": "refs/heads/main",
+      "log_index": 4127438238
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/keyvalue-credential-store",
+    "tag": "0.0.6-dev_debug",
+    "digest": "sha256:360a23a3b3e73e3cd8108371ad2da27e6f9540d0536c946c2d5bdf2dcdd0665a",
+    "layer_digest": "sha256:8447f588e8946f0dec8a4d4e9ac816222e35da5cb1c5d91edde78d5ab47829b4",
+    "size": 449202,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/services",
+      "git_ref": "refs/heads/main",
+      "log_index": 4127439699
+    }
+  },
+  "created": "2026-11-26T14:04:29.881492950Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Implements `componentized:services/credential-store`, fetching the credentials of service bindings from a `wasi:keyvalue` bucket, named by the `bucket` key in `wasi:config`, `bindings` by default.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "d699004ff9cf208d8ef3c3bea78adac1f1c888f7",
+    "org.opencontainers.image.source": "https://github.com/componentized/services.git",
+    "org.opencontainers.image.title": "componentized:services-keyvalue-credential-store",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/d699004ff9cf208d8ef3c3bea78adac1f1c888f7/components/keyvalue-credential-store",
+    "org.opencontainers.image.version": "v0.0.6-dev"
+  },
+  "imports": [
+    "componentized:services/types@0.0.6-dev",
+    "wasi:config/store@0.2.0-rc.1",
+    "wasmcloud:keyvalue/store@0.2.0",
+    "wasmcloud:keyvalue/types@0.2.0"
+  ],
+  "exports": [
+    "componentized:services/credential-store@0.0.6-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:services",
+      "version": "0.0.6-dev"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasmcloud:keyvalue",
+      "version": "0.2.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:481032240eb3051fe43ae2f6c994a67af707e05642e190a32429c0b0b0eb677e",
+      "size": 321
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/services",
+    "git_ref": "refs/heads/main",
+    "log_index": 4127438575
+  },
+  "indexed_at": "2026-11-26T14:10:35Z"
+}

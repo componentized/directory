@@ -1,0 +1,94 @@
+{
+  "package": "componentized:services-lifecycle-host-cli",
+  "version": "0.0.6-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/lifecycle-host-cli",
+    "tag": "0.0.6-dev",
+    "digest": "sha256:e5b66102ae2bdc931f2c441b03758b88469380799ff2b33e5e08d50238eae054",
+    "layer_digest": "sha256:2eea4f92693eb0acf8c06a0ad0f887c0130f1c2223ddd84bfb582c2b1aa0e03c",
+    "size": 633432,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/services",
+      "git_ref": "refs/heads/main",
+      "log_index": 4127441705
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/lifecycle-host-cli",
+    "tag": "0.0.6-dev_debug",
+    "digest": "sha256:6d0afd00dd4fcf14eee57e843bfecc84669d0ea4cb99e4d99919f92158fb3813",
+    "layer_digest": "sha256:5651b8140aaef16381fab83fde7a941d95cb940983d7b6b7333518b7a3f553f9",
+    "size": 2536176,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/services",
+      "git_ref": "refs/heads/main",
+      "log_index": 4127444240
+    }
+  },
+  "created": "2026-11-26T14:05:02.634126901Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Exposes a `componentized:services/lifecycle` as a cli, exporting `wasi:cli/run`.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "d699004ff9cf208d8ef3c3bea78adac1f1c888f7",
+    "org.opencontainers.image.source": "https://github.com/componentized/services.git",
+    "org.opencontainers.image.title": "componentized:services-lifecycle-host-cli",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/d699004ff9cf208d8ef3c3bea78adac1f1c888f7/components/lifecycle-host-cli",
+    "org.opencontainers.image.version": "v0.0.6-dev"
+  },
+  "imports": [
+    "componentized:services/lifecycle@0.0.6-dev",
+    "componentized:services/types@0.0.6-dev",
+    "wasi:cli/environment@0.3.0",
+    "wasi:cli/stdin@0.3.0",
+    "wasi:cli/stdout@0.3.0",
+    "wasi:cli/types@0.3.0",
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:random/random@0.3.0"
+  ],
+  "exports": [
+    "wasi:cli/run@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:services",
+      "version": "0.0.6-dev"
+    },
+    {
+      "package": "wasi:cli",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:random",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:ad7a7f4979c707bf6d1398521e82ffebeb3a720486b4cf7bdb2d65a606bbd88c",
+      "size": 63
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/services",
+    "git_ref": "refs/heads/main",
+    "log_index": 4127442948
+  },
+  "indexed_at": "2026-11-26T14:10:38Z"
+}

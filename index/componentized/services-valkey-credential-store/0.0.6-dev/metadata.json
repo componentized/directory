@@ -1,0 +1,185 @@
+{
+  "package": "componentized:services-valkey-credential-store",
+  "version": "0.0.6-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/valkey-credential-store",
+    "tag": "0.0.6-dev",
+    "digest": "sha256:082580a737a0396a70f1e70a0c4c58b4553984060b891359a760715d85dcce93",
+    "layer_digest": "sha256:fa9479406015ce61499d3f11d820293f68402aca877b810d08be79437b8064f2",
+    "size": 2909896,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/services",
+      "git_ref": "refs/heads/main",
+      "log_index": 4127460305
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/valkey-credential-store",
+    "tag": "0.0.6-dev_debug",
+    "digest": "sha256:4ad848e3b3e8c85e61bc38fe6429ba96044ac8c687b2e76928ed97aefb27368b",
+    "layer_digest": "sha256:db25576e04bf71ec9eb04d25e80ab2d4c0c7c945b29638695578e1f99ea9c981",
+    "size": 31370261,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/services",
+      "git_ref": "refs/heads/main",
+      "log_index": 4127465359
+    }
+  },
+  "created": "2026-11-26T14:07:05.358534303Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Implements `componentized:services/credential-store`, fetching the credentials of service bindings from a Valkey server.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "d699004ff9cf208d8ef3c3bea78adac1f1c888f7",
+    "org.opencontainers.image.source": "https://github.com/componentized/services.git",
+    "org.opencontainers.image.title": "componentized:services-valkey-credential-store",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/d699004ff9cf208d8ef3c3bea78adac1f1c888f7/components/valkey-credential-store",
+    "org.opencontainers.image.version": "v0.0.6-dev"
+  },
+  "imports": [
+    "componentized:secrets/store@0.1.1",
+    "componentized:secrets/types@0.1.1",
+    "componentized:services/types@0.0.6-dev",
+    "componentized:valkey/types@0.3.0",
+    "wasi:clocks/monotonic-clock@0.3.0",
+    "wasi:clocks/types@0.3.0",
+    "wasi:config/store@0.2.0-rc.1",
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:sockets/ip-name-lookup@0.3.0",
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:services/credential-store@0.0.6-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:secrets",
+      "version": "0.1.1"
+    },
+    {
+      "package": "componentized:services",
+      "version": "0.0.6-dev"
+    },
+    {
+      "package": "componentized:valkey",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:2a2d62c36f150d05cacff718a516cf41d87c6c52cae4d76234c041c3928ba5a2",
+      "size": 2728713,
+      "code": true
+    },
+    {
+      "digest": "sha256:6874ad3bf210c90a8137e09febfa026c696681d22a7a85b907f7c3595fd89976",
+      "size": 166479,
+      "code": true
+    }
+  ],
+  "wiring": {
+    "instances": [
+      {
+        "part": 0,
+        "args": [
+          {
+            "name": "wasi:clocks/types@0.3.0",
+            "import": "wasi:clocks/types@0.3.0"
+          },
+          {
+            "name": "wasi:clocks/monotonic-clock@0.3.0",
+            "import": "wasi:clocks/monotonic-clock@0.3.0"
+          },
+          {
+            "name": "wasi:sockets/types@0.3.0",
+            "import": "wasi:sockets/types@0.3.0"
+          },
+          {
+            "name": "wasi:sockets/ip-name-lookup@0.3.0",
+            "import": "wasi:sockets/ip-name-lookup@0.3.0"
+          },
+          {
+            "name": "wasi:logging/logging@0.1.0-draft",
+            "import": "wasi:logging/logging@0.1.0-draft"
+          },
+          {
+            "name": "componentized:valkey/types@0.3.0",
+            "import": "componentized:valkey/types@0.3.0"
+          },
+          {
+            "name": "componentized:secrets/types@0.1.1",
+            "import": "componentized:secrets/types@0.1.1"
+          },
+          {
+            "name": "componentized:secrets/store@0.1.1",
+            "import": "componentized:secrets/store@0.1.1"
+          }
+        ]
+      },
+      {
+        "part": 1,
+        "args": [
+          {
+            "name": "wasmcloud:keyvalue/store@0.2.0",
+            "instance": 0,
+            "export": "wasmcloud:keyvalue/store@0.2.0"
+          },
+          {
+            "name": "wasmcloud:keyvalue/types@0.2.0",
+            "instance": 0,
+            "export": "wasmcloud:keyvalue/types@0.2.0"
+          },
+          {
+            "name": "wasi:config/store@0.2.0-rc.1",
+            "import": "wasi:config/store@0.2.0-rc.1"
+          },
+          {
+            "name": "componentized:services/types@0.0.6-dev",
+            "import": "componentized:services/types@0.0.6-dev"
+          }
+        ]
+      }
+    ],
+    "exports": [
+      {
+        "name": "componentized:services/credential-store@0.0.6-dev",
+        "instance": 1,
+        "export": "componentized:services/credential-store@0.0.6-dev"
+      }
+    ]
+  },
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/services",
+    "git_ref": "refs/heads/main",
+    "log_index": 4127461940
+  },
+  "indexed_at": "2026-11-26T14:10:47Z"
+}
