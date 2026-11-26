@@ -3,5 +3,5 @@ package root:component;
 world root {
   import componentized:component/types@0.1.2;
 
-  export componentized:static-config/factory@0.3.1-dev;
+  export componentized:static-config/factory@0.3.1;
 }

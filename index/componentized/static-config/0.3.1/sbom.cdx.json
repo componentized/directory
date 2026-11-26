@@ -38,19 +38,19 @@
       "description": "Create custom `wasi:config` components with static values.",
       "externalReferences": [
         {
-          "comment": "revision 3b3c87cf6e2a1e17e8374f2721d7a30690c1478e",
+          "comment": "revision 0e1ad6cb128e39f39f3b8574f0074d2a89e1ef4d",
           "type": "vcs",
           "url": "https://github.com/componentized/static-config.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/static-config/tree/3b3c87cf6e2a1e17e8374f2721d7a30690c1478e"
+          "url": "https://github.com/componentized/static-config/tree/0e1ad6cb128e39f39f3b8574f0074d2a89e1ef4d"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "eaf23365724b4c199ae1775fabf6e32864fcc68ad8a24372e1374a7801da35f5"
+          "content": "e5ce5b1c0fcac83910da6137e6c02b654ee408272583a97841c4aeb150e2844b"
         }
       ],
       "licenses": [
@@ -59,11 +59,11 @@
         }
       ],
       "name": "componentized:static-config",
-      "purl": "pkg:oci/static-config@sha256%3Aeb32d289b7fcaa59b86c2589c57f0480079953a8fdcd12d21e426467d399992a?repository_url=ghcr.io/componentized/static-config&tag=0.3.1-dev",
+      "purl": "pkg:oci/static-config@sha256%3Ac1b6a4863cb3600ec2b41f52d0796e42bff0ccbded035ebb3167a5d941078267?repository_url=ghcr.io/componentized/static-config&tag=0.3.1",
       "type": "library",
-      "version": "0.3.1-dev"
+      "version": "0.3.1"
     },
-    "timestamp": "2026-11-26T00:33:19Z",
+    "timestamp": "2026-11-26T00:43:49Z",
     "tools": {
       "components": [
         {

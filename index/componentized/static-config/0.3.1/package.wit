@@ -1,4 +1,4 @@
-package componentized:static-config@0.3.1-dev;
+package componentized:static-config@0.3.1;
 
 @since(version = 0.3.0)
 interface factory {
