@@ -1,0 +1,115 @@
+{
+  "package": "componentized:logging-to-stderr",
+  "version": "0.3.3-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/logging/to-stderr",
+    "tag": "0.3.3-dev",
+    "digest": "sha256:b360b3fd3dc5fb398fe665e8cd1cb5a312973001f0e090a975635b4fa81f23d2",
+    "layer_digest": "sha256:5fb61e6010c7ff3691bcff68a939ed5d6ec8576be096f1102dbd5d86993b873f",
+    "size": 62364,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/logging/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/logging",
+      "git_ref": "refs/heads/main",
+      "log_index": 4125970689
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/logging/to-stderr",
+    "tag": "0.3.3-dev_debug",
+    "digest": "sha256:6a128b1bec135f50b4714e337113c69f0903fe1aba6ab123d573d8b10816e25e",
+    "layer_digest": "sha256:04f0cffbdd95ed2617b7d72e8ff27233508511d10211e0ea96c5c2188cd557e3",
+    "size": 319275,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/logging/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/logging",
+      "git_ref": "refs/heads/main",
+      "log_index": 4125974172
+    }
+  },
+  "created": "2026-11-26T12:28:21.885212733Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Implements wasi:logging/logging@0.1.0-draft writing log statements to stderr via wasi:cli/stderr@0.3.0. A composition of [`to-stdout`](../to-stdout/) with its wasi:cli/stdout@0.3.0 import satisfied by wasi:cli/stderr@0.3.0.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "34473a43ce865631c3e744b08854057372923f24",
+    "org.opencontainers.image.source": "https://github.com/componentized/logging.git",
+    "org.opencontainers.image.title": "componentized:logging-to-stderr",
+    "org.opencontainers.image.url": "https://github.com/componentized/logging/tree/34473a43ce865631c3e744b08854057372923f24/components/to-stderr",
+    "org.opencontainers.image.version": "v0.3.3-dev"
+  },
+  "imports": [
+    "wasi:cli/stderr@0.3.0",
+    "wasi:cli/types@0.3.0",
+    "wasi:clocks/system-clock@0.3.0"
+  ],
+  "exports": [
+    "wasi:logging/logging@0.1.0-draft"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:cli",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:e8b5d5486d25d71717307d50088adc3851cdef5ae3de71d3d572a41215808ee5",
+      "size": 61812,
+      "code": true
+    }
+  ],
+  "wiring": {
+    "instances": [
+      {
+        "part": 0,
+        "name": "to-stdout",
+        "args": [
+          {
+            "name": "wasi:cli/stdout@0.3.0",
+            "import": "wasi:cli/stderr@0.3.0"
+          },
+          {
+            "name": "wasi:cli/types@0.3.0",
+            "import": "wasi:cli/types@0.3.0"
+          },
+          {
+            "name": "wasi:clocks/system-clock@0.3.0",
+            "import": "wasi:clocks/system-clock@0.3.0"
+          }
+        ]
+      }
+    ],
+    "exports": [
+      {
+        "name": "wasi:logging/logging@0.1.0-draft",
+        "instance": 0,
+        "export": "wasi:logging/logging@0.1.0-draft"
+      }
+    ]
+  },
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/logging/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/logging",
+    "git_ref": "refs/heads/main",
+    "log_index": 4125972167
+  },
+  "indexed_at": "2026-11-26T12:30:19Z"
+}
