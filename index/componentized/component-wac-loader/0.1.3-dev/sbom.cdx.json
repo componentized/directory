@@ -69,7 +69,7 @@
           "name": "David Tolnay"
         }
       ],
-      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
       "description": "Flexible concrete Error type built on std::error::Error",
       "externalReferences": [
         {
@@ -84,7 +84,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "330a5ed07fa54e4702c9d6c4174f74427fc0ef6e214bbd677ae50a5099946470"
+          "content": "2cb931c189b85683d69a5cfad41d4d418671e1ac413dd209f3f2fc31e3cfd902"
         }
       ],
       "licenses": [
@@ -93,10 +93,10 @@
         }
       ],
       "name": "anyhow",
-      "purl": "pkg:cargo/anyhow@1.0.104",
+      "purl": "pkg:cargo/anyhow@1.0.105",
       "scope": "required",
       "type": "library",
-      "version": "1.0.104"
+      "version": "1.0.105"
     },
     {
       "authors": [
@@ -3294,7 +3294,7 @@
       "ref": "registry+https://github.com/rust-lang/crates.io-index#adler2@2.0.1"
     },
     {
-      "ref": "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104"
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105"
     },
     {
       "dependsOn": [
@@ -3683,7 +3683,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
         "registry+https://github.com/rust-lang/crates.io-index#id-arena@2.3.0",
         "registry+https://github.com/rust-lang/crates.io-index#indexmap@2.14.2",
         "registry+https://github.com/rust-lang/crates.io-index#log@0.4.34",
@@ -3699,7 +3699,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
         "registry+https://github.com/rust-lang/crates.io-index#id-arena@2.3.0",
         "registry+https://github.com/rust-lang/crates.io-index#indexmap@2.14.2",
         "registry+https://github.com/rust-lang/crates.io-index#log@0.4.34",
@@ -3717,7 +3717,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
         "registry+https://github.com/rust-lang/crates.io-index#id-arena@2.3.0",
         "registry+https://github.com/rust-lang/crates.io-index#indexmap@2.14.2",
         "registry+https://github.com/rust-lang/crates.io-index#semver@1.0.28",
@@ -3742,7 +3742,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
         "registry+https://github.com/rust-lang/crates.io-index#auditable-serde@0.9.0",
         "registry+https://github.com/rust-lang/crates.io-index#flate2@1.1.10",
         "registry+https://github.com/rust-lang/crates.io-index#indexmap@2.14.2",
@@ -3758,7 +3758,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
         "registry+https://github.com/rust-lang/crates.io-index#indexmap@2.14.2",
         "registry+https://github.com/rust-lang/crates.io-index#wasm-encoder@0.262.0",
         "registry+https://github.com/rust-lang/crates.io-index#wasmparser@0.262.0"
@@ -3786,7 +3786,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
         "registry+https://github.com/rust-lang/crates.io-index#heck@0.5.0",
         "registry+https://github.com/rust-lang/crates.io-index#wit-parser@0.262.0"
       ],
@@ -3794,7 +3794,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
         "registry+https://github.com/rust-lang/crates.io-index#macro-string@0.3.0",
         "registry+https://github.com/rust-lang/crates.io-index#prettyplease@0.3.0",
         "registry+https://github.com/rust-lang/crates.io-index#proc-macro2@1.0.107",
@@ -3807,7 +3807,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
         "registry+https://github.com/rust-lang/crates.io-index#heck@0.5.0",
         "registry+https://github.com/rust-lang/crates.io-index#indexmap@2.14.2",
         "registry+https://github.com/rust-lang/crates.io-index#prettyplease@0.3.0",
@@ -3827,7 +3827,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
         "registry+https://github.com/rust-lang/crates.io-index#bitflags@2.13.2",
         "registry+https://github.com/rust-lang/crates.io-index#indexmap@2.14.2",
         "registry+https://github.com/rust-lang/crates.io-index#log@0.4.34",
@@ -3843,7 +3843,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
         "registry+https://github.com/rust-lang/crates.io-index#hashbrown@0.17.1",
         "registry+https://github.com/rust-lang/crates.io-index#id-arena@2.3.0",
         "registry+https://github.com/rust-lang/crates.io-index#indexmap@2.14.2",
@@ -3933,19 +3933,19 @@
       "description": "Compose a component from other components using wac.",
       "externalReferences": [
         {
-          "comment": "revision 387fac630949ba5f928122af16984253af37931c",
+          "comment": "revision 41aeef3b5080b13ff44240807f020c7cdd261816",
           "type": "vcs",
           "url": "https://github.com/componentized/component.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/component/tree/387fac630949ba5f928122af16984253af37931c/components/wac-loader"
+          "url": "https://github.com/componentized/component/tree/41aeef3b5080b13ff44240807f020c7cdd261816/components/wac-loader"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "bfedb7d261943b6c7edc509272b104957a59aab61c4523bca71ae57a89be3c91"
+          "content": "e2b101d13f79612bd232ee7c0e315e80702510c7d9ab3a94e5e4e29c26e023e7"
         }
       ],
       "licenses": [
@@ -3954,11 +3954,11 @@
         }
       ],
       "name": "componentized:component-wac-loader",
-      "purl": "pkg:oci/wac-loader@sha256%3Afe603c34e64783d3943dba00ee640c490e95c691bf7799f5b3a5437e42b4adc4?repository_url=ghcr.io/componentized/component/wac-loader&tag=0.1.3-dev",
+      "purl": "pkg:oci/wac-loader@sha256%3A6dfa6dcd705a5599b2990326a8700f812379ff819eba17df67c01f8281b251a3?repository_url=ghcr.io/componentized/component/wac-loader&tag=0.1.3-dev",
       "type": "library",
       "version": "0.1.3-dev"
     },
-    "timestamp": "2026-11-25T23:30:44Z",
+    "timestamp": "2026-11-26T13:42:04Z",
     "tools": {
       "components": [
         {

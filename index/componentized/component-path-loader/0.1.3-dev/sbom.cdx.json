@@ -6,7 +6,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "cff9d36e36ff1f4a081543cfde898fa64eb868d517cfc8c140692d8f0b080dc9"
+          "content": "aa412f6052800faa7edf97caa77e43bc2b09c9734789f7f649ecf6c4978bbe9a"
         }
       ],
       "name": "componentized:component-filesystem-loader",
@@ -17,7 +17,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "2de3f326f57e0f4476e3ac84453d0aa979e8c2240fccd862ec3aa8b7faf8d976"
+          "content": "a6a2851da2b1a649c1daa0bf087080c578f1d701f1168dfccc1c44b3875530d6"
         }
       ],
       "name": "componentized:component-http-loader",
@@ -28,7 +28,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "0062f34703df17292094a7b8f29d130f5aea8a8403efd7cc0b55c0fe2799159a"
+          "content": "2dd3d53c678df962580563ba2b66778bd5553635d4077c3906b6e773d03cf80d"
         }
       ],
       "name": "componentized:component-oci-loader",
@@ -39,7 +39,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "62a1b4610b8e108722806d5416bd60c1e11a4b423f08dc93bf67cbf6c6121ec1"
+          "content": "14a21038cefbe875f5855736f270b00fe31979723a7d35a3cfd1054f62baff46"
         }
       ],
       "name": "componentized:component-path-loader-router",
@@ -104,7 +104,7 @@
           "name": "David Tolnay"
         }
       ],
-      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
       "description": "Flexible concrete Error type built on std::error::Error",
       "externalReferences": [
         {
@@ -119,7 +119,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "330a5ed07fa54e4702c9d6c4174f74427fc0ef6e214bbd677ae50a5099946470"
+          "content": "2cb931c189b85683d69a5cfad41d4d418671e1ac413dd209f3f2fc31e3cfd902"
         }
       ],
       "licenses": [
@@ -128,10 +128,10 @@
         }
       ],
       "name": "anyhow",
-      "purl": "pkg:cargo/anyhow@1.0.104",
+      "purl": "pkg:cargo/anyhow@1.0.105",
       "scope": "excluded",
       "type": "library",
-      "version": "1.0.104"
+      "version": "1.0.105"
     },
     {
       "authors": [
@@ -1336,7 +1336,7 @@
       "ref": "path+file://./components/path-loader-router#0.1.0"
     },
     {
-      "ref": "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104"
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105"
     },
     {
       "ref": "registry+https://github.com/rust-lang/crates.io-index#bitflags@2.13.2"
@@ -1460,7 +1460,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
         "registry+https://github.com/rust-lang/crates.io-index#indexmap@2.14.2",
         "registry+https://github.com/rust-lang/crates.io-index#wasm-encoder@0.262.0",
         "registry+https://github.com/rust-lang/crates.io-index#wasmparser@0.262.0"
@@ -1478,7 +1478,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
         "registry+https://github.com/rust-lang/crates.io-index#heck@0.5.0",
         "registry+https://github.com/rust-lang/crates.io-index#wit-parser@0.262.0"
       ],
@@ -1486,7 +1486,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
         "registry+https://github.com/rust-lang/crates.io-index#macro-string@0.3.0",
         "registry+https://github.com/rust-lang/crates.io-index#prettyplease@0.3.0",
         "registry+https://github.com/rust-lang/crates.io-index#proc-macro2@1.0.107",
@@ -1499,7 +1499,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
         "registry+https://github.com/rust-lang/crates.io-index#heck@0.5.0",
         "registry+https://github.com/rust-lang/crates.io-index#indexmap@2.14.2",
         "registry+https://github.com/rust-lang/crates.io-index#prettyplease@0.3.0",
@@ -1519,7 +1519,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
         "registry+https://github.com/rust-lang/crates.io-index#bitflags@2.13.2",
         "registry+https://github.com/rust-lang/crates.io-index#indexmap@2.14.2",
         "registry+https://github.com/rust-lang/crates.io-index#log@0.4.34",
@@ -1535,7 +1535,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.104",
+        "registry+https://github.com/rust-lang/crates.io-index#anyhow@1.0.105",
         "registry+https://github.com/rust-lang/crates.io-index#hashbrown@0.17.1",
         "registry+https://github.com/rust-lang/crates.io-index#id-arena@2.3.0",
         "registry+https://github.com/rust-lang/crates.io-index#indexmap@2.14.2",
@@ -1563,19 +1563,19 @@
       "description": "Loads a component from a path.",
       "externalReferences": [
         {
-          "comment": "revision 387fac630949ba5f928122af16984253af37931c",
+          "comment": "revision 41aeef3b5080b13ff44240807f020c7cdd261816",
           "type": "vcs",
           "url": "https://github.com/componentized/component.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/component/tree/387fac630949ba5f928122af16984253af37931c/components/path-loader"
+          "url": "https://github.com/componentized/component/tree/41aeef3b5080b13ff44240807f020c7cdd261816/components/path-loader"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "e2af09dd9732c5527e3845cbae16ed97399ceb51c8061ec240141a1844e4997d"
+          "content": "3826cbb1659213768294bca23a96ad43beecee72eccd9af2e2f154e09ea362c5"
         }
       ],
       "licenses": [
@@ -1584,11 +1584,11 @@
         }
       ],
       "name": "componentized:component-path-loader",
-      "purl": "pkg:oci/path-loader@sha256%3A4c11451c1e19c9eee3da4419152057e61d4164afe3f27d048ad74e56aa0eed48?repository_url=ghcr.io/componentized/component/path-loader&tag=0.1.3-dev",
+      "purl": "pkg:oci/path-loader@sha256%3A30a7b9d0e6840f8911a3071d3d95f432fe81fe9851d93a622e7a7c53b9566bd0?repository_url=ghcr.io/componentized/component/path-loader&tag=0.1.3-dev",
       "type": "library",
       "version": "0.1.3-dev"
     },
-    "timestamp": "2026-11-25T23:30:44Z",
+    "timestamp": "2026-11-26T13:42:04Z",
     "tools": {
       "components": [
         {
