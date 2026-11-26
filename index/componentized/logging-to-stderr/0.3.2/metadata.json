@@ -67,6 +67,7 @@
       "version": "0.1.0-draft"
     }
   ],
+  "release": "https://github.com/componentized/logging/releases/tag/v0.3.2",
   "parts": [
     {
       "digest": "sha256:e8b5d5486d25d71717307d50088adc3851cdef5ae3de71d3d572a41215808ee5",

@@ -1,0 +1,81 @@
+{
+  "package": "componentized:sockets-trace-ip-name-lookup",
+  "version": "0.1.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/trace-ip-name-lookup",
+    "tag": "0.1.1",
+    "digest": "sha256:676a66485375d0a101fad4eb1b38f1a68db2740eac0c6fbe34b9a6ebecb8c520",
+    "layer_digest": "sha256:48b5cef37745c4ce3b9bd647eb290fd3dfbcd4fe8c0d84e9d52c59250afd782c",
+    "size": 67912,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/sockets",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4126645181
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/trace-ip-name-lookup",
+    "tag": "0.1.1_debug",
+    "digest": "sha256:f01e89288280b8e05eb99213d917d329eca0cb2040a94a933d8c3f12f2866fb5",
+    "layer_digest": "sha256:d23b23ae19708470bf1f67d73e49fdab434b8ff60ec81d44ae7caf63f6bd963c",
+    "size": 915731,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/sockets",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4126646250
+    }
+  },
+  "created": "2026-11-26T13:10:10.381416645Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Trace wasi:sockets/ip-name-lookup calls using a logger.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "244222108d72e292a968de3fab2c045f4442abab",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-trace-ip-name-lookup",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/244222108d72e292a968de3fab2c045f4442abab/components/trace-ip-name-lookup",
+    "org.opencontainers.image.version": "v0.1.1"
+  },
+  "imports": [
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:sockets/ip-name-lookup@0.3.0",
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "wasi:sockets/ip-name-lookup@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:f886b7a0a35760807b3780021707f16ece530901a2fc04b8b798aa5ef49d03ef",
+      "size": 601
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/sockets",
+    "git_ref": "refs/tags/v0.1.1",
+    "log_index": 4126645634
+  },
+  "indexed_at": "2026-11-26T13:14:45Z"
+}

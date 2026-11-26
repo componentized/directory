@@ -1,0 +1,85 @@
+{
+  "package": "componentized:sockets-latch-trace",
+  "version": "0.1.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-trace",
+    "tag": "0.1.1",
+    "digest": "sha256:e8d129f135bf53ea87ab514055c23b8bcfe372315ef7f65bfe6d16b4d31d1408",
+    "layer_digest": "sha256:3db551f8211a69d1104ffec649ab4d39eb4b074f659f4be3645bf39f56973557",
+    "size": 59405,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/sockets",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4126641804
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-trace",
+    "tag": "0.1.1_debug",
+    "digest": "sha256:c5df582f129b7915368458bc7e5c950e3f12fbac2ab7f9c1391e3c0deae06d8b",
+    "layer_digest": "sha256:f8f3ee907cded3aa1b64fb76693266213bc05c6a4e466eef15a91921cb8a60df",
+    "size": 437822,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/sockets",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4126642701
+    }
+  },
+  "created": "2026-11-26T13:09:23.576673234Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Sockets latch that wraps another latch, logging each decision it makes without changing it.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "244222108d72e292a968de3fab2c045f4442abab",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-trace",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/244222108d72e292a968de3fab2c045f4442abab/components/latch-trace",
+    "org.opencontainers.image.version": "v0.1.1"
+  },
+  "imports": [
+    "componentized:sockets/latch@0.1.1",
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.1"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.1"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:14f93ed95c465b06a114038ed46330c249ed3a3005b791dc8e1c91c4b6ff945b",
+      "size": 3445
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/sockets",
+    "git_ref": "refs/tags/v0.1.1",
+    "log_index": 4126642149
+  },
+  "indexed_at": "2026-11-26T13:14:33Z"
+}

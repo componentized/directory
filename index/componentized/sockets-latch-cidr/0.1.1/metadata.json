@@ -1,0 +1,166 @@
+{
+  "package": "componentized:sockets-latch-cidr",
+  "version": "0.1.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-cidr",
+    "tag": "0.1.1",
+    "digest": "sha256:99972daaf5105b45328500c52b2f7c4c6f45cee22ad6d155d203d88cd5e3990d",
+    "layer_digest": "sha256:ab6e1a0f6db7ae75475af1a75480d7509b409359004b7dd736ae6c1630e715b5",
+    "size": 296603,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/sockets",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4126495332
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-cidr",
+    "tag": "0.1.1_debug",
+    "digest": "sha256:447d13163cbd31cf640b88ce862732c28bff59edd952040a15efea1ad6dbb13d",
+    "layer_digest": "sha256:80387d444608947e137e2b6dfc1e4e81b1f46967b3d158244e0b8dad63555902",
+    "size": 3389335,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/sockets",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4126500821
+    }
+  },
+  "created": "2026-11-26T12:58:48.152156782Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Socket latch that uses CIDR ranges to grant or deny traffic originating in either direction based on the remote address. Return traffic is not restricted.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "244222108d72e292a968de3fab2c045f4442abab",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-cidr",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/244222108d72e292a968de3fab2c045f4442abab/components/latch-cidr",
+    "org.opencontainers.image.version": "v0.1.1"
+  },
+  "imports": [
+    "wasi:config/store@0.2.0-rc.1",
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.1"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.1"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:6a18e3686eb1976570c45772613aec0b02b00ea0b80511a5eab888bb80f5c003",
+      "size": 124055,
+      "code": true
+    },
+    {
+      "digest": "sha256:e506574880a6b0d4477aa137494b2c409d9aa6afdd0e987b238a8e26797ccd4d",
+      "size": 126075,
+      "code": true
+    },
+    {
+      "digest": "sha256:18d8ebdf4b584c14195b57606f19621cc897eb65958bdb84d6a0101877aa5dac",
+      "size": 44893,
+      "code": true
+    }
+  ],
+  "wiring": {
+    "instances": [
+      {
+        "part": 0,
+        "name": "egress",
+        "args": [
+          {
+            "name": "wasi:logging/logging@0.1.0-draft",
+            "import": "wasi:logging/logging@0.1.0-draft"
+          },
+          {
+            "name": "wasi:config/store@0.2.0-rc.1",
+            "import": "wasi:config/store@0.2.0-rc.1"
+          },
+          {
+            "name": "wasi:sockets/types@0.3.0",
+            "import": "wasi:sockets/types@0.3.0"
+          }
+        ]
+      },
+      {
+        "part": 1,
+        "name": "ingress",
+        "args": [
+          {
+            "name": "wasi:logging/logging@0.1.0-draft",
+            "import": "wasi:logging/logging@0.1.0-draft"
+          },
+          {
+            "name": "wasi:config/store@0.2.0-rc.1",
+            "import": "wasi:config/store@0.2.0-rc.1"
+          },
+          {
+            "name": "wasi:sockets/types@0.3.0",
+            "import": "wasi:sockets/types@0.3.0"
+          }
+        ]
+      },
+      {
+        "part": 2,
+        "args": [
+          {
+            "name": "latch1",
+            "instance": 1,
+            "export": "componentized:sockets/latch@0.1.1"
+          },
+          {
+            "name": "latch0",
+            "instance": 0,
+            "export": "componentized:sockets/latch@0.1.1"
+          },
+          {
+            "name": "wasi:sockets/types@0.3.0",
+            "import": "wasi:sockets/types@0.3.0"
+          }
+        ]
+      }
+    ],
+    "exports": [
+      {
+        "name": "componentized:sockets/latch@0.1.1",
+        "instance": 2,
+        "export": "componentized:sockets/latch@0.1.1"
+      }
+    ]
+  },
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/sockets",
+    "git_ref": "refs/tags/v0.1.1",
+    "log_index": 4126496822
+  },
+  "indexed_at": "2026-11-26T13:12:15Z"
+}

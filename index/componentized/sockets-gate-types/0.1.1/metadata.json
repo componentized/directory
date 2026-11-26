@@ -1,0 +1,90 @@
+{
+  "package": "componentized:sockets-gate-types",
+  "version": "0.1.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/gate-types",
+    "tag": "0.1.1",
+    "digest": "sha256:1c72c85c6ca6824cd6927c04ee96f6f93826b664a66440c3aef2cbce6ff80bae",
+    "layer_digest": "sha256:b246efb8bdcec64d4b62e7774648b8a460237f5db65059d10c91d690c55dbbd0",
+    "size": 233161,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/sockets",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4126482883
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/gate-types",
+    "tag": "0.1.1_debug",
+    "digest": "sha256:facd45f0769bf44d7fba8349cbec5e13b01281a242e65dfbfdb3f0901a237299",
+    "layer_digest": "sha256:de4bd2d0a5b0b9f8f91ff3fdbcf24ca988f98206e04f19fac185f6abaed41086",
+    "size": 1994066,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/sockets",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4126488670
+    }
+  },
+  "created": "2026-11-26T12:58:20.955920982Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Socket gate access control for tcp and udp sockets.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "244222108d72e292a968de3fab2c045f4442abab",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-gate-types",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/244222108d72e292a968de3fab2c045f4442abab/components/gate-types",
+    "org.opencontainers.image.version": "v0.1.1"
+  },
+  "imports": [
+    "componentized:sockets/latch@0.1.1",
+    "wasi:clocks/types@0.3.0",
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "wasi:sockets/types@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.1"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:2e34d170b7802c77375936c19f32e103cadc7fbb3f9a150f4aac295cd289f20a",
+      "size": 6464
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/sockets",
+    "git_ref": "refs/tags/v0.1.1",
+    "log_index": 4126485208
+  },
+  "indexed_at": "2026-11-26T13:12:09Z"
+}

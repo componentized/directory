@@ -1,0 +1,68 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "pkg:cargo/componentized-static-config-cli@0.3.0",
+      "name": "componentized-static-config-cli",
+      "purl": "pkg:cargo/componentized-static-config-cli@0.3.0",
+      "type": "library",
+      "version": "0.3.0"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "pkg:cargo/componentized-static-config-cli@0.3.0"
+      ],
+      "ref": "component:componentized:sockets-latch-deny-ip-name-lookup-config"
+    },
+    {
+      "dependsOn": [],
+      "ref": "pkg:cargo/componentized-static-config-cli@0.3.0"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "component:componentized:sockets-latch-deny-ip-name-lookup-config",
+      "description": "Internal config for latch-deny-ip-name-lookup.",
+      "externalReferences": [
+        {
+          "comment": "revision 244222108d72e292a968de3fab2c045f4442abab",
+          "type": "vcs",
+          "url": "https://github.com/componentized/sockets.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/componentized/sockets/tree/244222108d72e292a968de3fab2c045f4442abab/components/latch-deny-ip-name-lookup-config"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "cf314ee84acf8a29df9860849680e39b0a644e762904a20334b7bf4adebdad99"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "componentized:sockets-latch-deny-ip-name-lookup-config",
+      "purl": "pkg:oci/latch-deny-ip-name-lookup-config@sha256%3A5d5fb581c8b66baa5b69d131305de2ee15536230e1bf79fa79b76b1fc5e954f7?repository_url=ghcr.io/componentized/sockets/latch-deny-ip-name-lookup-config&tag=0.1.1",
+      "type": "library",
+      "version": "0.1.1"
+    },
+    "timestamp": "2026-11-26T12:51:23Z",
+    "tools": {
+      "components": [
+        {
+          "name": "componentized-static-config-cli",
+          "type": "application",
+          "version": "0.3.0"
+        }
+      ]
+    }
+  },
+  "specVersion": "1.6",
+  "version": 1
+}

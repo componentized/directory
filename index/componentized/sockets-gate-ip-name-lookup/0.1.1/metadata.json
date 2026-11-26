@@ -1,0 +1,86 @@
+{
+  "package": "componentized:sockets-gate-ip-name-lookup",
+  "version": "0.1.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/gate-ip-name-lookup",
+    "tag": "0.1.1",
+    "digest": "sha256:49dc2b97d3e6d7baca05026b33297f43e2ca0fe34082354e39a80238fb99a582",
+    "layer_digest": "sha256:0e80f2207589ad2700a22c2d043bb009dc0512b11f42ceace480d07349a90f57",
+    "size": 76963,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/sockets",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4126473030
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/gate-ip-name-lookup",
+    "tag": "0.1.1_debug",
+    "digest": "sha256:b3b57437ec678b26c23ffc208b36df5d6a1b98257379017d6d7124f197852d54",
+    "layer_digest": "sha256:bd5b5442fbe387efb66e90254a2f74b7dd984997756fe5884625fc20339c8efc",
+    "size": 1009444,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/sockets",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4126477225
+    }
+  },
+  "created": "2026-11-26T12:57:56.609235876Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Socket gate access control for wasi:sockets/ip-name-lookup.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "244222108d72e292a968de3fab2c045f4442abab",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-gate-ip-name-lookup",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/244222108d72e292a968de3fab2c045f4442abab/components/gate-ip-name-lookup",
+    "org.opencontainers.image.version": "v0.1.1"
+  },
+  "imports": [
+    "componentized:sockets/latch@0.1.1",
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:sockets/ip-name-lookup@0.3.0",
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "wasi:sockets/ip-name-lookup@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.1"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:f886b7a0a35760807b3780021707f16ece530901a2fc04b8b798aa5ef49d03ef",
+      "size": 601
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/sockets",
+    "git_ref": "refs/tags/v0.1.1",
+    "log_index": 4126474207
+  },
+  "indexed_at": "2026-11-26T13:12:03Z"
+}

@@ -1,0 +1,79 @@
+{
+  "package": "componentized:sockets-latch-defer-all",
+  "version": "0.1.1",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-defer-all",
+    "tag": "0.1.1",
+    "digest": "sha256:db91cd57b24fb1572188e711b79bbf6416e5d64d34c2d5e7dbbef28667e9ba08",
+    "layer_digest": "sha256:174371ea8128f80056083e2a54adaecc3280adbbf99295ce2fa59582565f1cc8",
+    "size": 30753,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/sockets",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4126540635
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-defer-all",
+    "tag": "0.1.1_debug",
+    "digest": "sha256:12173f050d478d81aa6a7abcd1bc6eeb8539c4452878c89070ebba32ce1e6ca1",
+    "layer_digest": "sha256:b539a85b31dea0909a45728dab09c340c81b0dd64026fea57b11b4956f31e1f4",
+    "size": 294262,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/sockets",
+      "git_ref": "refs/tags/v0.1.1",
+      "log_index": 4126547516
+    }
+  },
+  "created": "2026-11-26T13:00:54.705072427Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Sockets latch that implicitly defers all decisions.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "244222108d72e292a968de3fab2c045f4442abab",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-defer-all",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/244222108d72e292a968de3fab2c045f4442abab/components/latch-defer-all",
+    "org.opencontainers.image.version": "v0.1.1"
+  },
+  "imports": [
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.1"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.1"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:14f93ed95c465b06a114038ed46330c249ed3a3005b791dc8e1c91c4b6ff945b",
+      "size": 3445
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/tags/v0.1.1",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/sockets",
+    "git_ref": "refs/tags/v0.1.1",
+    "log_index": 4126545260
+  },
+  "indexed_at": "2026-11-26T13:12:36Z"
+}
