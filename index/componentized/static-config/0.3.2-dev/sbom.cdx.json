@@ -1,0 +1,78 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "bom-ref": "wit:componentized:component@0.1.2",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "8fe815da1e59708893bec7367b16b036e7eaa6c7f25dd305f3199574551c231e"
+        }
+      ],
+      "name": "componentized:component",
+      "properties": [
+        {
+          "name": "wkg:registry",
+          "value": "componentized.dev"
+        }
+      ],
+      "type": "library",
+      "version": "0.1.2"
+    }
+  ],
+  "dependencies": [
+    {
+      "dependsOn": [
+        "wit:componentized:component@0.1.2"
+      ],
+      "ref": "component:componentized:static-config"
+    },
+    {
+      "dependsOn": [],
+      "ref": "wit:componentized:component@0.1.2"
+    }
+  ],
+  "metadata": {
+    "component": {
+      "bom-ref": "component:componentized:static-config",
+      "description": "Create custom `wasi:config` components with static values.",
+      "externalReferences": [
+        {
+          "comment": "revision eb496668bdfc2b7cc4cccc9b5c3c151fd7b06ba9",
+          "type": "vcs",
+          "url": "https://github.com/componentized/static-config.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/componentized/static-config/tree/eb496668bdfc2b7cc4cccc9b5c3c151fd7b06ba9"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "8833363721353f3a69afbc051b10172d483f225a8f50cf2a8fee1d6c5f550c3e"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0"
+        }
+      ],
+      "name": "componentized:static-config",
+      "purl": "pkg:oci/static-config@sha256%3Af78561320223576f7cedf312aaa401015f9f48e3c3b3770a129b71a1726ca4ea?repository_url=ghcr.io/componentized/static-config&tag=0.3.2-dev",
+      "type": "library",
+      "version": "0.3.2-dev"
+    },
+    "timestamp": "2026-11-26T00:46:29Z",
+    "tools": {
+      "components": [
+        {
+          "name": "wkg",
+          "type": "application"
+        }
+      ]
+    }
+  },
+  "specVersion": "1.6",
+  "version": 1
+}
