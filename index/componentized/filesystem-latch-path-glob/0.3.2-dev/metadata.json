@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/latch-path-glob",
     "tag": "0.3.2-dev",
-    "digest": "sha256:019a3ba20746ddfa1bcf6acc280d8ad1af5c4247b2f9e5482d7572d438aed56b",
+    "digest": "sha256:9ec0e5b57683c9b9bd0fc8c3be3bbf0cf77274ac673ba0d6949d0541df22ad1d",
     "layer_digest": "sha256:4a32e6af33f592897f95ac613c65d1c15b842f4068ea58cac2ba779105276b20",
     "size": 82265,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/filesystem",
       "git_ref": "refs/heads/main",
-      "log_index": 4092644535
+      "log_index": 4117136201
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/latch-path-glob",
     "tag": "0.3.2-dev_debug",
-    "digest": "sha256:5a4c40945b4d8edf4e43c763309b7aa4a0e635eff99bf44cdee7c394012dc26d",
+    "digest": "sha256:b04cf9e61c51cf79941dc5f5e140e15a474e88fb7a577a7386116947cfaf761d",
     "layer_digest": "sha256:6f4c591c7db41c6bfd445dc021159b0f9c7d467a48cd31b3f43434488630e2b5",
     "size": 978275,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/filesystem",
       "git_ref": "refs/heads/main",
-      "log_index": 4092645769
+      "log_index": 4117138674
     }
   },
-  "created": "2026-11-25T04:03:46.199843915Z",
+  "created": "2026-11-26T03:20:07.339188428Z",
   "annotations": {
     "org.opencontainers.image.description": "Filesystem latch that uses glob patterns to defer or deny operations on a path.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "24c7a17692f96f171b083738b96ff5a3a67e97b4",
+    "org.opencontainers.image.revision": "eafdfba254135a693cbb4629b2db966b1a9eba14",
     "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
     "org.opencontainers.image.title": "componentized:filesystem-latch-path-glob",
-    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/24c7a17692f96f171b083738b96ff5a3a67e97b4/components/latch-path-glob",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/eafdfba254135a693cbb4629b2db966b1a9eba14/components/latch-path-glob",
     "org.opencontainers.image.version": "v0.3.2-dev"
   },
   "imports": [
@@ -88,7 +88,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/filesystem",
     "git_ref": "refs/heads/main",
-    "log_index": 4092644899
+    "log_index": 4117136919
   },
-  "indexed_at": "2026-11-25T04:07:50Z"
+  "indexed_at": "2026-11-26T03:24:25Z"
 }

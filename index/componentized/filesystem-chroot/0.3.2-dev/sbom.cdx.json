@@ -1760,13 +1760,13 @@
       "description": "Virtualizes the `wasi:filesystem` interfaces limiting all access to a specific directory defined by the 'path' key in a `wasi:config/store`, mimicking the GNU chroot command.",
       "externalReferences": [
         {
-          "comment": "revision 24c7a17692f96f171b083738b96ff5a3a67e97b4",
+          "comment": "revision eafdfba254135a693cbb4629b2db966b1a9eba14",
           "type": "vcs",
           "url": "https://github.com/componentized/filesystem.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/filesystem/tree/24c7a17692f96f171b083738b96ff5a3a67e97b4/components/chroot"
+          "url": "https://github.com/componentized/filesystem/tree/eafdfba254135a693cbb4629b2db966b1a9eba14/components/chroot"
         }
       ],
       "hashes": [
@@ -1781,11 +1781,11 @@
         }
       ],
       "name": "componentized:filesystem-chroot",
-      "purl": "pkg:oci/chroot@sha256%3A0a4f25eaba9f981480db8dab342bdbf5cc8d05688fd22f1913e1143a25f7252c?repository_url=ghcr.io/componentized/filesystem/chroot&tag=0.3.2-dev",
+      "purl": "pkg:oci/chroot@sha256%3A07e622da848035792234d7cf54e19567675d205be211e3c438fb4c4756c617e1?repository_url=ghcr.io/componentized/filesystem/chroot&tag=0.3.2-dev",
       "type": "library",
       "version": "0.3.2-dev"
     },
-    "timestamp": "2026-11-25T03:54:24Z",
+    "timestamp": "2026-11-26T03:11:13Z",
     "tools": {
       "components": [
         {

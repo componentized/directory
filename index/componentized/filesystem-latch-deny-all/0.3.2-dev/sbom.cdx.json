@@ -1740,13 +1740,13 @@
       "description": "Filesystem latch that implicitly denies all operations.",
       "externalReferences": [
         {
-          "comment": "revision 24c7a17692f96f171b083738b96ff5a3a67e97b4",
+          "comment": "revision eafdfba254135a693cbb4629b2db966b1a9eba14",
           "type": "vcs",
           "url": "https://github.com/componentized/filesystem.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/filesystem/tree/24c7a17692f96f171b083738b96ff5a3a67e97b4/components/latch-deny-all"
+          "url": "https://github.com/componentized/filesystem/tree/eafdfba254135a693cbb4629b2db966b1a9eba14/components/latch-deny-all"
         }
       ],
       "hashes": [
@@ -1761,11 +1761,11 @@
         }
       ],
       "name": "componentized:filesystem-latch-deny-all",
-      "purl": "pkg:oci/latch-deny-all@sha256%3A33179deec7daa4d995009965ab579fc9a093d391f74fe91fdb4c33f7f730a148?repository_url=ghcr.io/componentized/filesystem/latch-deny-all&tag=0.3.2-dev",
+      "purl": "pkg:oci/latch-deny-all@sha256%3A9f091b34142f8f7c75b9f6a07f9356356a6e81a1242fb7af9e184f14637f4be3?repository_url=ghcr.io/componentized/filesystem/latch-deny-all&tag=0.3.2-dev",
       "type": "library",
       "version": "0.3.2-dev"
     },
-    "timestamp": "2026-11-25T03:54:24Z",
+    "timestamp": "2026-11-26T03:11:13Z",
     "tools": {
       "components": [
         {

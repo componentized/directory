@@ -1740,13 +1740,13 @@
       "description": "Filesystem latch that implicitly defers all operations.",
       "externalReferences": [
         {
-          "comment": "revision 24c7a17692f96f171b083738b96ff5a3a67e97b4",
+          "comment": "revision eafdfba254135a693cbb4629b2db966b1a9eba14",
           "type": "vcs",
           "url": "https://github.com/componentized/filesystem.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/filesystem/tree/24c7a17692f96f171b083738b96ff5a3a67e97b4/components/latch-defer-all"
+          "url": "https://github.com/componentized/filesystem/tree/eafdfba254135a693cbb4629b2db966b1a9eba14/components/latch-defer-all"
         }
       ],
       "hashes": [
@@ -1761,11 +1761,11 @@
         }
       ],
       "name": "componentized:filesystem-latch-defer-all",
-      "purl": "pkg:oci/latch-defer-all@sha256%3A4ff001cf8d3da548fc44030a39d162030bf7d66099dccbf9b42f6abeb28049f4?repository_url=ghcr.io/componentized/filesystem/latch-defer-all&tag=0.3.2-dev",
+      "purl": "pkg:oci/latch-defer-all@sha256%3Ac7aff467efc7891d1fbc2358721db032e7e5b40f92a74e436af3c0a1fe92ab57?repository_url=ghcr.io/componentized/filesystem/latch-defer-all&tag=0.3.2-dev",
       "type": "library",
       "version": "0.3.2-dev"
     },
-    "timestamp": "2026-11-25T03:54:24Z",
+    "timestamp": "2026-11-26T03:11:13Z",
     "tools": {
       "components": [
         {

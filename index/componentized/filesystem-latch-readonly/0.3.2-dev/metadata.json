@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/latch-readonly",
     "tag": "0.3.2-dev",
-    "digest": "sha256:a076ca929cdb2b0f81ac29595615d378d77ca66ad066ebe8c5ddd11b1d0e71cb",
+    "digest": "sha256:b4d2b55cd4be1e77acc23355285084d028c024f1f3537f2443c1d1d0ea3b5517",
     "layer_digest": "sha256:69aa1ccb727e8ddad2d9791cd67b7675decce371103159369dc84f2c2515a60c",
     "size": 90097,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/filesystem",
       "git_ref": "refs/heads/main",
-      "log_index": 4092647491
+      "log_index": 4117142403
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/filesystem/latch-readonly",
     "tag": "0.3.2-dev_debug",
-    "digest": "sha256:46d673cf8b4a3bba2d2929fe7a227e957634875e565d588fe6cb83179ce1b186",
+    "digest": "sha256:7ff948aa2a6321aaf692c710e522abea56050ac9c77a4b5f1d82bff5693a5388",
     "layer_digest": "sha256:eb3c2e51512f7624d6fe53fa2e6c06776919fd288235847f0b3d548e6ce13df9",
     "size": 986107,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/filesystem",
       "git_ref": "refs/heads/main",
-      "log_index": 4092649497
+      "log_index": 4117145014
     }
   },
-  "created": "2026-11-25T04:04:12.538638362Z",
+  "created": "2026-11-26T03:20:36.900455086Z",
   "annotations": {
     "org.opencontainers.image.description": "Filesystem latch that denies operations which would mutate the filesystem.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "24c7a17692f96f171b083738b96ff5a3a67e97b4",
+    "org.opencontainers.image.revision": "eafdfba254135a693cbb4629b2db966b1a9eba14",
     "org.opencontainers.image.source": "https://github.com/componentized/filesystem.git",
     "org.opencontainers.image.title": "componentized:filesystem-latch-readonly",
-    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/24c7a17692f96f171b083738b96ff5a3a67e97b4/components/latch-readonly",
+    "org.opencontainers.image.url": "https://github.com/componentized/filesystem/tree/eafdfba254135a693cbb4629b2db966b1a9eba14/components/latch-readonly",
     "org.opencontainers.image.version": "v0.3.2-dev"
   },
   "imports": [
@@ -125,7 +125,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/filesystem",
     "git_ref": "refs/heads/main",
-    "log_index": 4092648138
+    "log_index": 4117143492
   },
-  "indexed_at": "2026-11-25T04:07:57Z"
+  "indexed_at": "2026-11-26T03:24:29Z"
 }

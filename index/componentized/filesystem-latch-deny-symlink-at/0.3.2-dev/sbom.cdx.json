@@ -1740,13 +1740,13 @@
       "description": "Filesystem latch that denies creating symlinks.",
       "externalReferences": [
         {
-          "comment": "revision 24c7a17692f96f171b083738b96ff5a3a67e97b4",
+          "comment": "revision eafdfba254135a693cbb4629b2db966b1a9eba14",
           "type": "vcs",
           "url": "https://github.com/componentized/filesystem.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/filesystem/tree/24c7a17692f96f171b083738b96ff5a3a67e97b4/components/latch-deny-symlink-at"
+          "url": "https://github.com/componentized/filesystem/tree/eafdfba254135a693cbb4629b2db966b1a9eba14/components/latch-deny-symlink-at"
         }
       ],
       "hashes": [
@@ -1761,11 +1761,11 @@
         }
       ],
       "name": "componentized:filesystem-latch-deny-symlink-at",
-      "purl": "pkg:oci/latch-deny-symlink-at@sha256%3A7139a63eaac6a01af06e68692995596fe1aa10c1145eb5a952df7eb469d57b1e?repository_url=ghcr.io/componentized/filesystem/latch-deny-symlink-at&tag=0.3.2-dev",
+      "purl": "pkg:oci/latch-deny-symlink-at@sha256%3Abbae1d8e58ac6ba01c44315b15a675ee33c84a43c8761d3bc93c349a5a967167?repository_url=ghcr.io/componentized/filesystem/latch-deny-symlink-at&tag=0.3.2-dev",
       "type": "library",
       "version": "0.3.2-dev"
     },
-    "timestamp": "2026-11-25T03:54:24Z",
+    "timestamp": "2026-11-26T03:11:13Z",
     "tools": {
       "components": [
         {

@@ -1852,13 +1852,13 @@
       "description": "Filesystem gate access control for preopens and descriptors.",
       "externalReferences": [
         {
-          "comment": "revision 24c7a17692f96f171b083738b96ff5a3a67e97b4",
+          "comment": "revision eafdfba254135a693cbb4629b2db966b1a9eba14",
           "type": "vcs",
           "url": "https://github.com/componentized/filesystem.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/filesystem/tree/24c7a17692f96f171b083738b96ff5a3a67e97b4/components/gate"
+          "url": "https://github.com/componentized/filesystem/tree/eafdfba254135a693cbb4629b2db966b1a9eba14/components/gate"
         }
       ],
       "hashes": [
@@ -1873,11 +1873,11 @@
         }
       ],
       "name": "componentized:filesystem-gate",
-      "purl": "pkg:oci/gate@sha256%3Ae32385e019a5c8475f9cae3351fca1282caa6690cc6bf51cad516def5b2d7015?repository_url=ghcr.io/componentized/filesystem/gate&tag=0.3.2-dev",
+      "purl": "pkg:oci/gate@sha256%3Ae0b76f55bb42743b82a62a4497093906412064fa65561d1248b812c35112c864?repository_url=ghcr.io/componentized/filesystem/gate&tag=0.3.2-dev",
       "type": "library",
       "version": "0.3.2-dev"
     },
-    "timestamp": "2026-11-25T03:54:24Z",
+    "timestamp": "2026-11-26T03:11:13Z",
     "tools": {
       "components": [
         {
