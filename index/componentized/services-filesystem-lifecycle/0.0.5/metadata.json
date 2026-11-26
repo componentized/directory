@@ -74,6 +74,7 @@
       "version": "0.3.0"
     }
   ],
+  "release": "https://github.com/componentized/services/releases/tag/v0.0.5",
   "parts": [
     {
       "digest": "sha256:cf7614e59abfb5b3b1fa026a41624eed24e131425c3d4d415cbb97c3d1c14886",

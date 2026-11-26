@@ -57,6 +57,7 @@
       "version": "0.1.1"
     }
   ],
+  "release": "https://github.com/componentized/secrets/releases/tag/v0.1.1",
   "parts": [
     {
       "digest": "sha256:9660901cbd7b8016c92b7ccc7c0eb813a9d0d929809513facc40e15a6eaf9981",
