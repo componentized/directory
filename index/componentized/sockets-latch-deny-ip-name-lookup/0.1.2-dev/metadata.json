@@ -1,0 +1,122 @@
+{
+  "package": "componentized:sockets-latch-deny-ip-name-lookup",
+  "version": "0.1.2-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-deny-ip-name-lookup",
+    "tag": "0.1.2-dev",
+    "digest": "sha256:2677065547d92ec8d8a152de3f1cea06be71753388226b4887b723e0007465f4",
+    "layer_digest": "sha256:1ffdc5979803d9b4e5cf5c7d2072b068c8a7670257b60b0a74c262e9e9caebde",
+    "size": 74531,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/sockets",
+      "git_ref": "refs/heads/main",
+      "log_index": 4126696095
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-deny-ip-name-lookup",
+    "tag": "0.1.2-dev_debug",
+    "digest": "sha256:5b798e23cdf382ea56e1ba1350f0fcf620f7ed09caffadc5fa9e5598ae50b60c",
+    "layer_digest": "sha256:b469337f3ad0e7cc065f658c4a4ade9796130a13cc7c76aa1dfda725e415662f",
+    "size": 830516,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/sockets",
+      "git_ref": "refs/heads/main",
+      "log_index": 4126701338
+    }
+  },
+  "created": "2026-11-26T13:13:15.017613256Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Sockets latch that implicitly denies all ip-name lookups.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b28f45246afe4cf8ef44d1e9d7f352bde7fedfd5",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-deny-ip-name-lookup",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/b28f45246afe4cf8ef44d1e9d7f352bde7fedfd5/components/latch-deny-ip-name-lookup",
+    "org.opencontainers.image.version": "v0.1.2-dev"
+  },
+  "imports": [
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.2-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.2-dev"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:cf314ee84acf8a29df9860849680e39b0a644e762904a20334b7bf4adebdad99",
+      "size": 6188,
+      "code": true
+    },
+    {
+      "digest": "sha256:62798980ccbb67cd3ee65a710cfcc87a1c4a07421289e44637ec709f95d32539",
+      "size": 67580,
+      "code": true
+    }
+  ],
+  "wiring": {
+    "instances": [
+      {
+        "part": 0
+      },
+      {
+        "part": 1,
+        "args": [
+          {
+            "name": "wasi:config/store@0.2.0-rc.1",
+            "instance": 0,
+            "export": "wasi:config/store@0.2.0-rc.1"
+          },
+          {
+            "name": "wasi:logging/logging@0.1.0-draft",
+            "import": "wasi:logging/logging@0.1.0-draft"
+          },
+          {
+            "name": "wasi:sockets/types@0.3.0",
+            "import": "wasi:sockets/types@0.3.0"
+          }
+        ]
+      }
+    ],
+    "exports": [
+      {
+        "name": "componentized:sockets/latch@0.1.2-dev",
+        "instance": 1,
+        "export": "componentized:sockets/latch@0.1.2-dev"
+      }
+    ]
+  },
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/sockets",
+    "git_ref": "refs/heads/main",
+    "log_index": 4126697900
+  },
+  "indexed_at": "2026-11-26T13:25:04Z"
+}

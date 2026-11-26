@@ -1,0 +1,156 @@
+{
+  "package": "componentized:sockets-gate",
+  "version": "0.1.2-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/gate",
+    "tag": "0.1.2-dev",
+    "digest": "sha256:52821ffab977652d2c11dcfa023a934ce5625c1c82ba77b1cd7f06ddc1eef643",
+    "layer_digest": "sha256:17acf4c00f3a69f2c50c7b13a9e9bc1547ed9491158ea1b5c3d92408738f9aa5",
+    "size": 315446,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/sockets",
+      "git_ref": "refs/heads/main",
+      "log_index": 4126609303
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/gate",
+    "tag": "0.1.2-dev_debug",
+    "digest": "sha256:c6cc2056778377a9eb1b01634866438a777517d2f7270f1d24eecabc3005142b",
+    "layer_digest": "sha256:404b5220778c3099fcb27d282d4c7116858f7c4c2241ede9ef96e783d50fec4f",
+    "size": 3008832,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/sockets",
+      "git_ref": "refs/heads/main",
+      "log_index": 4126611393
+    }
+  },
+  "created": "2026-11-26T13:06:18.083432915Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Socket gate access control.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b28f45246afe4cf8ef44d1e9d7f352bde7fedfd5",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-gate",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/b28f45246afe4cf8ef44d1e9d7f352bde7fedfd5/components/gate",
+    "org.opencontainers.image.version": "v0.1.2-dev"
+  },
+  "imports": [
+    "componentized:sockets/latch@0.1.2-dev",
+    "wasi:clocks/types@0.3.0",
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:sockets/ip-name-lookup@0.3.0",
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "wasi:sockets/ip-name-lookup@0.3.0",
+    "wasi:sockets/types@0.3.0"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.2-dev"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:4b9bcf1242e1528d3f22762725441ccbd8e6ee451a0bf32dca8e55917c5bc2d8",
+      "size": 77019,
+      "code": true
+    },
+    {
+      "digest": "sha256:374a339edd43dc9f0df10e53e46299e88c8da5503078cb68762fe2e9bdd7c692",
+      "size": 233217,
+      "code": true
+    }
+  ],
+  "wiring": {
+    "instances": [
+      {
+        "part": 0,
+        "args": [
+          {
+            "name": "wasi:sockets/types@0.3.0",
+            "import": "wasi:sockets/types@0.3.0"
+          },
+          {
+            "name": "componentized:sockets/latch@0.1.2-dev",
+            "import": "componentized:sockets/latch@0.1.2-dev"
+          },
+          {
+            "name": "wasi:logging/logging@0.1.0-draft",
+            "import": "wasi:logging/logging@0.1.0-draft"
+          },
+          {
+            "name": "wasi:sockets/ip-name-lookup@0.3.0",
+            "import": "wasi:sockets/ip-name-lookup@0.3.0"
+          }
+        ]
+      },
+      {
+        "part": 1,
+        "args": [
+          {
+            "name": "wasi:clocks/types@0.3.0",
+            "import": "wasi:clocks/types@0.3.0"
+          },
+          {
+            "name": "wasi:sockets/types@0.3.0",
+            "import": "wasi:sockets/types@0.3.0"
+          },
+          {
+            "name": "componentized:sockets/latch@0.1.2-dev",
+            "import": "componentized:sockets/latch@0.1.2-dev"
+          },
+          {
+            "name": "wasi:logging/logging@0.1.0-draft",
+            "import": "wasi:logging/logging@0.1.0-draft"
+          }
+        ]
+      }
+    ],
+    "exports": [
+      {
+        "name": "wasi:sockets/ip-name-lookup@0.3.0",
+        "instance": 0,
+        "export": "wasi:sockets/ip-name-lookup@0.3.0"
+      },
+      {
+        "name": "wasi:sockets/types@0.3.0",
+        "instance": 1,
+        "export": "wasi:sockets/types@0.3.0"
+      }
+    ]
+  },
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/sockets",
+    "git_ref": "refs/heads/main",
+    "log_index": 4126609731
+  },
+  "indexed_at": "2026-11-26T13:22:56Z"
+}

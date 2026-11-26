@@ -66,6 +66,7 @@
       "version": "0.3.0"
     }
   ],
+  "release": "https://github.com/componentized/sockets/releases/tag/v0.1.1",
   "parts": [
     {
       "digest": "sha256:cf314ee84acf8a29df9860849680e39b0a644e762904a20334b7bf4adebdad99",

@@ -1,0 +1,79 @@
+{
+  "package": "componentized:sockets-latch-deny-ipv4",
+  "version": "0.1.2-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-deny-ipv4",
+    "tag": "0.1.2-dev",
+    "digest": "sha256:47a1f6c597d5becf51ec43a728e606f692fed101eea04a05ccfd7ad510567ddd",
+    "layer_digest": "sha256:ad7caa2077ec1025baf06037612c724801812cf6b8385b5cf7f8a8ac5428e3b6",
+    "size": 63814,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/sockets",
+      "git_ref": "refs/heads/main",
+      "log_index": 4126708818
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-deny-ipv4",
+    "tag": "0.1.2-dev_debug",
+    "digest": "sha256:80b781e9e294fbdb9a7b1b5cf650c320e436a57576333fff636dae4a8e23da18",
+    "layer_digest": "sha256:a3b6707f68d479cc6a1a9a13e9a8e79360ca560c49cb5ede64e6e5f41ab831c4",
+    "size": 487901,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/sockets",
+      "git_ref": "refs/heads/main",
+      "log_index": 4126710838
+    }
+  },
+  "created": "2026-11-26T13:13:58.622082339Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Sockets latch that implicitly denies all IPv4 operations.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b28f45246afe4cf8ef44d1e9d7f352bde7fedfd5",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-deny-ipv4",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/b28f45246afe4cf8ef44d1e9d7f352bde7fedfd5/components/latch-deny-ipv4",
+    "org.opencontainers.image.version": "v0.1.2-dev"
+  },
+  "imports": [
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.2-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.2-dev"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:14f93ed95c465b06a114038ed46330c249ed3a3005b791dc8e1c91c4b6ff945b",
+      "size": 3445
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/sockets",
+    "git_ref": "refs/heads/main",
+    "log_index": 4126709472
+  },
+  "indexed_at": "2026-11-26T13:25:20Z"
+}

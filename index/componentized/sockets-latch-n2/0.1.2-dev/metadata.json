@@ -1,0 +1,81 @@
+{
+  "package": "componentized:sockets-latch-n2",
+  "version": "0.1.2-dev",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-n2",
+    "tag": "0.1.2-dev",
+    "digest": "sha256:f7643ba93efce0fe8b8904046a56caab110aa10d9adef94e07f692f5e33fec4e",
+    "layer_digest": "sha256:19f93c99e3326b7d7ef28cb4cc4241b971e1a30994cf1c83a09a49bf6ee5ea6d",
+    "size": 44990,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/sockets",
+      "git_ref": "refs/heads/main",
+      "log_index": 4126762918
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/sockets/latch-n2",
+    "tag": "0.1.2-dev_debug",
+    "digest": "sha256:88088afce874dc2d72338d69d88106f915a2b6ab6408fb6bba65e896dd36e47c",
+    "layer_digest": "sha256:957b77d05fa403db75f95838a65f714210367d13cb54dc15b2d74e68d35be320",
+    "size": 438224,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/heads/main",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/sockets",
+      "git_ref": "refs/heads/main",
+      "log_index": 4126766621
+    }
+  },
+  "created": "2026-11-26T13:17:44.152457753Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Sockets latch that aggregates two other sockets latches.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "b28f45246afe4cf8ef44d1e9d7f352bde7fedfd5",
+    "org.opencontainers.image.source": "https://github.com/componentized/sockets.git",
+    "org.opencontainers.image.title": "componentized:sockets-latch-n2",
+    "org.opencontainers.image.url": "https://github.com/componentized/sockets/tree/b28f45246afe4cf8ef44d1e9d7f352bde7fedfd5/components/latch-n2",
+    "org.opencontainers.image.version": "v0.1.2-dev"
+  },
+  "imports": [
+    "latch0: componentized:sockets/latch@0.1.2-dev",
+    "latch1: componentized:sockets/latch@0.1.2-dev",
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:sockets/latch@0.1.2-dev"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:sockets",
+      "version": "0.1.2-dev"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:14f93ed95c465b06a114038ed46330c249ed3a3005b791dc8e1c91c4b6ff945b",
+      "size": 3445
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/sockets/.github/workflows/ci.yaml@refs/heads/main",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/sockets",
+    "git_ref": "refs/heads/main",
+    "log_index": 4126763861
+  },
+  "indexed_at": "2026-11-26T13:26:29Z"
+}
