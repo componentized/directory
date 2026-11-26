@@ -133,7 +133,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "39050c40ac74190c5b0d07c9cad61d113086c05a3b58bdcfb6f291897f6bc5f9"
+          "content": "1ccb1fb70744f3e1b8f2b4a460f01be6bd27264cc15075f9feb91404715ec66f"
         }
       ],
       "name": "componentized:valkey-as-keyvalue",
@@ -144,7 +144,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "3d9dacc4c1e1b1bbf9ea10b454f44024a28335f8d8e8c00f1713277d4faa9e90"
+          "content": "91b70d8d4b811ff8e117ed6a7d2ec1abc4c7817e819c0c6f0a5873e63cee357f"
         }
       ],
       "name": "componentized:valkey-as-keyvalue-constants",
@@ -166,29 +166,29 @@
       "description": "Client for interacting with a Valkey server, as `componentized:valkey` and `wasmcloud:keyvalue`.",
       "externalReferences": [
         {
-          "comment": "revision 96d2c274e3bba5cb7734492851f0fecea593e26e",
+          "comment": "revision 76c0a879a5da9f153b030b61f5818d735dad82f6",
           "type": "vcs",
           "url": "https://github.com/componentized/valkey.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/valkey/tree/96d2c274e3bba5cb7734492851f0fecea593e26e/components/client"
+          "url": "https://github.com/componentized/valkey/tree/76c0a879a5da9f153b030b61f5818d735dad82f6/components/client"
         },
         {
           "comment": "the OCI image the component is pulled from with wkg",
           "type": "distribution",
-          "url": "oci://ghcr.io/componentized/valkey/client:0.3.0-dev@sha256:4458df9f63e344b8757792d2f6133ccf4aee18fec0a48559150f0e291e0d8cff"
+          "url": "oci://ghcr.io/componentized/valkey/client:0.3.0@sha256:769e9c4370fc44985dd204c6a574aeb81fc188c00a9110513f3d3a4028d05c22"
         },
         {
           "comment": "the SBOM attested to the image with cosign, the base of this SBOM",
           "type": "bom",
-          "url": "oci://ghcr.io/componentized/valkey/client@sha256:4458df9f63e344b8757792d2f6133ccf4aee18fec0a48559150f0e291e0d8cff"
+          "url": "oci://ghcr.io/componentized/valkey/client@sha256:769e9c4370fc44985dd204c6a574aeb81fc188c00a9110513f3d3a4028d05c22"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "700716e6bf06b7e2cea7c21d0f32cb425816a06505fb3411e4c0bde057421613"
+          "content": "2a2d62c36f150d05cacff718a516cf41d87c6c52cae4d76234c041c3928ba5a2"
         }
       ],
       "licenses": [
@@ -208,23 +208,23 @@
         },
         {
           "name": "oci:tag",
-          "value": "0.3.0-dev"
+          "value": "0.3.0"
         },
         {
           "name": "oci:digest",
-          "value": "sha256:4458df9f63e344b8757792d2f6133ccf4aee18fec0a48559150f0e291e0d8cff"
+          "value": "sha256:769e9c4370fc44985dd204c6a574aeb81fc188c00a9110513f3d3a4028d05c22"
         }
       ],
-      "purl": "pkg:oci/client@sha256%3A4458df9f63e344b8757792d2f6133ccf4aee18fec0a48559150f0e291e0d8cff?repository_url=ghcr.io/componentized/valkey/client&tag=0.3.0-dev",
+      "purl": "pkg:oci/client@sha256%3A769e9c4370fc44985dd204c6a574aeb81fc188c00a9110513f3d3a4028d05c22?repository_url=ghcr.io/componentized/valkey/client&tag=0.3.0",
       "type": "library",
-      "version": "0.3.0-dev"
+      "version": "0.3.0"
     },
     {
       "bom-ref": "component:componentized:valkey-commands",
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "5dd4c0111531879ce3162b245bff018449a7e4bf53d8f6d2822066cbfd2a9a04"
+          "content": "8c5331aa4adb576e6bbdf997a3d119e8e2ff9ac12cb17a0b0756b2ac24d3df60"
         }
       ],
       "name": "componentized:valkey-commands",
@@ -235,7 +235,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "2e9f08ccaf9a5ae91ec874b1754043a03d5cf48505c34c5a128c51be4f3aa72b"
+          "content": "308baa4beb25521a6f659e1c94ac91d77c61986bab81e516facf6c318f2e64ab"
         }
       ],
       "name": "componentized:valkey-connection",
@@ -246,7 +246,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "bbd7e1f49db80d5a6e454fbe306125a8b91dc515d53751054a59cdda28a42adb"
+          "content": "129625906f2c4e4f689e691b4d094855d14204ec8cc0e35f5ae91d84cacc6dba"
         }
       ],
       "name": "componentized:valkey-tcp",
@@ -257,7 +257,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "e155eaf185eb719773e005fb504af02663323fe1249cd0cea6204ad6ba10688e"
+          "content": "8b177021269b35bebe5450c54b87703249af96379c358fca70754569ef30a914"
         }
       ],
       "name": "componentized:valkey-tcp-connector",
@@ -268,7 +268,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "94006045fe673a3d3da85bd04780b58188e98f092622247651a5ad0d6828ce34"
+          "content": "83e131fff5e329c1483379a8c3dc3d8ac2ffd64513ba5d7de4e14dbf7223022c"
         }
       ],
       "name": "componentized:valkey-tcp-connector-constants",
@@ -301,17 +301,17 @@
       "version": "0.1.0"
     },
     {
-      "bom-ref": "path+file://./components/connection#0.3.0-dev",
+      "bom-ref": "path+file://./components/connection#0.3.0",
       "licenses": [
         {
           "expression": "Apache-2.0"
         }
       ],
       "name": "connection",
-      "purl": "pkg:cargo/connection@0.3.0-dev?download_url=file://.",
+      "purl": "pkg:cargo/connection@0.3.0?download_url=file://.",
       "scope": "required",
       "type": "library",
-      "version": "0.3.0-dev"
+      "version": "0.3.0"
     },
     {
       "bom-ref": "path+file://./components/gate#0.1.0",
@@ -2351,7 +2351,7 @@
     },
     {
       "dependsOn": [
-        "path+file://./components/connection#0.3.0-dev",
+        "path+file://./components/connection#0.3.0",
         "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-unknown-unknown"
       ],
       "ref": "component:componentized:valkey-connection"
@@ -2396,7 +2396,7 @@
         "registry+https://github.com/rust-lang/crates.io-index#futures-core@0.3.34",
         "registry+https://github.com/rust-lang/crates.io-index#wit-bindgen@0.63.0"
       ],
-      "ref": "path+file://./components/connection#0.3.0-dev"
+      "ref": "path+file://./components/connection#0.3.0"
     },
     {
       "dependsOn": [
@@ -2799,19 +2799,19 @@
       "description": "Implements `componentized:services/credential-admin`, publishing and destroying the credentials of service bindings in a Valkey server.",
       "externalReferences": [
         {
-          "comment": "revision ad8f9856eaaf915e5e8c91a770bd89acbe66a005",
+          "comment": "revision a842290de4fea2c6c53363b171ccfb26fa892e60",
           "type": "vcs",
           "url": "https://github.com/componentized/services.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/services/tree/ad8f9856eaaf915e5e8c91a770bd89acbe66a005/components/valkey-credential-admin"
+          "url": "https://github.com/componentized/services/tree/a842290de4fea2c6c53363b171ccfb26fa892e60/components/valkey-credential-admin"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "e3cdb1fcffa57fb2916d4213ad69076573d8e4a0146136573f6f8acfca23ea02"
+          "content": "48a67c6d5ab293d90268e3335226a32cebac9c61faa6d923c33acfc39ad7b4bf"
         }
       ],
       "licenses": [
@@ -2820,11 +2820,11 @@
         }
       ],
       "name": "componentized:services-valkey-credential-admin",
-      "purl": "pkg:oci/valkey-credential-admin@sha256%3A28dd7a970bf084a2de9db032f7c0aa7b653906e3b5c3e89a9fb7675d1ac8e6c7?repository_url=ghcr.io/componentized/services/valkey-credential-admin&tag=0.0.5-dev",
+      "purl": "pkg:oci/valkey-credential-admin@sha256%3Ad756082bed3ff1f985adbabd4039256c704c1914b07ca86f37b18236c5cb65aa?repository_url=ghcr.io/componentized/services/valkey-credential-admin&tag=0.0.5-dev",
       "type": "library",
       "version": "0.0.5-dev"
     },
-    "timestamp": "2026-11-25T03:21:05Z",
+    "timestamp": "2026-11-26T13:34:37Z",
     "tools": {
       "components": [
         {

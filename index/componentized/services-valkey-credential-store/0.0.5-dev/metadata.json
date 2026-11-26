@@ -7,49 +7,49 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/valkey-credential-store",
     "tag": "0.0.5-dev",
-    "digest": "sha256:c051dff5f5a3e094660e92be7c479521f18e84c37a4f0e7e86c0964fe8e1baad",
-    "layer_digest": "sha256:ce71aa469949d1944421858a728c681b968c8759e13165dd6ed11a696fb3154f",
-    "size": 2922807,
+    "digest": "sha256:51e984d3314ff858287f065c0536f39d0a484cdee0e7348d99fa8bb0693bad35",
+    "layer_digest": "sha256:94f23b7e6d782a1a478cd5907eda6398c9d03ff68c232c580e2124d7c5646e11",
+    "size": 2909896,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4092110186
+      "log_index": 4127136456
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/services/valkey-credential-store",
     "tag": "0.0.5-dev_debug",
-    "digest": "sha256:06499ca3c08e3581b754ba1b5532a06bf777607c9cf59d9009e35b9943372051",
-    "layer_digest": "sha256:54d81d7d2d58230452f91f66bc17134c950bf7c92f14b38a21e28d68c21e6408",
-    "size": 31385991,
+    "digest": "sha256:ff7aa934c5a703de2f2e5196609dde1e23393a888e9acdd6d990e2d74886230f",
+    "layer_digest": "sha256:a4ae56acd3fd98777dd1139fd33a0766b5d2efd58496617734eee1a5ff4a1040",
+    "size": 31370261,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4092112748
+      "log_index": 4127143371
     }
   },
-  "created": "2026-11-25T03:29:25.885696462Z",
+  "created": "2026-11-26T13:42:43.565699090Z",
   "annotations": {
     "org.opencontainers.image.description": "Implements `componentized:services/credential-store`, fetching the credentials of service bindings from a Valkey server.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "ad8f9856eaaf915e5e8c91a770bd89acbe66a005",
+    "org.opencontainers.image.revision": "a842290de4fea2c6c53363b171ccfb26fa892e60",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-valkey-credential-store",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/ad8f9856eaaf915e5e8c91a770bd89acbe66a005/components/valkey-credential-store",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/a842290de4fea2c6c53363b171ccfb26fa892e60/components/valkey-credential-store",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
     "componentized:secrets/store@0.1.1",
     "componentized:secrets/types@0.1.1",
     "componentized:services/types@0.0.5-dev",
-    "componentized:valkey/types@0.3.0-dev",
+    "componentized:valkey/types@0.3.0",
     "wasi:clocks/monotonic-clock@0.3.0",
     "wasi:clocks/types@0.3.0",
     "wasi:config/store@0.2.0-rc.1",
@@ -71,7 +71,7 @@
     },
     {
       "package": "componentized:valkey",
-      "version": "0.3.0-dev"
+      "version": "0.3.0"
     },
     {
       "package": "wasi:clocks",
@@ -92,8 +92,8 @@
   ],
   "parts": [
     {
-      "digest": "sha256:700716e6bf06b7e2cea7c21d0f32cb425816a06505fb3411e4c0bde057421613",
-      "size": 2741616,
+      "digest": "sha256:2a2d62c36f150d05cacff718a516cf41d87c6c52cae4d76234c041c3928ba5a2",
+      "size": 2728713,
       "code": true
     },
     {
@@ -128,8 +128,8 @@
             "import": "wasi:logging/logging@0.1.0-draft"
           },
           {
-            "name": "componentized:valkey/types@0.3.0-dev",
-            "import": "componentized:valkey/types@0.3.0-dev"
+            "name": "componentized:valkey/types@0.3.0",
+            "import": "componentized:valkey/types@0.3.0"
           },
           {
             "name": "componentized:secrets/types@0.1.1",
@@ -179,7 +179,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/services",
     "git_ref": "refs/heads/main",
-    "log_index": 4092110806
+    "log_index": 4127139089
   },
-  "indexed_at": "2026-11-25T03:32:58Z"
+  "indexed_at": "2026-11-26T13:46:08Z"
 }

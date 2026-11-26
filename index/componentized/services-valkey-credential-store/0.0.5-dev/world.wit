@@ -8,7 +8,7 @@ world root {
   import wasi:sockets/types@0.3.0;
   import wasi:sockets/ip-name-lookup@0.3.0;
   import wasi:logging/logging@0.1.0-draft;
-  import componentized:valkey/types@0.3.0-dev;
+  import componentized:valkey/types@0.3.0;
   import componentized:secrets/types@0.1.1;
   import componentized:secrets/store@0.1.1;
 

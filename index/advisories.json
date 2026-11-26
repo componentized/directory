@@ -45,7 +45,6 @@
     "pkg:cargo/connection-minimal@0.3.0",
     "pkg:cargo/connection-minimal@0.3.1-dev",
     "pkg:cargo/connection@0.3.0",
-    "pkg:cargo/connection@0.3.0-dev",
     "pkg:cargo/connection@0.3.1-dev",
     "pkg:cargo/const-oid@0.10.2",
     "pkg:cargo/crc32fast@1.5.0",

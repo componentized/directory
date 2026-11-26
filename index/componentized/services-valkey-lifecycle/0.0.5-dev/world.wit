@@ -6,7 +6,7 @@ world root {
   import componentized:services/types@0.0.5-dev;
   import componentized:services/credential-admin@0.0.5-dev;
   import wasi:clocks/system-clock@0.3.0;
-  import componentized:valkey/types@0.3.0-dev;
+  import componentized:valkey/types@0.3.0;
   import wasi:clocks/types@0.3.0;
   import wasi:clocks/monotonic-clock@0.3.0;
   import wasi:sockets/types@0.3.0;

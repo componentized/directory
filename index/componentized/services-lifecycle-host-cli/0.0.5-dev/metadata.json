@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/lifecycle-host-cli",
     "tag": "0.0.5-dev",
-    "digest": "sha256:bb6aca02a1b45977c46e25d877a193a7709084bc5301c720446d4fb38955a7ac",
+    "digest": "sha256:8b9a1868ec052d83074f44dc4a6229f8c67dc9f876f5578c31a5e2a32f5a97af",
     "layer_digest": "sha256:a50ec2e1f05691c59a705f65f529aef7678b816205bfcd591b017070acfd868b",
     "size": 633437,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4092091207
+      "log_index": 4127098954
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/services/lifecycle-host-cli",
     "tag": "0.0.5-dev_debug",
-    "digest": "sha256:6308b91f5f26798b7c33cdff8e7d7c951757639ff7e5158848b85bf42991851f",
+    "digest": "sha256:e5fa3d4ac0c30b406d1695235eb0720c9903779ff316368b80e6b7d729aea93e",
     "layer_digest": "sha256:49d869c89d24be2778a576e26fc9217527f035076f3f6e8d1e6dc50527de581b",
     "size": 2536176,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4092094473
+      "log_index": 4127103813
     }
   },
-  "created": "2026-11-25T03:27:53.439572321Z",
+  "created": "2026-11-26T13:41:11.180029927Z",
   "annotations": {
     "org.opencontainers.image.description": "Exposes a `componentized:services/lifecycle` as a cli, exporting `wasi:cli/run`.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "ad8f9856eaaf915e5e8c91a770bd89acbe66a005",
+    "org.opencontainers.image.revision": "a842290de4fea2c6c53363b171ccfb26fa892e60",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-lifecycle-host-cli",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/ad8f9856eaaf915e5e8c91a770bd89acbe66a005/components/lifecycle-host-cli",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/a842290de4fea2c6c53363b171ccfb26fa892e60/components/lifecycle-host-cli",
     "org.opencontainers.image.version": "v0.0.5-dev"
   },
   "imports": [
@@ -88,7 +88,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/services",
     "git_ref": "refs/heads/main",
-    "log_index": 4092092495
+    "log_index": 4127100813
   },
-  "indexed_at": "2026-11-25T03:32:49Z"
+  "indexed_at": "2026-11-26T13:45:57Z"
 }
