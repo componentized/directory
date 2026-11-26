@@ -2,11 +2,11 @@
   "bomFormat": "CycloneDX",
   "components": [
     {
-      "bom-ref": "wit:componentized:component@0.1.1",
+      "bom-ref": "wit:componentized:component@0.1.2",
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "834ab2662bcbdfda846251feca738783489823ace416c9993a7c09a9bd11a39d"
+          "content": "8fe815da1e59708893bec7367b16b036e7eaa6c7f25dd305f3199574551c231e"
         }
       ],
       "name": "componentized:component",
@@ -17,19 +17,19 @@
         }
       ],
       "type": "library",
-      "version": "0.1.1"
+      "version": "0.1.2"
     }
   ],
   "dependencies": [
     {
       "dependsOn": [
-        "wit:componentized:component@0.1.1"
+        "wit:componentized:component@0.1.2"
       ],
       "ref": "component:componentized:static-config"
     },
     {
       "dependsOn": [],
-      "ref": "wit:componentized:component@0.1.1"
+      "ref": "wit:componentized:component@0.1.2"
     }
   ],
   "metadata": {
@@ -38,19 +38,19 @@
       "description": "Create custom `wasi:config` components with static values.",
       "externalReferences": [
         {
-          "comment": "revision 8956fd5769efa4d9f45c7b0ea3997b8153caf97f",
+          "comment": "revision 3b3c87cf6e2a1e17e8374f2721d7a30690c1478e",
           "type": "vcs",
           "url": "https://github.com/componentized/static-config.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/static-config/tree/8956fd5769efa4d9f45c7b0ea3997b8153caf97f"
+          "url": "https://github.com/componentized/static-config/tree/3b3c87cf6e2a1e17e8374f2721d7a30690c1478e"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "3cbd68c164eb844ac39386fbb7e00a907addf978415a374195f0508b6130b48a"
+          "content": "eaf23365724b4c199ae1775fabf6e32864fcc68ad8a24372e1374a7801da35f5"
         }
       ],
       "licenses": [
@@ -59,11 +59,11 @@
         }
       ],
       "name": "componentized:static-config",
-      "purl": "pkg:oci/static-config@sha256%3A3919993c8a8b4e8120daa43a620d832251dfb2fef0599ba56b4194443e77d988?repository_url=ghcr.io/componentized/static-config&tag=0.3.1-dev",
+      "purl": "pkg:oci/static-config@sha256%3Aeb32d289b7fcaa59b86c2589c57f0480079953a8fdcd12d21e426467d399992a?repository_url=ghcr.io/componentized/static-config&tag=0.3.1-dev",
       "type": "library",
       "version": "0.3.1-dev"
     },
-    "timestamp": "2026-11-25T20:52:13Z",
+    "timestamp": "2026-11-26T00:33:19Z",
     "tools": {
       "components": [
         {

@@ -3765,19 +3765,19 @@
       "description": "Create wasi:config components with static values, from key value pairs.",
       "externalReferences": [
         {
-          "comment": "revision 8956fd5769efa4d9f45c7b0ea3997b8153caf97f",
+          "comment": "revision 3b3c87cf6e2a1e17e8374f2721d7a30690c1478e",
           "type": "vcs",
           "url": "https://github.com/componentized/static-config.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/static-config/tree/8956fd5769efa4d9f45c7b0ea3997b8153caf97f/components/factory"
+          "url": "https://github.com/componentized/static-config/tree/3b3c87cf6e2a1e17e8374f2721d7a30690c1478e/components/factory"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "3019d90149237259f281c4671d13a32cdfff6f33f74f72ab290307942b77c98e"
+          "content": "2cc40bb5359d993c502c207cc215af75a3e3ed5881d8184ca6cf9fc0a7b1b921"
         }
       ],
       "licenses": [
@@ -3786,11 +3786,11 @@
         }
       ],
       "name": "componentized:static-config-factory",
-      "purl": "pkg:oci/factory@sha256%3A5a85588b4a8009ef79ec568fd48f4a0c0e2b359ad8af1b9e7188bcb623dd1dc8?repository_url=ghcr.io/componentized/static-config/factory&tag=0.3.1-dev",
+      "purl": "pkg:oci/factory@sha256%3Adbbede122caea39edef8595e5776ba1daeeb2c2295f7d24b43033270553bf8e8?repository_url=ghcr.io/componentized/static-config/factory&tag=0.3.1-dev",
       "type": "library",
       "version": "0.3.1-dev"
     },
-    "timestamp": "2026-11-25T20:52:13Z",
+    "timestamp": "2026-11-26T00:33:19Z",
     "tools": {
       "components": [
         {

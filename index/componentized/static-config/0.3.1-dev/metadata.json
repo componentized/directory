@@ -7,8 +7,8 @@
     "registry": "ghcr.io",
     "repository": "componentized/static-config",
     "tag": "0.3.1-dev",
-    "digest": "sha256:3919993c8a8b4e8120daa43a620d832251dfb2fef0599ba56b4194443e77d988",
-    "layer_digest": "sha256:3cbd68c164eb844ac39386fbb7e00a907addf978415a374195f0508b6130b48a",
+    "digest": "sha256:eb32d289b7fcaa59b86c2589c57f0480079953a8fdcd12d21e426467d399992a",
+    "layer_digest": "sha256:eaf23365724b4c199ae1775fabf6e32864fcc68ad8a24372e1374a7801da35f5",
     "size": 1102,
     "signature": {
       "status": "verified",
@@ -16,23 +16,23 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/static-config",
       "git_ref": "refs/heads/main",
-      "log_index": 4111625060
+      "log_index": 4114740058
     }
   },
-  "created": "2026-11-25T21:00:37.533208019Z",
+  "created": "2026-11-26T00:35:39.493169061Z",
   "annotations": {
     "org.opencontainers.image.description": "Create custom `wasi:config` components with static values.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "8956fd5769efa4d9f45c7b0ea3997b8153caf97f",
+    "org.opencontainers.image.revision": "3b3c87cf6e2a1e17e8374f2721d7a30690c1478e",
     "org.opencontainers.image.source": "https://github.com/componentized/static-config.git",
     "org.opencontainers.image.title": "componentized:static-config",
-    "org.opencontainers.image.url": "https://github.com/componentized/static-config/tree/8956fd5769efa4d9f45c7b0ea3997b8153caf97f",
+    "org.opencontainers.image.url": "https://github.com/componentized/static-config/tree/3b3c87cf6e2a1e17e8374f2721d7a30690c1478e",
     "org.opencontainers.image.version": "v0.3.1-dev"
   },
   "dependencies": [
     {
       "package": "componentized:component",
-      "version": "0.1.1"
+      "version": "0.1.2"
     }
   ],
   "sbom": {
@@ -41,7 +41,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/static-config",
     "git_ref": "refs/heads/main",
-    "log_index": 4111626652
+    "log_index": 4114740519
   },
-  "indexed_at": "2026-11-25T21:02:24Z"
+  "indexed_at": "2026-11-26T00:37:09Z"
 }
