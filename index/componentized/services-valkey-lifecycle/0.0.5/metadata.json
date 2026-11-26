@@ -1,0 +1,216 @@
+{
+  "package": "componentized:services-valkey-lifecycle",
+  "version": "0.0.5",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/valkey-lifecycle",
+    "tag": "0.0.5",
+    "digest": "sha256:ce0a51ee355664de3481f534ef552639d153061ada5beee196a5da49b4b0f556",
+    "layer_digest": "sha256:dd8e73a3930b055c370d9299cd3fd324473362c4f24fa0a91913ac0418b49890",
+    "size": 2942165,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/tags/v0.0.5",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/services",
+      "git_ref": "refs/tags/v0.0.5",
+      "log_index": 4127437155
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/valkey-lifecycle",
+    "tag": "0.0.5_debug",
+    "digest": "sha256:b89336f86904d9a4075a05f04e24e0db890b19084a0cca0e34cbd7146913e9e2",
+    "layer_digest": "sha256:67c61b0ce9110f29e723463d9ef9a4e367e577b2731ae3520e7b3fab00a26ee8",
+    "size": 31670315,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/tags/v0.0.5",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/services",
+      "git_ref": "refs/tags/v0.0.5",
+      "log_index": 4127438236
+    }
+  },
+  "created": "2026-11-26T14:04:09.003466138Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Implements `componentized:services/service-lifecycle` for `valkey` services on a Valkey server, at the `hostname` and `port` keys in `wasi:config`, `127.0.0.1:6379` by default.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "89bc95a997f76d0f53ebff640cba44a803733091",
+    "org.opencontainers.image.source": "https://github.com/componentized/services.git",
+    "org.opencontainers.image.title": "componentized:services-valkey-lifecycle",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/89bc95a997f76d0f53ebff640cba44a803733091/components/valkey-lifecycle",
+    "org.opencontainers.image.version": "v0.0.5"
+  },
+  "imports": [
+    "componentized:secrets/store@0.1.1",
+    "componentized:secrets/types@0.1.1",
+    "componentized:services/credential-admin@0.0.5",
+    "componentized:services/types@0.0.5",
+    "componentized:valkey/types@0.3.0",
+    "wasi:clocks/monotonic-clock@0.3.0",
+    "wasi:clocks/system-clock@0.3.0",
+    "wasi:clocks/types@0.3.0",
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:sockets/ip-name-lookup@0.3.0",
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:services/lifecycle@0.0.5"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:secrets",
+      "version": "0.1.1"
+    },
+    {
+      "package": "componentized:services",
+      "version": "0.0.5"
+    },
+    {
+      "package": "componentized:valkey",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:2a2d62c36f150d05cacff718a516cf41d87c6c52cae4d76234c041c3928ba5a2",
+      "size": 2728713,
+      "code": true
+    },
+    {
+      "digest": "sha256:83e131fff5e329c1483379a8c3dc3d8ac2ffd64513ba5d7de4e14dbf7223022c",
+      "size": 3809,
+      "code": true
+    },
+    {
+      "digest": "sha256:1777698db0f3f60e903ffd710c2836d8fd3be7436b0c3f8efff58b791f3206be",
+      "size": 194273,
+      "code": true
+    }
+  ],
+  "wiring": {
+    "instances": [
+      {
+        "part": 0,
+        "args": [
+          {
+            "name": "wasi:clocks/types@0.3.0",
+            "import": "wasi:clocks/types@0.3.0"
+          },
+          {
+            "name": "wasi:clocks/monotonic-clock@0.3.0",
+            "import": "wasi:clocks/monotonic-clock@0.3.0"
+          },
+          {
+            "name": "wasi:sockets/types@0.3.0",
+            "import": "wasi:sockets/types@0.3.0"
+          },
+          {
+            "name": "wasi:sockets/ip-name-lookup@0.3.0",
+            "import": "wasi:sockets/ip-name-lookup@0.3.0"
+          },
+          {
+            "name": "wasi:logging/logging@0.1.0-draft",
+            "import": "wasi:logging/logging@0.1.0-draft"
+          },
+          {
+            "name": "componentized:valkey/types@0.3.0",
+            "import": "componentized:valkey/types@0.3.0"
+          },
+          {
+            "name": "componentized:secrets/types@0.1.1",
+            "import": "componentized:secrets/types@0.1.1"
+          },
+          {
+            "name": "componentized:secrets/store@0.1.1",
+            "import": "componentized:secrets/store@0.1.1"
+          }
+        ]
+      },
+      {
+        "part": 1
+      },
+      {
+        "part": 2,
+        "args": [
+          {
+            "name": "componentized:valkey/tcp-connector-constants@0.3.0",
+            "instance": 1,
+            "export": "componentized:valkey/tcp-connector-constants@0.3.0"
+          },
+          {
+            "name": "componentized:valkey/commands@0.3.0",
+            "instance": 0,
+            "export": "componentized:valkey/commands@0.3.0"
+          },
+          {
+            "name": "componentized:valkey/connector@0.3.0",
+            "instance": 0,
+            "export": "componentized:valkey/connector@0.3.0"
+          },
+          {
+            "name": "componentized:valkey/connection@0.3.0",
+            "instance": 0,
+            "export": "componentized:valkey/connection@0.3.0"
+          },
+          {
+            "name": "componentized:secrets/types@0.1.1",
+            "import": "componentized:secrets/types@0.1.1"
+          },
+          {
+            "name": "componentized:secrets/store@0.1.1",
+            "import": "componentized:secrets/store@0.1.1"
+          },
+          {
+            "name": "componentized:services/types@0.0.5",
+            "import": "componentized:services/types@0.0.5"
+          },
+          {
+            "name": "componentized:services/credential-admin@0.0.5",
+            "import": "componentized:services/credential-admin@0.0.5"
+          },
+          {
+            "name": "wasi:clocks/system-clock@0.3.0",
+            "import": "wasi:clocks/system-clock@0.3.0"
+          },
+          {
+            "name": "componentized:valkey/types@0.3.0",
+            "import": "componentized:valkey/types@0.3.0"
+          }
+        ]
+      }
+    ],
+    "exports": [
+      {
+        "name": "componentized:services/lifecycle@0.0.5",
+        "instance": 2,
+        "export": "componentized:services/lifecycle@0.0.5"
+      }
+    ]
+  },
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/tags/v0.0.5",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/services",
+    "git_ref": "refs/tags/v0.0.5",
+    "log_index": 4127437461
+  },
+  "indexed_at": "2026-11-26T14:08:22Z"
+}

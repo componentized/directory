@@ -1,0 +1,86 @@
+{
+  "package": "componentized:services-webhook-credential-admin",
+  "version": "0.0.5",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/webhook-credential-admin",
+    "tag": "0.0.5",
+    "digest": "sha256:112a2c0801c0999e95a2f3ca3b6411261acfa8534c74f1c2222c68e46056fbe9",
+    "layer_digest": "sha256:36949b3073a9a45df6568a4900d982789680b4a5a46f5bce4676efe8124c3dd3",
+    "size": 141341,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/tags/v0.0.5",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/services",
+      "git_ref": "refs/tags/v0.0.5",
+      "log_index": 4127439771
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/webhook-credential-admin",
+    "tag": "0.0.5_debug",
+    "digest": "sha256:7ac41c856e30789f07866579f71c2384dbb42bd08fd9891db6fa8420ec9b96e5",
+    "layer_digest": "sha256:ac34244c41756488920f9a1ae33ca4026c1d526887fea9893123f89506157758",
+    "size": 449368,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/tags/v0.0.5",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/services",
+      "git_ref": "refs/tags/v0.0.5",
+      "log_index": 4127441740
+    }
+  },
+  "created": "2026-11-26T14:04:46.235524807Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Implements `componentized:services/credential-admin`, publishing and destroying the credentials of service bindings with a webhook over `wasi:http`, at the `scheme` and `host` keys in `wasi:config`.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "89bc95a997f76d0f53ebff640cba44a803733091",
+    "org.opencontainers.image.source": "https://github.com/componentized/services.git",
+    "org.opencontainers.image.title": "componentized:services-webhook-credential-admin",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/89bc95a997f76d0f53ebff640cba44a803733091/components/webhook-credential-admin",
+    "org.opencontainers.image.version": "v0.0.5"
+  },
+  "imports": [
+    "componentized:services/types@0.0.5",
+    "wasi:config/store@0.2.0-rc.1",
+    "wasi:http/client@0.3.0",
+    "wasi:http/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:services/credential-admin@0.0.5"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:services",
+      "version": "0.0.5"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:http",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:e7405684ffdcfdc7ea02d6442ff59321060107367ae0a6e1e531d777d4145ac2",
+      "size": 414
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/tags/v0.0.5",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/services",
+    "git_ref": "refs/tags/v0.0.5",
+    "log_index": 4127440333
+  },
+  "indexed_at": "2026-11-26T14:08:27Z"
+}

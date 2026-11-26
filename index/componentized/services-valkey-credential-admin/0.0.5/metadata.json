@@ -1,0 +1,185 @@
+{
+  "package": "componentized:services-valkey-credential-admin",
+  "version": "0.0.5",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/valkey-credential-admin",
+    "tag": "0.0.5",
+    "digest": "sha256:b8dd6293f34475d04a075cf6bfc34135f52f91bb4da8ec99b4aaec8cccf65cee",
+    "layer_digest": "sha256:4ce4b887bf0bbf586278dcb70351f76905cad47b11b582a1d111160e1d992a82",
+    "size": 2838116,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/tags/v0.0.5",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/services",
+      "git_ref": "refs/tags/v0.0.5",
+      "log_index": 4127432596
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/valkey-credential-admin",
+    "tag": "0.0.5_debug",
+    "digest": "sha256:21db32d8acae19d33b787f5ee21a5d00d6448991475eefd2408e393b1c095af4",
+    "layer_digest": "sha256:2cf0fdf4152f4d09de8894ce61140bc271a740b4d5f39172cca3f7e4fc235fd4",
+    "size": 31239677,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/tags/v0.0.5",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/services",
+      "git_ref": "refs/tags/v0.0.5",
+      "log_index": 4127433747
+    }
+  },
+  "created": "2026-11-26T14:02:57.127897624Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Implements `componentized:services/credential-admin`, publishing and destroying the credentials of service bindings in a Valkey server.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "89bc95a997f76d0f53ebff640cba44a803733091",
+    "org.opencontainers.image.source": "https://github.com/componentized/services.git",
+    "org.opencontainers.image.title": "componentized:services-valkey-credential-admin",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/89bc95a997f76d0f53ebff640cba44a803733091/components/valkey-credential-admin",
+    "org.opencontainers.image.version": "v0.0.5"
+  },
+  "imports": [
+    "componentized:secrets/store@0.1.1",
+    "componentized:secrets/types@0.1.1",
+    "componentized:services/types@0.0.5",
+    "componentized:valkey/types@0.3.0",
+    "wasi:clocks/monotonic-clock@0.3.0",
+    "wasi:clocks/types@0.3.0",
+    "wasi:config/store@0.2.0-rc.1",
+    "wasi:logging/logging@0.1.0-draft",
+    "wasi:sockets/ip-name-lookup@0.3.0",
+    "wasi:sockets/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:services/credential-admin@0.0.5"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:secrets",
+      "version": "0.1.1"
+    },
+    {
+      "package": "componentized:services",
+      "version": "0.0.5"
+    },
+    {
+      "package": "componentized:valkey",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:logging",
+      "version": "0.1.0-draft"
+    },
+    {
+      "package": "wasi:sockets",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:2a2d62c36f150d05cacff718a516cf41d87c6c52cae4d76234c041c3928ba5a2",
+      "size": 2728713,
+      "code": true
+    },
+    {
+      "digest": "sha256:8ca89ae1ba071f0b2e51832943b5eb7975d39c99e22e941d9f517a53aad5d6c5",
+      "size": 94715,
+      "code": true
+    }
+  ],
+  "wiring": {
+    "instances": [
+      {
+        "part": 0,
+        "args": [
+          {
+            "name": "wasi:clocks/types@0.3.0",
+            "import": "wasi:clocks/types@0.3.0"
+          },
+          {
+            "name": "wasi:clocks/monotonic-clock@0.3.0",
+            "import": "wasi:clocks/monotonic-clock@0.3.0"
+          },
+          {
+            "name": "wasi:sockets/types@0.3.0",
+            "import": "wasi:sockets/types@0.3.0"
+          },
+          {
+            "name": "wasi:sockets/ip-name-lookup@0.3.0",
+            "import": "wasi:sockets/ip-name-lookup@0.3.0"
+          },
+          {
+            "name": "wasi:logging/logging@0.1.0-draft",
+            "import": "wasi:logging/logging@0.1.0-draft"
+          },
+          {
+            "name": "componentized:valkey/types@0.3.0",
+            "import": "componentized:valkey/types@0.3.0"
+          },
+          {
+            "name": "componentized:secrets/types@0.1.1",
+            "import": "componentized:secrets/types@0.1.1"
+          },
+          {
+            "name": "componentized:secrets/store@0.1.1",
+            "import": "componentized:secrets/store@0.1.1"
+          }
+        ]
+      },
+      {
+        "part": 1,
+        "args": [
+          {
+            "name": "wasmcloud:keyvalue/store@0.2.0",
+            "instance": 0,
+            "export": "wasmcloud:keyvalue/store@0.2.0"
+          },
+          {
+            "name": "wasmcloud:keyvalue/types@0.2.0",
+            "instance": 0,
+            "export": "wasmcloud:keyvalue/types@0.2.0"
+          },
+          {
+            "name": "wasi:config/store@0.2.0-rc.1",
+            "import": "wasi:config/store@0.2.0-rc.1"
+          },
+          {
+            "name": "componentized:services/types@0.0.5",
+            "import": "componentized:services/types@0.0.5"
+          }
+        ]
+      }
+    ],
+    "exports": [
+      {
+        "name": "componentized:services/credential-admin@0.0.5",
+        "instance": 1,
+        "export": "componentized:services/credential-admin@0.0.5"
+      }
+    ]
+  },
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/tags/v0.0.5",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/services",
+    "git_ref": "refs/tags/v0.0.5",
+    "log_index": 4127432932
+  },
+  "indexed_at": "2026-11-26T14:08:11Z"
+}

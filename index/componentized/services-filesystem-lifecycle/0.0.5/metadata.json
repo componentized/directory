@@ -1,0 +1,92 @@
+{
+  "package": "componentized:services-filesystem-lifecycle",
+  "version": "0.0.5",
+  "kind": "component",
+  "origin": "release",
+  "oci": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/filesystem-lifecycle",
+    "tag": "0.0.5",
+    "digest": "sha256:671ed641f8fbb41da100d1844bab6fcac9fc717c1806ac31a74345f31a9726c3",
+    "layer_digest": "sha256:254335b941f6c11aa9278cdef511a12b8bac26f283bfbf63b8bfd69ca0a1a369",
+    "size": 200458,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/tags/v0.0.5",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/services",
+      "git_ref": "refs/tags/v0.0.5",
+      "log_index": 4127407224
+    }
+  },
+  "debug": {
+    "registry": "ghcr.io",
+    "repository": "componentized/services/filesystem-lifecycle",
+    "tag": "0.0.5_debug",
+    "digest": "sha256:c47557dfd930adc714270c15a2aa14f2272bfa619678279a6c59241e4e486e55",
+    "layer_digest": "sha256:ab59cfbdc93de5c566da3decd08721668df9a3ff7f95bec2bc7006e6872739c6",
+    "size": 680106,
+    "signature": {
+      "status": "verified",
+      "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/tags/v0.0.5",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "repository": "componentized/services",
+      "git_ref": "refs/tags/v0.0.5",
+      "log_index": 4127412952
+    }
+  },
+  "created": "2026-11-26T13:59:56.788899500Z",
+  "annotations": {
+    "org.opencontainers.image.description": "Implements `componentized:services/service-lifecycle` for `filesystem` services, each service instance a directory in `wasi:filesystem`, under the directory of the `path` key in `wasi:config`, `services` by default.",
+    "org.opencontainers.image.licenses": "Apache-2.0",
+    "org.opencontainers.image.revision": "89bc95a997f76d0f53ebff640cba44a803733091",
+    "org.opencontainers.image.source": "https://github.com/componentized/services.git",
+    "org.opencontainers.image.title": "componentized:services-filesystem-lifecycle",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/89bc95a997f76d0f53ebff640cba44a803733091/components/filesystem-lifecycle",
+    "org.opencontainers.image.version": "v0.0.5"
+  },
+  "imports": [
+    "componentized:services/credential-admin@0.0.5",
+    "componentized:services/types@0.0.5",
+    "wasi:clocks/system-clock@0.3.0",
+    "wasi:config/store@0.2.0-rc.1",
+    "wasi:filesystem/preopens@0.3.0",
+    "wasi:filesystem/types@0.3.0"
+  ],
+  "exports": [
+    "componentized:services/lifecycle@0.0.5"
+  ],
+  "dependencies": [
+    {
+      "package": "componentized:services",
+      "version": "0.0.5"
+    },
+    {
+      "package": "wasi:clocks",
+      "version": "0.3.0"
+    },
+    {
+      "package": "wasi:config",
+      "version": "0.2.0-rc.1"
+    },
+    {
+      "package": "wasi:filesystem",
+      "version": "0.3.0"
+    }
+  ],
+  "parts": [
+    {
+      "digest": "sha256:cf7614e59abfb5b3b1fa026a41624eed24e131425c3d4d415cbb97c3d1c14886",
+      "size": 1218
+    }
+  ],
+  "sbom": {
+    "status": "verified",
+    "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/tags/v0.0.5",
+    "issuer": "https://token.actions.githubusercontent.com",
+    "repository": "componentized/services",
+    "git_ref": "refs/tags/v0.0.5",
+    "log_index": 4127411271
+  },
+  "indexed_at": "2026-11-26T14:07:44Z"
+}

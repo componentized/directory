@@ -1,0 +1,16 @@
+package root:component;
+
+world root {
+  import wasi:config/store@0.2.0-rc.1;
+  import componentized:services/types@0.0.5;
+  import wasi:clocks/types@0.3.0;
+  import wasi:clocks/monotonic-clock@0.3.0;
+  import wasi:sockets/types@0.3.0;
+  import wasi:sockets/ip-name-lookup@0.3.0;
+  import wasi:logging/logging@0.1.0-draft;
+  import componentized:valkey/types@0.3.0;
+  import componentized:secrets/types@0.1.1;
+  import componentized:secrets/store@0.1.1;
+
+  export componentized:services/credential-admin@0.0.5;
+}
