@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/config/scope",
     "tag": "0.3.1-dev",
-    "digest": "sha256:f175c50c805ae477b305e94795460878333b6621e0e8aa60668097e5f336ef48",
+    "digest": "sha256:172070697e7e273761318169f51890784bbb503a0ed7cead7f10c5f2943e94af",
     "layer_digest": "sha256:495e8f7016c46436b22a9aacebff34c051154e3cec875f1e66380502b8f4b7be",
     "size": 41233,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/config",
       "git_ref": "refs/heads/main",
-      "log_index": 4112198314
+      "log_index": 4127191978
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/config/scope",
     "tag": "0.3.1-dev_debug",
-    "digest": "sha256:d473a8f84a4003ad2d5e7b66cf41ea7e15f3dd81f99f97691eb8f2a509425397",
+    "digest": "sha256:8d2b998778c9487a7cfb8d5c91b6b89682997933ab5331679f2e7e302560bce8",
     "layer_digest": "sha256:c607d6676bde8e0c45e4d46f3d8909a8e17192704273604e643d76bbf7c10abf",
     "size": 98313,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/config",
       "git_ref": "refs/heads/main",
-      "log_index": 4112200563
+      "log_index": 4127195906
     }
   },
-  "created": "2026-11-25T21:31:52.716932671Z",
+  "created": "2026-11-26T13:47:19.934829494Z",
   "annotations": {
     "org.opencontainers.image.description": "Selects keys in a wasi:config/store matching a scope prefix based on the content of a 'scope' import which mimics wasi:config/store. The scope value is removed from the resulting keys, and keys not matching the scope prefix are ignored.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "6d12421d700408f9c0a986838fb46c9aba31b6dc",
+    "org.opencontainers.image.revision": "cab0531bbaa048a23fca776998e98f8d72f7ac7a",
     "org.opencontainers.image.source": "https://github.com/componentized/config.git",
     "org.opencontainers.image.title": "componentized:config-scope",
-    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/6d12421d700408f9c0a986838fb46c9aba31b6dc/components/scope",
+    "org.opencontainers.image.url": "https://github.com/componentized/config/tree/cab0531bbaa048a23fca776998e98f8d72f7ac7a/components/scope",
     "org.opencontainers.image.version": "v0.3.1-dev"
   },
   "imports": [
@@ -70,7 +70,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/config",
     "git_ref": "refs/heads/main",
-    "log_index": 4112199202
+    "log_index": 4127193543
   },
-  "indexed_at": "2026-11-25T21:33:31Z"
+  "indexed_at": "2026-11-26T13:49:30Z"
 }

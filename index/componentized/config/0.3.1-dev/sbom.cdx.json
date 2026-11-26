@@ -38,13 +38,13 @@
       "description": "A collection of utility components that remix wasi:config types and interfaces.",
       "externalReferences": [
         {
-          "comment": "revision 6d12421d700408f9c0a986838fb46c9aba31b6dc",
+          "comment": "revision cab0531bbaa048a23fca776998e98f8d72f7ac7a",
           "type": "vcs",
           "url": "https://github.com/componentized/config.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/config/tree/6d12421d700408f9c0a986838fb46c9aba31b6dc"
+          "url": "https://github.com/componentized/config/tree/cab0531bbaa048a23fca776998e98f8d72f7ac7a"
         }
       ],
       "hashes": [
@@ -59,11 +59,11 @@
         }
       ],
       "name": "componentized:config",
-      "purl": "pkg:oci/config@sha256%3A5fc1a7d2180a93b4aea820939035802c1da416f798272b55e5e42afed7b6d076?repository_url=ghcr.io/componentized/config&tag=0.3.1-dev",
+      "purl": "pkg:oci/config@sha256%3Acb039c9ba6e3a395548ce7a4aa1ec95606f5a3ed0aa9045cb1015008d7a7deee?repository_url=ghcr.io/componentized/config&tag=0.3.1-dev",
       "type": "library",
       "version": "0.3.1-dev"
     },
-    "timestamp": "2026-11-25T21:28:08Z",
+    "timestamp": "2026-11-26T13:43:00Z",
     "tools": {
       "components": [
         {

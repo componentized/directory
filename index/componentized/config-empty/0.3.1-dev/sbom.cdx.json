@@ -1477,13 +1477,13 @@
       "description": "Exposes an empty wasi:config/store which returns neither errors, nor values.",
       "externalReferences": [
         {
-          "comment": "revision 6d12421d700408f9c0a986838fb46c9aba31b6dc",
+          "comment": "revision cab0531bbaa048a23fca776998e98f8d72f7ac7a",
           "type": "vcs",
           "url": "https://github.com/componentized/config.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/config/tree/6d12421d700408f9c0a986838fb46c9aba31b6dc/components/empty"
+          "url": "https://github.com/componentized/config/tree/cab0531bbaa048a23fca776998e98f8d72f7ac7a/components/empty"
         }
       ],
       "hashes": [
@@ -1498,11 +1498,11 @@
         }
       ],
       "name": "componentized:config-empty",
-      "purl": "pkg:oci/empty@sha256%3A8da77d2f907d16719e1f21c21a6146994bae233d1266e50d499748462f193aec?repository_url=ghcr.io/componentized/config/empty&tag=0.3.1-dev",
+      "purl": "pkg:oci/empty@sha256%3A28429ada153c9b2735acdf1a76da01b634a77330dd2bf90613f6f755c32b1010?repository_url=ghcr.io/componentized/config/empty&tag=0.3.1-dev",
       "type": "library",
       "version": "0.3.1-dev"
     },
-    "timestamp": "2026-11-25T21:28:08Z",
+    "timestamp": "2026-11-26T13:43:00Z",
     "tools": {
       "components": [
         {

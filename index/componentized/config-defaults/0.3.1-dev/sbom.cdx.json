@@ -1477,13 +1477,13 @@
       "description": "Combines value from two wasi:config/stores into a single store. The 'store' import is the base set of values, while the 'defaults' import, a mirror of the store interface, contributes default values when the config does not contain a value.",
       "externalReferences": [
         {
-          "comment": "revision 6d12421d700408f9c0a986838fb46c9aba31b6dc",
+          "comment": "revision cab0531bbaa048a23fca776998e98f8d72f7ac7a",
           "type": "vcs",
           "url": "https://github.com/componentized/config.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/config/tree/6d12421d700408f9c0a986838fb46c9aba31b6dc/components/defaults"
+          "url": "https://github.com/componentized/config/tree/cab0531bbaa048a23fca776998e98f8d72f7ac7a/components/defaults"
         }
       ],
       "hashes": [
@@ -1498,11 +1498,11 @@
         }
       ],
       "name": "componentized:config-defaults",
-      "purl": "pkg:oci/defaults@sha256%3Aa15fd034db9d9480f039b9eda4e7afe495b59657154ddccf18b2c6395ce052a4?repository_url=ghcr.io/componentized/config/defaults&tag=0.3.1-dev",
+      "purl": "pkg:oci/defaults@sha256%3Abdfda0872d62260047f2c70d5ebd6022703955cb79fbdf51676947152e0c783d?repository_url=ghcr.io/componentized/config/defaults&tag=0.3.1-dev",
       "type": "library",
       "version": "0.3.1-dev"
     },
-    "timestamp": "2026-11-25T21:28:08Z",
+    "timestamp": "2026-11-26T13:43:00Z",
     "tools": {
       "components": [
         {

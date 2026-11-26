@@ -1477,13 +1477,13 @@
       "description": "Selects keys in a wasi:config/store matching a scope prefix based on the content of a 'scope' import which mimics wasi:config/store. The scope value is removed from the resulting keys, and keys not matching the scope prefix are ignored.",
       "externalReferences": [
         {
-          "comment": "revision 6d12421d700408f9c0a986838fb46c9aba31b6dc",
+          "comment": "revision cab0531bbaa048a23fca776998e98f8d72f7ac7a",
           "type": "vcs",
           "url": "https://github.com/componentized/config.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/config/tree/6d12421d700408f9c0a986838fb46c9aba31b6dc/components/scope"
+          "url": "https://github.com/componentized/config/tree/cab0531bbaa048a23fca776998e98f8d72f7ac7a/components/scope"
         }
       ],
       "hashes": [
@@ -1498,11 +1498,11 @@
         }
       ],
       "name": "componentized:config-scope",
-      "purl": "pkg:oci/scope@sha256%3Af175c50c805ae477b305e94795460878333b6621e0e8aa60668097e5f336ef48?repository_url=ghcr.io/componentized/config/scope&tag=0.3.1-dev",
+      "purl": "pkg:oci/scope@sha256%3A172070697e7e273761318169f51890784bbb503a0ed7cead7f10c5f2943e94af?repository_url=ghcr.io/componentized/config/scope&tag=0.3.1-dev",
       "type": "library",
       "version": "0.3.1-dev"
     },
-    "timestamp": "2026-11-25T21:28:08Z",
+    "timestamp": "2026-11-26T13:43:00Z",
     "tools": {
       "components": [
         {

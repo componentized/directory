@@ -1477,13 +1477,13 @@
       "description": "Maps the keys in a wasi:config/store based on the content of a 'mapping' import which mimics wasi:config/store.",
       "externalReferences": [
         {
-          "comment": "revision 6d12421d700408f9c0a986838fb46c9aba31b6dc",
+          "comment": "revision cab0531bbaa048a23fca776998e98f8d72f7ac7a",
           "type": "vcs",
           "url": "https://github.com/componentized/config.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/config/tree/6d12421d700408f9c0a986838fb46c9aba31b6dc/components/remap"
+          "url": "https://github.com/componentized/config/tree/cab0531bbaa048a23fca776998e98f8d72f7ac7a/components/remap"
         }
       ],
       "hashes": [
@@ -1498,11 +1498,11 @@
         }
       ],
       "name": "componentized:config-remap",
-      "purl": "pkg:oci/remap@sha256%3A3e461f84c126e4e94cf7a0bd2d62bfacf87b914e759990585208a16ff1f8f596?repository_url=ghcr.io/componentized/config/remap&tag=0.3.1-dev",
+      "purl": "pkg:oci/remap@sha256%3A2adb626ea888fe199a53da37dd23dbf269aa49084380f5f34178ef8396697ae2?repository_url=ghcr.io/componentized/config/remap&tag=0.3.1-dev",
       "type": "library",
       "version": "0.3.1-dev"
     },
-    "timestamp": "2026-11-25T21:28:08Z",
+    "timestamp": "2026-11-26T13:43:00Z",
     "tools": {
       "components": [
         {

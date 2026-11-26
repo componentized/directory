@@ -1477,13 +1477,13 @@
       "description": "Combines value from two wasi:config/stores into a single store. The 'store' import is the base set of values, while the 'overlay' import, a mirror of the store interface, contributes additional values overriding in the case of a conflict.",
       "externalReferences": [
         {
-          "comment": "revision 6d12421d700408f9c0a986838fb46c9aba31b6dc",
+          "comment": "revision cab0531bbaa048a23fca776998e98f8d72f7ac7a",
           "type": "vcs",
           "url": "https://github.com/componentized/config.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/config/tree/6d12421d700408f9c0a986838fb46c9aba31b6dc/components/overlay"
+          "url": "https://github.com/componentized/config/tree/cab0531bbaa048a23fca776998e98f8d72f7ac7a/components/overlay"
         }
       ],
       "hashes": [
@@ -1498,11 +1498,11 @@
         }
       ],
       "name": "componentized:config-overlay",
-      "purl": "pkg:oci/overlay@sha256%3Aa8bcd6b25cb9cbdc4425417633eb8a26b3abe534a3c107188ba512477daf866f?repository_url=ghcr.io/componentized/config/overlay&tag=0.3.1-dev",
+      "purl": "pkg:oci/overlay@sha256%3A30245358544275008981facf7b7ce1350c1b653c151277f8d6c007eed9565249?repository_url=ghcr.io/componentized/config/overlay&tag=0.3.1-dev",
       "type": "library",
       "version": "0.3.1-dev"
     },
-    "timestamp": "2026-11-25T21:28:08Z",
+    "timestamp": "2026-11-26T13:43:00Z",
     "tools": {
       "components": [
         {
