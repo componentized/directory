@@ -7,42 +7,42 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/filesystem-lifecycle",
     "tag": "0.0.6-dev",
-    "digest": "sha256:a07958136441e60cade9163934023c2b5a7925513b5a5c9d62afe18126f56d07",
-    "layer_digest": "sha256:99641cb7cf3339127478b8e4de0215a255a8cb6cd178045576db11dc2efd2b7b",
-    "size": 200753,
+    "digest": "sha256:2c72f4b5b30c779a4e2df0303b3824b6f4bfc51647d7e030461cc476f53e0feb",
+    "layer_digest": "sha256:bf0f9198c4c7c797c10e7c28af6d32f6e91be9e8fbe087adbb73a98e18434a43",
+    "size": 201013,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4127434165
+      "log_index": 4151233974
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/services/filesystem-lifecycle",
     "tag": "0.0.6-dev_debug",
-    "digest": "sha256:9959f7dfec0e1c22336d0c724836bc3b4b5fd1bec2afc6466c0105382a2da0de",
-    "layer_digest": "sha256:d35323120864d5510ebbb335f30f0342ac6a8e5af857a3dc03097b7ddabccbd1",
-    "size": 680426,
+    "digest": "sha256:d31cdc4a51400f4db24975783980d505fed65f933f291f77a41cb946ef59d3f3",
+    "layer_digest": "sha256:70cbaaf2de0c68df9f9dd759962790f9ea65a348cbff083dd9db12a6705d1149",
+    "size": 678968,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4127435279
+      "log_index": 4151234512
     }
   },
-  "created": "2026-11-26T14:03:24.505043983Z",
+  "created": "2026-11-27T21:43:10.511465275Z",
   "annotations": {
     "org.opencontainers.image.description": "Implements `componentized:services/service-lifecycle` for `filesystem` services, each service instance a directory in `wasi:filesystem`, under the directory of the `path` key in `wasi:config`, `services` by default.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "d699004ff9cf208d8ef3c3bea78adac1f1c888f7",
+    "org.opencontainers.image.revision": "9e158b034a7c1241beded1258f4a46232fed2936",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-filesystem-lifecycle",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/d699004ff9cf208d8ef3c3bea78adac1f1c888f7/components/filesystem-lifecycle",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/9e158b034a7c1241beded1258f4a46232fed2936/components/filesystem-lifecycle",
     "org.opencontainers.image.version": "v0.0.6-dev"
   },
   "imports": [
@@ -86,7 +86,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/services",
     "git_ref": "refs/heads/main",
-    "log_index": 4127434482
+    "log_index": 4151234164
   },
-  "indexed_at": "2026-11-26T14:10:29Z"
+  "indexed_at": "2026-11-27T21:50:06Z"
 }

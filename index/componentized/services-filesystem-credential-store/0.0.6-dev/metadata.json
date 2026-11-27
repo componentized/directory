@@ -7,42 +7,42 @@
     "registry": "ghcr.io",
     "repository": "componentized/services/filesystem-credential-store",
     "tag": "0.0.6-dev",
-    "digest": "sha256:cc309ec223b39f1739ae3158e1da7bebc5264e40ebaacff1d02edc8c16ecfdfd",
-    "layer_digest": "sha256:e4281a773d83daebb3b91d9541819ec41f18a0f9a046a3ebd082983abbcf9fd2",
-    "size": 199304,
+    "digest": "sha256:a36b74ae41a6a2690912f1b056a8463471d5a662e6243a4e3a7054b2e8428453",
+    "layer_digest": "sha256:855cb067350f550da21f534e92a15d2ef9d32533b52c9313d5c7d3920b32a708",
+    "size": 199107,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4127432348
+      "log_index": 4151232994
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/services/filesystem-credential-store",
     "tag": "0.0.6-dev_debug",
-    "digest": "sha256:4b8f0166d525103a8786493f8d19d956cf7f08eea03a2cc67b948cb5043a8c04",
-    "layer_digest": "sha256:8e25787e3a9703ae2a79b71a2f2507dbfb0f5d5b4e526b0eab2de4d0bd19e73f",
-    "size": 554125,
+    "digest": "sha256:e4b8fe1b7446543012d462121639ec55cb25aadc053d99ab69f34a9783b772a6",
+    "layer_digest": "sha256:adbf7071a3571a204551e2ce58a1d56c96fb53e7628939f1842fb11ab52be4f8",
+    "size": 552694,
     "signature": {
       "status": "verified",
       "identity": "https://github.com/componentized/services/.github/workflows/ci.yaml@refs/heads/main",
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/services",
       "git_ref": "refs/heads/main",
-      "log_index": 4127433354
+      "log_index": 4151233380
     }
   },
-  "created": "2026-11-26T14:02:52.244431772Z",
+  "created": "2026-11-27T21:42:39.050648910Z",
   "annotations": {
     "org.opencontainers.image.description": "Implements `componentized:services/credential-store`, fetching the credentials of service bindings from files in `wasi:filesystem`, under the directory of the `path` key in `wasi:config`, `services` by default.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "d699004ff9cf208d8ef3c3bea78adac1f1c888f7",
+    "org.opencontainers.image.revision": "9e158b034a7c1241beded1258f4a46232fed2936",
     "org.opencontainers.image.source": "https://github.com/componentized/services.git",
     "org.opencontainers.image.title": "componentized:services-filesystem-credential-store",
-    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/d699004ff9cf208d8ef3c3bea78adac1f1c888f7/components/filesystem-credential-store",
+    "org.opencontainers.image.url": "https://github.com/componentized/services/tree/9e158b034a7c1241beded1258f4a46232fed2936/components/filesystem-credential-store",
     "org.opencontainers.image.version": "v0.0.6-dev"
   },
   "imports": [
@@ -80,7 +80,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/services",
     "git_ref": "refs/heads/main",
-    "log_index": 4127432610
+    "log_index": 4151233133
   },
-  "indexed_at": "2026-11-26T14:10:26Z"
+  "indexed_at": "2026-11-27T21:49:59Z"
 }

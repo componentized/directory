@@ -15,12 +15,12 @@
       "version": "0.1.0"
     },
     {
-      "bom-ref": "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-unknown-unknown",
+      "bom-ref": "rust-std:20ddd01716a87c0fcf06ae4752d85a4abc15bcdf:wasm32-unknown-unknown",
       "description": "the Rust standard library for wasm32-unknown-unknown",
       "name": "rust-std",
-      "purl": "pkg:github/rust-lang/rust@0ef1bc386059596dada8fb65b50425aab2ea637a",
+      "purl": "pkg:github/rust-lang/rust@20ddd01716a87c0fcf06ae4752d85a4abc15bcdf",
       "type": "library",
-      "version": "1.100.0"
+      "version": "1.100.1"
     },
     {
       "authors": [
@@ -1494,7 +1494,7 @@
     {
       "dependsOn": [
         "path+file://./components/keyvalue-credential-store#0.1.0",
-        "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-unknown-unknown"
+        "rust-std:20ddd01716a87c0fcf06ae4752d85a4abc15bcdf:wasm32-unknown-unknown"
       ],
       "ref": "component:componentized:services-keyvalue-credential-store"
     },
@@ -1782,7 +1782,7 @@
     },
     {
       "dependsOn": [],
-      "ref": "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-unknown-unknown"
+      "ref": "rust-std:20ddd01716a87c0fcf06ae4752d85a4abc15bcdf:wasm32-unknown-unknown"
     }
   ],
   "metadata": {
@@ -1791,19 +1791,19 @@
       "description": "Implements `componentized:services/credential-store`, fetching the credentials of service bindings from a `wasi:keyvalue` bucket, named by the `bucket` key in `wasi:config`, `bindings` by default.",
       "externalReferences": [
         {
-          "comment": "revision d699004ff9cf208d8ef3c3bea78adac1f1c888f7",
+          "comment": "revision 9e158b034a7c1241beded1258f4a46232fed2936",
           "type": "vcs",
           "url": "https://github.com/componentized/services.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/services/tree/d699004ff9cf208d8ef3c3bea78adac1f1c888f7/components/keyvalue-credential-store"
+          "url": "https://github.com/componentized/services/tree/9e158b034a7c1241beded1258f4a46232fed2936/components/keyvalue-credential-store"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "6874ad3bf210c90a8137e09febfa026c696681d22a7a85b907f7c3595fd89976"
+          "content": "fb1ca9a6c2c4eb3ef3e2b5b71c0d0f5346cc8b0d06ad0f2b7b137886247c44c7"
         }
       ],
       "licenses": [
@@ -1812,11 +1812,11 @@
         }
       ],
       "name": "componentized:services-keyvalue-credential-store",
-      "purl": "pkg:oci/keyvalue-credential-store@sha256%3A409c193e040cde122349b5a3e97fc3ed6f6783938243649caf0ffa0723b67797?repository_url=ghcr.io/componentized/services/keyvalue-credential-store&tag=0.0.6-dev",
+      "purl": "pkg:oci/keyvalue-credential-store@sha256%3Aeaf24a1d50416340e26bcfa76664b47aba7ef3a9d89e399e8fa5ace214ab8451?repository_url=ghcr.io/componentized/services/keyvalue-credential-store&tag=0.0.6-dev",
       "type": "library",
       "version": "0.0.6-dev"
     },
-    "timestamp": "2026-11-26T13:57:22Z",
+    "timestamp": "2026-11-27T21:35:00Z",
     "tools": {
       "components": [
         {

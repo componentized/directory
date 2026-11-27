@@ -15,12 +15,12 @@
       "version": "0.1.0"
     },
     {
-      "bom-ref": "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-unknown-unknown",
+      "bom-ref": "rust-std:20ddd01716a87c0fcf06ae4752d85a4abc15bcdf:wasm32-unknown-unknown",
       "description": "the Rust standard library for wasm32-unknown-unknown",
       "name": "rust-std",
-      "purl": "pkg:github/rust-lang/rust@0ef1bc386059596dada8fb65b50425aab2ea637a",
+      "purl": "pkg:github/rust-lang/rust@20ddd01716a87c0fcf06ae4752d85a4abc15bcdf",
       "type": "library",
-      "version": "1.100.0"
+      "version": "1.100.1"
     },
     {
       "authors": [
@@ -1494,7 +1494,7 @@
     {
       "dependsOn": [
         "path+file://./components/filesystem-credential-admin#0.1.0",
-        "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-unknown-unknown"
+        "rust-std:20ddd01716a87c0fcf06ae4752d85a4abc15bcdf:wasm32-unknown-unknown"
       ],
       "ref": "component:componentized:services-filesystem-credential-admin"
     },
@@ -1782,7 +1782,7 @@
     },
     {
       "dependsOn": [],
-      "ref": "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-unknown-unknown"
+      "ref": "rust-std:20ddd01716a87c0fcf06ae4752d85a4abc15bcdf:wasm32-unknown-unknown"
     }
   ],
   "metadata": {
@@ -1791,19 +1791,19 @@
       "description": "Implements `componentized:services/credential-admin`, publishing and destroying the credentials of service bindings as files in `wasi:filesystem`, under the directory of the `path` key in `wasi:config`, `services` by default.",
       "externalReferences": [
         {
-          "comment": "revision d699004ff9cf208d8ef3c3bea78adac1f1c888f7",
+          "comment": "revision 9e158b034a7c1241beded1258f4a46232fed2936",
           "type": "vcs",
           "url": "https://github.com/componentized/services.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/services/tree/d699004ff9cf208d8ef3c3bea78adac1f1c888f7/components/filesystem-credential-admin"
+          "url": "https://github.com/componentized/services/tree/9e158b034a7c1241beded1258f4a46232fed2936/components/filesystem-credential-admin"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "863dcb860d07aef3fa7be55bd074f6dbe0cf8d34e649e3f1d8351807f5828cd3"
+          "content": "30b585164891fd00f0c35bab4d024d21c77e1da23e1504d934711ba231219a77"
         }
       ],
       "licenses": [
@@ -1812,11 +1812,11 @@
         }
       ],
       "name": "componentized:services-filesystem-credential-admin",
-      "purl": "pkg:oci/filesystem-credential-admin@sha256%3Aee12f269f1b02ff1abc457a1e64f8f60757b96ed232e936ef8d4da9eff204faa?repository_url=ghcr.io/componentized/services/filesystem-credential-admin&tag=0.0.6-dev",
+      "purl": "pkg:oci/filesystem-credential-admin@sha256%3A0553ef3e1d4f830c8fb1be821d9cd62d5f5493dbea66179ff454cf1611e6e2cf?repository_url=ghcr.io/componentized/services/filesystem-credential-admin&tag=0.0.6-dev",
       "type": "library",
       "version": "0.0.6-dev"
     },
-    "timestamp": "2026-11-26T13:57:22Z",
+    "timestamp": "2026-11-27T21:35:00Z",
     "tools": {
       "components": [
         {

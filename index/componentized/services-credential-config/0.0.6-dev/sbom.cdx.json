@@ -15,12 +15,12 @@
       "version": "0.1.0"
     },
     {
-      "bom-ref": "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-unknown-unknown",
+      "bom-ref": "rust-std:20ddd01716a87c0fcf06ae4752d85a4abc15bcdf:wasm32-unknown-unknown",
       "description": "the Rust standard library for wasm32-unknown-unknown",
       "name": "rust-std",
-      "purl": "pkg:github/rust-lang/rust@0ef1bc386059596dada8fb65b50425aab2ea637a",
+      "purl": "pkg:github/rust-lang/rust@20ddd01716a87c0fcf06ae4752d85a4abc15bcdf",
       "type": "library",
-      "version": "1.100.0"
+      "version": "1.100.1"
     },
     {
       "authors": [
@@ -1494,7 +1494,7 @@
     {
       "dependsOn": [
         "path+file://./components/credential-config#0.1.0",
-        "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-unknown-unknown"
+        "rust-std:20ddd01716a87c0fcf06ae4752d85a4abc15bcdf:wasm32-unknown-unknown"
       ],
       "ref": "component:componentized:services-credential-config"
     },
@@ -1781,7 +1781,7 @@
     },
     {
       "dependsOn": [],
-      "ref": "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-unknown-unknown"
+      "ref": "rust-std:20ddd01716a87c0fcf06ae4752d85a4abc15bcdf:wasm32-unknown-unknown"
     }
   ],
   "metadata": {
@@ -1790,19 +1790,19 @@
       "description": "Exports `wasi:config/store` with the credentials of a service binding, the binding named by the `binding-id` key of the imported `wasi:config/store`, fetched from a `componentized:services/credential-store`.",
       "externalReferences": [
         {
-          "comment": "revision d699004ff9cf208d8ef3c3bea78adac1f1c888f7",
+          "comment": "revision 9e158b034a7c1241beded1258f4a46232fed2936",
           "type": "vcs",
           "url": "https://github.com/componentized/services.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/services/tree/d699004ff9cf208d8ef3c3bea78adac1f1c888f7/components/credential-config"
+          "url": "https://github.com/componentized/services/tree/9e158b034a7c1241beded1258f4a46232fed2936/components/credential-config"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "ebc8413cf7324ed61820dce79e75420dff9028a1d9414d9cef2b174879bad74c"
+          "content": "e62bf92665ef520df3fad0840a9876b3936b4be36e3afa832e22140ae590e137"
         }
       ],
       "licenses": [
@@ -1811,11 +1811,11 @@
         }
       ],
       "name": "componentized:services-credential-config",
-      "purl": "pkg:oci/credential-config@sha256%3A24914005eb8980f4d754cdc3a34ea3d3b15fc6082868a1a51c6b74ede4b01288?repository_url=ghcr.io/componentized/services/credential-config&tag=0.0.6-dev",
+      "purl": "pkg:oci/credential-config@sha256%3A1e951a754d2277c1c8038b89f321f65f986ed5b63f4162590f14c77061a6e573?repository_url=ghcr.io/componentized/services/credential-config&tag=0.0.6-dev",
       "type": "library",
       "version": "0.0.6-dev"
     },
-    "timestamp": "2026-11-26T13:57:22Z",
+    "timestamp": "2026-11-27T21:35:00Z",
     "tools": {
       "components": [
         {

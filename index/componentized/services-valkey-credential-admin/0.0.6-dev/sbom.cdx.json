@@ -122,7 +122,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "05b21a73e21952a3b013fcee351bb1dfb0e5cd80f3d460d350f98b0ae50541bc"
+          "content": "8298f38f08bd0d691c3ff711144a6aa3a1708bc620fc87848763a5d0c048f3fe"
         }
       ],
       "name": "componentized:services-keyvalue-credential-admin",
@@ -2277,6 +2277,14 @@
       "purl": "pkg:github/rust-lang/rust@0ef1bc386059596dada8fb65b50425aab2ea637a",
       "type": "library",
       "version": "1.100.0"
+    },
+    {
+      "bom-ref": "rust-std:20ddd01716a87c0fcf06ae4752d85a4abc15bcdf:wasm32-unknown-unknown",
+      "description": "the Rust standard library for wasm32-unknown-unknown",
+      "name": "rust-std",
+      "purl": "pkg:github/rust-lang/rust@20ddd01716a87c0fcf06ae4752d85a4abc15bcdf",
+      "type": "library",
+      "version": "1.100.1"
     }
   ],
   "dependencies": [
@@ -2304,7 +2312,7 @@
     {
       "dependsOn": [
         "path+file://./components/keyvalue-credential-admin#0.1.0",
-        "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-unknown-unknown"
+        "rust-std:20ddd01716a87c0fcf06ae4752d85a4abc15bcdf:wasm32-unknown-unknown"
       ],
       "ref": "component:componentized:services-keyvalue-credential-admin"
     },
@@ -2791,6 +2799,10 @@
     {
       "dependsOn": [],
       "ref": "rust-std:0ef1bc386059596dada8fb65b50425aab2ea637a:wasm32-unknown-unknown"
+    },
+    {
+      "dependsOn": [],
+      "ref": "rust-std:20ddd01716a87c0fcf06ae4752d85a4abc15bcdf:wasm32-unknown-unknown"
     }
   ],
   "metadata": {
@@ -2799,19 +2811,19 @@
       "description": "Implements `componentized:services/credential-admin`, publishing and destroying the credentials of service bindings in a Valkey server.",
       "externalReferences": [
         {
-          "comment": "revision d699004ff9cf208d8ef3c3bea78adac1f1c888f7",
+          "comment": "revision 9e158b034a7c1241beded1258f4a46232fed2936",
           "type": "vcs",
           "url": "https://github.com/componentized/services.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/services/tree/d699004ff9cf208d8ef3c3bea78adac1f1c888f7/components/valkey-credential-admin"
+          "url": "https://github.com/componentized/services/tree/9e158b034a7c1241beded1258f4a46232fed2936/components/valkey-credential-admin"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "684820fb9e6ce1271e93f2ce9daa8b52278fb93629c97c1f1bd8c4c30fd96ea1"
+          "content": "0b5296595d2112c271056771a97f5b933f49c981af68fce7c2fe3e47d4d0516a"
         }
       ],
       "licenses": [
@@ -2820,11 +2832,11 @@
         }
       ],
       "name": "componentized:services-valkey-credential-admin",
-      "purl": "pkg:oci/valkey-credential-admin@sha256%3Aae60ba122fa9a36810ec0a1c3eafff573c7f973b63ca1a7cabb3c5bfa05a5601?repository_url=ghcr.io/componentized/services/valkey-credential-admin&tag=0.0.6-dev",
+      "purl": "pkg:oci/valkey-credential-admin@sha256%3Aa119a87ec0147f22706d14fb17aeec2134b51ca3b9079baa733300736b775ca6?repository_url=ghcr.io/componentized/services/valkey-credential-admin&tag=0.0.6-dev",
       "type": "library",
       "version": "0.0.6-dev"
     },
-    "timestamp": "2026-11-26T13:57:22Z",
+    "timestamp": "2026-11-27T21:35:00Z",
     "tools": {
       "components": [
         {
