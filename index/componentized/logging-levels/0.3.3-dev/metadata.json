@@ -7,7 +7,7 @@
     "registry": "ghcr.io",
     "repository": "componentized/logging/levels",
     "tag": "0.3.3-dev",
-    "digest": "sha256:42bed7e2f0d0f7ed62b6551806c8ae8d3fca7ca2cd82fef3c6d69f7a544dcc9e",
+    "digest": "sha256:97c9f6d8113dfeadce604b9d9c617a08d4ebddaeb32baa7c3625252096bda0dd",
     "layer_digest": "sha256:b52655d1f83ddd12d2e89310d5d3b9ec761adc533bbd6f587553828e1286c8ae",
     "size": 50410,
     "signature": {
@@ -16,14 +16,14 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/logging",
       "git_ref": "refs/heads/main",
-      "log_index": 4125960241
+      "log_index": 4149051978
     }
   },
   "debug": {
     "registry": "ghcr.io",
     "repository": "componentized/logging/levels",
     "tag": "0.3.3-dev_debug",
-    "digest": "sha256:1782c431dc2543c937586c7d90904572c365a15b5c1c82244c799160c5dcd500",
+    "digest": "sha256:305a238196358b9ba3e8f16a43c603a9603f2da2e1b223188e355c6955284f37",
     "layer_digest": "sha256:8edceaa75ae3bb38cb16873ddc19087675e41fc5cc9a193a0e6b83344d10ac26",
     "size": 118671,
     "signature": {
@@ -32,17 +32,17 @@
       "issuer": "https://token.actions.githubusercontent.com",
       "repository": "componentized/logging",
       "git_ref": "refs/heads/main",
-      "log_index": 4125965201
+      "log_index": 4149053866
     }
   },
-  "created": "2026-11-26T12:27:52.373811892Z",
+  "created": "2026-11-27T13:08:27.104879660Z",
   "annotations": {
     "org.opencontainers.image.description": "Virtual logger that selectively emits log events based on the context and level.",
     "org.opencontainers.image.licenses": "Apache-2.0",
-    "org.opencontainers.image.revision": "34473a43ce865631c3e744b08854057372923f24",
+    "org.opencontainers.image.revision": "4e332cc628abc6a412fc463f5713bb05a46848f7",
     "org.opencontainers.image.source": "https://github.com/componentized/logging.git",
     "org.opencontainers.image.title": "componentized:logging-levels",
-    "org.opencontainers.image.url": "https://github.com/componentized/logging/tree/34473a43ce865631c3e744b08854057372923f24/components/levels",
+    "org.opencontainers.image.url": "https://github.com/componentized/logging/tree/4e332cc628abc6a412fc463f5713bb05a46848f7/components/levels",
     "org.opencontainers.image.version": "v0.3.3-dev"
   },
   "imports": [
@@ -74,7 +74,7 @@
     "issuer": "https://token.actions.githubusercontent.com",
     "repository": "componentized/logging",
     "git_ref": "refs/heads/main",
-    "log_index": 4125962042
+    "log_index": 4149052742
   },
-  "indexed_at": "2026-11-26T12:30:16Z"
+  "indexed_at": "2026-11-27T13:11:27Z"
 }

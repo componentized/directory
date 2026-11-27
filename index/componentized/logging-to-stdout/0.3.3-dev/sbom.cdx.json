@@ -326,7 +326,7 @@
           "name": "Andrew Gallant"
         }
       ],
-      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#jiff-core@1.0.1",
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#jiff-core@1.0.2",
       "description": "Low level datetime primitives for the Jiff library.",
       "externalReferences": [
         {
@@ -345,7 +345,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "b6b46a105a9874634dd96231021526bf24ca04955a5998c59a9c7666e634b7b8"
+          "content": "d44c923edf2bf456a982253f1a9ee1f6e89e421dffd0065d9b9a581da0def58f"
         }
       ],
       "licenses": [
@@ -354,10 +354,10 @@
         }
       ],
       "name": "jiff-core",
-      "purl": "pkg:cargo/jiff-core@1.0.1",
+      "purl": "pkg:cargo/jiff-core@1.0.2",
       "scope": "required",
       "type": "library",
-      "version": "1.0.1"
+      "version": "1.0.2"
     },
     {
       "authors": [
@@ -366,7 +366,7 @@
           "name": "Andrew Gallant"
         }
       ],
-      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#jiff@1.0.2",
+      "bom-ref": "registry+https://github.com/rust-lang/crates.io-index#jiff@1.0.3",
       "description": "A date-time library that encourages you to jump into the pit of success.  This library is heavily inspired by the Temporal project. ",
       "externalReferences": [
         {
@@ -381,7 +381,7 @@
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "c5e77cbfb9fff4798e283c2d69dff39fc2c45e7da017e5ce95b654e46ea41236"
+          "content": "107f2e89536b6818514025f6787b0d94d819e54fe3b40365275fc753de485b3f"
         }
       ],
       "licenses": [
@@ -390,10 +390,10 @@
         }
       ],
       "name": "jiff",
-      "purl": "pkg:cargo/jiff@1.0.2",
+      "purl": "pkg:cargo/jiff@1.0.3",
       "scope": "required",
       "type": "library",
-      "version": "1.0.2"
+      "version": "1.0.3"
     },
     {
       "authors": [
@@ -1318,7 +1318,7 @@
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#jiff@1.0.2",
+        "registry+https://github.com/rust-lang/crates.io-index#jiff@1.0.3",
         "registry+https://github.com/rust-lang/crates.io-index#wit-bindgen@0.63.0"
       ],
       "ref": "path+file://./components/to-stdout#0.1.0"
@@ -1363,15 +1363,15 @@
       "dependsOn": [
         "registry+https://github.com/rust-lang/crates.io-index#log@0.4.35"
       ],
-      "ref": "registry+https://github.com/rust-lang/crates.io-index#jiff-core@1.0.1"
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#jiff-core@1.0.2"
     },
     {
       "dependsOn": [
-        "registry+https://github.com/rust-lang/crates.io-index#jiff-core@1.0.1",
+        "registry+https://github.com/rust-lang/crates.io-index#jiff-core@1.0.2",
         "registry+https://github.com/rust-lang/crates.io-index#log@0.4.35",
         "registry+https://github.com/rust-lang/crates.io-index#serde_core@1.0.228"
       ],
-      "ref": "registry+https://github.com/rust-lang/crates.io-index#jiff@1.0.2"
+      "ref": "registry+https://github.com/rust-lang/crates.io-index#jiff@1.0.3"
     },
     {
       "ref": "registry+https://github.com/rust-lang/crates.io-index#leb128fmt@0.1.0"
@@ -1573,19 +1573,19 @@
       "description": "Implements wasi:logging/logging@0.1.0-draft writing log statements to stdout via wasi:cli/stdout@0.2.3. Timestamps for each log statement are generated from wasi:clocks/wall-clock@0.2.3.",
       "externalReferences": [
         {
-          "comment": "revision 34473a43ce865631c3e744b08854057372923f24",
+          "comment": "revision 4e332cc628abc6a412fc463f5713bb05a46848f7",
           "type": "vcs",
           "url": "https://github.com/componentized/logging.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/logging/tree/34473a43ce865631c3e744b08854057372923f24/components/to-stdout"
+          "url": "https://github.com/componentized/logging/tree/4e332cc628abc6a412fc463f5713bb05a46848f7/components/to-stdout"
         }
       ],
       "hashes": [
         {
           "alg": "SHA-256",
-          "content": "e8b5d5486d25d71717307d50088adc3851cdef5ae3de71d3d572a41215808ee5"
+          "content": "e465376c87f82bd7dc1178d71b24f903a1c94f063596daf950b81dd106283c51"
         }
       ],
       "licenses": [
@@ -1594,11 +1594,11 @@
         }
       ],
       "name": "componentized:logging-to-stdout",
-      "purl": "pkg:oci/to-stdout@sha256%3A9d6c15a5013b1da36af4a52cf6081b42a3baac31d070ba6063274225a4da3a7c?repository_url=ghcr.io/componentized/logging/to-stdout&tag=0.3.3-dev",
+      "purl": "pkg:oci/to-stdout@sha256%3A25fe4162b83c97a86164373cc4d74525d47f7772529d7aacb52d11894cd17b68?repository_url=ghcr.io/componentized/logging/to-stdout&tag=0.3.3-dev",
       "type": "library",
       "version": "0.3.3-dev"
     },
-    "timestamp": "2026-11-26T12:26:08Z",
+    "timestamp": "2026-11-27T13:06:39Z",
     "tools": {
       "components": [
         {
