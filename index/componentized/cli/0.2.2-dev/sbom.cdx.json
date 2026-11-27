@@ -38,13 +38,13 @@
       "description": "A collection of utility components that remix wasi:cli types and interfaces.",
       "externalReferences": [
         {
-          "comment": "revision 5d6fa6692da24a9b042debb0576aec6bcd27a82c",
+          "comment": "revision 1b72854e65d59ac7444cdf9c0d38d572d39c2e8b",
           "type": "vcs",
           "url": "https://github.com/componentized/cli.git"
         },
         {
           "type": "website",
-          "url": "https://github.com/componentized/cli/tree/5d6fa6692da24a9b042debb0576aec6bcd27a82c"
+          "url": "https://github.com/componentized/cli/tree/1b72854e65d59ac7444cdf9c0d38d572d39c2e8b"
         }
       ],
       "hashes": [
@@ -59,11 +59,11 @@
         }
       ],
       "name": "componentized:cli",
-      "purl": "pkg:oci/cli@sha256%3A999b19bb10d43313db19a2cc8580bb792a78ea919abad8b9d9544d5bef9a0e98?repository_url=ghcr.io/componentized/cli&tag=0.2.2-dev",
+      "purl": "pkg:oci/cli@sha256%3A4be6a680b17d480388269987630e0307370f5ce5b701541b0f9b88a86602aa0a?repository_url=ghcr.io/componentized/cli&tag=0.2.2-dev",
       "type": "library",
       "version": "0.2.2-dev"
     },
-    "timestamp": "2026-11-25T21:52:26Z",
+    "timestamp": "2026-11-27T13:06:48Z",
     "tools": {
       "components": [
         {
